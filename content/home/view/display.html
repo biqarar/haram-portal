@@ -1,0 +1,18 @@
+{# Ahmad Karimi ahmadkarimi1991@gmail.com #}
+{% extends layout %}
+{%block content%}
+	{% for j, post in posts %}
+	<div class="post">
+		<div class="post-image">
+			<img src="{{post.pic}}" alt="" width="100" height="100">
+		</div>
+		<div class="post-content">
+			<h1>{{post.title}}</h1>
+			<p class="text">{{post.short}}</p>
+			<div class="read-more">
+				<a href="{{post.curl}}" class="read-more">ادامه متن<span>&#9654;</span></a>
+			</div>
+		</div>
+	</div>
+	{%endfor%}
+{%endblock%}

@@ -1,0 +1,73 @@
+{% extends layout %}
+{% block content %}
+<!-- <input type="hidden" value="{{classes_id}}">
+ -->
+<div class="class-detail">
+	{{ tagMaker.list(list) }}
+</div>
+<br>
+<div id="result"></div>
+<div class="class-detail">
+	{{ tagMaker.list(classes_list) }}
+</div>
+<br>
+<form class="zjx" method="post" action="classification/{{global.url}}">
+	{{forms.make(search)}}
+</form>
+{{tagMaker.list(person)}}
+<script type="text/javascript">
+// $(".autocomplete").keyup(function(){
+// 	$(".autocomplete").acomplete("person/api/" + $(this).val(), 20, 'person' , Array('name', 'family'));
+// });
+
+// var availableTags = Array();
+// function getAutoComplete(url ,text , returnMsg) {
+// 	$("#result").text("");
+// 	text = text.val();
+// 	console.log(url+text);
+// 	$.ajax({
+// 		type : "POST",
+// 		// context : CITY,
+// 		url :  url + text,
+// 		success : function(data){
+// 			// console.log(data);
+// 			availableTags = Array();
+// 			for(var i = 0; i < data.msg.person.length; i++){
+// 				var person = data.msg.person[i];
+// 				// console.log(person);
+// 				availableTags[i] = person.name + '  ' + person.family  ;
+// 				console.log(availableTags);
+// 			}
+// 		}
+// 	});
+// 	$( ".autocomplete" ).autocomplete({
+// 		select: function(event, ui) {
+// 			event.preventDefault();	
+// 		},
+// 		source: availableTags
+// 	});
+// }
+
+// 	$(".autocomplete").keypress(function(e){
+// 		if(e.which==13){
+// 			var xusername = "";
+// 			// var url = window.location.pathname.split('/');
+// 			var classes_id = $("input[type=hidden]").val();
+// 			var username = $(this).val().split(" ");
+// 			for (a in username){
+// 				// console.log(username[a]);
+// 				if(username[a].match(/\d{8}/)){
+// 					xusername = username[a];
+// 					break;
+// 				}
+// 			}
+// 			console.log('classification/api/' + xusername + '/' + classes_id);
+
+
+// 	$(".autocomplete").keyup(function() {
+// 		$(this).acomplete(null, 20);
+// 	});
+</script>
+<br>
+
+{%endblock%}

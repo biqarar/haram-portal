@@ -1,0 +1,7 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="permission/{{global.url}}">
+	{{forms.make(form.permission)}}
+</form>
+{%endblock%}

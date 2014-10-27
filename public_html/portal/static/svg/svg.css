@@ -1,0 +1,59 @@
+path{
+	/*fill :#117473 !important;*/
+}
+path {
+	-webkit-animation: fadeit 2.5s infinite;
+	-moz-animation: fadeit 2.5s infinite;
+	-o-animation: fadeit 2.5s infinite;
+	animation: fadeit 2.5s infinite;
+}
+
+.logo_svg_ya path {
+	-webkit-animation-delay: -1.5s;
+	animation-delay: -1.5s;
+}
+
+.dot-one path {
+	-webkit-animation-delay: -1.2s;
+	animation-delay: -1.2s;
+}
+.logo_svg_fa path {
+	-webkit-animation-delay: -1.2s;
+	animation-delay: -1.2s;
+}
+
+.dot-two path {
+	-webkit-animation-delay: -.9s;
+	animation-delay: -.9s;
+}
+.logo_svg_teme path {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+.dot-three path {
+	-webkit-animation-delay: -0.6s;
+	animation-delay: -0.6s;
+}
+@-webkit-keyframes fadeit {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	100% {
+		opacity: 1;
+	}
+
+}
+@keyframes fadeit {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	100% {
+		opacity: 1;
+	}
+}

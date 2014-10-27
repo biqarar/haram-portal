@@ -1,0 +1,14 @@
+{# reza mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{% block content %}
+<form class="ajx posts-form-options" method="post" action="posts/{{global.url}}">
+	<div class='form-element'>
+		<label>تصویر خبر</label>
+		<img src="static/svg/icons/media.svg" class="img-preview">
+	</div>
+	{{forms.make(form.posts)}}
+</form>
+<form class="ajx filebox-form" method="post" action="files/add">
+	{{forms.make(form.files)}}
+</form>
+{%endblock%}

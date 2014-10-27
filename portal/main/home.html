@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{global.page_title}}</title>
+	<meta charset="UTF-8">
+	<base href="{{global.site_url}}">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- jQuery UI CSS -->
+	<link rel="stylesheet" type="text/css" href="static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+	<!-- Modernizr -->
+	<script type="text/javascript" src="static/bower_components/modernizr/modernizr.js"></script>
+	<!-- jQuery -->
+</head>
+<body id="home1">
+{{global.aaa}}
+	<div id="body">
+		<div class="symbol-right"></div>
+		<div class="symbol-left"></div>
+		<div class="wrapper">
+			<div class="head">
+				<div class="top-tape"></div>
+				<div class="header">
+					<div class="title"></div>
+				</div>
+				<div class="thin-line"></div>
+				<div class="shamseh">
+					<div class="shamseh-noghte">
+						<div class="logo"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="components">
+				<div class="vertical-menu">
+					{% for i, link in global.main_menu %}
+					<div><a href="{{link.href}}">{{link.title}}</a></div>
+					{%endfor%}
+				</div>
+
+				<div class="eslimi"></div>
+
+				<div class="slide-show">
+					<div class="image-wrapper">
+						<img src="static/img/image.png" alt="image" >
+					</div>
+				</div>
+			</div>
+
+			<div class="content-wrapper">
+				{% for j, post in posts %}
+				<div class="post">
+					<div class="post-image">
+						<img src="static/img/1.png" alt="" width="100" height="100">
+					</div>
+					<div class="post-content">
+						<h1>{{post.title}}</h1>
+						<p class="text">{{post.text}}</p>
+						<div class="read-more">
+							<a href="posts/{{post.id}}" class="read-more">ادامه متن<span>&#9654;</span></a>
+						</div>
+					</div>
+				</div>
+				{%endfor%}
+			</div>
+		</div>
+		<div class="footer">
+			<span class="footer-symbol footer-right"></span>
+			<span> تمامی حقوق این پایگاه برای آستان مقدس حرم حضرت معصومه سلام الله علیها محفوظ می باشد. نقل مطلب با ذکر منبع بلامانع است.</span>
+			<span class="footer-symbol footer-left"></span>
+		</div>
+	</div>
+</body>
+</html>

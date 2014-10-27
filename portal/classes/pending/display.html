@@ -1,0 +1,7 @@
+{# Ahmad Karimi ahmadkarimi1991@gmail.com #}
+{% extends layout %}
+{%block content%}
+<form class="ajx" method="post" action="classes/{{global.url}}">
+	{{forms.make(form.pending_classes)}}
+</form>
+{%endblock%}

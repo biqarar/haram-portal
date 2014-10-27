@@ -1,0 +1,100 @@
+#home {
+	background-image: url(../svg/icons/home.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #59C5C5;
+			}
+		}
+	}
+}
+#user {
+	background-image: url(../svg/icons/user.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #b470ba;
+			}
+		}
+	}
+}
+#teacher {
+	background-image: url(../svg/icons/teacher.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #94a0d0;
+			}
+		}
+	}
+}
+#class {
+	background-image: url(../svg/icons/class.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #9fbe03;
+			}
+		}
+	}
+}
+#attendance {
+	background-image: url(../svg/icons/attendance.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #f16971;
+			}
+		}
+	}
+}
+#letters {
+	background-image: url(../svg/icons/letters.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #4dbddc;
+			}
+		}
+	}
+}
+#share {
+	background-image: url(../svg/icons/share.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #cacc12;
+			}
+		}
+	}
+}
+#folder {
+	background-image: url(../svg/icons/folder.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #35b3bb;
+			}
+		}
+	}
+}
+#media {
+	background-image: url(../svg/icons/media.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #f6914b;
+			}
+		}
+	}
+}
+#settings {
+	background-image: url(../svg/icons/settings.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #7080ba;
+			}
+		}
+	}
+}

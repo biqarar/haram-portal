@@ -1,0 +1,127 @@
+#tabs.ui-widget-content {
+	background: transparent;
+}
+#tabs {
+	overflow: hidden;
+	position: inherit;
+	padding: 0;
+	font-size: 12px;
+	> ul {
+		padding: 0;
+		margin-right: 70px;
+		border-bottom: none;
+		width: 6000px;
+		position: inherit;
+		background: transparent;
+		border: none;
+		font-weight: normal !important;
+		.ui-state-default {
+			@include tab-default;
+		}
+		li {
+			margin-right: -20px;
+			width: 193px;
+			height: 30px !important;
+			margin-top: 0;
+			text-align: right;
+			margin-bottom: -1px;
+			outline: none;
+			overflow: hidden;
+			> a {
+				font-family: "WYekan";
+				outline: none;
+				float: right;
+				padding: 5px 20px 0 0;
+				width: 145px;
+				margin-top: 7px;
+				overflow: hidden;
+			}
+			.ui-icon-close {
+				width: 10px;
+				height: 10px;
+				float: right;
+				position: absolute;
+				top: 2px;
+				right: 18px;
+			}
+		}
+		li.ui-state-default {
+			@include tab-default;
+			a {
+				color: #988984;
+				&:link {
+					color: #988984;
+				}
+				&:visited {
+					color: #988984;
+				}
+			}
+		}
+		li.ui-state-active {
+			padding-bottom: 0;
+			background: url(../svg/tab-active.svg) no-repeat;
+			width: 193px;
+			z-index: 999;
+			> a {
+				color: #875546;
+				width: 145px;
+				cursor: default;
+			}
+		}
+		li.ui-state-default, li.ui-state-active {
+			&:hover {
+				.ui-icon-close {
+					background: url(../svg/icons/close.svg) -10px 0 no-repeat;
+				}
+			}
+			.ui-icon-close {
+				background: url(../svg/icons/close.svg) 0 0 no-repeat;
+				&:hover {
+					background: url(../svg/icons/close.svg) -20px 0 no-repeat;
+				}
+			}
+		}
+	}
+	> div {
+		background: #fff;
+		font-family: "WRoya";
+		font-size: 1rem;
+		border-right: 1px solid #f8fdfd;
+		border-left: 1px solid #f8fdfd;
+		border-top: 1px solid #00bbec;
+		overflow: auto;
+	}
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+.ui-state-active, .ui-state-default, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	font-weight: normal !important;
+}
+.x4 {
+	background: url(../svg/tab-default.svg) no-repeat;
+}
+.x4.active {
+	background: url(../svg/tab-active.svg) no-repeat;
+}
+.ui-state-default.dot3, .ui-state-active.dot3 {
+	&:after {
+		content: "...";
+		padding-top: 12px;
+		padding-right: 3px;
+		display: inline-block;
+	}
+}
+.ui-state-default.dot3 {
+	&:after {
+		color: #988984;
+	}
+}
+.ui-state-active.dot3 {
+	&:after {
+		color: #875546;
+	}
+}

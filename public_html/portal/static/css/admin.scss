@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+// Variables and Mixins
+@import "partials/base";
+
+// Partials
+@import "partials/reset";
+@import "partials/typography";
+@import "partials/header";
+@import "partials/menu";
+@import "partials/icons";
+@import "partials/tabs";
+@import "partials/inputs";
+@import "partials/footer";
+
+.wrapper {
+	margin-right: 129px;
+	margin-left: 65px;
+	min-height: 70%;
+	margin-bottom: 10px;
+	> .ui-widget-content {
+		border: none;
+	}
+}
+.perload-svg {
+	margin: 0 auto;
+	display: block;
+}
+// Submit Status
+.submit-status {
+	float: left;
+	min-width: 300px;
+
+	ul {
+		list-style: none;
+	}
+
+	.submit-status-fatal {
+		&:before {
+			content: "تراکنش با خطا مواجه شد";
+			display: inline-block;
+			margin-right: -10px;
+			font-family: "WYekan";
+			font-size: 15px;
+		}
+	}
+
+	.submit-status-warn {
+		&:before {
+			content: "اخطار";
+			display: inline-block;
+			margin-right: -10px;
+			font-family: "WYekan";
+			font-size: 15px;
+		}
+	}
+
+	.submit-status-true {
+		&:before {
+			content: "تراکنش باموفقیت صورت گرفت";
+			display: inline-block;
+			margin-right: -10px;
+			font-family: "WYekan";
+			font-size: 15px;
+		}
+	}
+}
+.ajx, .formx {
+	float: right;
+}
+.stateClass {
+	position: relative;
+}
+.statePerlaod, .stateUPerlaod {
+	position: absolute;
+	background: rgba(255, 255, 255, .3);
+	display: block;
+	border-top: 1px solid #26afe2;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	-webkit-animation: statePerload 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+.uploadPerload {
+	text-align: right;
+	direction: rtl;
+	vertical-align: middle;
+	position: absolute;
+	background: rgba(38, 175, 226, .6);
+	display: block;
+	border-left: 3px solid #26afe2;
+	right: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	-webkit-transition-property: width;
+	-webkit-transition-duration: 50ms;
+	-webkit-transition-timing-function: linear;
+}
+.muploadPerload {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+@-webkit-keyframes statePerload {
+	0% {
+		width: 20%;
+	}
+	50% {
+		width: 80%;
+	}
+	75% {
+		width: 100%;
+	}
+	100% {
+		width: 0;
+	}
+}
+.filebox-form {
+	display: none;
+}
+.img-preview {
+	width: 100px;
+	display: inline-block;
+}
+.jcrop-holder {
+	display: inline-block;
+}
+
+.table-list {
+	width: 100%;
+	border-spacing: 1px;
+
+	tr {
+
+
+		&:nth-child(even) {
+			background-color: #fafafa;
+		}
+
+		&:nth-child(odd) {
+			background-color: #f0f9f0;
+		}
+
+		&:hover {
+			td {
+				color: #333;
+			}
+		}
+	}
+
+	th {
+		// background-color: #f2eeef;
+		background-color: #f0f9f0;
+		color: #393939;
+		font-size: 12px;
+		font-family: "WYekan";
+	}
+
+	td {
+		text-align: right;
+		padding: 5px 10px;
+		font-family: "WRoya";
+		color: #666;
+		font-size: 13px;
+		@include my-transition;
+	}
+
+	.xmore {
+		background: url(../img/more.png);
+		display: block;
+		width: 16px;
+		height: 16px;
+		margin: 0 auto;
+	}
+}

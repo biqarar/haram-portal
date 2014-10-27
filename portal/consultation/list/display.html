@@ -1,0 +1,7 @@
+{# reza mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="consultation/{{global.url}}">
+	{{forms.make(form.consultation_list)}}
+</form>
+{%endblock%}

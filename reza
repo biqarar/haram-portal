@@ -1,0 +1,1857 @@
+[33mcommit 52852c22a62e88a7498f290e886c57625848d0ef[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Sep 21 13:41:55 2014 +0330
+
+    auto complete
+
+[33mcommit efd51684e9157e862964357eb617f12413158d93[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Sep 20 14:36:35 2014 +0330
+
+    reza
+
+[33mcommit 3894eb554a86395596c8cca4fff7159ad3810087[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Sep 20 12:49:43 2014 +0330
+
+    reza
+
+[33mcommit 40e9f4cda4555f3e037cd4f2b2db8ef420aec496[m
+Merge: 01961c0 8d3bded
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Sep 19 19:21:45 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 01961c0eea9ab6517649bd5a56766ad32da06da5[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Sep 19 19:20:58 2014 +0330
+
+    classification_classes
+
+[33mcommit 8d3bded552dc1941818518bd7b25e6fe9a7c292f[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 17 12:59:45 2014 +0330
+
+    ahmad
+
+[33mcommit 0a37d5993f522714cd70dc8eb9e6e95040ccfb19[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 17 12:58:07 2014 +0330
+
+    ahmad
+
+[33mcommit 3d2c4ad087a79efbe1af6b7cab6581d345c029a8[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 17 11:44:51 2014 +0330
+
+    <table class >
+
+[33mcommit 326ca8bbb741f01aef5c743b37fa1328fdc02df4[m
+Merge: e169a2b eed6bc1
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 17 11:07:54 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit e169a2bb4958fa00ed41b0a034007e59d7246112[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 17 11:07:31 2014 +0330
+
+    classes & classes/detail
+
+[33mcommit eed6bc14d071030d05280644121ec97f2ac9ebc3[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 17 11:06:42 2014 +0330
+
+    table-list style by ahmad
+
+[33mcommit cd460172a150f61ad2de1aa7d33846ab3038f390[m
+Merge: af4274d 30146c8
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 17 10:18:12 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 30146c8b50ac3d07a4ed5eb67bce116957cb341e[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 16 12:15:57 2014 +0330
+
+    .htaccess
+
+[33mcommit 3eef8ef59a5924ae9ec0c1a05ee8f208aaf6b38a[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 16 12:01:18 2014 +0330
+
+    users list
+    users option
+    main js
+    post more
+    regulation
+
+[33mcommit af4274d48aec4181529369b58590579c7dce44f4[m
+Merge: 463a76e cd43b9b
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Sep 15 13:17:07 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 463a76e7414bb4e9befd421c4df70d837a98bfbe[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Sep 15 13:07:44 2014 +0430
+
+    xczxczc
+
+[33mcommit cd43b9b21ff61d8d1e9bf50685b785424add9765[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Sep 12 17:23:09 2014 +0330
+
+    remove some field from users/list/view.php when creat the list
+
+[33mcommit 48ea79c161b3cc835a933eda027474d9717dd7bf[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Sep 12 15:47:09 2014 +0330
+
+    list of users
+    content/users/list/view.php
+
+[33mcommit 7038beb0fe9eb4c52db607915523c3216871aa58[m
+Merge: 989776e f5bd383
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Sep 8 22:43:28 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 989776e1db66622337a40ffb4ed24862bebc27e3[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Sep 8 21:13:44 2014 +0430
+
+    git save commit
+
+[33mcommit 86cbe9614e993491ba27cc24e28ba827b436f2d6[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Sep 8 21:10:28 2014 +0430
+
+    asdfsadf
+
+[33mcommit f5bd38358a69426bfc6f29f8e462de841dad5612[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Sep 7 22:18:47 2014 +0330
+
+    reza just for test pull
+
+[33mcommit 320df330ecb56665414c2f38774aef519ade6767[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Sep 5 21:12:00 2014 +0330
+
+    classes/waiting/add
+
+[33mcommit 4f7f5d23892ee2b5f88815b1b72ea36e5e2ffe69[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Sep 5 21:09:14 2014 +0330
+
+    classes/waiting/add
+
+[33mcommit fe028caf0c0b1c25f99b8a66806d2086bf0fb56b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Sep 4 09:13:48 2014 +0330
+
+    reza
+
+[33mcommit 88c428e138b482f63f3e2be9006ee536a52ea91f[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Sep 4 08:54:38 2014 +0330
+
+    home link on public page
+
+[33mcommit 41333dcdcfc0b01bc1e2df9b7c941207155edd31[m
+Merge: d1a8abf 7ee18a0
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Sep 4 08:51:37 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit d1a8abfebe9341985e4a4d23597c162c2b933d9b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Sep 4 08:51:09 2014 +0330
+
+    steress
+
+[33mcommit 7ee18a0cc1f4b3ba598f9238284320ef8e3c1858[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Sep 4 06:19:53 2014 +0430
+
+    lang
+
+[33mcommit 6af12e367c3da5c6e464ed924bac2cf9cc754603[m
+Merge: b7408e0 be9e3f2
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Sep 4 00:34:00 2014 +0330
+
+    reza
+
+[33mcommit b7408e0b3d136af780b05f53b17ac3ec36c3c120[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Sep 4 00:31:57 2014 +0330
+
+    reza test page
+
+[33mcommit 209019bd40534154bf27ab805db7e2431c4a211b[m
+Merge: 3c33949 1cceff6
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 23:41:26 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 3c339490f213f756e0d6a26c10bd87dcb4ab28af[m
+Merge: 4be89ce 3dbe22f
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 23:40:45 2014 +0330
+
+    reza
+
+[33mcommit 4be89ce56de1ae40ff552107be4f8985e12f1826[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 23:28:56 2014 +0330
+
+    reza
+
+[33mcommit be9e3f237de9bc012505880175b5bd9a9bc4fdab[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Thu Sep 4 00:09:10 2014 +0430
+
+    x
+
+[33mcommit 1794bec7e0206dcb9f99116b07ba740398a04731[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:53:09 2014 +0430
+
+    more posts
+
+[33mcommit 83682cff196b2ddca94c00bf09a10ff4db26fdf8[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:50:20 2014 +0430
+
+    ahmad
+
+[33mcommit 1cceff60e8cf9b860b84a94956f1a46f8becf006[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:37:31 2014 +0430
+
+    ahmad
+
+[33mcommit 3dbe22f3b8ab697b100ef7812b3d38da19865dfe[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:29:17 2014 +0430
+
+    ahmad
+
+[33mcommit d5a8c8afbcc9936f89f074cbcec7e94da0fa3bff[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:26:15 2014 +0430
+
+    ahmad
+
+[33mcommit b6897a12b68da2fb949a36c898eff8066f368dd1[m
+Merge: faa8565 893c89b
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:24:35 2014 +0430
+
+    f
+
+[33mcommit faa856554147af32705f735ec520b893b17f652d[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 23:20:36 2014 +0430
+
+    ahmad
+
+[33mcommit 893c89bb15bee72e89986586ab16a30d335e50cf[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 12:52:25 2014 +0330
+
+    register msg
+
+[33mcommit 8d1519b779c3f40c2b2bb5dd7e7a89bc36fdd2e1[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 12:18:35 2014 +0330
+
+    static page
+
+[33mcommit b106ae2ef62672c385af3c6f0408896df2d8adde[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 12:00:07 2014 +0330
+
+    static page
+
+[33mcommit 3c565f8d3753d27ad18699e0be02c9a483bd4455[m
+Merge: 81d0852 2993a73
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 11:58:55 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 81d08525a6c4e0a08dafc4edad53fd4814b298b6[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 11:58:32 2014 +0330
+
+    static page
+
+[33mcommit 2993a73794264fd48ce9b7fa30c2e9d1e188d01e[m
+Merge: 3e30b2e 11578e2
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 10:52:17 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 3e30b2e086804c5d42b9871886818afb863cda59[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 10:51:49 2014 +0430
+
+    x
+
+[33mcommit 11578e2006c0656cfb30d21d9499fe21e4309801[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 09:18:34 2014 +0330
+
+    teacher class name
+
+[33mcommit e68d252de10178ee74a3f5e5f48cce7e84020161[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 04:47:40 2014 +0330
+
+    f
+
+[33mcommit 2c6d83c82b975e87e3bff9a70f6aebb0099fb843[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 04:28:21 2014 +0330
+
+    f
+
+[33mcommit 1afd7dec7f7281105dc3f2b1cab2aafe7bcf6d39[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 04:19:02 2014 +0330
+
+    f
+
+[33mcommit fc69c5a1042367588288a7bbf69e694317ad9c44[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 04:13:34 2014 +0330
+
+    f
+
+[33mcommit 76cdaff11cabbe26cf0bd23a36048fcca2c2a90f[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:49:00 2014 +0330
+
+    f
+
+[33mcommit 7497ce7f62aee015f1e137fa67e55ae3b72f34ef[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:18:55 2014 +0330
+
+    f
+
+[33mcommit 99e101c1cc84f6e82c31408849760fe6826bc616[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:15:44 2014 +0330
+
+    f
+
+[33mcommit efc0f8c46c141035f0886d189d5d897729e1981d[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:13:54 2014 +0330
+
+    f
+
+[33mcommit e489c882edd32a399e19fc9539711e08fa5a0ad9[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:10:20 2014 +0330
+
+    f
+
+[33mcommit 70a13ee8d7c97ca220cf30a2ef6da966633b6c14[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:06:40 2014 +0330
+
+    f
+
+[33mcommit cb0e70029ee50c44faa2e782851d0a998fcdb5b3[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:04:17 2014 +0330
+
+    f
+
+[33mcommit 9f4ccd9d9c56007c412284d192652c6e24bcb752[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:02:29 2014 +0330
+
+    f
+
+[33mcommit f02fe8978d913efbf4aa8ee4b44df63152d75930[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 03:01:20 2014 +0330
+
+    f
+
+[33mcommit 3f85396fa64df04086982591e40b2481893be241[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 02:57:24 2014 +0330
+
+    f
+
+[33mcommit 4343fc3dc8fe96e0120af9e1bc1abef3cd3b6dd4[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 02:17:26 2014 +0430
+
+    x
+
+[33mcommit 604f9b22a854c01882dd834800bba0dd41931314[m
+Merge: a8acd91 91505b4
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 02:16:45 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 91505b483b68d12361b77dd6b9adce056bfaad48[m
+Merge: c292eeb df84919
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 02:13:17 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit c292eeb7a0d3b17a80cec843e56d2efb8e2ec9f6[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 02:12:25 2014 +0330
+
+    f
+
+[33mcommit a8acd919d8bddf0c1f8e815bf315afe352977d10[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 02:16:16 2014 +0430
+
+    ahmad
+
+[33mcommit df849198cbf601515ed8679420267949ee791e7e[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 01:30:54 2014 +0430
+
+    max-height selectmenu
+
+[33mcommit 8d0eadef24fc312a734c44b38eeb4ce53f696e62[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 01:27:54 2014 +0430
+
+    selects
+
+[33mcommit 1ee83d1544dfeee53dc2d8c4a9b8c55712bb5191[m
+Merge: b8eba5e 18e8d12
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 01:02:05 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 18e8d12ea2f0b3bf9843201f86bce59ad0a30a63[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 00:59:48 2014 +0330
+
+    reza
+
+[33mcommit 4117105d055dd60fa721e1cf4330eacd8be67bf1[m
+Merge: 318f330 b2ed9be
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 00:32:10 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 318f330501d491764308fb2ee8b6a56c85d6c192[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Sep 3 00:31:28 2014 +0330
+
+    users show
+
+[33mcommit b8eba5e722b28b290f9818acc8b83fa399d4d417[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Sep 3 01:01:45 2014 +0430
+
+    f
+
+[33mcommit 7dcf6fe37a5524e63f3dfb20fe93ee02c2c79e72[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 23:18:41 2014 +0330
+
+    label select
+
+[33mcommit 3f50d0d046483d3ba0f7734dec006cdb2b38956f[m
+Merge: 63478b0 55def0d
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 22:59:59 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 63478b09c25be3ea9e3f43b0f1754d109d8dba82[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 22:59:46 2014 +0330
+
+    logout
+
+[33mcommit b2ed9bedc770ca4dadd63867edd8e93d661cf0cb[m
+Merge: f9d1ef9 7dcf6fe
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 23:28:22 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit f9d1ef9d192bda08e2a7f3e037b4052b3ac6380c[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 23:27:56 2014 +0430
+
+    f
+
+[33mcommit 55def0d76eb3d273329e6787cc494f39fd66d350[m
+Merge: 569d03f 261581e
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 22:59:34 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 569d03f8b293dc4565a69a8bceda1a6260d97755[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 22:59:17 2014 +0430
+
+    ahmad
+
+[33mcommit 261581e63af7b5288419cab7e9ea689dbfa180f8[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 17:55:32 2014 +0330
+
+    reza
+
+[33mcommit ddb7c3953835d0617b5825b949f3a1220a57d8a9[m
+Merge: a1450fb d68cf7b
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 17:54:24 2014 +0330
+
+    reza'
+
+[33mcommit a1450fbac70b4f76e0234fb09d3ff754ef2d50f3[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 17:52:48 2014 +0330
+
+    reza
+
+[33mcommit 8c9f63581daa016bf0edf3935aa52ff195a72f70[m
+Merge: e583d71 fbbecab
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 16:48:29 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit e583d714e4dd98015fdacee03576d3528eda0cdb[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 16:48:02 2014 +0330
+
+    f
+
+[33mcommit d68cf7bd4d085c80248e45973e7b68e47b0ac261[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 17:15:19 2014 +0430
+
+    menu
+
+[33mcommit c4010b1237966af5ab9b61c31699a7a331f74335[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 17:09:55 2014 +0430
+
+    ahmad
+
+[33mcommit d582941d82575f88d2a33a7923f65cb9b943d9c3[m
+Merge: 7c761de 8c9f635
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 17:08:19 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 7c761de82fe0b5ff6194b8ac26847fe08c68f41d[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 17:07:24 2014 +0430
+
+    inputs modified
+
+[33mcommit fbbecab19347093a83116c726affd3be8876e066[m
+Merge: 10dd573 92091ee
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 16:03:15 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 10dd573937493ca8005015a4d90a3fe54c63ae81[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 16:02:43 2014 +0430
+
+    des bug
+
+[33mcommit 92091ee2e4cb418912e009643a284fec5e0e8697[m
+Merge: ca6a500 797e11f
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 14:23:12 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit ca6a500eddaf1bf5fbf87d14dab1b17b75a8a1cb[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Sep 2 14:22:50 2014 +0330
+
+    f
+
+[33mcommit 797e11f8a8a676bd5b7d59c40bd17d3cc8d24ebb[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 14:23:57 2014 +0430
+
+    ahmad
+
+[33mcommit c9060f0aa3564138669620c2679b2194587f2b5b[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 10:54:26 2014 +0430
+
+    site title edited
+
+[33mcommit 4c03c3a817a459e776d24140ac3da34b2d17529c[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Tue Sep 2 10:43:53 2014 +0430
+
+    public_html complete
+
+[33mcommit 9a5dd4c1bcd62061ee271c0fd199e4a89373265a[m
+Merge: f88d953 ffcabd3
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Sep 1 16:12:27 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit ffcabd3247686f828cf08dd6d2c87f41672b8eb6[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Sep 1 15:57:33 2014 +0330
+
+    permission
+
+[33mcommit f88d9539f067ebe808063d2bffa35e693895719c[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Sep 1 16:12:06 2014 +0430
+
+    working on slideshow
+
+[33mcommit 36e323bdbd634b91cf906d91472ee90607da7914[m
+Merge: 7432d88 7143bb7
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Sep 1 09:03:04 2014 +0330
+
+    reza
+
+[33mcommit 7432d88b56884b80db567008529ef23b2eaa0ac2[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 31 14:08:48 2014 +0330
+
+    reza
+
+[33mcommit 7143bb7ffc42ca5ddc88d0e5b0b65f5d8312d1ac[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 30 23:17:52 2014 +0430
+
+    public
+
+[33mcommit ae049e7e966a6319432b0dec6577a287c72ae5e3[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 30 23:17:18 2014 +0430
+
+    F
+
+[33mcommit 00410d2d1c3cf732fe78d4f5150d091295a76ba2[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 30 22:54:13 2014 +0430
+
+    p
+
+[33mcommit 87655a56e28aeeb42b2f285cc60e44b0ca7e0d72[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 30 22:35:39 2014 +0430
+
+    captcha
+
+[33mcommit a7da7760facf02a020adb10b63e9debb63bd629f[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 30 21:05:42 2014 +0430
+
+    ب
+
+[33mcommit 85496a9ab47aaf6f61fdf3a79a5e35a15ee5911b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 30 13:21:53 2014 +0330
+
+    reza split portal-site
+
+[33mcommit 6496fa356de01ca0a10d7a55ab3e0bb15bac2e4b[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 30 13:43:59 2014 +0430
+
+    fuc reza
+
+[33mcommit b7e117a5455eb249119dab323f16cdbb07704892[m
+Merge: 6ec8dbf b68701a
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Aug 29 19:13:30 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 6ec8dbf08948ab88818e47e07b3294a76f62cda4[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Aug 29 19:13:08 2014 +0330
+
+    reza
+
+[33mcommit b68701af779712a68b5d87e2ec576b53968787ce[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Fri Aug 29 13:11:36 2014 +0430
+
+    f
+
+[33mcommit 8db4320b59a8086d3277cad5bd98a1fb3d795081[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Fri Aug 29 13:11:28 2014 +0430
+
+    f
+
+[33mcommit 39e5ab34dcd95a4bb4c8b339643db21cb08ec627[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Fri Aug 29 13:11:01 2014 +0430
+
+    f
+
+[33mcommit 1890bbd23224071a11c79753daac7788a64328f0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Fri Aug 29 13:09:55 2014 +0430
+
+    ignore
+
+[33mcommit 75075a5acfb1425022986e4ddd03195b3188928e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Fri Aug 29 13:06:44 2014 +0430
+
+    file uploaded
+
+[33mcommit b783873e092cd966487bafc65bd1f38f2f22dde2[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 27 10:20:38 2014 +0330
+
+    insert # of firs filed form when need
+
+[33mcommit 9b36401922eb4bef96b1ffce661a93f49ef7cd71[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Aug 26 06:18:54 2014 +0330
+
+    translate modified
+
+[33mcommit 20ead76da2b0b1b489a32ef860ed2e65bbeb9fce[m
+Merge: 97654b8 8e08cbb
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Aug 26 05:55:25 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 97654b8347e33789dea9d28ce575853ac587a506[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Aug 26 05:55:05 2014 +0330
+
+    plese select one item translate to persian
+
+[33mcommit 8e08cbb7ab18910148df094a44cdfe618989cc7b[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 01:17:42 2014 +0430
+
+    f
+
+[33mcommit eb26ebfdefab6afda15c71c007b89f3467c24bd9[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 01:08:13 2014 +0430
+
+    f
+
+[33mcommit f4c91626dc02e6ac1e66fa2e652e790701e68453[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 01:01:50 2014 +0430
+
+    f
+
+[33mcommit 7084b1e20cd2d93acb4bde9beeae792559269ce5[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 00:58:27 2014 +0430
+
+    f
+
+[33mcommit 74dd72f4283216d63276707edaa4781140a06267[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 00:51:42 2014 +0430
+
+    f
+
+[33mcommit 975ccad06f29a70c893d0ebf344ef2c6e75b1017[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 00:50:15 2014 +0430
+
+    f
+
+[33mcommit c9d78e72a81d57641fbba27aa981aa4ae7b059f0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Tue Aug 26 00:24:44 2014 +0430
+
+    f
+
+[33mcommit f5f89aa9923259dee3534882de770cb1f69a96bd[m
+Merge: 7aad284 48ea16d
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 23:21:12 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 7aad284eae8a71ad7a65171262e7812b26dbf823[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 23:20:15 2014 +0330
+
+    menu
+
+[33mcommit d3e01df61ef73f0927df2c751e4ef18fa19bf9c3[m
+Merge: 5fe11e0 dafd60b
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 23:02:31 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 5fe11e09f5f58111f5a0564bc33ff67dc52d73e6[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 23:01:49 2014 +0330
+
+    menu
+
+[33mcommit efc34a20c5244f5428a8b9ab7c0a4ed7accc816a[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:25:56 2014 +0430
+
+    f
+
+[33mcommit 73560b696b96f6cec6ba8c1e2e22af6722b6e629[m
+Merge: ec8c186 f5f89aa
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:24:28 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit ec8c1865cfa94f5e5abc98f6849523228ed6c8a8[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:23:57 2014 +0430
+
+    f
+
+[33mcommit 1d94687c1cf4f2d29f164c9b6b5bf8aa2057d424[m
+Merge: 1a929f8 48ea16d
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:21:32 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 1a929f8b464ca60015a4f6ba73246c43ac3ac90a[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:20:52 2014 +0430
+
+    f
+
+[33mcommit 48ea16d14f7655ec71303b46104c560996c19779[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Aug 25 23:16:33 2014 +0430
+
+    m
+
+[33mcommit 3caada49795ce1257c8a5f59e951372873f700ae[m
+Merge: 5f24cc7 ced7610
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Aug 25 23:14:43 2014 +0430
+
+    f
+
+[33mcommit 5f24cc73caeabd69edab0b1a83fb926341550d8b[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Aug 25 23:13:40 2014 +0430
+
+    css edit
+
+[33mcommit ced7610e2f645d3f5a38efbc776ffaa3f80f8127[m
+Merge: 4d11948 d3e01df
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:13:00 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 4d11948c00ccf98e1622290542adcac179a6c66c[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:12:43 2014 +0430
+
+    file...
+
+[33mcommit dafd60bd0351409387999cf2e6d220adc9273a62[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 23:01:16 2014 +0430
+
+    files mach
+
+[33mcommit f08d9865312de8c0156758013aaa32134b0b015d[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 17:52:03 2014 +0430
+
+    F
+
+[33mcommit 2c6cb48c053c5d3b9d7f2a3f5ff28aa538714e81[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 16:28:39 2014 +0430
+
+    f
+
+[33mcommit 26eab119b1ef25d5598cbeb74df1038fa0a3291b[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 16:12:29 2014 +0430
+
+    f
+
+[33mcommit c23f59e576b260961fb3feff74db09c2392cccae[m
+Merge: 829b96c 2fc4ae3
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 14:47:29 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 829b96c382920b3d20f714b4c1fcea423a6e14e8[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 14:46:23 2014 +0330
+
+    change true => successful && false => failed
+
+[33mcommit 5aa9bd6a19e166308d852e07ac4e302775d7bfb5[m
+Merge: 9e9c6f9 1529bdd
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 11:41:36 2014 +0330
+
+    edit mergeing git
+
+[33mcommit 9e9c6f9ce761428a7fb5163dba42d6fc4ecfcef9[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 11:40:17 2014 +0330
+
+    translation
+
+[33mcommit 2fc4ae32df9c82bd9371f7a5f182418ef5ad9887[m
+Merge: d8d0e62 582a97f
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 12:31:32 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit d8d0e62d5952275ded9eaf8e7819a79ac205fbe0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 12:31:11 2014 +0430
+
+    ajax bug
+
+[33mcommit 582a97f2d9d74ab477abe53bffc8e6dbbb5920d5[m
+Merge: 6ac4c81 d8b8fab
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Aug 25 12:26:21 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 6ac4c8191dac955538a4b5b640bac3a55efc39a0[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Mon Aug 25 12:25:24 2014 +0430
+
+    new style
+
+[33mcommit d8b8fabe62e78226fc2df3025658d8ca11ba2a71[m
+Merge: 7ece575 5aa9bd6
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 12:22:42 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 7ece57552b6b0227b0be939e0b33c86a5cfc75b7[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 12:08:23 2014 +0430
+
+    localy error title
+
+[33mcommit 1529bdd4e821b62dcd63930bdca2b7c22e38ce7b[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 11:26:34 2014 +0430
+
+    localy error title
+
+[33mcommit 0f1bdb639bdc07643aca895560605d6168ae112c[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 11:25:11 2014 +0430
+
+    localy error title
+
+[33mcommit ee65c3755f9aa6bb212337d9c09d3dbfc86a634e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 10:50:29 2014 +0430
+
+    localy bug enums & forigns
+
+[33mcommit 628aef6439e4ca46feacea1dc1276056f831f976[m
+Merge: a30c562 a5265a0
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 10:30:54 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit a5265a0ef84b130a6155a55bc40327144acd2a54[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 09:40:25 2014 +0330
+
+    databaes edited
+
+[33mcommit a30c56200ba38d560cb8649796a44a3d70d5481e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 10:30:31 2014 +0430
+
+    ajax form
+
+[33mcommit ad4adb1ac213d6d32375a62a75a145326b326918[m
+Merge: 8574dee b4a687d
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 09:23:58 2014 +0330
+
+    reza
+
+[33mcommit 8574dee901f34e79899ff2585106f471c91a6538[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 09:21:30 2014 +0330
+
+    translation 95% done
+
+[33mcommit b4a687d0879c340a915433141fc733a14bce55e8[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 09:06:40 2014 +0430
+
+    scroll bug ok
+
+[33mcommit bb2b064b86f3d9e2aab8c28f30cdee4effea8a68[m
+Merge: 47846ed 14602fb
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 08:40:33 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 47846edef55b22f5c20cb5cded7cbd3fca7a68d2[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 25 08:40:21 2014 +0430
+
+    js transit
+
+[33mcommit 14602fbdc0e6e5ad0e8b95ec6c927d62af8e48ce[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 25 00:25:27 2014 +0330
+
+    translation enum done
+
+[33mcommit d6f8b87d2c8d7293aba9531c0f4f1c592cc6bd33[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 23:40:53 2014 +0330
+
+    translation done
+
+[33mcommit 7f64bb21277535b286639267d9d9e89dd712947d[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 22:10:09 2014 +0330
+
+    reza po and mo test
+
+[33mcommit 3c807f737c12ddd1bce42ff985f189936707c101[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 20:51:58 2014 +0430
+
+    localy
+
+[33mcommit 360e012cf0efbe494cd1c8e59e0219d041ec4ca1[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 20:42:25 2014 +0430
+
+    localy
+
+[33mcommit de92cb85f5aeaaf3c83861f6dd88735136570025[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 20:05:41 2014 +0430
+
+    multi language
+
+[33mcommit daa57ab2e7d747e518464e1eafdeb87625ae6525[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 20:03:56 2014 +0430
+
+    auto forms label
+
+[33mcommit 88753ab4e297a6bcc93cdfec00ba16be1e6b7c52[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 18:42:30 2014 +0430
+
+    tab reload
+
+[33mcommit 5d1aaf0793046ec32d0871697d0b2e14b52c7068[m
+Merge: a34cf38 5e2a0f6
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 17:55:12 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit a34cf382c5a2a3308221a24304958944ee858046[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 17:54:51 2014 +0430
+
+    ajax ok
+
+[33mcommit 5e2a0f627e5457b01247ae9fe152b229399f3e3b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 13:54:19 2014 +0330
+
+    reza test why old push not pushed?
+
+[33mcommit ed117ffaf5c5c747d031ed0b0a7205b4dc2faaaf[m
+Merge: 9e41984 2d01096
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 13:49:59 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 9e41984202fc2b87b5ba9e9fd696526c6852f7e0[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 13:47:53 2014 +0330
+
+    labels of sql OK
+
+[33mcommit 2d010963fecdcf543f53b4c9a59ba5ebbbbec6f6[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 12:44:03 2014 +0430
+
+    sql condition bug
+
+[33mcommit 8222c1c31f629cc0557aba0f9d0f147f57a6442e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 12:43:16 2014 +0430
+
+    sql condition bug
+
+[33mcommit d5279ec19ba38dfc551aef1f7b1fc657db5a64a0[m
+Merge: ea7d957 81c7943
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 12:41:04 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 81c79430b843b8b884bc20daec3b46a3bb91854d[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 12:28:44 2014 +0330
+
+    posts is ok
+
+[33mcommit ea7d9576984ed33c91d01917816bef86b755e17e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 12:40:52 2014 +0430
+
+    sql conditions > < = added
+
+[33mcommit 05b74bfd074ff7d42d47b083b3bd4eee69399d49[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 11:18:37 2014 +0330
+
+    reza
+
+[33mcommit ebe730fd1909ecd9e1bc2122a11d9b2bc965efe6[m
+Merge: d64c8e2 21f9a01
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 10:19:18 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit d64c8e2affe0633244e860cab0e73f954283b8df[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 10:19:03 2014 +0330
+
+    reza
+
+[33mcommit 34ce5c205b4004374fc0cf9e6506157d904dc71d[m
+Merge: df88e1b 7f6c7e8
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 10:08:42 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit df88e1b60c21231a56364944f6124b6b36f3df74[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 24 10:08:27 2014 +0330
+
+    start posts page
+
+[33mcommit 21f9a016259b5da29ce6971d6f8702051dbfb15d[m
+Merge: a209545 34ce5c2
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 10:20:42 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit a209545c53dc7162149266b94e5233bd35ab02ba[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 10:20:24 2014 +0430
+
+    ajax
+
+[33mcommit 7f6c7e8bbaa0c24f891675d477477aa272d54665[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:50:02 2014 +0430
+
+    sdfg
+
+[33mcommit da7821abe23b30f53eca6f2c80fc5b1ff5567b2f[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:48:11 2014 +0430
+
+    f
+
+[33mcommit 1263a0f1cf1088e29ca080e0a2f817b01929b12c[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:47:55 2014 +0430
+
+    woff type
+
+[33mcommit 818311996adab4cde5db6c62d7073ac20d008f08[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:44:51 2014 +0430
+
+    ht
+
+[33mcommit f01fd2059f132240071d8b680b20bbe04d87aff5[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:36:31 2014 +0430
+
+    ht
+
+[33mcommit 5ef6d80089f745b63d3886f0ea0cf1f18cd5dd8b[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:32:16 2014 +0430
+
+    dfg
+
+[33mcommit cca6c57b003874bc899f539439bdc56c028c2bfe[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:31:15 2014 +0430
+
+    ht
+
+[33mcommit 3b93729641568acc63b060d19d4605a6d75d5d11[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:14:32 2014 +0430
+
+    hy
+
+[33mcommit 473a60ae27cf74f4e80af89d31fbae6276a2b2c1[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 09:09:35 2014 +0430
+
+    ht
+
+[33mcommit 0760ba0708096cc1791690e259e9d9175fe24cc6[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:14:10 2014 +0430
+
+    hdf
+
+[33mcommit 2df52f314ce79b1355eeb80df68c9d5fc16a14a8[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:12:16 2014 +0430
+
+    h
+
+[33mcommit ee7cef731c0b91f84d1e9bcc3d86e2532a83a04f[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:10:26 2014 +0430
+
+    ign
+
+[33mcommit 963c954fbd4bdebeab5c4642a9ec3c5e1f46596b[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:09:14 2014 +0430
+
+    hi
+
+[33mcommit bef14b1aa777750166fd6476029445acfe4a9db1[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:05:22 2014 +0430
+
+    ht test
+
+[33mcommit 5d7d6ec45121153678bd4aae320dff615217fcdb[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:03:35 2014 +0430
+
+    ht
+
+[33mcommit 9ddd17a5219997e02bbdcd3303b2fe6bfec367ac[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 01:01:25 2014 +0430
+
+    htaccess free cache
+
+[33mcommit 5b8f919a99de8b6f80d257b6b65c80bb2a1c6a94[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 00:58:57 2014 +0430
+
+    test
+
+[33mcommit 16032d2ba5db0342b5f0c4bf9d28a04fdb816717[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 00:57:45 2014 +0430
+
+    ht cache
+
+[33mcommit b8b635a340f0259c9ca154faa47453729fe3d2ae[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 00:55:36 2014 +0430
+
+    htaccess
+
+[33mcommit 928eb7715fbf0cd4e02065a992ad55a8fba810dc[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 24 00:50:58 2014 +0430
+
+    macro radio
+    set after & before in form and debug
+    sql debug for orders
+    setchild debug
+
+[33mcommit 8c5f63de760c388b61de3213d84b70666fb24023[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 17:27:43 2014 +0330
+
+    reza
+
+[33mcommit 15faea0d88637e6533fd035a7c003badfc39fab4[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Sat Aug 23 17:24:49 2014 +0430
+
+    need to edit input radio
+
+[33mcommit 0b8ca650f1306f58f260488f991915fa85580c1a[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 16:30:53 2014 +0330
+
+    clear merging display.html
+
+[33mcommit c7d8cae89431821f5c0ef8c0440f08705de402b8[m
+Merge: 7ef4acd 9e75795
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 16:29:40 2014 +0330
+
+    clear merging main.js
+
+[33mcommit 7ef4acdaf769c419889086bd71dfb1df308cf19c[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 16:26:51 2014 +0330
+
+    reza
+
+[33mcommit ecf26ae70796c51993349a29d96b81078cdf7f5a[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 16:25:49 2014 +0330
+
+    captcha is ok
+
+[33mcommit abb844b993ab36e6d1b9631cc942e3d4f6ff8719[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 16:11:10 2014 +0330
+
+    reza
+
+[33mcommit 9e7579597dc5430b4ddb62b9edcaebe65ee9d7c2[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Sat Aug 23 16:26:42 2014 +0430
+
+    bug loop for design
+
+[33mcommit 8b81eae85e41b67db2ad66c86ad2ee49610468d7[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Sat Aug 23 16:09:07 2014 +0430
+
+    clear static files and display
+
+[33mcommit 0fd9c721366596c7cfd3b24fdf008bfa6aae82e9[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 13:04:15 2014 +0430
+
+    filse bugs
+
+[33mcommit f2e1c7167a64a3be050f55b543a49d0e7344bc30[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 13:03:32 2014 +0430
+
+    files .sql
+
+[33mcommit 7300a76de6ae372e319d6602503380b8ae15408e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 12:56:17 2014 +0430
+
+    sql bug
+
+[33mcommit 841a316c9f97708ca44762d1d449e3c4a46bc9e0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 12:51:47 2014 +0430
+
+    sql update
+
+[33mcommit bcf7b6e33626b7b8d60b56abb4dcb23fb8c8fd1b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 12:42:53 2014 +0330
+
+    database added
+
+[33mcommit 3a50fa109cd38ec0eab805f085f314a1ce00a754[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 12:26:58 2014 +0330
+
+    reza login
+
+[33mcommit 4c20d540725ee88f88c50163dec00b995996afa4[m
+Merge: b2e7bd0 6883644
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 12:01:47 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit b2e7bd03732feddf3fd30bd33e9cb86f57fbff36[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 12:01:17 2014 +0430
+
+    f
+
+[33mcommit 6883644f010a7d567a4ed8ca565228967945676f[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 10:29:31 2014 +0330
+
+    f
+
+[33mcommit 68c7c84ce6bee03955ad0bc1db7a8ef23c62d486[m
+Merge: 8cb6572 1708d70
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 10:12:50 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 8cb65722a8449a13a2be1e709295fc28261ec96f[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 23 10:12:21 2014 +0330
+
+    f
+
+[33mcommit 1708d70b140ecc52a646be101dee8c688981ca03[m
+Merge: 4471a0c 97199e1
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 08:58:20 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:/home/git/haram
+
+[33mcommit 4471a0ca78b8a6ad60b189ad643dbe586c77604f[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 23 08:57:12 2014 +0430
+
+    f
+
+[33mcommit 97199e1fc68f42c90c8d5ec14ab2fada7f66c0fb[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Fri Aug 22 23:50:30 2014 +0330
+
+    reza
+
+[33mcommit d833a621629e419d7824f3b0b9949f35fb36fd95[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 18:04:26 2014 +0430
+
+    f
+
+[33mcommit a361b723e2a968a37a7b1275142d955bca183058[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 21 17:27:35 2014 +0330
+
+    reza
+
+[33mcommit 93e2992a561d6252d6d7b17d9b8c09f08b6f28d0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 16:12:48 2014 +0430
+
+    f
+
+[33mcommit bfac00fa0f5f52c85793e17c7ddd1907046cbfc8[m
+Merge: 1b0687e c8c807a
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 21 15:00:19 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit 1b0687ee5689ba0c8e20f415d2ec09163bbddf06[m
+Merge: ac8c879 e91921e
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 21 14:59:52 2014 +0330
+
+    reza
+
+[33mcommit ac8c8790eff332548898e9d4540f49b46f5159c8[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 21 14:57:05 2014 +0330
+
+    reza
+
+[33mcommit c8c807ab3cebee34fb43d561cf9b8e5fefb944a0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 15:00:47 2014 +0430
+
+    F
+
+[33mcommit e91921eebc98e7a53f8fb33201a187f3a77d384d[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 14:48:05 2014 +0430
+
+    f
+
+[33mcommit bc7ee7091bafbad46a5ddfa4ab7e8d303f5ed306[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 14:46:19 2014 +0430
+
+    f
+
+[33mcommit 5c09490a51ff439a6d74867769a55f5a410ac3fc[m
+Merge: bcd2ad5 d158d9c
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 21 11:48:46 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit bcd2ad500046fb730b807bbf478f339173e2be9b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 21 11:47:44 2014 +0330
+
+    reza
+
+[33mcommit d158d9c832d856ff6e1a5de75a0bc3019af64f27[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 00:56:11 2014 +0430
+
+    f
+
+[33mcommit e7b9eb099bec9a30e916f787edcac7df91d7e15f[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 00:45:34 2014 +0430
+
+    f
+
+[33mcommit 6b41c3071277b148c14d5e35bdb9d75cd50c5ac1[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 21 00:44:23 2014 +0430
+
+    f
+
+[33mcommit 9f9377d88139e1d5c3586a504dfe0385a2238a0e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Wed Aug 20 23:34:30 2014 +0430
+
+    f
+
+[33mcommit 10b9609b8601e6f9d46a5c887af838c97a83675e[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Wed Aug 20 23:25:43 2014 +0430
+
+    f
+
+[33mcommit 0dbcf2349e1fa4365daf50f49f2e10bd064f1cc9[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Wed Aug 20 23:14:32 2014 +0430
+
+    f
+
+[33mcommit 7366e66ed6c3a2917438c04dd85368b044552f61[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 17:34:19 2014 +0330
+
+    reza
+
+[33mcommit 81aff33c0b4fcb0f759d74f621e85f79a67cf9c0[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 16:47:28 2014 +0330
+
+    reza
+
+[33mcommit 165758c5f62e3660feb5c95ff693d7156079aa50[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 16:43:54 2014 +0330
+
+    reza
+
+[33mcommit 3644b524b927db6be32cb85a7f910b0ff61b9be5[m
+Merge: a075bc4 805cbc0
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 16:29:42 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit a075bc487cf86c688ab725def05bd8731df81ec8[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 16:26:31 2014 +0330
+
+    reza
+
+[33mcommit 805cbc0eafd0f59f81bf4ee35f1d0b5f2810d329[m
+Merge: d9a2f21 72268e3
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Aug 20 14:05:32 2014 +0430
+
+    f
+
+[33mcommit d9a2f214b6158689ade9fc414879ca8eef6e15ee[m
+Author: ahmad <ahmadkarimi1991@gmail.com>
+Date:   Wed Aug 20 14:03:14 2014 +0430
+
+    f
+
+[33mcommit 72268e33c660e41a6e1e112c5b5e7b09ce8885b7[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 12:57:19 2014 +0330
+
+    first debug
+
+[33mcommit 3e8609d5ee45df5555328ccb9128b44e4fbd2d61[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Wed Aug 20 12:56:23 2014 +0330
+
+    first degub
+
+[33mcommit a28a1680a849c1bda77b93474771b628a870456e[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Aug 19 16:41:20 2014 +0330
+
+    course
+    regulation
+
+[33mcommit df267e685080c3f100ae0d274994e212080d8967[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Aug 19 06:53:36 2014 +0330
+
+    f
+
+[33mcommit 1d0408a521304b2ba8af8e87c090b39c3a9a97d4[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Tue Aug 19 06:42:04 2014 +0330
+
+     plan/section
+
+[33mcommit 5ed3cfb29307f59adf8526c12a520093b9f4935b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 18 23:56:03 2014 +0330
+
+    graduate
+    graduate/classes
+
+[33mcommit 569deefcd632934b42355fb64cb139e13d1f0e32[m
+Merge: bdd6cf9 ca46bfa
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 18 16:47:29 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit bdd6cf9d80c2c88637a80aedae2ba5b9dd0dfbff[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 18 16:46:19 2014 +0330
+
+    group list
+    users/branch
+    users/descripton
+    users/group
+
+[33mcommit 3228df18cce92c87cd947060df55940c0f3a1cc5[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 18 15:09:39 2014 +0330
+
+    permissin
+    tables
+
+[33mcommit ca46bfafc9a9c8be2ea394039a1f451143bac623[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Mon Aug 18 15:48:56 2014 +0430
+
+    f
+
+[33mcommit af8918ea4b186b521ef8b953555a8e1686840add[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Mon Aug 18 14:13:04 2014 +0330
+
+    course/description
+    racehistory
+    teaching/history
+
+[33mcommit 637d7318df981b2dd1879dcbb0cca9277168090b[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 17 22:46:59 2014 +0330
+
+    branch/description
+    files
+    folders
+    prerequisite
+
+[33mcommit abcce291aa135bc3779a4d44974c09610b69d9dc[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 17 16:41:44 2014 +0330
+
+    absence
+    bridge
+    classes
+    classification
+    place
+
+[33mcommit 83874e9c80b452dac91123833ae9854ace76ca83[m
+Merge: cfb6c25 fc5cd72
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 17 15:13:22 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit cfb6c25a3bcb6282bf809db49f586ad1fc498054[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 17 15:12:47 2014 +0330
+
+    plan
+
+[33mcommit fc5cd72e8650d97da4373f860b31d6dd94fe9781[m
+Merge: 87300a4 6abd181
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 17 15:05:40 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit 87300a411f541e08dfcf612e1c051d5bbefe0e27[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sun Aug 17 15:05:26 2014 +0430
+
+    f
+
+[33mcommit 6abd18197af447d0afcd8cc5f4cd3896a72ca7e4[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sun Aug 17 13:07:58 2014 +0330
+
+    branch
+    city
+    country
+    education
+    group
+    group/expert
+    person
+    posts
+    province
+
+[33mcommit ad299ff92812f5d776e89ae2be6bf489cab17449[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 16 15:09:24 2014 +0330
+
+    news/group
+    new/tags
+
+[33mcommit 835e32117398e410f4fa9c8dc32c8c602cfaaa93[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 16 14:10:53 2014 +0330
+
+    news/group
+    news
+    tags
+    users
+    whit new syntax of edit is ok
+
+[33mcommit 0007a9dcf3780f04bf6ea0c490f3a907f13c7e2c[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 16 13:02:24 2014 +0330
+
+    .edit query created
+
+[33mcommit a44ec6b88afae9aaad371bf423289d76dada13a5[m
+Merge: f59ed4e 19bbebd
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 16 10:47:16 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit f59ed4e237898dbbb889af1bcc32000e301fe56c[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Sat Aug 16 10:46:54 2014 +0330
+
+    reza
+
+[33mcommit 19bbebd9b0e34a4efc2126c49432a14b69d0682c[m
+Merge: 06cc583 6825e78
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 16 10:22:38 2014 +0430
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit 06cc58306469b8e0f2aecc0d12d3bc4afeec9709[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Sat Aug 16 10:21:56 2014 +0430
+
+    f
+
+[33mcommit 6825e78a0f489740a9766acda3d3e184ba957930[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 14 22:49:24 2014 +0330
+
+    reza
+
+[33mcommit 60f16f2155b1186426504079ab3876819e3f458f[m
+Merge: 9c95d68 03212e2
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 14 16:34:52 2014 +0330
+
+    Merge branch 'master' of 107.170.42.109:~/haram
+
+[33mcommit 9c95d6807cf84ad31b7a5a87ae8e2a5224f8c8a9[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 14 16:34:32 2014 +0330
+
+    reza
+
+[33mcommit 03212e2d9c5712ecda7616c540b233f33f39b4f0[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 14 16:34:23 2014 +0430
+
+    f
+
+[33mcommit b0a00562f7e888112c87791fd5166a95144c32b2[m
+Merge: a3ac30b 604ba4c
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 14 16:16:04 2014 +0430
+
+    f
+
+[33mcommit 604ba4cb4e771d043740240764ce34542326d078[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 14 16:08:53 2014 +0330
+
+    reza
+
+[33mcommit a3ac30bb5631205178ec976217b2b14b5c180f1f[m
+Author: baravak <itb.baravak@gmail.com>
+Date:   Thu Aug 14 16:11:24 2014 +0430
+
+    f
+
+[33mcommit 2c4c8255349ede59009f40d3c898b8bc32b0b7b6[m
+Author: reza <rm.biqarar@gmail.com>
+Date:   Thu Aug 14 12:56:22 2014 +0330
+
+    first up ny2

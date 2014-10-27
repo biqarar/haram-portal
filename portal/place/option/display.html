@@ -1,0 +1,8 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="place/{{global.url}}">
+	{{forms.make(form.place)}}
+</form>
+{{tagMaker.list(list)}}
+{%endblock%}

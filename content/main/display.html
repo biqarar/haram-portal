@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{global.page_title}}</title>
+	<base href="{{global.site_url}}">
+
+	<!-- Meta Tags -->
+	<meta NAME="Title" CONTENT="پورتال جامع مرکز قرآن و حدیث آستان مقدس حضرت فاطمه معصومه سلام الله علیها">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Author" content="Hasan Salehi HajiAbadi (itb.baravak@gmail.com)" />
+	<meta name="Author" content="Reza Mohiti (rm.biqarar@gmail.com)" />
+	<meta name="Author" content="Ahmad Karimi (ahmadkarimi1991@gmail.com)" />
+	<meta name="Design‎" content="Sadegh Salehi HajiAbadi (sahelekaj@gmail.com)" />
+
+	<meta NAME="description" CONTENT="پورتال جامع مرکز قرآن و حدیث آستان مقدس حضرت فاطمه معصومه سلام الله علیها">
+	<meta NAME="keywords" CONTENT="آستان مقدس، حضرت فاطمه، حضرت فاطمه معصومه، حضرت معصومه، معصومه، پورتال، قرآن و حدیث، کریمه اهل بیت، قم، مرکز قرآن و حدیث، آموزش قرآن، قرآن">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+	<!-- Modernizr -->
+	<script type="text/javascript" src="static/js/modernizr.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<!-- Cycle2 -->
+	<script type="text/javascript" src="static/js/cycle2.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$.fn.persian_nu = function(){
+			$(this).each(function(){
+				for(n in $(this)[0].childNodes){
+					if(!$(this).is('.notp')){
+						if($(this)[0].childNodes[n].nodeName == '#text'){
+							var _h = $(this)[0].childNodes[n].textContent;
+							var _hr = _h.replace(/\d/gi, function(){
+								farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
+								english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+								return farsi[english.indexOf(arguments[0])];
+							});
+							$(this)[0].childNodes[n].textContent = _hr;
+						}
+					}
+				}
+			});
+		}
+		$("body").find("*:not(style)").persian_nu();
+	})(jQuery);
+	</script>
+</head>
+<body id="home1">
+	<div id="body">
+		<div class="symbol-right"></div>
+		<div class="symbol-left"></div>
+		<div class="wrapper">
+			<div class="head">
+				<div class="top-tape"></div>
+				<div class="header">
+					<div class="title"></div>
+				</div>
+				<div class="thin-line"></div>
+				<div class="shamseh">
+					<div class="shamseh-noghte">
+						<div class="logo"></div>
+					</div>
+				</div>
+			</div>
+			<div class="vertical-menu">
+				{% for i, link in global.menu %}
+				<div><a href="{{link.href}}">{{link.title}}</a></div>
+				{%endfor%}
+			</div>
+			{%block slideShow%}
+			<div class="components">
+				<div class="eslimi"></div>
+
+				<div class="slide-show">
+					<div class="image-wrapper cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="3000" data-cycle-slides="> div" data-cycle-pause-on-hover="true">
+
+						<div>
+							<img src="static/img/image02.png" alt="image">
+							<p>برگزاری دوره حضرت معصومه شناسی</p>
+						</div>
+						<div>
+							<img src="static/img/image03.png" alt="image">
+							<p>شروع ثبت نام کلاس های قرآن در فصل پاییز</p>
+						</div>
+						<div>
+							<img src="static/img/image04.png" alt="image">
+							<p>افتاح سامانه جامع مرکز قرآن و حدیث کریمه اهل بیت علیها السلام</p>
+						</div>
+
+					</div><!-- /.image-wrapper -->
+				</div>
+			</div>
+			{%endblock%}
+
+			<div class="content-wrapper">
+				{%block content%}
+				{%endblock%}
+			</div>
+		</div>
+		<div class="footer">
+			<span class="footer-symbol footer-right"></span>
+			<span> تمامی حقوق این پایگاه برای آستان مقدس حضرت فاطمه معصومه سلام الله علیها محفوظ می باشد. نقل مطلب با ذکر منبع بلامانع است.</span>
+			<span class="footer-symbol footer-left"></span>
+		</div>
+	</div>
+</body>
+</html>

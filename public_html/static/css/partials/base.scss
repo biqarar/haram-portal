@@ -1,0 +1,12 @@
+// Variables
+$center: 0 auto;
+$header_border: 1px solid #875f12;
+
+//Mixins
+@mixin side-symbol {
+	position: absolute;
+	width: 30px;
+	height: 95px;
+	background: url(../svg/side-symbol.svg) right center no-repeat;
+	top: 5px;
+}

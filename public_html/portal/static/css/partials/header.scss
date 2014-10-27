@@ -1,0 +1,70 @@
+.top-tape {
+	height: 8px;
+	background: #f9f9f9 url(../svg/top-text.svg) repeat-x center right;
+	padding: 1px 0;
+	border-bottom: $header_border;
+}
+.header-portal {
+	height: 66px;
+	border-bottom: $header_border;
+	background: #72a809 url(../img/portal-header.png) center right no-repeat;
+	position: relative;
+	.shamseh {
+		width: 196px;
+		height: 126px;
+		background: url(../svg/shamseh.svg) no-repeat center center;
+		background-size: 196px 126px;
+		position: absolute;
+		top: 9px;
+		right: 30px;
+		.shamseh-noghte {
+			width: inherit;
+			height: inherit;
+			background: url(../img/noghteh-shamseh.png) no-repeat center center;
+			background-size: 196px 126px;
+			.logo {
+				width: inherit;
+				height: inherit;
+				background: url(../svg/logo.svg) no-repeat center center;
+				background-size: 70px 90px;
+			}
+		}
+	}
+	.user-info {
+		width: 75px;
+		height: 56px;
+		position: absolute;
+		left: 33px;
+		top: 26px;
+		.avatar {
+			height: 57px;
+			width: 57px;
+			float: left;
+			> img {
+				border: 1px solid #a8b3b1;
+				float: left;
+			}
+		}
+		.info {
+			width: 12px;
+			position: relative;
+			top: 51px;
+			float: right;
+			border-top: 1px solid #A8B3B1;
+			border-bottom: 1px solid #A8B3B1;
+			display: none;
+			> div {
+				width: inherit;
+				height: 1px;
+				background: #A8B3B1;
+				margin: 2px 0;
+			}
+		}
+	}
+}
+.thin-line {
+	height: 1px;
+	background: #b6b23c;
+	border-bottom: $header_border;
+	margin-bottom: 50px;
+}

@@ -1,0 +1,7 @@
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="group/{{global.url}}">
+	{{forms.make(form.group)}}
+</form>
+{{tagMaker.list(list)}}
+{%endblock%}

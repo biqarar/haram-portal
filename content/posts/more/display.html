@@ -1,0 +1,30 @@
+{# Ahmad Karimi ahmadkarimi1991@gmail.com #}
+{% extends layout %}
+{% block slideShow %}
+{%endblock%}
+{%block content%}
+<style type="text/css">
+.contact-title{
+	font-size: 19px;
+}
+
+.wrapper .content-wrapper {
+	margin: 115px auto 0;
+	font-family: 'WRoya';
+}
+</style>
+{% for j, post in postsList.list %}
+<div class="post">
+	<div class="post-image">
+		<img src="static/images/{{post.id}}.jpg" alt="" width="100" height="100">
+	</div>
+	<div class="post-content">
+		<h1>{{post.title}}</h1>
+		<p class="text">{{post.short}}</p>
+		<div class="read-more">
+			<a href="{{post.curl}}" class="read-more">ادامه متن<span>&#9654;</span></a>
+		</div>
+	</div>
+</div>
+{%endfor%}
+{%endblock%}

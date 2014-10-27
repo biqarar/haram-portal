@@ -1,0 +1,34 @@
+{# Ahmad Karimi ahmadkarimi1991@gmail.com #}
+{% extends layout %}
+{%block content%}
+<style type="text/css">
+th {
+	background: #ccc;
+	width: 250px;
+	text-align: left;
+	padding-left: 10px;
+}
+tr:nth-child(even) {background: #ececec}
+tr:nth-child(odd) {background: #FFF}
+</style>
+<table class="table-list">
+	{% for key, link in list[0] %}
+	<tr>
+		<th>{{key}}</th>
+		<td>{{link}}</td>
+	</tr>
+	{%endfor%}
+	{% for key, link in list[1] %}
+	<tr>
+		<th>{{key}}</th>
+		<td>{{link}}</td>
+	</tr>
+	{%endfor%}
+		{% for key, link in list[2] %}
+	<tr>
+		<th>{{key}}</th>
+		<td>{{link}}</td>
+	</tr>
+	{%endfor%}
+</table>
+{%endblock%}	

@@ -1,0 +1,148 @@
+{% if extendForm%}
+{% import macro.forms as forms %}
+{% endif %}
+{% import macro.list as tagMaker %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{global.page_title}}</title>
+	<meta charset="UTF-8">
+	<base href="{{global.site_url}}">
+
+	<!-- Meta Tags -->
+	<meta NAME="Title" CONTENT="پورتال جامع مرکز قرآن و حدیث آستان مقدس حضرت فاطمه معصومه سلام الله علیها">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Author" content="Hasan Salehi HajiAbadi (itb.baravak@gmail.com)" />
+	<meta name="Author" content="Reza Mohiti (rm.biqarar@gmail.com)" />
+	<meta name="Author" content="Ahmad Karimi (ahmadkarimi1991@gmail.com)" />
+	<meta name="Design‎" content="Sadegh Salehi HajiAbadi (sahelekaj@gmail.com)" />
+
+	<meta NAME="description" CONTENT="پورتال جامع مرکز قرآن و حدیث آستان مقدس حضرت فاطمه معصومه سلام الله علیها">
+	<meta NAME="keywords" CONTENT="آستان مقدس، حضرت فاطمه، حضرت فاطمه معصومه، حضرت معصومه، معصومه، پورتال، قرآن و حدیث، کریمه اهل بیت، قم، مرکز قرآن و حدیث، آموزش قرآن، قرآن">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- jQuery UI CSS -->
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<style type="text/css">#perload-blockoff{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: white;z-index: 9999999;padding-top: 10%;overflow: hidden;}#perload-blockoff embed{left: 50%;display: block;position: absolute;padding-top: 10%;top: 0}</style><script type="text/javascript">$('<div id="perload-blockoff"><embed src="static/svg/logo-animation.svg" class="perload-svg" height="150" type="image/svg+xml" /></div>').appendTo($("html"));</script>
+	<link rel="stylesheet" href="static/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" href="static/Jcrop/css/jquery.Jcrop.min.css" type="text/css" />
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{"static/css/admin.css"|fcache}}">
+	<link type="text/css" rel="stylesheet" href="static/persianDatepicker/css/persianDatepicker-default.css" />
+
+	<!-- Modernizr -->
+	<script type="text/javascript" src="static/bower_components/modernizr/modernizr.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/Jcrop/js/jquery.Jcrop.min.js"></script>
+	<!-- jQuery UI JS -->
+	<script type="text/javascript" src="static/jquery-ui/jquery-ui.min.js"></script>
+	<!-- Custom JS -->
+	<script type="text/javascript" src="static/persianDatepicker/js/persianDatepicker.js"></script>
+	<script type="text/javascript" src="{{"static/js/main.js"|fcache}}"></script>
+	<script type="text/javascript" src="{{"static/js/modelSend.js"|fcache}}"></script>
+	<!-- jquery.ui.datepicker -->
+	<!-- Autocomplete -->
+	<script type="text/javascript" src="static/js/autocomplete.js"></script>
+
+	<style type="text/css">
+	/*	.table-list .icomore {
+		    background: url(../public_html/portal/static/img/more.png);
+		    display: block;
+		    width: 16px;
+		    height: 16px;
+		    margin: 0 auto;
+		}
+		.table-list .icoedit {
+		    background: url(../public_html/portal/static/img/edit.png);
+		    display: block;
+		    width: 16px;
+		    height: 16px;
+		    margin: 0 auto;
+		}*/
+	</style>
+	<link rel="stylesheet" type="text/css" href="static/datatable/css/jquery.dataTables.css">
+	<script type="text/javascript" language="javascript" src="static/datatable/js/jquery.dataTables.js"></script>
+
+</head>
+
+<body id="portal">
+	{% block body %}
+	<style type="text/css">
+	.deactive-tab{
+		border: none;
+		background: url(static/svg/tab-default.svg) no-repeat;
+		width: 193px;
+		opacity: .7;
+	}
+	</style>
+	<div class="top-tape"></div>
+	<div class="header-portal">
+		<div class="shamseh">
+			<div class="shamseh-noghte">
+				<div class="logo"></div>
+			</div>
+		</div>
+
+		<div class="user-info">
+			<div class="avatar">
+				<img src="static/img/avatar.png" alt="avatar" width="56" height="56">
+			</div>
+			<div class="info"><div></div></div>
+		</div>
+	</div>
+	<div class="thin-line"></div>
+	<div class="menu">
+		{% for i, list in global.menu %}
+		<div id="{{i}}">
+			<div class="dropdown">
+				<div>{{list.name}}</div>
+				{% for j, link in list.dropdown %}
+				<div>
+					<a href="{{link.url}}" {%if link.url == "logout"%}class="a-undefault"{%endif%}>{{link.name}}</a>
+				</div>
+				{%endfor%}
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+	<div class="wrapper">
+		<div id="tabs">
+			<ul>
+				<li>
+					<a href="#tab-1">{{global.page_title}}</a>
+				</li>
+			</ul>
+
+			<div id="tab-1">
+				{%block content%}
+				{%endblock%}
+				<!-- <div id="showDatatable"></div> -->
+				{%if debug%}
+				<div class="submit-status">
+					{%for key, debugs in debug%}
+					{%if key != "status" and key != "msg"%}
+					<ul class="submit-status-{{key}}">
+						{%for cKey, cDebug in debugs%}
+						{%if cDebug.error is defined%}
+						<li>{{cDebug[cDebug.group]}} : {{cDebug.error}}</li>
+						{%else%}
+						<li>{{cDebug}}</li>
+						{%endif%}
+						{%endfor%}
+					</ul>
+					{%endif%}
+					{%endfor%}
+				</div>
+				{%endif%}
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="footer">پورتال جامع مرکز قرآن و حدیث حرم مطهر حضرت فاطمه معصومه علیها السلام</div>
+	{%endblock%}
+</body>
+</html>

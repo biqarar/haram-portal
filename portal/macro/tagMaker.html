@@ -1,0 +1,35 @@
+{%- macro child(childs) -%}
+{% import _self as tag%}
+	{%-for child in childs-%}
+		{{-tag.make(child)-}}
+	{%-endfor-%}
+{%- endmacro -%}
+{%- macro make(array) -%}
+{% import _self as tag%}
+<{{array.tagName}} {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
+	{{-array.text-}}
+	{{-tag.child(array.childs)-}}
+</{{array.tagName}}>
+{%- endmacro -%}
+
+{%- macro list(array) -%}
+{% import _self as tag%}
+<table class="table-list" >
+	<tr>
+		{%for header in array.header%}
+		<th>{{header}}</th>
+		{%endfor%}
+	</tr>
+	{%for alist in array.list%}
+	<tr>
+		{%for child in alist%}
+			{% if child is iterable %}
+				<td>{{tag.make(child)}}</td>
+			{% else %}
+				<td>{{child|lang}}</td>
+			{% endif %}
+		{%endfor%}
+	</tr>
+	{%endfor%}
+</table>
+{%- endmacro -%}

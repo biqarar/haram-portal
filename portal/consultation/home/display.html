@@ -1,0 +1,14 @@
+{# Ahmad Karimi ahmadkarimi1991@gmail.com #}
+{% extends homeLayout %}
+{%block content%}
+	{%for key, post in posts%}
+		<img src="{{post.key.smal_img}}">
+		<h2>{{post.title}}</h2>
+		<h3>{{post.short}}</h3>
+		<p>{{post.text}}</p>
+			{%for key2, post2 in post.pic%}
+				<img src="{{post2.url}}">
+			{%endfor%}
+		<hr>
+	{%endfor%}
+{%endblock%}

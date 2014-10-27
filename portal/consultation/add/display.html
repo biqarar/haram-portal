@@ -1,0 +1,20 @@
+{# reza mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="consultation/add">
+	<input type="text" name="date" date="date" placeholder="date" id="date">
+	<input type="text" name="start_time" placeholder="start_time" id="start_time">
+	<input type="text" name="end_time" placeholder="end_time" id="end_time">
+	<input type="text" name="count" placeholder="count"  id="count">
+	<input type="submit" onsubmit="return false;" onclick="run()" value="insert">
+</form>
+<script type="text/javascript">
+	function run() {
+		$date = $("#date").val();
+		$start_time = $("#start_time").val();
+		$end_time = $("#end_time").val();
+		$count = $("#count").val();
+		
+	}
+</script>
+{%endblock%}

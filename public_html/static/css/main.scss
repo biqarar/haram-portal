@@ -1,0 +1,285 @@
+// Variables and Mixins
+@import "partials/base";
+
+// Partials
+@import "partials/reset";
+@import "partials/typography";
+
+#body {
+	width: 1040px;
+	margin: $center;
+	position: relative;
+	height: 100%;
+	.symbol-left {
+		@include side-symbol;
+		left: 0;
+	}
+	.symbol-right {
+		@include side-symbol;
+		right: 0;
+		-webkit-transform: rotate(180deg);
+		    -ms-transform: rotate(180deg);
+		        transform: rotate(180deg);
+	}
+}
+.wrapper {
+	width: 976px;
+	margin: 0 auto 1px;
+	background: #f9f9f9;
+	padding: 0 2px;
+	box-shadow: 0 0 5px #949494;
+	min-height: 90%;
+	position: relative;
+	.head {
+		position: relative;
+		.top-tape {
+			height: 8px;
+			padding: 2px 0;
+			background: url(../svg/top-text.svg) right center repeat-x;
+		}
+		.header {
+			height: 79px;
+			border-top: $header_border;
+			border-bottom: $header_border;
+			background: #89ca0a url(../img/header.png) no-repeat;
+		}
+		.title {
+			width: 285px;
+			height: 75px;
+			background: url(../svg/title.svg) no-repeat center center;
+			position: absolute;
+			top: 15px;
+			right: 75px;
+		}
+		.thin-line {
+			height: 1px;
+			background: #b6b23c;
+			border-bottom: $header_border;
+		}
+		.shamseh {
+			width: 230px;
+			height: 147px;
+			background: url(../svg/shamseh.svg) no-repeat center center;
+			position: absolute;
+			top: 27px;
+			right: 370px;
+			.shamseh-noghte {
+				width: inherit;
+				height: inherit;
+				background: url(../img/noghteh-shamseh.png) no-repeat center center;
+				.logo {
+					width: inherit;
+					height: inherit;
+					background: url(../svg/logo.svg) no-repeat center center;
+				}
+			}
+		}
+	}
+	.vertical-menu {
+		position: absolute;
+		top: 200px;
+		width: 137px;
+		height: 335px;
+		background: url(../svg/vertical-menu.svg) -284px -104px no-repeat;
+		text-align: center;
+		div {
+			&:first-child {
+				margin-top: 30px;
+			}
+			padding: 4px 10px;
+			a {
+				font-family: "WRoya";
+				text-decoration: none;
+				color: #0b706f;
+			}
+		}
+	}
+	.components {
+		height: 335px;
+		margin-top: 100px;
+		padding: 0 5px;
+
+		.eslimi {
+			height: 280px;
+			width: 180px;
+			background: url(../svg/shamseh-slideshow.svg) -15px -12px no-repeat;
+			display: inline-block;
+			float: left;
+			margin-top: 18px;
+			margin-left: 25px;
+		}
+		.slide-show {
+			display: inline-block;
+			width: 585px;
+			height: 315px;
+			margin: $center;
+			background: url(../svg/slideshow.svg) center center no-repeat;
+			border-radius: 5px 25px 25px 5px;
+			float: left;
+			.image-wrapper {
+				width: 542px;
+				height: 300px;
+				margin: 6px 9px auto auto;
+				overflow: hidden;
+				border-radius: 5px 25px 25px 5px;
+				border: 1px solid #7c9eac;
+				box-shadow: 0 0 3px #f4fcf4, 0 0 6px #347b7a;
+				position: relative;
+
+				> div {
+					position: relative;
+					overflow: hidden;
+					margin: 0;
+					border-radius: 5px 25px 25px 5px;
+					> img {
+						max-width: 100%;
+						display: block;
+						position: relative;
+						-webkit-transition: transform .4s;
+						   -moz-transition: transform .4s;
+						        transition: transform .4s;
+					}
+					> p {
+						position: absolute;
+						right: 0;
+						margin: 0;
+						padding: 5px 20px;
+						background: #2c3f52;
+						// color: #ed4e6e;
+						color: #e1e1e1;
+						min-height: 40px;
+						width: 100%;
+						top: auto;
+						bottom: 0;
+						opacity: 0;
+						-webkit-transform: translateY(100%);
+						   -moz-transform: translateY(100%);
+						    -ms-transform: translateY(100%);
+						        transform: translateY(100%);
+						-webkit-backface-visibility: hidden;
+						   -moz-backface-visibility: hidden;
+						        backface-visibility: hidden;
+						-webkit-transition: -webkit-transform .4s, opacity .1s .3s;
+						   -moz-transition:    -moz-transform .4s, opacity .1s .3s;
+						        transition:         transform .4s, opacity .1s .3s;
+						border-radius: 0 0 25px 5px;
+						font-family: "WRoya";
+					}
+					&:hover {
+						> img {
+							-webkit-transition: -webkit-transform .4s;
+							   -moz-transition:    -moz-transform .4s;
+							        transition:         transform .4s;
+							-webkit-transform: translateY(-30px);
+							   -moz-transform: translateY(-30px);
+							    -ms-transform: translateY(-30px);
+							        transform: translateY(-30px);
+						}
+						> p {
+							opacity: 1;
+							-webkit-transform: translateY(0px);
+							   -moz-transform: translateY(0px);
+							    -ms-transform: translateY(0px);
+							        transform: translateY(0px);
+							-webkit-transition: -webkit-transform .4s, opacity .1s;
+							   -moz-transition:    -moz-transform .4s, opacity .1s;
+							        transition:         transform .4s, opacity .1s;
+							border-radius: 0 0 25px 5px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.content-wrapper {
+		margin: 35px auto 0;
+		width: 695px;
+		background: #f0f9f0;
+		position: relative;
+		bottom: 10px;
+		padding: 5px;
+		box-sizing: border-box;
+		border-right: 1px solid #e0f3e0;
+		border-left: 1px solid #e0f3e0;
+		.post {
+			width: 650px;
+			margin: 0 auto;
+			height: 115px;
+			padding-bottom: 20px;
+			&:not(:last-child) {
+				margin-bottom: 10px;
+			}
+			.post-image {
+				display: inline-block;
+				width: 115px;
+				height: 115px;
+				float: right;
+				text-align: center;
+				img {
+					margin-top: 5px;
+					border: 2px solid #dbdbdb;
+				}
+			}
+			.post-content {
+				display: inline-block;
+				width: 535px;
+				height: 115px;
+				float: left;
+				> h1 {
+					font-size: 1rem;
+					color: #950d0d;
+					margin-top: 20px;
+					margin-bottom: 0;
+					font-family: "WYekan";
+				}
+				.text {
+					margin: 0 20px 0 20px;
+					font-family: "WRoya";
+					line-height: 20px;
+				}
+				.read-more {
+					text-align: left;
+					color: #950d0d;
+					> a {
+						margin-left: 20px;
+						font-family: "WRoya";
+						text-decoration: none;
+						> span {
+							position: absolute;
+							color: #daa3a0;
+							font-size: 20px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.footer {
+	background: url(../svg/footer.svg) center center no-repeat;
+	text-align: center;
+	font-family: "WRoya";
+	height: 50px;
+	line-height: 50px;
+	color: #8f8989;
+	font-size: .9em;
+	clear: both;
+	.footer-symbol {
+		width: 11px;
+		height: 14px;
+		display: inline-block;
+		background: red;
+		background: url(../svg/footer-symbol.svg) no-repeat;
+		position: relative;
+		top: 5px;
+	}
+	.footer-right {
+		margin-left: -1px;
+		-webkit-transform: rotate(180deg);
+		    -ms-transform: rotate(180deg);
+		        transform: rotate(180deg);
+	}
+	.footer-left {
+		margin-right: -5px;
+	}
+}

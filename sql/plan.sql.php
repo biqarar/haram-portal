@@ -1,0 +1,67 @@
+<?php
+namespace sql;
+class plan {
+	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'plan_id');
+	public $group_id    = array('type'=> 'int@10', 'label' => 'group_id');
+	public $name        = array('type'=> 'varchar@32', 'label' => 'plan_name');
+	public $price       = array('type'=> 'int@7', 'label' => 'plan_price');
+	public $absence     = array('type'=> 'int@2', 'label' => 'plan_absence');
+	public $certificate = array('type'=> 'int@1', 'label' => 'plan_certificate');
+	public $mark        = array('type'=> 'float@', 'label' => 'plan_mark');
+	public $rule        = array('type'=> 'int@10', 'label' => 'plan_rule');
+	public $min_person  = array('type'=> 'int@3', 'label' => 'plan_min_person');
+	public $max_person  = array('type'=> 'int@4', 'label' => 'plan_max_person');
+
+	public $unique = array("group");
+	public $index = array("group_id");
+
+	public $foreign = array("group_id" => "group@id!name");
+
+	public function id() {
+		$this->validate("id");
+	}
+	
+	public function group_id() {
+		$this->form("select")->name("group_id");
+		$this->setChild();
+	}
+	
+	public function name() {
+		$this->form("#fatext")->name("name");
+	}
+	
+	public function price() {
+		$this->form("#price")->name("price");
+		$this->validate()->number(3, 7);
+	}
+	
+	public function absence() {
+		$this->form("#number")->name("absence");
+		$this->validate()->number(1, 2);
+	}
+	
+	public function certificate() {
+		$this->form("#number")->name("certificate");
+		$this->validate()->number(1);
+	}
+	
+	public function mark() {
+		$this->form("#number")->name("mark");
+		$this->validate();
+	}
+	
+	public function rule() {
+		$this->validate("id");
+	}
+	
+	public function min_person() {
+		$this->form("#number")->name("min_person");
+		$this->validate()->number(1, 3);
+	}
+	
+	public function max_person() {
+		$this->form("#number")->name("max_person");
+		$this->validate()->number(1, 4);
+	}
+}
+?>

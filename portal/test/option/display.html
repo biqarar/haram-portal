@@ -1,0 +1,50 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="static/datatable/css/jquery.dataTables.css">
+	<script type="text/javascript" language="javascript" src="static/datatable/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+	var fields = ['name', 'family', 'father', 'id', 'birthday'];
+	function xdatatable(url_, fields) {
+		if (typeof fields == "undefined") fields = Array("*");
+		console.log(fields);
+		var allData = Array();
+		$.ajax({
+			type : "POST",
+			url :  'datatable/'+ url_,
+			data: { field: fields }
+			success : function(data){
+				// console.log(data);
+				var myObj = data.msg.assoc;
+
+				var array = $.map(myObj, function(value, index) {
+					value.url ="<a href='users/status=edit/id="+value.id+"'>اصلاح</a>";
+						var value = $.map(value, function(value_, index_) {
+					    return [value_];
+						});
+				    return [value];
+				});
+
+		var table = '<table id="example" class="display" cellspacing="0" width="100%"><thead><tr>'
+			for(field in data.msg.assoc[0]) {
+				table += '<th>'+ field +'</th>' ;
+			}
+			table += '</tr></thead><tfoot><tr>'
+			for(field in data.msg.assoc[0]) {
+				table += '<th>'+ field +'</th>' ;
+			}
+			table += '</tr></tfoot></table>';
+			$(table).appendTo('#showDatatable');
+					$('#example').DataTable( {
+	   				 data: array
+				} );
+			}
+		});	
+	}
+	
+</script>
+<div id="showDatatable"></div>
+
+
+{%endblock%}

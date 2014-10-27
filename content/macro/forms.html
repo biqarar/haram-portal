@@ -1,0 +1,135 @@
+{%- macro radio(array) -%}
+	{% spaceless %}
+	<label>{{array.label}}</label>
+		{%- for child in array.child -%}
+			<label class="label-custom label-radio">{{-child.label-}}
+				<input type="radio" name="{{array.attr.name}}" {% for attr,value in child.attr%}{{attr}}="{{value}}" {% endfor %}>
+				<span class="brk-form-custom"><span></span><span></span></span>
+			</label>
+		{%- endfor -%}
+	{%- endspaceless -%}
+{%- endmacro -%}
+
+
+{% macro checkbox(array) %}
+	{% spaceless %}
+	<label></label>
+		<label class="label-custom">{{-array.label-}}
+			<input type="checkbox" name="{{array.attr.name}}" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
+			<span class="brk-form-custom"><span></span><span></span></span>
+		</label>
+	{% endspaceless %}
+{% endmacro %}
+
+
+{% macro select(array) %}
+	{% spaceless %}
+		<label for="{{array.attr.id}}" class="col-sm-2 control-label">{{array.label}}</label>
+		<select name="{{array.attr.name}}" id="{{array.attr.name}}">
+			<option value="" disabled="disabled" selected="selected">لطفا یکی از گزینه ها را انتخاب کنید</option>
+			{% for child in array.child%}
+				<option {% for attr,value in child.attr%}{{attr}}="{{value}}" {% endfor %}>{{child.label}}</option>
+			{% endfor %}
+		</select>
+	{% endspaceless %}
+{% endmacro %}
+
+
+{% macro datalist(array) %}
+	{% spaceless %}
+		<label for="{{array.attr.id}}">{{array.label}}</label>
+		<input list="{{array.attr.name}}" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
+		<datalist id="{{array.attr.name}}">
+			{% for child in array.childs%}
+				<option {% for attr,value in child.attr%}{{attr}}="{{value}}" {% endfor %}>{{child.label}}</option>
+			{% endfor %}
+		</datalist>
+	{% endspaceless %}
+{% endmacro %}
+
+
+{% macro textarea(array) %}
+	{% spaceless %}
+			<label for="{{array.attr.id}}" class="col-sm-2 control-label">{{array.label}}</label>
+			<textarea type="{{array.type}}" {% for attr,value in array.attr%}{%if attr != 'value'%}{{attr}}="{{value}}"{%endif%} {% endfor %}>{{array.attr.value}}</textarea>
+	{% endspaceless %}
+{% endmacro %}
+
+
+{% macro input(array) %}
+	{% spaceless %}
+		{% if array.attr.type == 'robot' %}
+			<label for="{{array.attr.id}}">{{array.label}}</label>
+			<input type="text" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
+		{% else %}
+			<label for="{{array.attr.id}}" class="col-sm-2 control-label">{{array.label}}</label>
+			<input type="{{array.attr.type}}" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
+		{% endif %}
+	{% endspaceless %}
+{% endmacro %}
+
+
+{% macro submit(array) %}
+	{% spaceless %}
+		<label></label>
+		<button {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>{{array.attr.value}}</button>
+	{% endspaceless %}
+{% endmacro %}
+
+{% macro captcha(array) %}
+	{% spaceless %}
+		<label></label>
+		<img src="captcha.png">
+		<br>
+		<label for="captcha">captcha</label>
+		<input type="text" name="captcha" id="captcha">
+	{% endspaceless %}
+{% endmacro %}
+
+
+
+
+
+{% macro make(array) %}
+	{% import _self as form%}
+		{% for input in array%}
+			{% if input.attr.type == 'hidden' %}
+				<input {% for attr,value in input.attr%}{{attr}}="{{value}}" {% endfor %}>
+			{% else %}
+				{% if input.attr.type == 'robot' %}
+					<li class="adam">
+						{{ form.input(input)}}
+					</li>				
+				{%else%}
+					<div class="form-element">
+							{% if input.attr.type == 'radio'%}
+								{{ form.radio(input) }}
+
+							{% elseif input.attr.type == 'checkbox'%}
+								{{ form.checkbox(input) }}
+
+							{% elseif input.attr.type == 'select'%}
+								{{ form.select(input) }}
+
+							{% elseif input.attr.type == 'textarea'%}
+								{{ form.textarea(input) }}
+
+							{% elseif input.attr.type == 'submit' or input.attr.type == 'button'%}
+								{{ form.submit(input) }}
+
+							{% elseif input.attr.type == 'captcha'%}
+								{{ form.captcha(input) }}
+
+							{% else %}
+								{{ form.input(input) }}
+								
+							{% endif %}
+							
+							{% if input.attr.desc is not null %}
+								<p class="desc">{{input.attr.desc}}</p>
+							{% endif %}
+					</div>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+{% endmacro %}

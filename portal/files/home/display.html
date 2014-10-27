@@ -1,0 +1,18 @@
+{% extends layout %}
+{% block content %}
+<table>
+	<tr>
+		{%for header in list.header%}
+		<th>{{header.label}}</th>
+		{%endfor%}
+	</tr>
+	{%for alist in list.list%}
+	<tr>
+		{%for child in alist%}
+			<td>{{child|raw}}</td>
+		{%endfor%}
+	</tr>
+	{%endfor%}
+</table>
+{%endblock%}
+
