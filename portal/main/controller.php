@@ -217,7 +217,7 @@ class main_controller{
 	* @return string
 	*/
 	public function urlStatus() {
-		return (config_lib::$surl['status']) ? config_lib::$surl['status']: "add";
+		return (isset(config_lib::$surl['status'])) ? config_lib::$surl['status']: "add";
 	}
 
 	/**

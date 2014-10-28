@@ -7,7 +7,7 @@ class controller extends main_controller {
 	public function config() {
 		$this->listen(array(
 			"max" => 1,
-			"url" => ""
+			"url" => array("")
 			), 
 		function() {
 			save(array("login"));
