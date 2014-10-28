@@ -4,18 +4,29 @@
 */
 class view extends main_view{
 	public function config(){
+		//------------------------------ globals
 		$this->global->page_title='course';
-		$this->global->url = $this->uStatus(true);
-		$f = $this->form("@course", $this->uStatus());
-		$this->listBranch($f);
-		$this->sql(".edit", "course", $this->uId(), $f);
 
-		$edit = $this->tag("a")
-		->addClass("xmore")
-		->attr("href", "course/edit/%id%");
+		//------------------------------ locad form
+		$f = $this->form("@course", $this->urlStatus());
+
+		//------------------------------ list of branch
+		$this->listBranch($f);
+
+		//------------------------------ remove branch_id because list of branch is loaded
+		$f->remove("branch_id");
+		
+		//------------------------------ edit form
+		$this->sql(".edit", "course", $this->xuId(), $f);
+
+		//------------------------------ edit link
+		$edit = $this->tag("a")->addClass("xmore")
+		->attr("href", "course/status=edit/id=%id%");
+
+		//------------------------------ list of course
 		$this->data->list = $this->sql(".list","course")
-		->addColEnd("edit","edit")->select(-1, "edit")->html($edit)
-		->compile();
+			->addColEnd("edit","edit")->select(-1, "edit")->html($edit)
+			->compile();
 		
 	}
 }

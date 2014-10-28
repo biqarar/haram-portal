@@ -6,7 +6,7 @@ class plan {
 	public $name        = array('type'=> 'varchar@32', 'label' => 'plan_name');
 	public $price       = array('type'=> 'int@7', 'label' => 'plan_price');
 	public $absence     = array('type'=> 'int@2', 'label' => 'plan_absence');
-	public $certificate = array('type'=> 'int@1', 'label' => 'plan_certificate');
+	public $certificate = array('type'=> 'enum@yes,no!yes', 'label' => 'plan_certificate');
 	public $mark        = array('type'=> 'float@', 'label' => 'plan_mark');
 	public $rule        = array('type'=> 'int@10', 'label' => 'plan_rule');
 	public $min_person  = array('type'=> 'int@3', 'label' => 'plan_min_person');
@@ -37,11 +37,12 @@ class plan {
 	
 	public function absence() {
 		$this->form("#number")->name("absence");
-		$this->validate()->number(1, 2);
+		// $this->validate()->number();
 	}
 	
 	public function certificate() {
-		$this->form("#number")->name("certificate");
+		$this->form("radio")->name("certificate");
+		$this->setChild($this->form);
 		$this->validate()->number(1);
 	}
 	

@@ -5,6 +5,7 @@
 class model extends main_model{
 
 	public function makeQuery() {
+		//------------------------------ make sql object
 		return $this->sql()->tableClasses()
 				->setCourse_id(post::course_id())
 				->setPlan_id(post::plan_id())
@@ -22,29 +23,38 @@ class model extends main_model{
 				->setStatus(post::status());
 	}
 	public function post_add_classes() {
-		$sql = $this->makeQuery()
-				->insert();
-				// print_r($_POST);
-				// print_r($sql->string());
-				// exit();
+		//------------------------------ insert classes
+		$sql = $this->makeQuery()->insert();
+		
+		//------------------------------ commit code
 		$this->commit(function() {
-			debug_lib::true("[[insert classes ture]]");
+			debug_lib::true("[[insert classes successful]]");
 		});
+
+		//------------------------------ rollback code
 		$this->rollback(function() {
 			debug_lib::fatal("[[insert classes failed]]");
 		});
 	}
 
 	public function post_edit_classes() {
-		$sql = $this->makeQuery()->whereId($this->uId())->update();
+		//------------------------------ update classes
+		$sql = $this->makeQuery()->whereId($this->xuId())->update();
+		
+		//------------------------------ commit code
 		$this->commit(function() {
-			debug_lib::true("[[update classes ture]]");
+			debug_lib::true("[[update classes successful]]");
 		});
+
+		//------------------------------ rollback code
 		$this->rollback(function() {
 			debug_lib::fatal("[[update classes failed]]");
 		});
 	}
 
+	/**
+	* @return array (liset of users whit teacher type)
+	*/
 	function sql_users_name_family() {
 		$query =  $this->sql()->tablePerson()->whereType('teacher')->select()->allAssoc();
 		$ret = array();

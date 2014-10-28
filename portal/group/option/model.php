@@ -34,7 +34,7 @@ class model extends main_model{
 		if(post::name() != "") {
 			$sql = $this->makeQuery()->whereId($this->xuId())->update();
 		}
-
+		
 		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[update group successful]]");

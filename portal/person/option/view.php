@@ -9,8 +9,6 @@ class view extends main_view{
 		//------------------------------ set global
 		$this->global->page_title =_("person edit") .'  '. $this->xuId();
 
-		$this->global->url = "status=".$this->urlStatus() . "/id=" . $this->xuId();
-
 		//------------------------------ load person form
 		$f = $this->form("@person", $this->urlStatus());
 

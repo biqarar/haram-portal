@@ -24,6 +24,8 @@ class main_view{
 
 		$this->global->menu = menu_cls::list_menu();
 
+		//------------------------------ set url if status == edit >> table/stauts=edit/id=\d
+		$this->setUrl();
 
 		// *********************************************************************** Other ...
 		$this->form = (object) "form";
@@ -44,6 +46,7 @@ class main_view{
 			$this->checkRedirect();
 		}
 		$this->compile();
+
 
 	}
 
@@ -166,6 +169,14 @@ class main_view{
 			}
 		}
 
+	}
+
+	public function setUrl() {
+		if($this->urlStatus() == "edit") {
+			$this->global->url = "status=".$this->urlStatus() . "/id=" . $this->xuId();
+		}else{
+			$this->global->url = "status=".$this->urlStatus();
+		}
 	}
 }
 

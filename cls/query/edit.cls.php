@@ -9,9 +9,8 @@ class query_edit_cls extends query_cls
 		$id = intval($id);
 
 		$result =  $this->query($table, $id); 
-
 		//------------------------------ check for real "id" in url
-		if($result->num() == 1 ) {
+		if($result->num() >= 1 ) {
 			$option = $result->assoc();
 		}else{
 			page_lib::access("id not found");				
