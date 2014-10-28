@@ -1,7 +1,6 @@
 <?php
 /**
-
- * @author Ahmad Karimi <ahmadkarimi@gmail.com>
+ * @author Reza Mohiti <rm.biqarar@gmail.com>
  */
 class view extends main_view {
 	public function config() {

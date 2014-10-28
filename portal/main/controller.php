@@ -28,7 +28,7 @@ class main_controller{
 		list($access, $msg) = $this->checkPermissions();
 		if(!$access) {
 			if(ifAjax()){
-				page_lib::access($msg);				
+				page_lib::access($msg);
 			}else{
 				$_SESSION['redirect'] = config_lib::$URL;
 				header("location:".host.'/login');
@@ -119,16 +119,26 @@ class main_controller{
 		return new jTime_lib;
 	}
 
+	/**
+	* @return date whit 8 number 
+	* @example 13930801 
+	*/
+
 	public function dateNow() {
 		return $this->jTime()->date("Ymd", false, false);
 	}
 
+
+	/**
+	* check url and permisson
+	* @example url = status=add then permission musb be "insert=public"
+	*/
 	public function xuStatus($c = false) {
-		$URL = config_lib::$URL;
-		$aurl = config_lib::$aurl;
-		$surl = config_lib::$surl;
-		$table = preg_split("/\//", $URL);
-		$table = $table[0];
+		$URL    = config_lib::$URL;
+		$aurl   = config_lib::$aurl;
+		$surl   = config_lib::$surl;
+		$table  = preg_split("/\//", $URL);
+		$table  = $table[0];
 		$return = array();
 		$return['table'] = $table;
 		if($c){
@@ -136,54 +146,89 @@ class main_controller{
 		}else{
 			$return['surl'] = $surl;
 		}
-		
+		//------------------------------ check url
+
 		$insertORupdate = (isset($surl['status']) && $surl['status'] == 'add') ? "insert" : "update";
-		if(isset($surl['status']) && ($surl['status'] == 'add' || $surl['status'] == 'edit')){
-			$a = $surl["status"];
+		$status = isset($surl['status']) ? $surl["status"] : false;
+
+		//------------------------------ if url is "status=add"
+
+		if(isset($surl['status']) && ($surl['status'] == 'add')){
+			
 			$this->listen(
 				array(
-					"max" => 3,
-					'url' => array("status" => "$a")
+					"max" => 1,
+					'url' => array("status" => "$status")
 					),
 				function($table, $insertORupdate){
 					save(array("$table", "option"));
 					$this->permission = array("$table" => array("$insertORupdate" => array("public")));
-				}, $table , $insertORupdate	);
-			
+				}, $table , $insertORupdate
+			);
+
+		//------------------------------ if url is "status=edit"
+
+		}elseif (isset($surl['status']) && $surl['status'] == 'edit') {
+
+			$this->listen(
+				array(
+					"max" => 2,
+					'url' => array("status" => "$status", "id" => "/^(\d+)$/")
+					),
+				function($table, $insertORupdate){
+					save(array("$table", "option"));
+					$this->permission = array("$table" => array("$insertORupdate" => array("public")));
+				}, $table , $insertORupdate
+			);
+		
+		//------------------------------ if url is "status=list"
+
 		}elseif(isset($surl['status']) && $surl['status'] == 'list' ){
-			$a = $surl["status"];
+
 			$this->listen(
 				array(
 					"max" => 3,
-					'url' => array("status" => "$a")
+					'url' => array("status" => "$status")
 					),
 				function($table){
 					save(array("$table", "list"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-				);
+			);
+
+		//------------------------------ if url is "status=detail"
+
 		}elseif(isset($surl['status']) && $surl['status'] == 'detail' ){
-			$a = $surl["status"];
+
 			$this->listen(
 				array(
-					"max" => 3,
-					'url' => array("status" => "$a")
+					"max" => 2,
+					'url' => array("status" => "$status", "id" => "/^(\d+)$/")
 					),
 				function($table){
 					save(array("$table", "detail"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-				);
+			);
 		}
 	}
 
+	/**
+	* @return string
+	*/
 	public function urlStatus() {
 		return (config_lib::$surl['status']) ? config_lib::$surl['status']: "add";
 	}
 
+	/**
+	* @return number
+	* return url id
+	* @example if url = status=edit/id=10 then return 10;
+	*/
 	public function xuId() {
 		return (isset(config_lib::$surl['id'])) ? config_lib::$surl['id']: 0;
 	}
+
 	public function uStatus($index = 1, $url = false, $url2 = false){
 		if(is_bool($index)) {
 			$url = true;

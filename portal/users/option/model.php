@@ -1,13 +1,11 @@
 <?php
 /**
- * @author Ahmad Karimi <ahmadkarimi1991@gmail.com>
+ * @author Reza Mohiti <rm.biqarar@gmail.com>
  */
-// var_dump($_POST);
 class model extends main_model {
 
-
 	public function makeQuery() {
-		// var_dump(11111);
+
 		$sqlUsers = $this->sql()->tableUsers()
 		->setEmail(post::email());
 
@@ -55,10 +53,11 @@ class model extends main_model {
 			// if(!$this->sql(".loginCounter.register", "register") && (post::captcha() != $_SESSION['CAPTCHA_GNA'])){
 			// 	debug_lib::fatal("[[insert users failed, 10 register in 600 Seconds!]]");
 			// }else{
-				// $this->sql(".loginCounter.clear");
+			// $this->sql(".loginCounter.clear");
+
 			$username = $this->sql(".username.set");
 			list($users, $person) = $this->makeQuery();
-				// 
+			 
 			$users->setPassword(md5(post::nationalcode()))->setUsername($username);
 			$sqlUsers = $users->insert();
 			$users_id = $sqlUsers->LAST_INSERT_ID();
@@ -73,21 +72,15 @@ class model extends main_model {
 				->setBranch_id(post::branch_id())
 				->insert();
 			}
-				// var_dump($sqlBridge, $sqlPerson);
+
 			$this->commit(function($username = false) {
-					// debug_lib::msg("ثبت نام شما با موفقیت انجام شد ، نام کاربری شما  $username  و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.");
 				debug_lib::true("ثبت نام شما با موفقیت انجام شد ، نام کاربری شما  $username  و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.");
-					// debug_lib::true("[[insert users successful]]");
-					// var_dump(debug_lib::compile());
-					// $this->redirect = false;
 			}, $username);
 			// }
 		}
 
 		$this->rollback(function() {
 			debug_lib::fatal("[[insert users failed]]");
-			// var_dump(debug_lib::compile());
-			// $this->redirect = false;
 		});
 	}
 
@@ -101,14 +94,6 @@ class model extends main_model {
 		$this->rollback(function($id = false) {
 			debug_lib::fatal("[[update users failed]]");
 		}, $this->uId());
-	}
-
-	public function sql_province_list() {
-		return $this->sql()->tableProvince()->select()->allAssoc();
-	}
-
-	public function sql_education_list() {
-		return $this->sql()->tableEducation()->groupbyGroup()->select()->allAssoc();
 	}
 }
 ?>

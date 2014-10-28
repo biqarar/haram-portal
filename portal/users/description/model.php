@@ -1,7 +1,7 @@
 
 <?php
 /**
- * @author Ahmad Karimi <ahmadkarimi1991@gmail.com>
+ * @author Reza Mohiti <rm.biqarar@gmail.com>
  */
 class model extends main_model {
 	
