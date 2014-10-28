@@ -4,27 +4,25 @@
 */
 class sql_cls {
 	static function config($maker = false) {
-		// return true;
+		//------------------------------ join each query whit branch_cash table (permission)
 		if(isset($_SESSION['users_id']) && isset($_SESSION['users_branch'])){
+
 			$users_id = $_SESSION['users_id'];
-			$freeTable = array("city",
-								"province",
-								"country",
-								"education",
-								"permission",
-								"login_counter",
-								"users",
-								"tables",
-								"posts_group",
-								"posts",
-								"student1",
-								"branch_users_key");
+			
+			//------------------------------ public table (no permission set on this tables)
+			$freeTable = array("city","province","country","education","permission","login_counter","users","tables","posts_group","posts","student1","branch_users_key");
+			
+			//------------------------------ called table
 			$table = $maker->table;
+
 			if(!preg_grep("/^$table$/", $freeTable)){
+				
+				//------------------------------ join to permission
 				$x = $maker->joinBranch_cash()
 					->whereTable($table)
 					->andRecord_id("#".$table.".id")
 					->groupOpen();
+
 					foreach ($_SESSION['users_branch'] as $key => $value) {
 						if($key == 0){
 							$x->andBranch_id($value);
@@ -33,10 +31,8 @@ class sql_cls {
 						}
 					}
 					$x->groupClose();
-					$x->fieldRecord_id();
-					// $x->fieldId();
-					// var_dump($x);
-					// exit();
+					$x->fieldId();
+					
 					if(isset(config_lib::$surl['page']) || (isset(config_lib::$surl['status']) && config_lib::$surl['status'] == "list")){
 						$start_page = (isset(config_lib::$surl['page'])) ? ((intval(config_lib::$surl['page']) - 1)* 20) : 0;
 						$limit_start = $start_page;

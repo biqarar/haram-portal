@@ -8,7 +8,7 @@ class view extends main_view {
 		// ------------------------------ globals
 		$this->global->page_title = 'register';
 
-		$this->global->url ="users/status=edit/";
+		$this->global->url = "status=" . $this->urlStatus();
 
 		// ------------------------------ load form
 		$f = $this->form("@users", $this->urlStatus());
@@ -54,6 +54,9 @@ class view extends main_view {
 		//------------------------------  default select Iran country
 		$f->nationality->child(35)->selected("selected");
 		$f->nationality->addClass("select-nationality");
+
+		//------------------------------  default check single
+		$f->marriage->child(0)->checked("checked");
 
 		//------------------------------ remove fields
 		$f->remove("username,password,casecode,en_name,en_family,en_father,third_name,third_family,third_father,users_id");		

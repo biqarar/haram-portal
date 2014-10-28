@@ -4,7 +4,7 @@ class query_edit_cls extends query_cls
 	public function config($table = false, $id = false, $form = false)	{
 
 		//------------------------------ if edit not called $id == 0
-		if(!is_int($id) || $id == 0) return true;
+		if(intval($id) == 0) return false;
 		
 		$id = intval($id);
 

@@ -2,89 +2,62 @@
 /**
  * @author reza mohitit rm.biqarar@gmail.com
  */
+
 class model extends main_model{
-	public function makeQuery(){
-		return $this->sql()->tablePerson()
-				->setName(post::name())
-				->setFamily(post::family())
-				->setFather(post::father())
-				->setBirthday(post::birthday())
-				->setGender(post::gender())
-				->setNationalcode(post::nationalcode())
-				->setCode(post::code())
-				->setFrom(post::from())
-				->setNationality(post::nationality())
-				->setMarriage(post::marriage())
-				->setChild(post::child())
-				->setType(post::type())
-				->setCasecode(post::casecode())
-				->setCasecode_old(post::casecode_old())
-				->setEducation_id(post::education_id());
-				// ->setEn_name(post::en_name())
-				// ->setEn_family(post::en_family())
-				// ->setEn_father(post::en_father())
-				// ->setThird_name(post::third_name())
-				// ->setThird_family(post::third_family())
-				// ->setThird_father(post::third_father())
-				// ->setPasport_date(post::pasport_date());
-				// ->setUsers_id($this->uId());
-	}
+	
 	public function post_add_person() {
-		// $sql = $this->makeQuery()
-		// 		->insert() 
-		// 		->string();
-		// $this->commit(function() {
-		// 	debug_lib::true("[[insert person successful]]");
-		// });
-		// $this->rollback(function() {
-		// 	debug_lib::fatal("[[insert person failed]]");
-		// });
+		//----------------------------- got to users/option/model to add users
 	}
 
 	public function post_edit_person() {
-		// print_r(post::birthday());
-		// exit();
+
+		//----------------------------- make object sql to update person
 		$makeQuery = $this->sql()->tablePerson()
 				->setName(post::name())
 				->setFamily(post::family())
 				->setFather(post::father())
-				->setBirthday(post::birthday())
 				->setGender(post::gender())
 				->setNationalcode(post::nationalcode())
 				->setCode(post::code())
-				// ->setFrom(post::from())
-				// ->setNationality(post::nationality())
+				->setNationality(post::nationality())
 				->setMarriage(post::marriage())
 				->setChild(post::child())
-				->setType(post::type())
-				->setEducation_id(post::education_id());
+				->setType(post::type());
+				
+		// The line for this is that if this field was filled can not be empty and must be changed
+		//----------------------------- if country != irna and is set post pasport date update this
+		if(post::pasport_date() != "") {
+			$makeQuery->setPasport_date(post::pasport_date());
+		}
 
-		$sql = $makeQuery
-			->whereId($this->xuId())
-			->update();
-			// var_dump($sql->string());
-		// exit();
+		//----------------------------- if britday != null update this
+		if(post::birthday() != "") {
+			$makeQuery->setBirthday(post::birthday());
+		}
+		
+
+		//----------------------------- if from != null update this (foreign key to city table)
+		if(post::from() != "") {
+			$makeQuery->setFrom(post::from());
+		}
+
+		//----------------------------- if education != null update this (foreign key to education table)
+		if(post::education_id() != "") {
+			$makeQuery->setEducation_id(post::education_id());
+		}
+
+		//----------------------------- update query
+		$sql = $makeQuery->whereId($this->xuId())->update();
+	
+		//----------------------------- commit code
 		$this->commit(function() {
 			debug_lib::true("[[update person successful]]");
 		});
+		
+		//----------------------------- rool back code
 		$this->rollback(function() {
 			debug_lib::fatal("[[update person failed]]");
 		});
 	}
-
-	public function sql_person_id() {
-		if(isset($_SESSION['users_id'])){
-			return $this->sql()->tablePerson()->whereUsers_id($_SESSION['users_id'])->limit(1)->select()->assoc("id");
-		}else{
-			return false;
-		}
-	}
-	public function sql_province_list() {
-		return $this->sql()->tableProvince()->select()->allAssoc();
-	}
-
-	public function sql_education_list() {
-		return $this->sql()->tableEducation()->groupbyGroup()->select()->allAssoc();
-	}
 }
- ?>
+?>
