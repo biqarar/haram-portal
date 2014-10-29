@@ -3,13 +3,7 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  background: #ececec;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  background: #ececec; }
 
 @font-face {
   font-family: 'WYekan';
@@ -514,13 +508,10 @@ label {
 @-webkit-keyframes statePerload {
   0% {
     width: 20%; }
-
   50% {
     width: 80%; }
-
   75% {
     width: 100%; }
-
   100% {
     width: 0; } }
 .filebox-form {
@@ -563,3 +554,5 @@ label {
     width: 16px;
     height: 16px;
     margin: 0 auto; }
+
+/*# sourceMappingURL=admin.css.map */

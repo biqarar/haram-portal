@@ -5,13 +5,7 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  background: #cedfd2 url(../img/pattern.png) repeat;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  background: #cedfd2 url(../img/pattern.png) repeat; }
 
 @font-face {
   font-family: 'WYekan';
@@ -266,3 +260,5 @@ body {
     transform: rotate(180deg); }
   .footer .footer-left {
     margin-right: -5px; }
+
+/*# sourceMappingURL=main.css.map */
