@@ -19,7 +19,6 @@ class model extends main_model{
 				->setGender(post::gender())
 				->setNationalcode(post::nationalcode())
 				->setCode(post::code())
-				->setNationality(post::nationality())
 				->setMarriage(post::marriage())
 				->setChild(post::child())
 				->setType(post::type());
@@ -30,11 +29,16 @@ class model extends main_model{
 			$makeQuery->setPasport_date(post::pasport_date());
 		}
 
+
+		//----------------------------- if nationality != null update this
+		if(post::nationality() != "") {
+			$makeQuery->setNationality(post::nationality());
+		}
+		
 		//----------------------------- if britday != null update this
 		if(post::birthday() != "") {
 			$makeQuery->setBirthday(post::birthday());
 		}
-		
 
 		//----------------------------- if from != null update this (foreign key to city table)
 		if(post::from() != "") {
