@@ -1,0 +1,63 @@
+{% extends layout %}
+{% block body %}
+<style type="text/css">
+	.duplicate{
+		background: red;
+	}
+	.insert{
+		background: green;
+	}
+	.failed{
+		background: black;
+	}
+</style>
+<div style="padding: 10px;">
+	<!-- search form -->
+	<form class="xajx" method="post" action="classification/search/classesid={{global.classesid}}">
+		{{forms.make(search)}}
+	</form>
+	<!-- person list -->
+	{{tagMaker.list(person)}}
+	
+</div>
+<script type="text/javascript">
+	$(".ajxClassification").click(function(){
+		URL = $(this).attr("xhref");
+		tag = $(this);
+		$.ajax({
+			type: "POST",
+			url : URL,
+			success : function(data){
+				if(data.msg.duplicate){
+					$(tag).addClass("duplicate").text(data.msg.duplicate).removeClass("insert")
+				}else if(data.msg.insert) {
+					$(tag).addClass("insert").text(data.msg.insert)
+				}else if(data.msg.failed) {
+					$(tag).addClass("failed").text(data.msg.failed)
+				}
+			}
+		});
+	});
+
+	// $(document).ready(function(){
+	// 	load_class_list();
+	// })
+
+	// function load_class_list() {
+	// 	tag = $(this);
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url : URL,
+	// 		success : function(data){
+	// 			if(data.msg.duplicate){
+	// 				$(tag).addClass("duplicate").text(data.msg.duplicate)
+	// 			}else if(data.msg.insert) {
+	// 				$(tag).addClass("insert").text(data.msg.insert)
+	// 			}else if(data.msg.failed) {
+	// 				$(tag).addClass("failed").text(data.msg.failed)
+	// 			}
+	// 		}
+	// 	});
+	// }
+</script>
+{%endblock%}

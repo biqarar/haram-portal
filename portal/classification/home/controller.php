@@ -2,6 +2,17 @@
 class controller extends main_controller{
 	
 	function config(){
+		//------------------------------ load form to search in person
+		$this->listen(array(
+			"max" => 3,
+			"url" => "/^(search)\/(classesid\=\d+)$/"
+			), 
+			function () {
+				save(array("classification", "search"));
+				$this->permission = array("classification" => array("insert" => array("public")));
+			}
+		);
+
 		$this->listen(array(
 			"max" => 3,
 			"url" => array("classes", "/^\d+$/", "/^\d+$/")
@@ -31,6 +42,7 @@ class controller extends main_controller{
 				$this->permission = array("classification" => array("select" => array("public", "private")));
 			}
 		);
+
 	}
 }
 ?>
