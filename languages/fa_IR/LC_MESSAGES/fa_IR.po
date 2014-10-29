@@ -30,7 +30,7 @@ msgid "no"
 msgstr "خیر"
 
 msgid "name1"
-msgstr "شگاره پرونده"
+msgstr "شماره پرونده"
 
 msgid "name2"
 msgstr "نام"

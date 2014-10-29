@@ -10,7 +10,7 @@ class controller extends main_controller{
 			$this->permission = array("classification" => array("insert" => array("public")));
 		});
 		
-		//------------------------------ classification a class whit id
+		//------------------------------ load form to insert users to a classes
 		$this->listen(array(
 			"max" => 2,
 			"url" => array("classesid"=> "/^\d+$/")

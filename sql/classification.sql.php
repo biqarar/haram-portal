@@ -23,13 +23,13 @@ class classification {
 	
 	public function users_id() {
 		$this->form("select")->name("users_id");
-		$this->setChild();
+		// $this->setChild();
 		$this->validate("id");
 	}
 	
 	public function classes_id() {
 		$this->form("select")->name("classes_id");
-		$this->setChild();
+		// $this->setChild();
 	}
 	
 	public function date_entry() {
@@ -50,7 +50,7 @@ class classification {
 	
 	public function plan_section_id() {
 		$this->form("select")->name("plan_section_id");
-		$this->setChild();
+		// $this->setChild();
 	}
 }
 ?>

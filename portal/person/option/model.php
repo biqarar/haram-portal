@@ -17,10 +17,7 @@ class model extends main_model{
 				->setFamily(post::family())
 				->setFather(post::father())
 				->setGender(post::gender())
-				->setNationalcode(post::nationalcode())
-				->setCode(post::code())
 				->setMarriage(post::marriage())
-				->setChild(post::child())
 				->setType(post::type());
 				
 		// The line for this is that if this field was filled can not be empty and must be changed
@@ -29,12 +26,27 @@ class model extends main_model{
 			$makeQuery->setPasport_date(post::pasport_date());
 		}
 
+		//----------------------------- if country != irna and is set post pasport date update this
+		if(post::nationalcode() != "") {
+			$makeQuery->setNationalcode(post::nationalcode());
+		}
 
 		//----------------------------- if nationality != null update this
 		if(post::nationality() != "") {
 			$makeQuery->setNationality(post::nationality());
 		}
 		
+		//----------------------------- if code != null update this
+		if(post::code() != "") {
+			$makeQuery->setCode(post::code());
+		}
+
+		
+		//----------------------------- if child != null update this
+		if(post::child() != "") {
+			$makeQuery->setChild(post::child());
+		}
+
 		//----------------------------- if britday != null update this
 		if(post::birthday() != "") {
 			$makeQuery->setBirthday(post::birthday());

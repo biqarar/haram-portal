@@ -13,7 +13,7 @@ class view extends main_view {
 		if(config_lib::$surl['classesid']){
 
 			//------------------------------ classes id
-			$classes_id = config_lib::$surl['classesid'];
+			$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
 
 			$c = $this->sql(".list" , "classes", function ($query) {
 				$query->whereId(config_lib::$surl['classesid']);
@@ -24,14 +24,14 @@ class view extends main_view {
 		}
 		
 		//------------------------------ list of person inserted in this class
-		$classes_list =  $this->sql(".list", "classification", function($query){
+		$classes_list =  $this->sql(".list", "classification", function($query , $classes_id){
 			$query->whereClasses_id($classes_id);
-		})->compile();
+		}, $classes_id)->compile();
 
 		//------------------------------ change users id to name and family to show
 		if(isset($classes_list['list'])){	
 			foreach ($classes_list ['list'] as $key => $value) {
-				$classes_list ['list'][$key]['name'] = $this->sql(".username.get", $value['users_id']);
+				$classes_list ['list'][$key]['users_id'] = $this->sql(".username.get", $value['users_id']);
 			}	
 		}
 
@@ -45,16 +45,16 @@ class view extends main_view {
 		$search[] = $submit->compile();
 		$this->data->search = $search;
 
+		//------------------------------ classification link
+		$classification = $this->tag("a")->text("ثبت در کلاس")->addClass("ajxClassification")
+		->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
+		->attr("xxxhref", "classification/classesid=" . $classes_id);
+		
 		//------------------------------ detail person link
 		$c = $this->tag("a")->addClass("xmore")
 		->attr("href", "users/status=detail/id=%users_id%")
 		->attr("target", "_blank");
 
-		//------------------------------ classification link
-		$classification = $this->tag("a")->text("ثبت در کلاس")
-		->attr("href", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
-		->attr("target", "_blank");
-		
 		//------------------------------ seach into person table
 		$person = $this->sql("#s_search");
 		$person->addCol("detail","more")
