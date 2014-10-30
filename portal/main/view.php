@@ -222,6 +222,7 @@ class main_view{
 					$classes_detail ['list'][$key]['place_id']  = $this->sql(".assoc.foreign", "place", $value["place_id"], "name");
 				}	
 		}
+		return $classes_detail;
 	}
 
 }
