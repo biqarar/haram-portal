@@ -22,8 +22,8 @@ class permission {
 	}
 	
 	public function users_id() {
-		$this->form("select")->name("users_id");
-		$this->setChild();
+		$this->form("text")->name("users_id");
+		// $this->setChild();
 	}
 	
 	public function select() {

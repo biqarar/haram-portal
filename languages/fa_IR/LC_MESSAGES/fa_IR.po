@@ -140,7 +140,7 @@ msgstr "مشخصات کلاس"
 msgid "users_detail"
 msgstr "مشخصات کاربر"
 
-msgid "male_female"
+msgid "malefemale"
 msgstr "زن و مرد"
 
 msgid "waiting"

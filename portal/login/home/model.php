@@ -5,20 +5,29 @@
 class model extends main_model {
 
 	public function post_login() {
+		//------------------------------ set login countey for load captcha
 		if(!$this->sql(".loginCounter.login") && (!isset($_SESSION['CAPTCHA_GNA']) || $_SESSION['CAPTCHA_GNA'] != post::captcha())){
-			// load_captcha
-			// die(var_dump(1));
+			
 			$_SESSION['load_captcha'] = true;
 			debug_lib::fatal("captcha incorrect");
 			$this->redirect("login");
+		
 		}else{
+			
 			$u = $this->sql()->tableUsers()
 			->whereUsername(post::username())
 			->andPassword(md5(post::password()))->limit(1)->select();
 
+			//------------------------------ username and password tru
 			if($u->num() == 1) {				
+
+				//------------------------------ clear history of try to login
 				$this->sql(".loginCounter.clear");
+
+				//------------------------------ set login session (permission, menu , ...)
 				$this->sql(".setLoginSession" , $u);
+
+				//------------------------------ redirect to page (profile || save page)
 				if(isset($_SESSION['redirect'])){
 					$redirect = $_SESSION['redirect'];
 					unset($_SESSION['redirect']);
@@ -29,6 +38,7 @@ class model extends main_model {
 				}
 
 			}else{
+				
 				if(isset($_SESSION['CAPTCHA_GNA'])){
 					unset($_SESSION['CAPTCHA_GNA']);
 					debug_lib::msg("captcha", true);

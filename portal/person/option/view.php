@@ -42,8 +42,6 @@ class view extends main_view{
 			$f->after("education_id", 'city_id');
 			$f->before("education", 'education_id');
 
-
-			//------------------------------ select education group
 		}
 	}
 }

@@ -2,15 +2,26 @@
 /**
 * @author reza mohiti rm.biqarar@gmail.com
 */
-class view extends main_view{
+class view extends main_view {
+	
 	public function config(){
+		//------------------------------ global
 		$this->global->page_title = "education";
-		$this->global->url = $this->uStatus(true);
-		$f = $this->form("@education", $this->uStatus());
 
-		$this->sql(".edit", "education", $this->uId(), $f);
+		//------------------------------ load form
+		$f = $this->form("@education", $this->urlStatus());
+
+		//------------------------------ edit form
+		$this->sql(".edit", "education", $this->xuId(), $f);
 		
-		$this->data->list = $this->sql(".list","education")->compile();
+		//------------------------------ lisf of education
+		$education_list =  $this->sql(".list","education")
+		->addCol("edit", "edit")
+		->select(-1, "edit")
+		->html($this->editLink("education"))
+		->compile();
+
+		$this->data->list = $education_list;
 
 	}
 }

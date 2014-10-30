@@ -4,11 +4,8 @@
 */
 class model extends main_model {
 
-	public function sql_tables_list() {
-		// var_dump(opendir(sql));
-	}
-
 	public function makeQuery() {
+		//------------------------------ make sql object
 		 return $this->sql()->tablePermission()
 		 		->setTables(post::tables())
 		 		->setUsers_id(post::users_id())
@@ -19,20 +16,30 @@ class model extends main_model {
 	}
 
 	public function post_add_permission(){
+		//------------------------------ insert permission
 		$sql = $this->makeQuery()->insert();
+
+		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert permission successful]]");
 		});
+
+		//------------------------------ rollback code
 		$this->rollback(function() {
 			debug_lib::fatal("[[insert permission failed]]");
 		});
 	}
 
 	public function post_edit_permission() {
-		$sql = $this->makeQuery()->whereId($this->uId())->update();
+		//------------------------------ update permisson
+		$sql = $this->makeQuery()->whereId($this->xuId())->update();
+
+		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[update permission successful]]");
 		});
+
+		//------------------------------ roolback code
 		$this->rollback(function() {
 			debug_lib::fatal("[[update permission failed]]");
 		});

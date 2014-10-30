@@ -3,6 +3,7 @@
 * @author reza mohiti rm.biqarar@gmail.com 
 */
 class model extends main_model {
+
 	public function makeQuery() {
 		return $this->sql()->tableClassification()
 				->setUsers_id(post::users_id())

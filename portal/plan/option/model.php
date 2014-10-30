@@ -22,8 +22,6 @@ class model extends main_model{
 		//------------------------------ insert plan
 		$sql = $this->makeQuery()->insert();
 
-		// print_r($sql->string());
-
 		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert plan successful]]");

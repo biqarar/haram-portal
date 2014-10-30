@@ -5,7 +5,10 @@
 class model extends main_model {
 	
 	public function post_changepasswd() {
+
 		$msg = "";
+
+		//------------------------------ if old password is true
 		if(isset($_SESSION['users_id'])){
 			$user = $this->sql()
 				->tableUsers()
@@ -15,30 +18,32 @@ class model extends main_model {
 				->select();
 				
 			if($user->num() == 1){
+				//------------------------------ if password == repassword 
 				if(post::newpasswd() == post::repasswd()){
 					$changepasswd = $this->sql()
 						->tableUsers()
 						->setPassword(md5(post::newpasswd()))
 						->whereId($_SESSION['users_id'])
 						->update();
-						// var_dump($changepasswd);
-						// exit();	
-						// debug_lib::true("[[password changed]]");
 				}else{
-					// $msg = '[[new password not match whit repssword]]';
+					//------------------------------ make fatal error (password != repasswrod)
 					debug_lib::fatal("[[new password not match whit repssword]]");
 				}
 				
 			}else{
-				// $msg = '[[old password is incorect]]';
+				//------------------------------ make falal error (old password is incurect)
 				debug_lib::fatal("[[old password is incorect]]");
 			}	
 		}else{
 			// $this->redirect("login");
 		}
+
+		//------------------------------ commit code
 		$this->commit(function(){
 			debug_lib::true("[[password changed]]");
 		});
+
+		//------------------------------ rollback code
 		$this->rollback(function($msg){
 			debug_lib::fatal($msg);
 		}, $msg);

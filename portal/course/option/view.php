@@ -19,13 +19,9 @@ class view extends main_view{
 		//------------------------------ edit form
 		$this->sql(".edit", "course", $this->xuId(), $f);
 
-		//------------------------------ edit link
-		$edit = $this->tag("a")->addClass("xmore")
-		->attr("href", "course/status=edit/id=%id%");
-
 		//------------------------------ list of course
 		$this->data->list = $this->sql(".list","course")
-			->addColEnd("edit","edit")->select(-1, "edit")->html($edit)
+			->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("course"))
 			->compile();
 		
 	}

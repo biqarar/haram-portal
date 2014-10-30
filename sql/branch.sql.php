@@ -8,7 +8,7 @@ namespace sql{
 		public $id     = array('type'=> 'int@10', 'autoI', 'label' => 'branch_id');
 		public $name   = array('type'=> 'varchar@32', 'label' => 'branch_name');
 		public $code   = array('type'=> 'int@3', 'label' => 'branch_code');
-		public $gender = array('type'=> 'enum@male,female,male_female!male');
+		public $gender = array('type'=> 'enum@male,female,malefemale!male');
 		
 		public $unique = array("name");
 

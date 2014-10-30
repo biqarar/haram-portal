@@ -178,6 +178,52 @@ class main_view{
 			$this->global->url = "status=".$this->urlStatus();
 		}
 	}
+
+	/**
+	* make link to show detail record table
+	*/
+	public function detailLink($table = flase) {
+		return  $this->tag("a")
+		->addClass("xmore")
+		->attr("href", $table . "/status=detail/id=%id%")
+		->attr("target", "_blank");
+
+	}		
+
+	/**
+	* make link to edit record table
+	*/
+	public function editLink($table = flase) {
+		return  $this->tag("a")
+		->addClass("xmore")
+		->attr("href", $table . "/status=edit/id=%id%")
+		->attr("target", "_blank");
+
+	}
+
+	/**
+	* make link whit costum url
+	*/
+	public function link($url = flase) {
+		return  $this->tag("a")
+		->addClass("xmore")
+		->attr("href", $url)
+		->attr("target", "_blank");
+	}
+
+	public function detailClasses($classes_detail = false) {
+		if(isset($classes_detail['list'])){	
+				foreach ($classes_detail ['list'] as $key => $value) {
+					$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
+					$classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
+					$classes_detail ['list'][$key]['teacher']   = 
+							$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id") . ' ' . 
+							$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");
+					$classes_detail ['list'][$key]['place_id']  = $this->sql(".assoc.foreign", "place", $value["place_id"], "name");
+				}	
+		}
+	}
+
 }
 
 class aDATA{

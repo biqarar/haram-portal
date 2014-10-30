@@ -26,18 +26,14 @@ class view extends main_view {
 		->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
 		->attr("xxxhref", "classification/classesid=" . $classes_id);
 		
-		//------------------------------ detail person link
-		$c = $this->tag("a")->addClass("xmore")
-		->attr("href", "users/status=detail/id=%users_id%")
-		->attr("target", "_blank");
 
 		//------------------------------ seach into person table
 		$person = $this->sql("#s_search");
 		$person
-			// ->addCol("detail","more")
-			// ->select(-1, "detail")->html($c)
+		
 			->addCol("classification","کلاس بندی")
 			->select(-1, "classification")->html($classification)
+		
 			->removeCol(
 			"id,from,City_id,record_id,Absence_dateEducation_id,Education_group,Country_id,country,province_id,
 			casecode,casecode_old,type,en_name,en_family,en_father,third_name,third_family,

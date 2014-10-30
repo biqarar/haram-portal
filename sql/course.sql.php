@@ -35,13 +35,13 @@ class course {
 	
 	public function expert() {
 		$this->form("select")->name("expert");
-		$this->setChild();
+		// $this->setChild();
 		$this->validate("id");
 	}
 	
 	public function branch_id() {
 		$this->form("select")->name("branch_id");
-		$this->setChild();
+		// $this->setChild();
 		$this->validate("id");
 	}
 }

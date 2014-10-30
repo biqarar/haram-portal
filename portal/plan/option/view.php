@@ -17,14 +17,10 @@ class view extends main_view{
 
 		//------------------------------ edit form
 		$this->sql(".edit", "plan", $this->xuId(), $f);
-
-		//------------------------------ edit link
-		$edit = $this->tag("a")
-		->addClass("xmore")
-		->attr("href", "plan/status=edit/id=%id%");
 		
 		//------------------------------ list of plan
-		$list_plan = $this->sql(".list","plan")->addColEnd("edit","edit")->select(-1, "edit")->html($edit)->compile();
+		$list_plan = $this->sql(".list","plan")->addColEnd("edit","edit")->select(-1, "edit")
+		->html($this->editLink("plan"))->compile();
 		
 		$this->data->list = $list_plan;		
 	}
