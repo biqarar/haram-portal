@@ -16,12 +16,21 @@ class view extends main_view {
 			$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
 			$this->global->classesid = $classes_id;
 
-			$c = $this->sql(".list" , "classes", function ($query) {
+			$classes_detail = $this->sql(".list" , "classes", function ($query) {
 				$query->whereId(config_lib::$surl['classesid']);
-			});
-			//------------------------------ remove col
-			$c->removeCol("meeting_no,age_range,quality,start_date,end_date");
-				$this->data->list = $c->compile();
+			})->removeCol("meeting_no,start_date,end_date")->compile();
+
+			//------------------------------ change users id to name and family to show
+			if(isset($classes_detail['list'])){	
+				foreach ($classes_detail ['list'] as $key => $value) {
+					$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
+					$classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
+					$classes_detail ['list'][$key]['teacher']   = $this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");
+					$classes_detail ['list'][$key]['place_id']  = $this->sql(".assoc.foreign", "place", $value["place_id"], "name");
+				}	
+			}
+
+			$this->data->list = $classes_detail;
 		}
 		
 		//------------------------------ list of person inserted in this class

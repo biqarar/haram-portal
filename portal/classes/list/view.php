@@ -25,21 +25,34 @@ class view extends main_view{
 			->attr("target", "_blank");
 
 		//------------------------------ classes list
-		$c = $this->sql(".classesDetail");
+		$classes_detail = $this->sql(".list", "classes", function($query) {
+			$query->limit(80);
+		})
 
-		$c->addCol("detail", "classes")
+		->addCol("detail", "classes")
 		->select(-1, "detail")
 		->html($show_more)
 
 		->addCol("classification","class")
 		->select(-1, "classification")
-		->html($classification);
+		->html($classification)
+
+		->compile();
+
+		if(isset($classes_detail['list'])){	
+				foreach ($classes_detail ['list'] as $key => $value) {
+					$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
+					$classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
+					$classes_detail ['list'][$key]['teacher']   = $this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");
+					$classes_detail ['list'][$key]['place_id']  = $this->sql(".assoc.foreign", "place", $value["place_id"], "name");
+				}	
+		}
 
 		// ->addColEnd("edit", "edit")
 		// ->select(-1, "edit")
 		// ->html($edit);
 
-		$this->data->list = $c->compile();
+		$this->data->list = $classes_detail;
 	}
 }
 ?>

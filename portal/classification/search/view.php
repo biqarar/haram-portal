@@ -33,8 +33,9 @@ class view extends main_view {
 
 		//------------------------------ seach into person table
 		$person = $this->sql("#s_search");
-		$person->addCol("detail","more")
-			->select(-1, "detail")->html($c)
+		$person
+			// ->addCol("detail","more")
+			// ->select(-1, "detail")->html($c)
 			->addCol("classification","کلاس بندی")
 			->select(-1, "classification")->html($classification)
 			->removeCol(
