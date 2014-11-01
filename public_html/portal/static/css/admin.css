@@ -554,5 +554,11 @@ label {
     width: 16px;
     height: 16px;
     margin: 0 auto; }
+  .table-list .icoedit {
+    background: url(../img/edit.png);
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto; }
 
 /*# sourceMappingURL=admin.css.map */
