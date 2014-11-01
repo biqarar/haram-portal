@@ -182,10 +182,6 @@ class main_view{
 	/**
 	* make link to show detail record table
 	*/
-	public function detailLink($table = flase) {
-	/**
-	 * make link to show detail record table
-	 */
 	 public function detailLink($table = flase) {
 	  return $this->link($table . "/status=detail/id=%id%", "href" , "xmore");
 	 }  
@@ -206,7 +202,6 @@ class main_view{
 	  ->attr($attr, $url)
 	  ->attr("target", "_blank");
 	 }
-		->attr("target", "_blank");
 	}
 
 	/**
