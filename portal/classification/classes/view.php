@@ -21,7 +21,7 @@ class view extends main_view {
 			})->removeCol("meeting_no,start_date,end_date")->compile();
 
 			//------------------------------ change users id to name and family to show
-		$classes_detail = $this->detailClasses($classes_detail);
+			$classes_detail = $this->detailClasses($classes_detail);
 			
 
 			$this->data->list = $classes_detail;
@@ -39,7 +39,6 @@ class view extends main_view {
 			}	
 		}
 
-		
 
 		$this->data->classes_list = $classes_list;
 

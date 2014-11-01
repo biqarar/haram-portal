@@ -201,7 +201,6 @@ class main_view{
 	  ->addClass($cssClass)
 	  ->attr($attr, $url)
 	  ->attr("target", "_blank");
-	 }
 	}
 
 	/**

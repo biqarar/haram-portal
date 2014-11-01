@@ -41,7 +41,8 @@ class classification {
 	}
 	
 	public function because() {
-		$this->form("#fatext")->name("because");
+		$this->form("select")->name("because");
+		$this->setChild($this->form);
 	}
 	
 	public function mark() {
