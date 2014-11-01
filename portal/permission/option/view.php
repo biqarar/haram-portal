@@ -18,9 +18,21 @@ class view extends main_view {
 		//------------------------------ make list of table whit .sql.php file in sql folder 
 		$tables = scandir(sql);
 
+		//------------------------------ other permission (no table)
+		$other_permission = array(
+			"teacher",
+			"home"
+		);
+
+		//------------------------------ push other permission to list of permission
+		foreach ($other_permission as $key => $value) {
+			array_push($tables, $value);
+		}
+
 		//------------------------------ this table not sohw in table list (system table)
 		$black = array(".","..", "permission", "history", "login_counter","dev", "branch_users_key", "branch_cash", "student1");
 		
+
 		foreach ($tables as $key => $value) {
 		
 			$value = preg_replace("/\.sql\.php$/", "", $value);
