@@ -548,7 +548,7 @@ label {
     -moz-transition: all 100ms linear;
     -o-transition: all 100ms linear;
     transition: all 100ms linear; }
-  .table-list .xmore {
+  .table-list .icomore {
     background: url(../img/more.png);
     display: block;
     width: 16px;

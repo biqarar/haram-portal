@@ -184,7 +184,7 @@ class main_view{
 	*/
 	public function detailLink($table = flase) {
 		return  $this->tag("a")
-		->addClass("xmore")
+		->addClass("icomore")
 		->attr("href", $table . "/status=detail/id=%id%")
 		->attr("target", "_blank");
 
@@ -195,7 +195,7 @@ class main_view{
 	*/
 	public function editLink($table = flase) {
 		return  $this->tag("a")
-		->addClass("xmore")
+		->addClass("icomore")
 		->attr("href", $table . "/status=edit/id=%id%")
 		->attr("target", "_blank");
 
@@ -206,7 +206,7 @@ class main_view{
 	*/
 	public function link($url = flase) {
 		return  $this->tag("a")
-		->addClass("xmore")
+		->addClass("icomore")
 		->attr("href", $url)
 		->attr("target", "_blank");
 	}
