@@ -183,34 +183,29 @@ class main_view{
 	* make link to show detail record table
 	*/
 	public function detailLink($table = flase) {
-		return  $this->tag("a")
-		->addClass("xmore")
-		->attr("href", $table . "/status=detail/id=%id%")
-		->attr("target", "_blank");
-
+		return  $this->link($table .  "/status=detail/id=%id%", "href" , "xmore");
 	}		
 
 	/**
 	* make link to edit record table
 	*/
 	public function editLink($table = flase) {
-		return  $this->tag("a")
-		->addClass("xmore")
-		->attr("href", $table . "/status=edit/id=%id%")
-		->attr("target", "_blank");
-
+		return  $this->link($table .  "/status=edit/id=%id%", "href" , "xmore");
 	}
 
 	/**
 	* make link whit costum url
 	*/
-	public function link($url = flase) {
+	public function link($url = flase , $attr = "href" , $cssClass = "xmore") {
 		return  $this->tag("a")
-		->addClass("xmore")
-		->attr("href", $url)
+		->addClass($cssClass)
+		->attr($attr, $url)
 		->attr("target", "_blank");
 	}
 
+	/**
+	*	some field in the classes table must be change (foreign) to other field in other table
+	*/
 	public function detailClasses($classes_detail = false) {
 		if(isset($classes_detail['list'])){	
 				foreach ($classes_detail ['list'] as $key => $value) {
