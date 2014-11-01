@@ -15,13 +15,13 @@ class view extends main_view{
 			$query->limit(80);
 		})
 
-		->addCol("detail", "classes")
+		->addCol("detail", "description")
 		->select(-1, "detail")
 		->html($this->detailLink("classes"))
 
-		->addCol("classification","class")
+		->addCol("classification","classification")
 		->select(-1, "classification")
-		->html($this->link("classification/classesid=%id%"))
+		->html($this->link("classification/classesid=%id%", "href", "icoclasses"))
 
 		->compile();
 

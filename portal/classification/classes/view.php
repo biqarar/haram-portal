@@ -30,7 +30,11 @@ class view extends main_view {
 		//------------------------------ list of person inserted in this class
 		$classes_list =  $this->sql(".list", "classification", function($query , $classes_id){
 			$query->whereClasses_id($classes_id);
-		}, $classes_id)->compile();
+		}, $classes_id)
+		->addCol("edit", "edit")
+		->select(-1, "edit")
+		->html($this->editLink("classification"))
+		->compile();
 
 		//------------------------------ change users id to name and family to show
 		if(isset($classes_list['list'])){	
