@@ -560,5 +560,12 @@ label {
     width: 16px;
     height: 16px;
     margin: 0 auto; }
+  .table-list .icoclasses {
+    background: url(../svg/icons/class.svg);
+    background-size: 100% 100%;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto; }
 
 /*# sourceMappingURL=admin.css.map */
