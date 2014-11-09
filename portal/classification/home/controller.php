@@ -32,6 +32,18 @@ class controller extends main_controller{
 			}
 		);
 		
+		//------------------------------ classification list
+		$this->listen(array(
+			"max" => 2,
+			"url" => array("list")
+			), 
+			function () {
+				save(array("classification", "list"));
+				$this->access = true;
+				// $this->permission = array("classification" => array("insert" => array("public")));
+			}
+		);
+
 		//------------------------------ api to insert users to classes
 		$this->listen(array(
 			"max" => 4,
