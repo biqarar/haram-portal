@@ -20,8 +20,8 @@ class bridge {
 		$this->validate("id");
 	}
 	public function users_id() {
-		$this->form("select")->name("users_id");
-		$this->setChild();
+		$this->form("#number")->name("users_id")->disabled("disabled");
+		// $this->setChild();
 		$this->validate("id");
 	}
 
@@ -32,7 +32,7 @@ class bridge {
 
 	public function value() {
 		$this->form("#text_desc")->name("value");
-		$this->validate()->reg("/^(.*)$/");
+		// $this->validate()->reg("/^(.*)$/");
 	}
 
 	public function description() {
