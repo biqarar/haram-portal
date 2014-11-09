@@ -20,6 +20,9 @@ msgstr "ماشین نیستم!"
 msgid "empty name, family, father"
 msgstr "تکمیل کردن نام،نام خانوادگی و نام پدر الزامی است"
 
+msgid "report"
+msgstr "گزارش اشکالات"
+
 msgid "person edit"
 msgstr "اصلاح مشخصات فردی"
 

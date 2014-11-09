@@ -4,23 +4,44 @@
 */
 class menu_cls {
 
-	static $menu = array();
-	static $dropdown = array();
+	/**
+	* list of menu (not compile)
+	*/
+	static $menu      = array();
+
+	/**
+	* list of menu dropdown (not compile)
+	*/
+	static $dropdown  = array();
+
+	/**
+	* list of menu (compiled)
+	*/
 	static $list_menu = array();
+
+	/**
+	* compile menu
+	* @return array
+	*/
 	static function list_menu() {
 
-		// var_dump($_SESSION);
-		// if(isset($_SESSION['menu']) && !empty($_SESSION['menu'])){
-		// 	return $_SESSION['menu'];
-		// }
-
+		//------------------------------ make menu
 		self::menus();
+
+
 		$make = false;
+		
 		foreach (self::$menu as $index => $value) {
+			
+			//------------------------------ key to load menu or no
 			$make = false;
+			
+			//------------------------------ if tag of menu == public then do not neet to permission
 			if(is_string($value['tag']) && $value['tag'] == "public"){
 				$make = true;
 			}else{
+
+				//------------------------------ check permission and make menu
 				foreach ($value['tag'] as $table => $v) {
 					foreach ($v as $oprator => $publicPrivate) {
 						foreach ($publicPrivate as $i => $p) {
@@ -36,43 +57,43 @@ class menu_cls {
 					if($make) break;
 				}
 			}
+
+			//------------------------------ make menu and dropdown
 			if($make) {
 				self::$list_menu[$value['submenu']]["dropdown"][]
 				=  array("url" => $value['url'] , "name" => $value["name"]);
 			}
 		}
+
+		//------------------------------ sort menu (not run)
 		$index = array(
-			"home" => 1,
-			"teacher" => 2,
-			"user"   => 3,
-			"class"  => 4,
+			"home"       => 1,
+			"teacher"    => 2,
+			"user"       => 3,
+			"class"      => 4,
 			"attendance" => 5,
-			"letters" => 6,
-			"share" => 7,
-			"settings" => 8,
-			"folder" => 9,
-			"media" => 10
+			"letters"    => 6,
+			"share"      => 7,
+			"settings"   => 8,
+			"folder"     => 9,
+			"media"      => 10
 			);
+
+		//------------------------------ translate menu caption whit gettext()
 		foreach (self::$list_menu as $key => $value) {
 			self::$list_menu[$key]["name"] = _($key);
 			self::$list_menu[$key]['index'] = $index[$key];
 		}
-		$_SESSION['menu'] = self::$list_menu;
+
+		//------------------------------ return
 		return self::$list_menu;
 	}
 
+	/**
+	* make array menu
+	*/
 	static function menus() {
-		// city
-		self::$menu[] = array(
-			"submenu" => "home", 
-			"url" => 'city/status=add', 
-			"name" =>  _("menu city add"), 
-			"tag" => array(
-				"city" => array("insert" => array("public"))
-				)
-			);
-		
-		// permission 
+		//------------------------------ permission add
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'permission/status=add', 
@@ -81,8 +102,18 @@ class menu_cls {
 				"permission" => array("insert" => array("public"))
 				)
 			);
+		
+		//------------------------------ city add
+		self::$menu[] = array(
+			"submenu" => "home", 
+			"url" => 'city/status=add', 
+			"name" =>  _("menu city add"), 
+			"tag" => array(
+				"city" => array("insert" => array("public"))
+				)
+			);
 
-		// education 
+		//------------------------------  education 
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'education/status=add', 
@@ -92,7 +123,7 @@ class menu_cls {
 				)
 			);
 		
-		// branch
+		//------------------------------  branch
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'branch/status=add', 
@@ -102,7 +133,7 @@ class menu_cls {
 				)
 			);
 
-		// group
+		//------------------------------  group
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'group/status=add', 
@@ -112,7 +143,7 @@ class menu_cls {
 				)
 			);
 
-		// plan
+		//------------------------------  plan
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'plan/status=add', 
@@ -122,7 +153,7 @@ class menu_cls {
 				)
 			);
 		
-		// course
+		//------------------------------  course
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'course/status=add', 
@@ -133,7 +164,7 @@ class menu_cls {
 			);
 
 		
-		// abcence
+		//------------------------------  abcence
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => "absence/status=add", 
@@ -144,18 +175,17 @@ class menu_cls {
 			);
 
 
-		//  person
+		//------------------------------   person
 		self::$menu[] = array(
 			"submenu" => "user", 
 			"url" => "users/status=add", 
 			"name" =>  _("menu person add"), 
 			"tag" => array(
 				"users" => array("insert" => array("public", "private"))
-				// "users" => array("insert" => array("public", "private"))
 				)
 			);
 
-		// users list
+		//------------------------------  users list
 		self::$menu[] = array(
 			"submenu" => "user", 
 			"url" => "users/status=list", 
@@ -166,9 +196,7 @@ class menu_cls {
 				)
 			);
 
-		
-
-
+		//------------------------------ classes list
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=list", 
@@ -179,6 +207,7 @@ class menu_cls {
 				)
 			);
 
+		//------------------------------ classes add
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=add", 
@@ -188,6 +217,7 @@ class menu_cls {
 				)
 			);
 
+		//------------------------------ plan add
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "place/status=add", 
@@ -197,6 +227,7 @@ class menu_cls {
 				)
 			);
 
+		//------------------------------ posts add
 		self::$menu[] = array(
 			"submenu" => "letters", 
 			"url" => "posts/status=add", 
@@ -205,18 +236,11 @@ class menu_cls {
 				"posts" => array("insert" => array("public"))
 				)
 			);
-		
-		// AT END //////////////////////////////////////////////////////////////////////////////////////////////////// AT END
-		// $edit_user_url =  isset($_SESSION['users_id'])? $_SESSION['users_id'] : "0";
-		// $edit_user_url = "users/edit/" . $edit_user_url;
-		// self::$menu[] = array(
-		// 	"submenu" => "settings", 
-		// 	"url" => $edit_user_url,
-		// 	"name" => _("menu user edit"), 
-		// 	"tag" => "public"
-		// 	);
 
-		//logout - public menu
+
+		//------------------------------ public menu
+
+		//------------------------------ (public) change password menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
 			"url" => 'changepasswd', 
@@ -224,54 +248,21 @@ class menu_cls {
 			"tag" => "public"
 			);
 
+		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
 			"url" => 'logout', 
 			"name" =>  _("logout"), 
 			"tag" => "public"
 			);
-		// self::$menu[] = array(
-		// 	"submenu" => "home", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
-		// self::$menu[] = array(
-		// 	"submenu" => "letters", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
-		// self::$menu[] = array(
-		// 	"submenu" => "media", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
-		// self::$menu[] = array(
-		// 	"submenu" => "settings", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
-		// self::$menu[] = array(
-		// 	"submenu" => "share", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
-		// self::$menu[] = array(
-		// 	"submenu" => "teacher", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
-		// self::$menu[] = array(
-		// 	"submenu" => "user", 
-		// 	"url" => 'public', 
-		// 	"name" => _("logout"), 
-		// 	"tag" => "public"
-		// 	);
+
+		//------------------------------ (public) report bug menu 
+		self::$menu[] = array(
+			"submenu" => "letters", 
+			"url" => 'report/status=add', 
+			"name" => _("report"), 
+			"tag" => "public"
+			);
 
 	}
 

@@ -8,7 +8,9 @@ class query_edit_cls extends query_cls
 		
 		$id = intval($id);
 
+		//------------------------------ get result whit table and id from mysql engine		
 		$result =  $this->query($table, $id); 
+
 		//------------------------------ check for real "id" in url
 		if($result->num() >= 1 ) {
 			$option = $result->assoc();

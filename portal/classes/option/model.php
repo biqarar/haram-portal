@@ -40,6 +40,9 @@ class model extends main_model{
 	public function post_edit_classes() {
 		//------------------------------ update classes
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
+
+		print_r($sql->string());
+		exit();
 		
 		//------------------------------ commit code
 		$this->commit(function() {

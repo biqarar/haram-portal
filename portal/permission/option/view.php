@@ -21,7 +21,8 @@ class view extends main_view {
 		//------------------------------ other permission (no table)
 		$other_permission = array(
 			"teacher",
-			"home"
+			"home",
+			"report"
 		);
 
 		//------------------------------ push other permission to list of permission

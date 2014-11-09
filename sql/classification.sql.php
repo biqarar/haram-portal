@@ -22,13 +22,13 @@ class classification {
 	}
 	
 	public function users_id() {
-		$this->form("select")->name("users_id");
+		$this->form("#number")->name("users_id")->disabled("disabled");
 		// $this->setChild();
 		$this->validate("id");
 	}
 	
 	public function classes_id() {
-		$this->form("select")->name("classes_id");
+		$this->form("#number")->name("classes_id")->disabled("disabled");
 		// $this->setChild();
 	}
 	
