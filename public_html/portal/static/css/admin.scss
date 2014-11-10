@@ -170,29 +170,4 @@
 		font-size: 13px;
 		@include my-transition;
 	}
-
-	.icomore {
-		background: url(../img/more.png);
-		display: block;
-		width: 16px;
-		height: 16px;
-		margin: 0 auto;
-	}
-
-	.icoedit {
-		background: url(../img/edit.png);
-		display: block;
-		width: 16px;
-		height: 16px;
-		margin: 0 auto;
-	}
-
-	.icoclasses {
-		background: url(../svg/icons/class.svg);
-		background-size: 100% 100%;
-		display: block;
-		width: 16px;
-		height: 16px;
-		margin: 0 auto;
-	}
 }

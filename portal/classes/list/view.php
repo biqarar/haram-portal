@@ -28,7 +28,7 @@ class view extends main_view{
 		//------------------------------ classification link
 		->addCol("classification","classification")
 		->select(-1, "classification")
-		->html($this->link("classification/classesid=%id%", "href", "icoclasses"))
+		->html($this->link("classification/classesid=%id%", "href", "icouser"))
 
 		//------------------------------ compile sql.list
 		->compile();

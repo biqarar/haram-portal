@@ -3,7 +3,7 @@
 	> div.dropdown {
 		> div {
 			&:first-child {
-				background: #59C5C5;
+				background: #59c5c5;
 			}
 		}
 	}
@@ -97,4 +97,81 @@
 			}
 		}
 	}
+}
+
+.icoattendance, .icoclass, .icoclose, .icofolder, .icohome, .icoletters, .icomedia, .icosettings, .icoshare, .icoteacher, .icouser {
+	background-size: 100% 100%;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
+}
+
+.icoattendance {
+	background-image: url(../svg/icons/attendance.svg);
+}
+
+.icoclass {
+	background-image: url(../svg/icons/class.svg);
+}
+
+.icoclose {
+	background-image: url(../svg/icons/close.svg);
+}
+
+.icofolder {
+	background-image: url(../svg/icons/folder.svg);
+}
+
+.icohome {
+	background-image: url(../svg/icons/home.svg);
+}
+
+.icoletters {
+	background-image: url(../svg/icons/letters.svg);
+}
+
+.icomedia {
+	background-image: url(../svg/icons/media.svg);
+}
+
+.icosettings {
+	background-image: url(../svg/icons/settings.svg);
+}
+
+.icoshare {
+	background-image: url(../svg/icons/share.svg);
+}
+
+.icoteache {
+	background-image: url(../svg/icons/teacher.svg);
+}
+
+.icouser {
+	background-image: url(../svg/icons/user.svg);
+}
+
+.icomore {
+	background: url(../img/more.png);
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
+}
+
+.icoedit {
+	background: url(../img/edit.png);
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
+}
+
+.icoclasses {
+	background: url(../svg/icons/class.svg);
+	background-size: 100% 100%;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
 }
