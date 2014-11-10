@@ -14,9 +14,9 @@ class model extends main_model{
 				->setQuality(post::quality())
 				->setPlace_id(post::place_id())
 				->setName(post::name())
-				->setStart_time(post::start_time())
+				->setStart_time("#'".post::start_time() . "'")
 				->setTeacher(post::teacher())
-				->setEnd_time(post::end_time())
+				->setEnd_time("#'".post::end_time(). "'")
 				->setStart_date(post::start_date())
 				->setEnd_date(post::end_date())
 				->setWeek_days(post::week_days())
@@ -41,8 +41,6 @@ class model extends main_model{
 		//------------------------------ update classes
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 
-		print_r($sql->string());
-		exit();
 		
 		//------------------------------ commit code
 		$this->commit(function() {

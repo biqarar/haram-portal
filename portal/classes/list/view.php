@@ -28,8 +28,12 @@ class view extends main_view{
 		//------------------------------ classification link
 		->addCol("classification","classification")
 		->select(-1, "classification")
-		->html($this->link("classification/classesid=%id%", "href", "icouser"))
+		->html($this->link("classification/classesid=%id%", "href", "icoclass"))
 
+		//------------------------------ print link
+		->addCol("print", "print")
+		->select(-1, "print")
+		->html($this->link("classification/printlist/classesid=%id%", "href" , "icoletters a-undefault"))
 		//------------------------------ compile sql.list
 		->compile();
 
