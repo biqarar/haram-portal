@@ -427,6 +427,47 @@ label {
   line-height: 22px;
   color: #60b0e6; }
 
+.detail-card {
+  width: 50%;
+  float: right;
+  padding: 5px;
+  box-sizing: border-box; }
+
+.detail-card-body {
+  background: #fff;
+  border: 1px solid #bdbdbd; }
+
+.detail-card-title {
+  padding: 5px;
+  border-bottom: 1px solid #bdbdbd;
+  font-family: 'WYekan';
+  font-size: 12px;
+  color: #777; }
+
+.detail-card-content {
+  padding: 5px;
+  min-height: 100px; }
+
+.detail-card-footer {
+  padding: 5px; }
+
+.user-image {
+  width: 100px;
+  height: 133px;
+  float: left;
+  border: 5px solid #fff;
+  box-shadow: 0 0 1px grey; }
+
+.user-image > img {
+  width: 100%;
+  height: 100%; }
+
+.detail-card-content tr:nth-child(odd) th, .detail-card-content tr:nth-child(odd) td {
+  background: #fff; }
+
+.detail-card-content tr:nth-child(even) th, .detail-card-content tr:nth-child(even) td {
+  background: #f5f5f5; }
+
 .wrapper {
   margin-right: 129px;
   margin-left: 65px;
@@ -548,24 +589,28 @@ label {
     -moz-transition: all 100ms linear;
     -o-transition: all 100ms linear;
     transition: all 100ms linear; }
-  .table-list .icomore {
-    background: url(../img/more.png);
-    display: block;
-    width: 16px;
-    height: 16px;
-    margin: 0 auto; }
-  .table-list .icoedit {
-    background: url(../img/edit.png);
-    display: block;
-    width: 16px;
-    height: 16px;
-    margin: 0 auto; }
-  .table-list .icoclasses {
-    background: url(../svg/icons/class.svg);
-    background-size: 100% 100%;
-    display: block;
-    width: 16px;
-    height: 16px;
-    margin: 0 auto; }
+
+.ico {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto; }
+
+.icomore {
+  background: url(../img/more.png); }
+
+.icoedit {
+  background: url(../img/edit.png); }
+
+.icoclasses {
+  background: url(../svg/icons/class.svg);
+  background-size: 100% 100%; }
+
+.icoadd {
+  background: url(../svg/icons/add.svg);
+  background-size: 100% 100%; }
+
+.clearbox {
+  clear: both; }
 
 /*# sourceMappingURL=admin.css.map */

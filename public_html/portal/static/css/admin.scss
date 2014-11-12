@@ -12,6 +12,7 @@
 @import "partials/tabs";
 @import "partials/inputs";
 @import "partials/footer";
+@import "partials/cards";
 
 .wrapper {
 	margin-right: 129px;
@@ -170,29 +171,33 @@
 		font-size: 13px;
 		@include my-transition;
 	}
+}
 
-	.icomore {
-		background: url(../img/more.png);
-		display: block;
-		width: 16px;
-		height: 16px;
-		margin: 0 auto;
-	}
+.ico {
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
+}
 
-	.icoedit {
-		background: url(../img/edit.png);
-		display: block;
-		width: 16px;
-		height: 16px;
-		margin: 0 auto;
-	}
+.icomore {
+	background: url(../img/more.png);
+}
 
-	.icoclasses {
-		background: url(../svg/icons/class.svg);
-		background-size: 100% 100%;
-		display: block;
-		width: 16px;
-		height: 16px;
-		margin: 0 auto;
-	}
+.icoedit {
+	background: url(../img/edit.png);
+}
+
+.icoclasses {
+	background: url(../svg/icons/class.svg);
+	background-size: 100% 100%;
+}
+
+.icoadd {
+	background: url(../svg/icons/add.svg);
+	background-size: 100% 100%;
+}
+
+.clearbox {
+	clear: both;
 }

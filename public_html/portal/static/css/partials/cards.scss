@@ -1,0 +1,49 @@
+.detail-card {
+	width: 50%;
+	float: right;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.detail-card-body {
+	background: #fff;
+	border: 1px solid #bdbdbd;
+}
+
+.detail-card-title {
+	padding: 5px;
+	border-bottom: 1px solid #bdbdbd;
+	font-family: 'WYekan';
+	font-size: 12px;
+	color: #777;
+}
+
+.detail-card-content {
+	padding: 5px;
+	min-height: 100px;
+}
+
+.detail-card-footer {
+	padding: 5px;
+}
+
+.user-image {
+	width: 100px;
+	height: 133px;
+	float: left;
+	border: 5px solid #fff;
+	box-shadow: 0 0 1px grey;
+}
+
+.user-image > img {
+	width: 100%;
+	height: 100%;
+}
+
+.detail-card-content tr:nth-child(odd) th, .detail-card-content tr:nth-child(odd) td {
+	background: #fff;
+}
+
+.detail-card-content tr:nth-child(even) th, .detail-card-content tr:nth-child(even) td {
+	background: #f5f5f5;
+}
