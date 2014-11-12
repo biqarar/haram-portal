@@ -17,13 +17,89 @@
 	}
 </style>
 
+<!-- you must be crate macro to make it -->
+<!-- //////////////////////////////////////// -->
+{%- macro list(array) -%}
+<div class="detail-card">
+		<div class="detail-card-body">
+			<div class="detail-card-title">{{array.title}}</div>
+			
+			<div class="detail-card-content">
+				{{tagMaker.make(array.list)}}
+			</div>
+			
+			<div class="detail-card-footer">
+				<a href="#" class="ico icomore" style="float:left; margin-right: 5px;" href="{{array.morelink}}"></a>
+				<a href="#" class="ico icoadd" style="float:left; margin-right: 5px;" href="{{array.addlink}}"></a>
+				<a href="#" class="ico icoedit" style="float:left; margin-right: 5px;" href="{{array.editlink}}"></a>
+				<div class="clearbox"></div>
+			</div>
+		</div>
+	</div>
+{%- endmacro -%}
+<!-- //////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="right">
 	<div class="detail-card">
 		<div class="detail-card-body">
 			<div class="detail-card-title">اطلاعات فردی</div>
 			
 			<div class="detail-card-content">
-				{{tagMaker.make(list)}}
+				<table class="table-list">
+					<tr>
+						<th>
+							نام پدر به انگلیسی
+						</th>
+						<td>
+							haj agh javade bad ghomie bache azar
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+				
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+				</table>
 			</div>
 			
 			<div class="detail-card-footer">
@@ -33,15 +109,122 @@
 				<div class="clearbox"></div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
 	<div class="detail-card">
 		<div class="detail-card-body">
-			<div class="detail-card-title">اطلاعات فردی</div>
-			
+			<div class="detail-card-title">فایل های فراگیر</div>
 			<div class="detail-card-content">
-				{{tagMaker.list(list1)}}
+				<table class="table-list">
+					<tr>
+						<th>
+							نام پدر به انگلیسی
+						</th>
+						<td>
+							haj agh javade bad ghomie bache azar
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+				</table>
 			</div>
-			
 			<div class="detail-card-footer">
 				<a href="#" class="ico icomore" style="float:left; margin-right: 5px;"></a>
 				<a href="#" class="ico icoadd" style="float:left; margin-right: 5px;"></a>
@@ -49,15 +232,97 @@
 				<div class="clearbox"></div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
 	<div class="detail-card">
 		<div class="detail-card-body">
-			<div class="detail-card-title">اطلاعات فردی</div>
-			
+			<div class="detail-card-title">اطلاعات پرسنلی</div>
 			<div class="detail-card-content">
-				{{tagMaker.list(list2)}}
+				<table class="table-list">
+					<tr>
+						<th>
+							نام پدر به انگلیسی
+						</th>
+						<td>
+							haj agh javade bad ghomie bache azar
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+
+					<tr>
+						<th>
+							1
+						</th>
+						<td>
+							2
+						</td>
+					</tr>
+				</table>
 			</div>
-			
 			<div class="detail-card-footer">
 				<a href="#" class="ico icomore" style="float:left; margin-right: 5px;"></a>
 				<a href="#" class="ico icoadd" style="float:left; margin-right: 5px;"></a>
@@ -65,7 +330,8 @@
 				<div class="clearbox"></div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
 	<div class="clearbox"></div>
 </div>
 <div class="left">
