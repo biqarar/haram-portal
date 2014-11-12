@@ -183,21 +183,21 @@ class main_view{
 	* make link to show detail record table
 	*/
 	public function detailLink($table = flase) {
-		return $this->link($table . "/status=detail/id=%id%", "href" , "icomore");
+		return $this->link($table . "/status=detail/id=%id%", "href" , "ico icomore");
 	}  
 
 	 /**
 	 * make link to edit record table
 	 */
 	 public function editLink($table = flase) {
-	 	return $this->link($table . "/status=edit/id=%id%", "href" , "icoedit");
+	 	return $this->link($table . "/status=edit/id=%id%", "href" , "ico icoedit");
 	 }
 
 	/**
 	* make link whit costum url
 	*/
 
-	public function link($url = flase , $attr = "href" , $cssClass = "icomore") {
+	public function link($url = flase , $attr = "href" , $cssClass = "ico icomore") {
 	 	return $this->tag("a")
 	 	->addClass($cssClass)
 	 	->attr($attr, $url)

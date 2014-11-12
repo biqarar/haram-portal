@@ -4,7 +4,9 @@
  */
 class view extends main_view{
 	public function config(){
-		// test
+		$this->data->list = $this->sql(".list", "person" , function ($query){
+			$query->whereId(14000);
+		})->compile();
 	}
 }
 ?>

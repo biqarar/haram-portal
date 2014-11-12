@@ -32,7 +32,7 @@ class sql_cls {
 				}
 				$x->groupClose();
 				$x->fieldId();
-					
+	
 				//------------------------------ paging record limit 20
 				if(isset(config_lib::$surl['page']) || (isset(config_lib::$surl['status']) && config_lib::$surl['status'] == "list")){
 					$start_page = (isset(config_lib::$surl['page'])) ? ((intval(config_lib::$surl['page']) - 1)* 20) : 0;
