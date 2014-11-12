@@ -20,7 +20,7 @@ class bridge {
 		$this->validate("id");
 	}
 	public function users_id() {
-		$this->form("#number")->name("users_id")->disabled("disabled");
+		// $this->form("#number")->name("users_id")->disabled("disabled");
 		// $this->setChild();
 		$this->validate("id");
 	}
