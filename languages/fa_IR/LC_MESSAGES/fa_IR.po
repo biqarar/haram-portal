@@ -20,6 +20,15 @@ msgstr "ماشین نیستم!"
 msgid "empty name, family, father"
 msgstr "تکمیل کردن نام،نام خانوادگی و نام پدر الزامی است"
 
+msgid "print"
+msgstr "چاپ"
+
+msgid "NULL"
+msgstr " "
+
+msgid "null"
+msgstr " "
+
 msgid "report"
 msgstr "گزارش اشکالات"
 
@@ -172,9 +181,6 @@ msgstr "چند رسانه ای"
 
 msgid "private"
 msgstr "خصوصی"
-
-msgid "null"
-msgstr "خالی"
 
 msgid "consultation_list"
 msgstr "لیست مشاوره"

@@ -95,11 +95,11 @@ class menu_cls {
 	static function menus() {
 		//------------------------------ permission add
 		self::$menu[] = array(
-			"submenu" => "home", 
-			"url" => 'permission/status=add', 
-			"name" =>  _("menu permission add"), 
-			"tag" => array(
-				"permission" => array("insert" => array("public"))
+			"submenu"     => "home",
+			"url"         => 'permission/status=add',
+			"name"        =>  _("menu permission add"),
+			"tag"         => array(
+			"permission"  => array("insert" => array("public"))
 				)
 			);
 		
@@ -257,12 +257,12 @@ class menu_cls {
 			);
 
 		//------------------------------ (public) report bug menu 
-		self::$menu[] = array(
-			"submenu" => "letters", 
-			"url" => 'report/status=add', 
-			"name" => _("report"), 
-			"tag" => "public"
-			);
+		// self::$menu[] = array(
+		// 	"submenu" => "letters", 
+		// 	"url" => 'report/status=add', 
+		// 	"name" => _("report"), 
+		// 	"tag" => "public"
+		// 	);
 
 	}
 

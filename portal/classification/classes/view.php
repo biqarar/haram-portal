@@ -18,8 +18,15 @@ class view extends main_view {
 
 			$classes_detail = $this->sql(".list" , "classes", function ($query) {
 				$query->whereId(config_lib::$surl['classesid']);
-			})->removeCol("meeting_no,start_date,end_date")->compile();
+			})->removeCol("meeting_no,start_date,end_date")
 
+			//------------------------------ print link
+			->addCol("print", "print")
+			->select(-1, "print")
+			->html($this->link("classification/printlist/classesid=%id%", "href" , "icoletters a-undefault"))
+
+			->compile();
+			
 			//------------------------------ change users id to name and family to show
 			$classes_detail = $this->detailClasses($classes_detail);
 			
@@ -31,9 +38,9 @@ class view extends main_view {
 		$classes_list =  $this->sql(".list", "classification", function($query , $classes_id){
 			$query->whereClasses_id($classes_id);
 		}, $classes_id)
-		->addCol("edit", "edit")
-		->select(-1, "edit")
-		->html($this->editLink("classification"))
+		// ->addCol("edit", "edit")
+		// ->select(-1, "edit")
+		// ->html($this->editLink("classification"))
 		->compile();
 
 		//------------------------------ change users id to name and family to show
