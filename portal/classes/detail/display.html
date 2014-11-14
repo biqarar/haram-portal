@@ -1,22 +1,5 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
-<style type="text/css">
-th {
-	background: #ccc;
-	width: 250px;
-	text-align: left;
-	padding-left: 10px;
-}
-tr:nth-child(even) {background: #ececec}
-tr:nth-child(odd) {background: #FFF}
-</style>
-<table class="table-list">
-	{% for key, link in list['list'][0] %}
-	<tr>
-		<th>{{key|lang}}</th>
-		<td>{{link|lang}}</td>
-	</tr>
-	{%endfor%}
-</table>
+{{tagMaker.detail(list)}}
 {%endblock%}
