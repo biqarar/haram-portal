@@ -44,8 +44,8 @@ class query_list_cls extends query_cls
 			if($key = "header"){
 				$i = 1;
 				foreach ($value as $k => $v) {
-					if($k == "id") unset($card["header"][$key]);
-					if($i >= 10){
+					// if($k == "id") unset($card["header"][$key]);
+					if($i >= 14){
 						unset($card["header"][$k]);
 					}
 					$i++;
@@ -53,10 +53,10 @@ class query_list_cls extends query_cls
 			}
 			if($key = "list"){
 				foreach ($value as $k => $v) {
-				if($k == "id") unset($card["list"][0][$k]);
+				// if($k == "id") unset($card["list"][0][$k]);
 					$i = 1;
 					foreach ($value as $k => $v) {
-						if($i >= 10){
+						if($i >= 14){
 							unset($card["list"][0][$k]);
 						}
 						$i++;
@@ -69,7 +69,7 @@ class query_list_cls extends query_cls
 		//------------------------------ globals : title , addLink , editLink , moreLink
 		$return = array();
 		$return['list'] = $card;
-		$return['title'] = gettext($table);
+		$return['title'] = $table;
 		$return["addLink"] = "$table/status=add";
 		$return["editLink"] = "$table/status=edit/id=$id";
 		$return["moreLink"] = "$table/status=detail/id=$id";

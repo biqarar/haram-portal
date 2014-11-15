@@ -21,5 +21,10 @@ class model extends main_model {
 		}
 		
 	}
+
+	public function sql_bridge_detail($users_id = false) {
+		$bridge = $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
+		return $bridge;
+	}
 }
 ?>

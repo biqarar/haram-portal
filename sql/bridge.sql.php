@@ -31,12 +31,12 @@ class bridge {
 	}
 
 	public function value() {
-		$this->form("#text_desc")->name("value");
+		$this->form("text")->name("value");
 		// $this->validate()->reg("/^(.*)$/");
 	}
 
 	public function description() {
-		$this->form("#text_desc")->name("description");
+		$this->form("text")->name("description");
 		// $this->validate();
 	}
 }
