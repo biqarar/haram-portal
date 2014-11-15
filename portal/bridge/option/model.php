@@ -15,8 +15,12 @@ class model extends main_model {
 
 	public function post_add_bridge() {
 		//------------------------------ insert bridge
-		$sql = $this->makeQuery()->insert();
-
+		$sql = $this->makeQuery()
+		->setUsers_id($this->xuId("usersid"))
+		->insert();
+		var_dump($this->xuId("usersid"));
+		print_r($sql->string());
+		die();
 		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert bridge successful]]");

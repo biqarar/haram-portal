@@ -12,8 +12,9 @@ class view extends main_view {
 		$this->global->page_title = "bridge";
 
 	    $f = $this->form('@bridge', $this->urlStatus());
-
-	    $this->sql(".edit", "bridge", $this->xuId(), $f);
+	    if($this->urlStatus() == "edit"){
+	    	$this->sql(".edit", "bridge", $this->xuId(), $f);
+	    }
 
 	}
 }

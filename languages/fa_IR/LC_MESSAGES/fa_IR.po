@@ -20,6 +20,9 @@ msgstr "ماشین نیستم!"
 msgid "empty name, family, father"
 msgstr "تکمیل کردن نام،نام خانوادگی و نام پدر الزامی است"
 
+msgid "student1"
+msgstr "مشخصات فردی سیستم قدیم"
+
 msgid "print"
 msgstr "چاپ"
 

@@ -4,6 +4,8 @@
 		{{-tag.make(child)-}}
 	{%-endfor-%}
 {%- endmacro -%}
+
+
 {%- macro make(array) -%}
 {% import _self as tag%}
 <{{array.tagName}} {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
@@ -11,6 +13,7 @@
 	{{-tag.child(array.childs)-}}
 </{{array.tagName}}>
 {%- endmacro -%}
+
 
 {%- macro list(array) -%}
 {% import _self as tag%}
@@ -32,4 +35,50 @@
 	</tr>
 	{%endfor%}
 </table>
+{%- endmacro -%}
+
+
+{%- macro detail(array) -%}
+{% import _self as tag%}
+<table class="table-list">
+	{% for key, link in array.list %}
+		{% for k, li in array['list'][key] %}
+		<tr>
+			<th>{{k|lang}}</th>
+			<td>{{li|lang}}</td>
+		</tr>
+		{%endfor%}
+	{%endfor%}
+</table>
+{%- endmacro -%}
+
+
+{%- macro card(array) -%}
+{% import _self as tag%}
+{% if array %}
+	<div class="right">
+		<div class="detail-card">
+			<div class="detail-card-body">
+				<div class="detail-card-title">{{array.title|lang}}</div>
+				
+				<div class="detail-card-content">
+					{{-tag.detail(array.list)-}}
+				</div>
+				
+				<div class="detail-card-footer">
+					{% if array.moreLink %}
+						<a href="{{array.moreLink}}" target="_blank" class="ico icomore" style="float:left; margin-right: 5px;"></a>
+					{%endif%}
+					{% if array.addLink %}
+						<a href="{{array.addLink}}" target="_blank" class="ico icoadd" style="float:left; margin-right: 5px;"></a>
+					{%endif%}
+					{% if array.editLink %}
+						<a href="{{array.editLink}}" target="_blank" class="ico icoedit" style="float:left; margin-right: 5px;"></a>
+					{%endif%}
+					<div style="clear:both;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{%endif%}
 {%- endmacro -%}

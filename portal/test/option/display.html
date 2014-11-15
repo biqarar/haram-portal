@@ -1,6 +1,8 @@
 {# reza mohiti #}
 {% extends layout %}
-{% block content %}
+{% block head %}
+{{ parent() }}
+
 <style type="text/css">
 	.right {
 		float: right;
@@ -16,62 +18,16 @@
 		clear: both;
 	}
 </style>
+{%endblock%}
 
-<div class="right">
-	<div class="detail-card">
-		<div class="detail-card-body">
-			<div class="detail-card-title">اطلاعات فردی</div>
-			
-			<div class="detail-card-content">
-				{{tagMaker.make(list)}}
-			</div>
-			
-			<div class="detail-card-footer">
-				<a href="#" class="ico icomore" style="float:left; margin-right: 5px;"></a>
-				<a href="#" class="ico icoadd" style="float:left; margin-right: 5px;"></a>
-				<a href="#" class="ico icoedit" style="float:left; margin-right: 5px;"></a>
-				<div class="clearbox"></div>
-			</div>
-		</div>
-	</div>	
-	<div class="detail-card">
-		<div class="detail-card-body">
-			<div class="detail-card-title">اطلاعات فردی</div>
-			
-			<div class="detail-card-content">
-				{{tagMaker.list(list1)}}
-			</div>
-			
-			<div class="detail-card-footer">
-				<a href="#" class="ico icomore" style="float:left; margin-right: 5px;"></a>
-				<a href="#" class="ico icoadd" style="float:left; margin-right: 5px;"></a>
-				<a href="#" class="ico icoedit" style="float:left; margin-right: 5px;"></a>
-				<div class="clearbox"></div>
-			</div>
-		</div>
-	</div>	
-	<div class="detail-card">
-		<div class="detail-card-body">
-			<div class="detail-card-title">اطلاعات فردی</div>
-			
-			<div class="detail-card-content">
-				{{tagMaker.list(list2)}}
-			</div>
-			
-			<div class="detail-card-footer">
-				<a href="#" class="ico icomore" style="float:left; margin-right: 5px;"></a>
-				<a href="#" class="ico icoadd" style="float:left; margin-right: 5px;"></a>
-				<a href="#" class="ico icoedit" style="float:left; margin-right: 5px;"></a>
-				<div class="clearbox"></div>
-			</div>
-		</div>
-	</div>	
-	<div class="clearbox"></div>
-</div>
+{% block content %}
+
+{{tagMaker.card(list)}}
+
 <div class="left">
 	<div class="user-image">
 		<img src="static/img/avatar.png" alt="user image">
 	</div>
 </div>
-<div class="clearbox"></div>
+<div style="clear: both;"></div>
 {%endblock%}

@@ -18,7 +18,7 @@ class model extends main_model {
 		}
 		
 			$person = $this->sql(".list", "person", function ($query, $search){
-				$query->limit(100);
+				// $query->limit(100);
 				if($search && !is_array($search)){
 					$query->whereName("like", "%". $search . "%")->orFamily("like", "%". $search . "%");
 				}elseif(is_array($search)){

@@ -36,7 +36,7 @@ class view extends main_view{
 		->html($this->link("classification/printlist/classesid=%id%", "href" , "ico icoletters a-undefault"))
 		//------------------------------ compile sql.list
 		->compile();
-
+		
 		//------------------------------ convert paln_id , teacher , place id , ... to name of this
 		$classes_detail = $this->detailClasses($classes_detail);
 		

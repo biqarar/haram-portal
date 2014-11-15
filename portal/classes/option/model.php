@@ -15,8 +15,8 @@ class model extends main_model{
 				->setPlace_id(post::place_id())
 				->setName(post::name())
 				->setStart_time("#'".post::start_time() . "'")
-				->setTeacher(post::teacher())
 				->setEnd_time("#'".post::end_time(). "'")
+				->setTeacher(post::teacher())
 				->setStart_date(post::start_date())
 				->setEnd_date(post::end_date())
 				->setWeek_days(post::week_days())
@@ -25,7 +25,7 @@ class model extends main_model{
 	public function post_add_classes() {
 		//------------------------------ insert classes
 		$sql = $this->makeQuery()->insert();
-		
+
 		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert classes successful]]");
