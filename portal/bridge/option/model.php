@@ -7,7 +7,7 @@ class model extends main_model {
 	public function makeQuery() {
 		//------------------------------  make sql object
 		return $this->sql()->tableBridge()
-			// ->setUsers_id(post::users_id())
+			->setUsers_id(post::users_id())
 			->setTitle(post::title())
 			->setValue(post::value())
 			->setDescription(post::description());
@@ -15,12 +15,13 @@ class model extends main_model {
 
 	public function post_add_bridge() {
 		//------------------------------ insert bridge
-		$sql = $this->makeQuery()
-		->setUsers_id($this->xuId("usersid"))
-		->insert();
-		var_dump($this->xuId("usersid"));
-		print_r($sql->string());
-		die();
+		$sql = $this->makeQuery()->insert();
+
+		// BUG ------------ BUG  ------------ BUG  ------------ BUG  ------------ BUG  ------------ BUG 
+		// IF usersid SET IN URL NOT FOUNT THIS PLACE !!! WHY ????
+		// print_r($sql->string());
+		// die();
+		
 		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert bridge successful]]");
@@ -46,6 +47,10 @@ class model extends main_model {
 		$this->rollback(function() {
 			debug_lib::fatal("[[update bridge failed]]");
 		});
+	}
+
+	public function sql_list_bridge($users_id = false) {
+		return $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
 	}
 }
 ?>

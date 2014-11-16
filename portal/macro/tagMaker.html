@@ -43,10 +43,14 @@
 <table class="table-list">
 	{% for key, link in array.list %}
 		{% for k, li in array['list'][key] %}
-		<tr>
-			<th>{{k|lang}}</th>
-			<td>{{li|lang}}</td>
-		</tr>
+			{% if k != 'id' %}
+				{% if k != 'users_id' %}
+					<tr>
+						<th>{{k|lang}}</th>
+						<td>{{li|lang}}</td>
+					</tr>
+				{%endif%}		
+			{%endif%}
 		{%endfor%}
 	{%endfor%}
 </table>
