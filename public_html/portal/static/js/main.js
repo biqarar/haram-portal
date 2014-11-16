@@ -35,8 +35,22 @@ $(document).ready(function() {
 	 * tabs
 	 */
 	 var tabs = $("#tabs").tabs({
+	 	beforeActivate : function(e, ui){
+	 		var tTab = ui.newTab.attr("aria-controls");
+	 		activeState = (location.hash).replace(/\#/, "");
+
+	 		if(ui.newTab.find("a").attr("href") == "/portal/#tab-1"){
+	 			sls_pushState(null, ui.newTab.find("a").text(), "#"+tTab);
+	 		}else if(activeState != tTab){
+	 			var tab_href = ui.newTab.find("a").attr("href");
+	 			tab_href = tab_href.replace(/^\.?\/?/,"");
+	 			tab_href = tab_href.replace(/\/$/,"");
+	 			sls_pushState(null, ui.newTab.find("a").text(), tab_href+"#"+tTab);
+	 		}
+	 	},
 	 	beforeLoad : function(e, ui){
 	 		transit();
+
 	 		if(ui.tab.is(".loadContentAjax")) return false;
 	 		ui.panel.html('<embed src="static/svg/logo-animation.svg" class="perload-svg" height="150" type="image/svg+xml" />');
 	 		ui.panel.html = function(data){
@@ -61,56 +75,56 @@ $(document).ready(function() {
 	 		$("title").text(ui.newTab.find("a").text());
 	 	}
 	 });
-	 tabs.find(".ui-tabs-nav li").each(function(){
-	 	setTabLI($(this));
-	 });
-	 tabs.find(".ui-tabs-nav").sortable({
-	 	distance: 30,
-	 	tolerance: "pointer",
-	 	opacity: 0.7,
-	 	sort: function( event, ui ) {
-	 	},
-	 	placeholder: "x4",
-	 	start : function(e, ui){
-	 		if(ui.item.is(".ui-tabs-active")){
-	 			$(".x4").addClass('active');
-	 		}
-	 	},
-	 	stop: function(e, ui) {
-	 		ui.item.css('z-index', '');
-	 		ui.item.css('opacity', 0);
-	 		ui.item.fadeTo('fast', 1);
-	 		tabs.tabs( "refresh");
-	 	}
-	 });
+tabs.find(".ui-tabs-nav li").each(function(){
+	setTabLI($(this));
+});
+tabs.find(".ui-tabs-nav").sortable({
+	distance: 30,
+	tolerance: "pointer",
+	opacity: 0.7,
+	sort: function( event, ui ) {
+	},
+	placeholder: "x4",
+	start : function(e, ui){
+		if(ui.item.is(".ui-tabs-active")){
+			$(".x4").addClass('active');
+		}
+	},
+	stop: function(e, ui) {
+		ui.item.css('z-index', '');
+		ui.item.css('opacity', 0);
+		ui.item.fadeTo('fast', 1);
+		tabs.tabs( "refresh");
+	}
+});
 
-	 /* close icon: removing the tab on click */
-	 tabs.delegate( "span.ui-icon-close", "click", function() {
-	 	var panelId = $(this).closest("li").fadeOut('fast', function(){
-	 		$(this).remove();
-	 	}).attr( "aria-controls" );
-	 	$( "#" + panelId ).fadeOut('fast', function(){
-	 		$(this).remove();
-	 		tabs.tabs("refresh");
-	 	});
-	 });
-
-	 $("#tabs>ul").droppable({
-	 	accept: "a",
-	 	drop: function(event, ui) {
-	 		$(".deactive-tab").remove();
-	 		var href = ui.draggable.attr('href');
-	 		var text = ui.draggable.text();
-	 		addTab(href, text);
-	 	},
-	 	over : function(event, ui){
-	 		addTab("#", ui.helper.text(), true);
-	 	},
-	 	out : function(){
-	 		$(".deactive-tab").remove();
-	 	}
-	 });
+/* close icon: removing the tab on click */
+tabs.delegate( "span.ui-icon-close", "click", function() {
+	var panelId = $(this).closest("li").fadeOut('fast', function(){
+		$(this).remove();
+	}).attr( "aria-controls" );
+	$( "#" + panelId ).fadeOut('fast', function(){
+		$(this).remove();
+		tabs.tabs("refresh");
 	});
+});
+
+$("#tabs>ul").droppable({
+	accept: "a",
+	drop: function(event, ui) {
+		$(".deactive-tab").remove();
+		var href = ui.draggable.attr('href');
+		var text = ui.draggable.text();
+		addTab(href, text);
+	},
+	over : function(event, ui){
+		addTab("#", ui.helper.text(), true);
+	},
+	out : function(){
+		$(".deactive-tab").remove();
+	}
+});
+});
 
 
 function addTab(href, text, deactive){
@@ -169,7 +183,7 @@ function setTabLI(ui) {
  	readyState = _readyState;
  })();
  function aClickTabs(e){
- 	var activeTab, nActive;
+ 	var activeTab, nActive, hash;
  	var href = $(this).attr('href');
  	var text = $(this).text();
  	if($(this).attr("target") == "_blank"){
@@ -178,34 +192,41 @@ function setTabLI(ui) {
  	if(e.button || nActive){
  		addTab(href, text);
  		activeTab = $('#tabs .ui-tabs-nav > li').size() -1;
- 		$( "#tabs" ).tabs({ active: activeTab });
+ 		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
  	}else{
  		activeTab = $("#tabs").tabs('option', 'active');
- 		var tab = $("#tabs li").eq(activeTab).removeClass("loadContentAjax");
+ 		var tab = $("#tabs>ul>li").eq(activeTab).removeClass("loadContentAjax");
+ 		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
  		tab.find("a").attr("href", href);
- 		$("#tabs").tabs('load', activeTab);
  	}
+ 	if(e.button || nActive){
+ 		$( "#tabs" ).tabs({ active: activeTab });
+ 	}else{
+ 		$("#tabs").tabs('load', activeTab);
+ 		sls_pushState(null, text, href+"#"+hash);
+ 	}
+
  	return false;
  }
-(function($){
-	$.fn.persian_nu = function(){
-		$(this).each(function(){
-			for(n in $(this)[0].childNodes){
-				if(!$(this).is('.notp')){
-					if($(this)[0].childNodes[n].nodeName == '#text'){
-						var _h = $(this)[0].childNodes[n].textContent;
-						var _hr = _h.replace(/\d/gi, function(){
-							farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
-							english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-							return farsi[english.indexOf(arguments[0])];
-						});
-						$(this)[0].childNodes[n].textContent = _hr;
-					}
-				}
-			}
-		});
-	}
-})(jQuery);
+ (function($){
+ 	$.fn.persian_nu = function(){
+ 		$(this).each(function(){
+ 			for(n in $(this)[0].childNodes){
+ 				if(!$(this).is('.notp')){
+ 					if($(this)[0].childNodes[n].nodeName == '#text'){
+ 						var _h = $(this)[0].childNodes[n].textContent;
+ 						var _hr = _h.replace(/\d/gi, function(){
+ 							farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
+ 							english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+ 							return farsi[english.indexOf(arguments[0])];
+ 						});
+ 						$(this)[0].childNodes[n].textContent = _hr;
+ 					}
+ 				}
+ 			}
+ 		});
+ 	}
+ })(jQuery);
  $(function(){
  	var sFileboxForm = ".filebox-form";
  	var sFileboxShow = ".filebox";
@@ -301,7 +322,6 @@ ready(function(base){
 		CITY.attr("disabled", "disabled");
 		CITY.children(":not(*[disabled='disabled'])").remove();
 		var Url = 'city/api/'+ui.item.value;
-		// console.log(Url);
 		$.ajax({
 			type: "POST",
 			context : CITY,
@@ -366,3 +386,37 @@ ready(function(base){
 ready(function(){
 	$("#perload-blockoff").remove();
 });
+
+/**
+ * Push State
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+ function sls_pushState(object, title, url){
+ 	history.pushState(object, title, url);
+ }
+
+ window.onpopstate = function(event) 
+ {
+ 	var oldActive = $("#tabs").tabs('option', 'active');
+ 	var active_tab;
+ 	var activeState = (location.hash).replace(/\#/, "");
+ 	if(activeState){
+ 		var tab = $("[aria-controls="+activeState+"]");
+ 		if(tab.length > 0){
+ 			active_tab = tab.index()
+ 		}else{
+ 			active_tab = 0;
+ 		}
+ 	}else{
+ 		active_tab = 0
+ 	}
+ 	$( "#tabs" ).tabs({ active: active_tab });
+ 	if(active_tab == oldActive){
+ 		href = location.href;
+ 		href = href.replace(/\#(.*)$/, "");
+ 		$("#tabs>ul>li").eq(active_tab).find("a").attr("href", href);
+ 		var tab = $("#tabs>ul>li").eq(active_tab).removeClass("loadContentAjax");
+ 		$("#tabs").tabs('load', active_tab);
+ 	}
+ };
