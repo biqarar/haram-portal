@@ -104,6 +104,8 @@ class main_view{
 	public final function main_Extentions($twig){
 		$twig->addFilter($this->twig_fcache());
 		$twig->addFilter($this->twig_lang());
+		$twig->addFilter($this->twig_nameFamily());
+			
 	}
 	public function twig_fcache(){
 		return new Twig_SimpleFilter('fcache', function ($string) {
@@ -125,6 +127,16 @@ class main_view{
 			}else{
 				return $string;
 			}
+		});
+	}
+	/**
+	* @author reza mohiti
+	* return name and family by get users_id
+	*/
+	public function twig_nameFamily(){
+		return new Twig_SimpleFilter('nameFamily', function ($users_id) {
+			return $this->sql(".assoc.foregn", "person", $users_id ,  "name" ,"users_id")
+				. " " . $this->sql(".assoc.foregn", "person", $users_id ,  "family" ,"users_id");
 		});
 	}
 
@@ -200,8 +212,8 @@ class main_view{
 	public function link($url = flase , $attr = "href" , $cssClass = "ico icomore") {
 	 	return $this->tag("a")
 	 	->addClass($cssClass)
-	 	->attr($attr, $url)
-	 	->attr("target", "_blank");
+	 	->attr($attr, $url);
+	 	// ->attr("target", "_blank");
 	}
 
 	/**

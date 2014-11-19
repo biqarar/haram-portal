@@ -11,20 +11,29 @@ class view extends main_view {
 		//------------------------------ global
 		$this->global->page_title = "bridge";
 
+		//------------------------------ load bridge form
 	    $f = $this->form('@bridge', $this->urlStatus());
 
-	    $f->users_id->value($this->xuId("usersid"));
+	    //------------------------------ set users_id
+	    $users_id =  $this->xuId("usersid");
 
+	    //------------------------------ put users_id in hidden input to get in model.php
+	    $f->users_id->value($users_id);
+
+	    //------------------------------ list of bridge fo this user
+    	$this->data->list = $this->sql(".list", "bridge" , function($query, $users_id){
+    		$query->whereUsers_id($users_id);
+    	}, $users_id)
+
+    	//------------------------------ edit link
+    	->addCol("edit", "edit")
+    	->select(-1 , "edit")
+    	->html($this->link("bridge/status=edit/usersid=$users_id/id=%id%" , "href", "ico icoedit"))
+    	->compile();
+
+    	//------------------------------ load edit form
 	    if($this->urlStatus() == "edit"){
-	    	$list_bridge = $this->sql("#list_bridge", $this->xuId("usersid"));
-	    	$x = array();
-	    	foreach ($list_bridge as $key => $value) {
-	    		$x[$key] = $this->form('@bridge', $this->urlStatus());
-	    		$this->sql(".edit", "bridge", $value['id'] , $x[$key]);
-	    		// var_dump($value);
-
-	    	}
-	    		
+			$this->sql(".edit", "bridge", $this->xuId(), $f);	    
 	    }
 
 	}

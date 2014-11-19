@@ -17,6 +17,14 @@ class view extends main_view  {
 		$this->data->person = $person;
 
 
+		//------------------------------  make users card
+		$users = $this->sql(".list.card", "users", $users_id, "id");
+		unset($users['addLink']);
+		unset($users['editLink']);
+		unset($users['moreLink']);
+		unset($users['list']['list'][0]['password']);
+		$this->data->users = $users;
+
 		//------------------------------  make bridge card
 		$bridge = $this->sql("#bridge_detail" , $users_id);
 		$new_bridge = array();
@@ -28,10 +36,11 @@ class view extends main_view  {
 			$i++;
 		}
 
-		//------------------------------  make global card
+		//------------------------------  make global of bridge card
 		$new_bridge['title'] = "bridge";
 		$new_bridge["addLink"] = "bridge/status=add/usersid=$users_id";
 		$new_bridge["moreLink"] = "bridge/status=detail/usersid=$users_id";
+		$new_bridge["editLink"] = "bridge/status=edit/usersid=$users_id";
 		
 		$this->data->bridge = $new_bridge;
 

@@ -33,11 +33,11 @@ class sql_cls {
 				$x->groupClose();
 				$x->fieldId();
 	
-				//------------------------------ paging record limit 20
+				//------------------------------ paging record limit 200
 				if(isset(config_lib::$surl['page']) || (isset(config_lib::$surl['status']) && config_lib::$surl['status'] == "list")){
 					$start_page = (isset(config_lib::$surl['page'])) ? ((intval(config_lib::$surl['page']) - 1)* 20) : 0;
 					$limit_start = $start_page;
-					$limit_end = 20;
+					$limit_end = 200;
 					$maker->limit($limit_start, $limit_end);
 				}
 			}

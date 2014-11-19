@@ -28,8 +28,8 @@ class controller extends main_controller{
 
 		$this->listen(
 				array(
-					"max" => 2,
-					'url' => array("status" => "edit", "usersid" => "/^(\d+)$/")
+					"max" => 3,
+					'url' => array("status" => "edit", "usersid" => "/^(\d+)$/" )
 					),
 				function(){
 					save(array("bridge", "option"));
