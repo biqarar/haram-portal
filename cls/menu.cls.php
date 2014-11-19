@@ -205,7 +205,7 @@ class menu_cls {
 				)
 			);
 		
-		//------------------------------  abcence
+		//------------------------------  absence
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=list/type=absence", 

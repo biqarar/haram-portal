@@ -27,27 +27,27 @@ class view extends main_view{
 		//------------------------------ set type of list (absence | classification)
 		$type = (isset(config_lib::$surl['type'])) ? config_lib::$surl['type'] : "classification";
 
-		if($type == "classification"){
+		if($type == "absence"){
 
+			//------------------------------ absence link
+			$classes_detail = $classes_detail->addCol("absence","absence")
+			->select(-1, "absence")
+			->html($this->link("classification/absence/classesid=%id%", "href", "ico icoabsence"));
+
+		}else{
 			//------------------------------ classification link
 			$classes_detail = $classes_detail->addCol("classification","classification")
 			->select(-1, "classification")
 			->html($this->link("classification/class/classesid=%id%", "href", "ico icoclasses"));
 			
-		}elseif($type == 'absence'){
-
-			//------------------------------ abcence link
-			$classes_detail = $classes_detail->addCol("abcence","abcence")
-			->select(-1, "abcence")
-			->html($this->link("classification/absence/classesid=%id%", "href", "ico icoabsence"));
+			//------------------------------ print link
+			$classes_detail = $classes_detail->addCol("print", "print")
+			->select(-1, "print")
+			->html($this->link("classification/printlist/classesid=%id%", "href" , "ico icoletters a-undefault"));
 		}
 
-		//------------------------------ print link
-		$classes_detail = $classes_detail->addCol("print", "print")
-		->select(-1, "print")
-		->html($this->link("classification/printlist/classesid=%id%", "href" , "ico icoletters a-undefault"))
 		//------------------------------ compile sql.list
-		->compile();
+		$classes_detail = $classes_detail->compile();
 		
 		//------------------------------ convert paln_id , teacher , place id , ... to name of this
 		$classes_detail = $this->detailClasses($classes_detail);
