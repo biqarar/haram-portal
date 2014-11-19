@@ -163,18 +163,6 @@ class menu_cls {
 				)
 			);
 
-		
-		//------------------------------  abcence
-		self::$menu[] = array(
-			"submenu" => "home", 
-			"url" => "absence/status=add", 
-			"name" =>  _("menu absence add"), 
-			"tag" => array(
-				"absence" => array("insert" => array("public", "private"))
-				)
-			);
-
-
 		//------------------------------   person
 		self::$menu[] = array(
 			"submenu" => "user", 
@@ -196,17 +184,6 @@ class menu_cls {
 				)
 			);
 
-		//------------------------------ classes list
-		self::$menu[] = array(
-			"submenu" => "class", 
-			"url" => "classes/status=list", 
-			"name" =>  _("menu_classes_list"), 
-			"tag" => array(
-				"classes" => array("select" => array("public")),
-				"classification" => array("insert" => array("public"))
-				)
-			);
-
 		//------------------------------ classes add
 		self::$menu[] = array(
 			"submenu" => "class", 
@@ -214,6 +191,27 @@ class menu_cls {
 			"name" =>  _("menu_classes_add"), 
 			"tag" => array(
 				"classes" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "class", 
+			"url" => "classes/status=list/type=classification", 
+			"name" =>  _("classification"), 
+			"tag" => array(
+				"classes" => array("select" => array("public")),
+				"classification" => array("insert" => array("public"))
+				)
+			);
+		
+		//------------------------------  abcence
+		self::$menu[] = array(
+			"submenu" => "class", 
+			"url" => "classes/status=list/type=absence", 
+			"name" =>  _("menu absence add"), 
+			"tag" => array(
+				"absence" => array("insert" => array("public", "private"))
 				)
 			);
 

@@ -36,7 +36,7 @@ class controller extends main_controller{
 		//------------------------------ load form to insert users to a classes
 		$this->listen(array(
 			"max" => 2,
-			"url" => array("classesid"=> "/^\d+$/")
+			"url" => array("class","classesid"=> "/^\d+$/")
 			), 
 			function () {
 				save(array("classification", "classes"));
@@ -52,6 +52,18 @@ class controller extends main_controller{
 		function () {
 			save(array("class" => "classification", "method"=> "api", "mod" => "insert"));
 				$this->permission = array("classification" => array("select" => array("public", "private")));
+			}
+		);
+
+
+		//------------------------------ load form to insert absence for person in classes
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("absence","classesid"=> "/^\d+$/")
+			), 
+			function () {
+				save(array("classification", "absence"));
+				$this->permission = array("absence" => array("insert" => array("public")));
 			}
 		);
 

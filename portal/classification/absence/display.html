@@ -1,0 +1,33 @@
+{% extends layout %}
+{% block content %}
+classification absence
+<!-- classes detail -->
+<div class="class-detail">
+	{{ tagMaker.list(list) }}
+</div>
+
+
+<!-- classes list -->
+<div class="class-detail">
+	{{ tagMaker.list(classes_list) }}
+</div>
+
+<script type="text/javascript">
+	$(".absence-date-main").click(function(){
+		set_date();
+	});
+
+	$(".absence-date-main").keyup(function(){
+		set_date();
+	});
+	$(".absence-date-main").change(function(){
+		set_date();
+	});
+	function set_date() {
+		var date = $(".absence-date-main").val();
+		$(".absence-date").each(function(){
+			$(this).val(date);
+		});
+	}
+</script>
+{%endblock%}
