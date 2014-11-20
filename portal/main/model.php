@@ -29,7 +29,7 @@ class main_model{
 				if(!is_array($value) || $key == 'msg') continue;
 				foreach ($value as $k => $v) {
 					$err = isset($v['error']) ? $v['error'] : $v;
-					if(preg_match("/^\[\[(update|insert|delete|select)\s(.*)\s(true|false|successful|failed)\]\]$/", $err, $parm)){
+					if(!is_array($err) && preg_match("/^\[\[(update|insert|delete|select)\s(.*)\s(true|false|successful|failed)\]\]$/", $err, $parm)){
 						$err = _($parm[1]).' '._($parm[2]).' '._($parm[3]);
 					}
 					if(isset($v['error'])){

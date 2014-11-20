@@ -1,0 +1,76 @@
+{%extends layout%}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/DataTables/media/css/jquery.dataTables.min.css">
+<script src="static/DataTables/media/js/jquery.dataTables.min.js"></script>
+<style>
+	#example{
+		direction: rtl;
+		text-align: right;
+	}
+</style>
+<table id="example" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>نام</th>
+			<th>نام خانوادگی</th>
+			<th>نام پدر</th>
+			<th>تاریخ تولد</th>
+			<th>جنسیت</th>
+			<th>کدملی/شماره گذرنامه</th>
+			<th>شماره شناسنامه</th>
+			<th>وضعیت تاهل</th>
+			<th>تحصیلات</th>
+			<th>بیشتر</th>
+			<th>ویرایش</th>
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			<th>نام</th>
+			<th>نام خانوادگی</th>
+			<th>نام پدر</th>
+			<th>تاریخ تولد</th>
+			<th>جنسیت</th>
+			<th>کدملی/شماره گذرنامه</th>
+			<th>شماره شناسنامه</th>
+			<th>وضعیت تاهل</th>
+			<th>تحصیلات</th>
+			<th>بیشتر</th>
+			<th>ویرایش</th>
+		</tr>
+	</tfoot>
+</table>
+<script>
+	$(document).ready(function() {
+		var sesseion = ((Math.random()).toString()).replace(/^\d\./, "");
+		$('#example').dataTable( {
+			"processing": true,
+			"serverSide": true,
+			"ajax": "test/api/session="+sesseion,
+			language: {
+				processing:     "درحال بارگذاری",
+				search:         "درحال جستجو&nbsp;:",
+				lengthMenu:    "مقدار _MENU_ سطر",
+				info:           "مقدار _START_ تا _END_ از _TOTAL_ سطر",
+				infoEmpty:      "هیچ سطری یافت نشد",
+				infoFiltered:   "(مقدار _MAX_ بدون فیلتر)",
+				infoPostFix:    "",
+				loadingRecords: "درحال بارگذاری...",
+				zeroRecords:    "هیچ سطری یافت نشد",
+				emptyTable:     "هیچ سطری یافت نشد",
+				paginate: {
+					first:      "نخست",
+					previous:   "قبلی",
+					next:       "بعدی",
+					last:       "آخرین"
+				},
+				aria: {
+					sortAscending:  ": مرتب سازی صعودی",
+					sortDescending: ": مرتب سازی نزولی"
+				}
+			}
+		} );
+	} );
+</script>
+{%endblock%}
