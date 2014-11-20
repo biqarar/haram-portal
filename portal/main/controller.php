@@ -210,6 +210,17 @@ class main_controller{
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
 			);
+		}elseif(isset($surl['status']) && $surl['status'] == 'api' ){
+			$this->listen(
+				array(
+					"max" => 3,
+					'url' => array("status" => "$status")
+					),
+				function($table){
+					save(array("$table", "list", 'mod' => "api"));
+					$this->permission = array("$table" => array("select" => array("public")));
+				}, $table
+			);
 		}
 	}
 

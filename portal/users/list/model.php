@@ -3,7 +3,9 @@
 * 
 */
 class model extends main_model {
-	
+	public function post_api(){
+		$data = $this->sql(".dataTable", "person", false, "name, family, father");
+	}	
 	public function post_xsearch() {
 		$text = post::search();
 		$_SESSION['text_search'] = $text;

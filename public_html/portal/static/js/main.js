@@ -182,6 +182,8 @@ function setTabLI(ui) {
  	ready = _ready;
  	readyState = _readyState;
  })();
+
+ 
  function aClickTabs(e){
  	var activeTab, nActive, hash;
  	var href = $(this).attr('href');
@@ -209,17 +211,23 @@ function setTabLI(ui) {
  	return false;
  }
  (function($){
- 	$.fn.persian_nu = function(){
+ 	$.fn.persian_nu = function(en){
  		$(this).each(function(){
+ 			var farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
+ 			var english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
  			for(n in $(this)[0].childNodes){
  				if(!$(this).is('.notp')){
  					if($(this)[0].childNodes[n].nodeName == '#text'){
  						var _h = $(this)[0].childNodes[n].textContent;
- 						var _hr = _h.replace(/\d/gi, function(){
- 							farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
- 							english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
- 							return farsi[english.indexOf(arguments[0])];
- 						});
+ 						if(en){
+ 							var _hr = _h.replace(/[۱۲۳۴۵۶۷۸۹۰]/gi, function(){
+ 								return farsi.indexOf(arguments[0]);
+ 							});
+ 						}else{
+ 							var _hr = _h.replace(/\d/gi, function(){
+ 								return farsi[english.indexOf(arguments[0])];
+ 							});
+ 						}
  						$(this)[0].childNodes[n].textContent = _hr;
  					}
  				}
@@ -316,7 +324,7 @@ ready(function(base){
 		isRTL:false
 	});
 	base.find("*:not(style)").persian_nu();
-	base.find("select").selectmenu();
+	base.find("select:not([name=data_table_length])").selectmenu();
 	base.find(".select-province").on("selectmenuchange", function(event, ui) {
 		var CITY = $(this).parents("form").find(".select-city");
 		CITY.attr("disabled", "disabled");
@@ -380,6 +388,86 @@ ready(function(base){
 	}
 	chChild();
 	base.find(".marriage-form").change(chChild);
+
+
+
+//////////////////////////////////////////////////////////////////////
+///
+///
+///
+///
+///
+///
+///
+///////////////////////////////////////////////////////////////////////
+var sesseion = ((Math.random()).toString()).replace(/^\d\./, "");
+		base.find('#data_table')
+		.on( 'draw.dt', function () {
+			$(".dataTables_info").persian_nu();
+			$(".dataTables_paginate a").persian_nu();
+		})
+		.dataTable( {
+			"processing": true,
+			"serverSide": true,
+			"ajax": "users/status=api/session="+sesseion,
+			language: {
+				processing:     "درحال بارگذاری",
+				search:         "جستجو:",
+				lengthMenu:    "مقدار _MENU_ سطر",
+				info:           "مقدار _START_ تا _END_ از _TOTAL_ سطر",
+				infoEmpty:      "هیچ سطری یافت نشد",
+				infoFiltered:   "(مقدار _MAX_ بدون فیلتر)",
+				infoPostFix:    "",
+				loadingRecords: "درحال بارگذاری...",
+				zeroRecords:    "هیچ سطری یافت نشد",
+				emptyTable:     "هیچ سطری یافت نشد",
+				paginate: {
+					first:      "نخست",
+					previous:   "قبلی",
+					next:       "بعدی",
+					last:       "آخرین"
+				},
+				aria: {
+					sortAscending:  ": مرتب سازی صعودی",
+					sortDescending: ": مرتب سازی نزولی"
+				}
+			},
+			"columns": [
+			{ "data": "name" },
+			{ "data": "family" },
+			{ "data": "father" },
+			{ "data": "birthday" },
+			{ "data": "gender" },
+			{ "data": "nationalcode" },
+			{ "data": "code" },
+			{ "data": "marriage" },
+			{ "data": "education_id" },
+			{ "data": "id" },
+			{ "data": "id" }
+			],
+			"order": [[ 9, "asc" ]],
+			"lengthMenu": [[10, 25, 50], [10, 25, 50]],
+			"createdRow": function ( row, data, index ) {
+				var txt;
+				var more = $("td",row).eq(9);
+				more.persian_nu(true);
+				txt = more.text();
+				more.html('<a class="ico icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
+				$("td", row).persian_nu();
+
+				var edit = $("td",row).eq(10);
+				edit.persian_nu(true);
+				txt = edit.text();
+				edit.html('<a class="ico icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
+				readyState($(row));
+			}
+		});
+
+
+
+
+
+
 
 }, {onState:true});
 
