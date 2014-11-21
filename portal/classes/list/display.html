@@ -1,7 +1,78 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
+<style>
+	#data_table{
+		direction: rtl;
+		text-align: right;
+	}
+	.dataTable {
+		width: 100%;
+		border-spacing: 1px;
+	}
+	.dataTable tr.even {
+		background-color: #fafafa !important;
+	}
+	.dataTable tr.odd {
+		background-color: #f0f9f0 !important;
+	}
+	.dataTable tr:hover td {
+		color: #333;
+		background-color: #B0C4B0 !important;
 
+	}
+	.dataTable th {
+		background-color: #f0f9f0 !important;
+		color: #393939;
+		font-size: 12px;
+		font-family: "WYekan";
+	}
+	.dataTable td {
+		text-align: right;
+		padding: 5px 10px;
+		font-family: "WRoya";
+		color: #666;
+		font-size: 13px;
+		-webkit-transition: all 100ms linear;
+		-moz-transition: all 100ms linear;
+		-o-transition: all 100ms linear;
+		transition: all 100ms linear;
+	}
+</style>
+<table id="data_table" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>نام</th>
+			<th>نام خانوادگی</th>
+			<th>نام پدر</th>
+			<th>تاریخ تولد</th>
+			<th>جنسیت</th>
+			<th>کدملی/شماره گذرنامه</th>
+			<th>شماره شناسنامه</th>
+			<th>وضعیت تاهل</th>
+			<th>تحصیلات</th>
+			<th>بیشتر</th>
+			<th>ویرایش</th>
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			<th>نام</th>
+			<th>نام خانوادگی</th>
+			<th>نام پدر</th>
+			<th>تاریخ تولد</th>
+			<th>جنسیت</th>
+			<th>کدملی/شماره گذرنامه</th>
+			<th>شماره شناسنامه</th>
+			<th>وضعیت تاهل</th>
+			<th>تحصیلات</th>
+			<th>بیشتر</th>
+			<th>ویرایش</th>
+		</tr>
+	</tfoot>
+</table>
+<!-- 
 {{ tagMaker.list(list) }}
-
+ -->
 {%endblock%}
