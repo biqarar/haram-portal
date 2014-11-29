@@ -1554,33 +1554,3 @@ msgstr "توضیحات"
 msgid "users_group_id"
 msgstr "گروه بندی فراگیران"
 
-# number
-msgid "1"
-msgstr "۱"
-
-msgid "2"
-msgstr "۲"
-
-msgid "3"
-msgstr "۳"
-
-msgid "4"
-msgstr "۴"
-
-msgid "5"
-msgstr "۵"
-
-msgid "6"
-msgstr "۶"
-
-msgid "7"
-msgstr "۷"
-
-msgid "8"
-msgstr "۸"
-
-msgid "9"
-msgstr "۹"
-
-msgid "0"
-msgstr "۰"

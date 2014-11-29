@@ -1,5 +1,9 @@
 {%extends layout%}
 {% block content %}
+<form class="ajx" method="post" action="users/status=list">
+	{{forms.make(search)}}
+</form>
+{{tagMaker.list(person)}}
 <style>
 	#data_table{
 		direction: rtl;

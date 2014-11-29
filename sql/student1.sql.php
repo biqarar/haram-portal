@@ -5,17 +5,17 @@ namespace sql;
 */
 class student1 {
 
-	public $id = array("type" => "int@10");
-	public $name1  = array("type" => "varchar@255");
-	public $name2  = array("type" => "varchar@255");
-	public $name3  = array("type" => "varchar@255");
-	public $name4  = array("type" => "varchar@255");
-	public $name5 = array("type" => "varchar@255");
+	public $id      = array("type" => "int@10");
+	public $name1   = array("type" => "varchar@255");
+	public $name2   = array("type" => "varchar@255");
+	public $name3   = array("type" => "varchar@255");
+	public $name4   = array("type" => "varchar@255");
+	public $name5   = array("type" => "varchar@255");
 	public $britday = array("type" => "varchar@255");
-	public $name6  = array("type" => "varchar@255");
-	public $name7 = array("type" => "varchar@255");
-	public $name8= array("type" => "varchar@255");
-	public $name9= array("type" => "varchar@255");
+	public $name6   = array("type" => "varchar@255");
+	public $name7   = array("type" => "varchar@255");
+	public $name8   = array("type" => "varchar@255");
+	public $name9   = array("type" => "varchar@255");
 	public $name10  = array("type" => "varchar@255");
 	public $name11  = array("type" => "varchar@255");
 	public $name12  = array("type" => "varchar@255");
