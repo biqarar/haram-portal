@@ -6,22 +6,23 @@ class view extends main_view {
 
 	public function config(){
 		//------------------------------ globals
-		$this->global->page_title = 'city';
+		$this->global->page_title = 'form_group';
 
+		$this->global->url = "/status=" . $this->urlStatus() . "/id=" . $this->xuId();
 		//------------------------------  load form
-		$f = $this->form("@city", $this->urlStatus());
+		$f = $this->form("@form_group", $this->urlStatus());
 		
-		//------------------------------  list of city
-		$list = $this->sql(".list", "city", function($query) {
-			$query->joinProvince()->whereId("#city.province_id");
+		//------------------------------  list of form_group
+		$list = $this->sql(".list", "form_group", function($query) {
+			// var_dump($query);
 		})		
 		->addColEnd("edit", "edit")->select(-1, "edit")
-		->html($this->editLink("city"));
+		->html($this->link("formmaker/group/status=edit/id=%id%"));
 		
 		$this->data->list = $list->compile();
 		
 		//------------------------------  edit form
-		$this->sql(".edit", "city", $this->xuId(), $f);
+		$this->sql(".edit", "form_group", $this->xuId(), $f);
 	}
 }
 ?>

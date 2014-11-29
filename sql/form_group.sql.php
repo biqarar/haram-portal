@@ -9,7 +9,7 @@ class form_group
 
 	//------------------------------------------------------------------ id - primary key
 	public function id() {
-		$this->validate("id");
+		// $this->validate("id");
 	}
 	
 	public function name() 	{
@@ -17,7 +17,7 @@ class form_group
 	}
 
 	public function description() {
-		$this->form("#text_desc");
+		$this->form("#fatext")->name("description");
 	}
 }
 ?>

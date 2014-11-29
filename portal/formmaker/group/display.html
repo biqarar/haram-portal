@@ -1,8 +1,8 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
-<form class="ajx" method="post" action="city/{{global.url}}">
-	{{forms.make(form.city)}}
+<form class="ajx" method="post" action="formmaker/group{{global.url}}">
+	{{forms.make(form.form_group)}}
 </form>
 {{tagMaker.list(list)}}
 {%endblock%}

@@ -253,6 +253,26 @@ class menu_cls {
 			"name" =>  _("logout"), 
 			"tag" => "public"
 			);
+		/**
+
+		*/
+		//------------------------------ (public) log out menu 
+		self::$menu[] = array(
+			"submenu" => "media", 
+			"url" => 'formmaker/group/status=add', 
+			"name" =>  _("form group"), 
+			"tag" => "public"
+			);
+		//------------------------------ (public) log out menu 
+		self::$menu[] = array(
+			"submenu" => "media", 
+			"url" => 'formmaker/questions/status=add', 
+			"name" =>  _("form questions"), 
+			"tag" => "public"
+			);
+		/**
+
+		*/
 
 		//------------------------------ (public) report bug menu 
 		// self::$menu[] = array(
