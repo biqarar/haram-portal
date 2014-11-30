@@ -23,7 +23,7 @@ class view extends main_view {
 			//------------------------------ print link
 			->addCol("print", "print")
 			->select(-1, "print")
-			->html($this->link("classification/printlist/classesid=%id%", "href" , "ico icoletters a-undefault"))
+			->html($this->link("classification/printlist/classesid=%id%", "href" , "icoletters a-undefault"))
 
 			->compile();
 			

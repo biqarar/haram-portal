@@ -452,13 +452,13 @@ var sesseion = ((Math.random()).toString()).replace(/^\d\./, "");
 				var more = $("td",row).eq(9);
 				more.persian_nu(true);
 				txt = more.text();
-				more.html('<a class="ico icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
+				more.html('<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
 				$("td", row).persian_nu();
 
 				var edit = $("td",row).eq(10);
 				edit.persian_nu(true);
 				txt = edit.text();
-				edit.html('<a class="ico icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
+				edit.html('<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
 				readyState($(row));
 			}
 		});

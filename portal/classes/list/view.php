@@ -32,18 +32,18 @@ class view extends main_view{
 			//------------------------------ absence link
 			$classes_detail = $classes_detail->addCol("absence","absence")
 			->select(-1, "absence")
-			->html($this->link("classification/absence/classesid=%id%", "href", "ico icoabsence"));
+			->html($this->link("classification/absence/classesid=%id%", "href", "icoabsence"));
 
 		}else{
 			//------------------------------ classification link
 			$classes_detail = $classes_detail->addCol("classification","classification")
 			->select(-1, "classification")
-			->html($this->link("classification/class/classesid=%id%", "href", "ico icoclasses"));
+			->html($this->link("classification/class/classesid=%id%", "href", "icoclasses"));
 			
 			//------------------------------ print link
 			$classes_detail = $classes_detail->addCol("print", "print")
 			->select(-1, "print")
-			->html($this->link("classification/printlist/classesid=%id%", "href" , "ico icoletters a-undefault"));
+			->html($this->link("classification/printlist/classesid=%id%", "href" , "icoletters a-undefault"));
 		}
 
 		//------------------------------ compile sql.list

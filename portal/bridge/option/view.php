@@ -28,7 +28,7 @@ class view extends main_view {
     	//------------------------------ edit link
     	->addCol("edit", "edit")
     	->select(-1 , "edit")
-    	->html($this->link("bridge/status=edit/usersid=$users_id/id=%id%" , "href", "ico icoedit"))
+    	->html($this->link("bridge/status=edit/usersid=$users_id/id=%id%" , "href", "icoedit"))
     	->compile();
 
     	//------------------------------ load edit form

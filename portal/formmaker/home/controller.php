@@ -20,6 +20,18 @@ class controller extends main_controller{
 
 		//------------------------------ course formmaker
 		$this->listen(array(
+			"max" => 2,
+			"url" => array("testrun" , "formid" => "/^\d+$/")
+			), 
+			function () {
+				save(array("formmaker", "testrun"));
+				$this->access  = true;
+				$this->permission = array("form_gorup" => array("insert" => array("public") , "update" => array("public")));
+			}
+		);
+
+		//------------------------------ course formmaker
+		$this->listen(array(
 			"max" => 3,
 			"url" => array("questions" , "status" => "/^(edit|add)$/")
 			), 
@@ -30,6 +42,17 @@ class controller extends main_controller{
 			}
 		);
 
+		//------------------------------ course formmaker
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("groupitem" , "status" => "/^(edit|add)$/")
+			), 
+			function () {
+				save(array("formmaker", "groupitem"));
+				$this->access  = true;
+				$this->permission = array("form_gorup_item" => array("insert" => array("public") , "update" => array("public")));
+			}
+		);
 
 		//------------------------------ course formmaker
 		$this->listen(array(

@@ -270,6 +270,20 @@ class menu_cls {
 			"name" =>  _("form questions"), 
 			"tag" => "public"
 			);
+		//------------------------------ (public) log out menu 
+		self::$menu[] = array(
+			"submenu" => "media", 
+			"url" => 'formmaker/groupitem/status=add', 
+			"name" =>  _("form group item"), 
+			"tag" => "public"
+			);
+		//------------------------------ (public) log out menu 
+		self::$menu[] = array(
+			"submenu" => "media", 
+			"url" => 'formmaker/testrun/formid=1', 
+			"name" =>  _("test run form"), 
+			"tag" => "public"
+			);
 		/**
 
 		*/
