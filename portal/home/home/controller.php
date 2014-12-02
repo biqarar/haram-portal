@@ -53,6 +53,15 @@ class controller extends main_controller {
 				save(array("olddb","oldprice"));
 				$this->permission = array("oldprice" => array("select" => array("public", "private")));	
 			});
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("oldclasses", "status" => "detail" , "id" => "/^\d+$/")
+			),
+			function (){
+				save(array("olddb","oldclasses"));
+				$this->permission = array("oldclasses" => array("select" => array("public", "private")));	
+			});
 		
 	}
 }
