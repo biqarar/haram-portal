@@ -19,8 +19,8 @@ class absence {
 	}
 
 	public function classification_id() {
-		$this->form("select")->name("classification_id");
-		$this->setChild();
+		$this->form("text")->name("classification_id")->disabled("disabled");
+		// $this->setChild();
 		$this->validate("id");
 	}
 	

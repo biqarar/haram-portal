@@ -25,6 +25,13 @@ class view extends main_view  {
 		unset($users['list']['list'][0]['password']);
 		$this->data->users = $users;
 
+		//------------------------------  make oldprice card
+		$oldprice = $this->sql(".list.card", "oldprice", $users_id, "users_id");
+		unset($oldprice['addLink']);
+		unset($oldprice['editLink']);
+		$this->data->oldprice = $oldprice;
+
+
 		//------------------------------  make bridge card
 		$bridge = $this->sql("#bridge_detail" , $users_id);
 		$new_bridge = array();

@@ -56,7 +56,7 @@ class controller extends main_controller{
 		);
 
 
-		//------------------------------ load form to insert absence for person in classes
+		//------------------------------ load form to insert absence for all person in classes
 		$this->listen(array(
 			"max" => 3,
 			"url" => array("absence","classesid"=> "/^\d+$/")
@@ -67,6 +67,17 @@ class controller extends main_controller{
 			}
 		);
 
+		//------------------------------ load form to insert absence for  one person in classes
+		//------------------------------ go to absence option
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("absence","classificationid"=> "/^\d+$/")
+			), 
+			function () {
+				save(array("absence", "option"));
+				$this->permission = array("absence" => array("insert" => array("public")));
+			}
+		);
 	}
 }
 ?>

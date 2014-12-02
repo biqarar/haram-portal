@@ -64,14 +64,14 @@ class view extends main_view {
 		//------------------------------ add absence col
 		$ss = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
 
-		$classes_list = $classes_list->addCol("absence", "absence")
-		->select(-1, "absence")
+		$classes_list = $classes_list->addCol("absencedate", "absencedate")
+		->select(-1, "absencedate")
 		->html($ss);
 
 		//------------------------------ add edit (classification) col
-		$classes_list = $classes_list->addCol("edit", "edit")
-		->select(-1, "edit")
-		->html($this->editLink("classification"))
+		$classes_list = $classes_list->addCol("absence", "absence")
+		->select(-1, "absence")
+		->html($this->link("classification/absence/classificationid=%id%", "href", "icoletters"))
 
 
 		->compile();

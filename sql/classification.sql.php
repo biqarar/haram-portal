@@ -33,7 +33,7 @@ class classification {
 	}
 	
 	public function date_entry() {
-		$this->form("#date")->name("date_entry");
+		$this->form("#date")->name("date_entry")->disabled("disabled");
 	}
 	
 	public function date_delete() {

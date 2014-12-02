@@ -6,13 +6,13 @@ class model extends main_model {
 
 	public function makeQuery() {
 		return $this->sql()->tableClassification()
-				->setUsers_id(post::users_id())
-				->setDate_entry(post::date_entry())
+				// ->setUsers_id(post::users_id())
+				// ->setDate_entry(post::date_entry())
+				// ->setClasses_id(post::classes_id())
 				->setDate_delete(post::date_delete())
 				->setBecause(post::because())
-				->setMark(post::mark())
-				->setPlan_section_id(post::plan_section_id())
-				->setClasses_id(post::classes_id());
+				->setMark(post::mark());
+				// ->setPlan_section_id(post::plan_section_id());
 	}
 
 	public function post_add_classification() {
@@ -26,7 +26,7 @@ class model extends main_model {
 	}
 
 	public function post_edit_classification() {
-		$sql = $this->makeQuery()->whereId($this->uId())->update();
+		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 		$this->commit(function() {
 			debug_lib::true("[[update classification successful]]");
 		});

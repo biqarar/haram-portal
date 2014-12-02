@@ -20,7 +20,7 @@ class oldprice {
 	public $valueback    = array("type" => "varchar@255");
 	public $mablaqerja   = array("type" => "varchar@255");
 	public $status_erja  = array("type" => "varchar@255");
-	public $oldid        = array("type" => "varchar@255");
+	public $users_id        = array("type" => "varchar@255");
 	public $date         = array("type" => "varchar@255");
 	public $date_erja    = array("type" => "varchar@255");
 	public $mablaq_erja  = array("type" => "varchar@255");
@@ -43,7 +43,7 @@ class oldprice {
 	public function valueback() {}
 	public function mablaqerja() {}
 	public function status_erja() {}
-	public function oldid() {}
+	public function users_id() {}
 	public function date() {}
 	public function date_erja() {}
 	public function mablaq_erja() {}

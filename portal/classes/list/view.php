@@ -32,7 +32,7 @@ class view extends main_view{
 			//------------------------------ absence link
 			$classes_detail = $classes_detail->addCol("absence","absence")
 			->select(-1, "absence")
-			->html($this->link("classification/absence/classesid=%id%", "href", "icoabsence"));
+			->html($this->link("classification/absence/classesid=%id%", "href", "icoattendance"));
 
 		}else{
 			//------------------------------ classification link
