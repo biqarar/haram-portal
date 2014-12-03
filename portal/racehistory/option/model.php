@@ -5,8 +5,8 @@
 class model extends main_model{
 
 	public function makeQuery() {
+		//------------------------------ make sql object
 		return $this->sql()->tableRacehistory()
-				->setUsers_id(post::users_id())
 				->setField(post::field())
 				->setClub(post::club())
 				->setStep(post::step())
@@ -15,22 +15,32 @@ class model extends main_model{
 	}
 
 	public function post_add_racehistory(){
-		$sql = $this->makeQuery()->insert();
+
+		//------------------------------ insert
+		$sql = $this->makeQuery()->setUsers_id($this->xuId("usersid"))->insert();
+
+		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert racehistory successful]]");
 		});
+
+		//------------------------------ rollback code
 		$this->rollback(function() {
 			debug_lib::fatal("[[insert racehistory failed]]");
 		});
 	}
 
 	public function post_edit_racehistory(){
-		$sql = $this->makeQuery()
-				->whereId($this->uId())
-				->update();
+		
+		//------------------------------ update racehistory
+		$sql = $this->makeQuery()->whereId($this->xuId())->update();
+
+		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[update racehistory ture]]");
 		});
+
+		//------------------------------ rolback code
 		$this->rollback(function() {
 			debug_lib::fatal("[[update racehistory failed]]");
 		});

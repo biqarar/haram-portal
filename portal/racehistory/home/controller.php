@@ -8,9 +8,9 @@ class controller extends main_controller{
 			"max" => 2,
 			"url"=>array("status" => "add" , "usersid" => "/^\d+$/")
 			), function(){
-				save(array("teachinghistory","option"));
+				save(array("racehistory","option"));
 			$this->access = true;
-			$this->permission = array("teachinghistory" => array("insert" => array("public", "private")));
+			$this->permission = array("racehistory" => array("insert" => array("public", "private")));
 		});
 	}
 }

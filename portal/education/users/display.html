@@ -1,0 +1,7 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="education/users/{{global.url}}">
+	{{forms.make(form.education_users)}}
+</form>
+{%endblock%}

@@ -2,13 +2,24 @@
 class query_formQuestions_cls extends query_cls
 {
 	public function config($formid = false){
+		$form = new forms_lib;
 		$form_questions =  $this->form_questions($formid);
+		$f[] = array();
 		foreach ($form_questions as $key => $value) {
 			$type = $this->type($value['answer_type'] , $value['answer_value']);
-			var_dump($type);
+			$f[$key] = $form->make($type['type'])->name("Q" . $value['id'])->label($value['string'])->pl($value['string']);
+			if($type['type'] == "select") {
+				foreach ($type['value'] as $k => $child) {
+					$f[$key]->child()->name($child)->label($child);
+				}
+			}
 		}
-		var_dump($form_questions);
-		exit();
+		return $f;
+		// $return = array();
+		// foreach ($f as $key => $value) {
+		// 	$return[] = $f[$key]->compile();
+		// }
+		// return $return;
 	}
 
 	public function form_questions($formid = false) {

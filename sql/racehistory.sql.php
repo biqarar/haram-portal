@@ -12,25 +12,25 @@ class racehistory {
 	public $unique = array("id");
 	public $index = array("users_id");
 
-	public $foreign = array("users_id" => "users@id!id");
+	// public $foreign = array("users_id" => "users@id!id");
 
 	public function id() {
 		$this->validate("id");
 	}
 	
 	public function users_id() {
-		$this->form("select")->name("users_id");
-		$this->setChild();
+		// $this->form("select")->name("users_id");
+		// $this->setChild();
 	}
 	
 	public function field() {
 		$this->form("#fatext")->name("field");
-		$this->validate()->farsi(3,64);
+		// $this->validate()->farsi(3,64);
 	}
 	
 	public function club() {
 		$this->form("#fatext")->name("club");
-		$this->validate()->farsi(3,64);
+		// $this->validate()->farsi(3,64);
 	}
 	
 	public function step() {
@@ -40,12 +40,12 @@ class racehistory {
 	
 	public function rank() {
 		$this->form("#number")->name("rank");
-		$this->validate()->number(1, 2);
+		// $this->validate()->number(1, 2);
 	}
 	
 	public function year() {
 		$this->form("#number")->name("year");
-		$this->validate()->number(4);
+		// $this->validate()->number(4);
 	}
 }
 ?>

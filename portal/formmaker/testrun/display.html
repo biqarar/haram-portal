@@ -2,5 +2,9 @@
 {% extends layout %}
 {% block content %}
 <h3> TEST RUN FORM MAKER :| </h3>
+<form method ="post" action ="changepasswd" class="ajx">
+	{{forms.make(q)}}
+</form>
 
+<!-- {{forms.make(data.q)}} -->
 {%endblock%}

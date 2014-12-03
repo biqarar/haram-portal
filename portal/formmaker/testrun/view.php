@@ -5,10 +5,12 @@
 class view extends main_view {
 
 	public function config(){
-		$form_questions = $this->sql(".formQuestions", $this->xuId("formid"));
+		$f = $this->sql(".formQuestions", $this->xuId("formid"));
 		// $f = $this->form("@branch");
 		// var_dump($f);
-		exit();
+		$this->data->q = $f;
+		var_dump($this->data->q);
+		// exit();
 	}
 }
 ?>
