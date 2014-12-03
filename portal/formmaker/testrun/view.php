@@ -5,6 +5,7 @@
 class view extends main_view {
 
 	public function config(){
+		$this->data->extendForm = true;
 		$f = $this->sql(".formQuestions", $this->xuId("formid"));
 		// $f = $this->form("@branch");
 		// var_dump($f);
