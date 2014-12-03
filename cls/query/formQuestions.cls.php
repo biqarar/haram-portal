@@ -13,6 +13,7 @@ class query_formQuestions_cls extends query_cls
 					$f[$key]->child()->name($child)->label($child);
 				}
 			}
+			$f[$key] = $f[$key]->compile();
 		}
 		return $f;
 		// $return = array();
