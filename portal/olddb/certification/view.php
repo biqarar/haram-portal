@@ -11,10 +11,10 @@ class view extends main_view {
 		//------------------------------ list of classes
 		$certification = $this->sql(".list", "oldcertification", function ($query, $id) {
 			$query->whereParvande($id);
-		}, $this->xuId())->compile();
+		}, $this->xuId());
 
-
-		$this->data->list = $certification;
+		$certification->removeCol("name,family,father,shsh,nationalcod,id,branch,sadere,tavalod");
+		$this->data->list = $certification->compile();
 	}
 }
 ?>
