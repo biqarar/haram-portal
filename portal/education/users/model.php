@@ -6,7 +6,7 @@ class model extends main_model{
 
 	public function makeQuery() {
 		//------------------------------ make sql object
-		return $this->sql()->tablEducation_users()
+		return $this->sql()->tableEducation_users()
 				->setEducation_id(post::education_id())
 				->setYear(post::year())
 				->setField(post::field())

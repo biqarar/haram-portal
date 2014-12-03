@@ -36,33 +36,6 @@ class controller extends main_controller {
 			"url" => "changepasswd"
 			), array("home","passwd"));
 
-		$this->listen(array(
-			"max" => 3,
-			"url" => array("student1", "status" => "detail" , "id" => "/^\d+$/")
-			),
-			function (){
-				save(array("olddb","student1"));
-				$this->permission = array("student1" => array("select" => array("public", "private")));	
-			});
-
-		$this->listen(array(
-			"max" => 3,
-			"url" => array("oldprice", "status" => "detail" , "id" => "/^\d+$/")
-			),
-			function (){
-				save(array("olddb","oldprice"));
-				$this->permission = array("oldprice" => array("select" => array("public", "private")));	
-			});
-
-		$this->listen(array(
-			"max" => 3,
-			"url" => array("oldclasses", "status" => "detail" , "id" => "/^\d+$/")
-			),
-			function (){
-				save(array("olddb","oldclasses"));
-				$this->permission = array("oldclasses" => array("select" => array("public", "private")));	
-			});
-		
 	}
 }
 ?>

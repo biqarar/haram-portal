@@ -49,14 +49,33 @@ class view extends main_view  {
 		$new_bridge["moreLink"] = "bridge/status=detail/usersid=$users_id";
 		$new_bridge["editLink"] = "bridge/status=edit/usersid=$users_id";
 		
+		// var_dump($new_bridge);
 		$this->data->bridge = $new_bridge;
 
 		//------------------------------  make old student table card
-		$student1 =  $this->sql(".list.card", "student1" , $users_id , "users_id");
-		unset($student1['addLink']);
-		unset($student1['editLink']);
+		// $student1 =  $this->sql(".list.card", "student1" , $users_id , "users_id");
+		// unset($student1['addLink']);
+		// unset($student1['editLink']);
 
-		$this->data->student1 = $student1;
+		// $this->data->student1 = $student1;
+
+
+		//------------------------------  make bridge card
+		$query_olddb = $this->sql("#olddb" , $users_id);
+		if(!empty($query_olddb)){
+			$olddb = array();
+			$i = 1;
+			foreach ($query_olddb as $key => $arrayValue) {
+				$olddb["list"]['list'][0][$key] = "<a>". $arrayValue . "&nbsp&nbsp&nbsp&nbsp</a>"
+				."<a href='oddb/" .$key . '/id='. $query_olddb['student1'] . "'>نمایش کامل اطلاعات</a>";
+				$i++;
+			}
+			
+			//------------------------------  make global of bridge card
+			$olddb['title'] = "olddb";
+			$olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
+			$this->data->olddb = $olddb;
+		}
 
 	}
 } 

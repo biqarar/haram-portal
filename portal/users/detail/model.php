@@ -26,5 +26,25 @@ class model extends main_model {
 		$bridge = $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
 		return $bridge;
 	}
+
+	public function sql_olddb($users_id = false) {
+		
+		$old_casecode = $this->sql()->tableStudent1()->whereUsers_id($users_id)->limit(1)->select();
+		
+		if($old_casecode->num() >= 1) {
+			
+			$old_casecode       = $old_casecode->assoc("name1");
+			
+			$old_price    	    = $this->sql()->tableOldprice()->whereParvande($old_casecode)->select()->num();
+			
+			$old_classification = $this->sql()->tableOldclassification()->whereParvande($old_casecode)->select()->num();
+
+			return  array(
+				"student1"		 => $old_casecode,
+				"oldclassification" => $old_classification,
+				"oldprice"			 => $old_price
+					);
+		}
+	}
 }
 ?>

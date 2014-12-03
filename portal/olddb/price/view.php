@@ -10,7 +10,7 @@ class view extends main_view {
 
 		//------------------------------ list of classes
 		$oldprice = $this->sql(".list", "oldprice", function ($query, $id) {
-			$query->whereUsers_id($id);
+			$query->whereParvande($id);
 		}, $this->xuId())->compile();
 
 

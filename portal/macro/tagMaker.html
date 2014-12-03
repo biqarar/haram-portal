@@ -46,8 +46,8 @@
 			{% if k != 'id' %}
 				{% if k != 'users_id' %}
 					<tr>
-						<th>{{k|lang}}</th>
-						<td>{{li|lang}}</td>
+						<th>{{k|lang|raw}}</th>
+						<td>{{li|lang|raw}}</td>
 					</tr>
 				{%endif%}		
 			{%endif%}

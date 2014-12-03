@@ -10,7 +10,7 @@ class view extends main_view {
 
 		//------------------------------ list of classes
 		$student1 = $this->sql(".list", "student1", function ($query, $id) {
-			$query->whereUsers_id($id);
+			$query->whereName1($id);
 		}, $this->xuId())->compile();
 
 
