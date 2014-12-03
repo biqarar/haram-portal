@@ -12,10 +12,11 @@ class view extends main_view {
 		$oldclassification = $this->sql(".list", "oldclassification", function ($query, $id) {
 			$query->whereParvande($id);
 		}, $this->xuId());
-		$oldclassification->addCol("classes", "classes");
+		$oldclassification->addColAfter("oldclasses","classes", "classes");
 		foreach ($oldclassification->list as $key => $value) {
 			$oldclassification->select($key, "classes")->html($this->sql("#oldclasses_detail", $value['oldclasses']));
 		}
+		$oldclassification->removeCol("branch,id,v3");
 
 		$this->data->list = $oldclassification->compile();
 	}

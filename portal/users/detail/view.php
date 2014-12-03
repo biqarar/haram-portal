@@ -66,9 +66,18 @@ class view extends main_view  {
 			$olddb = array();
 			$i = 1;
 			foreach ($query_olddb as $key => $arrayValue) {
-				$olddb["list"]['list'][0][$key] = "<a>". $arrayValue . "&nbsp&nbsp&nbsp&nbsp</a>"
+				if($key != "student1"){
+					$c = "&nbsp&nbspتعداد&nbsp&nbsp";
+					$m = "&nbsp&nbspمورد&nbsp&nbsp";
+				}else{
+					$c = "";	
+					$m = "";
+				}
+				$olddb["list"]['list'][0][$key] =
+				 "<a>".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
 				."<a href='olddb/" .$key . '/id='. $query_olddb['student1'] . "'>نمایش کامل اطلاعات</a>";
 				$i++;
+					
 			}
 			
 			//------------------------------  make global of bridge card

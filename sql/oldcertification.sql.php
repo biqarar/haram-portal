@@ -8,6 +8,7 @@ class oldcertification {
 	public $id = array("type" => "int@10");
 	public $code = array("type" => "varchar@255");
 	public $parvande = array("type" => "varchar@255");
+	public $noe = array("type" => "varchar@255");
 	public $name = array("type" => "varchar@255");
 	public $family = array("type" => "varchar@255");
 	public $father = array("type" => "varchar@255");
@@ -23,7 +24,6 @@ class oldcertification {
 	public $ttahvil = array("type" => "varchar@255");
 	public $tozih = array("type" => "varchar@255");
 	public $op = array("type" => "varchar@255");
-	public $noe = array("type" => "varchar@255");
 	public $sader = array("type" => "varchar@255");
 	public $nationalcod = array("type" => "varchar@255");
 	public $oldid = array("type" => "varchar@255");
@@ -32,6 +32,7 @@ class oldcertification {
 	public function id(){}
 	public function code(){}
 	public function parvande(){}
+	public function noe(){}
 	public function name(){}
 	public function family(){}
 	public function father(){}
@@ -47,7 +48,6 @@ class oldcertification {
 	public function ttahvil(){}
 	public function tozih(){}
 	public function op(){}
-	public function noe(){}
 	public function sader(){}
 	public function nationalcod(){}
 	public function oldid(){}
