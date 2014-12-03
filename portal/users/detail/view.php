@@ -67,13 +67,13 @@ class view extends main_view  {
 			$i = 1;
 			foreach ($query_olddb as $key => $arrayValue) {
 				$olddb["list"]['list'][0][$key] = "<a>". $arrayValue . "&nbsp&nbsp&nbsp&nbsp</a>"
-				."<a href='oddb/" .$key . '/id='. $query_olddb['student1'] . "'>نمایش کامل اطلاعات</a>";
+				."<a href='olddb/" .$key . '/id='. $query_olddb['student1'] . "'>نمایش کامل اطلاعات</a>";
 				$i++;
 			}
 			
 			//------------------------------  make global of bridge card
 			$olddb['title'] = "olddb";
-			$olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
+			// $olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
 			$this->data->olddb = $olddb;
 		}
 

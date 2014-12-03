@@ -43,6 +43,16 @@ class controller extends main_controller {
 				$this->permission = array("oldclassification" => array("select" => array("public", "private")));	
 			});
 
+		$this->listen(array(
+			"max" => 2,
+			"url" => array("certification", "id" => "/^\d+$/")
+			),
+			function (){
+				save(array("olddb","certification"));
+				$this->access = true;
+				$this->permission = array("oldsertification" => array("select" => array("public", "private")));	
+			});
+
 	}
 }
 ?>

@@ -39,10 +39,13 @@ class model extends main_model {
 			
 			$old_classification = $this->sql()->tableOldclassification()->whereParvande($old_casecode)->select()->num();
 
+			$old_certification = $this->sql()->tableOldcertification()->whereParvande($old_casecode)->select()->num();
+
 			return  array(
 				"student1"		 => $old_casecode,
-				"oldclassification" => $old_classification,
-				"oldprice"			 => $old_price
+				"classification" => $old_classification,
+				"price"			 => $old_price,
+				"certification"  => $old_certification
 					);
 		}
 	}
