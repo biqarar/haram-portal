@@ -61,10 +61,10 @@ class view extends main_view {
 
 
 		foreach ($classes_list->list as $key => $value) {
-			$checkbox = $this->tag("input")->type("checkbox")->addClass("absence-check");
-			$absence_date = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
-			$classes_list->select($key, "check")->html($checkbox->name($value['id']));
-			$classes_list->select($key, "absencedate")->html($absence_date->name( $value['id']));
+			$checkbox = $this->tag("input")->type("checkbox")->addClass("group absence-check");
+			$absence_date = $this->tag("input")->type("text")->date("date")->addClass("group absence-date");
+			$classes_list->select($key, "check")->html($checkbox->name("check" . $value['id']));
+			$classes_list->select($key, "absencedate")->html($absence_date->name("absence" . $value['id']));
 		}
 
 		//------------------------------ add edit (classification) col
