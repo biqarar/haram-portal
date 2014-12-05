@@ -37,7 +37,7 @@ class view extends main_view {
 
 
 			$classes_detail = $classes_detail->compile();
-				
+			
 			//------------------------------ change users id to name and family to show
 			$classes_detail = $this->detailClasses($classes_detail);
 			
@@ -54,8 +54,6 @@ class view extends main_view {
 
 
 		//------------------------------ add absence col
-		$checkbox = $this->tag("input")->type("checkbox")->addClass("absence-check");
-		$absence_date = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
 
 		$classes_list = $classes_list->addCol("check", "check");
 		$classes_list = $classes_list->addCol("absencedate", "absencedate");
@@ -63,8 +61,8 @@ class view extends main_view {
 
 
 		foreach ($classes_list->list as $key => $value) {
-			// var_dump($key);
-			// var_dump($value['id']);
+			$checkbox = $this->tag("input")->type("checkbox")->addClass("absence-check");
+			$absence_date = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
 			$classes_list->select($key, "check")->html($checkbox->name($value['id']));
 			$classes_list->select($key, "absencedate")->html($absence_date->name( $value['id']));
 		}
