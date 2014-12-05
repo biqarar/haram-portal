@@ -55,18 +55,19 @@ class view extends main_view {
 
 		//------------------------------ add absence col
 		$checkbox = $this->tag("input")->type("checkbox")->addClass("absence-check");
+		$absence_date = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
 
-		$classes_list = $classes_list->addCol("check", "check")
-		->select(-1, "check")
-		->html($checkbox);
+		$classes_list = $classes_list->addCol("check", "check");
+		$classes_list = $classes_list->addCol("absencedate", "absencedate");
 
+		
 
-		//------------------------------ add absence col
-		$ss = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
-
-		$classes_list = $classes_list->addCol("absencedate", "absencedate")
-		->select(-1, "absencedate")
-		->html($ss);
+		foreach ($classes_list->list as $key => $value) {
+			// var_dump($key);
+			// var_dump($value['id']);
+			$classes_list->select($key, "check")->html($checkbox->name($value['id']));
+			$classes_list->select($key, "absencedate")->html($absence_date->name( $value['id']));
+		}
 
 		//------------------------------ add edit (classification) col
 		$classes_list = $classes_list->addCol("absence", "absence")
