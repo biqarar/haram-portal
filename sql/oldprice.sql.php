@@ -8,7 +8,7 @@ class oldprice {
 	public $id           = array("type" => "int@10");
 	public $code         = array("type" => "varchar@255");
 	public $parvande     = array("type" => "varchar@255");
-	public $mablaq       = array("type" => "varchar@255");
+	public $value       = array("type" => "varchar@255");
 	public $date_o       = array("type" => "varchar@255");
 	public $operator     = array("type" => "varchar@255");
 	public $dore         = array("type" => "varchar@255");
@@ -31,7 +31,7 @@ class oldprice {
 	public function id() {}
 	public function code() {}
 	public function parvande() {}
-	public function mablaq() {}
+	public function value() {}
 	public function date_o() {}
 	public function operator() {}
 	public function dore() {}

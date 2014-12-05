@@ -10,7 +10,7 @@ class sql_cls {
 			$users_id = $_SESSION['users_id'];
 			
 			//------------------------------ public table (no permission set on this tables)
-			$freeTable = array("city","province","country","education","permission","login_counter","users","tables","posts_group","posts","student1","branch_users_key");
+			$freeTable = array("city","province","country","education","permission","login_counter","users","tables","posts_group","posts","branch_users_key");
 			
 			//------------------------------ called table
 			$table = $maker->table;

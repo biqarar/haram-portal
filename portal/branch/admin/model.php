@@ -9,9 +9,10 @@ class model extends main_model{
 		$sql = new dbconnection_lib;
 		set_time_limit(30000);
 		ini_set('memory_limit', '-1');
-		$oldcertification = $this->sql()->tableOldcertification()->select()->allAssoc();
-
 		
+		die(":( THE CODE DIE :(");
+
+		$oldcertification = $this->sql()->tableOldcertification()->select()->allAssoc();
 		  foreach ($oldcertification as $key => $value) {
                     $x = $this->sql()->tableBranch_cash()->setTable("oldcertification")->setRecord_id($value['id'])
                     ->setBranch_id($value['branch'])
@@ -20,9 +21,10 @@ class model extends main_model{
 		$q = $sql->query("COMMIT");
 
 							
-				die(":( THE CODE DIE :(");
+		// die(":( THE CODE DIE :(");
+
 		$oldclasses = $this->sql()->tableOldclasses()->select()->allAssoc();
-		$oldclassification = $this->sql()->tableOldclassification()->select()->allAssoc();
+		// $oldclassification = $this->sql()->tableOldclassification()->select()->allAssoc();
 
         foreach ($oldclasses as $key => $value) {
                     $x = $this->sql()->tableBranch_cash()->setTable("oldclasses")->setRecord_id($value['id'])
@@ -31,8 +33,8 @@ class model extends main_model{
             }
 		$q = $sql->query("COMMIT");
 		
-		die(":( THE CODE DIE :(");
-
+		// die(":( THE CODE DIE :(");
+		$oldclassification = $this->sql()->tableOldclassification()->select()->allAssoc();
             foreach ($oldclassification as $key => $value) {
             	$x = $this->sql()->tableBranch_cash()->setTable("oldclassification")->setRecord_id($value['id'])
                     ->setBranch_id($value['branch'])
@@ -41,8 +43,8 @@ class model extends main_model{
 		$q = $sql->query("COMMIT");
 		
 
-		die(":( THE CODE DIE :(");
-
+		// die(":( THE CODE DIE :(");
+		// $oldprice = $this->sql()->tableOldprice()->select()->allAssoc();
 		 $all =  $this->sql()->tableOldprice()->select()->allAssoc();
                 foreach ($all as $key => $value) {
                         $x = $this->sql()->tableBranch_cash()->setTable("oldprice")->setRecord_id($value['id'])
@@ -52,14 +54,15 @@ class model extends main_model{
 		$q = $sql->query("COMMIT");
 		
 
-		die(":( THE CODE DIE :(");
-		
-		$all =  $this->sql()->tableStudent1()->select()->allAssoc();
+		// die(":( THE CODE DIE :(");
+		$student = $this->sql()->tableStudent()->select()->allAssoc();
+		$all =  $this->sql()->tableStudent()->select()->allAssoc();
 		foreach ($all as $key => $value) {
-			$x = $this->sql()->tableBranch_cash()->setTable("student1")->setRecord_id($value['id'])->setBranch_id($value['branch'])
+			$x = $this->sql()->tableBranch_cash()->setTable("student")->setRecord_id($value['id'])->setBranch_id($value['branch'])
 			->insert()->LAST_INSERT_ID();
 		}
 		$q = $sql->query("COMMIT");
+		
 		die(":( THE CODE DIE :(");
 			
 	}

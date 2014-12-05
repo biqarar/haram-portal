@@ -53,11 +53,11 @@ class view extends main_view  {
 		$this->data->bridge = $new_bridge;
 
 		//------------------------------  make old student table card
-		// $student1 =  $this->sql(".list.card", "student1" , $users_id , "users_id");
-		// unset($student1['addLink']);
-		// unset($student1['editLink']);
+		// $student =  $this->sql(".list.card", "student" , $users_id , "users_id");
+		// unset($student['addLink']);
+		// unset($student['editLink']);
 
-		// $this->data->student1 = $student1;
+		// $this->data->student = $student;
 
 
 		//------------------------------  make bridge card
@@ -66,7 +66,7 @@ class view extends main_view  {
 			$olddb = array();
 			$i = 1;
 			foreach ($query_olddb as $key => $arrayValue) {
-				if($key != "student1"){
+				if($key != "student"){
 					$c = "&nbsp&nbspتعداد&nbsp&nbsp";
 					$m = "&nbsp&nbspمورد&nbsp&nbsp";
 				}else{
@@ -75,7 +75,7 @@ class view extends main_view  {
 				}
 				$olddb["list"]['list'][0][$key] =
 				 "<a>".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
-				."<a href='olddb/" .$key . '/id='. $query_olddb['student1'] . "'>نمایش کامل اطلاعات</a>";
+				."<a href='olddb/" .$key . '/id='. $query_olddb['student'] . "'>نمایش کامل اطلاعات</a>";
 				$i++;
 					
 			}

@@ -17,11 +17,83 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "parvande"
+msgstr "شماره پرونده قدیم"
+
+msgid "oldclasses"
+msgstr "کلاس ها"
+
+msgid "oldprice"
+msgstr "شهریه - قدیم"
+
+msgid "oldclassification"
+msgstr "کلاس بندی - قدیم"
+
+msgid "date_in"
+msgstr "تاریخ ورود"
+
+msgid "date_ou"
+msgstr "تاریخ خروج"
+
+msgid "date_sabt"
+msgstr "تاریخ ثبت"
+
+msgid "oldid"
+msgstr "شمارگان - قدیم"
+
+msgid "dore"
+msgstr "دوره - طرح"
+
+msgid "dateback"
+msgstr "تاریخ ارجاع"
+
+msgid "mablaqerja"
+msgstr "مبلغ ارجاع"
+
+msgid "status_erja"
+msgstr "وضعیت ارجاع"
+
+msgid "mablaq_erja"
+msgstr "مبلغ ارجاع"
+
+msgid "moadel"
+msgstr "امتیاز"
+
+msgid "joze"
+msgstr "جزء"
+
+msgid "sath"
+msgstr "سطح"
+
+msgid "tsabt"
+msgstr "تاریخ ثبت"
+
+msgid "chap"
+msgstr "وضعیت چاپ"
+
+msgid "ttahvil"
+msgstr "تارخی تحویل"
+
+msgid "tozih"
+msgstr "توضیحات"
+
+msgid "op"
+msgstr "ثبت کننده"
+
+msgid "noe"
+msgstr "نوع"
+
+msgid "sader"
+msgstr "وضعیت صدور"
+
+msgid "olddb"
+msgstr "اطلاعات سیستم قدیم"
+
+msgid "taahvil"
+msgstr "وضعیت تحویل"
+
 msgid "empty name, family, father"
 msgstr "تکمیل کردن نام،نام خانوادگی و نام پدر الزامی است"
-
-msgid "student1"
-msgstr "مشخصات فردی سیستم قدیم"
 
 msgid "print"
 msgstr "چاپ"
@@ -1553,4 +1625,3 @@ msgstr "توضیحات"
 # TABLE  users_group
 msgid "users_group_id"
 msgstr "گروه بندی فراگیران"
-

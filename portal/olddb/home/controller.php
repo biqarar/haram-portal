@@ -9,11 +9,11 @@ class controller extends main_controller {
 	
 		$this->listen(array(
 			"max" => 2,
-			"url" => array("student1", "id" => "/^\d+$/")
+			"url" => array("student", "id" => "/^\d+$/")
 			),
 			function (){
-				save(array("olddb","student1"));
-				$this->permission = array("student1" => array("select" => array("public", "private")));	
+				save(array("olddb","student"));
+				$this->permission = array("student" => array("select" => array("public", "private")));	
 			});
 
 		$this->listen(array(

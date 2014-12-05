@@ -2876,7 +2876,7 @@ INSERT INTO `permission` (`id`, `tables`, `users_id`, `select`, `update`, `inser
 (40, 'province', 13998, 'public', 'public', 'public', 'public', NULL),
 (41, 'racehistory', 13998, 'public', 'public', 'public', 'public', NULL),
 (42, 'regulation', 13998, 'public', 'public', 'public', 'public', NULL),
-(43, 'student1', 13998, 'public', 'public', 'public', 'public', NULL),
+(43, 'student', 13998, 'public', 'public', 'public', 'public', NULL),
 (44, 'table&lowbar;files', 13998, 'public', 'public', 'public', 'public', NULL),
 (45, 'tables', 13998, 'public', 'public', 'public', 'public', NULL),
 (46, 'teachinghistory', 13998, 'public', 'public', 'public', 'public', NULL),
@@ -3873,11 +3873,11 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student1`
+-- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `student1`;
-CREATE TABLE IF NOT EXISTS `student1` (
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE IF NOT EXISTS `student` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `users_id` int(10) NOT NULL,
   `name1` varchar(255) COLLATE utf8_persian_ci DEFAULT NULL,

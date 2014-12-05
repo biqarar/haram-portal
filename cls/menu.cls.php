@@ -271,7 +271,7 @@ class menu_cls {
 			"url" => 'formmaker/questions/status=add', 
 			"name" =>  _("form questions"), 
 			"tag" => array(
-				"form_question" => array("insert" => array("public")),
+				"form_questions" => array("insert" => array("public")),
 				)
 			);
 		//------------------------------ (public) log out menu 
@@ -280,7 +280,7 @@ class menu_cls {
 			"url" => 'formmaker/groupitem/status=add', 
 			"name" =>  _("form group item"), 
 			"tag" => array(
-				"form_question_item" => array("insert" => array("public")),
+				"form_group_item" => array("insert" => array("public")),
 				)
 			);
 		//------------------------------ (public) log out menu 
@@ -289,7 +289,7 @@ class menu_cls {
 			"url" => 'formmaker/testrun/formid=1', 
 			"name" =>  _("test run form"), 
 			"tag" => array(
-				"form_question" => array("select" => array("public")),
+				"form_answer" => array("select" => array("public")),
 				)
 			);
 		/**

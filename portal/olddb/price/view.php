@@ -13,7 +13,7 @@ class view extends main_view {
 			$query->whereParvande($id);
 		}, $this->xuId());
 
-		$oldprice->removeCol("id,code,description1,valueback,branch,date_erja,erja_status");
+		$oldprice->removeCol("id,code,description1,valueback,branch,date_erja,erja_status,date_o");
 
 
 		$this->data->list = $oldprice->compile();

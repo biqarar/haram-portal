@@ -6,15 +6,15 @@ class view extends main_view {
 
 	public function config() {
 		//------------------------------ globals
-		$this->global->page_title = "student1";
+		$this->global->page_title = "student";
 
 		//------------------------------ list of classes
-		$student1 = $this->sql(".list", "student1", function ($query, $id) {
+		$student = $this->sql(".list", "student", function ($query, $id) {
 			$query->whereName1($id);
 		}, $this->xuId())->compile();
 
 
-		$this->data->list = $student1;
+		$this->data->list = $student;
 	}
 }
 ?>

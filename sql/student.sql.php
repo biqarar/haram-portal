@@ -3,7 +3,7 @@ namespace sql;
 /**
 * reza mohiti
 */
-class student1 {
+class student {
 
 	public $id      = array("type" => "int@10");
 	public $name1   = array("type" => "varchar@255");
