@@ -11,10 +11,12 @@ class view extends main_view {
 		//------------------------------ list of classes
 		$oldprice = $this->sql(".list", "oldprice", function ($query, $id) {
 			$query->whereParvande($id);
-		}, $this->xuId())->compile();
+		}, $this->xuId());
+
+		$oldprice->removeCol("id,code,description1,valueback,branch,date_erja,erja_status");
 
 
-		$this->data->list = $oldprice;
+		$this->data->list = $oldprice->compile();
 	}
 }
 ?>

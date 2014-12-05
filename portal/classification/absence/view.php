@@ -60,7 +60,7 @@ class view extends main_view {
 		$classes_list = $classes_list->addCol("check", "check");
 		$classes_list = $classes_list->addCol("absencedate", "absencedate");
 
-		
+
 
 		foreach ($classes_list->list as $key => $value) {
 			// var_dump($key);
@@ -72,7 +72,7 @@ class view extends main_view {
 		//------------------------------ add edit (classification) col
 		$classes_list = $classes_list->addCol("absence", "absence")
 		->select(-1, "absence")
-		->html($this->link("classification/absence/classificationid=%id%", "href", "icoletters"))
+		->html($this->link("classification/absence/classificationid=%id%", "href", "icoattendance"))
 
 
 		->compile();
