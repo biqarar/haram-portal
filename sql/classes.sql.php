@@ -76,12 +76,12 @@ class classes {
 	}
 	
 	public function start_time() {
-		$this->form("#number")->name("start_time");
+		$this->form("#number")->name("start_time")->time('time');
 		$this->validate()->number(4);
 	}
 	
 	public function end_time() {
-		$this->form("#number")->name("end_time");
+		$this->form("#number")->name("end_time")->time('time');
 		$this->validate()->number(4);
 	}
 	

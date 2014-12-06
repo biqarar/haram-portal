@@ -323,6 +323,9 @@ ready(function(base){
 		formatDate:"YYYY-MM-DD",
 		isRTL:false
 	});
+
+	base.find("input[time=time]").clockpicker();
+	
 	base.find("*:not(style)").persian_nu();
 	base.find("select:not([name=data_table_length])").selectmenu();
 	base.find(".select-province").on("selectmenuchange", function(event, ui) {
