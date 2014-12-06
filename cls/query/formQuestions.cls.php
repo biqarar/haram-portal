@@ -1,7 +1,7 @@
 <?php
 class query_formQuestions_cls extends query_cls
 {
-	public function config($formid = false){
+	public function config($formid = false , $status = "add"){
 		$form = new forms_lib;
 		$form_questions =  $this->form_questions($formid);
 		$f[] = array();
@@ -15,12 +15,9 @@ class query_formQuestions_cls extends query_cls
 			}
 			$f[$key] = $f[$key]->compile();
 		}
+		$f[] = $form->make("#submit" . $status)->name($status)->compile();
+		$f[] = $form->make("#hidden")->value("form_questions")->compile();
 		return $f;
-		// $return = array();
-		// foreach ($f as $key => $value) {
-		// 	$return[] = $f[$key]->compile();
-		// }
-		// return $return;
 	}
 
 	public function form_questions($formid = false) {

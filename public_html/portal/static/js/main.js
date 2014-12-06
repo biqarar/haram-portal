@@ -319,9 +319,19 @@ ready(function(base){
 	base.find("#tabs, #tabs li a.ui-tabs-anchor").scroll(function(e){
 		this.scrollLeft = 9000;
 	});
-	base.find("input[date=date]").persianDatepicker({
-		formatDate:"YYYY-MM-DD",
-		isRTL:false
+	base.find("input[date=date]").each(function(){
+		var _self = this;
+		$(this).persianDatepicker({
+			formatDate:"YYYY-MM-DD",
+			isRTL:false,
+			onSelect: function() {
+		        if(_self.callBackDate){
+		        	var fn = _self.callBackDate;
+		        	fn.call(_self);
+		        }
+		    }
+
+		});
 	});
 	base.find("*:not(style)").persian_nu();
 	base.find("select:not([name=data_table_length])").selectmenu();

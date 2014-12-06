@@ -13,16 +13,16 @@ class form_answer
 
 	//------------------------------------------------------------------ id - foreign key
 	public function users_id() {
-		$this->form("#fatext")->name("users_id");
-		$this->validate("id");
+		// $this->form("#fatext")->name("users_id");
+		// $this->validate("id");
 	}
 
 	//------------------------------------------------------------------ id - foreign key
 	public function form_questions_id() {
-		$this->validate("id");
+		// $this->validate("id");
 	}
 	public function answer() {
-		$this->from("#text_desc")->name("answer");
+		// $this->from("#text_desc")->name("answer");
 	}
 }
 ?>

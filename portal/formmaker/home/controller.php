@@ -20,8 +20,8 @@ class controller extends main_controller{
 
 		//------------------------------ course formmaker
 		$this->listen(array(
-			"max" => 2,
-			"url" => array("testrun" , "formid" => "/^\d+$/")
+			"max" => 3,
+			"url" => array("testrun" , "usersid" => "/^\d+$/", "formid" => "/^\d+$/")
 			), 
 			function () {
 				save(array("formmaker", "testrun"));
