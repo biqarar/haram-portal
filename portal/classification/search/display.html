@@ -10,6 +10,41 @@
 	.failed{
 		background: black;
 	}
+
+	.xbtn {
+		border-radius: 4px;
+		font-family: 'WYekan';
+		padding: 3px 6px;
+		margin-top: 5px; 
+		margin-bottom: 5px;
+		font-size: 12px;
+	}
+	
+	.xbtn-primary {
+		background-color: #428bca;
+		border: 1px solid #357ebd;
+		color: #fff;
+	}
+
+	.xbtn-primary:hover {
+		background-color: #286090;
+		border-color: #204d74;
+	}
+
+	.xbtn-danger {
+		background-color: #c9302c;
+		border: 1px solid #ac2925;
+		color: #fff;
+	}
+
+	.xbtn-danger:hover {
+		background-color: #c9302c;
+		border-color: #ac2925;
+	}
+
+	.table-list td {
+		transition: none;
+	}
 </style>
 <div style="padding: 10px;">
 	<!-- search form -->
@@ -21,6 +56,17 @@
 	
 </div>
 <script type="text/javascript">
+	$('.ajxClassification').hover(function() {
+		bgcolor = $(this).parents('tr').css('background-color');
+		$(this).parents('tr').css({
+			'background-color': 'rgba(66,139,202,0.1)'
+		});
+	}, function() {
+		$(this).parents('tr').css({
+			'background-color': bgcolor
+		});
+	});
+	
 	$(".ajxClassification").click(function(){
 		URL = $(this).attr("xhref");
 		tag = $(this);
@@ -29,9 +75,9 @@
 			url : URL,
 			success : function(data){
 				if(data.msg.duplicate){
-					$(tag).addClass("duplicate").text(data.msg.duplicate).removeClass("insert")
+					$(tag).removeClass('xbtn, xbtn-primary').text(data.msg.duplicate).removeClass("insert")
 				}else if(data.msg.insert) {
-					$(tag).addClass("insert").text(data.msg.insert)
+					$(tag).removeClass('xbtn, xbtn-primary').text(data.msg.insert);
 				}else if(data.msg.failed) {
 					$(tag).addClass("failed").text(data.msg.failed)
 				}

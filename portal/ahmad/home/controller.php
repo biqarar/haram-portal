@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Reza Mohiti <rm.biqarar@gmail.com>
+ * @author Ahmad Karimi <ahmadkarimi1991@gmail.com>
  */
 class controller extends main_controller{
 	public $access = true;
