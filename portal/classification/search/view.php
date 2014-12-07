@@ -22,10 +22,9 @@ class view extends main_view {
 		$this->data->search = $search;
 
 		//------------------------------ classification link
-		$classification = $this->tag("xa")->text("ثبت در کلاس")->addClass("ajxClassification")
+		$classification = $this->tag("span")->text('ثبت در کلاس')->addClass("ajxClassification xbtn xbtn-primary")
 		->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
-		->attr("xxxhref", "classification/classesid=" . $classes_id);
-		
+		->attr("xxxhref", "classification/classesid=" . $classes_id);		
 
 		//------------------------------ seach into person table
 		$person = $this->sql("#s_search");

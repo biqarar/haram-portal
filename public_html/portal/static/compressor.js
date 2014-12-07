@@ -26,4 +26,4 @@ function Compress(){
 
 watch.watchTree(listen_folder, function (f, curr, prev) {
 	Compress();
-})
+});
