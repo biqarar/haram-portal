@@ -47,5 +47,10 @@ class model extends main_model {
 		}, $search);
 		return $person;
 	}
+
+	public function sql_if_registerd($classes_id = false) {
+		return $this->sql()->tableClassification()->whereClasses_id($classes_id)->select()->allAssoc("users_id");
+
+	}
 }
 ?>

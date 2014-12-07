@@ -21,19 +21,26 @@ class view extends main_view {
 		$search[] = $submit->compile();
 		$this->data->search = $search;
 
-		//------------------------------ classification link
-		$classification = $this->tag("span")->text('ثبت در کلاس')->addClass("ajxClassification xbtn xbtn-primary")
-		->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
-		->attr("xxxhref", "classification/classesid=" . $classes_id);		
 
 		//------------------------------ seach into person table
-		$person = $this->sql("#s_search");
-		$person
+		$person = $this->sql("#s_search", $classes_id);
 		
-			->addCol("classification","کلاس بندی")
-			->select(-1, "classification")->html($classification)
+		$if_registerd = $this->sql("#if_registerd", $classes_id);
 		
-			->removeCol(
+		foreach ($person->list as $key => $value) {
+			$classification = $this->tag("span")->addClass("ajxClassification")
+			->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
+			->attr("xxxhref", "classification/classesid=" . $classes_id);		
+			$person->addCol("classification","کلاس بندی")->select($key, "classification");
+			
+			if(preg_grep("/" . $value['users_id']. "/", $if_registerd)) {
+				$person->html($classification->addClass("xxx")->text("اطلاعات ثبت شده است"));
+			}else{
+				$person->html($classification->addClass("xbtn xbtn-primary")->text("ثبت در کلاس"));
+			}
+		}
+		//------------------------------ classification link
+			$person->removeCol(
 			"id,from,City_id,record_id,Absence_dateEducation_id,Education_group,Country_id,country,province_id,
 			casecode,casecode_old,type,en_name,en_family,en_father,third_name,third_family,
 			third_father,pasport_date,users_id,group,id,child,nationality,City_province_id");	
