@@ -26,16 +26,17 @@ class view extends main_view {
 		$person = $this->sql("#s_search", $classes_id);
 		
 		$if_registerd = $this->sql("#if_registerd", $classes_id);
-		
+
 		foreach ($person->list as $key => $value) {
 			$classification = $this->tag("span")->addClass("ajxClassification")
-			->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id)
-			->attr("xxxhref", "classification/classesid=" . $classes_id);		
+								   ->attr("xhref", "classification/api/usersid=%users_id%/classesid=" . $classes_id);
+			
 			$person->addCol("classification","کلاس بندی")->select($key, "classification");
 			
-			if(preg_grep("/" . $value['users_id']. "/", $if_registerd)) {
-				$person->html($classification->addClass("xxx")->text("اطلاعات ثبت شده است"));
-			}else{
+			if (preg_grep("/" . $value['users_id']. "/", $if_registerd)) {
+				$person->html($classification->addClass("inserted")->text("اطلاعات ثبت شده است")
+											 ->attr('xhref', '')->removeClass('ajxClassification'));
+			} else {
 				$person->html($classification->addClass("xbtn xbtn-primary")->text("ثبت در کلاس"));
 			}
 		}

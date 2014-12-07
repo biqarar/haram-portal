@@ -18,6 +18,8 @@
 		margin-top: 5px; 
 		margin-bottom: 5px;
 		font-size: 12px;
+		display: inline-block;
+		cursor: pointer;
 	}
 	
 	.xbtn-primary {
@@ -44,6 +46,22 @@
 
 	.table-list td {
 		transition: none;
+	}
+
+	.inserted {
+		background-color: #48B651;
+		padding: 5px;
+		color: #fff;
+		display: inline-block;
+		border-radius: 4px;
+	}
+
+	.failed {
+		background-color: red;
+		padding: 5px;
+		color: #fff;
+		display: inline-block;
+		border-radius: 4px;
 	}
 </style>
 <div style="padding: 10px;">
@@ -77,9 +95,9 @@
 				if(data.msg.duplicate){
 					$(tag).removeClass('xbtn, xbtn-primary').text(data.msg.duplicate).removeClass("insert")
 				}else if(data.msg.insert) {
-					$(tag).removeClass('xbtn, xbtn-primary').text(data.msg.insert);
+					$(tag).removeClass('xbtn xbtn-primary ajxClassification').addClass('inserted').text(data.msg.insert);
 				}else if(data.msg.failed) {
-					$(tag).addClass("failed").text(data.msg.failed)
+					$(tag).removeClass('xbtn xbtn-primary ajxClassification').addClass('failed').text(data.msg.failed);
 				}
 			}
 		});
