@@ -9,11 +9,8 @@ class view extends main_view {
 		$this->data->extendForm = true;
 		$f = $this->sql(".formQuestions", $this->xuId("formid"), $this->urlStatus());
 
-		// $f = $this->form("@branch");
-		// var_dump($f);
 		$this->data->q = $f;
-		// var_dump($this->data->q);
-		// exit();
+		
 	}
 }
 ?>

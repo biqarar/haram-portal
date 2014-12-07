@@ -8,6 +8,9 @@ class query_setLoginSession_cls extends query_cls {
 		$users_query             = $users_query->assoc();
 		$users_id                = $users_query['id'];
 
+		//------------------------------ set status session
+		$_SESSION['users_status'] = $users_query['status'];
+
 		//------------------------------ set email session
 		$_SESSION['users_email'] = $users_query['email'];
 
@@ -20,7 +23,10 @@ class query_setLoginSession_cls extends query_cls {
 		$_SESSION['users_family'] = $sql_person['family'];
 		
 		//------------------------------ set gender session
-		$_SESSION['gender'] = $sql_person['gender'];
+		$_SESSION['users_gender'] = $sql_person['gender'];
+
+		//------------------------------ set type session (student, operator, teacher, child)
+		$_SESSION['users_type'] = $sql_person['type'];
 
 		//------------------------------ set users_id session
 		$_SESSION['users_id']     = $users_id;

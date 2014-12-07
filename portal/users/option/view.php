@@ -80,8 +80,8 @@ class view extends main_view {
 		$f->atFirst("hidden");
 
 		//------------------------------ set defult gender whit sex users
-		if(isset($_SESSION['gender'])){
-			$x = ($_SESSION['gender'] == "male") ? 0 : 1;
+		if(isset($_SESSION['users_gender'])){
+			$x = ($_SESSION['users_gender'] == "male") ? 0 : 1;
 			$f->gender->child($x)->checked("checked");
 		}
 

@@ -261,36 +261,28 @@ class menu_cls {
 			"submenu" => "media", 
 			"url" => 'formmaker/group/status=add', 
 			"name" =>  _("form group"), 
-			"tag" => array(
-				"form_group" => array("insert" => array("public")),
-				)
+			"tag" => "public"
 			);
 		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/questions/status=add', 
 			"name" =>  _("form questions"), 
-			"tag" => array(
-				"form_questions" => array("insert" => array("public")),
-				)
+			"tag" => "public"
 			);
 		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/groupitem/status=add', 
 			"name" =>  _("form group item"), 
-			"tag" => array(
-				"form_group_item" => array("insert" => array("public")),
-				)
+			"tag" => "public"
 			);
 		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/testrun/formid=1', 
 			"name" =>  _("test run form"), 
-			"tag" => array(
-				"form_answer" => array("select" => array("public")),
-				)
+			"tag" =>"public"
 			);
 		/**
 
