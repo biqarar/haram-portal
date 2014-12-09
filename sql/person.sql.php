@@ -13,7 +13,7 @@ class person {
 	public $code         = array('type'=> 'int@10', 'label' => 'person_code');
 	public $marriage     = array('type'=> 'enum@single,married!single', 'label' => 'person_marriage');
 	public $child        = array('type'=> 'int@10', 'label' => 'person_child');
-	public $type         = array('type'=> 'enum@student,teacher,operator,baby!student', 'label' => 'person_type');
+	// public $type         = array('type'=> 'enum@student,teacher,operator,baby!student', 'label' => 'person_type');
 	public $casecode     = array('type'=> 'int@10', 'label' => 'person_casecode');
 	public $casecode_old = array('type'=> 'int@10', 'label' => 'person_casecode_old');
 	public $education_id = array('type'=> 'int@10', 'label' => 'education_id');
@@ -93,10 +93,10 @@ class person {
 		$this->validate()->number(1,2);
 	}
 
-	public function type() {
-		$this->form("select")->name("type");
-		$this->setChild();
-	}
+	// public function type() {
+	// 	$this->form("select")->name("type");
+	// 	$this->setChild();
+	// }
 
 	public function casecode() {
 		$this->form("#number")->name("casecode");

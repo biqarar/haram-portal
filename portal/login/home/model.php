@@ -16,6 +16,7 @@ class model extends main_model {
 			
 			$u = $this->sql()->tableUsers()
 			->whereUsername(post::username())
+			->orEmail(post::username())
 			->andPassword(md5(post::password()))->limit(1)->select();
 
 			//------------------------------ username and password tru

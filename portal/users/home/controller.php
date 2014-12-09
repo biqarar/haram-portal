@@ -33,6 +33,16 @@ class controller extends main_controller{
 			save(array("users", "branch"));
 			$this->permission = array("users_branch" => array("insert" => array("public") , "update" => array("public")));
 		});
+
+		//------------------------------ users/form/
+		$this->listen(array(
+			"max"=> 3,
+			'url' => array("form", "usersid" => "/^\d+$/", "formid" => "/^\d+$/")),
+		function () {
+			save(array("users", "form"));
+			$this->access = true;
+			// $this->permission = array("form" => array("insert" => array("public") , "update" => array("public")));
+		});
 	}
 }
 ?>
