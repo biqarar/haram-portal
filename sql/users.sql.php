@@ -17,7 +17,7 @@ class users {
 
 	public function username() {
 		$this->form("#number")->name("username");
-		$this->validate()->username();
+		$this->validate()->number(8);
 	}
 
 	public function password() {

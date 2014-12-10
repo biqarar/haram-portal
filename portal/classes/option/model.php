@@ -57,9 +57,15 @@ class model extends main_model{
 	* @return array (liset of users whit teacher type)
 	*/
 	function sql_users_name_family() {
-		$query =  $this->sql()->tablePerson()->whereType('teacher')->select()->allAssoc();
+
+		$x = $this->sql()->tableUsers();
+		$x->whereType('teacher');
+		// ->andStatus("enable"); // fase 2
+		$x->joinPerson()->whereUsers_id("#users.id");
+		$y = $x->select()->allAssoc();
+
 		$ret = array();
-		foreach ($query as $key => $value) {
+		foreach ($y as $key => $value) {
 			$ret[$value['users_id']] = $value;
 		}
 		return $ret;

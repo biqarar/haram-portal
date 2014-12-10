@@ -76,5 +76,13 @@ class query_formQuestions_cls extends query_cls
 		}
 		return $return;
 	}
+
+	public function xlist($formid = false, $usersid = false) {
+		$form = $this->sql()->tableForm_group_item()
+			->whereForm_group_id($formid)
+			->andUsers_id($usersid)
+			->select()->allAssoc();
+
+	}
 }
 ?>

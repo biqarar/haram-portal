@@ -189,19 +189,7 @@ class validateExtends_cls{
 	}
 
 	public function username(){
-		if ($this->number(8)) {
-
-			return true;
-
-		} elseif ($this->email()) {
-			
-			return true;
-
-		} else {
-			
-			return false;
-			
-		}
+		return true;
 	}
 }
 ?>
