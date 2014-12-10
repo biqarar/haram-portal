@@ -14,9 +14,14 @@ class model extends main_model {
 		
 		}else{
 			
-			$u = $this->sql()->tableUsers()
-			->whereUsername(post::username())
-			->andPassword(md5(post::password()))->limit(1)->select();
+			$u = $this->sql()->tableUsers();
+				if(preg_match("/@/", post::username())) {
+					$u = $u->whereEmail(post::username());
+				} else {
+					$u = $u->whereUsername(post::username());
+				}
+
+			$u = $u->andPassword(md5(post::password()))->limit(1)->select();
 
 			//------------------------------ username and password tru
 			if($u->num() == 1) {				

@@ -24,8 +24,8 @@ class view extends main_view {
 		//------------------------------ change caption of sumbit
 		$f->submit->value("login");
 
-		//------------------------------ remove email field (in phase 2 can be login whit email)
-		$f->remove("email");
+		//------------------------------ remove email field 
+		$f->remove("email,status,type");
 	}
 }
 ?>

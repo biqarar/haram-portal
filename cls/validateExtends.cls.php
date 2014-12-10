@@ -33,14 +33,6 @@ class validateExtends_cls{
 		return true;
 	}
 
-	public function username(){
-		// return true;
-		if(!preg_match("/^\d{8}$/", $this->value)){
-			return false;
-			// $this->SetOnError('username');
-		}
-		return true;
-	}
 
 	public function repassword($repass){
 		if($this->value != md5($this->_parm[$repass])){
@@ -124,7 +116,7 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false){
-		return true;
+		// return true;
 		
 		$a = (preg_match("/^\d+$/", $a)) ? $a : 1;
 		if(!$b){
@@ -145,7 +137,7 @@ class validateExtends_cls{
 	}
 
 	public function description($args = false){
-		return true;
+		// return true;
 		$args = trim($args);
 		if(!preg_match("/^.{0,255}$/", $args)){
 			$this->_type = "warn";
@@ -156,7 +148,7 @@ class validateExtends_cls{
 	}
 
 	public function farsi($a = false, $b = false){
-		return true;
+		// return true;
 		// check
 		$status= true;
 		$strn = strlen(utf8_decode($this->value));
@@ -193,6 +185,10 @@ class validateExtends_cls{
 	}
 
 	public function price() {
+		return true;
+	}
+
+	public function username(){
 		return true;
 	}
 }

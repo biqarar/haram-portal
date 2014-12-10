@@ -5,8 +5,12 @@ class query_setLoginSession_cls extends query_cls {
 	* @param sql object whit select users id
 	*/
 	public function config($users_query = false) {
+		
 		$users_query             = $users_query->assoc();
 		$users_id                = $users_query['id'];
+
+		//------------------------------ set type session (student, operator, teacher, child)
+		$_SESSION['users_type'] = $users_query['type'];
 
 		//------------------------------ set status session
 		$_SESSION['users_status'] = $users_query['status'];
@@ -25,8 +29,6 @@ class query_setLoginSession_cls extends query_cls {
 		//------------------------------ set gender session
 		$_SESSION['users_gender'] = $sql_person['gender'];
 
-		//------------------------------ set type session (student, operator, teacher, child)
-		$_SESSION['users_type'] = $sql_person['type'];
 
 		//------------------------------ set users_id session
 		$_SESSION['users_id']     = $users_id;

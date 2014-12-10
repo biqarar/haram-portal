@@ -23,7 +23,7 @@ class model extends main_model {
 		->setFrom(post::from())
 		->setMarriage(post::marriage())
 		->setChild(post::child())
-		->setType(post::type())
+		// ->setType(post::type())
 		->setEducation_id(post::education_id())
 		->setPasport_date(post::pasport_date());
 

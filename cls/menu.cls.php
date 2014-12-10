@@ -2,7 +2,7 @@
 /**
 *
 */
-class menu_cls {
+class menu_cls extends query_cls {
 
 	/**
 	* list of menu (not compile)
@@ -256,33 +256,33 @@ class menu_cls {
 		/**
 
 		*/
-		//------------------------------ (public) log out menu 
+		//------------------------------ form maker (testing...) 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/group/status=add', 
 			"name" =>  _("form group"), 
 			"tag" => "public"
 			);
-		//------------------------------ (public) log out menu 
+		//------------------------------ form maker (testing...) 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/questions/status=add', 
 			"name" =>  _("form questions"), 
 			"tag" => "public"
 			);
-		//------------------------------ (public) log out menu 
+		//------------------------------ form maker (testing...) 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/groupitem/status=add', 
 			"name" =>  _("form group item"), 
 			"tag" => "public"
 			);
-		//------------------------------ (public) log out menu 
+		//------------------------------ form maker (testing...) 
 		self::$menu[] = array(
 			"submenu" => "media", 
 			"url" => 'formmaker/testrun/formid=1', 
 			"name" =>  _("test run form"), 
-			"tag" =>"public"
+			"tag" => "public"
 			);
 		/**
 
@@ -296,6 +296,15 @@ class menu_cls {
 		// 	"tag" => "public"
 		// 	);
 
+	}
+
+	static function x() {
+		if (!isset($_SESSION['users_id'])) return false;
+
+		$users_id = $_SESSION['users_id'];
+		$form_users = $this->sql()->tableForm_users()->whereUsers_id($users_id)->select();
+		var_dump($form_users);
+		die();
 	}
 
 	static function public_menu() {

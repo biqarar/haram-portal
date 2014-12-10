@@ -1,0 +1,10 @@
+{# reza mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{% block content %}
+
+<form class="ajx" method="post" action="bridge/{{global.url}}">
+	{{forms.make(form.bridge)}}
+</form>
+<br>
+{{tagMaker.list(list)}}
+{%endblock%}
