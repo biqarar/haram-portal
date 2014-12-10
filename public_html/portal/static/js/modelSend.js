@@ -1,7 +1,7 @@
-/**
+/*!
 @ in the name of Allah
 @ author: Baravak @hsbaravak fb.com/hasan.salehi itb.baravak@gmail.com +989356032043
-@ version 0.1.0
+@ version 0.1.0sadadssadasd
 **/
 (function($){
 	$.fn.ajx = function(o){

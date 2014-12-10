@@ -2,7 +2,7 @@
 /**
 *
 */
-class menu_cls extends query_cls {
+class menu_cls  {
 
 	/**
 	* list of menu (not compile)
@@ -23,14 +23,14 @@ class menu_cls extends query_cls {
 	* compile menu
 	* @return array
 	*/
-	static function list_menu() {
+	public function list_menu() {
 
 		//------------------------------ make menu
-		self::menus();
+		$this->menus();
 
 
 		$make = false;
-		
+
 		foreach (self::$menu as $index => $value) {
 			
 			//------------------------------ key to load menu or no
@@ -92,7 +92,7 @@ class menu_cls extends query_cls {
 	/**
 	* make array menu
 	*/
-	static function menus() {
+	public function menus() {
 		//------------------------------ permission add
 		self::$menu[] = array(
 			"submenu"     => "home",
@@ -282,7 +282,7 @@ class menu_cls extends query_cls {
 			"submenu" => "media", 
 			"url" => 'formmaker/testrun/formid=1', 
 			"name" =>  _("test run form"), 
-			"tag" => "public"
+			"tag" => 'public'
 			);
 		/**
 
@@ -298,16 +298,16 @@ class menu_cls extends query_cls {
 
 	}
 
-	static function x() {
+	public function x() {
 		if (!isset($_SESSION['users_id'])) return false;
-
+		return "public";
 		$users_id = $_SESSION['users_id'];
-		$form_users = $this->sql()->tableForm_users()->whereUsers_id($users_id)->select();
-		var_dump($form_users);
-		die();
+		// $form_users = $this->sql()->tableForm_users()->whereUsers_id($users_id)->select();
+		// var_dump($form_users);
+		// die();
 	}
 
-	static function public_menu() {
+	public function public_menu() {
 		return  array(
 			array('href' => '#', 'title' => 'صفحه اصلی'),
 			// array('href' => 'http://'.DOMAIN.'/portal/users/register', 'title' => 'ثبت نام'),

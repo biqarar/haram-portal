@@ -22,7 +22,8 @@ class main_view{
 		//$this->global->host = host;
 		//$this->global->ahost = host.path;
 
-		$this->global->menu = menu_cls::list_menu();
+		$menu =  new menu_cls;
+		$this->global->menu = $menu->list_menu();
 
 		//------------------------------ set url if status == edit >> table/stauts=edit/id=\d
 		$this->setUrl();
