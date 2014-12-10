@@ -28,6 +28,7 @@ class view extends main_view {
 		}
 	}
 
+
 	public function colPermission($table, $operat) {
 		if(isset($_SESSION['user_permission']['tables'][$table][$operat]) && 
 			$_SESSION['user_permission']['tables'][$table][$operat] == 'public'){
