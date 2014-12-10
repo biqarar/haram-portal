@@ -22,7 +22,8 @@ class main_view{
 		//$this->global->host = host;
 		//$this->global->ahost = host.path;
 
-		$this->global->menu = menu_cls::public_menu();
+		$menu = new menu_cls;
+		$this->global->menu = $menu->public_menu();
 
 		// *********************************************************************** Other ...
 		$this->form = (object) "form";

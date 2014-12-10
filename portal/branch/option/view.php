@@ -12,11 +12,28 @@ class view extends main_view {
 		$f = $this->form("@branch", $this->urlStatus());
 
 		//------------------------------ list of branch
-		$this->data->list = $this->sql(".list","branch")->addColEnd("edit", "edit")->select(-1, "edit")
-		->html($this->editLink("branch"))->compile();
+		$list = $this->sql(".list","branch");
+		$list = $this->editCol("branch" ,$list, $this->editLink("branch"));
 
+		$this->data->list = $list->compile();
 		//------------------------------ edit form
 		$this->sql(".edit", "branch", $this->xuId(), $f);
+	}
+
+	public function editCol($table, $list, $html) {
+		if($this->colPermission($table, "update")) {
+			return	$list->addCol("edit", "edit")->select(-1, "edit")->html($html);
+		}else{
+			return $list;
+		}
+	}
+
+	public function colPermission($table, $operat) {
+		if(isset($_SESSION['user_permission']['tables'][$table][$operat]) && 
+			$_SESSION['user_permission']['tables'][$table][$operat] == 'public'){
+			return true;
+		}
+		return false;
 	}
 }
 ?>
