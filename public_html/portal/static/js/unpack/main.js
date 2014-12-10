@@ -1,8 +1,3 @@
-/*!
- * [transit description]
- * @param  {[type]} ) {		var       n = $(window).height() + 150;		var m = n - parseInt($('.menu').css('height'));		m     = m/2;		$(".menu").css("top", m);		$("#tabs>div").css('min-height', ($(window).height() - 225) + "px");	}	transit();	$(window).resize(function() {		transit();	}).scroll(function(){		transit();	});	$(".menu>div").each(function() {		$(this).mouseover(function() {			$(this).children('.dropdown').stop().fadeIn(200);		}).mouseout(function() {			$(this).children('.dropdown').stop().fadeOut(200);		});	} [description]
- * @return {[type]}   [description]
- */
 $(document).ready(function() {
 	$.ajaxSetup ({
 		cache: false
