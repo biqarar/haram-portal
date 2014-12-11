@@ -260,13 +260,13 @@ class main_view{
 		return false;
 	}
 
-	public function dtable($f){
+	public function dtable($url, $fields){
 		$this->data->Extend_dtable = true;
 		$array = array();
-		foreach ($f as $key => $value) {
+		foreach ($fields as $key => $value) {
 			$array[] = gettext($value);
 		}
-		return $array;
+		return array('url'=> $url, 'fields'=>$array);
 	}
 
 }

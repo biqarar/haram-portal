@@ -9,7 +9,8 @@ class model extends main_model {
 			->fields('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'id detail', 'id edit')
 			->search_fields('name', 'family', 'father')
 			->result(function($r){
-				$r->edit = '<a href="'.$r->edit.'">'.$r->edit.'</a>';
+				$r->detail = '<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='.$r->detail.'"></a>';
+				$r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='.$r->edit.'"></a>';
 			});
 		$this->sql(".dataTable", $dtable);
 	}	
