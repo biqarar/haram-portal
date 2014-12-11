@@ -4,7 +4,18 @@
 */
 class model extends main_model {
 	public function post_api(){
-		$data = $this->sql(".dataTable", "person", false, "name, family, father");
+		$this->sql(".dataTable", "person", false, "name, family, father");
+		$options = array(
+			'table' => 'person',
+			'search_fields' => "name, family, father",
+			'query' => function($q){
+			},
+			'search' => function(){
+
+			}
+			);
+		this->sql(".dataTable", "person", false, "name, family, father");
+
 	}	
 	public function post_xsearch() {
 		$text = post::search();
