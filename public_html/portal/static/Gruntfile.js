@@ -11,10 +11,16 @@ module.exports = function(grunt) {
 				' */\n',
 				encoding: 'utf8'
 			},
-			build: {
-				src: 'js/unpack/*.js',
-				dest: 'js/banoo.min.js'
-			}
+			build: [
+				{
+					src: 'js/unpack/*.js',
+					dest: 'js/banoo.min.js'
+				},
+				{
+					src: 'js/lib/*.js',
+					dest: 'js/lib.min.js'
+				}
+			]
 		},
 		watch: {
 			scripts: {
