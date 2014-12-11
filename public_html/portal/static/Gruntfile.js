@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	var unpackJs = 'js/unpack/*.js';
+	var unpackJs = 'js/unpack/';
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		uglify: {
@@ -9,18 +9,13 @@ module.exports = function(grunt) {
 				' * @author ahmad karimi, reza mohiti, baravak\n'+
 				' * @version <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %>\n'+
 				' */\n',
-				encoding: 'utf8'
+				encoding: 'utf8',
+				sourceMap: true
 			},
-			build: [
-				{
-					src: 'js/unpack/*.js',
-					dest: 'js/banoo.min.js'
-				},
-				{
-					src: 'js/lib/*.js',
-					dest: 'js/lib.min.js'
-				}
-			]
+			build: {
+				src: 'js/unpack/*.js',
+				dest: 'js/banoo.min.js'
+			}
 		},
 		watch: {
 			scripts: {

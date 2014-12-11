@@ -1,8 +1,4 @@
-/*!
- * [transit description]
- * @param  {[type]} ) {		var       n = $(window).height() + 150;		var m = n - parseInt($('.menu').css('height'));		m     = m/2;		$(".menu").css("top", m);		$("#tabs>div").css('min-height', ($(window).height() - 225) + "px");	}	transit();	$(window).resize(function() {		transit();	}).scroll(function(){		transit();	});	$(".menu>div").each(function() {		$(this).mouseover(function() {			$(this).children('.dropdown').stop().fadeIn(200);		}).mouseout(function() {			$(this).children('.dropdown').stop().fadeOut(200);		});	} [description]
- * @return {[type]}   [description]
- */
+route('fff', function(){});
 $(document).ready(function() {
 	$.ajaxSetup ({
 		cache: false
@@ -154,137 +150,102 @@ function setTabLI(ui) {
 	ui.attr('title', text);
 }
 
-/**
- * add Evry load ready event
- */
- (function(){
- 	var _LOAD = false;
- 	var _q = new Array();
- 	var _s = new Array();
- 	function _ready(f, o){
- 		var o = (typeof o === 'object')? o : new Object();
- 		if (_LOAD){
- 			f.call();
- 		}else{
- 			_q.push(f);
- 		}
- 		if(o.onState){
- 			_s.push(f.bind(true));
- 		}
- 	}
- 	function _readyState(f){
- 		_s.forEach(function(i){
- 			i(f);
- 		});
- 	}
- 	window.addEventListener('load', function(){
- 		_LOAD = true;
- 		_q.forEach(function(i){
- 			i();
- 		});
- 		_q = new Array();
- 	});
- 	ready = _ready;
- 	readyState = _readyState;
- })();
+function aClickTabs(e){
+	var activeTab, nActive, hash;
+	var href = $(this).attr('href');
+	var text = $(this).text();
+	if($(this).attr("target") == "_blank"){
+		nActive = true;
+	}
+	if(e.button || nActive){
+		addTab(href, text);
+		activeTab = $('#tabs .ui-tabs-nav > li').size() -1;
+		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
+	}else{
+		activeTab = $("#tabs").tabs('option', 'active');
+		var tab = $("#tabs>ul>li").eq(activeTab).removeClass("loadContentAjax");
+		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
+		tab.find("a").attr("href", href);
+	}
+	if(e.button || nActive){
+		$( "#tabs" ).tabs({ active: activeTab });
+	}else{
+		$("#tabs").tabs('load', activeTab);
+		sls_pushState(null, text, href+"#"+hash);
+	}
 
- 
- function aClickTabs(e){
- 	var activeTab, nActive, hash;
- 	var href = $(this).attr('href');
- 	var text = $(this).text();
- 	if($(this).attr("target") == "_blank"){
- 		nActive = true;
- 	}
- 	if(e.button || nActive){
- 		addTab(href, text);
- 		activeTab = $('#tabs .ui-tabs-nav > li').size() -1;
- 		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
- 	}else{
- 		activeTab = $("#tabs").tabs('option', 'active');
- 		var tab = $("#tabs>ul>li").eq(activeTab).removeClass("loadContentAjax");
- 		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
- 		tab.find("a").attr("href", href);
- 	}
- 	if(e.button || nActive){
- 		$( "#tabs" ).tabs({ active: activeTab });
- 	}else{
- 		$("#tabs").tabs('load', activeTab);
- 		sls_pushState(null, text, href+"#"+hash);
- 	}
+	return false;
+}
+(function($){
+	$.fn.persian_nu = function(en){
+		$(this).each(function(){
+			var farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
+			var english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+			for(n in $(this)[0].childNodes){
+				if(!$(this).is('.notp')){
+					if($(this)[0].childNodes[n].nodeName == '#text'){
+						var _h = $(this)[0].childNodes[n].textContent;
+						if(en){
+							var _hr = _h.replace(/[۱۲۳۴۵۶۷۸۹۰]/gi, function(){
+								return farsi.indexOf(arguments[0]);
+							});
+						}else{
+							var _hr = _h.replace(/\d/gi, function(){
+								return farsi[english.indexOf(arguments[0])];
+							});
+						}
+						$(this)[0].childNodes[n].textContent = _hr;
+					}
+				}
+			}
+		});
+	}
+})(jQuery);
+$(function(){
+	var sFileboxForm = ".filebox-form";
+	var sFileboxShow = ".filebox";
+	var sFileboxClose = ".filebox-close";
+	var fileboxForm = null;
+	var fileboxM = null;
+	$.fn.filebox = function(){
+		fileboxM = $(this);
+		fileboxForm = $(this).next(fileboxForm);
+		fileboxForm.ajxCall(function(data){
+			$(this).find("[name=base]").val(data.msg.base);
+			$(this).fileboxClose(data);
+		});
+		fileboxForm.find(sFileboxClose).click(function(){
+			$(this).parents("form").fileboxClose();
+		});
+		fileboxM.find(sFileboxShow).fileboxShow();
+	}
+	$.fn.fileboxClose = function(data){
+		var prev = $(this).prev("form");
+		if(data){
+			fileboxM.onFiles(data);
+		}
+		$(this).hide();
+		prev.fadeIn("fast");
+	}
+	$.fn.fileboxShow = function(){
+		$(this).click(function(){
+			var form = $(this).parents("form").next("form");
+			$(this).parents("form").hide();
+			form.fadeIn('fast', function(){
+				$(this).find("input[type='text']")[0].focus();
+			});
+		});
+	}
 
- 	return false;
- }
- (function($){
- 	$.fn.persian_nu = function(en){
- 		$(this).each(function(){
- 			var farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
- 			var english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
- 			for(n in $(this)[0].childNodes){
- 				if(!$(this).is('.notp')){
- 					if($(this)[0].childNodes[n].nodeName == '#text'){
- 						var _h = $(this)[0].childNodes[n].textContent;
- 						if(en){
- 							var _hr = _h.replace(/[۱۲۳۴۵۶۷۸۹۰]/gi, function(){
- 								return farsi.indexOf(arguments[0]);
- 							});
- 						}else{
- 							var _hr = _h.replace(/\d/gi, function(){
- 								return farsi[english.indexOf(arguments[0])];
- 							});
- 						}
- 						$(this)[0].childNodes[n].textContent = _hr;
- 					}
- 				}
- 			}
- 		});
- 	}
- })(jQuery);
- $(function(){
- 	var sFileboxForm = ".filebox-form";
- 	var sFileboxShow = ".filebox";
- 	var sFileboxClose = ".filebox-close";
- 	var fileboxForm = null;
- 	var fileboxM = null;
- 	$.fn.filebox = function(){
- 		fileboxM = $(this);
- 		fileboxForm = $(this).next(fileboxForm);
- 		fileboxForm.ajxCall(function(data){
- 			$(this).find("[name=base]").val(data.msg.base);
- 			$(this).fileboxClose(data);
- 		});
- 		fileboxForm.find(sFileboxClose).click(function(){
- 			$(this).parents("form").fileboxClose();
- 		});
- 		fileboxM.find(sFileboxShow).fileboxShow();
- 	}
- 	$.fn.fileboxClose = function(data){
- 		var prev = $(this).prev("form");
- 		if(data){
- 			fileboxM.onFiles(data);
- 		}
- 		$(this).hide();
- 		prev.fadeIn("fast");
- 	}
- 	$.fn.fileboxShow = function(){
- 		$(this).click(function(){
- 			var form = $(this).parents("form").next("form");
- 			$(this).parents("form").hide();
- 			form.fadeIn('fast', function(){
- 				$(this).find("input[type='text']")[0].focus();
- 			});
- 		});
- 	}
-
- 	$.fn.onFiles = function(f){
- 		if(typeof f === 'function'){
- 			$(this).data("onFiles", f);
- 		}else if($(this).data("onFiles")){
- 			var onFiles = $(this).data("onFiles");
- 			onFiles.call(this, f);
- 		}
- 	}
- });
+	$.fn.onFiles = function(f){
+		if(typeof f === 'function'){
+			$(this).data("onFiles", f);
+		}else if($(this).data("onFiles")){
+			var onFiles = $(this).data("onFiles");
+			onFiles.call(this, f);
+		}
+	}
+});
 function imageChangeSize(c){
 	console.log(c);
 	$(this).find(".img-crop").val(c.x+" "+c.y+" "+c.w+" "+c.h);
@@ -330,11 +291,11 @@ ready(function(base){
 			formatDate:"YYYY-MM-DD",
 			isRTL:false,
 			onSelect: function() {
-		        if(_self.callBackDate){
-		        	var fn = _self.callBackDate;
-		        	fn.call(_self);
-		        }
-		    }
+				if(_self.callBackDate){
+					var fn = _self.callBackDate;
+					fn.call(_self);
+				}
+			}
 
 		});
 	});
@@ -419,67 +380,67 @@ ready(function(base){
 ///
 ///////////////////////////////////////////////////////////////////////
 var sesseion = ((Math.random()).toString()).replace(/^\d\./, "");
-		base.find('#data_table')
-		.on( 'draw.dt', function () {
-			$(".dataTables_info").persian_nu();
-			$(".dataTables_paginate a").persian_nu();
-		})
-		.dataTable( {
-			"processing": true,
-			"serverSide": true,
-			"ajax": "users/status=api/session="+sesseion,
-			language: {
-				processing:     "درحال بارگذاری",
-				search:         "جستجو:",
-				lengthMenu:    "مقدار _MENU_ سطر",
-				info:           "مقدار _START_ تا _END_ از _TOTAL_ سطر",
-				infoEmpty:      "هیچ سطری یافت نشد",
-				infoFiltered:   "(مقدار _MAX_ بدون فیلتر)",
-				infoPostFix:    "",
-				loadingRecords: "درحال بارگذاری...",
-				zeroRecords:    "هیچ سطری یافت نشد",
-				emptyTable:     "هیچ سطری یافت نشد",
-				paginate: {
-					first:      "نخست",
-					previous:   "قبلی",
-					next:       "بعدی",
-					last:       "آخرین"
-				},
-				aria: {
-					sortAscending:  ": مرتب سازی صعودی",
-					sortDescending: ": مرتب سازی نزولی"
-				}
-			},
-			"columns": [
-			{ "data": "name" },
-			{ "data": "family" },
-			{ "data": "father" },
-			{ "data": "birthday" },
-			{ "data": "gender" },
-			{ "data": "nationalcode" },
-			{ "data": "code" },
-			{ "data": "marriage" },
-			{ "data": "education_id" },
-			{ "data": "id" },
-			{ "data": "id" }
-			],
-			"order": [[ 9, "asc" ]],
-			"lengthMenu": [[10, 25, 50], [10, 25, 50]],
-			"createdRow": function ( row, data, index ) {
-				var txt;
-				var more = $("td",row).eq(9);
-				more.persian_nu(true);
-				txt = more.text();
-				more.html('<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
-				$("td", row).persian_nu();
+base.find('#data_table')
+.on( 'draw.dt', function () {
+	$(".dataTables_info").persian_nu();
+	$(".dataTables_paginate a").persian_nu();
+})
+.dataTable( {
+	"processing": true,
+	"serverSide": true,
+	"ajax": "users/status=api/session="+sesseion,
+	language: {
+		processing:     "درحال بارگذاری",
+		search:         "جستجو:",
+		lengthMenu:    "مقدار _MENU_ سطر",
+		info:           "مقدار _START_ تا _END_ از _TOTAL_ سطر",
+		infoEmpty:      "هیچ سطری یافت نشد",
+		infoFiltered:   "(مقدار _MAX_ بدون فیلتر)",
+		infoPostFix:    "",
+		loadingRecords: "درحال بارگذاری...",
+		zeroRecords:    "هیچ سطری یافت نشد",
+		emptyTable:     "هیچ سطری یافت نشد",
+		paginate: {
+			first:      "نخست",
+			previous:   "قبلی",
+			next:       "بعدی",
+			last:       "آخرین"
+		},
+		aria: {
+			sortAscending:  ": مرتب سازی صعودی",
+			sortDescending: ": مرتب سازی نزولی"
+		}
+	},
+	"columns": [
+	{ "data": "name" },
+	{ "data": "family" },
+	{ "data": "father" },
+	{ "data": "birthday" },
+	{ "data": "gender" },
+	{ "data": "nationalcode" },
+	{ "data": "code" },
+	{ "data": "marriage" },
+	{ "data": "education_id" },
+	{ "data": "id" },
+	{ "data": "id" }
+	],
+	"order": [[ 9, "asc" ]],
+	"lengthMenu": [[10, 25, 50], [10, 25, 50]],
+	"createdRow": function ( row, data, index ) {
+		var txt;
+		var more = $("td",row).eq(9);
+		more.persian_nu(true);
+		txt = more.text();
+		more.html('<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
+		$("td", row).persian_nu();
 
-				var edit = $("td",row).eq(10);
-				edit.persian_nu(true);
-				txt = edit.text();
-				edit.html('<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
-				readyState($(row));
-			}
-		});
+		var edit = $("td",row).eq(10);
+		edit.persian_nu(true);
+		txt = edit.text();
+		edit.html('<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
+		readyState($(row));
+	}
+});
 
 
 
