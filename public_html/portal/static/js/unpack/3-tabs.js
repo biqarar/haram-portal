@@ -66,6 +66,7 @@ $(document).ready(function() {
 				var html = $("<span>"+data+"</span>").find("#content");
 				$(this).html(html);
 				readyState($(this));
+				$(this).sroute();
 				transit();
 			};
 		},

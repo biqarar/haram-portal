@@ -6,7 +6,7 @@ class view extends main_view  {
 	public function config() {
 		//------------------------------ global
 		$this->global->page_title  = "person_list";
-
+		$this->data->dataTable = $this->dtable(array('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'detail', 'edit'));
 		//------------------------------ search form
 		// $hidden = $this->form("#hidden")->value("xsearch");
 		// $searchF = $this->form("text")->name("search")->label("search");
