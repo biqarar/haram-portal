@@ -234,6 +234,31 @@ class main_view{
 		return $classes_detail;
 	}
 
+	public function detailCol($table, $list, $html) {
+		if($this->colPermission($table, "select")) {
+			return	$list->addCol("detail", "detail")->select(-1, "detail")->html($html);
+		}else{
+			return $list;
+		}
+	}
+
+	public function editCol($table, $list, $html) {
+		if($this->colPermission($table, "update")) {
+			return	$list->addCol("edit", "edit")->select(-1, "edit")->html($html);
+		}else{
+			return $list;
+		}
+	}
+
+
+	public function colPermission($table, $operat) {
+		if(isset($_SESSION['user_permission']['tables'][$table][$operat]) && 
+			$_SESSION['user_permission']['tables'][$table][$operat] == 'public'){
+			return true;
+		}
+		return false;
+	}
+
 }
 
 class aDATA{
