@@ -37,7 +37,7 @@
 		}
 
 		function mkData(){
-			var Data = new FormData()
+			var Data = new FormData();
 			$(this).find("select, input, button, textarea").each(function(){
 				var value = false;
 				var name = this.name;
