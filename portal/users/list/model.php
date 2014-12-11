@@ -4,19 +4,14 @@
 */
 class model extends main_model {
 	public function post_api(){
-		$this->sql(".dataTable", "person", false, "name, family, father");
-		$options = array(
-			'table' => 'person',
-			'fileds' => array('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education', 'id'),
-			'search_fields' => "name, family, father",
-			'query' => function($q){
-			},
-			'search' => function(){
-				
-			}
-			);
-		// this->sql(".dataTable", "person", false, "name, family, father");
-
+		$dtable = new dtable;
+		$dtable->table('person')
+			->fields('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'id detail', 'id edit')
+			->search_fields('name', 'family', 'father')
+			->result(function($r){
+				$r->edit = '<a href="'.$r->edit.'">'.$r->edit.'</a>';
+			});
+		$this->sql(".dataTable", $dtable);
 	}	
 	public function post_xsearch() {
 		$text = post::search();
