@@ -306,4 +306,12 @@ class main_controller{
 		return array($access, $msg);
 	}
 }
+
+class dtable{
+
+	function __call($name, $args){
+		$this->$name = count($args) > 1 ? $args : $args[0];
+		return $this;
+	}
+}
 ?>

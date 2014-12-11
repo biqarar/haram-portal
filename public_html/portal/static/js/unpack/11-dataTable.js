@@ -1,3 +1,4 @@
+route("portal/users/status=list", function(){
 	var sesseion = ((Math.random()).toString()).replace(/^\d\./, "");
 	$('#dtableme')
 	.on( 'draw.dt', function () {
@@ -30,33 +31,21 @@
 				sortDescending: ": مرتب سازی نزولی"
 			}
 		},
-		"columns": [
-		{ "data": "name" },
-		{ "data": "family" },
-		{ "data": "father" },
-		{ "data": "birthday" },
-		{ "data": "gender" },
-		{ "data": "nationalcode" },
-		{ "data": "code" },
-		{ "data": "marriage" },
-		{ "data": "education_id" },
-		{ "data": "id" },
-		{ "data": "id" }
-		],
-		"order": [[ 9, "asc" ]],
+		// "order": [[ 9, "asc" ]],
 		"lengthMenu": [[10, 25, 50], [10, 25, 50]],
 		"createdRow": function ( row, data, index ) {
-			var txt;
-			var more = $("td",row).eq(9);
-			more.persian_nu(true);
-			txt = more.text();
-			more.html('<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
-			$("td", row).persian_nu();
+			// var txt;
+			// var more = $("td",row).eq(9);
+			// more.persian_nu(true);
+			// txt = more.text();
+			// more.html('<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='+txt+'"></a>');
+			// $("td", row).persian_nu();
 
-			var edit = $("td",row).eq(10);
-			edit.persian_nu(true);
-			txt = edit.text();
-			edit.html('<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
-			readyState($(row));
+			// var edit = $("td",row).eq(10);
+			// edit.persian_nu(true);
+			// txt = edit.text();
+			// edit.html('<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='+txt+'"></a>');
+			// readyState($(row));
 		}
 	});
+});
