@@ -5,15 +5,16 @@
 class model extends main_model {
 	public function post_api(){
 		$this->sql(".dataTable", "person", false, "name, family, father");
-		// $options = array(
-		// 	'table' => 'person',
-		// 	'search_fields' => "name, family, father",
-		// 	'query' => function($q){
-		// 	},
-		// 	'search' => function(){
+		$options = array(
+			'table' => 'person',
+			'fileds' => array('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education', 'id'),
+			'search_fields' => "name, family, father",
+			'query' => function($q){
+			},
+			'search' => function(){
 				
-		// 	}
-		// 	);
+			}
+			);
 		// this->sql(".dataTable", "person", false, "name, family, father");
 
 	}	

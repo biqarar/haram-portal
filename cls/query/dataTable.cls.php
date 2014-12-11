@@ -3,6 +3,7 @@ class query_dataTable_cls extends query_cls
 {
 	function config($table, $fn = false, $search = false)
 	{
+		debug_lib::msg("ff", $_GET);
 		$sql = $this->sql();
 		$result = $sql::$table();
 		$length = $_GET['length'];
