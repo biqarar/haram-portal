@@ -10,7 +10,10 @@ class view extends main_view {
 
 		//------------------------------  load form
 		$f = $this->form("@city", $this->urlStatus());
-		
+		$this->data->dataTable = $this->dtable(
+			'city/status=api/',
+			array('id', 'name', 'province','edit')
+			);
 		//------------------------------  list of city
 		$list = $this->sql(".list", "city", function($query) {
 			$query->joinProvince()->whereId("#city.province_id")->fieldName('Pname');

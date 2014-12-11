@@ -1,8 +1,8 @@
-{%- macro make(childs) -%}
-<table class="dtable" class="display" cellspacing="0" width="100%">
+{%- macro make(data) -%}
+<table class="dtable" class="display" cellspacing="0" width="100%" data-table-url='{{data.url}}'>
 	<thead>
 		<tr>
-			{% for n in childs %}
+			{% for n in data.fields %}
 			<th>{{n}}</th>
 			{%endfor%}
 		</tr>
@@ -10,7 +10,7 @@
 
 	<tfoot>
 		<tr>
-			{%for n in childs%}
+			{%for n in data.fields%}
 			<th>{{n}}</th>
 			{%endfor%}
 		</tr>

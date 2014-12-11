@@ -10,20 +10,27 @@ class query_dataTable_cls extends query_cls
 		$result = $sql::$table();
 		$length = $_GET['length'];
 		$search = isset($object->search_fields) ? $object->search_fields : false;
+		if(isset($object->query)){
+			$arg = func_get_args();
+			$args = array_splice($arg, 2);
+			array_unshift($args, $result);
+			call_user_func_array($object->query, $args);
+		}
 		if($order = $this->get('order')){
 			if($column = $this->get('columns', $order['column'])){
 				$by = (isset($order['dir']) && strtolower($order['dir']) == "desc") ? "DESC" : "ASC";
 				$sOrder = "order".ucfirst($iFields[$column['data']]);
 				if(isset($iFields[$column['data']])){
-					$result->$sOrder($by);
+					if(isset($object->order)){
+						$continiue = call_user_func_array($object->order, array($result, $sOrder, $by));
+						if($continiue){
+							$result->$sOrder($by);
+						}
+					}else{
+						$result->$sOrder($by);
+					}
 				}
 			}
-		}
-		if(isset($object->query)){
-			$arg = func_get_args();
-			$args = array_splice($arg, 2);
-			array_unshift($args, $result);
-			call_user_func_array($fn, $args);
 		}
 		if(!isset($_SESSION['draw_'.config_lib::$surl['session']])){
 			$sql_count = $this->sql();
@@ -37,12 +44,12 @@ class query_dataTable_cls extends query_cls
 		$recordsFiltered = $recordsTotal;
 		if($search !== false && isset($_GET['search']) && isset($_GET['search']['value']) && !empty($_GET['search']['value'])){
 			$vsearch = $_GET['search']['value'];
-			// $search = preg_split("/(\s|\,)/", $search, -1, PREG_SPLIT_NO_EMPTY);
 			$vsearch = str_replace(" ", "_", $vsearch);
 			$search  = join($search, ', " ", ');
 			$result->condition("where", "##concat($search)", "LIKE", "%$vsearch%");
 		}
 		$result->limit($_GET['start'], $length);
+
 		$query = $result->select();
 		$allData = $query->allObject();
 		foreach ($iFields as $ifkey => $ifvalue) {
@@ -76,6 +83,7 @@ class query_dataTable_cls extends query_cls
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", (int) $q->select()->alist(0)[0]);
 		debug_lib::property("data", $array);
+		// echo($query->string());
 	}
 
 	function get($name, $index = 0){
