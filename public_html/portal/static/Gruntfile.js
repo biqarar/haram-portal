@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 				' * @author ahmad karimi, reza mohiti, baravak\n'+
 				' * @version <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %>\n'+
 				' */\n',
-				preserveComments : false
+				encoding: 'utf8'
 			},
 			build: {
 				src: 'js/unpack/*.js',
