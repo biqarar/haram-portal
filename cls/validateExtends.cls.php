@@ -9,6 +9,7 @@ class validateExtends_cls{
 		}
 
 	}
+	
 	public function id(){
 		if($this->value == 'null' or preg_match("/^\d+$/", $this->name)){
 			return true;
@@ -19,9 +20,9 @@ class validateExtends_cls{
 
 	public function date(){
 		if($this->value == null) return true;		
-		// var_dump($this->value);
-		// $ptdt = "/^((13(89|9[0-9]))|(14(0[0-8])))\/(((0?[1-6])\/(0?[1-9]|[1-2]\d|3[0-1]))|((0?[7-9])\/(0?[1-9]|[1-2]\d|30))|((12)\/(0?[1-9]|[1-2]\d)))$/";
-		if(!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $this->value, $date)){
+		
+		// /^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/
+		if(!preg_match("/^(13|14)([0-9][0-9])(\/|-)?(((0?[1-6])(\/|-)?((0?[1-9])|([12][0-9])|(3[0-1])))|(((0?[7-9])|(1[0-2]))(\/|-)?((0?[1-9])|([12][0-9])|(30))))$/", $this->value, $date)){
 			return false;
 		}else{
 			$this->value = $date[1]
