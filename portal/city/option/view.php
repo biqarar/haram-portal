@@ -14,9 +14,11 @@ class view extends main_view {
 		//------------------------------  list of city
 		$list = $this->sql(".list", "city", function($query) {
 			$query->joinProvince()->whereId("#city.province_id")->fieldName('Pname');
-		})		
-		->addColEnd("edit", "edit")->select(-1, "edit")
-		->html($this->editLink("city"));
+		});
+
+
+		$list = $this->editCol("city", $list, $this->editLink("city"));
+
 		
 		$this->data->list = $list->compile();
 		

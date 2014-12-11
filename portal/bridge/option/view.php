@@ -21,15 +21,14 @@ class view extends main_view {
 	    $f->users_id->value($users_id);
 
 	    //------------------------------ list of bridge fo this user
-    	$this->data->list = $this->sql(".list", "bridge" , function($query, $users_id){
+    	$list = $this->sql(".list", "bridge" , function($query, $users_id){
     		$query->whereUsers_id($users_id);
-    	}, $users_id)
+    	}, $users_id);
 
     	//------------------------------ edit link
-    	->addCol("edit", "edit")
-    	->select(-1 , "edit")
-    	->html($this->link("bridge/status=edit/usersid=$users_id/id=%id%" , "href", "icoedit"))
-    	->compile();
+    	$list = $this->editCol("bridge", $list, $this->link("bridge/status=edit/usersid=$users_id/id=%id%" , "href", "icoedit"));
+
+    	$this->data->list = $list->compile();
 
     	//------------------------------ load edit form
 	    if($this->urlStatus() == "edit"){

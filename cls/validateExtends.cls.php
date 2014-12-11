@@ -116,7 +116,7 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false){
-		// return true;
+		return true;
 		
 		$a = (preg_match("/^\d+$/", $a)) ? $a : 1;
 		if(!$b){
@@ -148,7 +148,7 @@ class validateExtends_cls{
 	}
 
 	public function farsi($a = false, $b = false){
-		// return true;
+		return true;
 		// check
 		$status= true;
 		$strn = strlen(utf8_decode($this->value));
@@ -164,12 +164,14 @@ class validateExtends_cls{
 			}
 		}
 		$this->value = trim($this->value);
-		$fa = "[ضصثقفغعهخحجچگکمنتالبیسشظطزرذدئوآةژيؤءؤئإأ]";
+		# ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء
+		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء]";
 		$pattern = "/^".$fa."{2,}(\s".$fa."{2,})*$/";
 		if(!preg_match($pattern, $this->value)){
 			$status= false;
 		}
 		$this->status = $status;
+		return true;
 	}
 
 	public function email() {

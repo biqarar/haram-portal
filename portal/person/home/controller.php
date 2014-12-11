@@ -16,6 +16,18 @@ class controller extends main_controller{
 				$this->permission  =array("classification" => array("select" => array("public", "private")));
 			} 
 		);
+
+		//------------------------------ person api to get list of auto complete 
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("extera")
+			),
+			function() {
+				save(array("person", "extera"));
+				$this->access = true;	
+				// $this->permission  =array("classification" => array("select" => array("public", "private")));
+			} 
+		);
 	}		
 }
 ?>
