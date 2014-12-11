@@ -1,0 +1,19 @@
+{%- macro make(childs) -%}
+<table class="dtable" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			{% for n in childs %}
+			<th>{{n}}</th>
+			{%endfor%}
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			{%for n in childs%}
+			<th>{{n}}</th>
+			{%endfor%}
+		</tr>
+	</tfoot>
+</table>
+{%- endmacro -%}

@@ -42,37 +42,5 @@
 		transition: all 100ms linear;
 	}
 </style>
-<table id="dtableme" class="display" cellspacing="0" width="100%">
-	<thead>
-		<tr>
-			<th>نام</th>
-			<th>نام خانوادگی</th>
-			<th>نام پدر</th>
-			<th>تاریخ تولد</th>
-			<th>جنسیت</th>
-			<th>کدملی/شماره گذرنامه</th>
-			<th>شماره شناسنامه</th>
-			<th>وضعیت تاهل</th>
-			<th>تحصیلات</th>
-			<th>بیشتر</th>
-			<th>ویرایش</th>
-		</tr>
-	</thead>
-
-	<tfoot>
-		<tr>
-			<th>نام</th>
-			<th>نام خانوادگی</th>
-			<th>نام پدر</th>
-			<th>تاریخ تولد</th>
-			<th>جنسیت</th>
-			<th>کدملی/شماره گذرنامه</th>
-			<th>شماره شناسنامه</th>
-			<th>وضعیت تاهل</th>
-			<th>تحصیلات</th>
-			<th>بیشتر</th>
-			<th>ویرایش</th>
-		</tr>
-	</tfoot>
-</table>
+	{{dtable.make(dataTable)}}
 {%endblock%}

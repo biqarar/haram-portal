@@ -36,6 +36,7 @@ class main_view{
 		// $this->data->homeLayout = './main/home.html';
 
 		$this->data->macro['forms'] = 'macro/forms.html';
+		$this->data->macro['dtable'] = 'macro/dtable.html';
 		$this->data->macro['list'] = 'macro/tagMaker.html';
 		if(isset($_SESSION['error']) && isset($_SESSION['error'][config_lib::$URL]) && isset($_SERVER['HTTP_REFERER'])){
 			$this->data->debug = $_SESSION['error'][config_lib::$URL];
@@ -257,6 +258,15 @@ class main_view{
 			return true;
 		}
 		return false;
+	}
+
+	public function dtable($f){
+		$this->data->Extend_dtable = true;
+		$array = array();
+		foreach ($f as $key => $value) {
+			$array[] = gettext($value);
+		}
+		return $array;
 	}
 
 }
