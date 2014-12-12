@@ -1,0 +1,19 @@
+ul.copire-contextmenu{
+	min-width: 90px;
+	background: red;
+	position: absolute;
+	z-index: 9999;
+	display: none;
+	padding: 10px;
+	list-style: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+.copire-contextmenu>li{
+	background: blue;
+}

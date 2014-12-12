@@ -36,9 +36,9 @@ $(document).ready(function() {
 		beforeActivate : function(e, ui){
 			var tTab = ui.newTab.attr("aria-controls");
 			activeState = (location.hash).replace(/\#/, "");
-
-			if(ui.newTab.find("a").attr("href") == "/portal/#tab-1"){
-				sls_pushState(null, ui.newTab.find("a").text(), "#"+tTab);
+			if(/^\/?portal\/(.*)$/.test(ui.newTab.find("a").attr("href"))){
+				var x = ui.newTab.find("a").attr("href");
+				sls_pushState(null, ui.newTab.find("a").text(), x.match(/^\/?portal\/(.*)#(.*)$/)[1]+"#"+tTab);
 			}else if(activeState != tTab){
 				var tab_href = ui.newTab.find("a").attr("href");
 				tab_href = tab_href.replace(/^\.?\/?/,"");
@@ -47,8 +47,8 @@ $(document).ready(function() {
 			}
 		},
 		beforeLoad : function(e, ui){
+			$(ui.panel[0]).sremovecontextmenu();
 			transit();
-
 			if(ui.tab.is(".loadContentAjax")) return false;
 			ui.panel.html('<embed src="static/svg/logo-animation.svg" class="perload-svg" height="150" type="image/svg+xml" />');
 			ui.panel.html = function(data){
@@ -66,7 +66,7 @@ $(document).ready(function() {
 				var html = $("<span>"+data+"</span>").find("#content");
 				$(this).html(html);
 				readyState($(this));
-				$(this).sroute();
+				$(this).sroute(ui.tab.find("a")[0].pathname);
 				transit();
 			};
 		},
@@ -112,7 +112,7 @@ $("#tabs>ul").droppable({
 	drop: function(event, ui) {
 		$(".deactive-tab").remove();
 		var href = ui.draggable.attr('href');
-		var text = ui.draggable.text();
+		var text = (ui.draggable.text() != '') ? ui.draggable.text() : (ui.draggable.attr('title') != '') ? ui.draggable.attr('title') : '...';
 		addTab(href, text);
 	},
 	over : function(event, ui){
@@ -173,3 +173,33 @@ function aClickTabs(e){
 
 	return false;
 }
+
+// push state
+function sls_pushState(object, title, url){
+	history.pushState(object, title, url);
+}
+
+window.onpopstate = function(event) 
+{
+	var oldActive = $("#tabs").tabs('option', 'active');
+	var active_tab;
+	var activeState = (location.hash).replace(/\#/, "");
+	if(activeState){
+		var tab = $("[aria-controls="+activeState+"]");
+		if(tab.length > 0){
+			active_tab = tab.index()
+		}else{
+			active_tab = 0;
+		}
+	}else{
+		active_tab = 0
+	}
+	$( "#tabs" ).tabs({ active: active_tab });
+	if(active_tab == oldActive){
+		href = location.href;
+		href = href.replace(/\#(.*)$/, "");
+		$("#tabs>ul>li").eq(active_tab).find("a").attr("href", href);
+		var tab = $("#tabs>ul>li").eq(active_tab).removeClass("loadContentAjax");
+		$("#tabs").tabs('load', active_tab);
+	}
+};

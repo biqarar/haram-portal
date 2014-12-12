@@ -1,5 +1,7 @@
 route("*", function(){
 	$('.dtable', this).each(function(){
+		var _self = this;
+		var _data = false;
 		var url = $(this).attr('data-table-url');
 		var sesseion = ((Math.random()).toString()).replace(/^\d\./, "");
 		$(this)
@@ -11,6 +13,8 @@ route("*", function(){
 			if(x.selectmenu("instance")){
 				x.selectmenu("destroy");
 			}
+			readyState($(_self));
+			$(_self).sroute(url, _data);
 		})
 		.dataTable( {
 			"processing": true,
@@ -41,6 +45,7 @@ route("*", function(){
 			"order": [[ 0, "asc" ]],
 			"lengthMenu": [[10, 25, 50], [10, 25, 50]],
 			"createdRow": function ( row, data, index ) {
+				_data = data;
 				$('*',row).persian_nu();
 			}
 		});
