@@ -703,4 +703,31 @@ label {
 .clearbox {
   clear: both; }
 
+ul.copire-contextmenu {
+  min-width: 90px;
+  background: #fff;
+  position: absolute;
+  border: 1px solid #e7e7e7;
+  z-index: 9999;
+  display: none;
+  list-style: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.04706);
+  -webkit-padding-start: 0; }
+
+.copire-contextmenu > li {
+  font-family: 'WRoya';
+  padding: 5px 20px;
+  color: #222222; }
+  .copire-contextmenu > li:not(:last-child) {
+    border-bottom: 1px solid #e7e7e7; }
+  .copire-contextmenu > li:hover {
+    background-color: #b0c4b0; }
+
 /*# sourceMappingURL=admin.css.map */
