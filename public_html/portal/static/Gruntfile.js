@@ -17,14 +17,26 @@ module.exports = function(grunt) {
 				dest: 'js/banoo.min.js'
 			}
 		},
+		sass: {
+			dist: {
+				files: {
+					'css/admin.css' : 'css/admin.scss'
+				}
+			}
+		},
 		watch: {
 			scripts: {
 				files: 'js/unpack/*.js',
 				tasks: ['uglify'],
 			},
+			css: {
+				files: 'css/*.scss',
+				tasks: ['sass']
+			}
 		},
 	});
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.registerTask('default', ['watch']);
 };
