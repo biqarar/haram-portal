@@ -47,6 +47,7 @@ $(document).ready(function() {
 			}
 		},
 		beforeLoad : function(e, ui){
+			copiremenuehide();
 			transit();
 			if(ui.tab.is(".loadContentAjax")) return false;
 			$(ui.panel[0]).sremovecontextmenu();
@@ -102,6 +103,7 @@ tabs.delegate( "span.ui-icon-close", "click", function() {
 		$(this).remove();
 	}).attr( "aria-controls" );
 	$( "#" + panelId ).fadeOut('fast', function(){
+		$(this).sremovecontextmenu();
 		$(this).remove();
 		tabs.tabs("refresh");
 	});

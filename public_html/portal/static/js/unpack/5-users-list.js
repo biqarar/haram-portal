@@ -12,6 +12,7 @@ route(/classification\/class\/classesid=\d+/,function(){
 	_self.scontextmenu({
 		user : {
 			click : function(){
+				// http://haram.dev/portal/classification/api/usersid=11/classesid=2
 				console.log(arguments);
 			},
 			title : function(){

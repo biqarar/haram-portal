@@ -104,4 +104,5 @@
 			_oncontextmenu = false;
 		});
 	});
+	copiremenuehide = _hide_contextmenu;
 })(jQuery);
