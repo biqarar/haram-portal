@@ -206,3 +206,24 @@ ul.copire-contextmenu{
 		background-color: #b0c4b0;
 	}
 }
+#status-xhr{
+	border: 1px solid #00BBEC;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+	position: absolute;
+	z-index: 9999999;
+	top:80px;
+	left: 50%;
+	margin-left: -100px;
+	background: white;
+	min-width: 200px;
+	padding: 5px;
+	text-align: center;
+	font-family: WYekan;
+	font-size: 12px;
+	&.status-xhr-warn{
+		border-color :#CACC12;
+	}
+	&.status-xhr-error{
+		border-color :#B470BA;
+	}
+}

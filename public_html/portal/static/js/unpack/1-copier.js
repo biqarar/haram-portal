@@ -32,22 +32,25 @@
 				var _item = menu_item[i];
 				var _data = _item.data("scontextmenu")[subject];
 				var _title = _data.title.call(_item);
-				var _append = $("<li>"+_title+"</li>");
+				var id = _item.attr('id');
+				var _append = $("<li copier-aria-controls='"+id+"'>"+_title+"</li>");
 				var _activeTab = $("#tabs").tabs('option', 'active');
-				contextmenu.append(_append);
+				_append.appendTo(contextmenu);
+				_append[0].tabNav = $("#tabs>ul>li[aria-controls="+id+"]");
+				_append[0].tabPanel = $("#tabs>div#"+id);
 				_append.bind('click', function(){
+					$("#tabs>ul>li").css({opacity:1});
 					if(_data.click){
-						_data.click.call(_item, $(this), data, subject);
-						_hide_contextmenu();
+						var onHide = _data.click.call($(this)[0].tabPanel, $(this), data, subject);
+						if(onHide !== false){
+							_hide_contextmenu();
+						}
 					}
 				}).hover(function(){
-					$("#tabs>div").each(function(i){
-						if(_item[0] == this){
-							// $("#tabs").tabs({active: i });
-						}
-					});
+					$("#tabs>ul>li").css({opacity:0.2});
+					$(this)[0].tabNav.css({opacity:1});
 				}, function(){
-					// $("#tabs").tabs({active: _activeTab });
+					$("#tabs>ul>li").css({opacity:1});
 				});
 			}
 		}

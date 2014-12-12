@@ -11,7 +11,7 @@ class view extends main_view {
 
 		//------------------------------ get detail classes
 		if(config_lib::$surl['classesid']){
-
+			$this->global->page_title = gettext($this->global->page_title).' '.config_lib::$surl['classesid'];
 			//------------------------------ classes id
 			$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
 			$this->global->classesid = $classes_id;

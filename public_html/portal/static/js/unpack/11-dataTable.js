@@ -14,7 +14,7 @@ route("*", function(){
 				x.selectmenu("destroy");
 			}
 			readyState($(_self));
-			$(_self).sroute(url, _data);
+			$(_self).sroute(url);
 		})
 		.dataTable( {
 			"processing": true,
@@ -45,9 +45,9 @@ route("*", function(){
 			"order": [[ 0, "asc" ]],
 			"lengthMenu": [[10, 25, 50], [10, 25, 50]],
 			"createdRow": function ( row, data, index ) {
-				_data = data;
+				$(row).data('copire-data', data);
 				$('*',row).persian_nu();
 			}
 		});
-	});
+});
 });

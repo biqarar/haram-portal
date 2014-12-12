@@ -59,6 +59,7 @@ $(document).ready(function() {
 				try{
 					global = $.parseJSON(global);
 					ui.tab.find("a").html(global.page_title);
+					ui.tab.find("a").persian_nu();
 					$("title").text(global.page_title);
 					setTabLI(ui.tab);
 				}catch(e){
@@ -129,6 +130,7 @@ $("#tabs>ul").droppable({
 
 function addTab(href, text, deactive){
 	var tab = $("<li><a href='"+href+"'>"+text+"</a></li>");
+	tab.persian_nu();
 	$("#tabs").find('.ui-tabs-nav').append(tab);
 	if(deactive) tab.addClass("deactive-tab").addClass("ui-state-default");
 	if(!deactive) $("#tabs").tabs( "refresh" );
