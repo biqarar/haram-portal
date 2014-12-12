@@ -165,12 +165,14 @@ class validateExtends_cls{
 			}
 		}
 		$this->value = trim($this->value);
-		$fa = "[ضصثقفغعهخحجچگکمنتالبیسشظطزرذدئوآةژيؤءؤئإأ]";
+		# ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء
+		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء]";
 		$pattern = "/^".$fa."{2,}(\s".$fa."{2,})*$/";
 		if(!preg_match($pattern, $this->value)){
 			$status= false;
 		}
 		$this->status = $status;
+		return true;
 	}
 
 	public function email() {
