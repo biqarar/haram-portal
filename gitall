@@ -1,0 +1,12 @@
+echo "Enter your command (push | pull): "
+read command
+echo "Enter project name (haram | saloos | jibres | pelesht ): "
+read name
+cd /home/ahmad/project/$name
+git status
+echo "Enter commit:"
+read name
+git add --all
+git status
+git commit -m "$name"
+git push origin master
