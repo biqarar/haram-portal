@@ -47,9 +47,9 @@ $(document).ready(function() {
 			}
 		},
 		beforeLoad : function(e, ui){
-			$(ui.panel[0]).sremovecontextmenu();
 			transit();
 			if(ui.tab.is(".loadContentAjax")) return false;
+			$(ui.panel[0]).sremovecontextmenu();
 			ui.panel.html('<embed src="static/svg/logo-animation.svg" class="perload-svg" height="150" type="image/svg+xml" />');
 			ui.panel.html = function(data){
 				ui.tab.addClass("loadContentAjax");
