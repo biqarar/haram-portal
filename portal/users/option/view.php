@@ -12,6 +12,9 @@ class view extends main_view {
 
 		// ------------------------------ load form
 		$f = $this->form("@users", $this->urlStatus());
+
+		$f->remove("status,type");
+
 		// ------------------------------add person form into users form
 		$personForm = $this->form("@person");
 		$f->add($personForm);

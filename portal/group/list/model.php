@@ -6,7 +6,7 @@ class model extends main_model {
 
 	public function post_api() {
 
-		$this->dtable->table("group")
+		$dtable = 	$this->dtable->table("group")
 		->fields("name", "id edit")
 		->search_fields("name")
 		->result(function($r){

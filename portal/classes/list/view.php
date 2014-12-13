@@ -10,7 +10,7 @@ class view extends main_view{
 		$this->global->page_title = "classes";
 
 		$this->data->dataTable = $this->dtable("classes/status=api/"
-			, array("id", "teacher"));
+			, array("id", "teacher", "name", "pname"));
 		// //------------------------------ classes list
 		// $classes_detail = $this->sql(".list", "classes", function($query) {
 		// 	$query->limit(80);

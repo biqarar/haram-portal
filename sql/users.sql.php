@@ -26,12 +26,12 @@ class users {
 	}
 
 	public function type() {
-		$this->form("select")->name("type");
+		$this->form("select")->name("type")->label("type");
 		$this->setChild($this->form);
 	}
 
 	public function status() {
-		$this->form("select")->name("status");
+		$this->form("select")->name("status")->lable("status");
 		$this->setChild($this->form);
 	}
 

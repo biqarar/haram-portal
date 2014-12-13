@@ -2,7 +2,7 @@
 class model extends main_model{
 	function post_api(){
 		
-		$this->dtable->table('city')
+		$dtable = $this->dtable->table('city')
 		->fields('id', 'name', 'pname', 'id edit')
 		->search_fields('name', 'pname')
 		->query(function($q){
