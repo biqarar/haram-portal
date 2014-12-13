@@ -4,8 +4,7 @@
 */
 class model extends main_model {
 	public function post_api(){
-		$dtable = new dtable;
-		$dtable->table('person')
+		$this->dtable->table('person')
 			->fields('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'id detail', 'id edit', 'users_id')
 			->search_fields('name', 'family', 'father')
 			->result(function($r){

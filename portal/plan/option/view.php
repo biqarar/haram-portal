@@ -19,10 +19,17 @@ class view extends main_view{
 		$this->sql(".edit", "plan", $this->xuId(), $f);
 		
 		//------------------------------ list of plan
-		$list_plan = $this->sql(".list","plan")->addColEnd("edit","edit")->select(-1, "edit")
-		->html($this->editLink("plan"))->compile();
-		
-		$this->data->list = $list_plan;		
+		$this->data->dataTable = $this->dtable(
+			"plan/status=api/", 
+			array(
+				"group_id",
+				"name",
+				"price",
+				"absence",
+				"certificate",
+				"mark",
+				"min_person",
+				"max_person"));
 	}
 }
 ?>

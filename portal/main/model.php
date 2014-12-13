@@ -4,7 +4,9 @@ class main_model{
 	public $commit = array();
 	public $rollback = array();
 	public $endProcess = false;
+	public $dtable;
 	public final function __construct($controller, $local = false){
+		$this->dtable = new dtable;
 		$this->controller = $controller;
 		$sQl = new dbconnection_lib;
 		$sQl->query("START TRANSACTION");

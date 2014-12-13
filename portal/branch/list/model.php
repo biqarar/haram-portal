@@ -1,8 +1,8 @@
 <?php 
 class model extends main_model {
 	public function post_api() {
-		$dtable = new dtable;
-		$dtable->table("branch")
+		
+		$this->dtable->table("branch")
 		->fields('id', 'name', 'gender', "id edit")
 		->search_fields("name", "gender")
 		->result(function($r) {

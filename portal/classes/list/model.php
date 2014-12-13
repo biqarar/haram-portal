@@ -5,8 +5,8 @@
 */
 class model extends main_model {
 		public function post_api(){
-			$dtable = new dtable;
-			$dtable->table("classes")
+			
+			$this->dtable->table("classes")
 			->fields("id", "teacher")
 			->search_fields("name")
 			->result(function($r){
@@ -14,18 +14,6 @@ class model extends main_model {
 
 			});
 			$this->sql(".dataTable", $dtable);
-
-	// 	$dtable = new dtable;
-	// 	$dtable->table("branch")
-	// 	->fields('id', 'name', 'gender', "id edit")
-	// 	->search_fields("name", "gender")
-	// 	->result(function($r) {
-	// 	});
-	// 	$this->sql(".dataTable", $dtable);
-	// }
-		// $data = $this->sql(".dataTable", "classes", false, "name, statr_date, end_date");
-		// var_dump($data);
-		// die();
 	}	
 }
 ?>

@@ -20,10 +20,12 @@ class view extends main_view {
 		//------------------------------ edit form
 		$this->sql(".edit", "place", $this->xuId(), $f);
 
-		//------------------------------ list of place
-		$this->data->list = $this->sql(".list","place")
-		->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("place"))
-		->compile();
+		// //------------------------------ list of place
+		// $this->data->list = $this->sql(".list","place")
+		// ->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("place"))
+		// ->compile();
+
+		$this->data->dataTable = $this->dtable('place/status=api/', array('name', "description","edit"));
 
 	}
 }
