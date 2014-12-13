@@ -17,10 +17,14 @@ class view extends main_view{
 		//------------------------------ edit form
 		$this->sql(".edit", "group", $this->xuId(), $f);
 
-		//------------------------------ list of group
-		$this->data->list = $this->sql(".list","group")
-			->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("group"))
-			->compile();
+		$this->data->dataTable = $this->dtable('group/status=api', array('name', 'edit'));
+		// $this->data->dataTable = $this->dtable(
+		// 	"branch/status=api/", 
+		// 	array("id", "name", "gender", "edit"));
+		// //------------------------------ list of group
+		// $this->data->list = $this->sql(".list","group")
+		// 	->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("group"))
+		// 	->compile();
 		
 	}
 }

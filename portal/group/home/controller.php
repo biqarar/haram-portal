@@ -16,13 +16,13 @@ class controller extends main_controller{
 		});
 
 		//------------------------------ group list
-		$this->listen(array(
-			"max" => 3,
-			"url" => array("list", "/^(add|edit)$/")
-			), function () {
-			save(array("group", "list"));
-			$this->permission = array("group_list" => array("insert" => array("public"), "update" => array("public")));
-		});
+		// $this->listen(array(
+		// 	"max" => 3,
+		// 	"url" => array("list", "/^(add|edit)$/")
+		// 	), function () {
+		// 	save(array("group", "list"));
+		// 	$this->permission = array("group_list" => array("insert" => array("public"), "update" => array("public")));
+		// });
 	}
 }
 ?>

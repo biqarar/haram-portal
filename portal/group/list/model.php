@@ -3,6 +3,27 @@
  * @author Reza Mohiti <rm.biqarar@gmail.com>
  */
 class model extends main_model {
+
+	public function post_api() {
+	
+		// $dtable = new dtable;
+		// $dtable->table("branch")
+		// ->fields('id', 'name', 'gender', "id edit")
+		// ->search_fields("name", "gender")
+		// ->result(function($r) {
+		// });
+		// $this->sql(".dataTable", $dtable);
+
+		$dtable = new dtable;
+		$dtable->table("group")
+		->fields("name", "id edit")
+		->search_fields("name")
+		->result(function($r){
+			$r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="branch/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			// $r->edit = '<a href ="' . $r->edit . '"></a>';
+		});
+		$this->sql(".dataTable", $dtable);
+	}
 	
 	public function makeQuery() {
 		return $this->sql()->tableGroup_list()
