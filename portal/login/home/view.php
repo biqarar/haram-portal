@@ -21,14 +21,15 @@ class view extends main_view {
 			$f->atEnd("submit");
 		}
 
+		//------------------------------ redirect if login
 		if(isset($_SESSION['redirect']) && isset($_SESSION['users_id'])){
 			$redirect = $_SESSION['redirect'];
 			unset($_SESSION['redirect']);
 			$this->redirect($redirect);
 		}elseif(isset($_SESSION['users_id'])){
 			$this->redirect("/profile");
-			// header("Location: /profile");
 		}
+		
 		//------------------------------ change caption of sumbit
 		$f->submit->value("login");
 

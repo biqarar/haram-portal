@@ -42,7 +42,12 @@ class query_dataTable_cls extends query_cls
 			$recordsTotal = $_SESSION['draw_'.config_lib::$surl['session']];
 		}
 		$recordsFiltered = $recordsTotal;
-		if($search !== false && isset($_GET['search']) && isset($_GET['search']['value']) && !empty($_GET['search']['value'])){
+		if(isset($object->x)){
+			$arg = func_get_args();
+			$args = array_splice($arg, 2);
+			array_unshift($args, $result);
+			call_user_func_array($object->x, $args);
+		}elseif ($search !== false && isset($_GET['search']) && isset($_GET['search']['value']) && !empty($_GET['search']['value'])){
 			$vsearch = $_GET['search']['value'];
 			$vsearch = str_replace(" ", "_", $vsearch);
 			$search  = join($search, ', " ", ');

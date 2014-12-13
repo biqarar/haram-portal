@@ -39,7 +39,6 @@ class model extends main_model {
 					$this->redirect($redirect);
 				}else{
 					$this->redirect("/profile");
-					// header("Location: /profile");
 				}
 
 			}else{
