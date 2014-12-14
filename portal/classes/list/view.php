@@ -17,15 +17,15 @@ class view extends main_view{
 				"place",
 				"meeting_no",
 				"age_range",
-				"quality",
 				"start_time",
 				"end_time",
 				"start_date",
 				"end_date",
 				"week_days",
 				"name",
-				"status",
-				"type",
+				"edit",
+				"classification",
+				"detail"
 				));
 		// //------------------------------ classes list
 		// $classes_detail = $this->sql(".list", "classes", function($query) {

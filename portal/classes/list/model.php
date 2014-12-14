@@ -14,15 +14,17 @@ class model extends main_model {
 				"placename",
 				"meeting_no",
 				"age_range",
-				"quality",
 				"start_time",
 				"end_time",
 				"start_date",
 				"end_date",
 				"week_days",
 				"name",
-				"status",
-				"type")
+				"id edit",
+				"id classification",
+				"id detail")
+			
+			
 			->search_fields(
 				"planname plan.name" ,
 				"teachername person.name",
@@ -30,15 +32,12 @@ class model extends main_model {
 				"placename place.name",
 				"meeting_no classes.meeting_no",
 				"age_range classes.age_range",
-				"quality classes.quality",
 				"start_time classes.start_time",
 				"end_time classes.end_time",
 				"start_date classes.start_date",
 				"end_date classes.end_date",
 				"week_days classes.week_days",
-				"name classes.name",
-				"status classes.status",
-				"type classes.type")
+				"name classes.name")
 			->order(function($q, $n, $b){
 				if($n === 'orderPlanname'){
 					$q->join->plan->orderName($b);
@@ -58,7 +57,9 @@ class model extends main_model {
 				$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 			})
 			->result(function($r){
-				// $r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="branch/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+				$r->edit = '<a class="icoedit" href="classes/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+				$r->classification = '<a class="icoclasses" href="classification/class/classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
+				$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
 			});
 
