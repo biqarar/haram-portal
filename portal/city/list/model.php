@@ -4,7 +4,7 @@ class model extends main_model{
 		
 		$dtable = $this->dtable->table('city')
 		->fields('id', 'name', 'pname', 'id edit')
-		->search_fields('name', 'pname')
+		->search_fields('name city.name', 'pname province.name')
 		->query(function($q){
 			$q->joinProvince()->whereId("#city.province_id")->fieldName('pname');
 		})

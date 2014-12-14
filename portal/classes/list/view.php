@@ -10,7 +10,23 @@ class view extends main_view{
 		$this->global->page_title = "classes";
 
 		$this->data->dataTable = $this->dtable("classes/status=api/"
-			, array("id", "teacher", "name", "pname"));
+			, array(
+				"planname",
+				"teachername",
+				"teacherfamily",
+				"placename",
+				"meeting_no",
+				"age_range",
+				"quality",
+				"start_time",
+				"end_time",
+				"start_date",
+				"end_date",
+				"week_days",
+				"name",
+				"status",
+				"type",
+				));
 		// //------------------------------ classes list
 		// $classes_detail = $this->sql(".list", "classes", function($query) {
 		// 	$query->limit(80);

@@ -11,6 +11,21 @@ class model extends main_model{
 		ini_set('memory_limit', '-1');
 		
 		die(":( THE CODE DIE :(");
+		$province = $this->sql()->tableProvince()->select()->allAssoc();
+		foreach ($province as $key => $value) {
+			$this->sql()->tableProvince()
+			->setName($value['name'])
+			->whereId($value['id'])
+			->update();
+		}
+		$city = $this->sql()->tableCity()->select()->allAssoc();
+		foreach ($city as $key => $value) {
+			$this->sql()->tableCity()
+			->setName($value['name'])
+			->whereId($value['id'])
+			->update();
+		}
+		$q = $sql->query("COMMIT");
 
 		$person = $this->sql()->tablePerson()->whereType("operator")->select()->allAssoc();
 		  foreach ($person as $key => $value) {
@@ -22,7 +37,6 @@ class model extends main_model{
 		  foreach ($person as $key => $value) {
                     $x = $this->sql()->tableUsers()->setType("teacher")->whereId($value['users_id'])->update();
             }
-		$q = $sql->query("COMMIT");
 
 
 		

@@ -1,16 +1,47 @@
 <?php 
 
 /**
-* 
+* @auther reza mohiti
 */
 class model extends main_model {
 		public function post_api(){
 			
 			$dtable = $this->dtable->table("classes")
-			->fields("id", "teacher", "name", "pname")
-			->search_fields("pname plan.name" , "name classes.name")
+			->fields(
+				"planname",
+				"teachername",
+				"teacherfamily",
+				"placename",
+				"meeting_no",
+				"age_range",
+				"quality",
+				"start_time",
+				"end_time",
+				"start_date",
+				"end_date",
+				"week_days",
+				"name",
+				"status",
+				"type")
+			->search_fields(
+				"planname plan.name" ,
+				"teacherfamily person.family",
+				"placename place.name",
+				"meeting_no",
+				"age_range",
+				"quality",
+				"start_time",
+				"end_time",
+				"start_date",
+				"end_date",
+				"week_days",
+				"name",
+				"status",
+				"type")
 			->query(function($q){
-				$q->joinPlan()->whereId("#classes.plan_id")->fieldName('pname');
+				$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname');
+				$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacherfamily");
+				$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 			})
 			->result(function($r){
 				// $r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="branch/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
