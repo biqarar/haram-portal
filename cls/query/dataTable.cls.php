@@ -66,9 +66,9 @@ class query_dataTable_cls extends query_cls
 					if(isset($ssearch[$key])){
 						$sssearch = $ssearch[$key];
 						if($key === 0){
-							$result->condition("OR", "#$value", "LIKE", "%$sssearch%");
+							$result->condition("OR", "##$value", "LIKE", "%$sssearch%");
 						}else{
-							$result->condition("AND", "#$value", "LIKE", "%$sssearch%");
+							$result->condition("AND", "##$value", "LIKE", "%$sssearch%");
 						}
 					}
 				}
@@ -123,4 +123,5 @@ class query_dataTable_cls extends query_cls
 		return false;
 	}
 }
+
 ?>

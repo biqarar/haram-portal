@@ -11,10 +11,10 @@ class view extends main_view{
 
 		$this->data->dataTable = $this->dtable("classes/status=api/"
 			, array(
-				"planname",
-				"teachername",
-				"teacherfamily",
-				"placename",
+				"plan",
+				"teacher",
+				"teacher",
+				"place",
 				"meeting_no",
 				"age_range",
 				"quality",
