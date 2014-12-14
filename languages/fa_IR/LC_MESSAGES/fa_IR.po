@@ -17,6 +17,84 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "place_birt"
+msgstr "محل تولد"
+
+msgid "child_doughter"
+msgstr "تعداد فرزندان دختر"
+
+msgid "child_son"
+msgstr "تعداد فرزندان پسر"
+
+msgid "soldiering"
+msgstr "وضعیت نظام وظیفه"
+
+msgid "exempt"
+msgstr "معاف"
+
+msgid "exemption_type"
+msgstr "نوع معافیت"
+
+msgid "dependants"
+msgstr "کفاتل"
+
+msgid "temp"
+msgstr "موقت"
+
+msgid "medical"
+msgstr "پزشکی"
+
+msgid "continual"
+msgstr "دائمی"
+
+msgid "job"
+msgstr "شغل"
+
+msgid "residence"
+msgstr "وضعیت سکونت"
+
+msgid "rent"
+msgstr "اجاره"
+
+msgid "health"
+msgstr "وضعیت جسمانی"
+
+msgid "healthy"
+msgstr "سالم"
+
+msgid "maim"
+msgstr "بیمار"
+
+msgid "treated"
+msgstr "آیا تحت درمان هستید"
+
+msgid "stature"
+msgstr "قد"
+
+msgid "weight"
+msgstr "وزن"
+
+msgid "blood_group"
+msgstr "گروه خون"
+
+msgid "disease"
+msgstr "نام بیماری خاص"
+
+msgid "insurance_type"
+msgstr "نوع بیمه"
+
+msgid "insurance_code"
+msgstr "کد بیمه"
+
+msgid "tahqiq"
+msgstr "تحقیق"
+
+msgid "tartil"
+msgstr "ترتیل"
+
+msgid "tajvid"
+msgstr "تجوید"
+
 msgid "parvande"
 msgstr "شماره پرونده قدیم"
 

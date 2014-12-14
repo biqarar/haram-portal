@@ -31,7 +31,7 @@ class users {
 	}
 
 	public function status() {
-		$this->form("select")->name("status")->lable("status");
+		$this->form("select")->name("status")->label("status");
 		$this->setChild($this->form);
 	}
 

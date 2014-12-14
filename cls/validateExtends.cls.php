@@ -22,7 +22,9 @@ class validateExtends_cls{
 		if($this->value == null) return true;		
 		
 		// /^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/
-		if(!preg_match("/^(13|14)([0-9][0-9])(\/|-)?(((0?[1-6])(\/|-)?((0?[1-9])|([12][0-9])|(3[0-1])))|(((0?[7-9])|(1[0-2]))(\/|-)?((0?[1-9])|([12][0-9])|(30))))$/", $this->value, $date)){
+		// if(!preg_match("/^(13|14)([0-9][0-9])(\/|-)?(((0?[1-6])(\/|-)?((0?[1-9])|([12][0-9])|(3[0-1])))|(((0?[7-9])|(1[0-2]))(\/|-)?((0?[1-9])|([12][0-9])|(30))))$/", $this->value, $date)){
+		if(!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $this->value, $date)){
+
 			return false;
 		}else{
 			$this->value = $date[1]
@@ -64,7 +66,7 @@ class validateExtends_cls{
 	}
 
 	public function nationalcode(){
-		
+		// return true;
 		// id 97 : iran
 		// var_dump(validator_lib::$save["form"]['nationality']->value);
 		// if(validator_lib::$save["form"]['nationality']->value!== '97'){

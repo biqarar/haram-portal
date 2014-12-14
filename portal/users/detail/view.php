@@ -20,7 +20,7 @@ class view extends main_view  {
 		//------------------------------  make users card
 		$users = $this->sql(".list.card", "users", $users_id, "id");
 		unset($users['addLink']);
-		unset($users['editLink']);
+		// unset($users['editLink']);
 		unset($users['moreLink']);
 		unset($users['list']['list'][0]['password']);
 		$this->data->users = $users;

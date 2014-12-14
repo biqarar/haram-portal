@@ -31,7 +31,8 @@ class main_controller{
 				page_lib::access($msg);
 			}else{
 				$_SESSION['redirect'] = config_lib::$URL;
-				header("location:".host.'/login');
+				page_lib::access($msg);
+				// header("location:".host.'/login');
 			}
 		}
 		// exit();

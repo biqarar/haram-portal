@@ -93,6 +93,22 @@ class menu_cls  {
 	* make array menu
 	*/
 	public function menus() {
+		//------------------------------ hoem
+		self::$menu[] = array(
+			"submenu"     => "home",
+			"url"         => 'profile',
+			"name"        =>  _("home"),
+			"tag"         => "public"
+			);
+
+		//------------------------------ news
+		self::$menu[] = array(
+			"submenu"     => "home",
+			"url"         => 'profile',
+			"name"        =>  _("اخبار مرکز"),
+			"tag"         => "public"
+			);
+
 		//------------------------------ permission add
 		self::$menu[] = array(
 			"submenu"     => "home",
@@ -166,7 +182,7 @@ class menu_cls  {
 		//------------------------------   person
 		self::$menu[] = array(
 			"submenu" => "user", 
-			"url" => "users/status=add", 
+			"url" => "person/status=add", 
 			"name" =>  _("menu person add"), 
 			"tag" => array(
 				"users" => array("insert" => array("public", "private"))
@@ -253,40 +269,6 @@ class menu_cls  {
 			"name" =>  _("logout"), 
 			"tag" => "public"
 			);
-		/**
-
-		*/
-		//------------------------------ form maker (testing...) 
-		self::$menu[] = array(
-			"submenu" => "media", 
-			"url" => 'formmaker/group/status=add', 
-			"name" =>  _("form group"), 
-			"tag" => "public"
-			);
-		//------------------------------ form maker (testing...) 
-		self::$menu[] = array(
-			"submenu" => "media", 
-			"url" => 'formmaker/questions/status=add', 
-			"name" =>  _("form questions"), 
-			"tag" => "public"
-			);
-		//------------------------------ form maker (testing...) 
-		self::$menu[] = array(
-			"submenu" => "media", 
-			"url" => 'formmaker/groupitem/status=add', 
-			"name" =>  _("form group item"), 
-			"tag" => "public"
-			);
-		//------------------------------ form maker (testing...) 
-		self::$menu[] = array(
-			"submenu" => "media", 
-			"url" => 'formmaker/testrun/formid=1', 
-			"name" =>  _("test run form"), 
-			"tag" => 'public'
-			);
-		/**
-
-		*/
 
 		//------------------------------ (public) report bug menu 
 		// self::$menu[] = array(
