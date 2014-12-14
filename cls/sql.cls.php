@@ -32,8 +32,8 @@ class sql_cls {
 				}
 				$x->groupClose();
 				$x->fieldId();
-				$x->groupbyTable();
-				$x->groupbyRecord_id();
+				// $x->groupbyTable();
+				// $x->groupbyRecord_id();
 	
 				//------------------------------ paging record limit 200
 				if(isset(config_lib::$surl['page']) || (isset(config_lib::$surl['status']) && config_lib::$surl['status'] == "list")){
