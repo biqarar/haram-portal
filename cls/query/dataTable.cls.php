@@ -56,9 +56,23 @@ class query_dataTable_cls extends query_cls
 					}
 				}
 				$vsearch = $_GET['search']['value'];
+				$ssearch = preg_split("[ ]", $vsearch);
 				$vsearch = str_replace(" ", "_", $vsearch);
-				$search  = join($search, ', " ", ');
+				$csearch = $search;
+				$search  = join($search, ', ');
 				$result->condition("where", "##concat($search)", "LIKE", "%$vsearch%");
+				$result->groupOpen();
+				foreach ($csearch as $key => $value) {
+					if(isset($ssearch[$key])){
+						$sssearch = $ssearch[$key];
+						if($key === 0){
+							$result->condition("OR", "#$value", "LIKE", "%$sssearch%");
+						}else{
+							$result->condition("AND", "#$value", "LIKE", "%$sssearch%");
+						}
+					}
+				}
+				$result->groupClose();
 			}
 		}
 		$result->limit($_GET['start'], $length);
@@ -96,7 +110,8 @@ class query_dataTable_cls extends query_cls
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", (int) $q->select()->alist(0)[0]);
 		debug_lib::property("data", $array);
-		// echo($query->string());
+		// echo($query->string())."\n";exit();
+		
 	}
 
 	function get($name, $index = 0){
