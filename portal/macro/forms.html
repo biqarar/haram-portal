@@ -13,11 +13,22 @@
 
 {% macro checkbox(array) %}
 	{% spaceless %}
-	<label class="input-label"></label>
-		<label class="label-custom">{{-array.label-}}
-			<input type="checkbox" name="{{array.attr.name}}" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
-			<span class="brk-form-custom"><span></span><span></span></span>
+	{%if array.child%}
+	{% import _self as form%}
+	<label class="input-label">{{array.label}}</label>
+	{%for check in array.child%}
+			<label class="label-custom">{{-check.label-}}
+				<input type="checkbox" {% for attr,value in check.attr%}{{attr}}="{{value}}" {% endfor %}>
+				<span class="brk-form-custom"><span></span><span></span></span>
 		</label>
+	{%endfor%}
+	{%else%}
+		<label class="input-label"></label>
+			<label class="label-custom">{{-array.label-}}
+				<input type="checkbox" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
+				<span class="brk-form-custom"><span></span><span></span></span>
+		</label>
+	{%endif%}
 	{% endspaceless %}
 {% endmacro %}
 

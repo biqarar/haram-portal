@@ -11,7 +11,6 @@ class view extends main_view {
 
 		//------------------------------ get detail classes
 		if(config_lib::$surl['classesid']){
-			$this->global->page_title = gettext($this->global->page_title).' '.config_lib::$surl['classesid'];
 			//------------------------------ classes id
 			$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
 			$this->global->classesid = $classes_id;
@@ -35,6 +34,12 @@ class view extends main_view {
 			//------------------------------ change users id to name and family to show
 			$classes_detail = $this->detailClasses($classes_detail);
 			
+			$this->global->page_title = gettext("class").' '.
+			$classes_detail['list'][0]['plan_id'] . ' استاد ' .
+			$classes_detail['list'][0]['teacher'] . ' ' .
+			$classes_detail['list'][0]['place_id'] ;
+			// var_dump($classes_detail);
+			// die();
 
 			$this->data->list = $classes_detail;
 		}

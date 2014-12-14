@@ -73,7 +73,7 @@ class validateExtends_cls{
 		// 	var_dump("fuck", $this->value, preg_match("/\d/", intval($this->value)));
 		// }
 		// exit();
-		if(isset(validator_lib::$save["form"]['nationality']) && validator_lib::$save["form"]['nationality']->value !== '97'){
+		if(isset(validator_lib::$save["form"]['nationality']) && validator_lib::$save["form"]['nationality']->value != '97'){
 			if(preg_match("/\d/", intval($this->value))){
 				return true;
 			}else{
@@ -119,7 +119,7 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false){
-		return true;
+		// return true;
 		
 		$a = (preg_match("/^\d+$/", $a)) ? $a : 1;
 		if(!$b){
@@ -151,7 +151,7 @@ class validateExtends_cls{
 	}
 
 	public function farsi($a = false, $b = false){
-		return true;
+		// return true;
 		// check
 		$status= true;
 		$strn = strlen(utf8_decode($this->value));

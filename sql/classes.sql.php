@@ -17,7 +17,7 @@ class classes {
 	public $end_time   = array('type'=> 'int@4', 'label' => 'classes_end_time');
 	public $start_date = array('type'=> 'int@8', 'label' => 'classes_start_date');
 	public $end_date   = array('type'=> 'int@8', 'label' => 'classes_end_date');
-	public $week_days  = array('type'=> 'int@7', 'label' => 'classes_week_days');
+	public $week_days  = array('type'=> 'set@saturday,sunday,monday,tuesday,wednesday,thursday,friday', 'label' => 'classes_week_days');
 	public $status     = array('type'=> 'enum@ready,running,done!ready', 'label' => 'classes_status');
 	public $type	    = array('type'=> 'enum@physical,virtual!physical', 'label' => 'classes_type');
 	
@@ -96,8 +96,8 @@ class classes {
 	}
 	
 	public function week_days() {
-		$this->form("#number")->name("week_days");
-		$this->validate()->number(1, 7);
+		$this->form("checkbox")->name("week_days");
+		$this->setChild();
 	}
 	
 	public function name() {
