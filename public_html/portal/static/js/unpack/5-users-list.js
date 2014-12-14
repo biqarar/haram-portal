@@ -25,7 +25,7 @@ route(/classification\/class\/classesid=\d+/,function(){
 					url : _xhrUrl,
 					success : function(data){
 						if(data.msg.duplicate){
-							xhr_warn(name+" قبلا در "+classname+" ثبت شده بود");
+							xhr_warn(name+" قبلا در "+classname+" ثبت شده است");
 						}else if(data.msg.insert) {
 							xhr_true(name+" به "+classname+" اضافه شد");
 						}else if(data.msg.failed) {

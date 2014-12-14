@@ -111,7 +111,7 @@ class query_dataTable_cls extends query_cls
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", (int) $q->select()->alist(0)[0]);
 		debug_lib::property("data", $array);
-		echo("\n\n".$query->string())."\n";exit();
+		// echo("\n\n".$query->string())."\n";exit();
 		
 	}
 
