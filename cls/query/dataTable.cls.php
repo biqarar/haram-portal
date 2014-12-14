@@ -42,16 +42,24 @@ class query_dataTable_cls extends query_cls
 			$recordsTotal = $_SESSION['draw_'.config_lib::$surl['session']];
 		}
 		$recordsFiltered = $recordsTotal;
-		if(isset($object->x)){
-			$arg = func_get_args();
-			$args = array_splice($arg, 2);
-			array_unshift($args, $result);
-			call_user_func_array($object->x, $args);
-		}elseif ($search !== false && isset($_GET['search']) && isset($_GET['search']['value']) && !empty($_GET['search']['value'])){
-			$vsearch = $_GET['search']['value'];
-			$vsearch = str_replace(" ", "_", $vsearch);
-			$search  = join($search, ', " ", ');
-			$result->condition("where", "##concat($search)", "LIKE", "%$vsearch%");
+		
+		if ($search !== false && isset($_GET['search']) && isset($_GET['search']['value']) && !empty($_GET['search']['value'])){
+			if(isset($object->search_result)){
+				$arg = func_get_args();
+				$args = array_splice($arg, 2);
+				array_unshift($args, $result);
+				call_user_func_array($object->search_result, $args);
+			}else{
+				foreach ($search as $key => $value) {
+					if(preg_match("/^[^\s]*\s(.*)$/", $value, $nvalue)){
+						$search[$key] = $nvalue[1];
+					}
+				}
+				$vsearch = $_GET['search']['value'];
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$search  = join($search, ', " ", ');
+				$result->condition("where", "##concat($search)", "LIKE", "%$vsearch%");
+			}
 		}
 		$result->limit($_GET['start'], $length);
 
