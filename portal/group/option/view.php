@@ -17,7 +17,7 @@ class view extends main_view{
 		//------------------------------ edit form
 		$this->sql(".edit", "group", $this->xuId(), $f);
 
-		$this->data->dataTable = $this->dtable('group/status=api/', array('name', 'edit'));
+		$this->data->dataTable = $this->dtable('group/status=api/', array('id','name', 'edit'));
 		// $this->data->dataTable = $this->dtable(
 		// 	"branch/status=api/", 
 		// 	array("id", "name", "gender", "edit"));

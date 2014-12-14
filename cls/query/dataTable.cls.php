@@ -10,6 +10,7 @@ class query_dataTable_cls extends query_cls
 		$result = $sql::$table();
 		$length = $_GET['length'];
 		$search = isset($object->search_fields) ? $object->search_fields : false;
+		$search = is_array($search) ? $search : array($search);
 		if(isset($object->query)){
 			$arg = func_get_args();
 			$args = array_splice($arg, 2);
@@ -110,7 +111,7 @@ class query_dataTable_cls extends query_cls
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", (int) $q->select()->alist(0)[0]);
 		debug_lib::property("data", $array);
-		// echo($query->string())."\n";exit();
+		echo("\n\n".$query->string())."\n";exit();
 		
 	}
 

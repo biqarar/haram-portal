@@ -16,7 +16,7 @@ class model extends main_model{
 			}
 		})
 		->result(function($r){
-			$r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="city/status=edit/id='.$r->edit.'"></a>';
+			$r->edit = '<a class="icoedit" href="city/status=edit/id='.$r->edit.'"></a>';
 		});
 		$this->sql(".dataTable", $dtable);
 	}

@@ -6,7 +6,7 @@ class model extends main_model {
 		->fields('id', 'name', 'gender', "id edit")
 		->search_fields("name", "gender")
 		->result(function($r) {
-			$r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="branch/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			$r->edit = '<a class="icoedit" href="branch/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 		});
 		$this->sql(".dataTable", $dtable);
 	}
