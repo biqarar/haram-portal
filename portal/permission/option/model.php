@@ -7,7 +7,7 @@ class model extends main_model {
 	public function makeQuery() {
 		//------------------------------ make sql object
 		 return $this->sql()->tablePermission()
-		 		->setTables(post::tables())
+		 		// ->setTables(post::tables())
 		 		->setUsers_id(post::users_id())
 		 		->setSelect(post::select())
 		 		->setUpdate(post::update())
@@ -17,7 +17,11 @@ class model extends main_model {
 
 	public function post_add_permission(){
 		//------------------------------ insert permission
-		$sql = $this->makeQuery()->insert();
+		foreach ($_POST as $key => $value) {
+			if(preg_match("/^table\_(.*)/", $key)) {
+				$sql = $this->makeQuery()->setTables($value)->insert();
+			}
+		}
 
 		//------------------------------ commit code
 		$this->commit(function() {
