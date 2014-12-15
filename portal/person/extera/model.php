@@ -5,6 +5,10 @@
 
 class model extends main_model{
 
+	public function sql_person_extera_id($usersid = false) {
+		return $this->sql()->tablePerson_extera()->whereUsers_id($usersid)->limit(1)->select()->assoc("id");
+	}
+
 	public function makeQuery() {
 		return  $this->sql()->tablePerson_extera()
   					->setUsers_id($this->xuId("usersid"))
@@ -36,75 +40,30 @@ class model extends main_model{
 		$person_extera = $this->makeQuery()->insert();
 
 		$this->commit(function(){
-			debug_lib::true("ok");
+			debug_lib::true("[[insert person_extera successful]]");
 		});
 
 		$this->rollback(function(){
-			debug_lib::fatal("shet");
+			debug_lib::fatal("[[insert person_extera failed]]");
 		});
 		// var_dump($person_extera);
 
 	}
 
-	public function post_edit_person() {
-
-		//----------------------------- make object sql to update person
-	
-				
-				
-		// The line for this is that if this field was filled can not be empty and must be changed
-		//----------------------------- if country != irna and is set post pasport date update this
-		if(post::pasport_date() != "") {
-			$makeQuery->setPasport_date(post::pasport_date());
-		}
-
-		//----------------------------- if country != irna and is set post pasport date update this
-		if(post::nationalcode() != "") {
-			$makeQuery->setNationalcode(post::nationalcode());
-		}
-
-		//----------------------------- if nationality != null update this
-		if(post::nationality() != "") {
-			$makeQuery->setNationality(post::nationality());
-		}
+	public function post_edit_person_extera() {
 		
-		//----------------------------- if code != null update this
-		if(post::code() != "") {
-			$makeQuery->setCode(post::code());
-		}
-
-		
-		//----------------------------- if child != null update this
-		if(post::child() != "") {
-			$makeQuery->setChild(post::child());
-		}
-
-		//----------------------------- if britday != null update this
-		if(post::birthday() != "") {
-			$makeQuery->setBirthday(post::birthday());
-		}
-
-		//----------------------------- if from != null update this (foreign key to city table)
-		if(post::from() != "") {
-			$makeQuery->setFrom(post::from());
-		}
-
-		//----------------------------- if education != null update this (foreign key to education table)
-		if(post::education_id() != "") {
-			$makeQuery->setEducation_id(post::education_id());
-		}
-
 		//----------------------------- update query
-		$sql = $makeQuery->whereId($this->xuId())->update();
+		$sql = $this->makeQuery()->whereId($this->sql_person_extera_id($this->xuId("usersid")))->update();
+		// print_r($sql->string());
 	
 		//----------------------------- commit code
 		$this->commit(function() {
-			debug_lib::true("[[update person successful]]");
+			debug_lib::true("[[update person_extera successful]]");
 		});
 		
 		//----------------------------- rool back code
 		$this->rollback(function() {
-			debug_lib::fatal("[[update person failed]]");
+			debug_lib::fatal("[[update person_extera failed]]");
 		});
 	}
 }

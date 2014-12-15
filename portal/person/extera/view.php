@@ -12,10 +12,15 @@ class view extends main_view{
 			//------------------------------ url
 		$this->global->url = ($this->xuId("status") == "add") ? 
 				"usersid=" . $this->xuId("usersid") :
-				"status=edit/id=" . $this->xuId(); 
+				"status=edit/usersid=" . $this->xuId("usersid"); 
+
+		//------------------------------ if person extera exist can not be add another record
+		$id = $this->sql("#person_extera_id", $this->xuId("usersid"));
 
 		//------------------------------ load person_extera form
-		$f = $this->form("@person_extera", $this->urlStatus());
+		$f = $this->form("@person_extera", (!$id) ? "add": "edit");
+
+		$this->sql(".edit", "person_extera", $id , $f);
 	}
 }
 ?>
