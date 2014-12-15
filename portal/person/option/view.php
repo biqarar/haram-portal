@@ -57,7 +57,7 @@ class view extends main_view{
 
 		//------------------------------  default select Iran country
 		$f->nationality->child(35)->selected("selected");
-		$f->nationality->addClass("select-nationality");
+		$f->nationality->addClass("select-nationality")->addClass("notselect");
 
 		//------------------------------  default check single
 		$f->marriage->child(0)->checked("checked");
