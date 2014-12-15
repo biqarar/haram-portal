@@ -24,15 +24,16 @@ class view extends main_view{
 		$this->listBranch($f);
 
 		//------------------------------ set province list
-		$province_list = $this->sql(".assoc.province");
-		$province = $this->form("select")->name("province")->classname("select-province")->label("province");
-		foreach ($province_list as $key => $value) {
-			$province->child()->name($value['name'])->label($value['name'])->value($value["id"]);
-		}
+		// $province_list = $this->sql(".assoc.province");
+		// $province = $this->form("select")->name("province")->classname("select-province")->label("province");
+		// foreach ($province_list as $key => $value) {
+		// 	$province->child()->name($value['name'])->label($value['name'])->value($value["id"]);
+		// }
 
-		$f->add("province", $province);
-		$f->before("province", 'from');
-
+		// $f->add("province", $province);
+		// $f->before("province", 'from');
+		$f->from->child = array();
+		$f->from->type("text");
 		//------------------------------set education list
 		$education_list = $this->sql(".assoc.education");
 		$education = $this->form("select")->name("education")->classname("select-education-group")->label("education_group");

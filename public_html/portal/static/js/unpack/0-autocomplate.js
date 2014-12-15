@@ -1,31 +1,31 @@
 (function($){
 	$.fn.sautocomplate = function(){
 		$(this).each(function(){
-			var _url = $(this).attr("url");
+			var _url = $(this).attr("data-url");
 			if(!_url) return;
 			$(this).autocomplete({
 				source: function( request, response ) {
 					$.ajax({
 						url: _url+"search="+request.term,
-						dataType: "jsonp",
+						dataType: "json",
 						type : 'post',
 						success: function( data ) {
-							response( data );
+							response(data.msg.list);
 						}
 					});
 				},
-				minLength: 1,
-				select: function( event, ui ) {
-					console.log( ui.item ?
-						"Selected: " + ui.item.label :
-						"Nothing selected, input was " + this.value);
+				response : function(event, ui){
+					console.log(this);
+					return false;
 				},
-				open: function() {
-					$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+				_renderItem : function(ul, item){
+					console.log(10);
+					return $( "<li>" )
+					.attr( "data-value", item.value )
+					.append( item.label )
+					.appendTo( ul );
 				},
-				close: function() {
-					$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-				}
+				minLength: 1
 			});
 		});
 	}

@@ -98,27 +98,6 @@ ready(function(base){
 	
 	base.find("*:not(style)").persian_nu();
 	base.find("select:not([name=data_table_length], .notselect)").selectmenu();
-	base.find(".select-province").on("selectmenuchange", function(event, ui) {
-		var CITY = $(this).parents("form").find(".select-city");
-		CITY.attr("disabled", "disabled");
-		CITY.children(":not(*[disabled='disabled'])").remove();
-		var Url = 'city/api/'+ui.item.value;
-		$.ajax({
-			type: "POST",
-			context : CITY,
-			url : Url,
-			success : function(data){
-				if(typeof data === 'object'){
-					for(var i = 0; i < data.msg.city.length; i++){
-						var city = data.msg.city[i];
-						$("<option value='"+city.id+"'>"+city.name+"</option>").appendTo($(this));
-					}
-				}
-				CITY.removeAttr("disabled");
-				CITY.selectmenu("refresh");
-			}
-		});
-	});
 	base.find(".select-education-group").on("selectmenuchange", function(event, ui) {
 		var EDUCATION = $(this).parents("form").find(".select-education-section");
 		EDUCATION.attr("disabled", "disabled");
@@ -141,11 +120,9 @@ ready(function(base){
 	$("input[name='pasport_date'],label[for='pasport_date']").hide();
 	base.find(".select-nationality").on("selectmenuchange", function(event, ui){
 		if(ui.item.value != 97){
-			$(this).parents("form").find(".select-province").attr("disabled", "disabled").selectmenu("refresh");
 			$(this).parents("form").find(".select-city").attr("disabled", "disabled").selectmenu("refresh");
 			$(this).parents("form").find("input[name='pasport_date'],label[for='pasport_date']").fadeIn(200);
 		}else{
-			$(this).parents("form").find(".select-province").removeAttr("disabled").selectmenu("refresh");
 			$(this).parents("form").find(".select-city").removeAttr("disabled").selectmenu("refresh");
 			$(this).parents("form").find("input[name='pasport_date'],label[for='pasport_date']").fadeOut(200);
 		}

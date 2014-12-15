@@ -77,7 +77,7 @@ class person {
 	}
 
 	public function from() {
-		$this->form("select")->name("from")->addClass("select-city")->disabled("disabled");
+		$this->form("select")->name("from")->addClass("select-city")->data_url("city/api/");
 	}
 
 
