@@ -15,10 +15,7 @@ class view extends main_view {
 		$this->sql(".edit", "country", $this->xuId(), $f);
 
 		//------------------------------ list of country
-		$list = $this->sql(".list", "country")->addColEnd("edit", "edit")->select(-1, "edit")
-		->html($this->editLink("country"))->compile();
-		
-		$this->data->list = $list;
+		$this->data->dataTable = $this->dtable("country/status=api/", array("id","name", "edit"));
 	}
 }
 ?>

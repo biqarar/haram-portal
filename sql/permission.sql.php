@@ -18,7 +18,7 @@ class permission {
 	}
 	
 	public function tables() {
-		$this->form("select")->name("tables");
+		$this->form("checkbox")->name("tables");
 	}
 	
 	public function users_id() {

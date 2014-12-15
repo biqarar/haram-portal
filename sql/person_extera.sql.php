@@ -3,28 +3,28 @@ namespace sql;
 class person_extera {
 
   public $id             = array("type" => "int@10");
-  public $users_id       = array("type" => "int@10"); 
-  public $place_birt     = array("type" => "int@10"); 
-  public $child_doughter = array("type" => "int@2"); 
-  public $child_son      = array("type" => "int@2"); 
-  public $dependants     = array("type" => "int@2"); 
-  public $soldiering     = array("type" => "enum@done,exempt"); 
-  public $exemption_type = array("type" => "enum@education,dependants,temp,medical,continual"); 
-  public $job            = array("type" => "varchar@255"); 
-  public $residence      = array("type" => "enum@private,rent,more"); 
-  public $health         = array("type" => "enum@healthy,maim"); 
-  public $treated        = array("type" => "enum@yes,no"); 
-  public $stature        = array("type" => "float@"); 
-  public $weight         = array("type" => "int@3"); 
-  public $blood_group    = array("type" => "enum@A+,A-,B+,B-,AB+,AB-,O+,O-"); 
-  public $disease        = array("type" => "varchar@255"); 
-  public $insurance_type = array("type" => "varchar@255"); 
-  public $insurance_code = array("type" => "varchar@20"); 
-  public $good_remember  = array("type" => "varchar@255"); 
-  public $bad_remember   = array("type" => "varchar@255"); 
-  public $tahqiq         = array("type" => "float@"); 
-  public $tartil         = array("type" => "float@"); 
-  public $tajvid         = array("type" => "float@"); 
+  public $users_id       = array("type" => "int@10", "label" => "person_extera_users_id"); 
+  public $place_birt     = array("type" => "int@10", "label" => "person_extera_place_birt"); 
+  public $child_doughter = array("type" => "int@2", "label" => "person_extera_child_doughter"); 
+  public $child_son      = array("type" => "int@2", "label" => "person_extera_child_son"); 
+  public $dependants     = array("type" => "int@2", "label" => "person_extera_dependants"); 
+  public $soldiering     = array("type" => "enum@done,exempt", "label" => "person_extera_soldiering"); 
+  public $exemption_type = array("type" => "enum@education,dependants,temp,medical,continual", "label" => "person_extera_exemption_type"); 
+  public $job            = array("type" => "varchar@255", "label" => "person_extera_job"); 
+  public $residence      = array("type" => "enum@private,rent,more", "label" => "person_extera_residence"); 
+  public $health         = array("type" => "enum@healthy,maim", "label" => "person_extera_health"); 
+  public $treated        = array("type" => "enum@yes,no", "label" => "person_extera_treated"); 
+  public $stature        = array("type" => "float@", "label" => "person_extera_stature"); 
+  public $weight         = array("type" => "int@3", "label" => "person_extera_weight"); 
+  public $blood_group    = array("type" => "enum@A+,A-,B+,B-,AB+,AB-,O+,O-", "label" => "person_extera_blood_group"); 
+  public $disease        = array("type" => "varchar@255", "label" => "person_extera_disease"); 
+  public $insurance_type = array("type" => "varchar@255", "label" => "person_extera_insurance_type"); 
+  public $insurance_code = array("type" => "varchar@20", "label" => "person_extera_insurance_code"); 
+  public $good_remember  = array("type" => "varchar@255", "label" => "person_extera_good_remember"); 
+  public $bad_remember   = array("type" => "varchar@255", "label" => "person_extera_bad_remember"); 
+  public $tahqiq         = array("type" => "float@", "label" => "person_extera_tahqiq"); 
+  public $tartil         = array("type" => "float@", "label" => "person_extera_tartil"); 
+  public $tajvid         = array("type" => "float@", "label" => "person_extera_tajvid"); 
   
 
 
