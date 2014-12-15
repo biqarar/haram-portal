@@ -39,6 +39,8 @@ class menu_cls  {
 			//------------------------------ if tag of menu == public then do not neet to permission
 			if(is_string($value['tag']) && $value['tag'] == "public"){
 				$make = true;
+			}elseif(is_string($value['tag']) && $value['tag'] != "public"){
+				$make = false;
 			}else{
 
 				//------------------------------ check permission and make menu
@@ -148,7 +150,43 @@ class menu_cls  {
 				"country" => array("insert" => array("public"))
 				)
 			);
+
+		//------------------------------  if the teacher complete the form, menu not show else show the menu
+
+		//------------------------------  teacher show detail 
+		self::$menu[] = array(
+			"submenu" => "teacher", 
+			"url" => 'users/status=detail/id=' . $this->usersid(), 
+			"name" =>  _("نمایش اطلاعات"), 
+			"tag" => $this->teacher_form("show")
+			);
+
+		//------------------------------  teacher extera form
+		self::$menu[] = array(
+			"submenu" => "teacher", 
+			"url" => 'person/extera/status=add/usersid=' . $this->usersid(), 
+			"name" =>  _("تکمیل مشخصات"), 
+			"tag" => $this->teacher_form("person_extera")
+			);
+
+		//------------------------------  teacher education 
+		self::$menu[] = array(
+			"submenu" => "teacher", 
+			"url" => 'education/users/usersid=' . $this->usersid(), 
+			"name" =>  _("اطلاعات تحصیلی"), 
+			"tag" => $this->teacher_form("education_users")
+			);
+
+		//------------------------------  teacher bridge
+		self::$menu[] = array(
+			"submenu" => "teacher", 
+			"url" => 'bridge/status=add/usersid=' . $this->usersid(), 
+			"name" =>  _("پل های ارتباطی"), 
+			"tag" => $this->teacher_form("bridge")
+			);
+		//------------------------------  if the teacher complete the form, menu not show else show the menu
 		
+
 		//------------------------------  branch
 		self::$menu[] = array(
 			"submenu" => "share", 
@@ -290,10 +328,26 @@ class menu_cls  {
 
 	}
 
+	public function usersid() {
+		if(isset($_SESSION['users_id'])) {
+			return $_SESSION['users_id'];
+		}else{
+			return false;
+		}
+	}
+
+	public function teacher_form() {
+		if(isset($_SESSION['users_type']) && $_SESSION['users_type'] == "teacher") {
+			return "public";
+		}else{
+			return "jost for teacher load this menu";
+		}
+	}
+
 	public function x() {
-		if (!isset($_SESSION['users_id'])) return false;
+		// if (!isset($this->usersid())) return false;
 		return "public";
-		$users_id = $_SESSION['users_id'];
+		$users_id = $this->usersid();
 		// $form_users = $this->sql()->tableForm_users()->whereUsers_id($users_id)->select();
 		// var_dump($form_users);
 		// die();

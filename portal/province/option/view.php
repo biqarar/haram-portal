@@ -15,13 +15,7 @@ class view extends main_view {
 		$this->sql(".edit", "province", $this->xuId(), $f);
 
 		//------------------------------ list of province
-		$province_list = $this->sql(".list", "province")
-			->addCol("edit", "edit")
-			->select(-1, "edit")
-			->html($this->editLink("province"))
-			->compile();
-			
-		$this->date->list = $province_list;
+		$this->data->dataTable = $this->dtable("province/status=api/", array("id", "name", "edit"));
 	}
 }
 ?>

@@ -20,6 +20,18 @@ class controller extends main_controller{
 		//------------------------------ person api to get list of auto complete 
 		$this->listen(array(
 			"max" => 3,
+			"url" => array("extera" , "status" => "detail")
+			),
+			function() {
+				save(array("person", "exteradetail"));
+				$this->access = true;	
+				// $this->permission  =array("classification" => array("select" => array("public", "private")));
+			} 
+		);
+
+		//------------------------------ person api to get list of auto complete 
+		$this->listen(array(
+			"max" => 3,
 			"url" => array("extera")
 			),
 			function() {
