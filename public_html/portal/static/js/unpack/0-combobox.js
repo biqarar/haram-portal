@@ -1,5 +1,9 @@
 (function( $ ) {
 	$.widget( "custom.combobox", {
+		options: {
+			change: false,
+			create: false
+		},
 		_create: function() {
 			this.wrapper = $( "<span>" )
 			.addClass( "custom-combobox" )
@@ -29,6 +33,9 @@
 
 			this._on( this.input, {
 				autocompleteselect: function( event, ui ) {
+					if(this.options.change){
+						this.options.change.call(this, ui);
+					}
 					ui.item.option.selected = true;
 					this._trigger( "select", event, {
 						item: ui.item.option

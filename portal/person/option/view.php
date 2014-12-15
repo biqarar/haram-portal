@@ -35,15 +35,7 @@ class view extends main_view{
 		$f->from->child = array();
 		$f->from->type("text");
 		//------------------------------set education list
-		$education_list = $this->sql(".assoc.education");
-		$education = $this->form("select")->name("education")->classname("select-education-group")->label("education_group");
-		foreach ($education_list as $key => $value) {
-			$education->child()->name($value['group'])->label($value['group'])->value($value['group']);
-		}
-		$education->child(0)->selected("selected");
-		$f->add("education", $education);
-		$f->after("education_id", 'city_id');
-		$f->before("education", 'education_id');
+		$f->education_id->addClass("notselect");
 
 		//------------------------------ get phone number in form
 		$phone = $this->form("#number")->name("phone")->label("phone");
