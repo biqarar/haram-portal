@@ -17,8 +17,14 @@ class view extends main_view {
 		//------------------------------- load form
 		$f = $this->form("@education_users", $this->urlStatus());
 
+
 		//------------------------------- edit form
 		$this->sql(".edit", "education_users", $this->xuId(), $f);
+
+		$this->data->list  = $this->sql(".list", "education_users", function($query, $usersid){
+			$query->whereUsers_id($usersid);
+		}, $this->xuId("usersid"))->compile();
+		
 	}
 }
 ?>

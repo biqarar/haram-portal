@@ -17,6 +17,21 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "trend"
+msgstr "تخصص / پایه"
+
+msgid "average"
+msgstr "معدل"
+
+msgid "education_users"
+msgstr "سوابق تحصیلی"
+
+msgid "oldcertification"
+msgstr "گواهی نامه قدیم"
+
+msgid "person_extera"
+msgstr "مشخصات تکمیلی"
+
 msgid "place_birt"
 msgstr "محل تولد"
 

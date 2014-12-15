@@ -22,7 +22,19 @@ class view extends main_view {
 		}
 
 		//------------------------------ edit form
-		$this->sql(".edit", "classes", $this->xuId(), $f);
+		if($this->urlStatus() == "edit") {
+
+			$this->sql(".edit", "classes", $this->xuId(), $f);
+			$week_days = $this->sql(".edit.query", "classes", $this->xuId())->assoc("week_days");
+			$week_days = preg_split("/\,/", $week_days);
+			foreach ($f->week_days->child as $key => $value) {
+				if(preg_grep("/". $value->attr['id'] ."/", $week_days)){
+					$value->checked("checked");
+				}
+			}
+
+			// exit();
+		}
 	}
 }
 ?>

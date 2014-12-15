@@ -31,7 +31,7 @@ class view extends main_view {
 		}
 
 		//------------------------------ this table not sohw in table list (system table)
-		$black = array(".","..", "permission", "history", "login_counter","dev", "branch_users_key", "branch_cash");
+		$black = array(".","..", "permission", "history", "login_counter","dev", "branch_users_key", "branch_cash", "setup", "ahmad");
 		
 
 		foreach ($tables as $key => $value) {
@@ -40,7 +40,7 @@ class view extends main_view {
 		
 			if(preg_grep("/^$value$/", $black)) continue;
 		
-			$f->tables->child()->name($value)->label(_($value))->value($value);
+			$f->tables->child()->name("table_" . $value)->label(_($value))->value($value);
 		}
 
 		//------------------------------ edit form

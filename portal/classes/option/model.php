@@ -6,6 +6,7 @@ class model extends main_model{
 
 	public function makeQuery() {
 		//------------------------------ make sql object
+
 		return $this->sql()->tableClasses()
 				->setCourse_id(post::course_id())
 				->setPlan_id(post::plan_id())
@@ -19,10 +20,11 @@ class model extends main_model{
 				->setTeacher(post::teacher())
 				->setStart_date(post::start_date())
 				->setEnd_date(post::end_date())
-				->setWeek_days(post::week_days())
+				->setWeek_days(join(post::week_days(), ","))
 				->setStatus(post::status());
 	}
 	public function post_add_classes() {
+
 		//------------------------------ insert classes
 		$sql = $this->makeQuery()->insert();
 
