@@ -771,4 +771,11 @@ ul.copire-contextmenu {
   font-family: "WYekan" !important;
   font-size: 12px !important; }
 
+.custom-combobox > .ui-icon-triangle-1-s {
+  display: inline-block;
+  position: relative;
+  left: 20px;
+  top: 5px;
+  cursor: pointer; }
+
 /*# sourceMappingURL=admin.css.map */

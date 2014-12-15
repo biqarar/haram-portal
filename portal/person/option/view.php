@@ -40,7 +40,6 @@ class view extends main_view{
 		foreach ($education_list as $key => $value) {
 			$education->child()->name($value['group'])->label($value['group'])->value($value['group']);
 		}
-
 		$education->child(0)->selected("selected");
 		$f->add("education", $education);
 		$f->after("education_id", 'city_id');
@@ -84,7 +83,7 @@ class view extends main_view{
 
 		//------------------------------ set submit buttom
 		$f->atEnd("submit");
-	
+
 
 		//------------------------------ edit peron but some field can not update
 		if($this->urlStatus() == "edit"){

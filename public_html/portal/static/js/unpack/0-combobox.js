@@ -6,6 +6,7 @@
 			.insertAfter( this.element );
 			this.element.hide();
 			this._createAutocomplete();
+			this._createShowAllButton();
 		},
 
 		_createAutocomplete: function() {
@@ -38,6 +39,26 @@
 			});
 		},
 
+		_createShowAllButton: function() {
+			var input = this.input,
+			wasOpen = false;
+
+			$('<span class="ui-icon ui-icon-triangle-1-s"></span>').appendTo(this.wrapper)
+			.mousedown(function() {
+				wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+			})
+			.click(function() {
+				input.focus();
+
+            // Close if already visible
+            if ( wasOpen ) {
+            	return;
+            }
+
+            // Pass empty string as value to search for, displaying all results
+            input.autocomplete( "search", "" );
+       });
+		},
 		_source: function( request, response ) {
 			var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
 			response( this.element.children( "option" ).map(function() {
