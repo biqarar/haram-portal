@@ -15,13 +15,7 @@ class view extends main_view {
 		$this->sql(".edit", "education", $this->xuId(), $f);
 		
 		//------------------------------ lisf of education
-		$education_list =  $this->sql(".list","education")
-		->addCol("edit", "edit")
-		->select(-1, "edit")
-		->html($this->editLink("education"))
-		->compile();
-
-		$this->data->list = $education_list;
+		$this->data->dataTable = $this->dtable("education/status=api/", array("id", "group", "section", "edit"));
 
 	}
 }

@@ -138,6 +138,16 @@ class menu_cls  {
 				"education" => array("insert" => array("public"))
 				)
 			);
+
+		//------------------------------  country 
+		self::$menu[] = array(
+			"submenu" => "home", 
+			"url" => 'country/status=add', 
+			"name" =>  _("menu_country_add"), 
+			"tag" => array(
+				"country" => array("insert" => array("public"))
+				)
+			);
 		
 		//------------------------------  branch
 		self::$menu[] = array(
