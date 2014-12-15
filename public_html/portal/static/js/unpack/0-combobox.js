@@ -101,7 +101,7 @@
 
 			this.input
 			.val( "" )
-			.attr( "title", "«"+value + "» در لیست کشورها موجود نیست" )
+			.attr( "title", "«"+value + "» در لیست موجود نیست" )
 			.tooltip( "open" );
 			this.element.val( "" );
 			this._delay(function() {
