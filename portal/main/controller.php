@@ -22,6 +22,7 @@ class main_controller{
 		$this->addMethod('uStatus');
 		$this->addMethod('uId');
 		$this->addMethod('xuId');
+		$this->addMethod("checkPermissions");
 		if(method_exists($this, 'config')){
 			$this->config();
 		}

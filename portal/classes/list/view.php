@@ -9,6 +9,7 @@ class view extends main_view{
 		//------------------------------ global
 		$this->global->page_title = "classes";
 
+
 		$this->data->dataTable = $this->dtable("classes/status=api/"
 			, array(
 				"plan",
@@ -19,12 +20,9 @@ class view extends main_view{
 				"age_range",
 				"start_time",
 				"end_time",
-				"start_date",
-				"end_date",
-				"week_days",
-				"name",
 				"edit",
-				"classification",
+				"classes_detail",
+				"absence",
 				"detail"
 				));
 		// //------------------------------ classes list
@@ -42,10 +40,6 @@ class view extends main_view{
 		// ->select(-1, "edit")
 		// ->html($this->editLink("classes"));
 
-		// //------------------------------ set type of list (absence | classification)
-		// $type = (isset(config_lib::$surl['type'])) ? config_lib::$surl['type'] : "classification";
-
-		// if($type == "absence"){
 
 		// 	//------------------------------ absence link
 		// 	$classes_detail = $classes_detail->addCol("absence","absence")

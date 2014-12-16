@@ -147,8 +147,9 @@ class validateExtends_cls{
 			return true;
 			// $this->SetOnError('descript');
 		}
-		return true;
+		return false;
 	}
+
 
 	public function farsi($a = false, $b = false) {
 		return true;

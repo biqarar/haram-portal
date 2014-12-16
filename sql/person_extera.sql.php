@@ -4,7 +4,7 @@ class person_extera {
 
   public $id             = array("type" => "int@10");
   public $users_id       = array("type" => "int@10", "label" => "extera_users_id"); 
-  public $place_birth     = array("type" => "int@10", "label" => "extera_place_birth"); 
+  public $place_birth     = array("type" => "int@10", "label" => "place_birth"); 
   public $child_daughter = array("type" => "int@2", "label" => "extera_child_daughter"); 
   public $child_son      = array("type" => "int@2", "label" => "extera_child_son"); 
   public $dependents     = array("type" => "int@2", "label" => "extera_dependents"); 
@@ -39,7 +39,8 @@ class person_extera {
   }
 
   public function place_birth(){
-    $this->form("#number")->name("place_birth")->label("place_birth");
+    $this->form("text")->name("place_birt")->id("from")->addClass("select-city")->data_url("city/api/");
+
   }
 
   public function child_daughter(){

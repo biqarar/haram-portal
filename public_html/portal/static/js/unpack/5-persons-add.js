@@ -1,13 +1,14 @@
-route("portal/person/status=add", function(){
-	$("#from" ).sautocomplate();
+route(/portal\/person\/status=(add|edit)/, function(){
+	var _self = this;
+	$("#from", this).sautocomplate();
 	var check_disabled = function(value){
 		if(value != 97){
-			$("#from").next().attr("disabled","disabled");
+			$("#from", _self).next().attr("disabled","disabled");
 		}else{
-			$("#from").next().removeAttr("disabled");
+			$("#from", _self).next().removeAttr("disabled");
 		}
 	}
-	$( "#nationality" ).combobox({
+	$( "#nationality", this).combobox({
 		change : function(ui){
 			check_disabled(ui.item.option.value);
 		},
@@ -15,5 +16,5 @@ route("portal/person/status=add", function(){
 			check_disabled(this.value);
 		}
 	});
-	$( "#education_id" ).combobox();
+	$( "#education_id", this).combobox();
 });
