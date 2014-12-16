@@ -7,7 +7,7 @@ class view extends main_view{
 	public function config(){
 
 		//------------------------------ set global
-		$this->global->page_title =_("person_extera edit");
+		$this->global->page_title =_("person_extera");
 
 			//------------------------------ url
 		$this->global->url = ($this->xuId("status") == "add") ? 

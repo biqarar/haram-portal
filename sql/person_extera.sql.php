@@ -25,6 +25,8 @@ class person_extera {
   public $tahqiq         = array("type" => "float@", "label" => "extera_tahqiq"); 
   public $tartil         = array("type" => "float@", "label" => "extera_tartil"); 
   public $tajvid         = array("type" => "float@", "label" => "extera_tajvid"); 
+  public $melli_account  = array("type" => "varchar@13", "label" => "extera_melli_account"); 
+  public $melat_account  = array("type" => "varchar@10", "label" => "extera_melat_account"); 
   
 
 
@@ -126,6 +128,16 @@ class person_extera {
 
   public function tajvid(){
      $this->form("#number")->name("tajvid")->label("tajvid");
+  } 
+
+  public function melli_account(){
+     $this->form("#number")->name("melli_account")->label("melli_account");
+     $this->validate()->number(13);
+  }
+
+  public function melat_account(){
+     $this->form("#number")->name("melat_account")->label("melat_account");
+     $this->validate()->number(10);
   }
 }
 

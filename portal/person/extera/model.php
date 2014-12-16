@@ -32,13 +32,18 @@ class model extends main_model{
   					->setBad_remember(post::bad_remember())
   					->setTahqiq(post::tahqiq())
   					->setTartil(post::tartil())
-  					->setTajvid(post::tajvid());
+  					->setTajvid(post::tajvid())
+  					->setMelli_account(post::melli_account())
+  					->setMelat_account(post::melat_account());
 	}
 	
 	public function post_add_person_extera() {
 		//----------------------------- got to users/option/model to add users
-		$person_extera = $this->makeQuery()->insert();
 
+		$person_extera = $this->makeQuery()->insert();
+		// var_dump($person_extera->string());
+
+		// die();
 		$this->commit(function(){
 			debug_lib::true("[[insert person_extera successful]]");
 		});

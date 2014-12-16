@@ -180,10 +180,19 @@ class menu_cls  {
 		//------------------------------  teacher bridge
 		self::$menu[] = array(
 			"submenu" => "teacher", 
+			"url" => 'teachinghistory/status=add/usersid=' . $this->usersid(), 
+			"name" =>  _("سوابق علمی و اجرایی"), 
+			"tag" => $this->teacher_form("teachinghistory")
+			);
+
+		//------------------------------  teacher bridge
+		self::$menu[] = array(
+			"submenu" => "teacher", 
 			"url" => 'bridge/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("پل های ارتباطی"), 
 			"tag" => $this->teacher_form("bridge")
 			);
+		
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 		
 

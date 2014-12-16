@@ -17,6 +17,45 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "melli_account"
+msgstr "شماره حساب بانک ملی"
+
+msgid "melat_account"
+msgstr "شماره حساب بانک ملت"
+
+msgid "home_address"
+msgstr "نشانی منزل"
+
+msgid "study_address"
+msgstr "نشانی محل تحصیل"
+
+msgid "work_address"
+msgstr "نشانی محل کار"
+
+msgid "zipcode"
+msgstr "کد پستی"
+
+msgid "website"
+msgstr "سایت"
+
+msgid "fax"
+msgstr "دورنگار"
+
+msgid "cultural"
+msgstr "فرهنگی"
+
+msgid "training"
+msgstr "پرورشی"
+
+msgid "administrative"
+msgstr "اداری"
+
+msgid "learning"
+msgstr "یادگیری"
+
+msgid "caption"
+msgstr "عنوان"
+
 msgid "trend"
 msgstr "تخصص / پایه"
 
@@ -51,7 +90,7 @@ msgid "exemption_type"
 msgstr "نوع معافیت"
 
 msgid "dependants"
-msgstr "کفاتل"
+msgstr "کفالت"
 
 msgid "temp"
 msgstr "موقت"
@@ -885,7 +924,7 @@ msgid "course_description"
 msgstr "توضیحات دوره"
 
 msgid "education"
-msgstr "مقطع تحصیلات"
+msgstr "تحصیلی"
 
 msgid "experiences"
 msgstr "تجارب"
@@ -1071,7 +1110,7 @@ msgid "cansel"
 msgstr "انصراف"
 
 msgid "done"
-msgstr "اتمام کلاس"
+msgstr "اتمام"
 
 msgid "test date"
 msgstr "تاریخ آزمون"
@@ -1683,13 +1722,13 @@ msgid "teachinghistory_id"
 msgstr "سابقه تدریس"
 
 msgid "teachinghistory_field"
-msgstr "رشته دریس"
+msgstr "رشته"
 
 msgid "teachinghistory_club"
-msgstr "محل تدریس"
+msgstr "برگزار کننده"
 
 msgid "teachinghistory_lenght"
-msgstr "مدت تدریس"
+msgstr "میزان فعالیت"
 
 # TABLE  users
 msgid "users_id"

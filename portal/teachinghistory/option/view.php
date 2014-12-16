@@ -20,6 +20,12 @@ class view extends main_view {
 
 		//------------------------------  edit form
 		$this->sql(".edit", "teachinghistory", $this->xuId(), $f);
+
+		$this->data->list = $this->sql(".list", "teachinghistory", function($query, $usersid) {
+			$query->whereUsers_id($usersid);
+		}, $this->xuId("usersid"))
+		->removeCol('id,users_id')
+		->compile();
 	}
 }
 ?>

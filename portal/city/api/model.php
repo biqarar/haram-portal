@@ -11,7 +11,7 @@ class model extends main_model{
 		$array = array();
 		foreach ($r->allAssoc() as $key => $value) {
 			$array[] = array(
-				"value" => $value['pname'].', '.$value['name'],
+				"value" => $value['pname'].' - '.$value['name'],
 				"id" =>  $value['id']
 				);
 		}

@@ -8,7 +8,7 @@ namespace sql;
 class bridge {
 	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'bridge_id');
 	public $users_id    = array('type'=> 'int@10', 'label' => 'users_id');
-	public $title       = array('type'=> 'enum@phone,mobile,email,address!phone', 'label' => 'bridge_title');
+	public $title       = array('type'=> 'enum@phone,mobile,email,home_address,study_address,work_address,zipcode,website,fax!phone', 'label' => 'bridge_title');
 	public $value       = array('type'=> 'varchar@255', 'label' => 'bridge_value');
 	public $description = array('type'=> 'varchar@255', 'label' => 'bridge_description');
 	
