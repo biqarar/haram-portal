@@ -2,6 +2,7 @@
 	$.fn.sslider = function() {
 		$(this).each(function() {
 			var _self = this;
+			if($(this).next().is(".ui-sslider")) return;
 			$(this).attr('placeholder', '#');
 			var _max = $(this).attr('max');
 			var _min = $(this).attr('min');

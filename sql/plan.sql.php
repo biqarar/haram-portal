@@ -48,7 +48,7 @@ class plan {
 	}
 	
 	public function mark() {
-		$this->form("#number")->name("mark");
+		$this->form("#number")->name("mark")->addClass('slider-number')->min(0)->max(200);
 		$this->validate()->number(1, 3)->form->number("plan score is not valid");
 	}
 	
