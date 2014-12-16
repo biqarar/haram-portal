@@ -10,7 +10,7 @@ class model extends main_model{
 		set_time_limit(30000);
 		ini_set('memory_limit', '-1');
 		
-		die(":( THE CODE DIE :(");
+		// die(":( THE CODE DIE :(");
 		$province = $this->sql()->tableProvince()->select()->allAssoc();
 		foreach ($province as $key => $value) {
 			$this->sql()->tableProvince()

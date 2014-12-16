@@ -4,12 +4,13 @@
 */
 class model extends main_model {
 	public function post_api(){
+
 		$dtable = $this->dtable->table('person')
 			->fields('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'users_id detail', 'id edit', 'users_id')
 			->search_fields('name', 'family', 'father')
 			->result(function($r){
-				$r->detail = '<a class="icomore ui-draggable ui-draggable-handle" href="users/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
-				$r->edit = '<a class="icoedit ui-draggable ui-draggable-handle" href="person/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+				$r->edit = $this->tag("a")->addClass("icoedit")->href('person/status=edit/id='. $r->edit)->render();
+				$r->detail = $this->tag("a")->addClass("icomore")->href("users/status=detail/id=". $r->detail)->render();
 			});
 		$this->sql(".dataTable", $dtable);
 	}	

@@ -151,6 +151,45 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------  branch
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'branch/status=add', 
+			"name" => _("menu branch add"), 
+			"tag" => array(
+				"branch" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------  group
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'group/status=add', 
+			"name" =>  _("menu group add"), 
+			"tag" => array(
+				"group" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------  plan
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'plan/status=add', 
+			"name" =>  _("menu plan add"), 
+			"tag" => array(
+				"plan" => array("insert" => array("public"))
+				)
+			);
+		
+		//------------------------------  course
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'course/status=add', 
+			"name" =>  _("menu course add"), 
+			"tag" => array(
+				"course" => array("insert" => array("public"))
+				)
+			);
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
 		//------------------------------  teacher show detail 
@@ -195,47 +234,6 @@ class menu_cls  {
 		
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 		
-
-		//------------------------------  branch
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'branch/status=add', 
-			"name" => _("menu branch add"), 
-			"tag" => array(
-				"branch" => array("insert" => array("public"))
-				)
-			);
-
-		//------------------------------  group
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'group/status=add', 
-			"name" =>  _("menu group add"), 
-			"tag" => array(
-				"group" => array("insert" => array("public"))
-				)
-			);
-
-		//------------------------------  plan
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'plan/status=add', 
-			"name" =>  _("menu plan add"), 
-			"tag" => array(
-				"plan" => array("insert" => array("public"))
-				)
-			);
-		
-		//------------------------------  course
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'course/status=add', 
-			"name" =>  _("menu course add"), 
-			"tag" => array(
-				"course" => array("insert" => array("public"))
-				)
-			);
-
 		//------------------------------   person
 		self::$menu[] = array(
 			"submenu" => "user", 
@@ -271,7 +269,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=list/", 
-			"name" =>  _("classes_list"), 
+			"name" =>  _("list") . " " . _("classes") , 
 			"tag" => array(
 				"classes" => array("select" => array("public")),
 				"classification" => array("insert" => array("public"))
@@ -285,6 +283,27 @@ class menu_cls  {
 			"name" =>  _("menu_place_add"), 
 			"tag" => array(
 				"place" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------ absence add
+		self::$menu[] = array(
+			"submenu" => "attendance", 
+			"url" => "absence/classes", 
+			"name" =>  _("ثبت غیبت کاربر"), 
+			"tag" => array(
+				"absence" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "attendance", 
+			"url" => "classes/status=list/", 
+			"name" =>  _("attendance"), 
+			"tag" => array(
+				"classes" => array("select" => array("public")),
+				"classification" => array("insert" => array("public"))
 				)
 			);
 

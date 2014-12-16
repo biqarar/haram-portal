@@ -24,11 +24,6 @@ class view extends main_view {
 			->select(-1, "print")
 			->html($this->link("classification/printlist/classesid=%id%", "href" , "icoletters a-undefault"))
 
-			// //------------------------------ end fo class
-			// ->addCol("endclass", "endclass")
-			// ->select(-1, "endclass")
-			// ->html($this->link("classification/printlist/classesid=%id%", "href" , "icoletters a-undefault"))
-
 			->compile();
 			
 			//------------------------------ change users id to name and family to show
@@ -44,24 +39,19 @@ class view extends main_view {
 			$this->data->list = $classes_detail;
 		}
 		
-		//------------------------------ list of person inserted in this class
-		$classes_list =  $this->sql(".list", "classification", function($query , $classes_id){
-			$query->whereClasses_id($classes_id);
-		}, $classes_id)
-		->addCol("edit", "edit")
-		->select(-1, "edit")
-		->html($this->editLink("classification"))
-		->compile();
 
-		//------------------------------ change users id to name and family to show
-		if(isset($classes_list['list'])){	
-			foreach ($classes_list ['list'] as $key => $value) {
-				$classes_list ['list'][$key]['users_id'] = $this->sql(".username.get", $value['users_id']);
-			}	
-		}
+		$this->data->dataTable = $this->dtable("classification/status=api/classesid=" . $this->xuId("classesid").'/',
+			array("name", "family", "date_entry", "date_delete", "because", "edit"));
+
+		// //------------------------------ change users id to name and family to show
+		// if(isset($classes_list['list'])){	
+		// 	foreach ($classes_list ['list'] as $key => $value) {
+		// 		$classes_list ['list'][$key]['users_id'] = $this->sql(".username.get", $value['users_id']);
+		// 	}	
+		// }
 
 
-		$this->data->classes_list = $classes_list;
+		// $this->data->classes_list = $classes_list;
 
 		$this->data->classes_id = $this->data->list['list'][0]['id'];
 	}

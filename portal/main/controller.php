@@ -217,7 +217,7 @@ class main_controller{
 		}elseif(isset($surl['status']) && $surl['status'] == 'api' ){
 			$this->listen(
 				array(
-					"max" => 3,
+					"max" => 4,
 					'url' => array("status" => "$status")
 					),
 				function($table){
