@@ -45,4 +45,5 @@ route(/classification\/class\/classesid=\d+/,function(){
 
 route("*", function(){
 	$("[copier-context-subject]").scopier();
+	$('.slider-number').sslider();
 });

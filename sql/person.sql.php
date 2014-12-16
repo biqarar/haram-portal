@@ -91,7 +91,7 @@ class person {
 	}
 
 	public function child() {
-		$this->form("#number")->name("child");//->classname("children-form");
+		$this->form("#number")->name("child")->classname("slider-number")->max(10)->min(0);
 		$this->validate()->number(1,2)->form->number("number of children is not correct");
 	}
 
