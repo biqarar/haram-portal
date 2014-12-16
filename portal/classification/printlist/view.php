@@ -10,8 +10,6 @@ class view extends main_view {
 
 		//------------------------------ add name, family, phone, mobile to classes array
 		foreach ($classes_list as $key => $value) {
-			$classes_list[$key]['name'] = $this->sql(".assoc.foreign", "person", $value['users_id'], "name" , "users_id");
-			$classes_list[$key]['family'] = $this->sql(".assoc.foreign", "person", $value['users_id'], "family" , "users_id");
 			$classes_list[$key]['phone'] = $this->sql(".assoc.foreign", "bridge", $value['users_id'], "value" , "users_id" , "title=phone");
 			$classes_list[$key]['mobile'] = $this->sql(".assoc.foreign", "bridge", $value['users_id'], "value" , "users_id" , "title=mobile");
 		}

@@ -39,14 +39,6 @@ class view extends main_view {
 			$this->data->list = $classes_detail;
 		}
 		
-		//------------------------------ list of person inserted in this class
-		// $classes_list =  $this->sql(".list", "classification", function($query , $classes_id){
-		// 	$query->whereClasses_id($classes_id);
-		// }, $classes_id)
-		// ->addCol("edit", "edit")
-		// ->select(-1, "edit")
-		// ->html($this->editLink("classification"))
-		// ->compile();
 
 		$this->data->dataTable = $this->dtable("classification/status=api/classesid=" . $this->xuId("classesid").'/',
 			array("name", "family", "date_entry", "date_delete", "because", "edit"));
