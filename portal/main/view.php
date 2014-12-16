@@ -271,8 +271,11 @@ class main_view{
 
 	public function check_users_type($users_id = false) {
 		if(isset($_SESSION['users_id']) && isset($_SESSION['users_type'])) {
-			if($_SESSION['users_type'] == "teacher" && $_SESSION['users_id'] != $users_id) {
-				page_lib::access("what are you looking for ?");
+			list($access, $msg) = $this->checkPermissions();
+			if(!$access){
+				if($_SESSION['users_type'] == "teacher" && $_SESSION['users_id'] != $users_id) {
+					page_lib::access("what are you looking for ?");
+				}
 			}
 		}
 	}
