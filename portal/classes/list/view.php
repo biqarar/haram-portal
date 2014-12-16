@@ -21,7 +21,7 @@ class view extends main_view{
 				"start_time",
 				"end_time",
 				"edit",
-				"classes_detail",
+				"classification",
 				"absence",
 				"detail"
 				));

@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "list"
+msgstr "لیست"
+
 msgid "text must be persian"
 msgstr "متن باید فارسی باشند"
 
