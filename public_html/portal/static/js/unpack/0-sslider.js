@@ -8,9 +8,9 @@
 			var _min = $(this).attr('min');
 			var _slider = $("<div></div>").addClass('ui-sslider');
 			_slider.insertAfter(this).slider({
-				value: parseInt(_self.value),
+				value: _self.value,
 				slide: function(event, ui) {
-					_self.value = parseInt(ui.value);
+					_self.value = ui.value;
 				},
 				max: _max,
 				min: _min
