@@ -158,10 +158,10 @@ msgstr "گواهی نامه قدیم"
 msgid "person_extera"
 msgstr "مشخصات تکمیلی"
 
-msgid "place_birt"
+msgid "place_birth"
 msgstr "محل تولد"
 
-msgid "child_doughter"
+msgid "child_daughter"
 msgstr "تعداد فرزندان دختر"
 
 msgid "child_son"
@@ -176,7 +176,7 @@ msgstr "معاف"
 msgid "exemption_type"
 msgstr "نوع معافیت"
 
-msgid "dependants"
+msgid "dependents"
 msgstr "کفالت"
 
 msgid "temp"
