@@ -5,7 +5,7 @@ class model extends main_model {
 			->fields("name person.name", "family person.family","date_entry", "date_delete", "because", "id edit")
 			->search_fields("name person.name", "family person.family")
 			->query(function($q){
-				$q->whereClasses_id($this->xuId("classesid"));
+				$q->groupOpen()->andClasses_id($this->xuId("classesid"))->groupClose();
 				$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
 
 			})
