@@ -39,7 +39,8 @@ class person_extera {
   }
 
   public function place_birth(){
-    $this->form("text")->name("place_birt")->id("from")->addClass("select-city")->data_url("city/api/");
+    $this->form("text")->name("place_birth")->id("from")->addClass("select-city")->data_url("city/api/");
+    $this->validate()->reg("/(.*)/");
 
   }
 

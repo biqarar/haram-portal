@@ -12,8 +12,8 @@ class model extends main_model{
 	public function makeQuery() {
 		return  $this->sql()->tablePerson_extera()
   					->setUsers_id($this->xuId("usersid"))
-  					->setPlace_birt(post::place_birt())
-  					->setChild_doughter(post::child_doughter())
+  					->setPlace_birth("'" . post::place_birth() . "'")
+  					->setChild_daughter(post::child_daughter())
   					->setChild_son(post::child_son())
   					->setDependants(post::dependants())
   					->setSoldiering(post::soldiering())
@@ -41,7 +41,7 @@ class model extends main_model{
 		//----------------------------- got to users/option/model to add users
 
 		$person_extera = $this->makeQuery()->insert();
-		// var_dump($person_extera->string());
+		// print_r($person_extera->string());
 
 		// die();
 		$this->commit(function(){

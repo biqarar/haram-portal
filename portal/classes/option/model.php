@@ -27,7 +27,7 @@ class model extends main_model{
 	public function post_add_classes() {
 
 		//------------------------------ check duplicate classes
-		// $this->check_duplication();
+		$this->check_duplication();
 
 		//------------------------------ insert classes
 		$sql = $this->makeQuery()->insert();
@@ -47,7 +47,7 @@ class model extends main_model{
 
 
 		//------------------------------ check duplicate classes
-		// $this->check_duplication();
+		$this->check_duplication();
 
 
 		//------------------------------ update classes
@@ -92,20 +92,29 @@ class model extends main_model{
 		if($class->num() > 0 ) {
 			$allClass = $class->allAssoc();
 			foreach ($allClass as $key => $value) {
-
+				if(intval($value['end_date']) > $start_date) {
+					echo "date\n" . $value['end_date']. " > " .$start_date . "\n";
+					// die();
+				}
 				$start_time_exist = $this->convert_time($value['start_time']);
 				$end_time_exist = $this->convert_time($value['end_time']);
-				
+				// print_r("expression");
+				// print_r($start_time_exist);
+				// print_r($end_time_exist > $start_time ? "y" : " n");
+				// print_r($start_time_exist < $end_time ? "y" : "n");
 				if ($end_time_exist > $start_time && $start_time_exist < $end_time) {
 					// time interference
 					$week_days_exist = preg_split("/\,/", $value['week_days']);
-					$week_days = preg_split("/\,/", $week_days);
+					// $week_days = preg_split("/\,/", $week_days);
+					// print_r("expression");
+					// print_r($week_days_exist);
 					foreach ($week_days as $k => $v) {
 						if(preg_grep("/" . $v . "/", $week_days_exist)) {
 							// week day interference
-							if($value['end_date'] > $start_date) {
+							// if($value['end_date'] > $start_date) {
+							// print_r("expression");
 								$duplicate = true;
-							}
+							// }
 						}
 					}
 
@@ -113,21 +122,6 @@ class model extends main_model{
 			}	
 		}
 
-		print_r("expression");
-		print_r($start_time);
-		print_r("\n");
-		print_r($end_time);
-		print_r("\n");
-		print_r($start_date);
-		print_r("\n");
-		print_r($end_date);
-		print_r("\n");
-		print_r($place);
-		print_r("\n");
-		print_r($week_days);
-		print_r("\n");
-		print_r($status);
-		print_r("\n");
 		if($duplicate) {
 			echo "duplicate";
 
@@ -139,7 +133,7 @@ class model extends main_model{
 	}
 
 	public function convert_time($time = false) {
-		return preg_replace("/\:/", "", $time);
+		return intval(preg_replace("/\:/", "", $time));
 	}
 
 	/**

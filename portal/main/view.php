@@ -273,7 +273,7 @@ class main_view{
 		if(isset($_SESSION['users_id']) && isset($_SESSION['users_type'])) {
 			list($access, $msg) = $this->checkPermissions();
 			if(!$access){
-				if($_SESSION['users_type'] == "teacher" && $_SESSION['users_id'] != $users_id) {
+				if(($_SESSION['users_type'] == "teacher" || $_SESSION['users_type'] == "operator") && $_SESSION['users_id'] != $users_id) {
 					page_lib::access("what are you looking for ?");
 				}
 			}

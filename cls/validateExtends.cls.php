@@ -119,7 +119,7 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false) {
-		return true;
+		// return true;
 		
 		$a = (preg_match("/^\d+$/", $a)) ? $a : 1;
 		if (!$b) {
