@@ -41,20 +41,22 @@ class person {
 	}
 
 	public function name() {
-		$this->form("#fatext")->name("name")->validate()->form->farsi("نام باید بین 2 و 32 حرف باشد");
+		$this->form("#fatext")->name("name")->validate()->form->farsi("name should be between 2 and 32 characters");
 	}
 
 	public function family() {
 		$this->form("#fatext")->name("family");
+		$this->validate()->farsi()->form->farsi("family name should be between 2 and 32 characters");
 	}
 
 	public function father() {
 		$this->form("#fatext")->name("father");
+		$this->validate()->farsi()->form->validate("father name should be between 2 and 32 characters");
 	}
 
 	public function birthday() {
 		$this->form("#date")->name("birthday")->date("date");
-		$this->validate()->date();
+		$this->validate()->date()->form->date("birthday incorrect");
 	}
 
 	public function gender() {
@@ -73,7 +75,7 @@ class person {
 
 	public function code() {
 		$this->form("#number")->name("code");
-		$this->validate()->number(1,10);
+		$this->validate()->number(1,10)->form->number("code incorrect");
 	}
 
 	public function from() {
@@ -90,7 +92,7 @@ class person {
 
 	public function child() {
 		$this->form("#number")->name("child");//->classname("children-form");
-		$this->validate()->number(1,2);
+		$this->validate()->number(1,2)->form->number("number of children is not correct");
 	}
 
 	// public function type() {
@@ -143,8 +145,8 @@ class person {
 	// }
 
 	public function pasport_date() {
-		$this->form("text")->name("pasport_date")
-		->date("date")->validate()->date();
+		$this->form("text")->name("pasport_date")->date("date");
+		$this->validate()->date()->form->date("passport date is not valid");
 	}
 
 	public function users_id() {

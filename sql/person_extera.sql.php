@@ -4,12 +4,12 @@ class person_extera {
 
   public $id             = array("type" => "int@10");
   public $users_id       = array("type" => "int@10", "label" => "extera_users_id"); 
-  public $place_birt     = array("type" => "int@10", "label" => "extera_place_birt"); 
-  public $child_doughter = array("type" => "int@2", "label" => "extera_child_doughter"); 
+  public $place_birth     = array("type" => "int@10", "label" => "extera_place_birth"); 
+  public $child_daughter = array("type" => "int@2", "label" => "extera_child_daughter"); 
   public $child_son      = array("type" => "int@2", "label" => "extera_child_son"); 
-  public $dependants     = array("type" => "int@2", "label" => "extera_dependants"); 
+  public $dependents     = array("type" => "int@2", "label" => "extera_dependents"); 
   public $soldiering     = array("type" => "enum@done,exempt", "label" => "extera_soldiering"); 
-  public $exemption_type = array("type" => "enum@education,dependants,temp,medical,continual", "label" => "extera_exemption_type"); 
+  public $exemption_type = array("type" => "enum@education,dependents,temp,medical,continual", "label" => "extera_exemption_type"); 
   public $job            = array("type" => "varchar@255", "label" => "extera_job"); 
   public $residence      = array("type" => "enum@private,rent,more", "label" => "extera_residence"); 
   public $health         = array("type" => "enum@healthy,maim", "label" => "extera_health"); 
@@ -40,18 +40,22 @@ class person_extera {
 
   public function place_birt(){
     $this->form("text")->name("place_birt")->id("from")->addClass("select-city")->data_url("city/api/");
+
   }
 
-  public function child_doughter(){
-    $this->form("#number")->name("child_doughter")->label("child_doughter");
+  public function child_daughter(){
+    $this->form("#number")->name("child_daughter")->label("child_daughter");
+    $this->validate()->number()->form->number("number of girl children should be less than 99");
   }
 
   public function child_son(){
     $this->form("#number")->name("child_son")->label("child_son");
+    $this->validate()->number()->form->number("number of boy children should be less than 99");
   }
 
-  public function dependants(){
-    $this->form("#number")->name("dependants")->label("dependants");
+  public function dependents(){
+    $this->form("#number")->name("dependents")->label("dependents");
+    $this->validate()->number(1, 2)->form->number("number of dependents is not valid");
   }
 
   public function soldiering(){
@@ -66,6 +70,7 @@ class person_extera {
 
   public function job(){
      $this->form("#fatext")->name("job")->label("job");
+     $this->validate()->farsi()->form->farsi("job title should be persian");
   }
 
   public function residence(){
@@ -85,7 +90,6 @@ class person_extera {
 
   public function stature(){
      $this->form("#number")->name("stature")->label("stature");
-
   }
 
   public function weight(){

@@ -17,6 +17,93 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "text must be persian"
+msgstr "متن باید فارسی باشند"
+
+msgid "branch name must be persian"
+msgstr "نام شعبه باید به فارسی باشد"
+
+msgid "name should be between 2 and 32 characters"
+msgstr "نام باید بین 2 و 32 حرف باشد"
+
+msgid "family name should be between 2 and 32 characters"
+msgstr "نام خانوادگی باید بین 2 و 32 حرف باشد"
+
+msgid "father name should be between 2 and 32 characters"
+msgstr "نام پدر باید بین 2 و 32 حرف باشد"
+
+msgid "birthday incorrect"
+msgstr "تولد نادرست"
+
+msgid "code incorrect"
+msgstr "کد نادرست"
+
+msgid "number of children is not valid"
+msgstr "تعداد کودکان معتبر نیست"
+
+msgid "passport date is not valid"
+msgstr "تاریخ گذرنامه معتبر نیست"
+
+msgid "entered value is not valid"
+msgstr "مقدار وارد شده معتبر نیست"
+
+msgid "meetings number should be between 1 and 999"
+msgstr "تعداد جلسات باید بین 1 و 999 بود"
+
+msgid "start time is not valid"
+msgstr "زمان شروع معتبر نیست"
+
+msgid "end time is not valid"
+msgstr "زمان پایان است، معتبر نیست"
+
+msgid "start date is not valid"
+msgstr "تاریخ شروع معتبر نیست"
+
+msgid "end date is not valid"
+msgstr "تاریخ پایان معتبر نیست"
+
+msgid "name should be persian"
+msgstr "نام باید فارسی باشند"
+
+msgid "country name should be persian"
+msgstr "نام کشور باید فارسی باشند"
+
+msgid "city name should be persian"
+msgstr "نام شهرستان باید فارسی باشند"
+
+msgid "plan name should be persian"
+msgstr "نام طرح باید فارسی باشند"
+
+msgid "entered price is not valid"
+msgstr "قیمت وارد شده معتبر نیست"
+
+msgid "absences number is not valid"
+msgstr "تعداد غیبت معتبر نیست"
+
+msgid "plan score is not valid"
+msgstr "نمره طرح معتبر نیست"
+
+msgid "minimum persons number is not valid"
+msgstr "حداقل تعداد افراد معتبر نیست"
+
+msgid "maximum persons number is not valid"
+msgstr "حداکثر تعداد افراد معتبر نیست"
+
+msgid "education is not valid"
+msgstr "آموزش معتبر نیست"
+
+msgid "number of girl children should be less than 99"
+msgstr "تعداد فرزندان دختر باید کمتر از 99 شود"
+
+msgid "number of boy children should be less than 99"
+msgstr "تعداد فرزندان پسر باید کمتر از 99 شود"
+
+msgid "number of dependents is not valid"
+msgstr "تعداد افراد وابسته به معتبر نیست"
+
+msgid "job title should be persian"
+msgstr "عنوان شغلی باید فارسی باشند"
+
 msgid "melli_account"
 msgstr "شماره حساب بانک ملی"
 
@@ -71,10 +158,10 @@ msgstr "گواهی نامه قدیم"
 msgid "person_extera"
 msgstr "مشخصات تکمیلی"
 
-msgid "place_birt"
+msgid "place_birth"
 msgstr "محل تولد"
 
-msgid "child_doughter"
+msgid "child_daughter"
 msgstr "تعداد فرزندان دختر"
 
 msgid "child_son"
@@ -89,7 +176,7 @@ msgstr "معاف"
 msgid "exemption_type"
 msgstr "نوع معافیت"
 
-msgid "dependants"
+msgid "dependents"
 msgstr "کفالت"
 
 msgid "temp"
@@ -862,9 +949,6 @@ msgstr "متن توضیحات باید کمتر از 255 حرف باشد"
 
 msgid "text must be english"
 msgstr "متن باید با حروف انگلیسی وارد شود"
-
-msgid "text must be persian"
-msgstr "متن باید با حروف فارسی وارد شود"
 
 msgid "date incorrect"
 msgstr "تاریخ وارد شده صحیح نیست"

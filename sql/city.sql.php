@@ -19,6 +19,7 @@ class city {
 	
 	public function name() {
 		$this->form("#fatext")->name("name");
+		$this->validate()->farsi()->form->farsi("city name should be persian");
 	}
 }
 ?>

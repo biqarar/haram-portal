@@ -17,6 +17,7 @@ class place {
 	
 	public function name() {
 		$this->form("#fatext")->name("name");
+		$this->validate()->farsi()->form->farsi("place name is not valid");
 	}
 	
 	public function branch_id() {

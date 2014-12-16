@@ -18,6 +18,7 @@ namespace sql{
 
 		public function name() {
 			$this->form("#fatext")->name("name");
+			$this->validate()->farsi()->form->farsi("branch name must be persian");
 		}
 
 		public function code() {

@@ -48,11 +48,12 @@ class forms_Extends_cls extends forms_lib{
 
 		// only accept english text
 		$this->entext = $this->make("text")->name("entext")->label("English Text");
-		$this->entext->validate()->reg("/^([a-z]{2,}\s?)+[a-z]$/Ui")->form->reg("text must be english");
+		$this->entext->validate()
+		->reg("/^([a-z]{2,}\s?)+[a-z]$/Ui")->form->reg("text must be english");
 
 		// only accept farsi text
 		$this->fatext = $this->make("text")->name("fatext")->label("fatext");
-		$this->fatext->validate()->farsi()->form->farsi("مقدار وارد شده صحیح نیست");
+		$this->fatext->validate()->farsi()->form->farsi("text must be persian");
 		
 		// Accept Date
 		$this->date = $this->make("text")->name("date")->label("date")->date("date");
@@ -60,7 +61,7 @@ class forms_Extends_cls extends forms_lib{
 		
 		// Accept Time
 		$this->time = $this->make("time")->name("time")->label("time");
-		// $this->date->validate()->date()->form->date("date incorrect");
+		$this->time->validate()->time()->form->time("time incorrect");
 
 		// Accept Email
 		$this->email = $this->make("email")->name("email")->label("email");

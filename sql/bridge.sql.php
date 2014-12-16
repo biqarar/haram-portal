@@ -32,12 +32,12 @@ class bridge {
 
 	public function value() {
 		$this->form("text")->name("value");
-		// $this->validate()->reg("/^(.*)$/");
+		$this->validate()->reg("/^(.*)$/")->form->reg("entered value is not valid");
 	}
 
 	public function description() {
 		$this->form("text")->name("description");
-		// $this->validate();
+		$this->validate()->description();
 	}
 }
 ?>
