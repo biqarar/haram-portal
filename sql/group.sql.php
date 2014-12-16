@@ -12,6 +12,7 @@ class group {
 
 	public function name() {
 		$this->form("#fatext")->name("name");
+		$this->validate()->farsi()->form->farsi("group name should be persian");
 	}
 }
 ?>

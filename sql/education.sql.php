@@ -20,6 +20,7 @@ class education {
 	}
 	public function section() {
 		$this->form("#fatext")->name("section");
+		$this->validate()->farsi()->form->farsi("education is not valid");
 	}
 }
 ?>

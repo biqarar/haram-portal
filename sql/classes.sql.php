@@ -48,7 +48,7 @@ class classes {
 
 	public function meeting_no() {
 		$this->form("#number")->name("meeting_no");
-		$this->validate()->number(1, 3);
+		$this->validate()->number(1, 3)->form->number("meetings number should be between 1 and 999");
 	}
 
 	public function teacher() {
@@ -77,22 +77,22 @@ class classes {
 	
 	public function start_time() {
 		$this->form("#number")->name("start_time")->time('time');
-		$this->validate()->number(4);
+		$this->validate()->time()->form->time("start time is not valid");
 	}
 	
 	public function end_time() {
 		$this->form("#number")->name("end_time")->time('time');
-		$this->validate()->number(4);
+		$this->validate()->time()->form->time("end time is not valid");
 	}
 	
 	public function start_date() {
 		$this->form("#date")->name("start_date");
-		$this->validate()->number(8);
+		$this->validate()->date()->form->date("start date is not valid");
 	}
 	
 	public function end_date() {
 		$this->form("#date")->name("end_date");
-		$this->validate()->number(8);
+		$this->validate()->date()->form->date("end date is not valid");
 	}
 	
 	public function week_days() {
@@ -102,7 +102,7 @@ class classes {
 	
 	public function name() {
 		$this->form("#fatext")->name("name");
-		$this->validate("fatext");
+		$this->validate()->farsi()->form->farsi("name should be persian");
 	}
 	
 	public function status() {
