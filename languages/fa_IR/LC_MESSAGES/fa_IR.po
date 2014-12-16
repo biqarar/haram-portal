@@ -950,9 +950,6 @@ msgstr "متن توضیحات باید کمتر از 255 حرف باشد"
 msgid "text must be english"
 msgstr "متن باید با حروف انگلیسی وارد شود"
 
-msgid "text must be persian"
-msgstr "متن باید با حروف فارسی وارد شود"
-
 msgid "date incorrect"
 msgstr "تاریخ وارد شده صحیح نیست"
 
