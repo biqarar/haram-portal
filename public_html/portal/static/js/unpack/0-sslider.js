@@ -8,16 +8,15 @@
 			var _min = $(this).attr('min');
 			var _slider = $("<div></div>").addClass('ui-sslider');
 			_slider.insertAfter(this).slider({
-				value: _self.value,
+				value: parseInt(_self.value),
 				slide: function(event, ui) {
-					_self.value = ui.value;
+					_self.value = parseInt(ui.value);
 				},
 				max: _max,
 				min: _min
 			});
 			$(this).bind('keyup.sslider', function(event) {
-				console.log(parseInt(this.value));
-				_slider.slider("option", "value", /^\d+$/.test(this.value) ? this.value : 0);
+				_slider.slider("option", "value", /^\d+$/.test(this.value) ? parseInt(this.value) : 0);
 			});
 		});
 	}
