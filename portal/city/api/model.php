@@ -7,12 +7,13 @@ class model extends main_model{
 
 		$sql = $this->sql()->tableCity()->likeName("%".$this->xuId("search")."%");
 		$sql->joinProvince()->whereId("#city.province_id")->fieldName("pname");
-		$r = $sql->select();
+		$r = $sql->limit(10)->select();
 		$array = array();
 		foreach ($r->allAssoc() as $key => $value) {
 			$array[] = array(
 				"value" => $value['pname'].' - '.$value['name'],
 				"id" =>  $value['id']
+
 				);
 		}
 		debug_lib::msg("list", $array);

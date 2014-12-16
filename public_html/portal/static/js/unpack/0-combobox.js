@@ -1,11 +1,16 @@
 (function( $ ) {
 	$.widget( "custom.combobox", {
+		options: {
+			change: false,
+			create: false
+		},
 		_create: function() {
 			this.wrapper = $( "<span>" )
 			.addClass( "custom-combobox" )
 			.insertAfter( this.element );
 			this.element.hide();
 			this._createAutocomplete();
+			this._createShowAllButton();
 		},
 
 		_createAutocomplete: function() {
@@ -28,6 +33,9 @@
 
 			this._on( this.input, {
 				autocompleteselect: function( event, ui ) {
+					if(this.options.change){
+						this.options.change.call(this, ui);
+					}
 					ui.item.option.selected = true;
 					this._trigger( "select", event, {
 						item: ui.item.option
@@ -38,6 +46,26 @@
 			});
 		},
 
+		_createShowAllButton: function() {
+			var input = this.input,
+			wasOpen = false;
+
+			$('<span class="ui-icon ui-icon-triangle-1-s"></span>').appendTo(this.wrapper)
+			.mousedown(function() {
+				wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+			})
+			.click(function() {
+				input.focus();
+
+            // Close if already visible
+            if ( wasOpen ) {
+            	return;
+            }
+
+            // Pass empty string as value to search for, displaying all results
+            input.autocomplete( "search", "" );
+       });
+		},
 		_source: function( request, response ) {
 			var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
 			response( this.element.children( "option" ).map(function() {
@@ -73,7 +101,7 @@
 
 			this.input
 			.val( "" )
-			.attr( "title", "«"+value + "» در لیست کشورها موجود نیست" )
+			.attr( "title", "«"+value + "» در لیست موجود نیست" )
 			.tooltip( "open" );
 			this.element.val( "" );
 			this._delay(function() {

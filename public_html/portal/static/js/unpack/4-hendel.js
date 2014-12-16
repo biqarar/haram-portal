@@ -98,25 +98,6 @@ ready(function(base){
 	
 	base.find("*:not(style)").persian_nu();
 	base.find("select:not([name=data_table_length], .notselect)").selectmenu();
-	base.find(".select-education-group").on("selectmenuchange", function(event, ui) {
-		var EDUCATION = $(this).parents("form").find(".select-education-section");
-		EDUCATION.attr("disabled", "disabled");
-		EDUCATION.children(":not(*[disabled='disabled'])").remove();
-		$.ajax({
-			context : EDUCATION,
-			url : 'education/api/'+ui.item.value,
-			success : function(data){
-				if(typeof data === 'object'){
-					for(var i = 0; i < data.msg.education.length; i++){
-						var education = data.msg.education[i];
-						$("<option value='"+education.id+"'>"+education.section+"</option>").appendTo($(this));
-					}
-				}
-				EDUCATION.removeAttr("disabled");
-				EDUCATION.selectmenu("refresh");
-			}
-		});
-	});
 	$("input[name='pasport_date'],label[for='pasport_date']").hide();
 	base.find(".select-nationality").on("selectmenuchange", function(event, ui){
 		if(ui.item.value != 97){
