@@ -1,4 +1,4 @@
-route("portal/person/status=add", function(){
+route(/portal\/person\/status=(add|edit)/, function(){
 	var _self = this;
 	$("#from", this).sautocomplate();
 	var check_disabled = function(value){
