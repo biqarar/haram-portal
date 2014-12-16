@@ -269,6 +269,14 @@ class main_view{
 		return array('url'=> $url, 'fields'=>$array);
 	}
 
+	public function check_users_type($users_id = false) {
+		if(isset($_SESSION['users_id']) && isset($_SESSION['users_type'])) {
+			if($_SESSION['users_type'] == "teacher" && $_SESSION['users_id'] != $users_id) {
+				page_lib::access("what are you looking for ?");
+			}
+		}
+	}
+
 }
 
 class aDATA{

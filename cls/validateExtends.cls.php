@@ -147,11 +147,11 @@ class validateExtends_cls{
 			return true;
 			// $this->SetOnError('descript');
 		}
-		return true;
+		return false;
 	}
 
 	public function farsi($a = false, $b = false){
-		return true;
+		return false;
 		// check
 		$status= true;
 		$strn = strlen(utf8_decode($this->value));

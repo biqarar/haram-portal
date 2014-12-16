@@ -9,7 +9,10 @@ class view extends main_view{
 		//------------------------------ set global
 		$this->global->page_title =_("person_extera");
 
-			//------------------------------ url
+		//------------------------------ check users (if teacher, can not be display by changing id)
+		$this->check_users_type($this->xuId("usersid"));
+
+		//------------------------------ url
 		$this->global->url = ($this->xuId("status") == "add") ? 
 				"usersid=" . $this->xuId("usersid") :
 				"status=edit/usersid=" . $this->xuId("usersid"); 

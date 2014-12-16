@@ -110,11 +110,11 @@ class person {
 
 	public function education_id() {
 		$this->form("select")->name("education_id")->addClass("select-education-section");
-		$this->setChild(function($q){
-			$q->orderGroup();
-		}, function($child, $value){
-			$child->label(gettext($value['group']).' '. $value['section'])->value($value['id']); 
-		});
+		// $this->setChild(function($q){
+		// 	$q->orderGroup();
+		// }, function($child, $value){
+		// 	$child->label(gettext($value['group']).' '. $value['section'])->value($value['id']); 
+		// });
 
 	}
 

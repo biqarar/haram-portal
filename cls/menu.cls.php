@@ -270,21 +270,11 @@ class menu_cls  {
 		//------------------------------ classes list
 		self::$menu[] = array(
 			"submenu" => "class", 
-			"url" => "classes/status=list/type=classification", 
-			"name" =>  _("classification"), 
+			"url" => "classes/status=list/", 
+			"name" =>  _("classes_list"), 
 			"tag" => array(
 				"classes" => array("select" => array("public")),
 				"classification" => array("insert" => array("public"))
-				)
-			);
-		
-		//------------------------------  absence
-		self::$menu[] = array(
-			"submenu" => "class", 
-			"url" => "classes/status=list/type=absence", 
-			"name" =>  _("menu absence add"), 
-			"tag" => array(
-				"absence" => array("insert" => array("public", "private"))
 				)
 			);
 

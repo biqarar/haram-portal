@@ -11,6 +11,9 @@ class view extends main_view {
 		//------------------------------ global
 		$this->global->page_title = "bridge";
 
+		//------------------------------ check users (if teacher, can not be display by changing id)
+		$this->check_users_type($this->xuId("usersid"));
+
 		//------------------------------ load bridge form
 	    $f = $this->form('@bridge', $this->urlStatus());
 

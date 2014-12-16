@@ -39,7 +39,7 @@ class person_extera {
   }
 
   public function place_birt(){
-    $this->form("#number")->name("place_birt")->label("place_birt");
+    $this->form("text")->name("place_birt")->id("from")->addClass("select-city")->data_url("city/api/");
   }
 
   public function child_doughter(){

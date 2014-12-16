@@ -52,7 +52,7 @@ class forms_Extends_cls extends forms_lib{
 
 		// only accept farsi text
 		$this->fatext = $this->make("text")->name("fatext")->label("fatext");
-		$this->fatext->validate()->farsi();
+		$this->fatext->validate()->farsi()->form->farsi("مقدار وارد شده صحیح نیست");
 		
 		// Accept Date
 		$this->date = $this->make("text")->name("date")->label("date")->date("date");
