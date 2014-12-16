@@ -36,6 +36,12 @@ class query_dataTable_cls extends query_cls
 		if(!isset($_SESSION['draw_'.config_lib::$surl['session']])){
 			$sql_count = $this->sql();
 			$result_count = $sql_count::$table();
+			if(isset($object->query)){
+				$arg = func_get_args();
+				$args = array_splice($arg, 2);
+				array_unshift($args, $result_count);
+				call_user_func_array($object->query, $args);
+			}
 			$count = $result_count->select()->num();
 			$recordsTotal = $count;
 			$_SESSION['draw_'.config_lib::$surl['session']] = $recordsTotal;
@@ -61,7 +67,7 @@ class query_dataTable_cls extends query_cls
 				$vsearch = str_replace(" ", "_", $vsearch);
 				$csearch = $search;
 				$search  = join($search, ', ');
-				$result->condition("where", "##concat($search)", "LIKE", "%$vsearch%");
+				$result->condition("and", "##concat($search)", "LIKE", "%$vsearch%");
 				$result->groupOpen();
 				foreach ($csearch as $key => $value) {
 					if(isset($ssearch[$key])){
@@ -107,11 +113,12 @@ class query_dataTable_cls extends query_cls
 			$array[] = $iArray;
 		}
 		$q = $result->field("#count(0)")->limit(0,10);
+		$recordsFiltered = (int) $q->select()->alist(0)[0];
 		debug_lib::property("draw", (int) $_GET['draw']);
 		debug_lib::property("recordsTotal", $recordsTotal);
-		debug_lib::property("recordsFiltered", (int) $q->select()->alist(0)[0]);
+		debug_lib::property("recordsFiltered", $recordsFiltered);
 		debug_lib::property("data", $array);
-		// echo("\n\n".$query->string())."\n";exit();
+		// echo("\n\n".$q->select()->string())."\n";exit();
 		
 	}
 
