@@ -6,50 +6,40 @@ class model extends main_model {
 	public function post_api(){
 
 		$dtable = $this->dtable->table('person')
-			->fields('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'users_id detail', 'id edit', 'users_id')
-			->search_fields('name', 'family', 'father')
+			->fields(
+				'username users.username',
+				'name',
+				'family',
+				'father',
+				'birthday',
+				'gender',
+				'nationalcode',
+				'code',
+				'marriage',
+				'education_id',
+				'users_id detail',
+				'id learn',
+				'users_id')
+			->search_fields('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode")
+			->query(function($q){
+				$q->joinUsers()->whereId("#person.users_id")->fieldUsername("username");
+			})
+			// ->search_result(function($result){
+			// 	$vsearch = $_GET['search']['value'];
+			// 	$vsearch = str_replace(" ", "", $vsearch);
+			// 	$result->groupOpen();
+			// 	$result->condition("or", "##concat(person.name, person.family, person.father)", "LIKE", "%$vsearch%");
+			// 	$result->groupClose();
+			// 	$result->condition("or", "users.username", "LIKE", "%$vsearch%");
+			// 	$result->condition("or", "person.nationalcode", "LIKE", "%$vsearch%");
+			// 	// print_r($result);exit();
+			// 	// $result->condition("or" "#person.s", "LIKE" "%$vsearch%");
+			// })
 			->result(function($r){
-				$r->edit = $this->tag("a")->addClass("icoedit")->href('person/status=edit/id='. $r->edit)->render();
+				$r->learn = $this->tag("a")->addClass("icoshare")->href('users/status=learn/id='. $r->learn)->render();
 				$r->detail = $this->tag("a")->addClass("icomore")->href("users/status=detail/id=". $r->detail)->render();
 			});
 		$this->sql(".dataTable", $dtable);
 	}	
-
-
-	// public function post_xsearch() {
-	// 	$text = post::search();
-	// 	$_SESSION['text_search'] = $text;
-	// }
-
-	// public function sql_s_search($query = false) {
-	// 	// "concat(name, ' ', family , ' ' , father)"
-	// 	$family = false;
-	// 	$search = isset($_SESSION['text_search'])? $_SESSION['text_search'] : false;
-	// 	if(preg_match("/\s{2}/", $search)){
-	// 		$search = preg_split("/\s{2}/", $search);
-	// 	}
-		
-	// 		$person = $this->sql(".list", "person", function ($query, $search){
-	// 			// $query->limit(100);
-	// 			if($search && !is_array($search)){
-	// 				$query->whereName("like", "%". $search . "%")->orFamily("like", "%". $search . "%");
-	// 			}elseif(is_array($search)){
-	// 				if(isset($search[2])){
-	// 					$query->whereName("like", "%". $search[0] . "%")->andFamily("like", "%". $search[1] . "%")->andFather("like", "%". $search[2] . "%");
-	// 				}else{
-	// 					$query->whereName("like", "%". $search[0] . "%")->andFamily("like", "%". $search[1] . "%");
-	// 				}
-	// 			}
-	// 		}, $search);
-	// 	return $person;
-	// }
-	// public function sql_getField($table = false) {
-	// 	$sql = new dbconnection_lib;
-	// 	$q = $sql->query("select COLUMN_NAME from information_schema.columns 
-	// 						where TABLE_SCHEMA = 'quran_hadith' 
-	// 						AND TABLE_NAME = '$table'");
-	// 	return $q->allAssoc('COLUMN_NAME');
-	// }
-
 }
 ?>

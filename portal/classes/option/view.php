@@ -15,12 +15,6 @@ class view extends main_view {
 		//------------------------------ list of branch
 		$this->listBranch($f);
 
-		//------------------------------ list of teacher
-		$list_teacher = $this->sql("#users_name_family");
-		foreach ($list_teacher as $index => $child) {
-			$f->teacher->child[] = $this->form("text")->label($child["name"]. ' ' . $child["family"])->value($child["users_id"]);
-		}
-
 		//------------------------------ edit form
 		if($this->urlStatus() == "edit") {
 
@@ -32,8 +26,6 @@ class view extends main_view {
 					$value->checked("checked");
 				}
 			}
-
-			// exit();
 		}
 	}
 }

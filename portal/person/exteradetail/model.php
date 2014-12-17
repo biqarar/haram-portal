@@ -11,7 +11,7 @@ class model extends main_model{
   					->setPlace_birth(post::place_birth())
   					->setChild_daughter(post::child_daughter())
   					->setChild_son(post::child_son())
-  					->setDependants(post::dependants())
+  					->setDependents(post::dependents())
   					->setSoldiering(post::soldiering())
   					->setExemption_type(post::exemption_type())
   					->setJob(post::job())

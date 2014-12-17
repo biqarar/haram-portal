@@ -8,7 +8,19 @@ class view extends main_view  {
 		$this->global->page_title  = "person_list";
 		$this->data->dataTable = $this->dtable(
 			'users/status=api/',
-			array('name', 'family', 'father', 'birthday', 'gender', 'nationalcode', 'code', 'marriage', 'education_id', 'detail', 'edit')
+			array(
+				'casecode',
+				'name',
+				'family',
+				'father',
+				'birthday',
+				'gender',
+				'nationalcode',
+				'code',
+				'marriage',
+				'education_id',
+				'detail',
+				'آموزش')
 			);
 	}
 }

@@ -16,7 +16,7 @@
 				min: _min
 			});
 			$(this).bind('keyup.sslider', function(event) {
-				console.log(parseInt(this.value));
+				// console.log(parseInt(this.value));
 				_slider.slider("option", "value", /^\d+$/.test(this.value) ? this.value : 0);
 			});
 		});

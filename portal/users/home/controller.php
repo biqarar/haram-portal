@@ -16,6 +16,16 @@ class controller extends main_controller{
 			}
 		);
 
+		//------------------------------ users status=learn
+		$this->listen(array(
+			"max"=> 3,
+			'url' => array("status" => "learn" , "id" => "/^\d+$/")),
+		function () {
+			save(array("users", "learn"));
+			$this->permission = array("users" => array("select" => array("public", "private")));
+			}
+		);
+
 		//------------------------------ users/group
 		$this->listen(array(
 			"max"=> 3,

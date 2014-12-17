@@ -47,8 +47,10 @@ class model extends main_model{
 
 
 		//------------------------------ check duplicate classes
-		$this->check_duplication();
-
+		if(!$this->check_duplication()){
+			// print_r("expression");
+			// exit();
+		}
 
 		//------------------------------ update classes
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
@@ -66,74 +68,95 @@ class model extends main_model{
 	}
 
 	public function check_duplication() {
+		//------------------------------ duplicate key
 		$duplicate = false;
+
+		//------------------------------  start tiem request
 		$start_time = post::start_time();
-		$start_time = intval($start_time);
+		$start_time = $this->convert_time($start_time);
 
+		//------------------------------  end time request
 		$end_time   = post::end_time();
-		$end_time = intval($end_time);
+		$end_time = $this->convert_time($end_time);
 
+		//------------------------------  start date request
 		$start_date = post::start_date();
-		$start_date = intval($start_date);
+		$start_date = $this->convert_date($start_date);
 
+		//------------------------------ end date request
 		$end_date   = post::end_date();
-		$end_date = intval($end_date);
+		$end_date = $this->convert_date($end_date);
 
+		//------------------------------  place id
 		$place      = post::place_id();
+
+		//------------------------------  week days
 		$week_days  = post::week_days();
+
+		//------------------------------ status
 		$status     = post::status();
 
+		//------------------------------ sql result for status && place_id query
 		$class = $this->sql()->tableClasses()
 				->groupOpen()
 				->whereStatus("ready")->orStatus("running")
 				->groupClose()
 				->andPlace_id($place)->select();
 
+		//------------------------------  if in this place classes and ready or running
 		if($class->num() > 0 ) {
+
 			$allClass = $class->allAssoc();
+			
 			foreach ($allClass as $key => $value) {
+				
+				//------------------------------  date end of exist classes > start date of request classes
 				if(intval($value['end_date']) > $start_date) {
-					echo "date\n" . $value['end_date']. " > " .$start_date . "\n";
-					// die();
-				}
-				$start_time_exist = $this->convert_time($value['start_time']);
-				$end_time_exist = $this->convert_time($value['end_time']);
-				// print_r("expression");
-				// print_r($start_time_exist);
-				// print_r($end_time_exist > $start_time ? "y" : " n");
-				// print_r($start_time_exist < $end_time ? "y" : "n");
-				if ($end_time_exist > $start_time && $start_time_exist < $end_time) {
-					// time interference
+
+					//------------------------------ check week days of exist classes and request classes
 					$week_days_exist = preg_split("/\,/", $value['week_days']);
-					// $week_days = preg_split("/\,/", $week_days);
-					// print_r("expression");
-					// print_r($week_days_exist);
+
 					foreach ($week_days as $k => $v) {
+						
 						if(preg_grep("/" . $v . "/", $week_days_exist)) {
-							// week day interference
-							// if($value['end_date'] > $start_date) {
-							// print_r("expression");
+
+							//------------------------------ check time of exist classes and request classes
+							$start_time_exist = $this->convert_time($value['start_time']);
+							$end_time_exist = $this->convert_time($value['end_time']);
+
+							if ($end_time_exist > $start_time && $start_time_exist < $end_time) {
+								//------------------------------ duplicate item here !!! 
+								//------------------------------ can not insert or update classes
 								$duplicate = true;
-							// }
+							}
 						}
 					}
-
 				}
 			}	
 		}
 
-		if($duplicate) {
-			echo "duplicate";
-
-		}else {
-			echo "string";
-		}
-		// print_r($class->allAssoc());
-		exit();
+		return $duplicate;
 	}
 
 	public function convert_time($time = false) {
-		return intval(preg_replace("/\:/", "", $time));
+		$nTime = preg_replace("/\:|\s|\-/", "", $time);
+		if(strlen($nTime) < 6) {
+			$nTime = $nTime . "00";
+		}
+		return intval($nTime);
+	}
+
+	public function convert_date($date = false) {
+		if (!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $date, $nDate)) {
+			return false;
+		}else{
+			$date = $nDate[1]
+			.
+			((intval($nDate[3]) < 10) ? "0".intval($nDate[3]) : intval($nDate[3]))
+			.
+			((intval($nDate[5]) < 10) ? "0".intval($nDate[5]) : intval($nDate[5]));
+		}
+		return $date;
 	}
 
 	/**

@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "some_else"
+msgstr "سایر"
+
+msgid "private_home"
+msgstr "شخصی"
+
 msgid "list"
 msgstr "لیست"
 

@@ -45,7 +45,7 @@ class query_list_cls extends query_cls
 				$i = 1;
 				foreach ($value as $k => $v) {
 					// if($k == "id") unset($card["header"][$key]);
-					if($i >= 14){
+					if($i >= 10){
 						unset($card["header"][$k]);
 					}
 					$i++;
@@ -56,7 +56,7 @@ class query_list_cls extends query_cls
 				// if($k == "id") unset($card["list"][0][$k]);
 					$i = 1;
 					foreach ($value as $k => $v) {
-						if($i >= 14){
+						if($i >= 10){
 							unset($card["list"][0][$k]);
 						}
 						$i++;
