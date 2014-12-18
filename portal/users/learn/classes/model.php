@@ -14,10 +14,11 @@ class model extends main_model {
 		$sql->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 		$sql->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
 		$x = $sql->select()->allAssoc();
+		
 		foreach ($x as $key => $value) {
 
 			$return['sum_all']++;
-			if(empty($x[$key]['date_delete']) || $x[$key]['date_delete'] == ''){
+			// if(empty($x[$key]['date_delete']) || $x[$key]['date_delete'] == ''){
 				$return['sum_active']++;
 
 				$return['classes'][$key]['string'] = $x[$key]['planname'] 		. '  ' .
@@ -27,7 +28,7 @@ class model extends main_model {
 								   $x[$key]["teachername"] 		. '  ' . 
 								   $x[$key]['teacherfamily'];
 				$return['classes'][$key]['id'] = $x[$key]["classes_id"];
-				}
+				// }
 								   
 		}
 		return $return;

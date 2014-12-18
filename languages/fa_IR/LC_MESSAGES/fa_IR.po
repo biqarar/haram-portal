@@ -26,6 +26,9 @@ msgstr "شخصی"
 msgid "list"
 msgstr "لیست"
 
+msgid "learn"
+msgstr "آموزش"
+
 msgid "text must be persian"
 msgstr "متن باید فارسی باشند"
 

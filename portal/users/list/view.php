@@ -20,7 +20,7 @@ class view extends main_view  {
 				'marriage',
 				'education_id',
 				'detail',
-				'آموزش')
+				'learn')
 			);
 	}
 }
