@@ -48,30 +48,41 @@ class sql_cls {
 		}
 	}
 	static function call($maker, $name){
-
+	
 		//------------------------------ send  users_id and branch_id to mysql engine 
 		$sql = new dbconnection_lib;
+
+		$users_id = $_SESSION['users_id'];
+
+		if(post::branch_id() && preg_grep("/^".post::branch_id()."$/", $_SESSION['users_branch']) && preg_match("/^\d+$/", post::branch_id())){
+		
+			$branch_id = post::branch_id();
+		
+		}elseif(isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) == 1 && !post::branch_id()){
+		
+			$branch_id = $_SESSION['users_branch'][0];
+		
+		}elseif(isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 && !post::branch_id()){
+		
+			$branch_id = $_SESSION['users_branch'][0];
+		
+		}else{
+		
+			$branch_id = 0;
+		
+		}
 
 		//------------------------------ send users id
 		if(isset($_SESSION['users_id'])){
 			$q = $sql->query("SET @users_id = ". $_SESSION['users_id']);
 			$q = $sql->query("SET @ip_ = ". "'" . $_SERVER['REMOTE_ADDR'] . "'");
+			$q = $sql->query("SET @branch_id = ". $branch_id);
 		}
 
-		//------------------------------ send branch_id if posted
-		if(post::branch_id() && preg_grep("/^".post::branch_id()."$/", $_SESSION['users_branch']) && preg_match("/^\d+$/", post::branch_id())){
-			$q = $sql->query("SET @branch_id = ".post::branch_id());
+		if($name == "insert" || $name == "update" || $name == "delete") {
+			$q = $sql->query("CALL insertPerm($users_id, $branch_id)");
 		}
 
-		//------------------------------ send branch_id if count lisf of branch == 1
-		if(isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) == 1 && !post::branch_id()){
-			$q = $sql->query("SET @branch_id = ".$_SESSION['users_branch'][0]);
-		}
-
-		//------------------------------ send first of branch_id if list of branch_id >1
-		if(isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 && !post::branch_id()){
-			$q = $sql->query("SET @branch_id = ".$_SESSION['users_branch'][0]);
-		}
 	}
 }
 ?>
