@@ -16,8 +16,7 @@
 				min: _min
 			});
 			$(this).bind('keyup.sslider', function(event) {
-				console.log(parseInt(this.value));
-				_slider.slider("option", "value", /^\d+$/.test(this.value) ? this.value : 0);
+				_slider.slider("option", "value", /^\d+$/.test(this.value) ? parseInt(this.value) : 0);
 			});
 		});
 	}

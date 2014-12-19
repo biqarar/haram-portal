@@ -197,5 +197,9 @@ class validateExtends_cls{
 	public function username() {
 		return true;
 	}
+
+	public function time() {
+		return true;
+	}
 }
 ?>

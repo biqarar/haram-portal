@@ -57,11 +57,12 @@ class view extends main_view  {
 
 		//------------------------------  make teacher card (person extera)
 		$person_extera =  $this->sql(".list.card", "person_extera" , $users_id , "users_id");
-		unset($person_extera['addLink']);
-		$person_extera["editLink"] = "person/extera/status=edit/usersid=$users_id";
-		$person_extera["moreLink"] = "person/extera/status=detail/usersid=$users_id";
-
-		$this->data->person_extera = $person_extera;
+		if(isset($person_extera['list']['list'][0])){
+			unset($person_extera['addLink']);
+			$person_extera["editLink"] = "person/extera/status=edit/usersid=$users_id";
+			$person_extera["moreLink"] = "person/extera/status=detail/usersid=$users_id";
+			$this->data->person_extera = $person_extera;		
+		}
 
 
 		//------------------------------  make bridge card

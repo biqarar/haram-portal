@@ -27,13 +27,13 @@ class model extends main_model {
 			"teachername person.name",
 			"teacherfamily person.family",
 			"placename place.name",
-			"meeting_no classes.meeting_no",
-			"age_range classes.age_range",
-			"start_time classes.start_time",
-			"end_time classes.end_time",
-			"start_date classes.start_date",
-			"end_date classes.end_date",
-			"week_days classes.week_days",
+			// "meeting_no classes.meeting_no",
+			// "age_range classes.age_range",
+			// "start_time classes.start_time",
+			// "end_time classes.end_time",
+			// "start_date classes.start_date",
+			// "end_date classes.end_date",
+			// "week_days classes.week_days",
 			"name classes.name")
 		->order(function($q, $n, $b){
 			if($n === 'orderPlanname'){

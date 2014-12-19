@@ -41,8 +41,11 @@ class classes {
 	}
 
 	public function plan_id() {
-		$this->form("select")->name("plan_id");
-		$this->setChild();
+		$this->form("select")->name("plan_id")->addClass("select-plan");
+		$this->setChild(function($q){
+		}, function($child, $value){
+			$child->label(gettext($value['name']))->value($value['id']); 
+		});
 		$this->validate("id");	
 	}
 
@@ -52,9 +55,14 @@ class classes {
 	}
 
 	public function teacher() {
-		$this->form("select")->name("teacher");
-		// $this->setChild();
-		// $this->validate("id");
+		$this->form("select")->name("teacher")->addClass("select-teacher");
+		$this->setChild(function($q){
+			$q->whereType("teacher");
+			$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
+			$q->groupbyId();
+		}, function($child, $value){
+			$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']); 
+		});
 	}
 
 	public function age_range() {
@@ -70,8 +78,11 @@ class classes {
 	}
 	
 	public function place_id() {
-		$this->form("select")->name("place_id");
-		$this->setChild();
+		$this->form("select")->name("place_id")->addClass("select-place");
+		$this->setChild(function($q){
+		}, function($child, $value){
+			$child->label($value['name'])->value($value['id']); 
+		});
 		$this->validate("id");
 	}
 	

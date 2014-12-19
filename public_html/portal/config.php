@@ -39,7 +39,7 @@ define('WPLANG', 'en_US');
  */
 define('DEBUG', true);
 define('FACHR', 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآيئؤكآأإة');
-define("core", DIR."/../../../saloos/");
+define("core", DIR."/../../core/");
 define("root_dir", DIR."/../../");
 define("lib", core."lib/");
 define("cls", root_dir."cls/");

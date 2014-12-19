@@ -8,31 +8,31 @@
 
 <!-- classes list -->
 <div class="class-detail">
-	{{ tagMaker.list(classes_list) }}
+	{{dtable.make(dataTable)}}
 </div>
 
-<script type="text/javascript">
-	$(".absence-date-main")[0].callBackDate = function(){
-		// var date = $(this).val();
-		// $(".absence-date").val(date);
-		set_date();
-	}
+// <script type="text/javascript">
+// 	$(".absence-date-main")[0].callBackDate = function(){
+// 		// var date = $(this).val();
+// 		// $(".absence-date").val(date);
+// 		set_date();
+// 	}
 
-	function set_date() {
-		var date = $(".absence-date-main").val();
-		$(".absence-date").each(function(){
-			var x = $(this).parents('td');
-			var y = $(x).parents('tr');
-			console.log(y);
-			// console.log($(y).childs("td"));
+// 	function set_date() {
+// 		var date = $(".absence-date-main").val();
+// 		$(".absence-date").each(function(){
+// 			var x = $(this).parents('td');
+// 			var y = $(x).parents('tr');
+// 			console.log(y);
+// 			// console.log($(y).childs("td"));
 
-			// if($(this).parentsarent('tr').child('.absence-check').checked()) {
-			// 	console.log("he");
-			// }else{
-			// 	console.log("ne");
-			// }
-			$(this).val(date);
-		});
-	}
+// 			// if($(this).parentsarent('tr').child('.absence-check').checked()) {
+// 			// 	console.log("he");
+// 			// }else{
+// 			// 	console.log("ne");
+// 			// }
+// 			$(this).val(date);
+// 		});
+// 	}
 </script>
 {%endblock%}

@@ -43,15 +43,6 @@ class view extends main_view {
 		$this->data->dataTable = $this->dtable("classification/status=api/classesid=" . $this->xuId("classesid").'/',
 			array("name", "family", "date_entry", "date_delete", "because", "edit"));
 
-		// //------------------------------ change users id to name and family to show
-		// if(isset($classes_list['list'])){	
-		// 	foreach ($classes_list ['list'] as $key => $value) {
-		// 		$classes_list ['list'][$key]['users_id'] = $this->sql(".username.get", $value['users_id']);
-		// 	}	
-		// }
-
-
-		// $this->data->classes_list = $classes_list;
 
 		$this->data->classes_id = $this->data->list['list'][0]['id'];
 	}

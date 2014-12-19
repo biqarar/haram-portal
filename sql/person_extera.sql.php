@@ -11,7 +11,7 @@ class person_extera {
   public $soldiering     = array("type" => "enum@done,exempt", "label" => "extera_soldiering"); 
   public $exemption_type = array("type" => "enum@education,dependents,temp,medical,continual", "label" => "extera_exemption_type"); 
   public $job            = array("type" => "varchar@255", "label" => "extera_job"); 
-  public $residence      = array("type" => "enum@private,rent,more", "label" => "extera_residence"); 
+  public $residence      = array("type" => "enum@private_home,rent,some_else", "label" => "extera_residence"); 
   public $health         = array("type" => "enum@healthy,maim", "label" => "extera_health"); 
   public $treated        = array("type" => "enum@yes,no", "label" => "extera_treated"); 
   public $stature        = array("type" => "float@", "label" => "extera_stature"); 
@@ -39,7 +39,8 @@ class person_extera {
   }
 
   public function place_birth(){
-    $this->form("text")->name("place_birt")->id("from")->addClass("select-city")->data_url("city/api/");
+    $this->form("text")->name("place_birth")->id("from")->addClass("select-city")->data_url("city/api/");
+    $this->validate()->reg("/(.*)/");
 
   }
 
@@ -59,7 +60,7 @@ class person_extera {
   }
 
   public function soldiering(){
-    $this->form("select")->name("soldiering")->label("soldiering");
+    $this->form("radio")->name("soldiering")->label("soldiering");
     $this->setChild($this->form);
   }
 
@@ -74,26 +75,26 @@ class person_extera {
   }
 
   public function residence(){
-    $this->form("select")->name("residence")->label("residence");
+    $this->form("radio")->name("residence")->label("residence");
     $this->setChild($this->form);
   }
 
   public function health(){
-    $this->form("select")->name("health")->label("health");
+    $this->form("radio")->name("health")->label("health");
     $this->setChild($this->form);
   }
 
   public function treated(){
-    $this->form("select")->name("treated")->label("treated");
+    $this->form("radio")->name("treated")->label("treated");
     $this->setChild($this->form);
   }
 
   public function stature(){
-     $this->form("#number")->name("stature")->label("stature");
+     $this->form("#number")->name("stature")->label("stature")->addClass('slider-number')->min(120)->max(300);
   }
 
   public function weight(){
-     $this->form("#number")->name("weight")->label("weight");
+     $this->form("#number")->name("weight")->label("weight")->addClass('slider-number')->min(30)->max(150);
 
   }
 

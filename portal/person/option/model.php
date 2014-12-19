@@ -127,8 +127,8 @@ class model extends main_model{
 				->setFamily(post::family())
 				->setFather(post::father())
 				->setGender(post::gender())
-				->setMarriage(post::marriage())
-				->setType(post::type());
+				->setMarriage(post::marriage());
+				// ->setType(post::type());
 				
 		// The line for this is that if this field was filled can not be empty and must be changed
 		//----------------------------- if country != irna and is set post pasport date update this

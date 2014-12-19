@@ -8,10 +8,10 @@ class model extends main_model{
 	public function makeQuery() {
 		return  $this->sql()->tablePerson_extera()
   					->setUsers_id($this->xuId("usersid"))
-  					->setPlace_birt(post::place_birt())
-  					->setChild_doughter(post::child_doughter())
+  					->setPlace_birth(post::place_birth())
+  					->setChild_daughter(post::child_daughter())
   					->setChild_son(post::child_son())
-  					->setDependants(post::dependants())
+  					->setDependents(post::dependents())
   					->setSoldiering(post::soldiering())
   					->setExemption_type(post::exemption_type())
   					->setJob(post::job())
