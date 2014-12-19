@@ -17,7 +17,7 @@ class view extends main_view  {
 			// $query->joinPlan()->whereId("#classes.plan_id")->fieldName("planname")->fieldId("planid");
 			// $query->joinPlace()->whereId("#classes.place_id")->fieldName("placename")->fieldId("placeid");
 			// $query->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
-			// var_dump($query->select();
+			// var_dump($query->select());
 		}, $users_id);
 		// var_dump($allClassification);
 		$this->data->list = $allClassification->compile();
