@@ -128,6 +128,9 @@ class tagMaker_lib {
 		}
 		$blackend = array("br", "input", "hr");
 		if(!preg_grep("/^$tagName$/", $blackend)){
+			if(isset($tag['attr']['vtext'])){
+				$string .= $tag['attr']['vtext'];
+			}
 			$string .= "</$tagName>";
 		}
 	}
