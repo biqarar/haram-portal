@@ -18,3 +18,8 @@ route(/portal\/person\/status=(add|edit)/, function(){
 	});
 	$( "#education_id", this).combobox();
 });
+
+route("*", function(){
+	$("[copier-context-subject]").scopier();
+	$('.slider-number').sslider();
+});

@@ -1,4 +1,7 @@
 <?php
+function ilog($v){
+	file_put_contents("../../../log.txt", $_SERVER['REQUEST_URI']."\n\t".$v."\n", FILE_APPEND);
+}
 if(!function_exists('apache_request_headers')) {
 	function apache_request_headers() {
 		$headers = array();
