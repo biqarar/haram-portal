@@ -5,10 +5,15 @@
 class model extends main_model{
 
 	public function makeQuery() {
-		//------------------------------ make sql object
+			
+		$week_days = post::week_days();
+		if(!empty($week_days) && is_array($week_days)){
+			$week_days = join($week_days, ",");
+		}
 
+		//------------------------------ make sql object
 		return $this->sql()->tableClasses()
-				->setCourse_id(post::course_id())
+				// ->setCourse_id(post::course_id())
 				->setPlan_id(post::plan_id())
 				->setMeeting_no(post::meeting_no())
 				->setAge_range(post::age_range())
@@ -20,14 +25,14 @@ class model extends main_model{
 				->setTeacher(post::teacher())
 				->setStart_date(post::start_date())
 				->setEnd_date(post::end_date())
-				->setWeek_days(join(post::week_days(), ","))
+				->setWeek_days($week_days)
 				->setStatus(post::status());
 	}
 
 	public function post_add_classes() {
 
 		//------------------------------ check duplicate classes
-		$this->check_duplication();
+		$this->check_duplication("insert");
 
 		//------------------------------ insert classes
 		$sql = $this->makeQuery()->insert();
@@ -47,10 +52,7 @@ class model extends main_model{
 
 
 		//------------------------------ check duplicate classes
-		if(!$this->check_duplication()){
-			// print_r("expression");
-			// exit();
-		}
+		$this->check_duplication("update");
 
 		//------------------------------ update classes
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
@@ -67,7 +69,7 @@ class model extends main_model{
 		});
 	}
 
-	public function check_duplication() {
+	public function check_duplication($type = false) {
 		//------------------------------ duplicate key
 		$duplicate = false;
 
@@ -96,6 +98,9 @@ class model extends main_model{
 		//------------------------------ status
 		$status     = post::status();
 
+		//------------------------------ save duplicate detail to show
+		$classes_detail = array();
+
 		//------------------------------ sql result for status && place_id query
 		$class = $this->sql()->tableClasses()
 				->groupOpen()
@@ -109,6 +114,9 @@ class model extends main_model{
 			$allClass = $class->allAssoc();
 			
 			foreach ($allClass as $key => $value) {
+
+				//------------------------------ save duplicate detail to show
+				$classes_detail = $value;
 				
 				//------------------------------  date end of exist classes > start date of request classes
 				if(intval($value['end_date']) > $start_date) {
@@ -127,15 +135,27 @@ class model extends main_model{
 							if ($end_time_exist > $start_time && $start_time_exist < $end_time) {
 								//------------------------------ duplicate item here !!! 
 								//------------------------------ can not insert or update classes
-								$duplicate = true;
+								if($type == "update" && $this->xuId() == $value['id']){
+									//------------------------------ khodash !!!!
+									$duplicate = false;	
+								}else{
+									$duplicate = true;
+								}
 							}
 						}
+						if($duplicate) break;
 					}
 				}
+				if($duplicate) break;
 			}	
 		}
-
-		return $duplicate;
+		if($duplicate) {
+			debug_lib::fatal(
+				" اطلاعات این کلاس با کلاس شماره "
+				. $classes_detail['id'] .
+				" تداخل دارد، لطفا بررسی کنید " 
+				);
+		}
 	}
 
 	public function convert_time($time = false) {

@@ -7,22 +7,15 @@ class view extends main_view{
 
 	public function config(){
 		//------------------------------ global
-		$this->global->page_title = "classes";
+		$this->global->page_title = "bridge";
 
 
-		$this->data->dataTable = $this->dtable("classes/status=api/"
+		$this->data->dataTable = $this->dtable("bridge/status=api/"
 			, array(
-				"id",
-				"plan",
-				_("name") . ' ' . _("teacher"),
-				_("family") . ' ' . _("teacher"),
-				"place",
-				"age_range",
-				"start_time",
-				"end_time",
-				"capacity",
-				"classification",
-				"detail"
+			"name",
+			"family",
+			"title",
+			"value"
 				));
 		// //------------------------------ classes list
 		// $classes_detail = $this->sql(".list", "classes", function($query) {

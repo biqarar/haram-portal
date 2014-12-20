@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "capacity"
+msgstr "ظرفیت"
+
 msgid "some_else"
 msgstr "سایر"
 

@@ -8,10 +8,20 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "classes_detail";
 
+		$edit_link = $this->tag("a")
+		->href("classes/status=edit/id=%id%")
+		->addClass("icoedit")
+		->style("margin : 0px !important;")
+		->render();
+
 		//------------------------------ list of classes
 		$classes_detail = $this->sql(".list", "classes", function ($query) {
 			$query->whereId($this->xuId());
-		})->compile();
+		})
+		->addColFirst("edit", "edit")
+		->select(0, "edit")
+		->html($edit_link)
+		->compile();
 
 		//------------------------------ convert paln_id , teacher , place id , ... to name of this
 		$classes_detail = $this->detailClasses($classes_detail);

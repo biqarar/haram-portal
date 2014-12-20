@@ -243,7 +243,6 @@ class menu_cls  {
 				"users" => array("insert" => array("public", "private"))
 				)
 			);
-
 		//------------------------------  users list
 		self::$menu[] = array(
 			"submenu" => "user", 
@@ -252,6 +251,16 @@ class menu_cls  {
 			"tag" => array(
 				"person" => array("select" => array("public")),
 				"users" => array("select" => array("public"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "bridge/status=list", 
+			"name" =>  "پل های ارتباطی", 
+			"tag" => array(
+				"bridge" => array("insert" => array("public", "private"))
 				)
 			);
 

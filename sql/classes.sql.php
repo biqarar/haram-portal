@@ -5,7 +5,7 @@
 namespace sql;
 class classes {
 	public $id         = array('type'=> 'int@10', 'autoI', 'label' => 'classes_id');
-	public $course_id  = array('type'=> 'int@10', 'label' => 'course_id');
+	// public $course_id  = array('type'=> 'int@10', 'label' => 'course_id');
 	public $plan_id    = array('type'=> 'int@10', 'label' => 'plan_id');
 	public $meeting_no = array('type'=> 'int@3', 'label' => 'classes_meeting_no');
 	public $teacher    = array('type'=> 'int@10', 'label' => 'classes_teacher');
@@ -34,11 +34,11 @@ class classes {
 		$this->validate("id");
 	}
 
-	public function course_id() {
-		$this->form("select")->name("course_id");
-		$this->setChild();
-		$this->validate("id");
-	}
+	// public function course_id() {
+	// 	$this->form("select")->name("course_id");
+	// 	$this->setChild();
+	// 	$this->validate("id");
+	// }
 
 	public function plan_id() {
 		$this->form("select")->name("plan_id")->addClass("select-plan");

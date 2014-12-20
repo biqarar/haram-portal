@@ -8,21 +8,21 @@ class model extends main_model {
 		
 		$dtable = $this->dtable->table("classes")
 		->fields(
+			"id",
 			"planname",
 			"teachername",
 			"teacherfamily",
 			"placename",
-			"meeting_no",
 			"age_range",
 			"start_time",
 			"end_time",
-			"id edit",
+			"max capacity",
 			"id classification",
-			"id absence",
 			"id detail")
 		
 		
 		->search_fields(
+			"id classes.id",
 			"planname plan.name" ,
 			"teachername person.name",
 			"teacherfamily person.family",
@@ -49,14 +49,17 @@ class model extends main_model {
 			}
 		})
 		->query(function($q){
-			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname');
+			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("max");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
+			// $q->joinClassification()->whereClasses_id("#classes.id")->fieldId("sum");
+			// var_dump($q);
+			// exit();
 		})
 		->result(function($r){
-			$r->edit = '<a class="icoedit" href="classes/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			// $r->edit = '<a class="icoedit" href="classes/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 			$r->classification = '<a class="icoclasses" href="classification/class/classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
-			$r->absence = '<a class="icoattendance" href="classification/absence/classesid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
+			// $r->absence = '<a class="icoattendance" href="classification/absence/classesid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
 		});
