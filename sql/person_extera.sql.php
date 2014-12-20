@@ -90,11 +90,11 @@ class person_extera {
   }
 
   public function stature(){
-     $this->form("#number")->name("stature")->label("stature")->addClass('slider-number')->min(120)->max(300);
+     $this->form("#number")->name("stature")->label("stature")->classname('slider-number')->max(120)->min(300);
   }
 
   public function weight(){
-     $this->form("#number")->name("weight")->label("weight")->addClass('slider-number')->min(30)->max(150);
+     $this->form("#number")->name("weight")->label("weight")->classname('slider-number')->max(30)->min(150);
 
   }
 

@@ -41,7 +41,7 @@ class classes {
 	// }
 
 	public function plan_id() {
-		$this->form("select")->name("plan_id")->addClass("select-plan");
+		$this->form("select")->name("plan_id")->addClass("select-plan notselect");
 		$this->setChild(function($q){
 		}, function($child, $value){
 			$child->label(gettext($value['name']))->value($value['id']); 
@@ -55,7 +55,7 @@ class classes {
 	}
 
 	public function teacher() {
-		$this->form("select")->name("teacher")->addClass("select-teacher");
+		$this->form("select")->name("teacher")->addClass("select-teacher notselect");
 		$this->setChild(function($q){
 			$q->whereType("teacher");
 			$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
@@ -78,7 +78,7 @@ class classes {
 	}
 	
 	public function place_id() {
-		$this->form("select")->name("place_id")->addClass("select-place");
+		$this->form("select")->name("place_id")->addClass("select-place notselect");
 		$this->setChild(function($q){
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 

@@ -5,7 +5,7 @@
 class sql_cls {
 	static function config($maker = false) {
 		//------------------------------ join each query whit branch_cash table (permission)
-		if(isset($_SESSION['users_id']) && isset($_SESSION['users_branch'])){
+		if(isset($_SESSION['users_id']) && isset($_SESSION['users_branch']) && !global_cls::supervisor()){
 
 			$users_id = $_SESSION['users_id'];
 			
@@ -62,7 +62,9 @@ class sql_cls {
 		$users_branch = isset($_SESSION['users_branch']) ? $_SESSION['users_branch']: array();
 
 		//------------------------------ set branch id
-		if (post::branch_id() && preg_grep("/^".post::branch_id()."$/", $users_branch) && preg_match("/^\d+$/", post::branch_id())) {
+		if(post::branch_id() && global_cls::supervisor()){
+			$branch_id = post::branch_id();
+		}elseif (post::branch_id() && preg_grep("/^".post::branch_id()."$/", $users_branch) && preg_match("/^\d+$/", post::branch_id())) {
 		
 			$branch_id = post::branch_id();
 		
@@ -91,7 +93,7 @@ class sql_cls {
 
 		//------------------------------ check insert, update , delete permission
 		if ($name == "insert" || $name == "update" || $name == "delete") {
-			if ($maker->table != "login_counter") {
+			if ($maker->table != "login_counter" && !global_cls::supervisor()) {
 				$q = $sql->query("CALL insertPerm($users_id, $branch_id) ");
 			}
 		}

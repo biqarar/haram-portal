@@ -106,8 +106,12 @@ class model extends main_model{
 				->groupOpen()
 				->whereStatus("ready")->orStatus("running")
 				->groupClose()
+				->groupOpen()
+				->condition("and", "#start_date", "<=" , $end_date)
+				->condition("and", "#end_date", ">=" , $start_date)
+				->groupClose()
 				->andPlace_id($place)->select();
-
+				ilog($class->string());
 		//------------------------------  if in this place classes and ready or running
 		if($class->num() > 0 ) {
 
@@ -119,7 +123,7 @@ class model extends main_model{
 				$classes_detail = $value;
 				
 				//------------------------------  date end of exist classes > start date of request classes
-				if(intval($value['end_date']) > $start_date) {
+				// if(intval($value['end_date']) > $start_date) {
 
 					//------------------------------ check week days of exist classes and request classes
 					$week_days_exist = preg_split("/\,/", $value['week_days']);
@@ -145,7 +149,7 @@ class model extends main_model{
 						}
 						if($duplicate) break;
 					}
-				}
+				// }
 				if($duplicate) break;
 			}	
 		}

@@ -13,7 +13,7 @@ class sql_lib{
 		}
 		if(is_object($maker)){
 			if(autoload::check("sql_cls") && method_exists("sql_cls", "config")) {
-				// sql_cls::config($maker);
+				sql_cls::config($maker);
 			}
 			$this->maker = $maker;
 			self::$tables = (object) array();	
@@ -32,7 +32,7 @@ class sql_lib{
 		$string = $this->$syntax();
 		if(preg_match("/^(insert|delete|update|select)$/", $name)){
 			if(autoload::check("sql_cls") && method_exists("sql_cls", "call")) {
-				// sql_cls::call($this->maker, $name);
+				sql_cls::call($this->maker, $name);
 			}
 			
 			$this->groupby($string);
