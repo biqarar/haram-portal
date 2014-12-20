@@ -66,6 +66,9 @@ class query_dataTable_cls extends query_cls
 				$ssearch = preg_split("[ ]", $vsearch);
 				$vsearch = str_replace(" ", "_", $vsearch);
 				$csearch = $search;
+				foreach ($search as $key => $value) {
+					$search[$key] = "IFNULL($value, '')";
+				}
 				$search  = join($search, ', ');
 				$result->condition("and", "##concat($search)", "LIKE", "%$vsearch%");
 				$result->groupOpen();
@@ -118,7 +121,7 @@ class query_dataTable_cls extends query_cls
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", $recordsFiltered);
 		debug_lib::property("data", $array);
-		// echo("\n\n".$q->select()->string())."\n";exit();
+		// echo("\n\n".$query->string())."\n";exit();
 		
 	}
 

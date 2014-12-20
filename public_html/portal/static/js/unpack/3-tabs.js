@@ -1,5 +1,4 @@
-$(document).ready(function() {
-	$.ajaxSetup ({
+$(document).ready(function() {$.ajaxSetup ({
 		cache: false
 	});
 	function transit() {
@@ -152,7 +151,6 @@ function setTabLI(ui) {
 }
 
 function aClickTabs(e){
-	console.log(e);
 	var activeTab, nActive, hash;
 	var href = $(this).attr('href');
 	var text = $(this).text();

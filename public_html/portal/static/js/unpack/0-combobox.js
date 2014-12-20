@@ -5,9 +5,11 @@
 			create: false
 		},
 		_create: function() {
+			this.element.addClass('notselect');
 			this.wrapper = $( "<span>" )
 			.addClass( "custom-combobox" )
 			.insertAfter( this.element );
+			this.element.addClass("orginal-combo-box");
 			this.element.hide();
 			this._createAutocomplete();
 			this._createShowAllButton();
