@@ -23,12 +23,12 @@ class view extends main_view {
 			
 			//------------------------------ set plan name and course name instead plan & course id
 			$plan_id = $this->sql(".assoc.foreign", "classes", $f->classes_id->attr['value'], "plan_id");
-			$course_id = $this->sql(".assoc.foreign", "classes", $f->classes_id->attr['value'], "course_id");
+			// $course_id = $this->sql(".assoc.foreign", "classes", $f->classes_id->attr['value'], "course_id");
 			
 			$plan  = $this->sql(".assoc.foreign", "plan" , $plan_id , "name");
-			$course = $this->sql(".assoc.foreign", "course", $course_id, "name");
+			// $course = $this->sql(".assoc.foreign", "course", $course_id, "name");
 
-			$f->classes_id->value($plan . ' ' . $course);
+			$f->classes_id->value($plan);
 		}
 	}
 }

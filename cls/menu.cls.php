@@ -305,6 +305,17 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "attendance", 
+			"url" => "classes/status=list/type=absence", 
+			"name" =>  _("attendance"), 
+			"tag" => array(
+				"classes" => array("select" => array("public")),
+				"classification" => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------ absence add
 		self::$menu[] = array(
 			"submenu" => "attendance", 
@@ -312,17 +323,6 @@ class menu_cls  {
 			"name" =>  _("ثبت غیبت کاربر"), 
 			"tag" => array(
 				"absence" => array("insert" => array("public"))
-				)
-			);
-
-		//------------------------------ classes list
-		self::$menu[] = array(
-			"submenu" => "attendance", 
-			"url" => "classes/status=list/", 
-			"name" =>  _("attendance"), 
-			"tag" => array(
-				"classes" => array("select" => array("public")),
-				"classification" => array("insert" => array("public"))
 				)
 			);
 

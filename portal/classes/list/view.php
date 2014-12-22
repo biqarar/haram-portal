@@ -2,14 +2,16 @@
 /**
  * @author reza mohiti rm.biqarar@gmail.com
  */
-
 class view extends main_view{
+
 
 	public function config(){
 		//------------------------------ global
 		$this->global->page_title = "classes";
 		
-		$this->data->dataTable = $this->dtable("classes/status=api/type=". $this->xuId("type") . "/"
+		$type = ($this->xuId("type") == "classification") ? "classification" : "absence";
+
+		$this->data->dataTable = $this->dtable("classes/status=api/type=$type/"
 			, array(
 				"id",
 				"plan",
@@ -21,7 +23,7 @@ class view extends main_view{
 				"end_time",
 				"capacity",
 				"count",
-				"classification",
+				"$type",
 				"detail"
 				));
 		// //------------------------------ classes list

@@ -166,6 +166,22 @@ class model extends main_model{
 				. $classes_detail['id'] .
 				" تداخل دارد، لطفا بررسی کنید " 
 				);
+		}else{
+			$new_classes = array();
+			$new_classes['start_date'] = $start_date;
+			$new_classes['end_date']   = $end_date;
+			$new_classes['start_time'] = $start_time;
+			$new_classes['end_time']   = $end_time;
+			$new_classes['week_days']  = $week_days;
+			list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.teacher" , post::teacher() , $new_classes);
+			if($duplicate){
+				debug_lib::fatal(
+				" استاد در این ساعت در کلاس شماره "
+				. $classes_detail['id'] .
+				" تدریس دارد " 
+				);
+			}
+
 		}
 	}
 

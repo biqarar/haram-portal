@@ -1,7 +1,7 @@
 route("users/status=api", function(url){
 	$('tbody>tr', this).attr('copier-context-subject', 'user');
 });
-route(/classification\/class\/classesid=\d+/,function(){
+route(/classification\/class\/classesid\=\d+/,function(){
 	var _self;
 	if(this.nodeName == "#document"){
 		_self = $('#tabs>div').eq(0);
