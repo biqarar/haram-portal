@@ -29,7 +29,8 @@ class view extends main_view{
 				"certificate",
 				"mark",
 				"min_person",
-				"max_person"));
+				"max_person",
+				"edit"));
 	}
 }
 ?>

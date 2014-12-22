@@ -1,56 +1,44 @@
-<?php 
+<?php
 /**
- * 
+ * @author reza mohitit rm.biqarar@gmail.com
  */
-class view extends main_view  {
-	public function config() {
-		//------------------------------  global
-		$this->global->page_title = "users_detail";
-
-		//------------------------------  set users_id
-		$users_id  = $this->xuId();
-
-		//------------------------------ check users (if teacher , can not be display another users by id)
-		$this->check_users_type($users_id);
-
-		//------------------------------  make person card
-		$person = $this->sql(".list.card", "person", $users_id, "users_id");
-		unset($person['addLink']);
-		unset($person['editLink']);
-		// unset($person['moreLink']);
-			
-		$person["moreLink"] = "teacher/person/status=detail/id=" . $users_id;
-		$this->data->person = $person;
 
 
-		//------------------------------  make bridge card
-		$bridge = $this->sql("#bridge_detail" , $users_id);
-		$new_bridge = array();
-		$i = 1;
-		foreach ($bridge as $key => $arrayValue) {
-			if($i <= 5){
-				$new_bridge["list"]['list'][0][$arrayValue['title']] = $arrayValue['value'];
-			}
-			$i++;
-		}
+class view extends main_view {
 
-		//------------------------------  make global of bridge card
-		$new_bridge['title'] = "bridge";
-		$new_bridge["addLink"] = "teacher/bridge/status=add/usersid=$users_id";
-		$new_bridge["moreLink"] = "teacher/bridge/status=detail/usersid=$users_id";
-		// $new_bridge["editLink"] = "bridge/status=edit/usersid=$users_id";
-		
-		$this->data->bridge = $new_bridge;
+	public function config(){
 
+		//------------------------------ global
+		$this->global->page_title = "bridge";
 
-		//------------------------------  make teacher card (person extera)
-		$person_extera =  $this->sql(".list.card", "person_extera" , $users_id , "users_id");
-		if(isset($person_extera['list']['list'][0])){
-			unset($person_extera['addLink']);
-			$person_extera["editLink"] = "teacher/extera/status=edit/usersid=$users_id";
-			$person_extera["moreLink"] = "teacher/extera/status=detail/usersid=$users_id";
-			$this->data->person_extera = $person_extera;		
-		}
+		//------------------------------ check users (if teacher, can not be display by changing id)
+		$this->check_users_type($this->xuId("usersid"));
+
+		$this->global->url = 'usersid=' . $this->SESSION_usersid();
+
+		//------------------------------ load bridge form
+	    $f = $this->form('@bridge', $this->urlStatus());	
+
+	    $users_id = $this->SESSION_usersid();
+
+	    //------------------------------ put users_id in hidden input to get in model.php
+	    $f->users_id->value($users_id);
+
+	    //------------------------------ list of bridge fo this user
+    	$list = $this->sql(".list", "bridge" , function($query, $users_id){
+    		$query->whereUsers_id($users_id);
+    	}, $users_id);
+
+    	//------------------------------ edit link
+    	// $list = $this->editCol("bridge", $list, $this->link("/teacher/bridge/status=edit/usersid=$users_id/id=%id%" , "href", "icoedit"));
+
+    	$this->data->list = $list->compile();
+
+    	//------------------------------ load edit form
+	  //   if($this->urlStatus() == "edit"){
+			// $this->sql(".edit", "bridge", $this->xuId(), $f);	    
+	  //   }
+
 	}
-} 
+}
 ?>

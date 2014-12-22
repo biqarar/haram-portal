@@ -131,6 +131,16 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ province add
+		self::$menu[] = array(
+			"submenu" => "home", 
+			"url" => 'province/status=add', 
+			"name" =>  _("menu province add"), 
+			"tag" => array(
+				"province" => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------  education 
 		self::$menu[] = array(
 			"submenu" => "home", 
@@ -195,7 +205,7 @@ class menu_cls  {
 		//------------------------------  teacher show detail 
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'users/status=detail/id=' . $this->usersid(), 
+			"url" => 'teacher/status=detail/id=' . $this->usersid(), 
 			"name" =>  _("نمایش اطلاعات"), 
 			"tag" => $this->teacher_form("show")
 			);
@@ -203,7 +213,7 @@ class menu_cls  {
 		//------------------------------  teacher extera form
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'person/extera/status=add/usersid=' . $this->usersid(), 
+			"url" => 'teacher/extera/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("تکمیل مشخصات"), 
 			"tag" => $this->teacher_form("person_extera")
 			);
@@ -211,7 +221,7 @@ class menu_cls  {
 		//------------------------------  teacher education 
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'education/users/usersid=' . $this->usersid(), 
+			"url" => 'teacher/education/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("اطلاعات تحصیلی"), 
 			"tag" => $this->teacher_form("education_users")
 			);
@@ -219,7 +229,7 @@ class menu_cls  {
 		//------------------------------  teacher bridge
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'teachinghistory/status=add/usersid=' . $this->usersid(), 
+			"url" => 'teacher/teachinghistory/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("سوابق علمی و اجرایی"), 
 			"tag" => $this->teacher_form("teachinghistory")
 			);
@@ -227,7 +237,7 @@ class menu_cls  {
 		//------------------------------  teacher bridge
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'bridge/status=add/usersid=' . $this->usersid(), 
+			"url" => 'teacher/bridge/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("پل های ارتباطی"), 
 			"tag" => $this->teacher_form("bridge")
 			);

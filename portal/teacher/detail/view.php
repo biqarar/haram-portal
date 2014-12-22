@@ -8,7 +8,7 @@ class view extends main_view  {
 		$this->global->page_title = "users_detail";
 
 		//------------------------------  set users_id
-		$users_id  = $this->xuId();
+		$users_id  = $this->SESSION_usersid();
 
 		//------------------------------ check users (if teacher , can not be display another users by id)
 		$this->check_users_type($users_id);
@@ -17,9 +17,8 @@ class view extends main_view  {
 		$person = $this->sql(".list.card", "person", $users_id, "users_id");
 		unset($person['addLink']);
 		unset($person['editLink']);
-		// unset($person['moreLink']);
 			
-		$person["moreLink"] = "teacher/person/status=detail/id=" . $users_id;
+		$person["moreLink"] = "teacher/person/status=detail/usersid=" . $users_id;
 		$this->data->person = $person;
 
 
@@ -37,9 +36,6 @@ class view extends main_view  {
 		//------------------------------  make global of bridge card
 		$new_bridge['title'] = "bridge";
 		$new_bridge["addLink"] = "teacher/bridge/status=add/usersid=$users_id";
-		$new_bridge["moreLink"] = "teacher/bridge/status=detail/usersid=$users_id";
-		// $new_bridge["editLink"] = "bridge/status=edit/usersid=$users_id";
-		
 		$this->data->bridge = $new_bridge;
 
 
@@ -47,8 +43,9 @@ class view extends main_view  {
 		$person_extera =  $this->sql(".list.card", "person_extera" , $users_id , "users_id");
 		if(isset($person_extera['list']['list'][0])){
 			unset($person_extera['addLink']);
-			$person_extera["editLink"] = "teacher/extera/status=edit/usersid=$users_id";
-			$person_extera["moreLink"] = "teacher/extera/status=detail/usersid=$users_id";
+			unset($person_extera['moreLink']);
+			$person_extera["editLink"] = "teacher/extera/status=add/usersid=$users_id";
+			// $person_extera["moreLink"] = "teacher/extera/status=detail/usersid=$users_id";
 			$this->data->person_extera = $person_extera;		
 		}
 	}

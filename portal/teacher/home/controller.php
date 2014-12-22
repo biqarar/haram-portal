@@ -6,11 +6,17 @@ class controller extends main_controller{
 	public $access = false;
 
 	function config(){
-		$users_id = isset($_SESSION['users_id']) ? $_SESSION['users_id'] : 0;
+		$users_id = $this->SESSION_usersid();
 		$surl = config_lib::$surl;
 
-		// $url_id = isset($surl['id']) ? $surl['id'] : (isset($surl['usersid'])) ? $surl['usersid'] : 0 ; 
-		$url_id = 13998;
+		if(isset($surl['id'])){
+			$url_id = $surl['id'];
+		}elseif(isset($surl['usersid'])){
+			$url_id = $surl['usersid'];
+		}else{
+			$url_id = 0;
+		}
+
 		if(
 			isset($_SESSION['users_type']) && 
 			$_SESSION['users_type'] == 'teacher' &&
@@ -28,6 +34,47 @@ class controller extends main_controller{
 					save(array("teacher", "bridge"));
 				}
 			);
+
+		$this->listen(
+				array(
+					"max" => 3,
+					'url' => array("person", "status" => "detail", "usersid" => $users_id)
+					),
+				function(){
+					save(array("teacher", "person"));
+				}
+			);
+
+		$this->listen(
+				array(
+					"max" => 3,
+					'url' => array("teachinghistory", "status" => "add", "usersid" => $users_id)
+					),
+				function(){
+					save(array("teacher", "teachinghistory"));
+				}
+			);
+
+		$this->listen(
+				array(
+					"max" => 3,
+					'url' => array("education", "status" => "add", "usersid" => $users_id)
+					),
+				function(){
+					save(array("teacher", "education"));
+				}
+			);
+
+			$this->listen(
+				array(
+					"max" => 3,
+					'url' => array("extera", "status" => "add", "usersid" => $users_id)
+					),
+				function(){
+					save(array("teacher", "extera"));
+				}
+			);
+
 	}
 }
 ?>

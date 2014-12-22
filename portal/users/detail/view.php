@@ -61,6 +61,7 @@ class view extends main_view  {
 			unset($person_extera['addLink']);
 			$person_extera["editLink"] = "person/extera/status=edit/usersid=$users_id";
 			$person_extera["moreLink"] = "person/extera/status=detail/usersid=$users_id";
+			// var_dump($person_extera);
 			$this->data->person_extera = $person_extera;		
 		}
 

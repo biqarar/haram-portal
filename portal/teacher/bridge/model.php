@@ -1,53 +1,56 @@
-<?php 
+<?php
 /**
-* 
-*/
+ * @author reza mohitit rm.biqarar@gmail.com
+ */
 class model extends main_model {
-	public function config() {
-		
+
+	public function makeQuery() {
+		//------------------------------  make sql object
+		return $this->sql()->tableBridge()
+			->setUsers_id($this->SESSION_usersid())
+			->setTitle(post::title())
+			->setValue(post::value())
+			->setDescription(post::description());
 	}
 
-	public function sql_users_detail($id = false) {
-		$return = array();
-		$users = $this->sql()->tableUsers()->whereId($id)->limit(1)->select();
-		if($users->num() == 1) {
-			$return[0] = $users->assoc();
-			$return[1] = $this->sql()->tablePerson()->whereUsers_id($return[0]['id'])->limit(1)->select()->assoc();
-			$return[2] = $this->sql()->tableStudent()->whereUsers_id($return[0]['id'])->limit(1)->select()->assoc();
-			// var_dump($return);
-			return $return;
-		}else{
-			return array();
-		}
+	public function post_add_bridge() {
+		//------------------------------ insert bridge
+		$sql = $this->makeQuery()->insert();
+
+		// BUG ------------ BUG  ------------ BUG  ------------ BUG  ------------ BUG  ------------ BUG 
+		// IF usersid SET IN URL NOT FOUNT THIS PLACE !!! WHY ????
+		// print_r($sql->string());
+		// die();
 		
+		//------------------------------ commit code
+		$this->commit(function() {
+			debug_lib::true("[[insert bridge successful]]");
+		});
+
+		//------------------------------ rollback code
+		$this->rollback(function() {
+			debug_lib::fatal("[[insert bridge failed]]");
+		});
 	}
 
-	public function sql_bridge_detail($users_id = false) {
-		$bridge = $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
-		return $bridge;
+	public function post_edit_bridge() {
+
+		//------------------------------ update bridge
+		$sql = $this->makeQuery()->whereId($this->xuId())->andUsers_id($this->SESSION_usersid())->update();
+
+		//------------------------------ commit code
+		$this->commit(function() {
+			debug_lib::true("[[update bridge successful]]");
+		});
+
+		//------------------------------ rollback code
+		$this->rollback(function() {
+			debug_lib::fatal("[[update bridge failed]]");
+		});
 	}
 
-	public function sql_olddb($users_id = false) {
-		
-		$old_casecode = $this->sql()->tableStudent()->whereUsers_id($users_id)->limit(1)->select();
-		
-		if($old_casecode->num() >= 1) {
-			
-			$old_casecode       = $old_casecode->assoc("name1");
-			
-			$old_price    	    = $this->sql()->tableOldprice()->whereParvande($old_casecode)->select()->num();
-			
-			$old_classification = $this->sql()->tableOldclassification()->whereParvande($old_casecode)->select()->num();
-
-			$old_certification = $this->sql()->tableOldcertification()->whereParvande($old_casecode)->select()->num();
-
-			return  array(
-				"student"		 => $old_casecode,
-				"classification" => $old_classification,
-				"price"			 => $old_price,
-				"certification"  => $old_certification
-					);
-		}
+	public function sql_list_bridge($users_id = false) {
+		return $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
 	}
 }
 ?>

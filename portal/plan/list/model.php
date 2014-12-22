@@ -14,6 +14,7 @@ class model extends main_model {
 				"id edit")
 		->search_fields("name", "price")
 		->result(function($r){
+			$r->edit = '<a class= "icoedit" href="plan/status=edit/id='. $r->edit . '"></a>';
 			
 		});
 		$this->sql(".dataTable", $dt);

@@ -25,6 +25,7 @@ class main_controller{
 		$this->addMethod('uStatus');
 		$this->addMethod('uId');
 		$this->addMethod('xuId');
+		$this->addMethod('SESSION_usersid');
 		$this->addMethod("checkPermissions");
 		if(method_exists($this, 'config')){
 			$this->config();
@@ -311,6 +312,10 @@ class main_controller{
 			$msg = "permission denide";
 		}
 		return array($access, $msg);
+	}
+
+	public function SESSION_usersid() {
+		return (isset($_SESSION['users_id'])) ? $_SESSION['users_id'] : 0;
 	}
 }
 

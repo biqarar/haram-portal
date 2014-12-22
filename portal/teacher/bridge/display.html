@@ -1,7 +1,10 @@
-{# Reza Mohiti rm.biqarar@gmail.com #}
+{# reza mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
-{%block content%}
-{{tagMaker.card(person)}}
-{{tagMaker.card(bridge)}}
-{{tagMaker.card(person_extera)}}
+{% block content %}
+
+<form class="ajx" method="post" action="teacher/bridge/status=add/{{global.url}}">
+	{{forms.make(form.bridge)}}
+</form>
+<br>
+{{tagMaker.list(list)}}
 {%endblock%}

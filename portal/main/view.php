@@ -225,7 +225,7 @@ class main_view{
 		if(isset($classes_detail['list'])){	
 			foreach ($classes_detail ['list'] as $key => $value) {
 				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
-				$classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
+				// $classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
 				$classes_detail ['list'][$key]['teacher']   = 
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "name", "users_id") . ' ' . 
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");
