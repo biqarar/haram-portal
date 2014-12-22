@@ -1,17 +1,18 @@
 <?php
 class validateExtends_cls{
 
+
+
 	public function reg($reg = false) {
 		if (preg_match($reg, $this->value)) {
 			return true;
 		}else{
 			return false;
 		}
-
 	}
 	
 	public function id() {
-		if ($this->value == 'null' or preg_match("/^\d+$/", $this->name)) {
+		if ($this->value == 'null' or preg_match("/^\d+$/", $this->value)) {
 			return true;
 		}else{
 			return false;
@@ -20,7 +21,6 @@ class validateExtends_cls{
 
 	public function date() {
 		if ($this->value == null) return true;		
-		
 		// /^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/
 		// if (!preg_match("/^(13|14)([0-9][0-9])(\/|-)?(((0?[1-6])(\/|-)?((0?[1-9])|([12][0-9])|(3[0-1])))|(((0?[7-9])|(1[0-2]))(\/|-)?((0?[1-9])|([12][0-9])|(30))))$/", $this->value, $date)) {
 		if (!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $this->value, $date)) {
@@ -37,42 +37,34 @@ class validateExtends_cls{
 	}
 
 
-	public function repassword($repass) {
-		if ($this->value != md5($this->_parm[$repass])) {
-			return false;
-			// $this->SetOnError('repassword');
-		}
-		return true;
-	}
+	// public function repassword($repass) {
+	// 	if ($this->value != md5($this->_parm[$repass])) {
+	// 		return false;
+	// 		// $this->SetOnError('repassword');
+	// 	}
+	// 	return true;
+	// }
 
 	public function password() {
 		if (!preg_match("/^.{6,32}$/", $this->value)) {
 			return false;
-			// $this->SetOnError('password');
 		}else{
 			$this->value = md5($this->value);
 		}
 		return true;
 	}
 
+
 	public function fn($fn) {
 		$args = func_get_args();
 		$debug = call_user_func_array($fn, array_slice($args, 1));
 		if (!$debug) {
 			return false;
-			// $this->SetOnError('fn');
 		}
 		return ture;
 	}
 
 	public function nationalcode() {
-		// return true;
-		// id 97 : iran
-		// var_dump(validator_lib::$save["form"]['nationality']->value);
-		// if (validator_lib::$save["form"]['nationality']->value!== '97') {
-		// 	var_dump("fuck", $this->value, preg_match("/\d/", intval($this->value)));
-		// }
-		// exit();
 		if (isset(validator_lib::$save["form"]['nationality']) && validator_lib::$save["form"]['nationality']->value != '97') {
 			if (preg_match("/\d/", intval($this->value))) {
 				return true;
@@ -119,8 +111,7 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false) {
-		return true;
-		
+		//****************************************************************************************************
 		$a = (preg_match("/^\d+$/", $a)) ? $a : 1;
 		if (!$b) {
 			$num = "/\d{".$a."}/";
