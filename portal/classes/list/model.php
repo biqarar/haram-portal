@@ -16,7 +16,7 @@ class model extends main_model {
 			"age_range",
 			"start_time",
 			"end_time",
-			"max capacity",
+			"maxp capacity",
 			"id classification",
 			"id detail")
 		
@@ -49,7 +49,7 @@ class model extends main_model {
 			}
 		})
 		->query(function($q){
-			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("max");
+			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 			// $q->joinClassification()->whereClasses_id("#classes.id")->fieldId("sum");

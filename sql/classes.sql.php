@@ -20,6 +20,7 @@ class classes {
 	public $week_days  = array('type'=> 'set@saturday,sunday,monday,tuesday,wednesday,thursday,friday', 'label' => 'classes_week_days');
 	public $status     = array('type'=> 'enum@ready,running,done!ready', 'label' => 'classes_status');
 	public $type	    = array('type'=> 'enum@physical,virtual!physical', 'label' => 'classes_type');
+	public $count	    = array('type'=> 'int@7', 'label' => 'classes_count');
 	
 	public $index      = array("course_id", "plan_id", "teacher", "place_id");
 	public $unique     = array("id");
@@ -125,6 +126,10 @@ class classes {
 	public function type() {
 		$this->form("select")->name("type");
 		$this->setChild($this->form);
+	}
+
+	public function count() {
+		$this->validate()->number(1,7);
 	}
 }
 ?>
