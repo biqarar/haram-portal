@@ -23,6 +23,8 @@ class model extends main_model {
 						->setClasses_id($classes_id)
 						->setDate_entry($this->dateNow())
 						->insert();
+				//------------------------------- set classification count in to classes table
+				$this->sql(".classesCount", $classes_id);
 			}
 		}else{
 

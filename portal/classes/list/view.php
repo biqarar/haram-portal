@@ -21,6 +21,7 @@ class view extends main_view{
 				"start_time",
 				"end_time",
 				"capacity",
+				"count",
 				"classification",
 				"detail"
 				));

@@ -16,7 +16,8 @@ class model extends main_model {
 			"age_range",
 			"start_time",
 			"end_time",
-			"maxp capacity",
+			"maxp plan.max_person",
+			"count",
 			"id classification",
 			"id detail")
 		
@@ -44,6 +45,8 @@ class model extends main_model {
 				$q->join->person->orderName($b);
 			}elseif($n === 'orderPlacename'){
 				$q->join->place->orderName($b);
+			}elseif($n === 'orderMaxp'){
+				$q->join->plan->orderMax_person($b);
 			}else{
 				return true;
 			}
