@@ -94,7 +94,7 @@ class model extends main_model{
 
 		//------------------------------  week days
 		$week_days  = post::week_days();
-
+		$week_days  = is_array($week_days) ? $week_days : array();
 		//------------------------------ status
 		$status     = post::status();
 
@@ -129,7 +129,7 @@ class model extends main_model{
 				// if(intval($value['end_date']) > $start_date) {
 
 					//------------------------------ check week days of exist classes and request classes
-					$week_days_exist = preg_split("/\,/", $value['week_days']);
+					$week_days_exist = (preg_match("/\,/", $value['week_days'])) ? preg_split("/\,/", $value['week_days']) : array();
 
 					foreach ($week_days as $k => $v) {
 						

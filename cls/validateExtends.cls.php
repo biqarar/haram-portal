@@ -1,8 +1,6 @@
 <?php
 class validateExtends_cls{
 
-
-
 	public function reg($reg = false) {
 		if (preg_match($reg, $this->value)) {
 			return true;
@@ -36,14 +34,6 @@ class validateExtends_cls{
 		return true;
 	}
 
-
-	// public function repassword($repass) {
-	// 	if ($this->value != md5($this->_parm[$repass])) {
-	// 		return false;
-	// 		// $this->SetOnError('repassword');
-	// 	}
-	// 	return true;
-	// }
 
 	public function password() {
 		if (!preg_match("/^.{6,32}$/", $this->value)) {
@@ -105,74 +95,62 @@ class validateExtends_cls{
 				$this->value = $code;
 			}else{
 				return false;
-				// $this->SetOnError('nationalcode');
 			}
 		}
 	}
 
 	public function number($a = false, $b = false) {
-		//****************************************************************************************************
-		$a = (preg_match("/^\d+$/", $a)) ? $a : 1;
-		if (!$b) {
-			$num = "/\d{".$a."}/";
-		}else{
-			$b = (preg_match("/^\d+$/", $b)) ? $b : 10;
-			$num = "/\d{".$a.", ".$b."/";
+
+		$a = (preg_match("/^\d+$/", $a)) ? $a : false;
+		$b = (preg_match("/^\d+$/", $b)) ? $b : false;
+		if(!$a && !$b){
+			$reg = "/^\d+$/";
+		}elseif($a && !$b) {
+			$reg = "/^\d{" . $a . "}$/";
+		}elseif($a && $b){
+			$reg = "/^\d{" . $a . "," . $b . "}$/";
 		}
-		// var_dump($num, $a, $b, $this->value, preg_match($num, $this->value));
-		// exit();
-		if (!preg_match($num, $this->value)) {
-			return false;
-			// $this->SetOnError('number');
-		}else{
+
+		if (preg_match($reg, $this->value)) {
 			$this->value = intval($this->value);
+			return true;
+		}else{
+			return false;
 		}
-		return true;
 	}
 
-	public function description($args = false) {
-		return true;
+	public function description() {
+
 		$args = trim($this->value);
-		if (!preg_match("/^(.*){0,255}$/", $args)) {
-			$this->_type = "warn";
+		if (preg_match("/^(.*){0,255}$/", $args)) {
 			return true;
-			// $this->SetOnError('descript');
 		}
 		return false;
 	}
 
 
 	public function farsi($a = false, $b = false) {
-		return true;
-		// check
-		$status= true;
-		$strn = strlen(utf8_decode($this->value));
-		$a = (preg_match("/^\d+$/", $a)) ? $a : false;
-		if (!$b && $a !== false) {
-			if (!$strn != $a) {
-				$status= false;
-			}
-		}else{
-			$b = (preg_match("/^\d+$/", $b)) ? $b : 0;
-			if ($strn < $a && $strn > $b) {
-				$status= false;
-			}
-		}
-		$this->value = trim($this->value);
-		# ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء
+
+		$a  = (preg_match("/^\d+$/", $a)) ? $a : false;
+		$b  = (preg_match("/^\d+$/", $b)) ? $b : false;
 		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء]";
-		$pattern = "/^".$fa."{2,}(\s".$fa."{2,})*$/";
-		if (!preg_match($pattern, $this->value)) {
-			$status= false;
+
+		if(!$a && !$b){
+			$reg = "/^" . $fa . "+$/";
+		}elseif($a && !$b) {
+			$reg = "/^" . $fa . "{" . $a . "}$/";
+		}elseif($a && $b){
+			$reg = "/^" . $fa . "{" . $a . "," . $b . "}$/";
 		}
-		$this->status = $status;
-		return true;
+
+		if(preg_match($reg, $this->value)) {
+			return true;
+		}
+		return false;
 	}
 
 	public function email() {
-		return true;
 		if ($this->value == null) return true;
-		// daie();
 		$reg_email = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
 		if (preg_match($reg_email, $this->value)) {
 			return true;
