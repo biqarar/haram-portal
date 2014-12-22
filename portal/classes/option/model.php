@@ -177,7 +177,7 @@ class model extends main_model{
 			if($duplicate){
 				debug_lib::fatal(
 				" استاد در این ساعت در کلاس شماره "
-				. $classes_detail['id'] .
+				. $msg .
 				" تدریس دارد " 
 				);
 			}

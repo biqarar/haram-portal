@@ -62,6 +62,7 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		}
 
 		if($duplicate) {
+			// print_r($classes_detail);exit();
 			$msg = $classes_detail['id'];
 			return array($duplicate , $msg);
 		}
