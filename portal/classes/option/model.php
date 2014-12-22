@@ -110,7 +110,10 @@ class model extends main_model{
 				->condition("and", "#start_date", "<=" , $end_date)
 				->condition("and", "#end_date", ">=" , $start_date)
 				->groupClose()
-				->andPlace_id($place)->select();
+				->andPlace_id($place);
+		$class->joinPlace()->whereId("#classes.place_id")->fieldMulticlass();
+		$class = $class->select();
+				
 				ilog($class->string());
 		//------------------------------  if in this place classes and ready or running
 		if($class->num() > 0 ) {
@@ -140,9 +143,13 @@ class model extends main_model{
 								//------------------------------ duplicate item here !!! 
 								//------------------------------ can not insert or update classes
 								if($type == "update" && $this->xuId() == $value['id']){
-									//------------------------------ khodash !!!!
+									//------------------------------ himself
 									$duplicate = false;	
+								}elseif($value['multiclass'] == 'yes'){
+									//------------------------------ multiclass
+									$duplicate = false;
 								}else{
+									//------------------------------ duplicate
 									$duplicate = true;
 								}
 							}

@@ -6,7 +6,7 @@ class model extends main_model {
 	
 	public function post_changepasswd() {
 
-		$msg = "";
+		$msg = "error";
 
 		//------------------------------ if old password is true
 		if(isset($_SESSION['users_id'])){

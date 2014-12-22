@@ -3,26 +3,29 @@
  * @author reza mohitit rm.biqarar@gmail.com
  */
 class controller extends main_controller{
+	public $access = false;
+
 	function config(){
-		$this->listen(
-				array(
-					"max" => 2,
-					'url' => array("status" => "add", "usersid" => "/^(\d+)$/")
-					),
-				function(){
-					save(array("teacher", "option"));
-					$this->permission = array("teacher" => array("select" => array("public")));
-				}
-			);
+		$users_id = isset($_SESSION['users_id']) ? $_SESSION['users_id'] : 0;
+		$surl = config_lib::$surl;
+
+		// $url_id = isset($surl['id']) ? $surl['id'] : (isset($surl['usersid'])) ? $surl['usersid'] : 0 ; 
+		$url_id = 13998;
+		if(
+			isset($_SESSION['users_type']) && 
+			$_SESSION['users_type'] == 'teacher' &&
+			($url_id == $users_id)) {
+
+			$this->access = true;
+		}
 
 		$this->listen(
 				array(
-					"max" => 2,
-					'url' => array("status" => "detail", "usersid" => "/^(\d+)$/")
+					"max" => 3,
+					'url' => array("bridge", "status" => "add", "usersid" => $users_id)
 					),
 				function(){
-					save(array("teacher", "detail"));
-					$this->permission = array("teacher" => array("select" => array("public")));
+					save(array("teacher", "bridge"));
 				}
 			);
 	}

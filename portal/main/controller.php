@@ -4,8 +4,11 @@ class main_controller{
 	public $__autocallMethod = array("sql", "redirect", "checkRedirect", "addMethod", "addPeroperty");
 	public $__autogetProperty = array( "redirect");
 	public $access = false; // for after lunch
-	// public $access = true; // for befor lunch
+	
 	public final function __construct(){
+		if(global_cls::supervisor()){
+			$this->access = true; // for befor lunch
+		}
 		if(preg_match("/favicon\.ico$/", $_SERVER['REQUEST_URI'])){
 			die("fff");
 		}

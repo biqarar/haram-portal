@@ -140,9 +140,9 @@ class validateExtends_cls{
 	}
 
 	public function description($args = false) {
-		// return true;
-		$args = trim($args);
-		if (!preg_match("/^.{0,255}$/", $args)) {
+		return true;
+		$args = trim($this->value);
+		if (!preg_match("/^(.*){0,255}$/", $args)) {
 			$this->_type = "warn";
 			return true;
 			// $this->SetOnError('descript');

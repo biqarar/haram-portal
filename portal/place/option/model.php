@@ -8,6 +8,7 @@ class model extends main_model{
 		//------------------------------ make object sql
 		return $this->sql()->tablePlace()
 				->setName(post::name())
+				->setMulticlass(post::multiclass())
 				->setBranch_id(post::branch_id())
 				->setDescription(post::description());
 	}

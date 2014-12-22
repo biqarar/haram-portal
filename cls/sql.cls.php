@@ -63,7 +63,9 @@ class sql_cls {
 
 		//------------------------------ set branch id
 		if(post::branch_id() && global_cls::supervisor()){
+			
 			$branch_id = post::branch_id();
+
 		}elseif (post::branch_id() && preg_grep("/^".post::branch_id()."$/", $users_branch) && preg_match("/^\d+$/", post::branch_id())) {
 		
 			$branch_id = post::branch_id();
@@ -75,8 +77,8 @@ class sql_cls {
 		} elseif (isset($users_branch) && count($users_branch) > 1 && !post::branch_id()) {
 			
 			// ------------------------------ developer bug
-			$branch_id = 0;
-			// $branch_id = $_SESSION['users_branch'][0];
+			// $branch_id = 0;
+			$branch_id = $_SESSION['users_branch'][0];
 		
 		} else {
 		

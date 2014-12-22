@@ -3,6 +3,7 @@ namespace sql;
 class place {
 	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'place_id');
 	public $name        = array('type'=> 'varchar@32', 'label' => 'place_name');
+	public $multiclass  = array("type" => 'enum@no,yes!no', "label" => "place_multiclass");
 	public $branch_id   = array('type'=> 'int@10', 'label' => 'branch_id');
 	public $description = array('type'=> 'varchar@255', 'label' => 'place_description');
 
@@ -18,6 +19,11 @@ class place {
 	public function name() {
 		$this->form("#fatext")->name("name");
 		$this->validate()->farsi()->form->farsi("place name is not valid");
+	}
+
+	public function multiclass() {
+		$this->form("radio")->name("multiclass")->label("multiclass");
+		$this->setChild($this->form);
 	}
 	
 	public function branch_id() {

@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "multiclass"
+msgstr "کلاس های چندتایی"
+
 msgid "capacity"
 msgstr "ظرفیت"
 

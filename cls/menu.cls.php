@@ -61,7 +61,7 @@ class menu_cls  {
 			}
 
 			//------------------------------ make menu and dropdown
-			if($make) {
+			if($make || global_cls::supervisor()) {
 				self::$list_menu[$value['submenu']]["dropdown"][]
 				=  array("url" => $value['url'] , "name" => $value["name"]);
 			}
