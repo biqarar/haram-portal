@@ -100,11 +100,22 @@ class query_dataTable_cls extends query_cls
 			}
 		}
 		foreach ($allData as $vkey => $vvalue) {
+			$result_args = array();
 			foreach ($vvalue as $key => $value) {
 				$allData[$vkey]->$key = empty($value) ? '' : gettext($value);
 			}
 			if(isset($object->result)){
-				call_user_func_array($object->result, array($allData[$vkey]));
+				if(is_array($object->result)){
+					 	$result_object = $object->result[0];
+					 	$result_args = $object->result;
+					 	$result_args = array_splice($result_args, 1);
+					 	array_unshift($result_args, $allData[$vkey]);
+				}else{
+						$result_object = $object->result;
+					 	$result_args = array($allData[$vkey]);
+				}
+				// print_r($result_args);
+				call_user_func_array($result_object, $result_args);
 			}
 		}
 		$array = array();

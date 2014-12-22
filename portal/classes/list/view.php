@@ -8,9 +8,8 @@ class view extends main_view{
 	public function config(){
 		//------------------------------ global
 		$this->global->page_title = "classes";
-
-
-		$this->data->dataTable = $this->dtable("classes/status=api/"
+		
+		$this->data->dataTable = $this->dtable("classes/status=api/type=". $this->xuId("type") . "/"
 			, array(
 				"id",
 				"plan",

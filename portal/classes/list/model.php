@@ -6,6 +6,20 @@
 class model extends main_model {
 		public function post_api(){
 		
+		$classification_OR_absence = $this->xuId("type");
+		$url = "classification/";
+		$ico = "icoclasses";
+		if($classification_OR_absence != "classification" && $classification_OR_absence != "absence") {
+			$classification_OR_absence = "classification";
+			$url = "classification/";
+			$ico = "icoclasses";
+		}elseif($classification_OR_absence == "absence"){
+			$url = "absence/statu";
+			$ico = "icoattendance";
+
+		}
+
+
 		$dtable = $this->dtable->table("classes")
 		->fields(
 			"id",
@@ -56,16 +70,15 @@ class model extends main_model {
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 			// $q->joinClassification()->whereClasses_id("#classes.id")->fieldId("sum");
-			// var_dump($q);
 			// exit();
 		})
-		->result(function($r){
+		->result(function($r, $ico, $url){
 			// $r->edit = '<a class="icoedit" href="classes/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
-			$r->classification = '<a class="icoclasses" href="classification/class/classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
-			// $r->absence = '<a class="icoattendance" href="classification/absence/classesid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
+			$r->classification = '<a class="'. $ico . '" href="'.$url.'/classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
+			// $r->classification = '<a class="icoattendance" href="classification/absence/classesid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
-		});
+		}, $ico , $url);
 
 		$this->sql(".dataTable", $dtable);
 	}	
