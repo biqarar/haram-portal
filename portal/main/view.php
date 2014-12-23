@@ -253,6 +253,7 @@ class main_view{
 
 
 	public function colPermission($table, $operat) {
+		if(global_cls::supervisor()) return true;
 		if(isset($_SESSION['user_permission']['tables'][$table][$operat]) && 
 			$_SESSION['user_permission']['tables'][$table][$operat] == 'public'){
 			return true;

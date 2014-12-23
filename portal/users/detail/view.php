@@ -66,31 +66,7 @@ class view extends main_view  {
 		}
 
 
-		//------------------------------  make bridge card
-		$query_olddb = $this->sql("#olddb" , $users_id);
-		if(!empty($query_olddb)){
-			$olddb = array();
-			$i = 1;
-			foreach ($query_olddb as $key => $arrayValue) {
-				if($key != "student"){
-					$c = "&nbsp&nbspتعداد&nbsp&nbsp";
-					$m = "&nbsp&nbspمورد&nbsp&nbsp";
-				}else{
-					$c = "";	
-					$m = "";
-				}
-				$olddb["list"]['list'][0][$key] =
-				 "<a>".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
-				."<a href='olddb/" .$key . '/id='. $query_olddb['student'] . "'>نمایش کامل اطلاعات</a>";
-				$i++;
-					
-			}
-			
-			//------------------------------  make global of bridge card
-			$olddb['title'] = "olddb";
-			// $olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
-			$this->data->olddb = $olddb;
-		}
+
 
 	}
 } 

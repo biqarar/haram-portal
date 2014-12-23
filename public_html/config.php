@@ -13,7 +13,7 @@ define('db_name', 'quran_hadith');
 define('db_user', 'root');
 
 /** MySQL database password */
-define('db_password', 'root');
+define('db_password', 'Quran!!))Hadith14082513');
 
 /** MySQL hostname  */
 define('db_host', 'localhost');
@@ -38,7 +38,9 @@ define('WPLANG', 'en_US');
  * in their development environments.a
  */
 define('DEBUG', true);
-define('FACHR', 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآيئؤكآأإة');
+// define('FACHR', 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآيئؤكآأإة');
+define('FACHR', 'ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء');
+
 define("core", DIR."/../core/");
 define("root_dir", DIR."/../");
 define("lib", core."lib/");
