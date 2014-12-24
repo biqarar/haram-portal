@@ -40,7 +40,6 @@ class person_extera {
 
   public function place_birth(){
     $this->form("text")->name("place_birth")->id("from")->addClass("select-city")->data_url("city/api/");
-    $this->validate()->reg("/(.*)/")->form->reg("fuck");
 
   }
 
@@ -91,12 +90,12 @@ class person_extera {
 
   public function stature(){
      $this->form("#number")->name("stature")->label("stature")->classname('slider-number')->max(120)->min(300);
-     $this->validate()->number()->form->number("fuck");
+     $this->validate()->number()->form->number("number of stature is not valid");
   }
 
   public function weight(){
      $this->form("#number")->name("weight")->label("weight")->classname('slider-number')->max(30)->min(150);
-     $this->validate()->number()->form->number("fuck");
+     $this->validate()->number()->form->number("number of weight is not valid");
   }
 
   public function blood_group(){
