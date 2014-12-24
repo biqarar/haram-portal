@@ -40,7 +40,7 @@ class person_extera {
 
   public function place_birth(){
     $this->form("text")->name("place_birth")->id("from")->addClass("select-city")->data_url("city/api/");
-    $this->validate()->reg("/(.*)/");
+    $this->validate()->reg("/(.*)/")->form->reg("fuck");
 
   }
 
@@ -56,7 +56,7 @@ class person_extera {
 
   public function dependents(){
     $this->form("#number")->name("dependents")->label("dependents");
-    $this->validate()->number(1, 2)->form->number("number of dependents is not valid");
+    $this->validate()->number()->form->number("number of dependents is not valid");
   }
 
   public function soldiering(){
@@ -91,11 +91,12 @@ class person_extera {
 
   public function stature(){
      $this->form("#number")->name("stature")->label("stature")->classname('slider-number')->max(120)->min(300);
+     $this->validate()->number()->form->number("fuck");
   }
 
   public function weight(){
      $this->form("#number")->name("weight")->label("weight")->classname('slider-number')->max(30)->min(150);
-
+     $this->validate()->number()->form->number("fuck");
   }
 
   public function blood_group(){
@@ -104,45 +105,60 @@ class person_extera {
   }
 
   public function disease(){
-     $this->form("#fatext")->name("disease")->label("disease");      
+     $this->form("#fatext")->name("disease")->label("disease");
+     $this->validate()->farsi()->form->farsi("disease muset be persian");
+
   }
 
   public function insurance_type(){
      $this->form("#fatext")->name("insurance_type")->label("insurance_type");  
+      $this->validate()->farsi()->form->farsi("insurance_type muset be persian");
   }
 
   public function insurance_code(){
-     $this->form("#fatext")->name("insurance_code")->label("insurance_code");  
+     $this->form("#number")->name("insurance_code")->label("insurance_code");  
+      $this->validate()->number()->form->number("insurance code is not valid");
+
   }
 
   public function good_remember(){
-     $this->form("#fatext")->name("good_remember")->label("good_remember");  
+     $this->form("text")->name("good_remember")->label("good_remember");  
+      $this->validate()->reg("/^(\,|\d)+$/")->form->reg("good_remember is not valid sample : 1,2,5,19,...");
+
   }
 
   public function bad_remember(){
-     $this->form("#fatext")->name("bad_remember")->label("bad_remember");  
+     $this->form("text")->name("bad_remember")->label("bad_remember");  
+      $this->validate()->reg("/^(\,|\d)+$/")->form->reg("good_remember is not valid sample : 1,2,5,19,...");
+
   }
 
   public function tahqiq(){
-     $this->form("#number")->name("tahqiq")->label("tahqiq");    
+     $this->form("text")->name("tahqiq")->label("tahqiq");
+     $this->validate()->float()->form->float("mark of tahqiq is not valid");
+
   }
 
   public function tartil(){
-     $this->form("#number")->name("tartil")->label("tartil");
+     $this->form("text")->name("tartil")->label("tartil");
+     $this->validate()->float()->form->float("mark of tartil is not valid");
+
   }
 
   public function tajvid(){
-     $this->form("#number")->name("tajvid")->label("tajvid");
+     $this->form("text")->name("tajvid")->label("tajvid");
+     $this->validate()->float()->form->float("mark of tajvid is not valid");
+
   } 
 
   public function melli_account(){
      $this->form("#number")->name("melli_account")->label("melli_account");
-     $this->validate()->number(13);
+     $this->validate()->number(13)->form->number("melli_account is not valid");
   }
 
   public function melat_account(){
      $this->form("#number")->name("melat_account")->label("melat_account");
-     $this->validate()->number(10);
+     $this->validate()->number(10)->form->number("melat_account is not valid");
   }
 }
 

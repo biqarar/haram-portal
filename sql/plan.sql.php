@@ -44,7 +44,6 @@ class plan {
 	public function certificate() {
 		$this->form("radio")->name("certificate");
 		$this->setChild($this->form);
-		$this->validate()->number(1);
 	}
 	
 	public function mark() {

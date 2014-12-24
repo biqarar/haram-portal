@@ -100,9 +100,12 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false) {
+		
+		if($this->value == '') return true;
 
 		$a = (preg_match("/^\d+$/", $a)) ? $a : false;
 		$b = (preg_match("/^\d+$/", $b)) ? $b : false;
+
 		if(!$a && !$b){
 			$reg = "/^\d+$/";
 		}elseif($a && !$b) {
@@ -110,7 +113,7 @@ class validateExtends_cls{
 		}elseif($a && $b){
 			$reg = "/^\d{" . $a . "," . $b . "}$/";
 		}
-
+		
 		if (preg_match($reg, $this->value)) {
 			$this->value = intval($this->value);
 			return true;
@@ -119,16 +122,31 @@ class validateExtends_cls{
 		}
 	}
 
-	public function description($max = false) {
+	public function float(){
 
+		if($this->value == '') return true;
+
+		if (preg_match("/^(\d+\.?\d+)$/", $this->value)) {
+			$this->value = floatval($this->value);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function description($max = false) {
 		$this->value = trim($this->value);
 		$this->value = preg_replace("/\s+/", " ", $this->value);
 
-		if(!$max){
-			$reg = "/^(.*){3," . $max . "}$/";
+		$max = ($max && preg_match("/^\d$/", $max)) ? $max : false;
+
+		$allCharset = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼a-zA-Z0-9]";
+		if($max){
+			$reg = "/^" . $allCharset . "{3," . $max . "}$/";
 		}else{
-			$reg = "/^(.*){3,255}$/";
+			$reg = "/^" . $allCharset . "{3,255}$/";
 		}
+		
 		if (preg_match($reg, $this->value)) {
 			return true;
 		}
