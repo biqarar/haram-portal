@@ -30,7 +30,6 @@ class model extends main_model{
 	}
 
 	public function post_add_classes() {
-
 		//------------------------------ check duplicate classes
 		$this->check_duplication("insert");
 
@@ -114,7 +113,6 @@ class model extends main_model{
 		$class->joinPlace()->whereId("#classes.place_id")->fieldMulticlass();
 		$class = $class->select();
 				
-				ilog($class->string());
 		//------------------------------  if in this place classes and ready or running
 		if($class->num() > 0 ) {
 
@@ -124,10 +122,6 @@ class model extends main_model{
 
 				//------------------------------ save duplicate detail to show
 				$classes_detail = $value;
-				
-				//------------------------------  date end of exist classes > start date of request classes
-				// if(intval($value['end_date']) > $start_date) {
-
 					//------------------------------ check week days of exist classes and request classes
 					$week_days_exist = (preg_match("/\,/", $value['week_days'])) ? preg_split("/\,/", $value['week_days']) : array();
 
@@ -140,6 +134,7 @@ class model extends main_model{
 							$end_time_exist = $this->convert_time($value['end_time']);
 
 							if ($end_time_exist > $start_time && $start_time_exist < $end_time) {
+
 								//------------------------------ duplicate item here !!! 
 								//------------------------------ can not insert or update classes
 								if($type == "update" && $this->xuId() == $value['id']){
@@ -156,10 +151,10 @@ class model extends main_model{
 						}
 						if($duplicate) break;
 					}
-				// }
 				if($duplicate) break;
 			}	
 		}
+
 		if($duplicate) {
 			debug_lib::fatal(
 				" اطلاعات این کلاس با کلاس شماره "

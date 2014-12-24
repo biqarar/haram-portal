@@ -122,6 +122,8 @@ class validateExtends_cls{
 	public function description($max = false) {
 
 		$this->value = trim($this->value);
+		$this->value = preg_replace("/\s+/", " ", $this->value);
+
 		if(!$max){
 			$reg = "/^(.*){3," . $max . "}$/";
 		}else{
@@ -135,13 +137,17 @@ class validateExtends_cls{
 
 
 	public function farsi($min = false, $max = false) {
-
+		
 		$min  = (preg_match("/^\d+$/", $min)) ? $min : false;
 		$max  = (preg_match("/^\d+$/", $max)) ? $max : false;
 
 		$this->value = trim($this->value);
 
-		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء]";
+		$this->value = preg_replace("/\s+/", " ", $this->value);
+
+		$str_check = preg_replace("/\s/", "", $this->value);
+
+		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼]";
 
 		if(!$min && !$max){
 			$reg = "/^" . $fa . "+$/";
@@ -151,7 +157,7 @@ class validateExtends_cls{
 			$reg = "/^" . $fa . "{" . $min . "," . $max . "}$/";
 		}
 
-		if(preg_match($reg, $this->value)) {
+		if(preg_match($reg, $str_check)) {
 			return true;
 		}
 		return false;

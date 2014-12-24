@@ -3,7 +3,8 @@
 		$(this).each(function(){
 			var _url = $(this).attr("data-url");
 			if(!_url) return;
-			var _nself = $(this).clone().removeAttr('name').removeAttr('id').attr('sautocomplate-for', $(this).attr('id') || $(this).attr('name'));
+			// removeAttr('name').
+			var _nself = $(this).clone().removeAttr('id').attr('sautocomplate-for', $(this).attr('id') || $(this).attr('name'));
 			var _self = this;
 			$(this).after(_nself);
 			$(this).hide();
@@ -20,8 +21,12 @@
 					});
 				},
 				select: function( event, ui ) {
-					_self.value = ui.item.value;
-					this.value = ui.item.label;
+					// _self.value = ui.item.value;
+					// _self.value = ui.item.id;
+					$(_self).attr("value", ui.item.id);
+					$(this).attr("value", ui.item.id);
+					// this.value = ui.item.label;
+					// console.log(this, '\n', _self, '\n', ui.item.id);
 					return false;
 				},
 				focus: function( event, ui ) {

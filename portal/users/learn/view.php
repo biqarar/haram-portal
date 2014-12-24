@@ -59,7 +59,7 @@ class view extends main_view  {
 
 		//------------------------------  global of classification card
 		$classification['title'] = "classification";
-		$classification["moreLink"] = "classification/status=detail/usersid=$users_id";
+		// $classification["moreLink"] = "classification/status=detail/usersid=$users_id";
 		
 		$this->data->classification = $classification;
 
