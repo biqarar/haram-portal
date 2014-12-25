@@ -20,7 +20,7 @@ class model extends main_model {
 			if($duplicate) {
 				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کارب ثبت شده است تداخل دارد ");
 			}else{
-				if(!$this->duplicate_classes_time()){
+			
 					//------------------------------ insert classification
 					$classification = $this->sql()->tableClassification()
 							->setUsers_id($users_id)
@@ -29,24 +29,23 @@ class model extends main_model {
 							->insert();
 					//------------------------------- set classification count in to classes table
 					$this->sql(".classesCount", $classes_id);
-				}
 			}
 		}else{
 
 			$duplicate = true;
-			debug_lib::msg("duplicate", "اطلاعات تکراری است");
+			debug_lib::fatal("اطلاعات تکراری است");
 		}	
 	
 		//------------------------------ commit code
 		if(!$duplicate) {
 			$this->commit(function() {
-				debug_lib::msg("insert","اطلاعات ثبت شد");	
+				debug_lib::true("اطلاعات ثبت شد");	
 			});
 		}
 
 		//------------------------------ rolback code
 		$this->rollback(function() {
-			debug_lib::msg("failed","خطا در ثبت");
+			debug_lib::fatal("خطا در ثبت");
 		});
 	}
 
