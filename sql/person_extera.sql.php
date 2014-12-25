@@ -89,12 +89,12 @@ class person_extera {
   }
 
   public function stature(){
-     $this->form("#number")->name("stature")->label("stature")->classname('slider-number')->max(120)->min(300);
+     $this->form("#number")->name("stature")->label("stature")->classname('slider-number')->min(120)->max(300);
      $this->validate()->number()->form->number("number of stature is not valid");
   }
 
   public function weight(){
-     $this->form("#number")->name("weight")->label("weight")->classname('slider-number')->max(30)->min(150);
+     $this->form("#number")->name("weight")->label("weight")->classname('slider-number')->min(30)->max(150);
      $this->validate()->number()->form->number("number of weight is not valid");
   }
 

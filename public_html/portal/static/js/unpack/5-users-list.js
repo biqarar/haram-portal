@@ -14,7 +14,8 @@ route(/classification\/class\/classesid\=\d+/,function(){
 				var id = $(this).attr('id');
 				var tabName = $("#tabs>ul>li[aria-controls='"+id+"'] a");
 				var href = tabName.attr("href");
-				var usersid = arguments[1][11];
+				console.log(arguments);
+				var usersid = arguments[1][9];
 				var name = arguments[1][0] +" "+arguments[1][1];
 				var classname = tabName.text();
 				var classesid = href.match(/classesid=(\d+)#?.*$/)[1];
