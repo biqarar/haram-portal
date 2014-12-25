@@ -25,12 +25,12 @@ route(/classification\/class\/classesid\=\d+/,function(){
 					type: "POST",
 					url : _xhrUrl,
 					success : function(data){
-						if(data.msg.duplicate){
-							xhr_warn(name+" قبلا در "+classname+" ثبت شده است");
-						}else if(data.msg.insert) {
-							xhr_true(name+" به "+classname+" اضافه شد");
-						}else if(data.msg.failed) {
-							xhr_error(name+" در "+classname+" ثبت نشد");
+						if(data.fatal){
+							xhr_error(data.fatal[0]);
+						}else if(data.warn){
+							xhr_warn(data.warn[0]);
+						}else{
+							xhr_true(data.true[0]);
 						}
 					}
 				});
