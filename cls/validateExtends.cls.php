@@ -156,6 +156,8 @@ class validateExtends_cls{
 
 	public function farsi($min = false, $max = false) {
 		
+		if($this->value = '') return true;
+		
 		$min  = (preg_match("/^\d+$/", $min)) ? $min : false;
 		$max  = (preg_match("/^\d+$/", $max)) ? $max : false;
 

@@ -8,6 +8,8 @@ class model extends main_model {
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
+
+		// $name_famil 
 		//------------------------------ key for check duplicate
 		$duplicate = false;
 
@@ -33,13 +35,13 @@ class model extends main_model {
 		}else{
 
 			$duplicate = true;
-			debug_lib::fatal("اطلاعات تکراری است");
+			debug_lib::fatal("این فراگیر قبلا در کلاس ثبت شده است");
 		}	
 	
 		//------------------------------ commit code
 		if(!$duplicate) {
 			$this->commit(function() {
-				debug_lib::true("اطلاعات ثبت شد");	
+				debug_lib::true("فراگیر به کلاس اضافه شد");	
 			});
 		}
 

@@ -39,7 +39,7 @@ class dbconnection_lib{
 			}
 		}
 	}
-	public function query($string){
+	public function query($string, $continue = false){
 		$patterns = array(
 			'/ة/',
 			'/إ/',
@@ -80,8 +80,9 @@ class dbconnection_lib{
 			'8',
 			'9'
 			);
+		var_dump($string);
 		$string = preg_replace($patterns, $replacements, $string);
-		if(debug_lib::$status){
+		if(debug_lib::$status || $continue){
 			$this->string = $string;
 			$this->result = self::$connection->query($string);
 			if (self::$connection->error) {
