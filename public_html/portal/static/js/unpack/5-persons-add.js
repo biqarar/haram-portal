@@ -20,6 +20,5 @@ route(/portal\/person\/status=(add|edit)/, function(){
 });
 
 route("*", function(){
-	$("[copier-context-subject]").scopier();
 	$('.slider-number').sslider();
 });

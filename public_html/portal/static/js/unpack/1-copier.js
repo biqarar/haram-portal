@@ -99,13 +99,20 @@
 		}
 		$(this).data('scontextmenu', O);
 	}
-	$("*").bind('click.scopier contextmenu.scopier', function(){
+	copiremenuehide = _hide_contextmenu;
+	oncontextmenu = function(){
+		$("[copier-context-subject]").scopier();
+		$('.slider-number').sslider();
 		$(this).each(function(){
 			if(!_oncontextmenu){
 				_hide_contextmenu();
 			}
 			_oncontextmenu = false;
 		});
-	});
-	copiremenuehide = _hide_contextmenu;
+	}
 })(jQuery);
+
+route("*", function(){
+	$("*").unbind("click.scopier contextmenu.scopier");
+	$("*").bind('click.scopier contextmenu.scopier', oncontextmenu);
+});
