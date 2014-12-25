@@ -9,7 +9,8 @@ class dbconnection_lib{
 	private $allassoc				= array();
 	private $allobject				= array();
 	private $i						= 0;
-	private $result					= false;
+	
+	public $result					= false;
 
 
 	public $status					= true;

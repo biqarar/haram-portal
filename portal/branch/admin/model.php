@@ -10,6 +10,20 @@ class model extends main_model{
 		set_time_limit(30000);
 		ini_set('memory_limit', '-1');
 		
+
+
+
+
+		$this->db_version();
+
+
+
+
+
+
+
+
+
 		die(":( THE CODE DIE :(");
 		
 		$classes = $this->sql()->tableClasses()->select()->allAssoc();
@@ -71,6 +85,31 @@ class model extends main_model{
 
 		die(":( THE CODE DIE :( END OF FUNCTION :(");
 			
+	}
+
+	public function db_version() {
+		$sql = new dbconnection_lib;
+		set_time_limit(30000);
+		ini_set('memory_limit', '-1');
+
+		$version2 = array(
+			"ALTER TABLE `classes` DROP FOREIGN KEY `classes_ibfk_2`",
+			""
+			"fuck"
+		);
+
+		$error = 0;
+		foreach ($version2 as $key => $value) {
+			$s = $sql->query($value);
+			var_dump($value, $sql->result);
+			if(!$sql->result){
+				$error++;
+			}
+		}
+
+		echo "done.  Database set on version 2.0 
+			<br> by ( $error ) error";
+		exit();
 	}
 }
 ?>
