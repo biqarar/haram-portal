@@ -4,6 +4,9 @@
  */
 
 class model extends main_model{
+	public function xecho($str = false) {
+		echo "<pre>" . $str . "<br></pre>";
+	}
 	
 	public function sql_admin() {
 		if (ob_get_level() == 0) ob_start();
@@ -11,52 +14,43 @@ class model extends main_model{
 		set_time_limit(30000);
 		ini_set('memory_limit', '-1');
 		
-		// $this->db_version();
-			$q = $sql->query("set @s = 2;", true);
 
-		// echo "<pre>";
-		// echo "starting ... <br>";
-		// $i = 0;
-		// echo "<br>-------------- classes count ---------------<br>";
-		// ob_flush();
-		// flush();
-		
-		// $classes = $this->sql()->tableClasses()->select()->allAssoc();
-		// $i=0;
-		// foreach ($classes as $key => $value) {
-		// 	$this->sql(".classesCount", $value['id']);
-		// 	$q = $sql->query("COMMIT", true);
-		// 	$i++;
+		$this->xecho( "starting ... <br>");
+		$this->xecho( "set time start as : " . time());
 
-		// }
+		$this->xecho( "set version 2.0 in mysql ");
+		$start_time = time();
 
 		
 		
-		// echo "num = " . $i ;
-		echo "<br>---------------- trim name famil and father --------------<br>";
+
+
+
+		$this->db_version();
+		
+
+
+
+
+		$i = 0;
+		$this->xecho( "<br>------------------  classes count ...<br>");
 		ob_flush();
 		flush();
+		
+		$classes = $this->sql()->tableClasses()->select()->allAssoc();
+		$i=0;
+		foreach ($classes as $key => $value) {
+			$this->sql(".classesCount", $value['id']);
+			$q = $sql->query("COMMIT", true);
+			$i++;
 
-		// $perso = $this->sql()->tablePerson()->select()->allAssoc();
-	
-		// $i=0;
-		// foreach ($perso as $key => $value) {
-
-		// 	$new_name   = preg_replace("/\s+/", " ", trim($value['name']));
-		// 	$new_family = preg_replace("/\s+/", " ", trim($value['family']));
-		// 	$new_father = preg_replace("/\s+/", " ", trim($value['father']));
-
-		// 	$x =$this->sql()->tablePerson()->setName($new_name)->setFamily($new_family)->setFather($new_father)
-		// 		->whereId($value['id'])
-		// 		->update();
-		// 		$i++;
-		// 		$q = $sql->query("COMMIT"), true;	
+		}
 
 		
-		// }
 		
-		// echo "num = " . $i ;
-		echo "<br>------------------ update province name -------------------<br>";
+		$this->xecho( "num = " . $i );
+		
+		$this->xecho( "<br>------------------  update province name ...<br>");
 		ob_flush();
 		flush();
 		$province = $this->sql()->tableProvince()->select()->allAssoc();
@@ -71,14 +65,12 @@ class model extends main_model{
 
 		}
 		
-		echo "num = " . $i ;
-		echo "<br>------------------ update country name -------------------<br>";
+		$this->xecho( "num = " . $i );
+		$this->xecho( "<br>------------------  update country name ...<br>");
 		ob_flush();
 		flush();
-		$country = $this->sql()->tableCountry()->select();//->allAssoc();
+		$country = $this->sql()->tableCountry()->select()->allAssoc();
 		$i=0;
-		var_dump($country);
-		exit();
 		foreach ($country as $key => $value) {
 			$this->sql()->tableCountry()
 			->setName($value['name'])
@@ -89,8 +81,8 @@ class model extends main_model{
 
 		}
 		
-		echo "num = " . $i ;
-		echo "<br>------------------- update city name -------------------<br>";
+		$this->xecho( "num = " . $i );
+		$this->xecho( "<br>------------------  update city name ...<br>");
 		ob_flush();
 		flush();
 
@@ -104,10 +96,9 @@ class model extends main_model{
 			$i++;
 			$q = $sql->query("COMMIT", true);
 		}
-		$q = $sql->query("COMMIT", true);
 		
-		echo "num = " . $i ;
-		echo "<br>------------------ set operator list --------------------<br>";
+		$this->xecho( "num = " . $i );
+		$this->xecho( "<br>------------------  set operator list ...<br>");
 		ob_flush();
 		flush();
 		$person_o = $this->sql()->tablePerson()->whereType("operator")->select()->allAssoc() ; 
@@ -116,15 +107,13 @@ class model extends main_model{
 		  foreach ($person_o as $key => $value) {
                     $x = $this->sql()->tableUsers()->setType("operator")->whereId($value['users_id'])->update();
                     $i++;
-                     echo $x->string();
                     ob_flush();
 					flush();
                     $q = $sql->query("COMMIT", true);
             }
-		$q = $sql->query("COMMIT", true);
 		
-		echo "num = " . $i ;
-		echo "<br>------------------ set teacher list --------------------<br>";
+		$this->xecho( "num = " . $i );
+		$this->xecho( "<br>------------------  set teacher list ...<br>");
 		ob_flush();
 		flush();
 		$person_t = $this->sql()->tablePerson()->whereType("teacher")->select()->allAssoc();
@@ -132,16 +121,45 @@ class model extends main_model{
 		  foreach ($person_t as $key => $value) {
                     $x = $this->sql()->tableUsers()->setType("teacher")->whereId($value['users_id'])->update();
                     $i++;
-                    echo $x->string();
+                   
                     ob_flush();
 					flush();
                     $q = $sql->query("COMMIT", true);
+            
             }
+		$this->xecho( "num = " . $i );
+		$this->xecho( "<br>------------------  trim name famil and family and father ...<br>");
+		ob_flush();
+		flush();
 
-        echo "<div style='background :green'><br> all perosses ended ";
-		echo "</div></pre>";
+		$perso = $this->sql()->tablePerson()->select()->allAssoc();
+	
+		$i=0;
+		foreach ($perso as $key => $value) {
+
+			$new_name   = preg_replace("/\s+/", " ", trim($value['name']));
+			$new_family = preg_replace("/\s+/", " ", trim($value['family']));
+			$new_father = preg_replace("/\s+/", " ", trim($value['father']));
+
+			$x =$this->sql()->tablePerson()->setName($new_name)->setFamily($new_family)->setFather($new_father)
+				->whereId($value['id'])
+				->update();
+				$i++;
+				$q = $sql->query("COMMIT", true);
+		}
+		
+		$this->xecho( "num = " . $i );
+		$this->xecho( "<br>------------------  End :)   <br>");
+		$end_time = time();
+		$this->xecho(" end time : " . $end_time);
+		$all_tiem = intval($end_time) - intval($start_time);
+
+        $this->xecho( "<div style='background :green'><br> all perosses ended ");
+		$this->xecho("in :" . $all_tiem / 60  .  "   min ");
+		$this->xecho( "</div></pre>");
 		ob_end_flush();
-		die(":( THE CODE DIE :( END OF FUNCTION :(");
+
+		die();
 			
 	}
 
@@ -151,6 +169,11 @@ class model extends main_model{
 
 		$version2 = array(
 			//-----------------------------------------------------------------------------
+
+			"UPDATE `quran_hadith`.`city` SET `name` = 'باب انار' WHERE `city`.`id` = 266",
+			
+			"UPDATE `quran_hadith`.`permission` SET `condition` = '*' WHERE `permission`.`users_id` = 13998 AND `permission`.`tables` = 'branch'",
+			
 			"ALTER TABLE `classes` DROP FOREIGN KEY `classes_ibfk_1`",
 
 			"ALTER TABLE `classes` DROP INDEX course_id",
@@ -306,30 +329,30 @@ class model extends main_model{
 		$all = 0;
 
 			
-		echo "<pre>";
+		$this->xecho( "<pre>");
 		foreach ($version2 as $key => $value) {
 			$s = $sql->query($value , true);
-			echo "<b>string:</b>". $value . "\n";
-			echo "<b>result:</b>". $sql->result . "\n";
+			$this->xecho( "<b>string:</b>". $value . "\n");
+			$this->xecho( "<b>result:</b>". $sql->result . "\n");
 			if(!$sql->result){
-				echo "<div style='background :red'><br> -- Error-- <br>";
-				echo "<b>error number:</b>". $sql::$connection->errno  . "\n";
-				echo "<b>string error:</b>".  $sql::$connection->error . "\n";
-				echo "<b> -- Error-- </b></div>";
+				$this->xecho( "<div style='background :red'><br> -- Error-- <br>");
+				$this->xecho( "<b>error number:</b>". $sql::$connection->errno  . "\n");
+				$this->xecho( "<b>string error:</b>".  $sql::$connection->error . "\n");
+				$this->xecho( "<b> -- Error-- </b></div>");
 
 				$error++;
 			}
 			$all++;
-			echo "\n\n--------------------------------------\n\n";
+			$this->xecho( "\n\n--------------------------------------\n\n");
 			ob_flush();
 			flush();
 			// sleep();
 		}
 		
-		echo "<div style='background :green'><br>done.  Database set on version 2.0
-			<br> all perosses =  <b> $all </b>  ,  
-			<br> by <b> $error </b> error";
-		echo "</div></pre>";
+		$this->xecho( "<div style='background :green'><br>done.  Database set on version 2.0 
+			<br> all perosses =  <b> $all </b>    
+			<br> by <b> $error </b> error");
+		$this->xecho( "</div></pre>");
 		
 	}
 }

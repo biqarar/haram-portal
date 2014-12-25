@@ -80,7 +80,7 @@ class dbconnection_lib{
 			'8',
 			'9'
 			);
-		var_dump($string);
+		// var_dump($string);
 		$string = preg_replace($patterns, $replacements, $string);
 		if(debug_lib::$status || $continue){
 			$this->string = $string;

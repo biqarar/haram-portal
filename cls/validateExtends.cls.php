@@ -156,7 +156,7 @@ class validateExtends_cls{
 
 	public function farsi($min = false, $max = false) {
 		
-		if($this->value = '') return true;
+		if($this->value == '') return true;
 		
 		$min  = (preg_match("/^\d+$/", $min)) ? $min : false;
 		$max  = (preg_match("/^\d+$/", $max)) ? $max : false;
@@ -167,7 +167,7 @@ class validateExtends_cls{
 
 		$str_check = preg_replace("/\s/", "", $this->value);
 
-		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼]";
+		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼ةإأيئؤك]";
 
 		if(!$min && !$max){
 			$reg = "/^" . $fa . "+$/";
@@ -176,7 +176,7 @@ class validateExtends_cls{
 		}elseif($min && $max){
 			$reg = "/^" . $fa . "{" . $min . "," . $max . "}$/";
 		}
-
+		
 		if(preg_match($reg, $str_check)) {
 			return true;
 		}
