@@ -15,7 +15,7 @@ class model extends main_model {
 			"id edit"
 		)
 		->search_fields(
-			"value"
+			"name", "family", "value"
 		)
 		->query(function($q){
 			$q->joinPerson()->whereUsers_id("#bridge.users_id")->fieldFamily("family")->fieldName("name");

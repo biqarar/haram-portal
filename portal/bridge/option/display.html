@@ -1,7 +1,8 @@
 {# reza mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {% block content %}
-
+<a href="bridge/status=add/usersid={{global.users_id}}">افزودن</a>
+<br>
 <form class="ajx" method="post" action="bridge/{{global.url}}">
 	{{forms.make(form.bridge)}}
 </form>

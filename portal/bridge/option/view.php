@@ -20,6 +20,7 @@ class view extends main_view {
 	    //------------------------------ set users_id
 	    $users_id =  ($this->xuId("usersid"))? $this->xuId("usersid") : $this->sql("#users_bridge", $this->xuId());
 
+	    $this->global->users_id =  $users_id;
 	    //------------------------------ put users_id in hidden input to get in model.php
 	    $f->users_id->value($users_id);
 
@@ -41,6 +42,7 @@ class view extends main_view {
 
     	//------------------------------ load edit form
 	    if($this->urlStatus() == "edit"){
+
 			$this->sql(".edit", "bridge", $this->xuId(), $f);	    
 	    }
 
