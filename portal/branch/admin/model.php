@@ -4,36 +4,45 @@
  */
 
 class model extends main_model{
+
+
 	public function xecho($str = false) {
-		echo "<pre>" . $str . "<br></pre>";
+		echo "<pre><br>" . $str . "<br></pre>";
 	}
 	
 	public function sql_admin() {
+		$this->xecho("In The Name Of Allah");
+
+		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
+			$this->xecho("password incorect.");
+			exit();
+		}
+		$this->xecho("checking password ....");
+		$this->xecho("password OK");
+
 		if (ob_get_level() == 0) ob_start();
 		$sql = new dbconnection_lib;
+	
+		$sql::$resum_on_error = true;
+
+
 		set_time_limit(30000);
 		ini_set('memory_limit', '-1');
 		
 
-		$this->xecho( "starting ... <br>");
+		$this->xecho( "starting ... ");
 		$this->xecho( "set time start as : " . time());
 
 		$this->xecho( "set version 2.0 in mysql ");
 		$start_time = time();
 
-		
-		
-
-
-
+	
 		$this->db_version();
-		
-
-
 
 
 		$i = 0;
-		$this->xecho( "<br>------------------  classes count ...<br>");
+		$this->xecho( "------------------ >>  classes count ...");
+
 		ob_flush();
 		flush();
 		
@@ -41,16 +50,15 @@ class model extends main_model{
 		$i=0;
 		foreach ($classes as $key => $value) {
 			$this->sql(".classesCount", $value['id']);
-			$q = $sql->query("COMMIT", true);
+			$q = $sql->query("COMMIT");
 			$i++;
 
 		}
-
-		
-		
+		$this->set_version_history(2, "insert count classes in the count list ($i record)");
 		$this->xecho( "num = " . $i );
 		
-		$this->xecho( "<br>------------------  update province name ...<br>");
+
+		$this->xecho( "------------------ >>  update province name ...");
 		ob_flush();
 		flush();
 		$province = $this->sql()->tableProvince()->select()->allAssoc();
@@ -61,12 +69,14 @@ class model extends main_model{
 			->whereId($value['id'])
 			->update();
 			$i++;
-			$q = $sql->query("COMMIT", true);
+			$q = $sql->query("COMMIT");
 
 		}
-		
+		$this->set_version_history(2, "update all province name by replace charset ($i record)");
 		$this->xecho( "num = " . $i );
-		$this->xecho( "<br>------------------  update country name ...<br>");
+	
+
+		$this->xecho( "------------------ >>  update country name ...");
 		ob_flush();
 		flush();
 		$country = $this->sql()->tableCountry()->select()->allAssoc();
@@ -77,12 +87,16 @@ class model extends main_model{
 			->whereId($value['id'])
 			->update();
 			$i++;
-			$q = $sql->query("COMMIT", true);
+			$q = $sql->query("COMMIT");
 
 		}
+		$this->set_version_history(2, "update all country name by replace charset ($i record)");
 		
 		$this->xecho( "num = " . $i );
-		$this->xecho( "<br>------------------  update city name ...<br>");
+		
+
+
+		$this->xecho( "------------------ >>  update city name ...");
 		ob_flush();
 		flush();
 
@@ -94,11 +108,12 @@ class model extends main_model{
 			->whereId($value['id'])
 			->update();
 			$i++;
-			$q = $sql->query("COMMIT", true);
+			$q = $sql->query("COMMIT");
 		}
+		$this->set_version_history(2, "update all city name by replace charset ($i record)");
 		
 		$this->xecho( "num = " . $i );
-		$this->xecho( "<br>------------------  set operator list ...<br>");
+		$this->xecho( "------------------ >>  set operator list ...");
 		ob_flush();
 		flush();
 		$person_o = $this->sql()->tablePerson()->whereType("operator")->select()->allAssoc() ; 
@@ -109,11 +124,16 @@ class model extends main_model{
                     $i++;
                     ob_flush();
 					flush();
-                    $q = $sql->query("COMMIT", true);
+                    $q = $sql->query("COMMIT");
             }
+		$this->set_version_history(2, "set type of users to operator whene the field changed ($i record)");
 		
 		$this->xecho( "num = " . $i );
-		$this->xecho( "<br>------------------  set teacher list ...<br>");
+	
+
+
+
+		$this->xecho( "------------------ >>  set teacher list ...");
 		ob_flush();
 		flush();
 		$person_t = $this->sql()->tablePerson()->whereType("teacher")->select()->allAssoc();
@@ -124,37 +144,49 @@ class model extends main_model{
                    
                     ob_flush();
 					flush();
-                    $q = $sql->query("COMMIT", true);
+                    $q = $sql->query("COMMIT");
             
             }
+		$this->set_version_history(2, "set type of users to teacher whene the field changed ($i record)");
+
 		$this->xecho( "num = " . $i );
-		$this->xecho( "<br>------------------  trim name famil and family and father ...<br>");
+		
+
+
+
+		$this->xecho( "------------------ >>  trim name famil and family and father ...");
 		ob_flush();
 		flush();
+
 
 		$perso = $this->sql()->tablePerson()->select()->allAssoc();
 	
 		$i=0;
 		foreach ($perso as $key => $value) {
 
-			$new_name   = preg_replace("/\s+/", " ", trim($value['name']));
-			$new_family = preg_replace("/\s+/", " ", trim($value['family']));
-			$new_father = preg_replace("/\s+/", " ", trim($value['father']));
+			$new_name   = preg_replace("/(^\s+)|(\s+$)/", "", $value['name']);
+			$new_family = preg_replace("/(^\s+)|(\s+$)/", "", $value['family']);
+			$new_father = preg_replace("/(^\s+)|(\s+$)/", "", $value['father']);
+
+			
 
 			$x =$this->sql()->tablePerson()->setName($new_name)->setFamily($new_family)->setFather($new_father)
 				->whereId($value['id'])
 				->update();
 				$i++;
-				$q = $sql->query("COMMIT", true);
+				$q = $sql->query("COMMIT");
 		}
+		$this->set_version_history(2, "trim all name family and fatehr  ($i record)");
 		
 		$this->xecho( "num = " . $i );
-		$this->xecho( "<br>------------------  End :)   <br>");
+	
+
+		$this->xecho( "------------------ >>  End :)   ");
 		$end_time = time();
 		$this->xecho(" end time : " . $end_time);
 		$all_tiem = intval($end_time) - intval($start_time);
 
-        $this->xecho( "<div style='background :green'><br> all perosses ended ");
+        $this->xecho( "<div style='background :green'> all perosses ended ");
 		$this->xecho("in :" . $all_tiem / 60  .  "   min ");
 		$this->xecho( "</div></pre>");
 		ob_end_flush();
@@ -169,6 +201,16 @@ class model extends main_model{
 
 		$version2 = array(
 			//-----------------------------------------------------------------------------
+			"CREATE TABLE IF NOT EXISTS `database_version` (
+			`id` int(10) NOT NULL,
+			  `version` int(3) NOT NULL,
+			  `query` text COLLATE utf8_persian_ci NOT NULL,
+			  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+
+			"ALTER TABLE `database_version` ADD PRIMARY KEY (`id`)",
+
+			"ALTER TABLE `database_version` MODIFY `id` int(10) NOT NULL AUTO_INCREMENT",
 
 			"UPDATE `quran_hadith`.`city` SET `name` = 'باب انار' WHERE `city`.`id` = 266",
 			
@@ -331,17 +373,18 @@ class model extends main_model{
 			
 		$this->xecho( "<pre>");
 		foreach ($version2 as $key => $value) {
-			$s = $sql->query($value , true);
+			$s = $sql->query($value );
 			$this->xecho( "<b>string:</b>". $value . "\n");
 			$this->xecho( "<b>result:</b>". $sql->result . "\n");
 			if(!$sql->result){
-				$this->xecho( "<div style='background :red'><br> -- Error-- <br>");
+				$this->xecho( "<div style='background :red'> -- Error-- ");
 				$this->xecho( "<b>error number:</b>". $sql::$connection->errno  . "\n");
 				$this->xecho( "<b>string error:</b>".  $sql::$connection->error . "\n");
 				$this->xecho( "<b> -- Error-- </b></div>");
 
 				$error++;
 			}
+			$this->set_version_history(2, $value);
 			$all++;
 			$this->xecho( "\n\n--------------------------------------\n\n");
 			ob_flush();
@@ -349,11 +392,23 @@ class model extends main_model{
 			// sleep();
 		}
 		
-		$this->xecho( "<div style='background :green'><br>done.  Database set on version 2.0 
-			<br> all perosses =  <b> $all </b>    
-			<br> by <b> $error </b> error");
+		$this->xecho( "<div style='background :green'>done.  Database set on version 2.0 
+			 all perosses =  <b> $all </b>    
+			 by <b> $error </b> error");
 		$this->xecho( "</div></pre>");
 		
+	}
+
+	public function set_version_history($version = 0 , $query = false) {
+		$sql = new dbconnection_lib;
+		$sql::$resum_on_error = true;
+		$s = $sql->query("INSERT INTO 
+			`quran_hadith`.`database_version` 
+			(`id`, `version`, `query`, `time`) 
+			VALUES (NULL, '$version', '$query', CURRENT_TIMESTAMP)");
+
+		// $s = $sql->query("COMMIT");
+		$this->xecho( "Saved in History (table database_version)");
 	}
 }
 

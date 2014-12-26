@@ -687,7 +687,7 @@ msgid "club"
 msgstr "موسسه"
 
 msgid "code"
-msgstr "کد"
+msgstr "شماره شناسنامه"
 
 msgid "condition"
 msgstr "شرط"
