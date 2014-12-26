@@ -15,7 +15,8 @@ class view extends main_view{
 			"name",
 			"family",
 			"title",
-			"value"
+			"value",
+			"edit"
 				));
 		// //------------------------------ classes list
 		// $classes_detail = $this->sql(".list", "classes", function($query) {

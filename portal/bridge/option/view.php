@@ -18,7 +18,7 @@ class view extends main_view {
 	    $f = $this->form('@bridge', $this->urlStatus());
 
 	    //------------------------------ set users_id
-	    $users_id =  $this->xuId("usersid");
+	    $users_id =  ($this->xuId("usersid"))? $this->xuId("usersid") : $this->sql("#users_bridge", $this->xuId());
 
 	    //------------------------------ put users_id in hidden input to get in model.php
 	    $f->users_id->value($users_id);
@@ -26,7 +26,13 @@ class view extends main_view {
 	    //------------------------------ list of bridge fo this user
     	$list = $this->sql(".list", "bridge" , function($query, $users_id){
     		$query->whereUsers_id($users_id);
+    		$query->joinPerson()->whereUsers_id("#bridge.users_id")->fieldName()->fieldFamily();
     	}, $users_id);
+
+    	$list->removeCol("users_id,id");
+    	
+    	$list->addColFirst("family", "family");
+    	$list->addColFirst("name", "name");
 
     	//------------------------------ edit link
     	$list = $this->editCol("bridge", $list, $this->link("bridge/status=edit/usersid=$users_id/id=%id%" , "href", "icoedit"));
