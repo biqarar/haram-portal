@@ -157,7 +157,8 @@ function aClickTabs(e){
 	if($(this).attr("target") == "_blank"){
 		nActive = true;
 	}
-	if(e.button || nActive){
+	var New = e.button || nActive || e.ctrlKey;
+	if(New){
 		addTab(href, text);
 		activeTab = $('#tabs .ui-tabs-nav > li').size() -1;
 		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
@@ -167,7 +168,7 @@ function aClickTabs(e){
 		hash = $("#tabs>ul>li").eq(activeTab).attr("aria-controls");
 		tab.find("a").attr("href", href);
 	}
-	if(e.button || nActive){
+	if(New){
 		$( "#tabs" ).tabs({ active: activeTab });
 	}else{
 		$("#tabs").tabs('load', activeTab);
