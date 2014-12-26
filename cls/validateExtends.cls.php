@@ -19,9 +19,8 @@ class validateExtends_cls{
 
 	public function date() {
 		if ($this->value == null) return true;		
-		// /^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/
-		// if (!preg_match("/^(13|14)([0-9][0-9])(\/|-)?(((0?[1-6])(\/|-)?((0?[1-9])|([12][0-9])|(3[0-1])))|(((0?[7-9])|(1[0-2]))(\/|-)?((0?[1-9])|([12][0-9])|(30))))$/", $this->value, $date)) {
-		if (!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $this->value, $date)) {
+		if (!preg_match("/^(13|14)([0-9][0-9])(\/|-)?(((0?[1-6])(\/|-)?((0?[1-9])|([12][0-9])|(3[0-1])))|(((0?[7-9])|(1[0-2]))(\/|-)?((0?[1-9])|([12][0-9])|(30))))$/", $this->value, $date)) {
+		// if (!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $this->value, $date)) {
 
 			return false;
 		}else{
@@ -36,7 +35,7 @@ class validateExtends_cls{
 
 
 	public function password() {
-		if (!preg_match("/^.{6,32}$/", $this->value)) {
+		if (!preg_match("/^(.*){6,32}$/", $this->value)) {
 			return false;
 		}else{
 			$this->value = md5($this->value);
@@ -93,6 +92,7 @@ class validateExtends_cls{
 			}
 			if ($r) {
 				$this->value = $code;
+				return true;
 			}else{
 				return false;
 			}
@@ -100,9 +100,12 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false) {
+		
+		if($this->value == '') return true;
 
 		$a = (preg_match("/^\d+$/", $a)) ? $a : false;
 		$b = (preg_match("/^\d+$/", $b)) ? $b : false;
+
 		if(!$a && !$b){
 			$reg = "/^\d+$/";
 		}elseif($a && !$b) {
@@ -110,7 +113,7 @@ class validateExtends_cls{
 		}elseif($a && $b){
 			$reg = "/^\d{" . $a . "," . $b . "}$/";
 		}
-
+		
 		if (preg_match($reg, $this->value)) {
 			$this->value = intval($this->value);
 			return true;
@@ -119,31 +122,62 @@ class validateExtends_cls{
 		}
 	}
 
-	public function description() {
+	public function float(){
 
-		$args = trim($this->value);
-		if (preg_match("/^(.*){0,255}$/", $args)) {
+		if($this->value == '') return true;
+
+		if (preg_match("/^(\d+\.?\d+)$/", $this->value)) {
+			$this->value = floatval($this->value);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function description($max = false) {
+		$this->value = trim($this->value);
+		$this->value = preg_replace("/\s+/", " ", $this->value);
+
+		$max = ($max && preg_match("/^\d$/", $max)) ? $max : false;
+
+		$allCharset = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼a-zA-Z0-9]";
+		if($max){
+			$reg = "/^" . $allCharset . "{3," . $max . "}$/";
+		}else{
+			$reg = "/^" . $allCharset . "{3,255}$/";
+		}
+		
+		if (preg_match($reg, $this->value)) {
 			return true;
 		}
 		return false;
 	}
 
 
-	public function farsi($a = false, $b = false) {
+	public function farsi($min = false, $max = false) {
+		
+		if($this->value == '') return true;
+		
+		$min  = (preg_match("/^\d+$/", $min)) ? $min : false;
+		$max  = (preg_match("/^\d+$/", $max)) ? $max : false;
 
-		$a  = (preg_match("/^\d+$/", $a)) ? $a : false;
-		$b  = (preg_match("/^\d+$/", $b)) ? $b : false;
-		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء]";
+		$this->value = trim($this->value);
 
-		if(!$a && !$b){
+		$this->value = preg_replace("/\s+/", " ", $this->value);
+
+		$str_check = preg_replace("/\s/", "", $this->value);
+
+		$fa = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼ةإأيئؤك]";
+
+		if(!$min && !$max){
 			$reg = "/^" . $fa . "+$/";
-		}elseif($a && !$b) {
-			$reg = "/^" . $fa . "{" . $a . "}$/";
-		}elseif($a && $b){
-			$reg = "/^" . $fa . "{" . $a . "," . $b . "}$/";
+		}elseif($min && !$max) {
+			$reg = "/^" . $fa . "{" . $min . "}$/";
+		}elseif($min && $max){
+			$reg = "/^" . $fa . "{" . $min . "," . $max . "}$/";
 		}
-
-		if(preg_match($reg, $this->value)) {
+		
+		if(preg_match($reg, $str_check)) {
 			return true;
 		}
 		return false;
@@ -151,8 +185,8 @@ class validateExtends_cls{
 
 	public function email() {
 		if ($this->value == null) return true;
-		$reg_email = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
-		if (preg_match($reg_email, $this->value)) {
+		$reg = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.+-]+\.[a-zA-Z0-9-.]+$/";
+		if (preg_match($reg, $this->value)) {
 			return true;
 		}else{
 			return false;

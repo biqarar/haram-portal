@@ -31,6 +31,30 @@ class model extends main_model {
 								   
 		}
 		return $return;
+
+	}
+
+	public function sql_olddb($users_id = false) {
+		
+		$old_casecode = $this->sql()->tableStudent()->whereUsers_id($users_id)->limit(1)->select();
+		
+		if($old_casecode->num() >= 1) {
+			
+			$old_casecode       = $old_casecode->assoc("name1");
+			
+			$old_price    	    = $this->sql()->tableOldprice()->whereParvande($old_casecode)->select()->num();
+			
+			$old_classification = $this->sql()->tableOldclassification()->whereParvande($old_casecode)->select()->num();
+
+			$old_certification = $this->sql()->tableOldcertification()->whereParvande($old_casecode)->select()->num();
+
+			return  array(
+				"student"		 => $old_casecode,
+				"classification" => $old_classification,
+				"price"			 => $old_price,
+				"certification"  => $old_certification
+			);
+		}
 	}
 }
 ?>

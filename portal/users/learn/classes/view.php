@@ -12,14 +12,35 @@ class view extends main_view  {
 		//------------------------------ check users (if teacher , can not be display another users by id)
 		$this->check_users_type($users_id);
 
+
+		$this->global->users_datail = " اطلاعات تحصیلی فراگیر " . 
+					$this->sql(".assoc.foreign" , "person", $users_id , "name" , "users_id")
+					. '  ' . 
+					$this->sql(".assoc.foreign" , "person", $users_id , "family" , "users_id");
+				
+
 		$allClassification = $this->sql(".list", "classification", function ($query, $id) {
 			$query->whereUsers_id($id);
-			// $query->joinPlan()->whereId("#classes.plan_id")->fieldName("planname")->fieldId("planid");
-			// $query->joinPlace()->whereId("#classes.place_id")->fieldName("placename")->fieldId("placeid");
-			// $query->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
-			// var_dump($query->select());
-		}, $users_id);
-		// var_dump($allClassification);
+			$query->joinClasses()->whereId("#classification.classes_id")
+										->fieldStart_time()
+										->fieldEnd_time()
+										->fieldWeek_days();
+
+			$query->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
+			$query->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
+			$query->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
+		}, $users_id)
+
+
+		->removeCol("id,users_id,plan_section_id,mark,classes_id")
+
+		->addColFirst("teachername", "teachername")
+		->addColAfter("teachername", "teacherfamily", "teacherfamily")
+		->addColAfter("teacherfamily","planname", "planname")
+		->addColAfter("planname", "placename", "placename")
+
+		->addColEnd("date_entry", "date_entry");
+
 		$this->data->list = $allClassification->compile();
 	}
 } 

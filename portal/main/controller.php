@@ -276,6 +276,9 @@ class main_controller{
 	}
 
 	public function checkPermissions() {
+		if(global_cls::supervisor()){
+			return [true, true];
+		}
 		$msg = "";
 		$access = false;
 		if($this->access) {

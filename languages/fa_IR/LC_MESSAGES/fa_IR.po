@@ -17,6 +17,33 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "price_type"
+msgstr "وضعیت پرداخت"
+
+msgid "pos"
+msgstr "دستگاه پوز"
+
+msgid "price_add"
+msgstr "افزایش شهریه"
+
+msgid "price_low"
+msgstr "کاهش شهریه"
+
+msgid "price_value"
+msgstr "مبلغ شهریه"
+
+msgid "pay_type"
+msgstr "نوع پرداخت"
+
+msgid "price_transactions"
+msgstr "شماره تراکنش"
+
+msgid "menu_province_add"
+msgstr "ثبت استان"
+
+msgid "menu_country_add"
+msgstr "ثبت کشور"
+
 msgid "multiclass"
 msgstr "کلاس های چندتایی"
 
@@ -1248,7 +1275,7 @@ msgid "pose"
 msgstr "دستگاه پز"
 
 msgid "bank"
-msgstr "فیش بانکی"
+msgstr "درگاه بانگ"
 
 msgid "cash"
 msgstr "نقدی"

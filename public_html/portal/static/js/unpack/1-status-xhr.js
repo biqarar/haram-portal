@@ -5,8 +5,8 @@
 	var _timeout;
 	var _qs = '';
 	function status(){
-		if(_onq) return;
-		_onq = true;
+		// if(_onq) return;
+		// _onq = true;
 		read_status();
 	}
 
