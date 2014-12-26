@@ -72,7 +72,9 @@ class dbTableOptions_lib{
 				if(is_object($result)){
 					call_user_func_array($result, array($this->form->child(), $value));
 				}else{
-					$this->form->child()->value($value[$options['value']])->label($value[$default])->id("list_child_".$value[$options['value']]);
+					// "list_child_".
+					// 
+					$this->form->child()->value($value[$options['value']])->label($value[$default])->id($value[$options['value']]);
 				}
 			}
 		}elseif(isset($table->foreign[$this->fieldName])){
@@ -97,7 +99,8 @@ class dbTableOptions_lib{
 				if(is_object($result)){
 					call_user_func_array($result, array($this->form->child(), $value));
 				}else{
-					$this->form->child()->value($value[$options['value']])->label($value[$default])->id("list_child_".$value[$options['value']]);
+					// "list_child_".
+					$this->form->child()->value($value[$options['value']])->label($value[$default])->id($value[$options['value']]);
 				}
 			}
 		}
