@@ -11,7 +11,7 @@ class dbconnection_lib{
 	private $i						= 0;
 	
 	public $result					= false;
-
+	public  static $resum_on_error			= false;
 
 	public $status					= true;
 	public $string					= false;
@@ -39,7 +39,7 @@ class dbconnection_lib{
 			}
 		}
 	}
-	public function query($string, $continue = false){
+	public function query($string){
 		$patterns = array(
 			'/ة/',
 			'/إ/',
@@ -82,7 +82,7 @@ class dbconnection_lib{
 			);
 		// var_dump($string);
 		$string = preg_replace($patterns, $replacements, $string);
-		if(debug_lib::$status || $continue){
+		if(debug_lib::$status || self::$resum_on_error){
 			$this->string = $string;
 			$this->result = self::$connection->query($string);
 			if (self::$connection->error) {

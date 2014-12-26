@@ -47,14 +47,10 @@ class view extends main_view {
 		$this->sql(".edit", "permission", $this->xuId(), $f);
 
 		//------------------------------ list of users pemission
-		$permission_list = $this->sql(".list", "permission")
-		->addCol("edit", "edit")
-		->select(-1, "edit")
-		->html($this->editLink("permission"))
-		->compile();
+		$this->data->dataTable = $this->dtable(
+			"permission/status=api/", 
+			array("id", "users_id", "tables", "select", "insert", "update", "delete", "edit"));
 		
-
-		$this->data->list = $permission_list;
 	}
 }
 ?>

@@ -17,13 +17,18 @@ class view extends main_view  {
 		$person = $this->sql(".list.card", "person", $users_id, "users_id");
 		unset($person['addLink']);
 		$person["editLink"] = "person/status=edit/id=" . $person['list']['list'][0]['id'];
+		
+		$person['list']['list'][0]['from'] = 
+			$this->sql(".assoc.foreign", "city", 
+					($person['list']['list'][0]['from'] != '') ?
+						$person['list']['list'][0]['from'] : 0 , "name");
+
 		$this->data->person = $person;
 
 
 		//------------------------------  make users card
 		$users = $this->sql(".list.card", "users", $users_id, "id");
 		unset($users['addLink']);
-		// unset($users['editLink']);
 		unset($users['moreLink']);
 		unset($users['list']['list'][0]['password']);
 		$this->data->users = $users;
@@ -61,7 +66,6 @@ class view extends main_view  {
 			unset($person_extera['addLink']);
 			$person_extera["editLink"] = "person/extera/status=edit/usersid=$users_id";
 			$person_extera["moreLink"] = "person/extera/status=detail/usersid=$users_id";
-			// var_dump($person_extera);
 			$this->data->person_extera = $person_extera;		
 		}
 
