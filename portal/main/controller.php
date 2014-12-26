@@ -10,7 +10,7 @@ class main_controller{
 			$this->access = true; // for befor lunch
 		}
 		if(preg_match("/favicon\.ico$/", $_SERVER['REQUEST_URI'])){
-			die("fff");
+			die("favicon.ico");
 		}
 		$this->xuStatus();
 		$permission = new checkPermission_cls;
@@ -31,18 +31,26 @@ class main_controller{
 			$this->config();
 		}
 		list($access, $msg) = $this->checkPermissions();
-		if(!$access) {
+		if(!$this->SESSION_usersid() && config_lib::$class != "login") {
 			if(ifAjax()){
 				page_lib::access($msg);
 			}else{
 				$_SESSION['redirect'] = config_lib::$URL;
-				// $this->redirect("login");
-				page_lib::access($msg);
+				header("location:".host.'/login');
+				exit();
+			}
+		}elseif($this->SESSION_usersid()  && config_lib::$class == "login"){
+			header("location:".host);
+			exit();
+		}
 
-				// header("location:".host.'/login');
+		if(!$access) {
+			if(ifAjax()){
+				page_lib::access($msg);
+			}else{
+				page_lib::access($msg);
 			}
 		}
-		// exit();
 	}
 
 	public final function hendel(){
@@ -172,7 +180,7 @@ class main_controller{
 					save(array("$table", "option"));
 					$this->permission = array("$table" => array("$insertORupdate" => array("public")));
 				}, $table , $insertORupdate
-			);
+				);
 
 		//------------------------------ if url is "status=edit"
 
@@ -187,8 +195,8 @@ class main_controller{
 					save(array("$table", "option"));
 					$this->permission = array("$table" => array("$insertORupdate" => array("public")));
 				}, $table , $insertORupdate
-			);
-		
+				);
+
 		//------------------------------ if url is "status=list"
 
 		}elseif(isset($surl['status']) && $surl['status'] == 'list' ){
@@ -202,7 +210,7 @@ class main_controller{
 					save(array("$table", "list"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-			);
+				);
 
 		//------------------------------ if url is "status=detail"
 
@@ -217,7 +225,7 @@ class main_controller{
 					save(array("$table", "detail"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-			);
+				);
 		}elseif(isset($surl['status']) && $surl['status'] == 'api' ){
 			$this->listen(
 				array(
@@ -228,7 +236,7 @@ class main_controller{
 					save(array("$table", "list", 'mod' => "api"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-			);
+				);
 		}
 	}
 
