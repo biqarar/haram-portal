@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "error_in_insert"
+msgstr "اشتباه در ثبت"
+
+msgid "classes_count"
+msgstr "تعداد نفرات"
+
 msgid "price_type"
 msgstr "وضعیت پرداخت"
 

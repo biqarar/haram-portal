@@ -316,7 +316,7 @@ class model extends main_model{
 
 			"ALTER TABLE `branch` CHANGE `name` `name` varchar(64) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نام شعبه'",
 
-			"ALTER TABLE `classification` CHANGE `because` `because` ENUM('absence','cansel','done','error') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL DEFAULT 'absence'",
+			"ALTER TABLE `classification` CHANGE `because` `because` ENUM('absence','cansel','done','error_in_insert') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL DEFAULT 'absence'",
 
 			//-----------------------------------------------------------------------------
 			"DROP TABLE IF EXISTS `get_price`",

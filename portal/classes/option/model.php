@@ -3,6 +3,10 @@
  * @author reza mohitit rm.biqarar@gmail.com
  */
 class model extends main_model{
+	public function sql_find_teacher_name($users_id = 0) {
+		$return = $this->sql()->tablePerson()->whereUsers_id($users_id)->fieldName()->fieldFamily()->limit(1)->select()->assoc();
+		return $return['name'] . ' ' . $return['family'];
+	}
 
 	public function makeQuery() {
 			
