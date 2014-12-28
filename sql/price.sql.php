@@ -3,6 +3,7 @@ namespace sql;
 class price {
 	public $id           = array('type'=> 'int@10', 'autoI', 'label' => 'price_id');
 	public $users_id     = array('type'=> 'int@10', "label" => "users_id");
+	public $date		 = array("type" => "int@8", "label" => "price_date");
 	public $type         = array("type" => "enum@price_add,price_low" ,"label" => "price_type");
 	public $value        = array('type'=> 'int@7', "label" => "price_value");
 	public $pay_type     = array('type'=> 'enum@bank,pos,cash,rule', "label" => "price_pay_type");
@@ -15,6 +16,11 @@ class price {
 
 	public function users_id(){
 		$this->form("text")->name("users_id")->data_url("person/api/");
+	}
+
+	public function date() {
+		$this->form("#date")->name("date")->label("date");
+		$this->validate()->date()->form->date("date incorect");
 	}
 
 	public function type(){
@@ -37,10 +43,9 @@ class price {
 		$this->validate()->transactions()->form->transactions("transactions is not valid");
 	}
 
-	public function description(){
-		$this->form("#text_desc");
-		$this->validate()->description()->form->description("description is not valid");
-
+	public function description() {
+		$this->form("#text_desc")->name("description");
+		$this->validate()->description()->form->description("description must be between 3 and 255 charset");
 	}
 
 	

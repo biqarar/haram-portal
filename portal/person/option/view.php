@@ -81,7 +81,7 @@ class view extends main_view{
 			$f->remove("email,mobile,phone");
 			$this->sql(".edit", "person", $this->xuId(), $f);
 			// var_dump($f);exit();
-			$f->from->attr['value'] = ($this->sql("#find_from_name", $f->from->attr['value']));
+			// $f->from->attr['value'] = ($this->sql("#find_from_name", $f->from->attr['value']));
 		}else{
 			$f->nationality->child(35)->selected("selected");
 		}

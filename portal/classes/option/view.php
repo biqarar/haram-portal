@@ -20,7 +20,7 @@ class view extends main_view {
 
 			$this->sql(".edit", "classes", $this->xuId(), $f);
 			
-			$f->teacher->attr['value'] = ($this->sql("#find_teacher_name", $f->teacher->attr['value']));
+			// $f->teacher->attr['value'] = ($this->sql("#find_teacher_name", $f->teacher->attr['value']));
 
 			$week_days = $this->sql(".edit.query", "classes", $this->xuId())->assoc("week_days");
 			$week_days = preg_split("/\,/", $week_days);

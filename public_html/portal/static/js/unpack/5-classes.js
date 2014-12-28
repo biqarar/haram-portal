@@ -3,7 +3,6 @@ route(/portal\/classes\/status=(add|edit)/, function(){
 	$( ".select-plan", this).combobox();
 	$( ".select-place", this).combobox();
 	$("#teacher", this).sautocomplate();
-	console.log($("#teacher"));
 	
 });
 

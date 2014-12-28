@@ -15,7 +15,7 @@ class model extends main_model
 		
 		$sql = $sql->limit(10)->select();
 		$array = array();
-		ilog($sql->string());
+		// ilog($sql->string());
 		foreach ($sql->allAssoc() as $key => $value) {
 			$array[] = array(
 				"value" => $value['name'].' '.$value['family'],

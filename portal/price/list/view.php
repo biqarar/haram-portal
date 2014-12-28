@@ -8,12 +8,9 @@ class view extends main_view {
 		//------------------------------  global
 		$this->global->page_title = "price";
 
-		//------------------------------ load card of oldprice
-		$users_id = $this->xuId("usersid");
-		$x  = $this->sql(".list.card", "oldprice", $users_id , "id");
-		$this->data->oldprice = $x;
-		// var_dump($x);
-
+		$this->data->dataTable = $this->dtable(
+			"price/status=api/", 
+			array('id', "users_id", "date", "type", "value", "pay_type" , "transactions" ,"description"));
 	}
 }
 ?>
