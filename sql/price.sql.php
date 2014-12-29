@@ -15,7 +15,7 @@ class price {
 	}
 
 	public function users_id(){
-		$this->form("text")->name("users_id")->data_url("person/api/");
+		// $this->form("text")->name("users_id")->data_url("person/api/");
 	}
 
 	public function date() {
@@ -29,7 +29,7 @@ class price {
 	}
 
 	public function value(){
-		$this->form("text")->name("value")->label("value");
+		$this->form("text")->name("value")->label("value")->pl("به ریال");
 		$this->validate()->price()->form->price("price value is not valid");
 	}
 

@@ -16,6 +16,7 @@ class view extends main_view  {
 		//------------------------------  make person card
 		$person = $this->sql(".list.card", "person", $users_id, "users_id");
 		unset($person['addLink']);
+		$person['titleLink'] = "users/status=list";
 		$person["editLink"] = "person/status=edit/id=" . $person['list']['list'][0]['id'];
 		
 		$person['list']['list'][0]['from'] = 
@@ -31,13 +32,8 @@ class view extends main_view  {
 		unset($users['addLink']);
 		unset($users['moreLink']);
 		unset($users['list']['list'][0]['password']);
+		$users['titleLink'] = "users/status=list";
 		$this->data->users = $users;
-
-		//------------------------------  make oldprice card
-		$oldprice = $this->sql(".list.card", "oldprice", $users_id, "users_id");
-		unset($oldprice['addLink']);
-		unset($oldprice['editLink']);
-		$this->data->oldprice = $oldprice;
 
 
 		//------------------------------  make bridge card
@@ -56,7 +52,7 @@ class view extends main_view  {
 		$new_bridge["addLink"] = "bridge/status=add/usersid=$users_id";
 		$new_bridge["moreLink"] = "bridge/status=detail/usersid=$users_id";
 		$new_bridge["editLink"] = "bridge/status=edit/usersid=$users_id";
-		
+		$new_bridge['titleLink'] = "bridge/status=list";		
 		$this->data->bridge = $new_bridge;
 
 

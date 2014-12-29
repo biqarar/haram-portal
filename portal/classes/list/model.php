@@ -8,10 +8,10 @@ class model extends main_model {
 		
 		$type = $this->xuId("type");
 		$url = "classification/class/";
-		$ico = "icoclasses";
+		$ico = "icoclass";
 		if($type != "classification" && $type != "absence") {
 			$url = "classification/class/";
-			$ico = "icoclasses";
+			$ico = "icoclass";
 		}elseif($type == "absence"){
 			$url = "classification/absence/";
 			$ico = "icoattendance";

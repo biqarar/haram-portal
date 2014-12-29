@@ -63,7 +63,13 @@
 	<div class="right">
 		<div class="detail-card">
 			<div class="detail-card-body">
-				<div class="detail-card-title">{{array.title|lang}}</div>
+			<div class="detail-card-title">
+				{% if array.titleLink %}
+					<a href="{{array.titleLink}}" style="text-decoration: none">{{array.title|lang}}</a>
+				{% else %}
+					{{array.title|lang}}
+				{%endif%}
+				</div>
 				
 				<div class="detail-card-content">
 					{{-tag.detail(array.list)-}}

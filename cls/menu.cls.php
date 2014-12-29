@@ -84,7 +84,7 @@ class menu_cls  {
 		//------------------------------ translate menu caption whit gettext()
 		foreach (self::$list_menu as $key => $value) {
 			self::$list_menu[$key]["name"] = _($key);
-			self::$list_menu[$key]['index'] = $index[$key];
+			// self::$list_menu[$key]['index'] = $index[$key];
 		}
 
 		//------------------------------ return
@@ -255,7 +255,7 @@ class menu_cls  {
 			);
 		//------------------------------  users list
 		self::$menu[] = array(
-			"submenu" => "user", 
+			"submenu" => "allusers", 
 			"url" => "users/status=list", 
 			"name" =>  _("menu person list"), 
 			"tag" => array(
@@ -264,9 +264,29 @@ class menu_cls  {
 				)
 			);
 
-		//------------------------------   bridge list
+		//------------------------------   price add
 		self::$menu[] = array(
 			"submenu" => "user", 
+			"url" => "price/status=add", 
+			"name" =>  "ثبت شهریه", 
+			"tag" => array(
+				"price" => array("insert" => array("public", "private"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "allusers", 
+			"url" => "bridge/status=list", 
+			"name" =>  "پل های ارتباطی", 
+			"tag" => array(
+				"bridge" => array("insert" => array("public", "private"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "allteacher", 
 			"url" => "bridge/status=list", 
 			"name" =>  "پل های ارتباطی", 
 			"tag" => array(
