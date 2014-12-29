@@ -5,22 +5,24 @@
 
 class model extends main_model{
 
-
-	public function xecho($str = false) {
-		echo "<pre><br>" . $str . "<br></pre>";
-	}
+	public function xecho($str = false) {echo "<pre><br>" . $str . "<br></pre>";}
 	
-	public function sql_admin() {
+	public function ready() {
 		$this->xecho("In The Name Of Allah");
-
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");
-			exit();
+			exit(); die();
+		}else{
+			if (ob_get_level() == 0) ob_start();
+			$this->xecho("checking password ....");
+			$this->xecho("password OK");
 		}
-		$this->xecho("checking password ....");
-		$this->xecho("password OK");
+	}
 
-		if (ob_get_level() == 0) ob_start();
+	public function sql_admin() {
+		$this->ready();
+
+
 		$sql = new dbconnection_lib;
 	
 		$sql::$resum_on_error = true;
@@ -316,7 +318,7 @@ class model extends main_model{
 
 			"ALTER TABLE `branch` CHANGE `name` `name` varchar(64) COLLATE utf8_persian_ci DEFAULT NULL COMMENT 'نام شعبه'",
 
-			"ALTER TABLE `classification` CHANGE `because` `because` ENUM('absence','cansel','done','error') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL DEFAULT 'absence'",
+			"ALTER TABLE `classification` CHANGE `because` `because` ENUM('absence','cansel','done','error_in_insert') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL DEFAULT 'absence'",
 
 			//-----------------------------------------------------------------------------
 			"DROP TABLE IF EXISTS `get_price`",

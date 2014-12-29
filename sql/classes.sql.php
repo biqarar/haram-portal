@@ -56,14 +56,15 @@ class classes {
 	}
 
 	public function teacher() {
-		$this->form("select")->name("teacher")->addClass("select-teacher notselect");
-		$this->setChild(function($q){
-			$q->whereType("teacher");
-			$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
-			$q->groupbyId();
-		}, function($child, $value){
-			$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']); 
-		});
+		 $this->form("text")->name("teacher")->id("teacher")->addClass("select-teacher")->data_url("teacher/api/");
+		// $this->form("select")->name("teacher")->addClass("select-teacher notselect");
+		// $this->setChild(function($q){
+		// 	$q->whereType("teacher");
+		// 	$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
+		// 	$q->groupbyId();
+		// }, function($child, $value){
+		// 	$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']); 
+		// });
 	}
 
 	public function age_range() {

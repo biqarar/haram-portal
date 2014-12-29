@@ -11,6 +11,9 @@ class view extends main_view {
 
 		//------------------------------ load form
 		$f = $this->form("@classification", $this->urlStatus());
+		// var_dump($f);exit();
+		// unset($f->plan_section_id);
+		// unset($f->mark);
 
 		//------------------------------ edit form
 		if($this->urlStatus() == "edit") {

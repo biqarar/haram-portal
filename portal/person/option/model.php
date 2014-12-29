@@ -29,14 +29,15 @@ class model extends main_model{
 		->setNationalcode(post::nationalcode())
 		->setCode(post::code())
 		->setMarriage(post::marriage())
+		->setFrom(post::from())
 		->setChild(post::child())
 		->setEducation_id(post::education_id())
 		->setPasport_date(post::pasport_date());
 
-		$from = post::from();
-		if(preg_match("/^\d$/", $from)){
-			$sqlPerson->setFrom(post::from());
-		}
+		// $from = post::from();
+		// if(preg_match("/^\d$/", $from)){
+		// 	$sqlPerson->setFrom(post::from());
+		// }
 
 		return $sqlPerson;
 	}
@@ -134,7 +135,7 @@ class model extends main_model{
 
 		//----------------------------- update query
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
-		ilog($sql->string());
+		// ilog($sql->string());
 	
 		//----------------------------- commit code
 		$this->commit(function() {

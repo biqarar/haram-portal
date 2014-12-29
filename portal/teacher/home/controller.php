@@ -6,6 +6,19 @@ class controller extends main_controller{
 	public $access = false;
 
 	function config(){
+
+		$this->listen(
+				array(
+					"max" => 4,
+					'url' => array("api","search" => "/(.*)/")
+					),
+				function(){
+					save(array("teacher", "api", 'mod' => "list"));
+					$this->access = true;
+				}
+			);
+
+
 		$users_id = $this->SESSION_usersid();
 		$surl = config_lib::$surl;
 

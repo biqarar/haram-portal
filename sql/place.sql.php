@@ -32,7 +32,7 @@ class place {
 	}
 	
 	public function description() {
-		$this->form("#text_desc")->name("description");
+		$this->form("textarea")->name("description");
 		$this->validate()->description()->form->description("description must be between 3 and 255 charset");
 	}
 }
