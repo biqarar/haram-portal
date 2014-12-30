@@ -18,7 +18,7 @@ class model extends main_model {
 				// 'marriage',
 				// 'education_id',
 				'users_id detail',
-				'id learn',
+				'users_id learn',
 				'users_id')
 			->search_fields('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode")
 			->query(function($q){

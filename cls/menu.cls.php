@@ -255,7 +255,7 @@ class menu_cls  {
 			);
 		//------------------------------  users list
 		self::$menu[] = array(
-			"submenu" => "allusers", 
+			"submenu" => "user", 
 			"url" => "users/status=list", 
 			"name" =>  _("menu person list"), 
 			"tag" => array(
@@ -264,19 +264,19 @@ class menu_cls  {
 				)
 			);
 
-		//------------------------------   price add
-		self::$menu[] = array(
-			"submenu" => "user", 
-			"url" => "price/status=add", 
-			"name" =>  "ثبت شهریه", 
-			"tag" => array(
-				"price" => array("insert" => array("public", "private"))
-				)
-			);
+		// //------------------------------   price add
+		// self::$menu[] = array(
+		// 	"submenu" => "user", 
+		// 	"url" => "price/status=add", 
+		// 	"name" =>  "ثبت شهریه", 
+		// 	"tag" => array(
+		// 		"price" => array("insert" => array("public", "private"))
+		// 		)
+		// 	);
 
 		//------------------------------   bridge list
 		self::$menu[] = array(
-			"submenu" => "allusers", 
+			"submenu" => "user", 
 			"url" => "bridge/status=list", 
 			"name" =>  "پل های ارتباطی", 
 			"tag" => array(
@@ -362,11 +362,18 @@ class menu_cls  {
 		//------------------------------ (public) change password menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
+			"url" => 'settings', 
+			"name" =>  _("تنظیمات شعب"), 
+			"tag" => (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 ) ? "public" : "one branch"
+			);
+		//------------------------------ (public) change password menu 
+		self::$menu[] = array(
+			"submenu" => "settings", 
 			"url" => 'changepasswd', 
 			"name" =>  _("change password"), 
 			"tag" => "public"
 			);
-
+		
 		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
