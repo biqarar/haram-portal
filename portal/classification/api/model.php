@@ -15,12 +15,12 @@ class model extends main_model {
 
 		//------------------------------ check for duplicate this classes inserted 
 		$check = $this->sql()->tableClassification()->whereUsers_id($users_id)->andClasses_id($classes_id)->limit(1)->select();
-
+		
 		if($check->num() == 0) {
 			//------------------------------ check duplicate other classes as time for this users
 			list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.classification", $users_id, $classes_id);
 			if($duplicate) {
-				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کارب ثبت شده است تداخل دارد ");
+				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
 			}else{
 			
 					//------------------------------ insert classification

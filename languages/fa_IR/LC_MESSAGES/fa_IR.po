@@ -17,6 +17,15 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "deposit"
+msgstr "‍پرداخت شهریه"
+
+msgid "reference"
+msgstr "ارجاع شهریه"
+
+msgid "use_in_classes"
+msgstr "استفاده شده در کلاس"
+
 msgid "allteacher"
 msgstr "اساتید"
 

@@ -10,7 +10,7 @@ class view extends main_view {
 
 		$this->data->dataTable = $this->dtable(
 			"price/status=api/", 
-			array('id', "users_id", "date", "type", "value", "pay_type" , "transactions" ,"description"));
+			array('id', "users_id", "date", "pay_type", "value", "title", "transactions" ,"description"));
 	}
 }
 ?>

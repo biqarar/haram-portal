@@ -81,7 +81,7 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		
 		$new_classes = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc();
 		if(!isset($new_classes['id']) || $new_classes['status'] == 'done'){
-			debug_lib::msg("failed","اطلاعات کلاس یافت نشد");
+			debug_lib::fatal("failed","اطلاعات کلاس یافت نشد");
 		}
 	
 	
@@ -97,7 +97,6 @@ class query_duplicateUsersClasses_cls extends query_cls {
 			->groupClose();
 
 		$allClass_users = $allClass_users->select()->allAssoc();
-		
 
 		foreach ($allClass_users as $key => $value) {
 
@@ -107,10 +106,10 @@ class query_duplicateUsersClasses_cls extends query_cls {
 			$end_time_exist   = $this->convert_time($value['end_time']);
 			$week_days_exist  = preg_split("/\,/", $value['week_days']);
 
-			$new_start_date   = intval($new_classes['start_date']);
-			$new_end_date     = intval($new_classes['end_date']);
-			$new_start_time   = intval($new_classes['start_time']);
-			$new_end_time     = intval($new_classes['end_time']);
+			$new_start_date   = $this->convert_date($new_classes['start_date']);
+			$new_end_date     = $this->convert_date($new_classes['end_date']);
+			$new_start_time   = $this->convert_time($new_classes['start_time']);
+			$new_end_time     = $this->convert_time($new_classes['end_time']);
 			$new_week_days    = preg_split("/\,/", $new_classes['week_days']);
 			
 			//------------------------------ save duplicate detail to show
@@ -139,7 +138,7 @@ class query_duplicateUsersClasses_cls extends query_cls {
 				}
 			if($duplicate) break;
 		}
-
+		
 		if($duplicate) {
 			$msg = $classes_detail['classes_id'];
 			return array($duplicate , $msg);
