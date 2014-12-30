@@ -22,7 +22,10 @@ class model extends main_model {
 			if($duplicate) {
 				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
 			}else{
-			
+				//------------------------------ check price 
+				if(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
+					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
+				}else{
 					//------------------------------ insert classification
 					$classification = $this->sql()->tableClassification()
 							->setUsers_id($users_id)
@@ -31,6 +34,7 @@ class model extends main_model {
 							->insert();
 					//------------------------------- set classification count in to classes table
 					$this->sql(".classesCount", $classes_id);
+				}
 			}
 		}else{
 

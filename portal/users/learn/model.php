@@ -5,7 +5,10 @@
 class model extends main_model {
 
 	public function sql_price_list($users_id = false) {
-		$price = $this->sql()->tablePrice()->whereUsers_id($users_id)->select()->allAssoc();
+		$price = $this->sql()->tablePrice()->whereUsers_id($users_id);
+		$price->joinPrice_change()->whereId("#price.title");
+		$price = $price->select()->allAssoc();
+		
 		$sum_active = 0;
 		$sum_low = 0;
 		$sum_all = 0;

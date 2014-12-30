@@ -121,6 +121,16 @@ class menu_cls  {
 				)
 			);
 		
+		//------------------------------ permission add
+		self::$menu[] = array(
+			"submenu"     => "home",
+			"url"         => 'pricechange/status=add',
+			"name"        =>  _("مدیریت شهریه"),
+			"tag"         => array(
+			"price"  => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------ city add
 		self::$menu[] = array(
 			"submenu" => "home", 
@@ -264,15 +274,15 @@ class menu_cls  {
 				)
 			);
 
-		// //------------------------------   price add
-		// self::$menu[] = array(
-		// 	"submenu" => "user", 
-		// 	"url" => "price/status=add", 
-		// 	"name" =>  "ثبت شهریه", 
-		// 	"tag" => array(
-		// 		"price" => array("insert" => array("public", "private"))
-		// 		)
-		// 	);
+		//------------------------------   price list
+		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "price/status=list", 
+			"name" =>  "لیست شهریه ها", 
+			"tag" => array(
+				"price" => array("insert" => array("public", "private"))
+				)
+			);
 
 		//------------------------------   bridge list
 		self::$menu[] = array(

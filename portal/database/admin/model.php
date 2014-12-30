@@ -151,6 +151,22 @@ class model extends main_model{
 			"ALTER TABLE `price` DROP `type`",
 			"ALTER TABLE `price` CHANGE `title` `title` INT(10) NOT NULL",
 			"ALTER TABLE `price` ADD CONSTRAINT `price_ibfk_2` FOREIGN KEY (`title`) REFERENCES `price_change` (`id`)",
+			"DROP TRIGGER IF EXISTS `price_change_delete`",
+			"CREATE TRIGGER `price_change_delete` AFTER DELETE ON `price_change`
+			 FOR EACH ROW BEGIN
+			call setHistory('price_change', 'delete', OLD.id);
+			END",
+			"DROP TRIGGER IF EXISTS `price_change_insert`",
+			"CREATE TRIGGER `price_change_insert` AFTER INSERT ON `price_change`
+			 FOR EACH ROW BEGIN
+			call setCash('price_change', NEW.id, @branch_id);
+			call setHistory('price_change', 'insert', NEW.id);
+			END",
+			"DROP TRIGGER IF EXISTS `price_change_update`",
+			"CREATE TRIGGER `price_change_update` AFTER UPDATE ON `price_change`
+			 FOR EACH ROW BEGIN
+			call setHistory('price_change', 'update', OLD.id);
+			END",
 			);
 
 		$error = 0;

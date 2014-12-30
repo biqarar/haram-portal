@@ -3,10 +3,10 @@ namespace sql;
 class price {
 	public $id           = array('type'=> 'int@10', 'autoI', 'label' => 'price_id');
 	public $users_id     = array('type'=> 'int@10', "label" => "users_id");
-	public $date		 = array("type" => "int@8", "label" => "price_date");
+	public $date		 = array("type" => "int@8", "label" => "date");
 	public $title		 = array('type' => "int@10", "price_title");
 	public $value        = array('type'=> 'int@7', "label" => "price_value");
-	public $pay_type     = array('type'=> 'enum@bank,pos,cash,rule', "label" => "price_pay_type");
+	public $pay_type     = array('type'=> 'enum@bank,pos,cash,rule', "label" => "pay_type");
 	public $transactions = array('type'=> 'varchar@255', "label" => "price_transactions");
 	public $description  = array('type'=> 'text@' , "label" => "description");
 	
