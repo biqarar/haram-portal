@@ -21,6 +21,14 @@ class controller extends main_controller{
 			save(array("absence", "classeslist", 'mod' => "classeslist"));
 			$this->access = true;
 		});
+		$this->listen(array(
+		"max" =>4,
+		"url" => array( "api", "classification" =>"/^\d+$/",  "date" => "/^\d{8}$/")
+		),
+		function(){
+			save(array("absence", "api", 'mod' => "api"));
+			$this->access = true;
+		});
 		
 	}
 }

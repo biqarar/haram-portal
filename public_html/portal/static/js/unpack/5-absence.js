@@ -3,18 +3,31 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 
 	$(".absence-date-main")[0].callBackDate =  function(){
 		date = convert_date($(this).val());
-		l(date);
 	}
-	
-	$("a", this).click(function(){
-		alert("ddddddddddddd");
-		return false;
-	});
 
 	$("a.insertAbsenceApi", this).click(function(){
-		l("function");
-		alert("fsdfs");
 		
+		if(typeof date == "undefined") {
+			xhr_error("تاریخ انتخاب نشده است");
+			return false;
+		}
+		
+		classification = $(this).attr("classification");
+		classesid = $(this).attr("classesid");
+
+		$.ajax({
+			type: "POST",
+			url : "absence/api/classification=" + classification + "/date=" + date,
+			success : function(data){
+				if(data.fatal){
+					xhr_error(data.fatal[0]);
+				}else if(data.warn){
+					xhr_warn(data.warn[0]);
+				}else{
+					xhr_true(data.true[0]);
+				}
+			}
+		});		
 		return false;
 	});
 

@@ -78,22 +78,39 @@ class view extends main_view  {
 
 		//------------------------------  list of active classes
 		foreach ($classification_list['classes'] as $key => $value) {
-			$i = $key;
+			$i_classes = $key;
+			$i_absence = $key;
 			//------------------------------  lable active classes tag
-			$c = $this->tag("a")
+			$classes_title = $this->tag("a")
 				->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
 				->style("text-decoration: none")
-				->vtext(" کلاس شماره  "  . ++$i)
+				->vtext(" کلاس شماره  "  . ++$i_classes)
 				->render();
 
 			//------------------------------  label detail classes tag
-			$v = $this->tag("a")
+			$classes_value = $this->tag("a")
 				->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
 				->style("text-decoration: none")
 				->vtext($value['string'])
 				->render();
+
+
+			//------------------------------ absence
+			$absence_title = $this->tag("a")
+				->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
+				->style("text-decoration: none")
+				->vtext(" کلاس شماره  "  . ++$i_absence)
+				->render();
+
+			$absence_value = $this->tag("a")
+				// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
+				// ->style("text-decoration: none")
+				->vtext($this->sql("#absence_list" , $users_id , $classification_list['classes'][$key]['id']))
+				->render();
+
 			//------------------------------   list of active classes
-			$classification["list"]['list'][0][$c] = $v;
+			$classification["list"]['list'][0][$classes_title] = $classes_value;
+			$absence['list']['list'][0][$absence_title] = $absence_value;
 		}
 
 		//------------------------------  global of classification card
@@ -120,14 +137,26 @@ class view extends main_view  {
 				 "<a>".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
 				."<a href='olddb/" .$key . '/id='. $query_olddb['student'] . "'>نمایش کامل اطلاعات</a>";
 				$i++;
-					
 			}
-			
 			//------------------------------  make global of olddb card
 			$olddb['title'] = "olddb";
 			// $olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
 			$this->data->olddb = $olddb;
 		}
+
+
+		//------------------------------  make classification card
+		
+		$absence["titleLink"]= "classes/status=list/type=absence"; 
+
+
+		//------------------------------  global of absence card
+		$absence['title'] = "absence";
+		// $absence["moreLink"] = "absence/status=detail/usersid=$users_id";
+		// $absence['addLink'] = "absence/status=add/usersid=$users_id";
+	// var_dump($absence);exit();	
+		$this->data->absence = $absence;
+
 	}
 } 
 ?>

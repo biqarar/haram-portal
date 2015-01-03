@@ -13,7 +13,7 @@ class model extends main_model {
 			$url = "classification/class/";
 			$ico = "icoclass";
 		}elseif($type == "absence"){
-			$url = "classification/absence/";
+			$url = "absence/classes/";
 			$ico = "icoattendance";
 		}
 
