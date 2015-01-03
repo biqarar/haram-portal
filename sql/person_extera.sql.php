@@ -121,13 +121,13 @@ class person_extera {
   }
 
   public function good_remember(){
-     $this->form("text")->name("good_remember")->label("good_remember");  
+     $this->form("text")->name("good_remember")->label("good_remember")->id("good");  
       $this->validate()->reg("/^(\,|\d)+$/")->form->reg("good_remember is not valid sample : 1,2,5,19,...");
 
   }
 
   public function bad_remember(){
-     $this->form("text")->name("bad_remember")->label("bad_remember");  
+     $this->form("text")->name("bad_remember")->label("bad_remember")->id("bad");  
       $this->validate()->reg("/^(\,|\d)+$/")->form->reg("good_remember is not valid sample : 1,2,5,19,...");
 
   }

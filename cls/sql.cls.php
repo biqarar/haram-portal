@@ -5,7 +5,7 @@
 class sql_cls {
 	static function config($maker = false) {
 		//------------------------------ join each query whit branch_cash table (permission)
-		if(isset($_SESSION['users_id']) && isset($_SESSION['users_branch']) && !global_cls::supervisor()){
+		if(isset($_SESSION['users_id']) && isset($_SESSION['branch_active']) && !global_cls::supervisor()){
 
 			$users_id = $_SESSION['users_id'];
 			
@@ -23,7 +23,7 @@ class sql_cls {
 					->andRecord_id("#".$table.".id")
 					->groupOpen();
 
-				foreach ($_SESSION['users_branch'] as $key => $value) {
+				foreach ($_SESSION['branch_active'] as $key => $value) {
 					if($key == 0){
 						$x->andBranch_id($value);
 					}else{

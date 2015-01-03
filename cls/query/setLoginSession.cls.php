@@ -36,9 +36,11 @@ class query_setLoginSession_cls extends query_cls {
 
 		$users_branch = $this->sql()->tableUsers_branch()->whereUsers_id($users_id)->select()->allAssoc();
 		$_SESSION['users_branch'] = array();
+		$_SESSION['branch_active'] = array();
 		foreach ($users_branch as $index => $value) {
 			//------------------------------ set branch_id  session (all branch for this user)
 			$_SESSION['users_branch'][] = $value['branch_id'];
+			$_SESSION['branch_active'][] = $value['branch_id'];
 		}
 
 		//------------------------------ set list of permission session

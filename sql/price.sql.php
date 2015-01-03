@@ -3,19 +3,20 @@ namespace sql;
 class price {
 	public $id           = array('type'=> 'int@10', 'autoI', 'label' => 'price_id');
 	public $users_id     = array('type'=> 'int@10', "label" => "users_id");
-	public $date		 = array("type" => "int@8", "label" => "price_date");
-	public $type         = array("type" => "enum@price_add,price_low" ,"label" => "price_type");
+	public $date		 = array("type" => "int@8", "label" => "date");
+	public $title		 = array('type' => "int@10", "price_title");
 	public $value        = array('type'=> 'int@7', "label" => "price_value");
-	public $pay_type     = array('type'=> 'enum@bank,pos,cash,rule', "label" => "price_pay_type");
+	public $pay_type     = array('type'=> 'enum@pos_mellat,pos_melli,cash,rule', "label" => "pay_type");
 	public $transactions = array('type'=> 'varchar@255', "label" => "price_transactions");
 	public $description  = array('type'=> 'text@' , "label" => "description");
 	
+	public $foreign = array("title" => "price_change@id!name");
 	public function id(){
 		$this->validate("id");
 	}
 
 	public function users_id(){
-		// $this->form("text")->name("users_id")->data_url("person/api/");
+		$this->validate("id");
 	}
 
 	public function date() {
@@ -23,9 +24,13 @@ class price {
 		$this->validate()->date()->form->date("date incorect");
 	}
 
-	public function type(){
-		$this->form("radio")->name("type")->label("type");
-		$this->setChild($this->form);
+	public function title(){
+		$this->form("select")->name("title")->id("title")->addClass("select-title notselect")->label("type");
+		$this->setChild(function($q){
+
+		}, function($child, $value){
+			$child->label($value['name'])->value($value['id']); 
+		});
 	}
 
 	public function value(){

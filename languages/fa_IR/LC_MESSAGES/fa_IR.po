@@ -17,6 +17,21 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "pos_mellat"
+msgstr "درگاه بانک ملت"
+
+msgid "pos_melli"
+msgstr "درگاه بانک ملی"
+
+msgid "deposit"
+msgstr "‍پرداخت شهریه"
+
+msgid "reference"
+msgstr "ارجاع شهریه"
+
+msgid "use_in_classes"
+msgstr "استفاده شده در کلاس"
+
 msgid "allteacher"
 msgstr "اساتید"
 
@@ -882,7 +897,7 @@ msgid "result"
 msgstr "نتیجه"
 
 msgid "rule"
-msgstr "قانون"
+msgstr "آیین نامه"
 
 msgid "section"
 msgstr "مقطع"

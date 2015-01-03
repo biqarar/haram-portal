@@ -56,7 +56,7 @@ class classes {
 	}
 
 	public function teacher() {
-		 $this->form("text")->name("teacher")->id("teacher")->addClass("select-teacher")->data_url("teacher/api/");
+		 $this->form("text")->name("teacher")->id("teachername")->addClass("select-teacher")->data_url("teacher/api/");
 		// $this->form("select")->name("teacher")->addClass("select-teacher notselect");
 		// $this->setChild(function($q){
 		// 	$q->whereType("teacher");

@@ -2,6 +2,8 @@
 /**
  * @author reza mohitit rm.biqarar@gmail.com
  */
+// include_once("databaseVersion.php");
+
 
 class model extends main_model{
 
@@ -15,24 +17,25 @@ class model extends main_model{
 	public function xecho($str = false) {echo "<pre><br>" . $str . "<br></pre>";}
 	
 	public function ready($version = "new version") {
+
 		$this->xecho("In The Name Of Allah");
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");
 			exit(); die();
 		}else{
 
-			$this->xecho("checking password ....");
-			$this->xecho("password OK");
+			$this->xecho("Checking password ....");
+			$this->xecho("Password OK");
 		
 			set_time_limit(30000);
 			ini_set('memory_limit', '-1');
 		
 			if (ob_get_level() == 0) ob_start();
 
-			$this->xecho( "starting ... ");
-			$this->xecho( "set time start as : " . time());
+			$this->xecho( "Starting ... ");
+			$this->xecho( "Set time start as : " . time());
 
-			$this->xecho( "set version $version in mysql ");
+			$this->xecho( "Set version $version in mysql ");
 
 			$this->start_time = time();
 			$this->version = $version;
@@ -73,7 +76,7 @@ class model extends main_model{
 	public function end() {
 		$this->xecho( " --------------------------------------------  End :)   ");
 		$this->end_time = time();
-		$this->xecho(" end time : " . $this->end_time);
+		$this->xecho(" End time : " . $this->end_time);
 		$this->all_tiem = intval($this->end_time) - intval($this->start_time);
 
         $this->xecho( "<div style='background :green'><br><br> all perosses ended 
@@ -137,8 +140,37 @@ class model extends main_model{
 			"ALTER TABLE `price` CHANGE `description` `description` TEXT CHARACTER SET utf8 COLLATE utf8_persian_ci NULL",
 			"ALTER TABLE `price` ADD PRIMARY KEY(`id`)",
 			"ALTER TABLE `price` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			"ALTER TABLE `price` ADD CONSTRAINT `price_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)"
-
+			"ALTER TABLE `price` ADD CONSTRAINT `price_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
+			"ALTER TABLE `price` ADD `title` ENUM('deposit','reference','block','use_in_classes') NOT NULL AFTER `pay_type`",
+			"CREATE TABLE IF NOT EXISTS `price_change` (
+			`id` int(10) NOT NULL,
+			  `name` varchar(64) COLLATE utf8_persian_ci NOT NULL,
+			  `type` enum('price_add','price_low') COLLATE utf8_persian_ci NOT NULL,
+			  `branch_id` int(10) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1",
+			"ALTER TABLE `price_change`  ADD PRIMARY KEY (`id`)",
+			"ALTER TABLE `price_change` MODIFY `id` int(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `price_change` ADD CONSTRAINT `price_change_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			"ALTER TABLE `price` DROP `type`",
+			"ALTER TABLE `price` CHANGE `title` `title` INT(10) NOT NULL",
+			"ALTER TABLE `price` ADD CONSTRAINT `price_ibfk_2` FOREIGN KEY (`title`) REFERENCES `price_change` (`id`)",
+			"DROP TRIGGER IF EXISTS `price_change_delete`",
+			"CREATE TRIGGER `price_change_delete` AFTER DELETE ON `price_change`
+			 FOR EACH ROW BEGIN
+			call setHistory('price_change', 'delete', OLD.id);
+			END",
+			"DROP TRIGGER IF EXISTS `price_change_insert`",
+			"CREATE TRIGGER `price_change_insert` AFTER INSERT ON `price_change`
+			 FOR EACH ROW BEGIN
+			call setCash('price_change', NEW.id, @branch_id);
+			call setHistory('price_change', 'insert', NEW.id);
+			END",
+			"DROP TRIGGER IF EXISTS `price_change_update`",
+			"CREATE TRIGGER `price_change_update` AFTER UPDATE ON `price_change`
+			 FOR EACH ROW BEGIN
+			call setHistory('price_change', 'update', OLD.id);
+			END",
+			"ALTER TABLE `price` CHANGE `pay_type` `pay_type` ENUM('bank','pos_mellat','cash','rule','pos_melli') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL",
 			);
 
 		$error = 0;
@@ -147,11 +179,11 @@ class model extends main_model{
 		foreach ($database_change as $key => $value) {
 			$this->title($value);
 			$s = $sql->query($value);
-			$this->xecho( "<b>result:</b>". $sql->result . "\n");
+			$this->xecho( "<b>Result:</b>". $sql->result . "\n");
 			if(!$sql->result){
 				$this->xecho( "<div style='background :red'> -- Error-- ");
-				$this->xecho( "<b>error number:</b>". $sql::$connection->errno  . "\n");
-				$this->xecho( "<b>string error:</b>".  $sql::$connection->error . "\n");
+				$this->xecho( "<b>Error number:</b>". $sql::$connection->errno  . "\n");
+				$this->xecho( "<b>String error:</b>".  $sql::$connection->error . "\n");
 				$this->xecho( "<b> -- Error-- </b></div>");
 				$error++;
 			}

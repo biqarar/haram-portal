@@ -1,0 +1,112 @@
+@font-face {
+	font-family: "WYekan";
+	src: url("fonts/YekanWeb-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "WRoya";
+	src: url("fonts/RoyaWeb-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	direction: rtl;
+}
+
+.div {
+	position: relative;
+	padding: 20px;
+}
+
+.quran_chapters {
+	position: absolute;
+	width: 220px;
+	right: 300px;
+	background-color: #fff;
+	display: none;
+	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .19);
+	color: #555;
+	text-align: center;
+	z-index: 999;
+	padding: 5px;
+}
+
+.quran_chapters span {
+	height: 25px;
+	border: 1px solid #f1f1f1;
+	font-family: "WYekan";
+	font-size: 11px;
+	float: right;
+	width: 40px;
+	margin: 1px 1px;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+.quran_chapters span:hover {
+	/*background-color: #f3f3f3;*/
+	border: 1px solid #bbb;
+	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .19);
+}
+
+
+.goodSelected {
+	background-color: #269c9b !important;
+	border: 1px solid #fff !important;
+	cursor: pointer !important;
+	color: #fff !important;
+}
+
+.goodSelected:hover {
+	color: #555;
+}
+.badSelected {
+	background-color: #f14f66 !important;
+	border: 1px solid #fff !important;
+	cursor: pointer !important;
+	color: #fff !important;
+}
+
+.badSelected:hover {
+	color: #555;
+}
+
+
+.goodDisabled {
+	background-color: #729898;
+	border: 1px solid #fff !important;
+	cursor: default !important;
+}
+
+.goodDisabled:hover {
+	box-shadow: none !important;
+	/*background-color: #d1d1d1 !important;*/
+}
+.badDisabled {
+	background-color: #a18c8c;
+	border: 1px solid #fff !important;
+	cursor: default !important;
+}
+
+.badDisabled:hover {
+	box-shadow: none !important;
+	/*background-color: #d1d1d1 !important;*/
+}
+
+.xsave {
+	clear: both;
+	border: none;
+	outline: none;
+	font-family: "WYekan";
+	font-size: 1rem;
+	padding: 0 50px;
+	margin-top: 5px;
+}

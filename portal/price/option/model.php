@@ -8,10 +8,10 @@ class model extends main_model{
 
 		return $this->sql()->tablePrice()
 				->setUsers_id($this->xuId("usersid"))
-				->setDate(post::date())
-				->setType(post::type())				
+				->setDate(post::date())			
 				->setValue(post::value())
 				->setPay_type(post::pay_type())
+				->setTitle(post::title())
 				->setTransactions(post::transactions())
 				->setDescription(post::description());
 	}
