@@ -145,7 +145,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'province/status=add', 
-			"name" =>  _("menu province add"), 
+			"name" =>  _("ثبت استان ها"), 
 			"tag" => array(
 				"province" => array("insert" => array("public"))
 				)
