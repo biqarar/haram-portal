@@ -157,6 +157,7 @@ function aClickTabs(e){
 	var activeTab, nActive, hash;
 	var href = $(this).attr('href');
 	var text = $(this).text();
+	if(!href) return false;
 	if($(this).attr("target") == "_blank"){
 		nActive = true;
 	}
