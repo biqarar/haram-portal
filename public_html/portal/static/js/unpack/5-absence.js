@@ -1,5 +1,4 @@
-route(/absence\/classes\/classesid=\d+/, function(){
-
+route(/absence\/status=classeslist\/classesid=\d+/, function(){
 	function l(a) {console.log(a);}
 
 	$(".absence-date-main")[0].callBackDate =  function(){
@@ -7,13 +6,12 @@ route(/absence\/classes\/classesid=\d+/, function(){
 		l(date);
 	}
 	
-	$("a").click(function(){
-	
+	$("a", this).click(function(){
 		alert("ddddddddddddd");
 		return false;
 	});
 
-	$("a.insertAbsenceApi").click(function(){
+	$("a.insertAbsenceApi", this).click(function(){
 		l("function");
 		alert("fsdfs");
 		
