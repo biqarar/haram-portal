@@ -18,7 +18,13 @@ class model extends main_model{
 
 	public function post_add_price(){
 
-		$sql = $this->makeQuery()->insert();
+		if(!$this->check_price()){
+			debug_lib::fatal("اطلاعات وارد شده با مقادیر حساب تناقض دارد");
+		}else{
+			$sql = $this->makeQuery()->insert();
+			// print_r($sql->string());
+		}
+
 		
 		$this->commit(function() {
 			debug_lib::true("[[insert price successful]]");
@@ -29,16 +35,21 @@ class model extends main_model{
 		});
 	}
 
-	public function post_edit_price(){
-		// $sql = $this->makeQuery()
-		// 		->whereId($this->xuId())
-		// 		->update();
-		// $this->commit(function() {
-		// 	debug_lib::true("[[update price ture]]");
-		// });
-		// $this->rollback(function() {
-		// 	debug_lib::fatal("[[update price failed]]");
-		// });
+	public function post_edit_price(){}
+
+	public function check_price() {
+		$usersid  = $this->xuId("usersid");
+		$value    = post::value();
+		$title = post::title();
+
+		$type = $this->sql()->tablePrice_change()->whereId($title)->limit(1)->select()->assoc("type");
+		if($type == "price_low") {
+			$sum = $this->sql(".price.sum_price", $usersid);
+			if(intval($sum) < intval($value)){
+				return false;
+			}
+		}
+		return true;
 	}
 }
 ?>

@@ -120,10 +120,18 @@ class model extends main_model{
 			}
 
 			//------------------------------ commit code
-			$this->commit(function($username = false) {
+			$this->commit(function($username = false , $users_id = false) {
 				debug_lib::true("ثبت نام با موفقیت انجام شد <br> 
-								 نام کاربری شما  $username  و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.");
-			}, $username);
+								 نام کاربری شما  $username   <br>
+								 و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.
+								 ". 
+								 "<br><br>" . 
+								 $this->tag("a")
+								 ->href("price/status=add/usersid=$users_id")
+								 ->vtext("ثبت شهریه برای این فراگیر")
+								 ->render()
+								 );
+			}, $username, $users_id);
 		}
 
 		$this->rollback(function() {
