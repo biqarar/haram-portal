@@ -4,10 +4,13 @@ class main_controller{
 	public $__autocallMethod = array("sql", "redirect", "checkRedirect", "addMethod", "addPeroperty");
 	public $__autogetProperty = array( "redirect");
 	public $access = false; // for after lunch
-	// public $access = true; // for befor lunch
+	
 	public final function __construct(){
+		if(global_cls::supervisor()){
+			$this->access = true; // for befor lunch
+		}
 		if(preg_match("/favicon\.ico$/", $_SERVER['REQUEST_URI'])){
-			die("fff");
+			die("favicon.ico");
 		}
 		$this->xuStatus();
 		$permission = new checkPermission_cls;
@@ -22,23 +25,32 @@ class main_controller{
 		$this->addMethod('uStatus');
 		$this->addMethod('uId');
 		$this->addMethod('xuId');
+		$this->addMethod('SESSION_usersid');
 		$this->addMethod("checkPermissions");
 		if(method_exists($this, 'config')){
 			$this->config();
 		}
 		list($access, $msg) = $this->checkPermissions();
-		if(!$access) {
+		if(!$this->SESSION_usersid() && config_lib::$class != "login") {
 			if(ifAjax()){
 				page_lib::access($msg);
 			}else{
 				$_SESSION['redirect'] = config_lib::$URL;
-				// $this->redirect("login");
-				page_lib::access($msg);
+				header("location:".host.'/login');
+				exit();
+			}
+		}elseif($this->SESSION_usersid()  && config_lib::$class == "login"){
+			header("location:".host);
+			exit();
+		}
 
-				// header("location:".host.'/login');
+		if(!$access) {
+			if(ifAjax()){
+				page_lib::access($msg);
+			}else{
+				page_lib::access($msg);
 			}
 		}
-		// exit();
 	}
 
 	public final function hendel(){
@@ -168,7 +180,7 @@ class main_controller{
 					save(array("$table", "option"));
 					$this->permission = array("$table" => array("$insertORupdate" => array("public")));
 				}, $table , $insertORupdate
-			);
+				);
 
 		//------------------------------ if url is "status=edit"
 
@@ -183,8 +195,8 @@ class main_controller{
 					save(array("$table", "option"));
 					$this->permission = array("$table" => array("$insertORupdate" => array("public")));
 				}, $table , $insertORupdate
-			);
-		
+				);
+
 		//------------------------------ if url is "status=list"
 
 		}elseif(isset($surl['status']) && $surl['status'] == 'list' ){
@@ -198,7 +210,7 @@ class main_controller{
 					save(array("$table", "list"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-			);
+				);
 
 		//------------------------------ if url is "status=detail"
 
@@ -213,7 +225,7 @@ class main_controller{
 					save(array("$table", "detail"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-			);
+				);
 		}elseif(isset($surl['status']) && $surl['status'] == 'api' ){
 			$this->listen(
 				array(
@@ -224,7 +236,7 @@ class main_controller{
 					save(array("$table", "list", 'mod' => "api"));
 					$this->permission = array("$table" => array("select" => array("public")));
 				}, $table
-			);
+				);
 		}
 	}
 
@@ -272,6 +284,9 @@ class main_controller{
 	}
 
 	public function checkPermissions() {
+		if(global_cls::supervisor()){
+			return [true, true];
+		}
 		$msg = "";
 		$access = false;
 		if($this->access) {
@@ -308,6 +323,10 @@ class main_controller{
 			$msg = "permission denide";
 		}
 		return array($access, $msg);
+	}
+
+	public function SESSION_usersid() {
+		return (isset($_SESSION['users_id'])) ? $_SESSION['users_id'] : 0;
 	}
 }
 

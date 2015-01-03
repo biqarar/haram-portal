@@ -170,6 +170,9 @@
 			$(this).data("ajxCallBack", f);
 		}
 	}
+	$.fn.ajxOptions = function(f){
+		$(this).data("ajxOptions", f);
+	}
 })(jQuery);
 
 var O = {
@@ -200,7 +203,9 @@ var O = {
 	},
 	success: function(data, base){
 		var p = $(base).parents(".ui-tabs-panel");
-		$(base)[0].reset();
+		if(!$(base).data("ajxOptions") || ($(base).data("ajxOptions") && $(base).data("ajxOptions").reset != false)){
+			$(base)[0].reset();
+		}
 		p.find(".submit-status").remove();
 		var statusDiv = $('<div class="submit-status"></div>');
 		statusDiv.insertAfter($(base));
@@ -214,7 +219,6 @@ var O = {
 					if(typeof data[D][cStatus] == "object"){
 						$('<li>'+data[D][cStatus]['error']+'</li>').appendTo(UL);
 					}else{
-						console.log(data[D], cStatus);
 						$('<li>'+data[D][cStatus]+'</li>').appendTo(UL);
 					}
 				}

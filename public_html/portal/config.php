@@ -38,7 +38,9 @@ define('WPLANG', 'en_US');
  * in their development environments.a
  */
 define('DEBUG', true);
-define('FACHR', 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآيئؤكآأإة');
+// define('FACHR', 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآيئؤكآأإة');
+define('FACHR', 'ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء');
+
 define("core", DIR."/../../core/");
 define("root_dir", DIR."/../../");
 define("lib", core."lib/");

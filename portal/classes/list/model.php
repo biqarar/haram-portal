@@ -6,23 +6,36 @@
 class model extends main_model {
 		public function post_api(){
 		
+		$type = $this->xuId("type");
+		$url = "classification/class/";
+		$ico = "icoclass";
+		if($type != "classification" && $type != "absence") {
+			$url = "classification/class/";
+			$ico = "icoclass";
+		}elseif($type == "absence"){
+			$url = "classification/absence/";
+			$ico = "icoattendance";
+		}
+
+
 		$dtable = $this->dtable->table("classes")
 		->fields(
+			"id",
 			"planname",
 			"teachername",
 			"teacherfamily",
 			"placename",
-			"meeting_no",
 			"age_range",
 			"start_time",
 			"end_time",
-			"id edit",
+			"maxp plan.max_person",
+			"count",
 			"id classification",
-			"id absence",
 			"id detail")
 		
 		
 		->search_fields(
+			"id classes.id",
 			"planname plan.name" ,
 			"teachername person.name",
 			"teacherfamily person.family",
@@ -44,22 +57,21 @@ class model extends main_model {
 				$q->join->person->orderName($b);
 			}elseif($n === 'orderPlacename'){
 				$q->join->place->orderName($b);
+			}elseif($n === 'orderMaxp'){
+				$q->join->plan->orderMax_person($b);
 			}else{
 				return true;
 			}
 		})
 		->query(function($q){
-			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname');
+			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 		})
-		->result(function($r){
-			$r->edit = '<a class="icoedit" href="classes/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
-			$r->classification = '<a class="icoclasses" href="classification/class/classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
-			$r->absence = '<a class="icoattendance" href="classification/absence/classesid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
+		->result(function($r, $ico, $url){
+			$r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
-
-		});
+		}, $ico , $url);
 
 		$this->sql(".dataTable", $dtable);
 	}	

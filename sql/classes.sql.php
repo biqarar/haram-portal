@@ -5,7 +5,7 @@
 namespace sql;
 class classes {
 	public $id         = array('type'=> 'int@10', 'autoI', 'label' => 'classes_id');
-	public $course_id  = array('type'=> 'int@10', 'label' => 'course_id');
+	// public $course_id  = array('type'=> 'int@10', 'label' => 'course_id');
 	public $plan_id    = array('type'=> 'int@10', 'label' => 'plan_id');
 	public $meeting_no = array('type'=> 'int@3', 'label' => 'classes_meeting_no');
 	public $teacher    = array('type'=> 'int@10', 'label' => 'classes_teacher');
@@ -20,6 +20,7 @@ class classes {
 	public $week_days  = array('type'=> 'set@saturday,sunday,monday,tuesday,wednesday,thursday,friday', 'label' => 'classes_week_days');
 	public $status     = array('type'=> 'enum@ready,running,done!ready', 'label' => 'classes_status');
 	public $type	    = array('type'=> 'enum@physical,virtual!physical', 'label' => 'classes_type');
+	public $count	    = array('type'=> 'int@7', 'label' => 'classes_count');
 	
 	public $index      = array("course_id", "plan_id", "teacher", "place_id");
 	public $unique     = array("id");
@@ -34,14 +35,14 @@ class classes {
 		$this->validate("id");
 	}
 
-	public function course_id() {
-		$this->form("select")->name("course_id");
-		$this->setChild();
-		$this->validate("id");
-	}
+	// public function course_id() {
+	// 	$this->form("select")->name("course_id");
+	// 	$this->setChild();
+	// 	$this->validate("id");
+	// }
 
 	public function plan_id() {
-		$this->form("select")->name("plan_id")->addClass("select-plan");
+		$this->form("select")->name("plan_id")->addClass("select-plan notselect");
 		$this->setChild(function($q){
 		}, function($child, $value){
 			$child->label(gettext($value['name']))->value($value['id']); 
@@ -55,14 +56,15 @@ class classes {
 	}
 
 	public function teacher() {
-		$this->form("select")->name("teacher")->addClass("select-teacher");
-		$this->setChild(function($q){
-			$q->whereType("teacher");
-			$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
-			$q->groupbyId();
-		}, function($child, $value){
-			$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']); 
-		});
+		 $this->form("text")->name("teacher")->id("teachername")->addClass("select-teacher")->data_url("teacher/api/");
+		// $this->form("select")->name("teacher")->addClass("select-teacher notselect");
+		// $this->setChild(function($q){
+		// 	$q->whereType("teacher");
+		// 	$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
+		// 	$q->groupbyId();
+		// }, function($child, $value){
+		// 	$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']); 
+		// });
 	}
 
 	public function age_range() {
@@ -78,7 +80,7 @@ class classes {
 	}
 	
 	public function place_id() {
-		$this->form("select")->name("place_id")->addClass("select-place");
+		$this->form("select")->name("place_id")->addClass("select-place notselect");
 		$this->setChild(function($q){
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 
@@ -125,6 +127,10 @@ class classes {
 	public function type() {
 		$this->form("select")->name("type");
 		$this->setChild($this->form);
+	}
+
+	public function count() {
+		$this->validate()->number(1,7);
 	}
 }
 ?>

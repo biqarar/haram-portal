@@ -3,12 +3,21 @@
  * @author reza mohitit rm.biqarar@gmail.com
  */
 class model extends main_model{
+	public function sql_find_teacher_name($users_id = 0) {
+		$return = $this->sql()->tablePerson()->whereUsers_id($users_id)->fieldName()->fieldFamily()->limit(1)->select()->assoc();
+		return $return['name'] . ' ' . $return['family'];
+	}
 
 	public function makeQuery() {
-		//------------------------------ make sql object
+			
+		$week_days = post::week_days();
+		if(!empty($week_days) && is_array($week_days)){
+			$week_days = join($week_days, ",");
+		}
 
+		//------------------------------ make sql object
 		return $this->sql()->tableClasses()
-				->setCourse_id(post::course_id())
+				// ->setCourse_id(post::course_id())
 				->setPlan_id(post::plan_id())
 				->setMeeting_no(post::meeting_no())
 				->setAge_range(post::age_range())
@@ -20,14 +29,13 @@ class model extends main_model{
 				->setTeacher(post::teacher())
 				->setStart_date(post::start_date())
 				->setEnd_date(post::end_date())
-				->setWeek_days(join(post::week_days(), ","))
+				->setWeek_days($week_days)
 				->setStatus(post::status());
 	}
 
 	public function post_add_classes() {
-
 		//------------------------------ check duplicate classes
-		$this->check_duplication();
+		$this->check_duplication("insert");
 
 		//------------------------------ insert classes
 		$sql = $this->makeQuery()->insert();
@@ -47,10 +55,7 @@ class model extends main_model{
 
 
 		//------------------------------ check duplicate classes
-		if(!$this->check_duplication()){
-			// print_r("expression");
-			// exit();
-		}
+		$this->check_duplication("update");
 
 		//------------------------------ update classes
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
@@ -67,7 +72,7 @@ class model extends main_model{
 		});
 	}
 
-	public function check_duplication() {
+	public function check_duplication($type = false) {
 		//------------------------------ duplicate key
 		$duplicate = false;
 
@@ -92,29 +97,37 @@ class model extends main_model{
 
 		//------------------------------  week days
 		$week_days  = post::week_days();
-
+		$week_days  = is_array($week_days) ? $week_days : array();
 		//------------------------------ status
 		$status     = post::status();
+
+		//------------------------------ save duplicate detail to show
+		$classes_detail = array();
 
 		//------------------------------ sql result for status && place_id query
 		$class = $this->sql()->tableClasses()
 				->groupOpen()
 				->whereStatus("ready")->orStatus("running")
 				->groupClose()
-				->andPlace_id($place)->select();
-
+				->groupOpen()
+				->condition("and", "#start_date", "<=" , $end_date)
+				->condition("and", "#end_date", ">=" , $start_date)
+				->groupClose()
+				->andPlace_id($place);
+		$class->joinPlace()->whereId("#classes.place_id")->fieldMulticlass();
+		$class = $class->select();
+				
 		//------------------------------  if in this place classes and ready or running
 		if($class->num() > 0 ) {
 
 			$allClass = $class->allAssoc();
 			
 			foreach ($allClass as $key => $value) {
-				
-				//------------------------------  date end of exist classes > start date of request classes
-				if(intval($value['end_date']) > $start_date) {
 
+				//------------------------------ save duplicate detail to show
+				$classes_detail = $value;
 					//------------------------------ check week days of exist classes and request classes
-					$week_days_exist = preg_split("/\,/", $value['week_days']);
+					$week_days_exist = (preg_match("/\,/", $value['week_days'])) ? preg_split("/\,/", $value['week_days']) : array();
 
 					foreach ($week_days as $k => $v) {
 						
@@ -125,17 +138,50 @@ class model extends main_model{
 							$end_time_exist = $this->convert_time($value['end_time']);
 
 							if ($end_time_exist > $start_time && $start_time_exist < $end_time) {
+
 								//------------------------------ duplicate item here !!! 
 								//------------------------------ can not insert or update classes
-								$duplicate = true;
+								if($type == "update" && $this->xuId() == $value['id']){
+									//------------------------------ himself
+									$duplicate = false;	
+								}elseif($value['multiclass'] == 'yes'){
+									//------------------------------ multiclass
+									$duplicate = false;
+								}else{
+									//------------------------------ duplicate
+									$duplicate = true;
+								}
 							}
 						}
+						if($duplicate) break;
 					}
-				}
+				if($duplicate) break;
 			}	
 		}
 
-		return $duplicate;
+		if($duplicate) {
+			debug_lib::fatal(
+				" اطلاعات این کلاس با کلاس شماره "
+				. $classes_detail['id'] .
+				" تداخل دارد، لطفا بررسی کنید " 
+				);
+		}else{
+			$new_classes = array();
+			$new_classes['start_date'] = $start_date;
+			$new_classes['end_date']   = $end_date;
+			$new_classes['start_time'] = $start_time;
+			$new_classes['end_time']   = $end_time;
+			$new_classes['week_days']  = $week_days;
+			list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.teacher" , post::teacher() , $new_classes);
+			if($duplicate){
+				debug_lib::fatal(
+				" استاد در این ساعت در کلاس شماره "
+				. $msg .
+				" تدریس دارد " 
+				);
+			}
+
+		}
 	}
 
 	public function convert_time($time = false) {

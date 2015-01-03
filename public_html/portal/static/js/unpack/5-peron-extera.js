@@ -1,3 +1,3 @@
-route(/portal\/person\/extera\/status=add\//, function(){
+route(/portal\/(person|teacher)\/extera\/status\=(add|edit)\//, function(){
 	$("#from", this).sautocomplate();
 });

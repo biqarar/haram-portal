@@ -41,7 +41,8 @@ class person {
 	}
 
 	public function name() {
-		$this->form("#fatext")->name("name")->validate()->form->farsi("name should be between 2 and 32 characters");
+		$this->form("#fatext")->name("name");
+		$this->validate()->form->farsi("name should be between 2 and 32 characters");
 	}
 
 	public function family() {
@@ -80,6 +81,7 @@ class person {
 
 	public function from() {
 		$this->form("select")->name("from")->addClass("select-city")->data_url("city/api/");
+		$this->validate();
 	}
 
 
@@ -107,7 +109,7 @@ class person {
 
 	public function casecode_old() {
 		$this->form("#number")->name("casecode_old");
-		$this->validate()->number(7, 11);
+		$this->validate()->number(7, 9);
 	}
 
 	public function education_id() {

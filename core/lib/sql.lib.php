@@ -314,7 +314,9 @@ class sql_lib{
 					$v = new validator_lib(array($field, $value), $gTable->validate, 'form');
 					$value = $v->compile();
 					$value = (empty($value) || $value === false)? "NULL" : $value;
-
+					if($value == "NULL"){
+						$cInt = true;
+					}
 				}
 				if(!$cInt){
 					$value = htmlentities($value, ENT_QUOTES, "UTF-8");

@@ -4,6 +4,10 @@
  */
 class model extends main_model {
 
+	public function sql_users_bridge($id = 0) {
+		return $this->sql()->tableBridge()->whereId($id)->limit(1)->select()->assoc("users_id");
+	}
+
 	public function makeQuery() {
 		//------------------------------  make sql object
 		return $this->sql()->tableBridge()

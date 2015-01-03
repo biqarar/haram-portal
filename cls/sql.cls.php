@@ -5,7 +5,7 @@
 class sql_cls {
 	static function config($maker = false) {
 		//------------------------------ join each query whit branch_cash table (permission)
-		if(isset($_SESSION['users_id']) && isset($_SESSION['users_branch'])){
+		if(isset($_SESSION['users_id']) && isset($_SESSION['branch_active']) && !global_cls::supervisor()){
 
 			$users_id = $_SESSION['users_id'];
 			
@@ -23,7 +23,7 @@ class sql_cls {
 					->andRecord_id("#".$table.".id")
 					->groupOpen();
 
-				foreach ($_SESSION['users_branch'] as $key => $value) {
+				foreach ($_SESSION['branch_active'] as $key => $value) {
 					if($key == 0){
 						$x->andBranch_id($value);
 					}else{
@@ -48,25 +48,37 @@ class sql_cls {
 		}
 	}
 	static function call($maker, $name) {
-	
+		
 		//------------------------------ send  users_id and branch_id to mysql engine 
 		$sql = new dbconnection_lib;
 
+		//------------------------------ users id
 		$users_id = isset($_SESSION['users_id']) ? $_SESSION['users_id'] : 0;
 
-		if (post::branch_id() && preg_grep("/^".post::branch_id()."$/", $_SESSION['users_branch']) && preg_match("/^\d+$/", post::branch_id())) {
+		//------------------------------ ip
+		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 0;
+
+		//------------------------------ users_branch
+		$users_branch = isset($_SESSION['users_branch']) ? $_SESSION['users_branch']: array();
+
+		//------------------------------ set branch id
+		if(post::branch_id() && global_cls::supervisor()){
+			
+			$branch_id = post::branch_id();
+
+		}elseif (post::branch_id() && preg_grep("/^".post::branch_id()."$/", $users_branch) && preg_match("/^\d+$/", post::branch_id())) {
 		
 			$branch_id = post::branch_id();
 		
-		} elseif (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) == 1 && !post::branch_id()) {
+		} elseif (isset($users_branch) && count($users_branch) == 1 && !post::branch_id()) {
 		
-			$branch_id = $_SESSION['users_branch'][0];
+			$branch_id = $users_branch[0];
 		
-		} elseif (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 && !post::branch_id()) {
+		} elseif (isset($users_branch) && count($users_branch) > 1 && !post::branch_id()) {
 			
 			// ------------------------------ developer bug
-			$branch_id = 0;
-			// $branch_id = $_SESSION['users_branch'][0];
+			// $branch_id = 0;
+			$branch_id = $_SESSION['users_branch'][0];
 		
 		} else {
 		
@@ -74,17 +86,17 @@ class sql_cls {
 		
 		}
 
-		//------------------------------ send users id
+		//------------------------------ send users id, branch id and ip to mysql engine
 		if (isset($_SESSION['users_id'])) {
-			$q = $sql->query("SET @users_id =  " . $_SESSION['users_id']);
-			$q = $sql->query("SET @ip_ = " . "'" . $_SERVER['REMOTE_ADDR'] . "'");
-			$q = $sql->query("SET @branch_id = " . $branch_id);
+			$q = $sql->query("SET @users_id = $users_id ");
+			$q = $sql->query("SET @ip_ = '$ip' ");
+			$q = $sql->query("SET @branch_id = $branch_id ");
 		}
 
 		//------------------------------ check insert, update , delete permission
 		if ($name == "insert" || $name == "update" || $name == "delete") {
-			if ($maker->table != "login_counter") {
-				$q = $sql->query("CALL insertPerm($users_id, $branch_id)");
+			if ($maker->table != "login_counter" && !global_cls::supervisor()) {
+				$q = $sql->query("CALL insertPerm($users_id, $branch_id) ");
 			}
 		}
 

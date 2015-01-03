@@ -26,7 +26,7 @@ class model extends main_model{
 
 	public function post_edit_province() {
 		//------------------------------ update province
-		$sql = $this->sql()->tableProvince()->whereId($this->xuId())->update();
+		$sql =$this->makeQuery()->whereId($this->xuId())->update();
 
 		//------------------------------ commit code
 		$this->commit(function() {

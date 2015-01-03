@@ -13,7 +13,7 @@ class model extends main_model {
 			$q->groupbyId();
 		})
 		->result(function($r){
-			$r->edit = '<a class="icoedit" href="branch/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			$r->edit = '<a class="icoedit" href="group/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 		});
 		$this->sql(".dataTable", $dtable);
 	}

@@ -49,5 +49,5 @@ route("*", function(){
 				$('*',row).persian_nu();
 			}
 		});
-});
+	});
 });

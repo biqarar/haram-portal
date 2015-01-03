@@ -12,13 +12,13 @@ class model extends main_model {
 				'family',
 				'father',
 				'birthday',
-				'gender',
+				// 'gender',
 				'nationalcode',
 				'code',
-				'marriage',
-				'education_id',
+				// 'marriage',
+				// 'education_id',
 				'users_id detail',
-				'id learn',
+				'users_id learn',
 				'users_id')
 			->search_fields('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode")
 			->query(function($q){

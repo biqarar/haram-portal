@@ -5,36 +5,27 @@
 class model extends main_model
 {
 	public function post_list() {
-		//------------------------------ get text search from url
-		$nameFamily = config_lib::$aurl[2];
-		if(preg_match("/\s{2}/",$nameFamily)){
-			$n = preg_split("/\s{2}/", $nameFamily);
-			$name = $n[0];
-			$family = $n[1];	
-			$q = $this->sql()->tablePerson()->likeName("%".$name."%")
-			->andlikeFamily("%".$family."%")
-			->limit(700)
-			->fieldId()
-			->fieldName()
-			->fieldFamily()
-			->fieldFather()
-			->select();
-		}else{
-			$q = $this->sql()->tablePerson()->likeName("%".$nameFamily."%")
-			->orlikeFamily("%".$nameFamily."%")
-			->limit(700)
-			->fieldId()
-			->fieldName()
-			->fieldFamily()
-			->fieldFather()
-			->select();
+
+		$sql = $this->sql()->tablePerson()
+		->condition("or" , "##concat(name, family, father)" , "like" , "%" . $this->xuId("search") . "%");
+		// $sql->fieldName("name")->fieldFamily("family")->fieldFather("father")->fieldUsersid("id");
+
+		$sql->joinUsers()->whereId("#person.users_id")->fieldUsername();
+		$sql->condition("or", "##users.username" , "=" ,$this->xuId("search"));
+		
+		$sql = $sql->limit(10)->select();
+		$array = array();
+
+		foreach ($sql->allAssoc() as $key => $value) {
+			$array[] = array(
+				"value" => $value['name'].' '.$value['family'] . ' ' . $value['father'],
+				"id" =>  $value['users_id']
+
+				);
 		}
+		
+		debug_lib::msg("list", $array);
 
-		// 	WHERE concat(name, ' ', family , ' ' , father)
-		// 	LIKE '%$nameFamily%'
-
-
-		debug_lib::msg("person", $q->allAssoc());
 	}
 }
 ?>

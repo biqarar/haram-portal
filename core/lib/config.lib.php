@@ -220,7 +220,51 @@ class config_lib{
 
 class post{
 	public static function __callStatic($name, $args){
-		return isset($_POST[$name])? $_POST[$name] : false;
+		$post =  isset($_POST[$name]) ? $_POST[$name] : false;
+		$patterns = array(
+			'/ة/',
+			'/إ/',
+			'/أ/',
+			'/ي/',
+			'/ئ/',
+			'/ؤ/',
+			'/ك/',
+
+			'/۰/',
+			'/۱/',
+			'/۲/',
+			'/۳/',
+			'/۴/',
+			'/۵/',
+			'/۶/',
+			'/۷/',
+			'/۸/',
+			'/۹/'
+			);
+		$replacements = array(
+			'ه',
+			'ا',
+			'ا',
+			'ی',
+			'ی',
+			'و',
+			'ک',
+
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9'
+			);
+		if($post) {
+			$post = preg_replace($patterns, $replacements, $post);
+		}
+		return $post;
 	}
 }
 class get{

@@ -6,7 +6,7 @@ class model extends main_model {
 		->fields("id", "name","id edit")
 		->search_fields("name")
 		->result(function($r){
-			$r->edit = '<a class= "icoedit" href="province/status=edit/id="'. $r->edit . '"></a>';
+			$r->edit = '<a class= "icoedit" href="province/status=edit/id='. $r->edit . '"></a>';
 			});
 		$this->sql(".dataTable", $dt);
 	}

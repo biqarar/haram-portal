@@ -8,13 +8,23 @@ route(/portal\/person\/status=(add|edit)/, function(){
 			$("#from", _self).next().removeAttr("disabled");
 		}
 	}
-	$( "#nationality", this).combobox({
+	var OBJ = {
 		change : function(ui){
 			check_disabled(ui.item.option.value);
 		},
 		create : function(){
 			check_disabled(this.value);
 		}
-	});
+	};
+	$( "#nationality", this).combobox(OBJ);
+	
 	$( "#education_id", this).combobox();
+});
+route(/portal\/person\/status=edit/, function(){
+	$(".ajx", this).ajxOptions({
+		reset : false
+	});
+});
+route("*", function(){
+	$('.slider-number').sslider();
 });

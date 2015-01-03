@@ -2,27 +2,28 @@
 /**
  * @author reza mohiti rm.biqarar@gmail.com
  */
-
 class view extends main_view{
+
 
 	public function config(){
 		//------------------------------ global
 		$this->global->page_title = "classes";
+		
+		$type = ($this->xuId("type") == "classification") ? "classification" : "absence";
 
-
-		$this->data->dataTable = $this->dtable("classes/status=api/"
+		$this->data->dataTable = $this->dtable("classes/status=api/type=$type/"
 			, array(
+				"id",
 				"plan",
-				"teacher",
-				"teacher",
+				_("name") . ' ' . _("teacher"),
+				_("family") . ' ' . _("teacher"),
 				"place",
-				"meeting_no",
 				"age_range",
 				"start_time",
 				"end_time",
-				"edit",
-				"classification",
-				"absence",
+				"capacity",
+				"count",
+				"$type",
 				"detail"
 				));
 		// //------------------------------ classes list

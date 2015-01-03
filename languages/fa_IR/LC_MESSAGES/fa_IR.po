@@ -17,6 +17,105 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "pos_mellat"
+msgstr "درگاه بانک ملت"
+
+msgid "pos_melli"
+msgstr "درگاه بانک ملی"
+
+msgid "deposit"
+msgstr "‍پرداخت شهریه"
+
+msgid "reference"
+msgstr "ارجاع شهریه"
+
+msgid "use_in_classes"
+msgstr "استفاده شده در کلاس"
+
+msgid "allteacher"
+msgstr "اساتید"
+
+msgid "allusers"
+msgstr "فراگیران"
+
+msgid "dadd"
+msgstr "افزودن"
+
+msgid "dattendance"
+msgstr "حضور و غیاب"
+
+msgid "dclose"
+msgstr "لغو"
+
+msgid "dletters"
+msgstr "درخواست ها"
+
+msgid "dmedia"
+msgstr "سمعی بصری"
+
+msgid "dsettings"
+msgstr "تنظیمات"
+
+msgid "dshare"
+msgstr "گروه ها"
+
+msgid "dteacher"
+msgstr "استاد"
+
+msgid "duser"
+msgstr "فراگیر"
+
+msgid "likes"
+msgstr "تایید"
+
+msgid "message"
+msgstr "پیام"
+
+msgid "pictures"
+msgstr "تصاویر"
+
+msgid "sound"
+msgstr "صدا"
+
+msgid "error_in_insert"
+msgstr "اشتباه در ثبت"
+
+msgid "classes_count"
+msgstr "تعداد نفرات"
+
+msgid "price_type"
+msgstr "وضعیت پرداخت"
+
+msgid "pos"
+msgstr "دستگاه پوز"
+
+msgid "price_add"
+msgstr "افزایش شهریه"
+
+msgid "price_low"
+msgstr "کاهش شهریه"
+
+msgid "price_value"
+msgstr "مبلغ شهریه"
+
+msgid "pay_type"
+msgstr "نوع پرداخت"
+
+msgid "price_transactions"
+msgstr "شماره تراکنش"
+
+msgid "menu_province_add"
+msgstr "ثبت استان"
+
+msgid "menu_country_add"
+msgstr "ثبت کشور"
+
+msgid "multiclass"
+msgstr "کلاس های چندتایی"
+
+msgid "capacity"
+msgstr "ظرفیت"
+
 msgid "some_else"
 msgstr "سایر"
 
@@ -456,7 +555,7 @@ msgid "classes_detail"
 msgstr "مشخصات کلاس"
 
 msgid "users_detail"
-msgstr "مشخصات کاربر"
+msgstr "مشخصات فراگیر"
 
 msgid "malefemale"
 msgstr "زن و مرد"
@@ -471,7 +570,7 @@ msgid "enable"
 msgstr "فعال"
 
 msgid "user"
-msgstr "کاربران"
+msgstr "فراگیر"
 
 msgid "class"
 msgstr "کلاس"
@@ -582,10 +681,10 @@ msgid "menu city add"
 msgstr "ثبت شهر"
 
 msgid "menu person add"
-msgstr "ثبت کاربر"
+msgstr "ثبت فراگیر"
 
 msgid "menu person list"
-msgstr "لیست کاربران"
+msgstr "لیست فراگیران"
 
 msgid "Profile"
 msgstr "صفحه شخصی"
@@ -654,7 +753,7 @@ msgid "club"
 msgstr "موسسه"
 
 msgid "code"
-msgstr "کد"
+msgstr "شماره شناسنامه"
 
 msgid "condition"
 msgstr "شرط"
@@ -798,7 +897,7 @@ msgid "result"
 msgstr "نتیجه"
 
 msgid "rule"
-msgstr "قانون"
+msgstr "آیین نامه"
 
 msgid "section"
 msgstr "مقطع"
@@ -852,7 +951,7 @@ msgid "type"
 msgstr "نوع"
 
 msgid "username"
-msgstr "نام کاربری"
+msgstr "نام فراگیری"
 
 msgid "value"
 msgstr "مقدار"
@@ -942,7 +1041,7 @@ msgid "pasport date incorect"
 msgstr "تاریخ اعتبار گذرنامه اشتباه است"
 
 msgid "username incorrect"
-msgstr "نام کاربری اشتباه است"
+msgstr "نام فراگیری اشتباه است"
 
 msgid "password incorrect"
 msgstr "کلمه عبور اشتباه است"
@@ -1107,16 +1206,16 @@ msgid "teachinghistory"
 msgstr "سوابق تدریس"
 
 msgid "users"
-msgstr "کاربران"
+msgstr "فراگیران"
 
 msgid "users_branch"
-msgstr "شعبه کاربران"
+msgstr "شعبه فراگیران"
 
 msgid "users_description"
-msgstr "توضیحات کاربر"
+msgstr "توضیحات فراگیر"
 
 msgid "users_group"
-msgstr "گروه بندی کاربران"
+msgstr "گروه بندی فراگیران"
 
 msgid "pending_classes"
 msgstr "درخواست شرکت در کلاس"
@@ -1242,7 +1341,7 @@ msgid "pose"
 msgstr "دستگاه پز"
 
 msgid "bank"
-msgstr "فیش بانکی"
+msgstr "درگاه بانگ"
 
 msgid "cash"
 msgstr "نقدی"
@@ -1623,7 +1722,7 @@ msgid "person_child"
 msgstr "تعداد فرزندان"
 
 msgid "person_type"
-msgstr "نوع کاربر"
+msgstr "نوع فراگیر"
 
 msgid "person_casecode"
 msgstr "شماره پرونده"
@@ -1641,13 +1740,13 @@ msgid "person_en_father"
 msgstr "نام پدر به زبان لاتین"
 
 msgid "person_third_name"
-msgstr "نام به زبان محلی کاربر"
+msgstr "نام به زبان محلی فراگیر"
 
 msgid "person_third_family"
-msgstr "نام خانوادگی به زبان محلی کاربر"
+msgstr "نام خانوادگی به زبان محلی فراگیر"
 
 msgid "person_third_father"
-msgstr "نام پدر به زبان محلی کاربر"
+msgstr "نام پدر به زبان محلی فراگیر"
 
 msgid "person_pasport_date"
 msgstr "تاریخ اتمام اعتبار گذر نامه"
@@ -1828,10 +1927,10 @@ msgstr "میزان فعالیت"
 
 # TABLE  users
 msgid "users_id"
-msgstr "کاربر"
+msgstr "فراگیر"
 
 msgid "users_name"
-msgstr "نام کاربری"
+msgstr "نام فراگیری"
 
 msgid "users_password"
 msgstr "کلمه عبور"
@@ -1841,11 +1940,11 @@ msgstr "رایانامه"
 
 # TABLE  users_branch
 msgid "users_branch_id"
-msgstr "شعبه بندی کاربران"
+msgstr "شعبه بندی فراگیران"
 
 # TABLE  users_description
 msgid "users_description_id"
-msgstr "توضیحات کاربر"
+msgstr "توضیحات فراگیر"
 
 msgid "users_description_text"
 msgstr "توضیحات"

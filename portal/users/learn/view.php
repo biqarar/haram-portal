@@ -13,10 +13,49 @@ class view extends main_view  {
 		//------------------------------ check users (if teacher , can not be display another users by id)
 		$this->check_users_type($users_id);
 
-		// classification
-		// price
-		// absence
-		// certification
+		//------------------------------  make classification card
+		$price_list = $this->sql("#price_list" , $users_id);
+
+		$price["titleLink"]= "price/status=list"; 
+
+		$sum_active = $this->tag("a")
+			->style("text-decoration: none")
+			->vtext("موجودی فعال")
+			->render();
+		$price["list"]['list'][0][$sum_active] = $price_list['sum_active'];
+		
+		$sum_all = $this->tag("a")
+			->href("users/status=learn/type=classes/id=" . $users_id)
+			->style("text-decoration: none")
+			->vtext("مجموع مبالغ ‍پرداخت شده")
+			->render();
+		$price["list"]['list'][0][$sum_all] = $price_list['sum_all'];
+
+		$sum_low = $this->tag("a")
+			->href("users/status=learn/type=classes/id=" . $users_id)
+			->style("text-decoration: none")
+			->vtext("مجموع مبالغ کسر شده")
+			->render();
+		$price["list"]['list'][0][$sum_low] = $price_list['sum_low'];
+
+		$count_transaction = $this->tag("a")
+			->style("text-decoration: none")
+			->vtext("تعداد تراکنش")
+			->render();
+		$price["list"]['list'][0][$count_transaction] = $price_list['count_transaction'];
+
+	
+	
+
+		//------------------------------  global of price card
+		$price['title'] = "price";
+		$price["moreLink"] = "price/status=detail/usersid=$users_id";
+		$price['addLink'] = "price/status=add/usersid=$users_id";
+	// var_dump($price);exit();	
+		$this->data->price = $price;
+
+
+
 
 		//------------------------------  make classification card
 		$classification_list = $this->sql("#classification_list" , $users_id);
@@ -59,9 +98,36 @@ class view extends main_view  {
 
 		//------------------------------  global of classification card
 		$classification['title'] = "classification";
-		$classification["moreLink"] = "classification/status=detail/usersid=$users_id";
+		$classification['titleLink'] = "classes/status=list/type=classification";
+		// $classification["moreLink"] = "classification/status=detail/usersid=$users_id";
 		
 		$this->data->classification = $classification;
+
+				//------------------------------  make olddb card
+		$query_olddb = $this->sql("#olddb" , $users_id);
+		if(!empty($query_olddb)){
+			$olddb = array();
+			$i = 1;
+			foreach ($query_olddb as $key => $arrayValue) {
+				if($key != "student"){
+					$c = "&nbsp&nbspتعداد&nbsp&nbsp";
+					$m = "&nbsp&nbspمورد&nbsp&nbsp";
+				}else{
+					$c = "";	
+					$m = "";
+				}
+				$olddb["list"]['list'][0][$key] =
+				 "<a>".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
+				."<a href='olddb/" .$key . '/id='. $query_olddb['student'] . "'>نمایش کامل اطلاعات</a>";
+				$i++;
+					
+			}
+			
+			//------------------------------  make global of olddb card
+			$olddb['title'] = "olddb";
+			// $olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
+			$this->data->olddb = $olddb;
+		}
 	}
 } 
 ?>

@@ -14,11 +14,11 @@ class view extends main_view  {
 				'family',
 				'father',
 				'birthday',
-				'gender',
+				// 'gender',
 				'nationalcode',
 				'code',
-				'marriage',
-				'education_id',
+				// 'marriage',
+				// 'education_id',
 				'detail',
 				'learn')
 			);

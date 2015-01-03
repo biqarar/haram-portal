@@ -16,23 +16,24 @@ class view extends main_view  {
 		//------------------------------  make person card
 		$person = $this->sql(".list.card", "person", $users_id, "users_id");
 		unset($person['addLink']);
+		$person['titleLink'] = "users/status=list";
 		$person["editLink"] = "person/status=edit/id=" . $person['list']['list'][0]['id'];
+		
+		$person['list']['list'][0]['from'] = 
+			$this->sql(".assoc.foreign", "city", 
+					($person['list']['list'][0]['from'] != '') ?
+						$person['list']['list'][0]['from'] : 0 , "name");
+
 		$this->data->person = $person;
 
 
 		//------------------------------  make users card
 		$users = $this->sql(".list.card", "users", $users_id, "id");
 		unset($users['addLink']);
-		// unset($users['editLink']);
 		unset($users['moreLink']);
 		unset($users['list']['list'][0]['password']);
+		$users['titleLink'] = "users/status=list";
 		$this->data->users = $users;
-
-		//------------------------------  make oldprice card
-		$oldprice = $this->sql(".list.card", "oldprice", $users_id, "users_id");
-		unset($oldprice['addLink']);
-		unset($oldprice['editLink']);
-		$this->data->oldprice = $oldprice;
 
 
 		//------------------------------  make bridge card
@@ -51,7 +52,7 @@ class view extends main_view  {
 		$new_bridge["addLink"] = "bridge/status=add/usersid=$users_id";
 		$new_bridge["moreLink"] = "bridge/status=detail/usersid=$users_id";
 		$new_bridge["editLink"] = "bridge/status=edit/usersid=$users_id";
-		
+		$new_bridge['titleLink'] = "bridge/status=list";		
 		$this->data->bridge = $new_bridge;
 
 
@@ -65,31 +66,7 @@ class view extends main_view  {
 		}
 
 
-		//------------------------------  make bridge card
-		$query_olddb = $this->sql("#olddb" , $users_id);
-		if(!empty($query_olddb)){
-			$olddb = array();
-			$i = 1;
-			foreach ($query_olddb as $key => $arrayValue) {
-				if($key != "student"){
-					$c = "&nbsp&nbspتعداد&nbsp&nbsp";
-					$m = "&nbsp&nbspمورد&nbsp&nbsp";
-				}else{
-					$c = "";	
-					$m = "";
-				}
-				$olddb["list"]['list'][0][$key] =
-				 "<a>".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
-				."<a href='olddb/" .$key . '/id='. $query_olddb['student'] . "'>نمایش کامل اطلاعات</a>";
-				$i++;
-					
-			}
-			
-			//------------------------------  make global of bridge card
-			$olddb['title'] = "olddb";
-			// $olddb["moreLink"] = "olddb/status=detail/usersid=$users_id";
-			$this->data->olddb = $olddb;
-		}
+
 
 	}
 } 

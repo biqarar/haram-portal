@@ -5,11 +5,14 @@ class query_a_cls extends query_cls
 		// var_dump($_SESSION);
 		if(isset($_SESSION['users_branch'])){
 			$listBranch = $this->sql()->tableBranch();
-			foreach ($_SESSION["users_branch"] as $key => $value) {
-				$listBranch->orId($value);
+			if(!global_cls::supervisor()){
+				foreach ($_SESSION["users_branch"] as $key => $value) {
+					$listBranch->orId($value);
+				}
+				$listBranch->limit(count($_SESSION["users_branch"]));
 			}
-			$listBranch = $listBranch->limit(count($_SESSION["users_branch"]))->select();
 			// var_dump($listBranch);
+			$listBranch = $listBranch->select();
 			return $listBranch->allAssoc();	
 		}else{
 			return array();

@@ -9,8 +9,9 @@ class dbconnection_lib{
 	private $allassoc				= array();
 	private $allobject				= array();
 	private $i						= 0;
-	private $result					= false;
-
+	
+	public $result					= false;
+	public  static $resum_on_error			= false;
 
 	public $status					= true;
 	public $string					= false;
@@ -79,8 +80,9 @@ class dbconnection_lib{
 			'8',
 			'9'
 			);
+		// var_dump($string);
 		$string = preg_replace($patterns, $replacements, $string);
-		if(debug_lib::$status){
+		if(debug_lib::$status || self::$resum_on_error){
 			$this->string = $string;
 			$this->result = self::$connection->query($string);
 			if (self::$connection->error) {

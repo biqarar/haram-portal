@@ -4,12 +4,19 @@
  */
 
 class model extends main_model{
+
+	public function sql_find_from_name($id = false){
+		$ret = '';
+		if($id != ""){
+			$sql = $this->sql()->tableCity()->whereId($id);
+			$sql->joinProvince()->whereId("#city.province_id")->fieldName("pname");
+			$r = $sql->limit(1)->select()->assoc();
+				$ret = $r['pname'].' - '.$r['name'];
+		}
+		return $ret;
+	}
 	
 	public function makeQuery() {
-
-		//------------------------------ users sql object
-		$sqlUsers = $this->sql()->tableUsers()
-		->setEmail(post::email());
 
 		//------------------------------ person sql object
 		$sqlPerson = $this->sql()->tablePerson()
@@ -21,14 +28,18 @@ class model extends main_model{
 		->setNationality(post::nationality())
 		->setNationalcode(post::nationalcode())
 		->setCode(post::code())
-		->setFrom(post::from())
 		->setMarriage(post::marriage())
+		->setFrom(post::from())
 		->setChild(post::child())
-		// ->setType(post::type())
 		->setEducation_id(post::education_id())
 		->setPasport_date(post::pasport_date());
 
-		return array($sqlUsers, $sqlPerson);
+		// $from = post::from();
+		// if(preg_match("/^\d$/", $from)){
+		// 	$sqlPerson->setFrom(post::from());
+		// }
+
+		return $sqlPerson;
 	}
 
 
@@ -83,18 +94,18 @@ class model extends main_model{
 			//------------------------------ get new username
 			$username = $this->sql(".username.set");
 
-			//------------------------------ sql object for insert
-			list($users, $person) = $this->makeQuery();
-			 
+			
 			//------------------------------ insert into users
-			$users->setPassword(md5(post::nationalcode()))->setUsername($username);
-			$sqlUsers = $users->insert();
-
 			//------------------------------ get users_id to set into person table
-			$users_id = $sqlUsers->LAST_INSERT_ID();
+			$users_id  = $this->sql()->tableUsers()
+						->setEmail(post::email())
+						->setPassword(md5(post::nationalcode()))
+						->setUsername($username)
+						->insert()->LAST_INSERT_ID();
 
+			
 			//------------------------------ insert into person table
-			$sqlPerson = $person->setUsers_id($users_id)->insert();
+			$person = $this->makeQuery()->setUsers_id($users_id)->insert();
 			
 			//------------------------------ insert into bridge table, phone and mobile
 			if(post::mobile() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile())->insert();
@@ -110,7 +121,8 @@ class model extends main_model{
 
 			//------------------------------ commit code
 			$this->commit(function($username = false) {
-				debug_lib::true("ثبت نام شما با موفقیت انجام شد ، نام کاربری شما  $username  و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.");
+				debug_lib::true("ثبت نام با موفقیت انجام شد <br> 
+								 نام کاربری شما  $username  و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.");
 			}, $username);
 		}
 
@@ -121,59 +133,9 @@ class model extends main_model{
 
 	public function post_edit_person() {
 
-		//----------------------------- make object sql to update person
-		$makeQuery = $this->sql()->tablePerson()
-				->setName(post::name())
-				->setFamily(post::family())
-				->setFather(post::father())
-				->setGender(post::gender())
-				->setMarriage(post::marriage());
-				// ->setType(post::type());
-				
-		// The line for this is that if this field was filled can not be empty and must be changed
-		//----------------------------- if country != irna and is set post pasport date update this
-		if(post::pasport_date() != "") {
-			$makeQuery->setPasport_date(post::pasport_date());
-		}
-
-		//----------------------------- if country != irna and is set post pasport date update this
-		if(post::nationalcode() != "") {
-			$makeQuery->setNationalcode(post::nationalcode());
-		}
-
-		//----------------------------- if nationality != null update this
-		if(post::nationality() != "") {
-			$makeQuery->setNationality(post::nationality());
-		}
-		
-		//----------------------------- if code != null update this
-		if(post::code() != "") {
-			$makeQuery->setCode(post::code());
-		}
-
-		
-		//----------------------------- if child != null update this
-		if(post::child() != "") {
-			$makeQuery->setChild(post::child());
-		}
-
-		//----------------------------- if britday != null update this
-		if(post::birthday() != "") {
-			$makeQuery->setBirthday(post::birthday());
-		}
-
-		//----------------------------- if from != null update this (foreign key to city table)
-		if(post::from() != "") {
-			$makeQuery->setFrom(post::from());
-		}
-
-		//----------------------------- if education != null update this (foreign key to education table)
-		if(post::education_id() != "") {
-			$makeQuery->setEducation_id(post::education_id());
-		}
-
 		//----------------------------- update query
-		$sql = $makeQuery->whereId($this->xuId())->update();
+		$sql = $this->makeQuery()->whereId($this->xuId())->update();
+		// ilog($sql->string());
 	
 		//----------------------------- commit code
 		$this->commit(function() {

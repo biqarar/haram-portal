@@ -23,3 +23,20 @@
 		});
 	}
 })(jQuery);
+
+function persian_nu(value, en){
+	value = value.toString();
+	var farsi = Array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹");
+	var english = Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+	if(en){
+		value = value.replace(/[۱۲۳۴۵۶۷۸۹۰]/gi, function(){
+			return farsi.indexOf(arguments[0]);
+		});
+	}else{
+		value = value.replace(/\d/gi, function(){
+			return farsi[english.indexOf(arguments[0])];
+		});
+	}
+	if(/^\d+$/.test(value)) value = parseInt(value);
+	return value;
+}

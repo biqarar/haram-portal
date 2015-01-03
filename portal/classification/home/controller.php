@@ -51,7 +51,7 @@ class controller extends main_controller{
 		), 
 		function () {
 			save(array("class" => "classification", "method"=> "api", "mod" => "insert"));
-				$this->permission = array("classification" => array("select" => array("public", "private")));
+				$this->permission = array("classification" => array("insert" => array("public", "private")));
 			}
 		);
 

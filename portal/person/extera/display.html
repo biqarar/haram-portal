@@ -1,5 +1,225 @@
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	
+.div {
+	position: relative;
+	padding: 20px;
+}
+
+.quran_chapters {
+	position: absolute;
+	width: 220px;
+	right: 300px;
+	background-color: #fff;
+	display: none;
+	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .19);
+	color: #555;
+	text-align: center;
+	z-index: 9;
+	padding: 5px;
+	margin: 600px;
+}
+
+.quran_chapters span {
+	height: 25px;
+	border: 1px solid #f1f1f1;
+	font-family: "WYekan";
+	font-size: 11px;
+	float: right;
+	width: 40px;
+	margin: 1px 1px;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+.quran_chapters span:hover {
+	/*background-color: #f3f3f3;*/
+	border: 1px solid #bbb;
+	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .19);
+}
+
+
+.goodSelected {
+	background-color: #269c9b !important;
+	border: 1px solid #fff !important;
+	cursor: pointer !important;
+	color: #fff !important;
+}
+
+.goodSelected:hover {
+	color: #555;
+}
+.badSelected {
+	background-color: #f14f66 !important;
+	border: 1px solid #fff !important;
+	cursor: pointer !important;
+	color: #fff !important;
+}
+
+.badSelected:hover {
+	color: #555;
+}
+
+
+.goodDisabled {
+	background-color: #729898;
+	border: 1px solid #fff !important;
+	cursor: default !important;
+}
+
+.goodDisabled:hover {
+	box-shadow: none !important;
+	/*background-color: #d1d1d1 !important;*/
+}
+.badDisabled {
+	background-color: #a18c8c;
+	border: 1px solid #fff !important;
+	cursor: default !important;
+}
+
+.badDisabled:hover {
+	box-shadow: none !important;
+	/*background-color: #d1d1d1 !important;*/
+}
+
+.xsave {
+	clear: both;
+	border: none;
+	outline: none;
+	font-family: "WYekan";
+	font-size: 1rem;
+	padding: 0 50px;
+	margin-top: 5px;
+}
+
+</style>
+<script type="text/javascript">
+		var g = $("#good").val();
+		var b = $("#bad").val();
+		$(document).ready(function() {
+
+			$("#good,#bad").click(function(){
+				var good_or_bad = $(this).attr("id");
+				$(".quran_chapters").fadeIn(500).attr("flag", good_or_bad);
+				check(good_or_bad);
+				$("#bad,#good").attr("disabled","disabled");
+			});
+			$(".xsave").click(function(){
+				xsave();
+				$(".quran_chapters").fadeOut(500);
+				$("#bad,#good").removeAttr("disabled");
+			});
+
+		});
+		function check(type) {
+			var good = $('#good').val().split(',');
+			var bad = $('#bad').val().split(',');
+			if(type == 'bad'){
+				for (g in good) {
+					change_attr(good[g], 'goodDisabled', 1);
+					change_attr(good[g], 'goodSelected', 0);
+				}
+				for (b in bad) {
+					change_attr(bad[b], 'badSelected', 1);
+					change_attr(bad[b], 'badDisabled', 0);
+				}
+			}else{
+				for (g in good) {
+					change_attr(good[g], 'goodSelected', 1);
+					change_attr(good[g], 'goodDisabled', 0);
+				}
+				for (b in bad) {
+					change_attr(bad[b], 'badDisabled', 1);
+					change_attr(bad[b], 'badSelected', 0);
+				}
+			}
+		}
+
+		function change_attr(index, attr, value){
+			if(value == 0) {
+				$('.quran_chapters').children('span[xval="'+index+'"]').removeClass(attr);
+			}else{
+				$('.quran_chapters').children('span[xval="'+index+'"]').addClass(attr);
+			}
+		}
+
+		function xsave() {
+			var good = Array();
+			var bad = Array();
+			if($(".quran_chapters").attr("flag") == "good") {
+				$(".quran_chapters span").each(function(){
+					if($(this).hasClass("goodSelected")){
+						good.push($(this).attr("xval"));
+					}else if($(this).hasClass("badDisabled")){
+						bad.push($(this).attr("xval"))
+					}
+				});
+			}else if($(".quran_chapters").attr("flag") == "bad"){
+				$(".quran_chapters span").each(function(){
+					if($(this).hasClass("badSelected")){
+						bad.push($(this).attr("xval"));
+					}else if($(this).hasClass("goodDisabled")){
+						good.push($(this).attr("xval"))
+					}
+				});
+			}
+			$("#good").val(good.join(","));
+			$("#bad").val(bad.join(","));
+		}
+		</script>
+
+		<div class="quran_chapters">
+			<span xval="1">جزء 1</span>
+			<span xval="2">جزء 2</span>
+			<span xval="3">جزء 3</span>
+			<span xval="4">جزء 4</span>
+			<span xval="5">جزء 5</span>
+			<span xval="6">جزء 6</span>
+			<span xval="7">جزء 7</span>
+			<span xval="8">جزء 8</span>
+			<span xval="9">جزء 9</span>
+			<span xval="10">جزء 10</span>
+			<span xval="11">جزء 11</span>
+			<span xval="12">جزء 12</span>
+			<span xval="13">جزء 13</span>
+			<span xval="14">جزء 14</span>
+			<span xval="15">جزء 15</span>
+			<span xval="16">جزء 16</span>
+			<span xval="17">جزء 17</span>
+			<span xval="18">جزء 18</span>
+			<span xval="19">جزء 19</span>
+			<span xval="20">جزء 20</span>
+			<span xval="21">جزء 21</span>
+			<span xval="22">جزء 22</span>
+			<span xval="23">جزء 23</span>
+			<span xval="24">جزء 24</span>
+			<span xval="25">جزء 25</span>
+			<span xval="26">جزء 26</span>
+			<span xval="27">جزء 27</span>
+			<span xval="28">جزء 28</span>
+			<span xval="29">جزء 29</span>
+			<span xval="30">جزء 30</span>
+
+			<button class="xsave" onclick="xsave()">ثبت</button>
+		</div>
+		<script type="text/javascript">
+		$(".quran_chapters span").click(function() {
+			if($(".quran_chapters").attr("flag") == "good"){
+				if($(this).hasClass('goodSelected') ){
+					$(this).removeClass('goodSelected');
+				}else if(!$(this).hasClass('badDisabled')){
+					$(this).addClass('goodSelected');
+				}
+			}else if($(".quran_chapters").attr("flag") == "bad"){
+				if($(this).hasClass('badSelected') ){
+					$(this).removeClass('badSelected');
+				}else if(!$(this).hasClass('goodDisabled')){
+					$(this).addClass('badSelected');
+				}
+			}
+		});
+		</script>
 <form class="ajx" method="post" action="person/extera/{{global.url}}">
 	{{forms.make(form.person_extera)}}
 </form>

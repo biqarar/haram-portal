@@ -61,7 +61,7 @@ class menu_cls  {
 			}
 
 			//------------------------------ make menu and dropdown
-			if($make) {
+			if($make || global_cls::supervisor()) {
 				self::$list_menu[$value['submenu']]["dropdown"][]
 				=  array("url" => $value['url'] , "name" => $value["name"]);
 			}
@@ -84,7 +84,7 @@ class menu_cls  {
 		//------------------------------ translate menu caption whit gettext()
 		foreach (self::$list_menu as $key => $value) {
 			self::$list_menu[$key]["name"] = _($key);
-			self::$list_menu[$key]['index'] = $index[$key];
+			// self::$list_menu[$key]['index'] = $index[$key];
 		}
 
 		//------------------------------ return
@@ -121,6 +121,16 @@ class menu_cls  {
 				)
 			);
 		
+		//------------------------------ permission add
+		self::$menu[] = array(
+			"submenu"     => "home",
+			"url"         => 'pricechange/status=add',
+			"name"        =>  _("مدیریت شهریه"),
+			"tag"         => array(
+			"price"  => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------ city add
 		self::$menu[] = array(
 			"submenu" => "home", 
@@ -128,6 +138,16 @@ class menu_cls  {
 			"name" =>  _("menu city add"), 
 			"tag" => array(
 				"city" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------ province add
+		self::$menu[] = array(
+			"submenu" => "home", 
+			"url" => 'province/status=add', 
+			"name" =>  _("menu province add"), 
+			"tag" => array(
+				"province" => array("insert" => array("public"))
 				)
 			);
 
@@ -195,7 +215,7 @@ class menu_cls  {
 		//------------------------------  teacher show detail 
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'users/status=detail/id=' . $this->usersid(), 
+			"url" => 'teacher/status=detail/id=' . $this->usersid(), 
 			"name" =>  _("نمایش اطلاعات"), 
 			"tag" => $this->teacher_form("show")
 			);
@@ -203,7 +223,7 @@ class menu_cls  {
 		//------------------------------  teacher extera form
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'person/extera/status=add/usersid=' . $this->usersid(), 
+			"url" => 'teacher/extera/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("تکمیل مشخصات"), 
 			"tag" => $this->teacher_form("person_extera")
 			);
@@ -211,7 +231,7 @@ class menu_cls  {
 		//------------------------------  teacher education 
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'education/users/usersid=' . $this->usersid(), 
+			"url" => 'teacher/education/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("اطلاعات تحصیلی"), 
 			"tag" => $this->teacher_form("education_users")
 			);
@@ -219,7 +239,7 @@ class menu_cls  {
 		//------------------------------  teacher bridge
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'teachinghistory/status=add/usersid=' . $this->usersid(), 
+			"url" => 'teacher/teachinghistory/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("سوابق علمی و اجرایی"), 
 			"tag" => $this->teacher_form("teachinghistory")
 			);
@@ -227,7 +247,7 @@ class menu_cls  {
 		//------------------------------  teacher bridge
 		self::$menu[] = array(
 			"submenu" => "teacher", 
-			"url" => 'bridge/status=add/usersid=' . $this->usersid(), 
+			"url" => 'teacher/bridge/status=add/usersid=' . $this->usersid(), 
 			"name" =>  _("پل های ارتباطی"), 
 			"tag" => $this->teacher_form("bridge")
 			);
@@ -243,7 +263,6 @@ class menu_cls  {
 				"users" => array("insert" => array("public", "private"))
 				)
 			);
-
 		//------------------------------  users list
 		self::$menu[] = array(
 			"submenu" => "user", 
@@ -252,6 +271,36 @@ class menu_cls  {
 			"tag" => array(
 				"person" => array("select" => array("public")),
 				"users" => array("select" => array("public"))
+				)
+			);
+
+		//------------------------------   price list
+		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "price/status=list", 
+			"name" =>  "لیست شهریه ها", 
+			"tag" => array(
+				"price" => array("insert" => array("public", "private"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "bridge/status=list", 
+			"name" =>  "پل های ارتباطی", 
+			"tag" => array(
+				"bridge" => array("insert" => array("public", "private"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "allteacher", 
+			"url" => "teacher/status=list", 
+			"name" =>  "لیست اساتید", 
+			"tag" => array(
+				"bridge" => array("insert" => array("public", "private"))
 				)
 			);
 
@@ -286,6 +335,17 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "attendance", 
+			"url" => "classes/status=list/type=absence", 
+			"name" =>  _("attendance"), 
+			"tag" => array(
+				"classes" => array("select" => array("public")),
+				"classification" => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------ absence add
 		self::$menu[] = array(
 			"submenu" => "attendance", 
@@ -293,17 +353,6 @@ class menu_cls  {
 			"name" =>  _("ثبت غیبت کاربر"), 
 			"tag" => array(
 				"absence" => array("insert" => array("public"))
-				)
-			);
-
-		//------------------------------ classes list
-		self::$menu[] = array(
-			"submenu" => "attendance", 
-			"url" => "classes/status=list/", 
-			"name" =>  _("attendance"), 
-			"tag" => array(
-				"classes" => array("select" => array("public")),
-				"classification" => array("insert" => array("public"))
 				)
 			);
 
@@ -323,11 +372,18 @@ class menu_cls  {
 		//------------------------------ (public) change password menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
+			"url" => 'settings', 
+			"name" =>  _("تنظیمات شعب"), 
+			"tag" => (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 ) ? "public" : "one branch"
+			);
+		//------------------------------ (public) change password menu 
+		self::$menu[] = array(
+			"submenu" => "settings", 
 			"url" => 'changepasswd', 
 			"name" =>  _("change password"), 
 			"tag" => "public"
 			);
-
+		
 		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
