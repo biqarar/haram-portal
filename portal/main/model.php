@@ -38,6 +38,17 @@ class main_model{
 						$array[$key][$k] = gettext($v);
 						continue;
 					}
+					// elseif(preg_match("/\s/", $err)){
+					// 	$new_err = "";
+					// 	$err = preg_replace("/\'/", "", $err);
+					// 	$split = preg_split("/\s/", $err);
+					// 	foreach ($split as $key => $value) {
+					// 		$new_err .= gettext($value) . " ";
+					// 	}
+					// 	$err = $new_err;
+					// 	continue;
+					// }
+
 					if(isset($v['error'])){
 						$array[$key][$k]['error'] = $err;
 					}else{
