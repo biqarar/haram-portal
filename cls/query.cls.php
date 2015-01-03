@@ -1,5 +1,5 @@
 <?php
-class query_cls{
+class query_cls {
 	public final function sql($name = false){
 		if(preg_match("/^(\.|@|#)/Ui", $name)){
 			$args = func_get_args();

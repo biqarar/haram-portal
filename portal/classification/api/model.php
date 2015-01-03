@@ -23,7 +23,7 @@ class model extends main_model {
 				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
 			}else{
 				//------------------------------ check price 
-				if(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
+				if(!$this->sql(".price.checkClasses", $users_id , $classes_id, $this->dateNow())) {
 					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
 				}else{
 					//------------------------------ insert classification

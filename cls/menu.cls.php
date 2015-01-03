@@ -297,8 +297,8 @@ class menu_cls  {
 		//------------------------------   bridge list
 		self::$menu[] = array(
 			"submenu" => "allteacher", 
-			"url" => "bridge/status=list", 
-			"name" =>  "پل های ارتباطی", 
+			"url" => "teacher/status=list", 
+			"name" =>  "لیست اساتید", 
 			"tag" => array(
 				"bridge" => array("insert" => array("public", "private"))
 				)

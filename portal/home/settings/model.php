@@ -12,10 +12,13 @@ class model extends main_model {
 		unset($_SESSION['branch_active']);
 		$_SESSION['branch_active'] = array();
 		foreach ($_POST as $key => $value) {
+			// var_dump($key);	
 			if(preg_match("/^branch_(\d+)$/", $key, $branch_id)) {			
 				$_SESSION['branch_active'][] = $branch_id[1];
 			}	
 		}
+		// print_r($_SESSION);
+		// exit();
 	}
 }
 ?>

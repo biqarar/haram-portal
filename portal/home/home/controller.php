@@ -40,7 +40,11 @@ class controller extends main_controller {
 		$this->listen(array(
 			"max" => 2,
 			"url" => "settings"
-			), array("home","settings"));
+			), 
+		function() {
+			save(array("home","settings"));
+			$this->access = true;
+		});
 
 	}
 }

@@ -1,15 +1,28 @@
 <?php 
 class query_price_cls extends query_cls {
 
-	public function checkClasses($users_id = false, $classes_id = false) {
+	public function checkClasses($users_id = false, $classes_id = false, $dateNow = false) {
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
 		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select()->assoc("price");
 		$user_active_price = $this->sum_price($users_id);
 		if(intval($user_active_price) >= intval($price)){
+			$this->price_low($users_id, $classes_id, $price, $dateNow);
 			return true;
 		}else{
 			return false;
 		}
+	}
+
+	public function price_low($users_id = false, $classes_id = false, $price = false, $dateNow = false) {
+		// $title = $this->sql()->tablePrice_change()->where
+		$x = $this->sql()->tablePrice()
+			->setUsers_id($users_id)
+			->setDate($dateNow)
+			->setValue($price)
+			->setPay_type("rule")
+			->setTitle(5)
+			->setTransactions($classes_id)
+			->insert();
 	}
 
 	public function sum_price($users_id) {

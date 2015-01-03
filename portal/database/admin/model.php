@@ -2,6 +2,8 @@
 /**
  * @author reza mohitit rm.biqarar@gmail.com
  */
+// include_once("databaseVersion.php");
+
 
 class model extends main_model{
 
@@ -15,6 +17,7 @@ class model extends main_model{
 	public function xecho($str = false) {echo "<pre><br>" . $str . "<br></pre>";}
 	
 	public function ready($version = "new version") {
+
 		$this->xecho("In The Name Of Allah");
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");
@@ -167,6 +170,7 @@ class model extends main_model{
 			 FOR EACH ROW BEGIN
 			call setHistory('price_change', 'update', OLD.id);
 			END",
+			"ALTER TABLE `price` CHANGE `pay_type` `pay_type` ENUM('bank','pos_mellat','cash','rule','pos_melli') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL",
 			);
 
 		$error = 0;
