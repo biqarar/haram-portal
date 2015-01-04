@@ -28,7 +28,7 @@ class model extends main_model {
 									  ->render();
 
 				$r->insert 	   = $this->tag("a")
-									  ->addClass("icoadd a-undefault")
+									  ->addClass("icodadd a-undefault")
 									  ->addClass("insertAbsenceApi")
 									  ->classification($r->insert)
 									  ->render();

@@ -14,6 +14,8 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		$new_classes['start_time'] = isset($new_classes['start_time']) ? $new_classes['start_time'] : "" ;
 		$new_classes['end_time']   = isset($new_classes['end_time']) ? $new_classes['end_time'] : "" ;
 		$new_classes['week_days']  = isset($new_classes['week_days']) ? $new_classes['week_days'] : "" ;
+		$new_classes['classes_id']  = isset($new_classes['classes_id']) ? $new_classes['classes_id'] : 0 ;
+
 
 		$allClasses_teacher  = $this->sql()->tableClasses()->whereTeacher($teacher_id)
 			->groupOpen()
@@ -51,8 +53,10 @@ class query_duplicateUsersClasses_cls extends query_cls {
 							if ($end_time_exist > $new_start_time && $start_time_exist < $new_end_time) {
 
 								//------------------------------ duplicate item here !!! 
-								// //------------------------------ can not insert users in this class
+								//------------------------------ can not insert users in this class
+								if($value["id"] != $new_classes['classes_id']){
 									$duplicate = true;
+								}
 							}
 						}
 						if($duplicate) break;

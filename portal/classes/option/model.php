@@ -172,6 +172,7 @@ class model extends main_model{
 			$new_classes['start_time'] = $start_time;
 			$new_classes['end_time']   = $end_time;
 			$new_classes['week_days']  = $week_days;
+			$new_classes['classes_id'] = $this->xuId("id");
 			list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.teacher" , post::teacher() , $new_classes);
 			if($duplicate){
 				debug_lib::fatal(

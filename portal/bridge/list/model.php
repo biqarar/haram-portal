@@ -8,19 +8,30 @@ class model extends main_model {
 		
 		$dtable = $this->dtable->table("bridge")
 		->fields(
+			"username",
 			"name person.name",
 			"family person.family",
 			"title",
 			"value",
 			"id edit"
 		)
+		->order(function($q, $n, $b){
+			if($n === 'orderUsername'){
+				$q->join->users->orderUsername($b);
+			}else{
+				return true;
+			}
+		})
 		->search_fields(
 			"name", "family", "value"
 		)
 		->query(function($q){
 			$q->joinPerson()->whereUsers_id("#bridge.users_id")->fieldFamily("family")->fieldName("name");
+			$q->joinUsers()->whereId("#bridge.users_id")->fieldUsername("username");
+			// ilog($q->select()->string());
 		})
 		->result(function($r){
+
 			$r->edit = '<a class="icoedit" href="bridge/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 			// $r->classification = '<a class="icobridge" href="classification/class/bridgeid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
 			// // $r->absence = '<a class="icoattendance" href="classification/absence/bridgeid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
