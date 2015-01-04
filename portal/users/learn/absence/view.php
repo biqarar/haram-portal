@@ -5,7 +5,7 @@
 class view extends main_view  {
 	public function config() {
 		//------------------------------  global
-		$this->global->page_title = _("پرونده تحصیلی") . " " . _("student");
+		$this->global->page_title = _("لیست غیبت هایی") . " " . _("student");
 
 		//------------------------------  set users_id
 		$users_id  = $this->xuId();
@@ -23,15 +23,6 @@ class view extends main_view  {
 			$query->joinClassification()->whereId("#absence.classification_id")->andUsers_id($id)->fieldUsers_id();
 		}, $users_id);
 
-
-		// ->removeCol("id,users_id,plan_section_id,mark,classes_id")
-
-		// ->addColFirst("teachername", "teachername")
-		// ->addColAfter("teachername", "teacherfamily", "teacherfamily")
-		// ->addColAfter("teacherfamily","planname", "planname")
-		// ->addColAfter("planname", "placename", "placename")
-// 
-		// ->addColEnd("date_entry", "date_entry");
 
 		$this->data->list = $allClassification->compile();
 	}

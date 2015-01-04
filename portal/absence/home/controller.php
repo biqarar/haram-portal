@@ -10,7 +10,7 @@ class controller extends main_controller{
 		),
 		function(){
 			save(array("absence", "classes"));
-			$this->access = true;
+			$this->permission = array("absence" => array("insert" => array("public")));
 		});
 
 		$this->listen(array(
@@ -19,15 +19,26 @@ class controller extends main_controller{
 		),
 		function(){
 			save(array("absence", "classeslist", 'mod' => "classeslist"));
-			$this->access = true;
+			$this->permission = array("absence" => array("insert" => array("public")));
 		});
+
 		$this->listen(array(
 		"max" =>4,
 		"url" => array( "api", "classification" =>"/^\d+$/",  "date" => "/^\d{8}$/")
 		),
 		function(){
 			save(array("absence", "api", 'mod' => "api"));
-			$this->access = true;
+			$this->permission = array("absence" => array("insert" => array("public")));
+		});
+
+
+		$this->listen(array(
+		"max" =>3,
+		"url" => array("status" =>"add",  "usersid" => "/^\d+$/")
+		),
+		function(){
+			save(array("absence", "option"));
+			$this->permission = array("absence" => array("insert" => array("public")));
 		});
 		
 	}

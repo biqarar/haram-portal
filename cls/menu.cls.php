@@ -346,16 +346,6 @@ class menu_cls  {
 				)
 			);
 
-		//------------------------------ absence add
-		self::$menu[] = array(
-			"submenu" => "attendance", 
-			"url" => "absence/classes", 
-			"name" =>  _("ثبت غیبت کاربر"), 
-			"tag" => array(
-				"absence" => array("insert" => array("public"))
-				)
-			);
-
 		//------------------------------ posts add
 		self::$menu[] = array(
 			"submenu" => "letters", 

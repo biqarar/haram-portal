@@ -14,7 +14,7 @@ class view extends main_view  {
 				'family',
 				'father',
 				'birthday',
-				// 'gender',
+				'gender',
 				'nationalcode',
 				'code',
 				// 'marriage',

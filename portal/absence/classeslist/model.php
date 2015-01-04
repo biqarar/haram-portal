@@ -3,7 +3,7 @@ class model extends main_model {
 	public function post_classeslist() {
 		$dtable = $this->dtable->table("classification")
 			
-			->fields("name person.name", "family person.family","date_entry", "date_delete", "because","id insert", "id attendance")
+			->fields("name person.name", "family person.family","date_entry", "date_delete", "because","id insert", "usersid attendance")
 
 			->search_fields("name person.name", "family person.family")
 			
@@ -24,7 +24,7 @@ class model extends main_model {
 
 				$r->attendance = $this->tag("a")
 									  ->addClass("icoattendance")
-									  ->href("classification/status=attendance/id=". $r->attendance)
+									  ->href("absence/status=add/usersid=". $r->attendance)
 									  ->render();
 
 				$r->insert 	   = $this->tag("a")

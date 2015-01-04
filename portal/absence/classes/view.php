@@ -47,7 +47,7 @@ class view extends main_view {
 			
 
 			$this->data->dataTable = $this->dtable("absence/status=classeslist/classesid=" . $this->xuId("classesid").'/',
-			array("name", "family", "date_entry", "date_delete", "because", "ثبت غیبت" ,"لیست غیبت ها"));
+			array("name", "family", "date_entry", "date_delete", "because", "ثبت غیبت" ,"ثبت غیبت بیشتر"));
 
 		$this->data->classes_id = $this->data->list['list'][0]['id'];
 

@@ -25,14 +25,14 @@ class view extends main_view  {
 		$price["list"]['list'][0][$sum_active] = $price_list['sum_active'];
 		
 		$sum_all = $this->tag("a")
-			->href("users/status=learn/type=classes/id=" . $users_id)
+			->href("users/learn/classes/id=" . $users_id)
 			->style("text-decoration: none")
 			->vtext("مجموع مبالغ ‍پرداخت شده")
 			->render();
 		$price["list"]['list'][0][$sum_all] = $price_list['sum_all'];
 
 		$sum_low = $this->tag("a")
-			->href("users/status=learn/type=classes/id=" . $users_id)
+			->href("users/learn/classes/id=" . $users_id)
 			->style("text-decoration: none")
 			->vtext("مجموع مبالغ کسر شده")
 			->render();
@@ -62,7 +62,7 @@ class view extends main_view  {
 
 		//------------------------------  all classes tag
 		$all_classes = $this->tag("a")
-			->href("users/status=learn/type=classes/id=" . $users_id)
+			->href("users/learn/classes/id=" . $users_id)
 			->style("text-decoration: none")
 			->vtext("تعداد کل کلاس ها")
 			->render();
