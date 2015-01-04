@@ -3,6 +3,23 @@
 * 
 */
 class model extends main_model {
+
+	public function post_api() {
+
+		$dtable = $this->dtable->table("absence")
+		->fields('id', 'date', 'type', "id classesid")
+		->search_fields("type", "gender")
+		
+		->query(function($q){
+			$q->joinClassification()->whereId("#absence.classification_id")->andUsers_id($this->xuId("usersid"))->fieldClasses_id("classesid");
+			$q->joinClasses()->whereId("#classification.classes_id")->fieldStart_time();
+		})
+		->result(function($r) {
+			$r->classesid = '<a class="icoclassesid" href="branch/status=classesid/id='.$r->classesid.'" title="'.gettext('classesid').' '.$r->classesid.'"></a>';
+		});
+		$this->sql(".dataTable", $dtable);
+
+	}
 	public function sql_classification_list($usersid = false) {
 		$return = array();
 		$return['sum_active'] = 0;

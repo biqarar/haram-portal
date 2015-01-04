@@ -31,6 +31,14 @@ class controller extends main_controller{
 		});
 
 		$this->listen(array(
+			"max" => 5,
+			"url" => array( "listabsence", "status" => "xapi", "usersid" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "absence" , "mod" => "api"));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
+
+		$this->listen(array(
 			"max" => 3,
 			"url" => array("absence", "classes", "id" => "/^\d+$/")
 			), function() {

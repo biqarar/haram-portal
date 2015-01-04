@@ -19,12 +19,8 @@ class view extends main_view  {
 					$this->sql(".assoc.foreign" , "person", $users_id , "family" , "users_id");
 				
 
-		$allClassification = $this->sql(".list", "absence", function ($query, $id) {
-			$query->joinClassification()->whereId("#absence.classification_id")->andUsers_id($id)->fieldUsers_id();
-		}, $users_id);
-
-
-		$this->data->list = $allClassification->compile();
+		$this->data->dataTable = $this->dtable("users/learn/listabsence/status=xapi/usersid=$users_id/"
+					, array('id', 'name', 'gender', "id edit"));
 	}
 } 
 ?>

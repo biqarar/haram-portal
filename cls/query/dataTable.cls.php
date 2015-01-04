@@ -88,6 +88,8 @@ class query_dataTable_cls extends query_cls
 		$result->limit($_GET['start'], $length);
 
 		$query = $result->select();
+
+		ilog($query->string());
 		$allData = $query->allObject();
 		foreach ($iFields as $ifkey => $ifvalue) {
 			if(preg_match("/^([^\s]*) (.*)$/", $ifvalue, $nFields)){
