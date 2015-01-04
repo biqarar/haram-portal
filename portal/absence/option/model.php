@@ -49,13 +49,13 @@ class model extends main_model {
 			if(preg_match("/^classes\_(\d+)$/", $key)){
 				//------------------------------ insert absence
 				$sql = $this->makeQuery()->setClassification_id($value)->insert();
+				$this->commit(function() {
+					debug_lib::true("[[insert absence successful]]");
+				});
 			}
+			//------------------------------ commit code
 		}
 
-		//------------------------------ commit code
-		$this->commit(function() {
-			debug_lib::true("[[insert absence successful]]");
-		});
 
 		//------------------------------ rollback code
 		$this->rollback(function() {

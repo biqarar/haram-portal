@@ -12,7 +12,7 @@ class model extends main_model {
 				'family',
 				'father',
 				'birthday',
-				'gender',
+				// 'gender',
 				'nationalcode',
 				'code',
 				// 'marriage',
