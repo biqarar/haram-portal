@@ -20,7 +20,7 @@ class controller extends main_controller{
 			"url" => ""
 			), function(){
 			save(array("regulation", "home"));
-			$this->access = true;
+			$this->access = global_cls::supervisor();
 		});
 	}
 }

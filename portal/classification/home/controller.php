@@ -28,8 +28,7 @@ class controller extends main_controller{
 			), 
 			function () {
 				save(array("classification", "printlist"));
-				$this->access = true;
-				// $this->permission = array("classification" => array("insert" => array("public")));
+				$this->permission = array("classification" => array("select" => array("public")));
 			}
 		);
 

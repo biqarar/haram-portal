@@ -3,10 +3,11 @@ class model extends main_model {
 	public function post_api() {
 		
 		$dtable = $this->dtable->table("price")
-		->fields('id', "users_id", "date", "pay_type", "value" , "pricechangename" , "transactions" ,"description")
+		->fields('id', "username", "date", "pay_type", "value" , "pricechangename" , "transactions" ,"description")
 		->search_fields("users_id", "date", "transactions")
 		->query(function($q){
 			$q->joinPrice_change()->whereId("#price.title")->fieldName("pricechangename");
+			$q->joinUsers()->whereId("#price.users_id")->fieldUsername("username");
 		})
 		->order(function($q, $n, $b){
 			if($n === 'orderPricechangename'){

@@ -951,7 +951,7 @@ msgid "type"
 msgstr "نوع"
 
 msgid "username"
-msgstr "نام فراگیری"
+msgstr "نام کاربری"
 
 msgid "value"
 msgstr "مقدار"

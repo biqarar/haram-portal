@@ -9,7 +9,6 @@ class controller extends main_controller{
 			"url"=>array("status" => "add" , "usersid" => "/^\d+$/")
 			), function(){
 				save(array("racehistory","option"));
-			$this->access = true;
 			$this->permission = array("racehistory" => array("insert" => array("public", "private")));
 		});
 	}

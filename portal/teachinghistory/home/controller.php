@@ -9,7 +9,6 @@ class controller extends main_controller{
 			"url"=>array("status" => "add" , "usersid" => "/^\d+$/")
 			), function(){
 				save(array("teachinghistory","option"));
-			$this->access = true;
 			$this->permission = array("teachinghistory" => array("insert" => array("public", "private")));
 		});
 	}

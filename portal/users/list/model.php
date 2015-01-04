@@ -36,7 +36,7 @@ class model extends main_model {
 			// 	// $result->condition("or" "#person.s", "LIKE" "%$vsearch%");
 			// })
 			->result(function($r){
-				$r->learn = $this->tag("a")->addClass("icoshare")->href('users/status=learn/id='. $r->learn)->render();
+				$r->learn = $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $r->learn)->render();
 				$r->detail = $this->tag("a")->addClass("icomore")->href("users/status=detail/id=". $r->detail)->render();
 			});
 		$this->sql(".dataTable", $dtable);

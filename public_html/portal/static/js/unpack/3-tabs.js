@@ -1,34 +1,34 @@
 $(document).ready(function() {$.ajaxSetup ({
-		cache: false
-	});
-	function transit() {
-		var n = $(window).height() + 150;
-		var m = n - parseInt($('.menu').css('height'));
-		m     = m/2;
-		$(".menu").css("top", m);
-		$("#tabs>div").css('min-height', ($(window).height() - 225) + "px");
-	}
+	cache: false
+});
+function transit() {
+	var n = $(window).height() + 150;
+	var m = n - parseInt($('.menu').css('height'));
+	m     = m/2;
+	$(".menu").css("top", m);
+	$("#tabs>div").css('min-height', ($(window).height() - 225) + "px");
+}
+transit();
+$(window).resize(function() {
 	transit();
-	$(window).resize(function() {
-		transit();
-	}).scroll(function(){
-		transit();
-	});
+}).scroll(function(){
+	transit();
+});
 
-	$(".menu>div").each(function() {
-		$(this).mouseover(function() {
-			$(this).children('.dropdown').stop().fadeIn(200);
-		}).mouseout(function() {
-			$(this).children('.dropdown').stop().fadeOut(200);
-		});
+$(".menu>div").each(function() {
+	$(this).mouseover(function() {
+		$(this).children('.dropdown').stop().fadeIn(200);
+	}).mouseout(function() {
+		$(this).children('.dropdown').stop().fadeOut(200);
 	});
+});
 
-	$("#tabs a").each(function(){
-		if(/^#/.test($(this).attr("href"))){
-			var href = location.pathname+$(this).attr("href");
-			$(this).attr("href", href);
-		}
-	});
+$("#tabs a").each(function(){
+	if(/^#/.test($(this).attr("href"))){
+		var href = location.pathname+$(this).attr("href");
+		$(this).attr("href", href);
+	}
+});
 
 	//tabs
 	var tabs = $("#tabs").tabs({
@@ -51,6 +51,9 @@ $(document).ready(function() {$.ajaxSetup ({
 			if(ui.tab.is(".loadContentAjax")) return false;
 			$(ui.panel[0]).sremovecontextmenu();
 			ui.panel.html('<embed src="static/svg/logo-animation.svg" class="perload-svg" height="150" type="image/svg+xml" />');
+			ui.jqXHR.fail(function (e) {
+				ui.panel.text("قادر به نمایش این صفحه نمی باشیم.");
+			});
 			ui.panel.html = function(data){
 				ui.tab.addClass("loadContentAjax");
 				var global = $("<span>"+data+"</span>").find("#global");
@@ -154,6 +157,7 @@ function aClickTabs(e){
 	var activeTab, nActive, hash;
 	var href = $(this).attr('href');
 	var text = $(this).text();
+	if(!href) return false;
 	if($(this).attr("target") == "_blank"){
 		nActive = true;
 	}

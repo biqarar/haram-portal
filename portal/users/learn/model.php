@@ -4,6 +4,16 @@
 */
 class model extends main_model {
 
+	public function sql_absence_list($usersid = false, $classes_id = false) {
+		$list = $this->sql()->tableAbsence();
+		$list->joinClassification()->whereId("#absence.classification_id")
+					->andUsers_id($usersid)->andClasses_id($classes_id)->fieldUsers_id()->fieldClasses_id();
+		// $list->joinClasses()->whereId("#classification.classes_id")
+			// ->fieldTeacher()->fieldPlan_id()->fieldPlace()->fieldStart_time();
+		$list = $list->select()->num();
+		return $list;
+	}
+
 	public function sql_price_list($users_id = false) {
 		$price = $this->sql()->tablePrice()->whereUsers_id($users_id);
 		$price->joinPrice_change()->whereId("#price.title");

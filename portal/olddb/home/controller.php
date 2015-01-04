@@ -39,7 +39,6 @@ class controller extends main_controller {
 			),
 			function (){
 				save(array("olddb","classification"));
-				$this->access = true;
 				$this->permission = array("oldclassification" => array("select" => array("public", "private")));	
 			});
 
@@ -49,7 +48,6 @@ class controller extends main_controller {
 			),
 			function (){
 				save(array("olddb","certification"));
-				$this->access = true;
 				$this->permission = array("oldsertification" => array("select" => array("public", "private")));	
 			});
 

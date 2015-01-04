@@ -82,7 +82,7 @@ body {
   background: #fff;
   position: absolute;
   right: 0;
-  z-index: 999;
+  z-index: 1200;
   border-top: 1px solid #e5e5e5;
   border-left: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5; }
@@ -267,119 +267,136 @@ body {
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/allteacher.svg); }
+  background: url(../svg/icons/allteacher.svg);
+  background-size: 100% 100%; }
 
 .icoallusers {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/allusers.svg); }
+  background: url(../svg/icons/allusers.svg);
+  background-size: 100% 100%; }
 
 .icodadd {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dadd.svg); }
+  background: url(../svg/icons/dadd.svg);
+  background-size: 100% 100%; }
 
 .icodattendance {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dattendance.svg); }
+  background: url(../svg/icons/dattendance.svg);
+  background-size: 100% 100%; }
 
 .icodclose {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dclose.svg); }
+  background: url(../svg/icons/dclose.svg);
+  background-size: 100% 100%; }
 
 .icodletters {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dletters.svg); }
+  background: url(../svg/icons/dletters.svg);
+  background-size: 100% 100%; }
 
 .icodmedia {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dmedia.svg); }
+  background: url(../svg/icons/dmedia.svg);
+  background-size: 100% 100%; }
 
 .icodsettings {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dsettings.svg); }
+  background: url(../svg/icons/dsettings.svg);
+  background-size: 100% 100%; }
 
 .icodshare {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dshare.svg); }
+  background: url(../svg/icons/dshare.svg);
+  background-size: 100% 100%; }
 
 .icodteacher {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/dteacher.svg); }
+  background: url(../svg/icons/dteacher.svg);
+  background-size: 100% 100%; }
 
 .icoduser {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/duser.svg); }
+  background: url(../svg/icons/duser.svg);
+  background-size: 100% 100%; }
 
 .icolikes {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/likes.svg); }
+  background: url(../svg/icons/likes.svg);
+  background-size: 100% 100%; }
 
 .icomessage {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/message.svg); }
+  background: url(../svg/icons/message.svg);
+  background-size: 100% 100%; }
 
 .icopictures {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/pictures.svg); }
+  background: url(../svg/icons/pictures.svg);
+  background-size: 100% 100%; }
 
 .icosound {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../svg/icons/sound.svg); }
+  background: url(../svg/icons/sound.svg);
+  background-size: 100% 100%; }
 
 .icomore {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../img/more.png); }
+  background: url(../img/more.png);
+  background-size: 100% 100%; }
 
 .icoedit {
   display: block;
   width: 16px;
   height: 16px;
   margin: 0 auto;
-  background: url(../img/edit.png); }
+  background: url(../img/edit.png);
+  background-size: 100% 100%; }
 
 .icoadd {
   display: block;

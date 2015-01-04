@@ -145,7 +145,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'province/status=add', 
-			"name" =>  _("menu province add"), 
+			"name" =>  _("ثبت استان ها"), 
 			"tag" => array(
 				"province" => array("insert" => array("public"))
 				)
@@ -343,16 +343,6 @@ class menu_cls  {
 			"tag" => array(
 				"classes" => array("select" => array("public")),
 				"classification" => array("insert" => array("public"))
-				)
-			);
-
-		//------------------------------ absence add
-		self::$menu[] = array(
-			"submenu" => "attendance", 
-			"url" => "absence/classes", 
-			"name" =>  _("ثبت غیبت کاربر"), 
-			"tag" => array(
-				"absence" => array("insert" => array("public"))
 				)
 			);
 

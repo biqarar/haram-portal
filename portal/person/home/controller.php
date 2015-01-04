@@ -23,9 +23,8 @@ class controller extends main_controller{
 			"url" => array("extera" , "status" => "detail")
 			),
 			function() {
-				save(array("person", "exteradetail"));
-				$this->access = true;	
-				// $this->permission  =array("classification" => array("select" => array("public", "private")));
+				save(array("person", "exteradetail"));	
+				$this->permission  =array("person_extera" => array("select" => array("public", "private")));
 			} 
 		);
 
@@ -35,9 +34,8 @@ class controller extends main_controller{
 			"url" => array("extera")
 			),
 			function() {
-				save(array("person", "extera"));
-				$this->access = true;	
-				// $this->permission  =array("classification" => array("select" => array("public", "private")));
+				save(array("person", "extera"));	
+				$this->permission  =array("person_extera" => array("select" => array("public", "private")));
 			} 
 		);
 	}		

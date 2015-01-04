@@ -21,7 +21,7 @@ class controller extends main_controller{
 			"url"=>array("users", "usersid" => "/^\d+$/")
 		), function () {
 			save(array("education", "users"));
-			$this->access = true;
+			$this->access = global_cls::supervisor();
 		});
 	}
 }

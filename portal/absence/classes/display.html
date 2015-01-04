@@ -1,8 +1,16 @@
 {# Ahamd karimi #}
 {% extends layout %}
 {%block content%}
-<form class="ajx" method="post" action="absence/{{global.url}}">
-	{{forms.make(form.absence)}}
-</form>
-{{tagMaker.list(list)}}
+<!-- <a class="icouser"></a>
+<a class="icolikes"></a> -->
+<!-- classes detail -->
+<div class="class-detail">
+	{{ tagMaker.list(list) }}
+</div>
+
+<!-- classes list -->
+<div class="class-detail">
+	{{dtable.make(dataTable)}}
+</div>
+
 {%endblock%}

@@ -1,8 +1,10 @@
 {# Ahamd karimi #}
 {% extends layout %}
 {%block content%}
-<form class="ajx" method="post" action="absence/{{global.url}}">
+<h4>{{global.users_datail}}</h4>
+<form class="ajx" method="post" action="absence/status=add/usersid={{global.usersid}}">
+	{{forms.make(classes)}}
 	{{forms.make(form.absence)}}
 </form>
-{{tagMaker.list(list)}}
+
 {%endblock%}
