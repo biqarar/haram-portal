@@ -23,7 +23,7 @@ class model extends main_model {
 			}
 		})
 		->search_fields(
-			"name", "family", "value"
+			"username" , "name", "family", "value"
 		)
 		->query(function($q){
 			$q->joinPerson()->whereUsers_id("#bridge.users_id")->fieldFamily("family")->fieldName("name");

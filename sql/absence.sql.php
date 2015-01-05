@@ -8,7 +8,7 @@ class absence {
 
 	public $id                = array('type'=> 'int@10', 'autoI', 'label' => 'absence_id');
 	public $classification_id = array('type'=> 'int@10', 'label' => 'classification_id');
-	public $type              = array('type'=> 'enum@delay,leave,unjustified absence,justified absence!unjustified absence', 'label' => 'absence_type');
+	public $type              = array('type'=> 'enum@delay,leave,unjustified absence,justified absence', 'label' => 'absence_type');
 	public $date              = array('type'=> 'int@8', 'label' => 'absence_date');
 	public $because           = array('type'=> 'varchar@255', 'label' => 'absence_because');
 	

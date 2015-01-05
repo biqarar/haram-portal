@@ -2,7 +2,7 @@
 {% extends layout %}
 {%block content%}
 <h4>{{global.users_datail}}</h4>
-<form class="ajx" method="post" action="absence/status=add/usersid={{global.usersid}}">
+<form class="ajx" method="post" action="absence/{{global.url}}">
 	{{forms.make(classes)}}
 	{{forms.make(form.absence)}}
 </form>

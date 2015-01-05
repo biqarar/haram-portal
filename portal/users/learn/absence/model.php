@@ -7,15 +7,29 @@ class model extends main_model {
 	public function post_api() {
 
 		$dtable = $this->dtable->table("absence")
-		->fields('id', 'date', 'type', "id classesid")
-		->search_fields("type", "gender")
+		->fields('id', "classes_id", "planname", "teacherfamily", 'date', 'type', "id edit")
+		->search_fields("date", "classes_id")
 		
 		->query(function($q){
 			$q->joinClassification()->whereId("#absence.classification_id")->andUsers_id($this->xuId("usersid"))->fieldClasses_id("classesid");
-			$q->joinClasses()->whereId("#classification.classes_id")->fieldStart_time();
+			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classes_id")->fieldPlan_id("plan_id");
+			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
+			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily");
+
+		})
+		->order(function($q, $n, $b){
+			if($n === 'orderTeacherfamily'){
+				$q->join->person->orderFamily($b);
+			}elseif($n === 'orderPlanname'){
+				$q->join->plan->orderName($b);
+			}elseif($n === 'orderClasses_id'){
+				$q->join->classes->orderId($b);
+			}else{
+				return true;
+			}
 		})
 		->result(function($r) {
-			$r->classesid = '<a class="icoclassesid" href="branch/status=classesid/id='.$r->classesid.'" title="'.gettext('classesid').' '.$r->classesid.'"></a>';
+			$r->edit = '<a class="icoedit" href="absence/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 		});
 		$this->sql(".dataTable", $dtable);
 

@@ -152,7 +152,7 @@ class view extends main_view  {
 
 		//------------------------------  global of absence card
 		$absence['title'] = "absence";
-		// $absence["moreLink"] = "absence/status=detail/usersid=$users_id";
+		$absence["moreLink"] = "users/learn/absence/id=$users_id";
 		$absence['addLink'] = "absence/status=add/usersid=$users_id";
 	// var_dump($absence);exit();	
 		$this->data->absence = $absence;

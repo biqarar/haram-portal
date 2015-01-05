@@ -5,7 +5,7 @@ class query_price_cls extends query_cls {
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
 		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select()->assoc("price");
 		$user_active_price = $this->sum_price($users_id);
-		if(intval($user_active_price) >= intval($price)){
+		if(intval($user_active_price) >= intval($price) || global_cls::superprice()){
 			$this->price_low($users_id, $classes_id, $price, $dateNow);
 			return true;
 		}else{
