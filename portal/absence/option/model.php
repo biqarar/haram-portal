@@ -3,6 +3,12 @@
 * @author reza mohiti
 */
 class model extends main_model {
+	public function sql_find_users_id($absence_id = false) {
+		$usersid = $this->sql()->tableAbsence()->whereId($absence_id)->fieldClassification_id();
+		$usersid->joinClassification()->whereId("#absence.classification_id")->fieldUsers_id()->fieldClasses_id();
+		$usersid = $usersid->limit(1)->select()->assoc();
+		return array("usersid" => $usersid['users_id'] , "classesid" => $usersid['classes_id']);
+	}
 
 	public function sql_classes_name($classes_id = false) {
 		$return = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->fieldId();
@@ -44,7 +50,7 @@ class model extends main_model {
 	}
 
 	public function post_add_absence(){
-		
+		$i = 0;
 		foreach ($_POST as $key => $value) {
 			if(preg_match("/^classes\_(\d+)$/", $key)){
 				//------------------------------ insert absence
@@ -52,8 +58,12 @@ class model extends main_model {
 				$this->commit(function() {
 					debug_lib::true("[[insert absence successful]]");
 				});
+				$i++;
 			}
 			//------------------------------ commit code
+		}
+		if($i== 0) {
+			debug_lib::fatal("برای این فراگیر هیچ کلاس فعالی وجود ندارد");
 		}
 
 

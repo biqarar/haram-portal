@@ -8,6 +8,8 @@ class permission {
 	public $update    = array('type'=> 'enum@private,public!private', 'label' => 'permission_update');
 	public $insert    = array('type'=> 'enum@private,public!private', 'label' => 'permission_insert');
 	public $delete    = array('type'=> 'enum@private,public!private', 'label' => 'permission_delete');
+	public $condition    = array('type'=> 'text@', 'label' => 'condition');
+
 
 	public $unique = array("table");
 	public $foreign = array("users_id" => "users@id!id");
@@ -49,6 +51,10 @@ class permission {
 		$this->form("radio")->name("delete");
 		$this->setChild($this->form);
 		// $this->validate()->number(1);
+	}
+
+	public function condition() {
+		$this->form("text")->name("condition");
 	}
 }
 ?>

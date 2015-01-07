@@ -49,7 +49,7 @@ class view extends main_view {
 		//------------------------------ list of users pemission
 		$this->data->dataTable = $this->dtable(
 			"permission/status=api/", 
-			array("id", "users_id", "tables", "select", "insert", "update", "delete", "edit"));
+			array("id","username", "users_id", "tables", "select", "insert", "update", "delete", "condition", "edit"));
 		
 	}
 }

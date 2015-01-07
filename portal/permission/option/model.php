@@ -12,7 +12,8 @@ class model extends main_model {
 		 		->setSelect(post::select())
 		 		->setUpdate(post::update())
 		 		->setInsert(post::insert())
-		 		->setDelete(post::delete());
+		 		->setDelete(post::delete())
+		 		->setCondition(post::condition());
 	}
 
 	public function post_add_permission(){

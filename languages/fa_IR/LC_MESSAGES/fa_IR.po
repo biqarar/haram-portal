@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "add"
+msgstr "افزودن"
+
+msgid "price_change"
+msgstr "مدیریت شهریه"
+
 msgid "pos_mellat"
 msgstr "درگاه بانک ملت"
 
