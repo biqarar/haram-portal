@@ -18,6 +18,9 @@ class model extends main_model{
 	
 	public function ready($version = "new version") {
 
+		var_dump($this->sql()->tableHistory()->select()->num());
+		exit("");
+
 		$this->xecho("In The Name Of Allah");
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");
@@ -109,12 +112,12 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 
-		$this->title("change passwrod");
-		$all = $this->sql()->tableBranch()->select()->allAssoc();
-		foreach ($all as $key => $value) {
-			$this->count();
-		}
-		$this->flush();
+		// $this->title("change passwrod");
+		// $all = $this->sql()->tableBranch()->select()->allAssoc();
+		// foreach ($all as $key => $value) {
+		// 	$this->count();
+		// }
+		// $this->flush();
 
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
@@ -171,6 +174,8 @@ class model extends main_model{
 			call setHistory('price_change', 'update', OLD.id);
 			END",
 			"ALTER TABLE `price` CHANGE `pay_type` `pay_type` ENUM('bank','pos_mellat','cash','rule','pos_melli') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL",
+			"ALTER TABLE `price` ADD `card` INT(7) NOT NULL AFTER `title`",
+			
 			);
 
 		$error = 0;

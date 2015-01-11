@@ -21,6 +21,8 @@ class view extends main_view {
 
 		//------------------------------ load form
 		$f = $this->form('@price', $this->urlStatus());
+		$f->remove("title");
+		// var_dump($f);exit();
 
 		// $this->sql(".edit", "price", $this->xuId(), $f);
 	}
