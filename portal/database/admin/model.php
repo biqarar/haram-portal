@@ -18,9 +18,6 @@ class model extends main_model{
 	
 	public function ready($version = "new version") {
 
-		var_dump($this->sql()->tableHistory()->select()->num());
-		exit("");
-
 		$this->xecho("In The Name Of Allah");
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");
@@ -175,7 +172,104 @@ class model extends main_model{
 			END",
 			"ALTER TABLE `price` CHANGE `pay_type` `pay_type` ENUM('bank','pos_mellat','cash','rule','pos_melli') CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL",
 			"ALTER TABLE `price` ADD `card` INT(7) NOT NULL AFTER `title`",
+			//---------------- new tables
+			"CREATE TABLE IF NOT EXISTS `score_type` (
+			  `id` int(10) NOT NULL,
+			  `plan_id` int(10) NOT NULL,
+			  `title` varchar(255) COLLATE utf32_persian_ci NOT NULL,
+			  `min` int(2) NOT NULL,
+			  `max` int(3) NOT NULL,
+			  `description` varchar(255) COLLATE utf32_persian_ci DEFAULT NULL
+			  ) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_persian_ci  AUTO_INCREMENT=1",
+
+			"ALTER TABLE `score_type` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `score_type` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+
+			"ALTER TABLE `score_type` ADD CONSTRAINT `score_type_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`id`)",
 			
+			"DROP TRIGGER IF EXISTS `score_type_delete`",
+			"CREATE TRIGGER `score_type_delete` AFTER DELETE ON `score_type`
+			 FOR EACH ROW BEGIN
+			call setHistory('score_type', 'delete', OLD.id);
+			END",
+			"DROP TRIGGER IF EXISTS `score_type_insert`",
+			"CREATE TRIGGER `score_type_insert` AFTER INSERT ON `score_type`
+			 FOR EACH ROW BEGIN
+			call setCash('score_type', NEW.id, @branch_id);
+			call setHistory('score_type', 'insert', NEW.id);
+			END",
+			"DROP TRIGGER IF EXISTS `score_type_update`",
+			"CREATE TRIGGER `score_type_update` AFTER UPDATE ON `score_type`
+			 FOR EACH ROW BEGIN
+			call setHistory('score_type', 'update', OLD.id);
+			END",
+			
+			"CREATE TABLE IF NOT EXISTS `score_calculation` (
+			  `id` int(10) NOT NULL,
+			  `plan_id` int(10) NOT NULL,
+			  `calculation` text COLLATE utf32_persian_ci NOT NULL,
+			  `status` enum('active','desactive') COLLATE utf32_persian_ci DEFAULT NULL,
+			  `description` varchar(255) COLLATE utf32_persian_ci DEFAULT NULL
+			  ) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_persian_ci  AUTO_INCREMENT=1",
+
+			"ALTER TABLE `score_calculation` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `score_calculation` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+
+			"ALTER TABLE `score_calculation` ADD CONSTRAINT `score_calculation_ibfk_1` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`id`)",
+			
+			"DROP TRIGGER IF EXISTS `score_calculation_delete`",
+			"CREATE TRIGGER `score_calculation_delete` AFTER DELETE ON `score_calculation`
+			 FOR EACH ROW BEGIN
+			call setHistory('score_calculation', 'delete', OLD.id);
+			END",
+			"DROP TRIGGER IF EXISTS `score_calculation_insert`",
+			"CREATE TRIGGER `score_calculation_insert` AFTER INSERT ON `score_calculation`
+			 FOR EACH ROW BEGIN
+			call setCash('score_calculation', NEW.id, @branch_id);
+			call setHistory('score_calculation', 'insert', NEW.id);
+			END",
+			"DROP TRIGGER IF EXISTS `score_calculation_update`",
+			"CREATE TRIGGER `score_calculation_update` AFTER UPDATE ON `score_calculation`
+			 FOR EACH ROW BEGIN
+			call setHistory('score_calculation', 'update', OLD.id);
+			END",
+
+			"CREATE TABLE IF NOT EXISTS `score` (
+			  `id` int(10) NOT NULL,
+			  `users_id` int(10) NOT NULL,
+			  `classes_id` int(10) NOT NULL,
+			  `score_type_id` int(10) NOT NULL,
+			  `value` int(3) NOT NULL
+			  ) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_persian_ci  AUTO_INCREMENT=1",
+
+			"ALTER TABLE `score` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `score` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+
+			"ALTER TABLE `score` ADD CONSTRAINT `score_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
+			"ALTER TABLE `score` ADD CONSTRAINT `score_ibfk_2` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
+			"ALTER TABLE `score` ADD CONSTRAINT `score_ibfk_3` FOREIGN KEY (`score_type_id`) REFERENCES `score_type` (`id`)",
+			
+			"DROP TRIGGER IF EXISTS `score_delete`",
+			"CREATE TRIGGER `score_delete` AFTER DELETE ON `score`
+			 FOR EACH ROW BEGIN
+			call setHistory('score', 'delete', OLD.id);
+			END",
+			"DROP TRIGGER IF EXISTS `score_insert`",
+			"CREATE TRIGGER `score_insert` AFTER INSERT ON `score`
+			 FOR EACH ROW BEGIN
+			call setCash('score', NEW.id, @branch_id);
+			call setHistory('score', 'insert', NEW.id);
+			END",
+			"DROP TRIGGER IF EXISTS `score_update`",
+			"CREATE TRIGGER `score_update` AFTER UPDATE ON `score`
+			 FOR EACH ROW BEGIN
+			call setHistory('score', 'update', OLD.id);
+			END",
+
+			
+			//----------- end of new table
+
+			"ALTER TABLE `plan` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL COMMENT 'نام طرح',"
 			);
 
 		$error = 0;

@@ -210,6 +210,27 @@ class menu_cls  {
 				"course" => array("insert" => array("public"))
 				)
 			);
+
+			//------------------------------  score
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'score/type/status=add', 
+			"name" =>  _("ثبت نوع نمرات"), 
+			"tag" => array(
+				"score_type" => array("insert" => array("public"))
+				)
+			);
+
+
+			//------------------------------  score
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'score/calculation/status=add', 
+			"name" =>  _("روش محاسبه امتیاز"), 
+			"tag" => array(
+				"score_calculation" => array("insert" => array("public"))
+				)
+			);
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
 		//------------------------------  teacher show detail 

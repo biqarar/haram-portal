@@ -7,7 +7,7 @@ class price {
 	public $title		 = array('type' => "int@10", "price_title");
 	public $card        = array('type'=> 'int@7', "label" => "card");
 	public $value        = array('type'=> 'int@7', "label" => "price_value");
-	public $pay_type     = array('type'=> 'enum@pos_mellat,pos_melli', "label" => "pay_type");
+	public $pay_type     = array('type'=> 'enum@pos_mellat,pos_melli,rule', "label" => "pay_type");
 	public $transactions = array('type'=> 'varchar@255', "label" => "price_transactions");
 	public $description  = array('type'=> 'text@' , "label" => "description");
 	

@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "teachers_list"
+msgstr "لیست اساتید"
+
+msgid "teachers"
+msgstr "اساتید"
+
 msgid "add"
 msgstr "افزودن"
 
