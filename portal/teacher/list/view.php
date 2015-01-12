@@ -7,9 +7,10 @@ class view extends main_view{
 
 	public function config(){
 		//------------------------------ global
-		$this->global->page_title  = "teachers_list";
+		$type = ($this->xuId("type") == "teacher") ? "teachers" : "operator";
+		$this->global->page_title  = " لیست " . _($type);
 		$this->data->dataTable = $this->dtable(
-			'teacher/status=api/',
+			'teacher/status=apilist/type=' . $this->xuId("type") . "/",
 			array(
 				'casecode',
 				'name',

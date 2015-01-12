@@ -17,7 +17,7 @@ class model extends main_model{
 	public function post_add_score_type(){
 		//------------------------------ insert score_type
 		$sql = $this->makeQuery()->insert();
-
+		
 		//------------------------------ commit code
 		$this->commit(function() {
 			debug_lib::true("[[insert score_type successful]]");

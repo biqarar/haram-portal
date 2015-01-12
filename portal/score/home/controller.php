@@ -2,6 +2,17 @@
 class controller extends main_controller {
 	
 	public function config(){
+
+		$this->listen(array(
+				"max" => 4,
+				"url" => array("status" => "add" ,"classesid" => "/^\d+$/" , "scoretypeid" => "/^\d+$/")
+				), array("score", "classes"));
+		
+		$this->listen(array(
+				"max" => 5,
+				"url" => array("classes", "status" => "apilist" ,"classesid" => "/^\d+$/", "scoretypeid" => "/^\d+$/")
+				), array("score", "classes", "mod" => "api"));
+
 		$this->listen(array(
 				"max" => 3,
 				"url" => array("type", "status" => "add")

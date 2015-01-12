@@ -6,6 +6,7 @@
 class model extends main_model {
 		public function post_api(){
 
+		
 		$dtable = $this->dtable->table('person')
 			->fields(
 				'username users.username',
@@ -22,7 +23,7 @@ class model extends main_model {
 				'users_id learn')
 			->search_fields('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode")
 			->query(function($q){
-				$q->joinUsers()->whereId("#person.users_id")->andType("teacher")->fieldUsername("username");
+				$q->joinUsers()->whereId("#person.users_id")->andType(($this->xuId("type") == "teacher") ? "teacher" : "operator")->fieldUsername("username");
 			})
 			// ->search_result(function($result){
 			// 	$vsearch = $_GET['search']['value'];
