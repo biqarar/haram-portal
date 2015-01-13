@@ -2,7 +2,13 @@ route(/score/, function(){
 	$("#plan_id", this).combobox();
 });
 
-route(/score\/status\=add\/classesid\=\d+\/scoretypeid\=\d+/, function(){
+route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function(){
+
+	$('.score-mark', this).blur(function(){
+		$(this).attr('disabled', 'disabled');
+		
+	});
+
 	function l(a) {console.log(a);}
 
 	$("a.insertAbsenceApi", this).click(function(){

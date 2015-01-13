@@ -14,16 +14,19 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 		
 		classification = $(this).attr("classification");
 		classesid = $(this).attr("classesid");
-
+		_self = $(this);
 		$.ajax({
 			type: "POST",
 			url : "absence/api/classification=" + classification + "/date=" + date,
 			success : function(data){
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
+					$(_self).removeClass("icodadd").addClass("icoredclose deleteAbsenceApi");
 				}else if(data.warn){
 					xhr_warn(data.warn[0]);
+
 				}else{
+					$(_self).removeClass("icodadd").addClass("icoredclose");
 					xhr_true(data.true[0]);
 				}
 			}
@@ -31,6 +34,34 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 		return false;
 	});
 
+	$("a.deleteAbsenceApi", this).click(function(){
+		
+		if(typeof date == "undefined") {
+			xhr_error("تاریخ انتخاب نشده است");
+			return false;
+		}
+		
+		classification = $(this).attr("classification");
+		classesid = $(this).attr("classesid");
+		_self = $(this);
+		$.ajax({
+			type: "POST",
+			url : "absence/api/classification=" + classification + "/date=" + date,
+			success : function(data){
+				if(data.fatal){
+					xhr_error(data.fatal[0]);
+					$(_self).removeClass("icodadd").addClass("icoredclose");
+				}else if(data.warn){
+					xhr_warn(data.warn[0]);
+					
+				}else{
+					$(_self).removeClass("icodadd").addClass("icoredclose");
+					xhr_true(data.true[0]);
+				}
+			}
+		});		
+		return false;
+	});
 
 	function convert_date(date) {
 		date = date.split("-");

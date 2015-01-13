@@ -30,16 +30,19 @@ class model extends main_model {
 			->result(function($r){
 				$r->input = $this->tag("input")
 									  ->name("score_" . $r->input)
+									  ->addClass('score-mark')
 									  // ->href("absence/status=add/usersid=". $r->input)
 									  ->render();
 
 				$r->insert 	   = $this->tag("a")
+				 						->style("cursor: pointer;")
 									  ->addClass("icodadd a-undefault")
 									  ->addClass("insertAbsenceApi")
 									  ->classification($r->insert)
+									  ->tabindex("-1")
 									  ->render();
 
-				$r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->render();
+				$r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->tabindex("-1")->render();
 			});
 			$this->sql(".dataTable", $dtable);
 	}

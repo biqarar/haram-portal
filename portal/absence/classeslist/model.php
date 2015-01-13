@@ -42,6 +42,7 @@ class model extends main_model {
 
 				$r->insert 	   = $this->tag("a")
 									  ->addClass("icodadd a-undefault")
+									  ->style("cursor: pointer;")
 									  ->addClass("insertAbsenceApi")
 									  ->classification($r->insert)
 									  ->render();
