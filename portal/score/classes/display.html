@@ -1,0 +1,14 @@
+{% extends layout %}
+{% block content %}
+<h3>ثبت نمرات {{global.score_type}} کلاس</h3>
+<!-- classes detail -->
+<div class="class-detail">
+	{{ tagMaker.list(list) }}
+</div>
+
+<!-- classes list -->
+<div class="class-detail">
+	{{dtable.make(dataTable)}}
+</div>
+
+{%endblock%}

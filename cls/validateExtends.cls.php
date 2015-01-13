@@ -101,8 +101,8 @@ class validateExtends_cls{
 	}
 
 	public function number($a = false, $b = false) {
-		
-		if($this->value == '') return true;
+
+		if($this->value == '' || $this->value === 0 ) return true;
 
 		$a = (preg_match("/^\d+$/", $a)) ? $a : false;
 		$b = (preg_match("/^\d+$/", $b)) ? $b : false;

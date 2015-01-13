@@ -486,6 +486,14 @@ body {
   background: url(../svg/icons/settings.svg);
   background-size: 100% 100%; }
 
+.icoredclose {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/redclose.svg);
+  background-size: 100% 100%; }
+
 #tabs.ui-widget-content {
   background: transparent; }
 

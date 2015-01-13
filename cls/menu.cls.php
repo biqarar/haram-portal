@@ -210,6 +210,27 @@ class menu_cls  {
 				"course" => array("insert" => array("public"))
 				)
 			);
+
+			//------------------------------  score
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'score/type/status=add', 
+			"name" =>  _("ثبت نوع نمرات"), 
+			"tag" => array(
+				"score_type" => array("insert" => array("public"))
+				)
+			);
+
+
+			//------------------------------  score
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'score/calculation/status=add', 
+			"name" =>  _("روش محاسبه امتیاز"), 
+			"tag" => array(
+				"score_calculation" => array("insert" => array("public"))
+				)
+			);
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
 		//------------------------------  teacher show detail 
@@ -275,14 +296,14 @@ class menu_cls  {
 			);
 
 		//------------------------------   price list
-		self::$menu[] = array(
-			"submenu" => "user", 
-			"url" => "price/status=list", 
-			"name" =>  "لیست شهریه ها", 
-			"tag" => array(
-				"price" => array("insert" => array("public", "private"))
-				)
-			);
+		// self::$menu[] = array(
+		// 	"submenu" => "user", 
+		// 	"url" => "price/status=list", 
+		// 	"name" =>  "لیست شهریه ها", 
+		// 	"tag" => array(
+		// 		"price" => array("insert" => array("public", "private"))
+		// 		)
+		// 	);
 
 		//------------------------------   bridge list
 		self::$menu[] = array(
@@ -297,10 +318,20 @@ class menu_cls  {
 		//------------------------------   bridge list
 		self::$menu[] = array(
 			"submenu" => "allteacher", 
-			"url" => "teacher/status=list", 
+			"url" => "teacher/status=list/type=teacher", 
 			"name" =>  "لیست اساتید", 
 			"tag" => array(
-				"bridge" => array("insert" => array("public", "private"))
+				"teacher" => array("insert" => array("public", "private"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "allteacher", 
+			"url" => "teacher/status=list/type=operator", 
+			"name" =>  "لیست کارشناسان", 
+			"tag" => array(
+				"users" => array("insert" => array("public", "private"))
 				)
 			);
 
@@ -346,6 +377,9 @@ class menu_cls  {
 				)
 			);
 
+
+		
+
 		//------------------------------ posts add
 		self::$menu[] = array(
 			"submenu" => "letters", 
@@ -356,16 +390,26 @@ class menu_cls  {
 				)
 			);
 
+		// //------------------------------ classes list
+		// self::$menu[] = array(
+		// 	"submenu" => "settings", 
+		// 	"url" => "classes/status=list/type=absence", 
+		// 	"name" =>  "گزارشات", 
+		// 	"tag" => array(
+		// 		"classes" => array("select" => array("public")),
+		// 		"classification" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
 		//------------------------------ public menu
 
-		//------------------------------ (public) change password menu 
-		self::$menu[] = array(
-			"submenu" => "settings", 
-			"url" => 'settings', 
-			"name" =>  _("تنظیمات شعب"), 
-			"tag" => (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 ) ? "public" : "one branch"
-			);
+		// //------------------------------ (public) change password menu 
+		// self::$menu[] = array(
+		// 	"submenu" => "settings", 
+		// 	"url" => 'settings', 
+		// 	"name" =>  _("تنظیمات شعب"), 
+		// 	"tag" => (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 ) ? "public" : "one branch"
+		// 	);
 		//------------------------------ (public) change password menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 

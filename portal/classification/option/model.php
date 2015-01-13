@@ -10,8 +10,8 @@ class model extends main_model {
 				// ->setDate_entry(post::date_entry())
 				// ->setClasses_id(post::classes_id())
 				->setDate_delete(post::date_delete())
-				->setBecause(post::because())
-				->setMark(post::mark());
+				->setBecause(post::because());
+				// ->setMark(post::mark());
 				// ->setPlan_section_id(post::plan_section_id());
 	}
 

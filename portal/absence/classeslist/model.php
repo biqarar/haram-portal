@@ -3,7 +3,14 @@ class model extends main_model {
 	public function post_classeslist() {
 		$dtable = $this->dtable->table("classification")
 			
-			->fields("name person.name", "family person.family","date_entry", "date_delete", "because","id insert", "usersid attendance")
+			->fields("name person.name",
+					 "family person.family",
+					 "date_entry",
+					 "date_delete",
+					 "because",
+					 // "id type",
+					 "id insert",
+					 "usersid attendance")
 
 			->search_fields("name person.name", "family person.family")
 			
@@ -22,6 +29,12 @@ class model extends main_model {
 
 			->result(function($r){
 
+				// $x = $this->tag("select")->name("type");
+					
+				// 	$x->addChild("option")->value("cu")->label("cu")->vtext("cu");
+
+				// $r->type = $x->render();
+
 				$r->attendance = $this->tag("a")
 									  ->addClass("icoattendance")
 									  ->href("absence/status=add/usersid=". $r->attendance)
@@ -29,6 +42,7 @@ class model extends main_model {
 
 				$r->insert 	   = $this->tag("a")
 									  ->addClass("icodadd a-undefault")
+									  ->style("cursor: pointer;")
 									  ->addClass("insertAbsenceApi")
 									  ->classification($r->insert)
 									  ->render();

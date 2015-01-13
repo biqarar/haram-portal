@@ -5,12 +5,14 @@ class price {
 	public $users_id     = array('type'=> 'int@10', "label" => "users_id");
 	public $date		 = array("type" => "int@8", "label" => "date");
 	public $title		 = array('type' => "int@10", "price_title");
+	public $card        = array('type'=> 'int@7', "label" => "card");
 	public $value        = array('type'=> 'int@7', "label" => "price_value");
-	public $pay_type     = array('type'=> 'enum@pos_mellat,pos_melli,cash,rule', "label" => "pay_type");
+	public $pay_type     = array('type'=> 'enum@pos_mellat,pos_melli,rule', "label" => "pay_type");
 	public $transactions = array('type'=> 'varchar@255', "label" => "price_transactions");
 	public $description  = array('type'=> 'text@' , "label" => "description");
 	
 	public $foreign = array("title" => "price_change@id!name");
+	
 	public function id(){
 		$this->validate("id");
 	}
@@ -27,14 +29,20 @@ class price {
 	public function title(){
 		$this->form("select")->name("title")->id("title")->addClass("select-title notselect")->label("type");
 		$this->setChild(function($q){
-
+			// var_dump($q);
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 
 		});
 	}
 
+
+	public function card(){
+		$this->form("text")->name("card")->label("card")->pl("4 رقم آخر شماره کارت");
+		$this->validate()->number()->form->number("price card is not valid");
+	}
+
 	public function value(){
-		$this->form("text")->name("value")->label("value")->pl("به ریال");
+		$this->form("text")->name("value")->label("مبلغ")->pl("به ریال");
 		$this->validate()->price()->form->price("price value is not valid");
 	}
 

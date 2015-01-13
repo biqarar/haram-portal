@@ -82,7 +82,7 @@ class view extends main_view  {
 			$i_absence = $key;
 			//------------------------------  lable active classes tag
 			$classes_title = $this->tag("a")
-				->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
+				->href("classification/class/classesid=". $classification_list['classes'][$key]['id'])
 				->style("text-decoration: none")
 				->vtext(" کلاس شماره  "  . ++$i_classes)
 				->render();

@@ -7,6 +7,11 @@ class controller extends main_controller{
 
 	function config(){
 
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("status" => "apilist", "type" => "/^(teacher|operator)$/")
+			), array("teacher", "list", "mod" => "api"));
+
 		$this->listen(
 				array(
 					"max" => 4,

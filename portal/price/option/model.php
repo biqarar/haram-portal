@@ -11,6 +11,7 @@ class model extends main_model{
 				->setDate(post::date())			
 				->setValue(post::value())
 				->setPay_type(post::pay_type())
+				->setCard(post::card())
 				->setTitle(post::title())
 				->setTransactions(post::transactions())
 				->setDescription(post::description());
