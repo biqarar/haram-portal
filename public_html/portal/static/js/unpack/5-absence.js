@@ -11,28 +11,56 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 			xhr_error("تاریخ انتخاب نشده است");
 			return false;
 		}
-		
+
+
 		classification = $(this).attr("classification");
 		classesid = $(this).attr("classesid");
+		type = $(".absence-type", $(this).parents("tr:eq(0)")).val();
+		
 		_self = $(this);
-		$.ajax({
-			type: "POST",
-			url : "absence/api/classification=" + classification + "/date=" + date,
-			success : function(data){
-				if(data.fatal){
-					xhr_error(data.fatal[0]);
-					$(_self).removeClass("icodadd").addClass("icoredclose deleteAbsenceApi");
-				}else if(data.warn){
-					xhr_warn(data.warn[0]);
+		
+		if($(_self).hasClass("insertAbsenceApi")){
+			$.ajax({
+				type: "POST",
+				url : "absence/api/classification=" + classification + "/date=" + date + "/type=" + type,
+				success : function(data){
+					console.log(data);
 
-				}else{
-					$(_self).removeClass("icodadd").addClass("icoredclose");
-					xhr_true(data.true[0]);
+					if(data.fatal){
+						xhr_error(data.fatal[0]);
+						// $(_self).removeClass("icodadd insertAbsenceApi").addClass("icoredclose deleteAbsenceApi");
+					}else if(data.warn){
+						xhr_warn(data.warn[0]);
+
+					}else{
+						$(_self).removeClass("icodadd insertAbsenceApi").addClass("icoredclose deleteAbsenceApi");
+						xhr_true(data.true[0]);
+					}
 				}
-			}
-		});		
+			});		
+
+		}else if($(_self).hasClass("deleteAbsenceApi")){
+			$.ajax({
+				type: "POST",
+				url : "absence/apidelete/classification=" + classification + "/date=" + date,
+				success : function(data){
+					if(data.fatal){
+						xhr_error(data.fatal[0]);
+					}else if(data.warn){
+						xhr_warn(data.warn[0]);
+
+					}else{
+						$(_self).removeClass("icodadd deleteAbsenceApi").addClass("icoredclose insertAbsenceApi");
+						xhr_true(data.true[0]);
+					}
+				}
+			});	
+		}
+
 		return false;
 	});
+
+
 
 	$("a.deleteAbsenceApi", this).click(function(){
 		
@@ -44,18 +72,19 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 		classification = $(this).attr("classification");
 		classesid = $(this).attr("classesid");
 		_self = $(this);
+
 		$.ajax({
 			type: "POST",
-			url : "absence/api/classification=" + classification + "/date=" + date,
+			url : "absence/apidelete/classification=" + classification + "/date=" + date,
 			success : function(data){
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
-					$(_self).removeClass("icodadd").addClass("icoredclose");
+					// $(_self).removeClass("icodadd deleteAbsenceApi").addClass("icoredclose insertAbsenceApi");
 				}else if(data.warn){
 					xhr_warn(data.warn[0]);
-					
+
 				}else{
-					$(_self).removeClass("icodadd").addClass("icoredclose");
+					$(_self).removeClass("icodadd deleteAbsenceApi").addClass("icoredclose insertAbsenceApi");
 					xhr_true(data.true[0]);
 				}
 			}

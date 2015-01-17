@@ -463,7 +463,7 @@ class menu_cls  {
 
 	public function public_menu() {
 		return  array(
-			array('href' => '#', 'title' => 'صفحه اصلی'),
+			array('href' => '', 'title' => 'صفحه اصلی'),
 			// array('href' => 'http://'.DOMAIN.'/portal/users/register', 'title' => 'ثبت نام'),
 			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'ثبت نام'),
 			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'ورود کاربران'),

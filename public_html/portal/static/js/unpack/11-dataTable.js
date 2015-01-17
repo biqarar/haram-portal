@@ -1,5 +1,8 @@
 route("*", function(){
-	$('.dtable', this).each(function(){
+	$('.dtable', this).each(dTable_each);
+});
+
+function dTable_each(){
 		var _self = this;
 		var _data = false;
 		var url = $(this).attr('data-table-url');
@@ -49,5 +52,4 @@ route("*", function(){
 				$('*',row).persian_nu();
 			}
 		});
-	});
-});
+		}

@@ -56,6 +56,7 @@ class query_setLoginSession_cls extends query_cls {
 				
 		}
 		$_SESSION['user_permission'] = $session;
+		// var_dump($_SESSION);exit();
 	}
 		
 }
