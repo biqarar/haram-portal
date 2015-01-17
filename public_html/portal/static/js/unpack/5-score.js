@@ -3,32 +3,16 @@ route(/score/, function(){
 });
 
 route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function(){
+	function l(a) {console.log(a);}
 
 	$('.score-mark', this).blur(function(){
 		$(this).attr('disabled', 'disabled');
+		classesid = 
+		value = $(".absence-type", $(this).parents("tr:eq(0)")).val();
 		
-	});
-
-	function l(a) {console.log(a);}
-
-	$("a.insertAbsenceApi", this).click(function(){
-		
-		console.log("fuck, fuck");
-		l(this);
-		l('fuck');
-		l(1);
-
-		if(typeof date == "undefined") {
-			xhr_error("تاریخ انتخاب نشده است");
-			return false;
-		}
-		
-		classification = $(this).attr("classification");
-		classesid = $(this).attr("classesid");
-
 		$.ajax({
 			type: "POST",
-			url : "absence/api/classification=" + classification + "/date=" + date,
+			url : "score/api/classesid=" + classesid + "/scoretypeid=" + scoretypeid + "/value=" + value,
 			success : function(data){
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
@@ -38,20 +22,9 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 					xhr_true(data.true[0]);
 				}
 			}
-		});		
-		return false;
+		});
+		$(this).removeAttr('disabled');
+
+		return false;		
 	});
-
-
-	function convert_date(date) {
-		date = date.split("-");
-		if(date[0].length == 4) y = date[0];
-		if(date[1].length != 2) {
-			m = "0" + date[1];
-		}
-		if(date[2].length != 2) {
-			d = "0" + date[2];
-		}
-		return y + "" + m + "" + d;
-	}
 });	

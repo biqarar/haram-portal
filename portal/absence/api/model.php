@@ -39,12 +39,12 @@ class model extends main_model {
 
 		$check = $this->sql()->tableAbsence()->whereClassification_id($classification)->andDate($date);
 
-		// if($check->limit(1)->select()->num() == 0) {
-		// 	debug_lib::fatal("هیچ گونه غیبت برای این فراگیر در این تاریخ ثبت نشده است");
-		// }
+		if($check->select()->num() == 0) {
+			debug_lib::fatal("هیچ گونه غیبت برای این فراگیر در این تاریخ ثبت نشده است");
+		}
 
 		$x = $check->delete();
-		ilog($x->string());
+		// ilog($x->string());
 		$this->commit(function(){
 			debug_lib::true("غیبت حذف شد");
 		});

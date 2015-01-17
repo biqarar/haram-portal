@@ -24,10 +24,12 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 				type: "POST",
 				url : "absence/api/classification=" + classification + "/date=" + date + "/type=" + type,
 				success : function(data){
-					console.log(data);
+					// console.log(data);
 
 					if(data.fatal){
 						xhr_error(data.fatal[0]);
+						$(_self).removeClass("icodadd insertAbsenceApi").addClass("icoredclose deleteAbsenceApi");
+						
 						// $(_self).removeClass("icodadd insertAbsenceApi").addClass("icoredclose deleteAbsenceApi");
 					}else if(data.warn){
 						xhr_warn(data.warn[0]);
@@ -46,11 +48,13 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 				success : function(data){
 					if(data.fatal){
 						xhr_error(data.fatal[0]);
+						$(_self).removeClass("icoredclose deleteAbsenceApi").addClass("icodadd insertAbsenceApi");
+
 					}else if(data.warn){
 						xhr_warn(data.warn[0]);
 
 					}else{
-						$(_self).removeClass("icodadd deleteAbsenceApi").addClass("icoredclose insertAbsenceApi");
+						$(_self).removeClass("icoredclose deleteAbsenceApi").addClass("icodadd insertAbsenceApi");
 						xhr_true(data.true[0]);
 					}
 				}
