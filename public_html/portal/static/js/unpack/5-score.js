@@ -7,13 +7,16 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 
 	$('.score-mark', this).blur(function(){
 		$(this).attr('disabled', 'disabled');
-		classesid = 
-		value = $(".absence-type", $(this).parents("tr:eq(0)")).val();
-		
+		classificationid = $(this).attr("classificationid")
+		scoretypeid = $(this).attr("scoretypeid");
+		value = $(this).val();
+		l(value);
+		_self = $(this);
 		$.ajax({
 			type: "POST",
-			url : "score/api/classesid=" + classesid + "/scoretypeid=" + scoretypeid + "/value=" + value,
+			url : "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value,
 			success : function(data){
+
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
 				}else if(data.warn){

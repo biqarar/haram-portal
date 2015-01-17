@@ -29,7 +29,8 @@ class model extends main_model {
 			})
 			->result(function($r){
 				$r->input = $this->tag("input")
-									  ->name("score_" . $r->input)
+									  ->classificationid($r->input)
+									  ->scoretypeid($this->xuId("scoretypeid"))
 									  ->addClass('score-mark')
 									  // ->href("absence/status=add/usersid=". $r->input)
 									  ->render();
