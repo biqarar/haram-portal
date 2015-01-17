@@ -3,7 +3,7 @@
 * @author reza mohiti
 */
 namespace sql;
-class score_calculation {
+class score {
 
 	public $id = array("type" => "int@10", "lable" => "id");
 	public $classification_id = array("type" => "int@10", "lable" => "classification_id");
@@ -15,7 +15,7 @@ class score_calculation {
 	}
 
 	public function classification_id() {
-		$this->validate("id")
+		$this->validate("id");
 	}
 
 	public function score_type_id() {

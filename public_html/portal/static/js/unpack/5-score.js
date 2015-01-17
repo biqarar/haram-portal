@@ -16,7 +16,8 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 			type: "POST",
 			url : "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value,
 			success : function(data){
-
+				l(data);
+				
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
 				}else if(data.warn){
