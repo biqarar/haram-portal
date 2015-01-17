@@ -1,14 +1,15 @@
 <?php
 class model extends main_model {
 	public function post_classeslist() {
+		$absence_type = $this->absence_type();
+
 		$dtable = $this->dtable->table("classification")
 			
 			->fields("name person.name",
 					 "family person.family",
 					 "date_entry",
 					 "date_delete",
-					 "because",
-					 // "id type",
+					 "id type",
 					 "id insert",
 					 "usersid attendance")
 
@@ -27,13 +28,19 @@ class model extends main_model {
 				$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
 			})
 
-			->result(function($r){
+			->result(function($r, $absence_type){
 
-				// $x = $this->tag("select")->name("type");
-					
-				// 	$x->addChild("option")->value("cu")->label("cu")->vtext("cu");
+				$x = $this->tag("select")->name("type")->class("absence-type");
 
-				// $r->type = $x->render();
+				foreach ($absence_type as $key => $value) {
+					if($value == "unjustified absence"){
+						$x->addChild("option")->value($value)->label(gettext($value))->vtext(gettext($value))->selected("selected");
+					}else{
+						$x->addChild("option")->value($value)->label(gettext($value))->vtext(gettext($value));
+					}
+				}
+
+				$r->type = $x->render();
 
 				$r->attendance = $this->tag("a")
 									  ->addClass("icoattendance")
@@ -47,9 +54,25 @@ class model extends main_model {
 									  ->classification($r->insert)
 									  ->render();
 
-			});
+			}, $absence_type);
 
 			$this->sql(".dataTable", $dtable);
+	}
+
+	public function absence_type(){
+
+		$sql = new dbconnection_lib;
+		$x = $sql->query("SELECT COLUMN_TYPE FROM 
+							INFORMATION_SCHEMA.COLUMNS
+						    WHERE TABLE_NAME = 'absence' 
+						    AND COLUMN_NAME = 'type'");
+
+		$x = $x->result->fetch_assoc();
+
+		$x = preg_replace("/enum|\(|\)|\'/", '', $x['COLUMN_TYPE']);
+		$x = preg_split("[,]", $x);
+		
+		return $x;
 	}
 }
 ?>

@@ -23,12 +23,21 @@ class controller extends main_controller{
 		});
 
 		$this->listen(array(
-		"max" =>4,
-		"url" => array( "api", "classification" =>"/^\d+$/",  "date" => "/^\d{8}$/")
+		"max" => 5,
+		"url" => array( "api", "classification" =>"/^\d+$/",  "date" => "/^\d{8}$/",  "type" => "/^(.*)$/")
 		),
 		function(){
 			save(array("absence", "api", 'mod' => "api"));
 			$this->permission = array("absence" => array("insert" => array("public")));
+		});
+
+		$this->listen(array(
+		"max" => 5,
+		"url" => array( "apidelete", "classification" =>"/^\d+$/",  "date" => "/^\d{8}$/")
+		),
+		function(){
+			save(array("absence", "api", 'mod' => "delete"));
+			$this->permission = array("absence" => array("delete" => array("public")));
 		});
 
 
