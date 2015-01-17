@@ -140,7 +140,7 @@ class model extends main_model{
 			  `id` int(10) NOT NULL,
 			  `classification_id` int(10) NOT NULL,
 			  `score_type_id` int(10) NOT NULL,
-			  `value` int(3) NOT NULL
+			  `value` FLOAT(3) NOT NULL
 			  ) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_persian_ci  AUTO_INCREMENT=1",
 
 			"ALTER TABLE `score` ADD PRIMARY KEY(`id`)",
@@ -164,9 +164,7 @@ class model extends main_model{
 			"CREATE TRIGGER `score_update` AFTER UPDATE ON `score`
 			 FOR EACH ROW BEGIN
 			call setHistory('score', 'update', OLD.id);
-			END",
-
-			
+			END",			
 			//----------- end of new table
 
 			"ALTER TABLE `plan` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_persian_ci NOT NULL COMMENT 'نام طرح'");

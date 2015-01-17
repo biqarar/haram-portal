@@ -10,7 +10,7 @@ class model extends main_model {
 		$score_type = $this->sql_score_type();
 
 
-		$array = array("name person.name", "family person.family","id input", "id insert", "id edit");
+		$array = array("name person.name", "family person.family","id input");
 		
 		
 		$dtable = $this->dtable->table("classification")
@@ -28,24 +28,37 @@ class model extends main_model {
 				$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
 			})
 			->result(function($r){
-				$r->input = $this->tag("input")
+				$r->input ="<div class='form-element' >" .  $this->tag("input")
+									  ->type("text")
 									  ->classificationid($r->input)
 									  ->scoretypeid($this->xuId("scoretypeid"))
 									  ->addClass('score-mark')
-									  // ->href("absence/status=add/usersid=". $r->input)
-									  ->render();
+									  ->value($this->get_value($r->input, $this->xuId("scoretypeid")))
+									  ->render() . "</div>";
 
-				$r->insert 	   = $this->tag("a")
-				 						->style("cursor: pointer;")
-									  ->addClass("icodadd a-undefault")
-									  ->addClass("insertAbsenceApi")
-									  ->classification($r->insert)
-									  ->tabindex("-1")
-									  ->render();
+				// $r->insert 	   = $this->tag("a")
+				//  						->style("cursor: pointer;")
+				// 					  ->addClass("icodadd a-undefault")
+				// 					  ->addClass("insertAbsenceApi")
+				// 					  ->classification($r->insert)
+				// 					  ->tabindex("-1")
+				// 					  ->render();
 
-				$r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->tabindex("-1")->render();
+				// $r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->tabindex("-1")->render();
 			});
 			$this->sql(".dataTable", $dtable);
+	}
+
+	public function get_value($classificationid = false, $scoretypeid = false) {
+		$check = $this->sql()->tableScore()
+					->whereClassification_id($classificationid)
+					->andScore_type_id($scoretypeid)->limit(1)->select();
+					// var_dump($check->assoc("value")); exit();
+			return $check->assoc("value");
+		if($check->num() == 1) {
+		}else{
+			return;
+		}
 	}
 }
 ?>

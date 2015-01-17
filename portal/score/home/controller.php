@@ -10,7 +10,7 @@ class controller extends main_controller {
 		
 		$this->listen(array(
 				"max" => 5,
-				"url" => array("api", "classificationid" => "/^\d+$/" ,"scoretypeid" => "/^\d+$/", "value" => "/^(\d+\.?\d+)$/")
+				"url" => array("api", "classificationid" => "/^\d+$/" ,"scoretypeid" => "/^\d+$/", "value" => "/(.*)/")
 				), array("score", "api", "mod" => "api"));
 
 		$this->listen(array(

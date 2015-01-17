@@ -40,7 +40,7 @@ class model extends main_model {
 					}
 				}
 
-				$r->type = $x->render();
+				$r->type ="<div class='form-element' >"  . $x->render() . "</div>";
 
 				$r->attendance = $this->tag("a")
 									  ->addClass("icoattendance")

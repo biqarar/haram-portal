@@ -2,24 +2,37 @@
 class model extends main_model {
 
 	public function post_api(){
-		// debug_lib::true("fuck");
+
 
 		$classificationid = $this->xuId("classificationid");
 		$scoretypeid = $this->xuId("scoretypeid");
 		$value = $this->xuId("value");
 
-		$sql = $this->sql()->tableScore()->whereClassification_id($classificationid)->andScore_type_id($scoretypeid);
+
+		$check = $this->sql()->tableScore()
+					->whereClassification_id($classificationid)
+					->andScore_type_id($scoretypeid)->limit(1)->select()->num();
 		
-		$check = $sql;
-		if($check->select()->num() == 1) {
-			$sql->setValue($value)->update();	
+		
+		if($check == 1) {
+			$x = $this->sql()->tableScore()
+							->whereClassification_id($classificationid)
+							->andScore_type_id($scoretypeid)
+							->setValue($value)
+							->update();	
+
 			$this->commit(function(){
-				debug_lib::true("اطلاعات ثبت شد");
+				debug_lib::true("اطلاعات به روز رسانی شد");
 			});
 		}else{
-			$sql->setValue($value)->insert();
+			$x = $this->sql()->tableScore()
+							->setClassification_id($classificationid)
+							->setScore_type_id($scoretypeid)
+							->setValue($value)
+							->insert();	
+
 			$this->commit(function(){
-				debug_lib::true("اطلاعات بهروز رسانی شد");
+				debug_lib::true("اطلاعات ثبت شد");
 			});
 		}
 	}
