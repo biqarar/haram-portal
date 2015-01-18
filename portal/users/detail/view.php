@@ -13,6 +13,10 @@ class view extends main_view  {
 		//------------------------------ check users (if teacher , can not be display another users by id)
 		$this->check_users_type($users_id);
 
+		//------------------------------  make olddb card
+		$this->data->olddb = $this->sql(".olddb", $users_id);
+
+
 		//------------------------------  make person card
 		$person = $this->sql(".list.card", "person", $users_id, "users_id");
 		unset($person['addLink']);
