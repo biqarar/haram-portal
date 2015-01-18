@@ -5,16 +5,19 @@
 */
 class model extends main_model {
 		public function post_api(){
-		
 		$type = $this->xuId("type");
+		// var_dump($type); exit();
 		$url = "classification/class/";
 		$ico = "icoclass";
-		if($type != "classification" && $type != "absence") {
+		if($type == "classification" || $type == "") {
 			$url = "classification/class/";
 			$ico = "icoclass";
 		}elseif($type == "absence"){
 			$url = "absence/classes/";
 			$ico = "icoattendance";
+		}elseif($type == "score"){
+			$url = "score/classes/";
+			$ico = "icohome";
 		}
 
 

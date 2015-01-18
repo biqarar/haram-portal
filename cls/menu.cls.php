@@ -295,15 +295,15 @@ class menu_cls  {
 				)
 			);
 
-		//------------------------------   price list
-		// self::$menu[] = array(
-		// 	"submenu" => "user", 
-		// 	"url" => "price/status=list", 
-		// 	"name" =>  "لیست شهریه ها", 
-		// 	"tag" => array(
-		// 		"price" => array("insert" => array("public", "private"))
-		// 		)
-		// 	);
+		// ------------------------------   price list
+		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "price/status=list", 
+			"name" =>  "لیست شهریه ها", 
+			"tag" => array(
+				"price" => array("insert" => array("public", "private"))
+				)
+			);
 
 		//------------------------------   bridge list
 		self::$menu[] = array(

@@ -9,7 +9,8 @@ class view extends main_view{
 		//------------------------------ global
 		$this->global->page_title = "classes";
 		
-		$type = ($this->xuId("type") == "classification") ? "classification" : "absence";
+		$type = $this->xuId("type");
+		if(!isset($type) || $type == "") $type = "classification";
 
 		$this->data->dataTable = $this->dtable("classes/status=api/type=$type/"
 			, array(

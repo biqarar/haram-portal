@@ -15,6 +15,11 @@ class controller extends main_controller {
 
 		$this->listen(array(
 				"max" => 5,
+				"url" => array("classes", "classesid" => "/^\d+$/")
+				), array("score", "classes"));
+
+		$this->listen(array(
+				"max" => 5,
 				"url" => array("classes", "status" => "apilist" ,"classesid" => "/^\d+$/", "scoretypeid" => "/^\d+$/")
 				), array("score", "classes", "mod" => "api"));
 
