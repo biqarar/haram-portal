@@ -7,6 +7,7 @@ class query_price_cls extends query_cls {
 		$user_active_price = $this->sum_price($users_id);
 		if(intval($user_active_price) >= intval($price) || global_cls::superprice()){
 			$this->price_low($users_id, $classes_id, $price, $dateNow);
+			// exit();
 			return true;
 		}else{
 			return false;
@@ -23,6 +24,8 @@ class query_price_cls extends query_cls {
 			->setTitle(5)
 			->setTransactions($classes_id)
 			->insert();
+			var_dump(debug_lib::compile());
+		exit();
 	}
 
 	public function sum_price($users_id) {

@@ -6,12 +6,13 @@ class model extends main_model{
 
 	public function makeQuery() {
 		//------------------------------ make sql object
-		return $this->sql()->tableScore_type()
+		$x = $this->sql()->tableScore_type()
 						   ->setPlan_id(post::plan_id())
 						   ->setTitle(post::title())
 						   ->setMin(post::min())
 						   ->setMax(post::max())
 						   ->setDescription(post::description());
+		return $x;
 	}
 
 	public function post_add_score_type(){

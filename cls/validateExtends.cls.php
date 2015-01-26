@@ -102,19 +102,18 @@ class validateExtends_cls{
 
 	public function number($a = false, $b = false) {
 
-		if($this->value == '' || $this->value === 0 ) return true;
+		// if($this->value == '' || $this->value === 0 ) return true;
 
 		$a = (preg_match("/^\d+$/", $a)) ? $a : false;
 		$b = (preg_match("/^\d+$/", $b)) ? $b : false;
 
-		if(!$a && !$b){
+		if($a === false && $b === false){
 			$reg = "/^\d+$/";
-		}elseif($a && !$b) {
+		}elseif($a && $b === false) {
 			$reg = "/^\d{" . $a . "}$/";
 		}elseif($a && $b){
 			$reg = "/^\d{" . $a . "," . $b . "}$/";
 		}
-		
 		if (preg_match($reg, $this->value)) {
 			$this->value = intval($this->value);
 			return true;

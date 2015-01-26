@@ -97,15 +97,18 @@ class model extends main_model{
 			
 			//------------------------------ insert into users
 			//------------------------------ get users_id to set into person table
-			$users_id  = $this->sql()->tableUsers()
+			$q_users_id  = $this->sql()->tableUsers()
 						->setEmail(post::email())
 						->setPassword(md5(post::nationalcode()))
 						->setUsername($username)
-						->insert()->LAST_INSERT_ID();
+						->insert();
+			$users_id = $q_users_id->LAST_INSERT_ID();
+			ilog($q_users_id->string());
 
 			
 			//------------------------------ insert into person table
 			$person = $this->makeQuery()->setUsers_id($users_id)->insert();
+			ilog($person->string());
 			
 			//------------------------------ insert into bridge table, phone and mobile
 			if(post::mobile() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile())->insert();
@@ -117,6 +120,8 @@ class model extends main_model{
 						->setUsers_id($users_id)
 						->setBranch_id(post::branch_id())
 						->insert();
+				ilog($sqlBranch->string());
+
 			}
 
 			//------------------------------ commit code

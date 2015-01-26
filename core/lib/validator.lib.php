@@ -29,7 +29,6 @@ class validator_lib{
 					if(!is_object($args[0])){
 						page_lib::page("validate inline extends $key not found");
 					}
-
 					$this->_functions[$key] = \Closure::bind($args[0], $this);
 				}
 				$onf = $this->status;
@@ -50,7 +49,7 @@ class validator_lib{
 	}
 
 	final function compile(){
-		if($this->status){
+		if($this->status !== false){
 			return $this->value;
 		}else{
 			debug_lib::{$this->type}($this->error, $this->name, $this->group);
