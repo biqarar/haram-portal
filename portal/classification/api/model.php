@@ -8,7 +8,6 @@ class model extends main_model {
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
-
 		// $name_famil 
 		//------------------------------ key for check duplicate
 		$duplicate = false;
@@ -30,8 +29,10 @@ class model extends main_model {
 					$classification = $this->sql()->tableClassification()
 							->setUsers_id($users_id)
 							->setClasses_id($classes_id)
-							->setDate_entry($this->dateNow())
+							->setDate_entry1($this->dateNow())
 							->insert();
+			// var_dump("1");
+							// var_dump($classification);
 					//------------------------------- set classification count in to classes table
 					$this->sql(".classesCount", $classes_id);
 				}
@@ -53,6 +54,7 @@ class model extends main_model {
 		$this->rollback(function() {
 			debug_lib::fatal("خطا در ثبت");
 		});
+// var_dump("fuck");exit();
 	}
 
 }

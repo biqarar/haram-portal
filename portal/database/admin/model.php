@@ -110,11 +110,17 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 
 		// $this->title("change passwrod");
-		// $all = $this->sql()->tableBranch()->select()->allAssoc();
-		// foreach ($all as $key => $value) {
-		// 	$this->count();
-		// }
-		// $this->flush();
+		$all = $this->sql()->tableBridge()->whereTitle("mobile");
+		$all->joinClassification()->whereUsers_id("#bridge.users_id");
+		$all->joinBranch_cash()->whereTable("classification")->andRecord_id("#classification.id")->andBranch_id(1);
+		$a = $all->select();
+		var_dump($a->num(), $a->string());
+		echo "<table>";
+		foreach ($a->allAssoc() as $key => $value) {
+			echo "<tr><td>" . $value['value'] . "</td></tr>";
+		}
+		echo "</table>";
+		$this->flush();
 
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
@@ -130,7 +136,7 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
-
+		return;
 		
 		$sql = new dbconnection_lib;
 		$database_change = array(

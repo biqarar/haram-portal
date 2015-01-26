@@ -25,6 +25,7 @@ route(/classification\/class\/classesid\=\d+/,function(){
 					type: "POST",
 					url : _xhrUrl,
 					success : function(data){
+						console.log(data);
 						if(data.fatal){
 							xhr_error(data.fatal[0]);
 						}else if(data.warn){

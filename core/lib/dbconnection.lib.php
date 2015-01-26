@@ -81,11 +81,13 @@ class dbconnection_lib{
 			'9'
 			);
 		$string = preg_replace($patterns, $replacements, $string);
+		// var_dump($string);
 		if(debug_lib::$status || self::$resum_on_error){
 			$this->string = $string;
 			$this->result = self::$connection->query($string);
 			if (self::$connection->error) {
 				$this->status = false;
+				// var_dump("error : "  . self::$connection->error);
 				$this->error(self::$connection->error, self::$connection->errno);
 
 			}
