@@ -144,7 +144,7 @@ class sql_lib{
 
 		$values = array_values($this->maker->set);
 		foreach ($values as $key => $value) {
-			if(!$value || $value == "") $value = "#NULL";
+			if($value === false || $value === null || $value == "") $value = "#NULL";
 			$values[$key] = $this->oString($this->maker->table, $fKeys[$key] ,$value);
 		}
 
@@ -313,11 +313,16 @@ class sql_lib{
 					$value = preg_replace("/^\\\#/", "#", $value);
 					$v = new validator_lib(array($field, $value), $gTable->validate, 'form');
 					$value = $v->compile();
-					$value = ($value === false)? "NULL" : $value;
+// <<<<<<< HEAD
+					// $value = ($value === false)? "NULL" : $value;
+// =======
+					$value = (($value == '' && is_string($value)) || ($value === false))? "NULL" : $value;
+// >>>>>>> ea5c51e3f8f2a25b498b901b9e5dac8199cace38
 					if($value == "NULL"){
 						$cInt = true;
 					}
 				}
+
 				if(!$cInt){
 					$value = htmlentities($value, ENT_QUOTES, "UTF-8");
 				}

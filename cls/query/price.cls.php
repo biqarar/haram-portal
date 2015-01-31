@@ -2,12 +2,15 @@
 class query_price_cls extends query_cls {
 
 	public function checkClasses($users_id = false, $classes_id = false, $dateNow = false) {
+
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
 		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select()->assoc("price");
+		if($price == null) return true;
 		$user_active_price = $this->sum_price($users_id);
-		// var_dump($user_active_price); exit();
+		
 		if(intval($user_active_price) >= intval($price) || global_cls::superprice()){
 			$this->price_low($users_id, $classes_id, $price, $dateNow);
+			
 			return true;
 		}else{
 			return false;
@@ -15,8 +18,7 @@ class query_price_cls extends query_cls {
 	}
 
 	public function price_low($users_id = false, $classes_id = false, $price = false, $dateNow = false) {
-		// $title = $this->sql()->tablePrice_change()->where
-		// var_dump("fuck"); var_dump($price);
+
 		$x = $this->sql()->tablePrice()
 			->setUsers_id($users_id)
 			->setDate($dateNow)
@@ -25,7 +27,7 @@ class query_price_cls extends query_cls {
 			->setTitle(5)
 			->setTransactions($classes_id)
 			->insert();
-			echo $x->string(); exit();
+
 	}
 
 	public function sum_price($users_id) {

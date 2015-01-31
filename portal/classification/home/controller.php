@@ -23,7 +23,7 @@ class controller extends main_controller{
 		
 		//------------------------------ classification list
 		$this->listen(array(
-			"max" => 2,
+			"max" => 3,
 			"url" => array("printlist", "classesid" => "/^\d+$/")
 			), 
 			function () {

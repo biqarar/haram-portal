@@ -9,10 +9,9 @@ class model extends main_model {
 				->condition("and", "#date_delete" , "is", "#null")
 				->condition("or", "#because", "is", "#null")
 				->groupClose();
-		$q->joinPerson()->whereUsers_id("#classification.users_id")
-				
-				->fieldName()->fieldFamily();
-		// $q->joinBridge()->whereUsers_id("#classification.users_id");
+		$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName()->fieldFamily();
+		// $q->joinBridge()->whereUsers_id("#classification.users_id")->fieldValue();
+		$q->joinUsers()->whereId("#classification.users_id")->fieldUsername();
 		$x = $q->fieldUsers_id()->select()->allAssoc();
 		return $x;
 	}

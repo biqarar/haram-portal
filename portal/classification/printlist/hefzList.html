@@ -1,0 +1,145 @@
+<br>
+<div class="class-details colory">
+{% for key, header in detail.header %}
+	<div class="class-detail normal-font">
+		<div class="class-detail-title">{{header|lang}}:</div>
+		<div class="class-detail-value">{{detail.list[0][key]|lang}}</div>
+	</div>
+{%endfor%}
+	
+
+	<div style="clear:both"></div>
+</div>
+
+<table  cellspacing="0" border="0">
+    <tr>
+        <td rowspan="3" class="small-font system-default">ردیف</td>
+        <td colspan="2" class="system-default small-font">ایام هفته</td>
+        <td class="small-font system-default">شنبه</td>
+        <td class="small-font system-default colory">يکشنبه</td>
+        <td class="small-font system-default">دوشنبه</td>
+        <td class="small-font system-default colory">سه شنبه</td>
+        <td class="small-font system-default">چهار شنبه</td>
+        <td class="small-font system-default colory">پنجشنبه</td>
+        <td class="small-font system-default">شنبه</td>
+        <td class="small-font system-default colory">يکشنبه</td>
+        <td class="small-font system-default">دوشنبه</td>
+        <td class="small-font system-default colory">سه شنبه</td>
+        <td class="small-font system-default">چهار شنبه</td>
+        <td class="small-font system-default colory">پنجشنبه</td>
+    </tr>
+    <tr>
+        <td colspan="2"class="small-font system-default">تاریخ</td>
+        <td class="small-font system-default">... / ... / ... </td>
+        <td class="small-font system-default colory">... / ... / ... </td>
+        <td class="small-font system-default">... / ... / ... </td>
+        <td class="small-font system-default colory">... / ... / ... </td>
+        <td class="small-font system-default">... / ... / ... </td>
+        <td class="small-font system-default colory">... / ... / ... </td>
+        <td class="small-font system-default">... / ... / ... </td>
+        <td class="small-font system-default colory">... / ... / ... </td>
+        <td class="small-font system-default">... / ... / ... </td>
+        <td class="small-font system-default colory">... / ... / ... </td>
+        <td class="small-font system-default">... / ... / ... </td>
+        <td class="small-font system-default colory">... / ... / ... </td>
+        
+    </tr>
+    <tr>
+        <td colspan="2"class="small-font system-default">محدوده حفظ</td>
+        <td class="small-font system-default">صفحه: ..... </td>
+        <td class="small-font system-default colory">صفحه: ..... </td>
+        <td class="small-font system-default">صفحه: ..... </td>
+        <td class="small-font system-default colory">صفحه: ..... </td>
+        <td class="small-font system-default">صفحه: ..... </td>
+        <td class="small-font system-default colory">صفحه: ..... </td>
+        <td class="small-font system-default">صفحه: ..... </td>
+        <td class="small-font system-default colory">صفحه: ..... </td>
+        <td class="small-font system-default">صفحه: ..... </td>
+        <td class="small-font system-default colory">صفحه: ..... </td>
+        <td class="small-font system-default">صفحه: ..... </td>
+        <td class="small-font system-default colory">صفحه: ..... </td>    
+    </tr>
+    {% for key, list in list %}
+     <tr>
+        <td rowspan="5" class="normal-font">{{key + 1}}</td>
+        <td rowspan="2" class="normal-font">{{list.name}}  {{list.family}}</b></td>
+        <td class="small-font system-default">حفظ جدید</td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="small-font system-default" >درس گذشته</td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td> 
+    </tr>
+    <tr>
+        
+        <td class="normal-font">{{list.phone}}</td>
+        <td class="small-font system-default" >20 درس</td>
+      <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="normal-font">{{list.mobile}}</td>
+        <td class="small-font system-default" >مرور 2</td>
+      <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="normal-font">{{list.username}}</td>
+        <td class="small-font system-default">مفاهیم</td>
+       <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+        <td class="colory"></td>
+        <td></td>
+    </tr>
+    {%endfor%}
+</table>

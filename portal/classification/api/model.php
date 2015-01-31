@@ -29,7 +29,7 @@ class model extends main_model {
 					$classification = $this->sql()->tableClassification()
 							->setUsers_id($users_id)
 							->setClasses_id($classes_id)
-							->setDate_entry1($this->dateNow())
+							->setDate_entry($this->dateNow())
 							->insert();
 			// var_dump("1");
 							// var_dump($classification);
