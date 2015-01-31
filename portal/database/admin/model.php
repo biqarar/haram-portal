@@ -110,17 +110,17 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 
 		// $this->title("change passwrod");
-		$all = $this->sql()->tableBridge()->whereTitle("mobile");
-		$all->joinClassification()->whereUsers_id("#bridge.users_id");
-		$all->joinBranch_cash()->whereTable("classification")->andRecord_id("#classification.id")->andBranch_id(1);
-		$a = $all->select();
-		var_dump($a->num(), $a->string());
-		echo "<table>";
-		foreach ($a->allAssoc() as $key => $value) {
-			echo "<tr><td>" . $value['value'] . "</td></tr>";
-		}
-		echo "</table>";
-		$this->flush();
+		// $all = $this->sql()->tableBridge()->whereTitle("mobile");
+		// $all->joinClassification()->whereUsers_id("#bridge.users_id");
+		// $all->joinBranch_cash()->whereTable("classification")->andRecord_id("#classification.id")->andBranch_id(1);
+		// $a = $all->select();
+		// var_dump($a->num(), $a->string());
+		// echo "<table>";
+		// foreach ($a->allAssoc() as $key => $value) {
+		// 	echo "<tr><td>" . $value['value'] . "</td></tr>";
+		// }
+		// echo "</table>";
+		// $this->flush();
 
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
@@ -136,10 +136,14 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
-		return;
+		
 		
 		$sql = new dbconnection_lib;
 		$database_change = array(
+			"ALTER TABLE `person`  ADD `education_howzah_id` INT(10)  AFTER `education_id`",
+			"ALTER TABLE `person` ADD CONSTRAINT `person_ibfk_10` FOREIGN KEY (`education_howzah_id`) REFERENCES `education` (`id`)",
+
+
 			"DROP TABLE IF EXISTS `score`" , 
 
 		"CREATE TABLE IF NOT EXISTS `score` (
