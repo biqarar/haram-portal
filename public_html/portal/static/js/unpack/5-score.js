@@ -20,8 +20,8 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 			type: "POST",
 			url : "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value,
 			success : function(data){
-				
 				if(data.fatal){
+					$("<b>ff</b>").insertAfter(_self);
 					xhr_error(data.fatal[0]);
 				}else if(data.warn){
 					xhr_warn(data.warn[0]);
