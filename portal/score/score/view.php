@@ -8,19 +8,9 @@ class view extends main_view {
 
 		//------------------------------ global
 		$this->global->page_title ="score";
-		$classesid = $this->xuId("classesid");
-		$score_type = $this->sql("#score_type", $classesid);
-		
- 		
- 		$list = array();
- 		foreach ($score_type as $key => $value) {
- 			$title = "ثبت امتیاز " . $value['title'];
- 			$list['list'][0][$title] = $this->tag("a")->href("score/classes/status=add/classesid=$classesid/scoretypeid=" . $value['id'])
- 									->class("icodadd")->render();
- 		}
 
- 		$this->data->a = $list;
-// var_dump($this->data->score_type );
+		$this->global->score_type = $this->sql("#score_type", $this->xuId("scoretypeid"), "title");
+
 		//------------------------------ get detail classes
 		if(config_lib::$surl['classesid']){
 			//------------------------------ classes id
@@ -52,13 +42,13 @@ class view extends main_view {
 		}
 		
 
-		// $this->data->dataTable = $this->dtable(
-		// 	"score/classes/status=apilist/classesid=" . $this->xuId("classesid")
-		// 	.'/scoretypeid=' . $this->xuId("scoretypeid") . "/",
-		// 	array("name", "family", "نمره " . $this->global->score_type));
+		$this->data->dataTable = $this->dtable(
+			"score/classes/status=apilist/classesid=" . $this->xuId("classesid")
+			.'/scoretypeid=' . $this->xuId("scoretypeid") . "/",
+			array("name", "family", "نمره " . $this->global->score_type));
 
 
-		// $this->data->classes_id = $this->data->list['list'][0]['id'];
+		$this->data->classes_id = $this->data->list['list'][0]['id'];
 	}
 }
 ?>

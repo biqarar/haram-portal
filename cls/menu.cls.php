@@ -356,6 +356,17 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "class", 
+			"url" => "classes/status=list/type=score", 
+			"name" =>  "ثبت نمرات کلاس" , 
+			"tag" => array(
+				"score" => array("insert" => array("public"))
+				)
+			);
+
+
 		//------------------------------ plan add
 		self::$menu[] = array(
 			"submenu" => "class", 

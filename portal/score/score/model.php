@@ -1,10 +1,9 @@
 <?php
 class model extends main_model {
 
-	public function sql_score_type($classesid = false) {
-		$plan_id = $this->sql()->tableClasses()->whereId($classesid)->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
-		$score_type = $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
-		return $score_type;
+	public function sql_score_type($scoretypeid = false, $title = null) {
+		if (!$scoretypeid) $scoretypeid = $this->xuId("scoretypeid");
+		return $this->sql()->tableScore_type()->whereId($scoretypeid)->limit(1)->select()->assoc($title);
 	}
 	public function post_api() {
 

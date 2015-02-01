@@ -1,4 +1,16 @@
 <br>
+<style type="text/css">
+     .xprn {
+        display: block; 
+        page-break-before:always;
+        margin: 0;
+        padding: 0;
+      }
+      @page {
+        margin: 1cm;
+        padding: 1cm
+      }
+</style>
 <div class="class-details colory">
 {% for key, header in detail.header %}
 	<div class="class-detail normal-font">
@@ -12,7 +24,7 @@
 </div>
 
 <table  cellspacing="0" border="0">
-    <tr>
+    <tr class="prn">
         <td rowspan="3" class="small-font system-default">ردیف</td>
         <td colspan="2" class="system-default small-font">ایام هفته</td>
         <td class="small-font system-default">شنبه</td>
@@ -28,7 +40,7 @@
         <td class="small-font system-default">چهار شنبه</td>
         <td class="small-font system-default colory">پنجشنبه</td>
     </tr>
-    <tr>
+    <tr class="prn">
         <td colspan="2"class="small-font system-default">تاریخ</td>
         <td class="small-font system-default">... / ... / ... </td>
         <td class="small-font system-default colory">... / ... / ... </td>
@@ -44,7 +56,7 @@
         <td class="small-font system-default colory">... / ... / ... </td>
         
     </tr>
-    <tr>
+    <tr class="prn">
         <td colspan="2"class="small-font system-default">محدوده حفظ</td>
         <td class="small-font system-default">صفحه: ..... </td>
         <td class="small-font system-default colory">صفحه: ..... </td>
@@ -60,7 +72,7 @@
         <td class="small-font system-default colory">صفحه: ..... </td>    
     </tr>
     {% for key, list in list %}
-     <tr>
+     <tr class="prn">
         <td rowspan="5" class="normal-font">{{key + 1}}</td>
         <td rowspan="2" class="normal-font">{{list.name}}  {{list.family}}</b></td>
         <td class="small-font system-default">حفظ جدید</td>
@@ -77,7 +89,7 @@
         <td class="colory"></td>
         <td></td>
     </tr>
-    <tr>
+    <tr class="prn">
         <td class="small-font system-default" >درس گذشته</td>
         <td class="colory"></td>
         <td></td>
@@ -92,7 +104,7 @@
         <td class="colory"></td>
         <td></td> 
     </tr>
-    <tr>
+    <tr class="prn">
         
         <td class="normal-font">{{list.phone}}</td>
         <td class="small-font system-default" >20 درس</td>
@@ -109,7 +121,7 @@
         <td class="colory"></td>
         <td></td>
     </tr>
-    <tr>
+    <tr class="prn">
         <td class="normal-font">{{list.mobile}}</td>
         <td class="small-font system-default" >مرور 2</td>
       <td class="colory"></td>
@@ -125,7 +137,7 @@
         <td class="colory"></td>
         <td></td>
     </tr>
-    <tr>
+    <tr class="prn">
         <td class="normal-font">{{list.username}}</td>
         <td class="small-font system-default">مفاهیم</td>
        <td class="colory"></td>
@@ -141,5 +153,10 @@
         <td class="colory"></td>
         <td></td>
     </tr>
+    {%if key == 2%}
+    <tr class="xprn"></tr>
+    {%elseif (key+1)%4 == 0 and key+1 != 4%}
+    <tr class="xprn"></tr>
+    {%endif%}
     {%endfor%}
 </table>

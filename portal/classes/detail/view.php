@@ -25,7 +25,6 @@ class view extends main_view {
 
 		//------------------------------ convert paln_id , teacher , place id , ... to name of this
 		$classes_detail = $this->detailClasses($classes_detail);
-		
 
 		$this->data->list = $classes_detail;
 	}
