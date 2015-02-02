@@ -19,11 +19,16 @@ class view extends main_view {
 			$query->whereId($this->xuId("classesid"));
 		})->compile();
 
-		//------------------------------ convert paln_id , teacher , place id , ... to name of this
+		$plan_id = $classes_detail['list'][0]['plan_id'];
+
+		//------------------------------ convert plan_id , teacher , place id , ... to name of this
 		$classes_detail = $this->detailClasses($classes_detail);
 		$this->data->classesid = $this->xuId("classesid");
 		$this->data->type = $this->xuId("type");
 		// var_dump($classes_detail , $classes_list); exit();
+		$score_type = $this->sql("#score_type", $plan_id);
+		// var_dump($score_type);
+		$this->data->score_type = $score_type; 
 		$this->data->detail = $classes_detail;
 		$this->data->list = $classes_list;
 	}

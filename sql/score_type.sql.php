@@ -19,7 +19,7 @@ class score_type {
 	}
 
 	public function	plan_id(){
-		$this->form("select")->name("plan_id")->addClass("select-plan-section")->addClass("not-select");
+		$this->form("select")->name("plan_id")->addClass("select-plan-section")->addClass("notselect");
 		$this->setChild(function($q){
 			
 		}, function($child, $value){

@@ -20,5 +20,8 @@ class model extends main_model {
 		return $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assco();
 	}
 
+	public function sql_score_type($plan_id = false) {
+		return $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
+	}
 }
 ?>
