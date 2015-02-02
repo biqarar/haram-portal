@@ -98,14 +98,14 @@ ready(function(base){
 	
 	base.find("*:not(style)").persian_nu();
 	base.find("select:not([name=data_table_length], .notselect)").selectmenu();
-	$("input[name='pasport_date'],label[for='pasport_date']").hide();
+	// $("input[name='pasport_date'],label[for='pasport_date']").hide();
 	base.find(".select-nationality").on("selectmenuchange", function(event, ui){
 		if(ui.item.value != 97){
 			$(this).parents("form").find(".select-city").attr("disabled", "disabled").selectmenu("refresh");
-			$(this).parents("form").find("input[name='pasport_date'],label[for='pasport_date']").fadeIn(200);
+			// $(this).parents("form").find("input[name='pasport_date'],label[for='pasport_date']").fadeIn(200);
 		}else{
 			$(this).parents("form").find(".select-city").removeAttr("disabled").selectmenu("refresh");
-			$(this).parents("form").find("input[name='pasport_date'],label[for='pasport_date']").fadeOut(200);
+			// $(this).parents("form").find("input[name='pasport_date'],label[for='pasport_date']").fadeOut(200);
 		}
 	});
 

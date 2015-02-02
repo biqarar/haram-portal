@@ -15,5 +15,13 @@ class global_cls{
 		}
 		return false;
 	}
+
+	static function superperson() {
+		if(isset($_SESSION['user_permission']['tables']['person']['condition'])
+		&&  $_SESSION['user_permission']['tables']['person']['condition'] = "*"){
+			return true;
+		}
+		return false;
+	}
 }
 ?>

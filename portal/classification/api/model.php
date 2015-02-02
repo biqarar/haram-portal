@@ -5,6 +5,7 @@
 class model extends main_model {
 
 	public function post_insert() {
+				// var_dump("fuck");
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
@@ -24,6 +25,9 @@ class model extends main_model {
 				//------------------------------ check price 
 				if(!$this->sql(".price.checkClasses", $users_id , $classes_id, $this->dateNow())) {
 					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
+				// }elseif(!$this->sql(".pasportCheck", $users_id)){
+					// var_dump("fuck");
+					// debug_lib::fatal("تاریخ اتمام گذرنامه این فرد به اتمام رسیده است.");
 				}else{
 					//------------------------------ insert classification
 					$classification = $this->sql()->tableClassification()

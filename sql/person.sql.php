@@ -126,7 +126,7 @@ class person {
 
 
 	public function education_howzah_id() {
-		$this->form("select")->name("education_howzah_id")->addClass("select-education-howzah-section");
+		$this->form("select")->name("education_howzah_id")->addClass("select-education-howzah-section notselect");
 		$this->setChild(function($q){
 			$q->whereGroup("howzah");
 		}, function($child, $value){
