@@ -1,6 +1,18 @@
 {# reza mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	.list {
+		float: left;
+		display: inline;
+		margin-left: 50px;
+	}
+</style>
+
+<span class="list">
+<h3>نوع امتیاز</h3>
+	
+</span>
 <form class="ajx" method="post" action="score/calculation/{{global.url}}">
 	{{forms.make(form.score_calculation)}}
 </form>

@@ -17,6 +17,27 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "min"
+msgstr "حد اقل"
+
+msgid "max"
+msgstr "حد اکثر"
+
+msgid "score_type"
+msgstr "نوع امتیاز"
+
+msgid "calculation"
+msgstr "روش محاسبه"
+
+msgid "score_calculation"
+msgstr "روش محاسبه نمره"
+
+msgid "score"
+msgstr "امتیاز"
+
+desactive
+
+
 msgid "education_academic_id"
 msgstr "تحصیلات کلاسیک"
 
