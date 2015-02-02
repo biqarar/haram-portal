@@ -13,10 +13,10 @@ class person {
 	public $code         = array('type'=> 'int@10', 'label' => 'person_code');
 	public $marriage     = array('type'=> 'enum@single,married!single', 'label' => 'person_marriage');
 	public $child        = array('type'=> 'int@10', 'label' => 'person_child');
-	// public $type         = array('type'=> 'enum@student,teacher,operator,baby!student', 'label' => 'person_type');
 	public $casecode     = array('type'=> 'int@10', 'label' => 'person_casecode');
 	public $casecode_old = array('type'=> 'int@10', 'label' => 'person_casecode_old');
-	public $education_id = array('type'=> 'int@10', 'label' => 'education_id');
+	public $education_id = array('type'=> 'int@10', 'label' => 'education_academic_id');
+	public $education_howzah_id = array('type'=> 'int@10', 'label' => 'education_howzah_id');
 	// public $en_name      = array('type'=> 'varchar@32', 'label' => 'person_en_name');
 	// public $en_family    = array('type'=> 'varchar@32', 'label' => 'person_en_family');
 	// public $en_father    = array('type'=> 'varchar@32', 'label' => 'person_en_father');
@@ -33,7 +33,8 @@ class person {
 		"users_id"           => "users@id!username",
 		"from"               => "city@id!name",
 		"nationality"        => "country@id!name",
-		"education_id"       => "education@id!section"
+		"education_id"       => "education@id!section",
+		"education_howzah_id"       => "education@id!section"
 		);
 
 	public function id() {
@@ -115,7 +116,19 @@ class person {
 	public function education_id() {
 		$this->form("select")->name("education_id")->addClass("select-education-section");
 		$this->setChild(function($q){
-			$q->orderGroup();
+			$q->whereGroup("academic");
+			// $q->orderGroup();
+		}, function($child, $value){
+			$child->label(gettext($value['group']).' '. $value['section'])->value($value['id']); 
+		});
+
+	}
+
+
+	public function education_howzah_id() {
+		$this->form("select")->name("education_howzah_id")->addClass("select-education-howzah-section");
+		$this->setChild(function($q){
+			$q->whereGroup("howzah");
 		}, function($child, $value){
 			$child->label(gettext($value['group']).' '. $value['section'])->value($value['id']); 
 		});

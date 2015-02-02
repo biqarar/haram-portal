@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "education_academic_id"
+msgstr "تحصیلات کلاسیک"
+
+msgid "education_howzah_id"
+msgstr "تحصیلات حوزوی"
+
 msgid "teachers_list"
 msgstr "لیست اساتید"
 

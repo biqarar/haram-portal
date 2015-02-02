@@ -32,6 +32,8 @@ class model extends main_model{
 		->setFrom(post::from())
 		->setChild(post::child())
 		->setEducation_id(post::education_id())
+		->setEducation_howzah_id(post::education_howzah_id())
+
 		->setPasport_date(post::pasport_date());
 
 		// $from = post::from();

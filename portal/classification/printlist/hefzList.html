@@ -1,13 +1,13 @@
-<br>
+	<br>
 <style type="text/css">
 	.cls1{
-		width:61px;
+		width:22px;
 	}
 	.cls2{
-		width:180px;
+		width:116px;
 	}
 	.cls3{
-		width:135px;
+		width:60px;
 	}
 
 	table{
@@ -18,10 +18,16 @@
 	td{
 		height:23px;
 	}
+	@page {
+			size : portrait !important;
+		}
+		.smalltitle{
+			font-size: 8px;
+		}
 </style>
 <div class="class-details colory">
 	{% for key, header in detail.header %}
-	<div class="class-detail normal-font">
+	<div class="class-detail normal-font smalltitle">
 		<div class="class-detail-title">{{header|lang}}:</div>
 		<div class="class-detail-value">{{detail.list[0][key]|lang}}</div>
 	</div>
@@ -50,18 +56,18 @@
 	</tr>
 	<tr>
 		<td class="small-font system-default">تاریخ</td>
-		<td class="small-font system-default">... / ... / ... </td>
-		<td class="small-font system-default colory">... / ... / ... </td>
-		<td class="small-font system-default">... / ... / ... </td>
-		<td class="small-font system-default colory">... / ... / ... </td>
-		<td class="small-font system-default">... / ... / ... </td>
-		<td class="small-font system-default colory">... / ... / ... </td>
-		<td class="small-font system-default">... / ... / ... </td>
-		<td class="small-font system-default colory">... / ... / ... </td>
-		<td class="small-font system-default">... / ... / ... </td>
-		<td class="small-font system-default colory">... / ... / ... </td>
-		<td class="small-font system-default">... / ... / ... </td>
-		<td class="small-font system-default colory">... / ... / ... </td>
+		<td class="small-font system-default">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default colory">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default colory">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default colory">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default colory">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default colory">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td class="small-font system-default colory">&nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;</td>
 
 	</tr>
 	<tr>

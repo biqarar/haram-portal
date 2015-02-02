@@ -6,8 +6,19 @@ class model extends main_model {
 
 		$classificationid = $this->xuId("classificationid");
 		$scoretypeid = $this->xuId("scoretypeid");
-		$value = $this->xuId("value");
+		$value = intval($this->xuId("value"));
 
+		if($classificationid == 0 or $scoretypeid == 0 ) {
+			debug_lib::fatal("خطا در اطلاعات");
+		}
+
+		$scoretype = $this->sql()->tableScore_type()->whereId($scoretypeid)->limit(1)->select()->assoc();
+
+		if(intval($value) < intval($scoretype['min'])) {
+			debug_lib::fatal("حد اقل امتیاز " . $scoretype['min']);
+		}elseif(intval($value) > intval($scoretype['max'])) {
+			debug_lib::fatal("حد اکثر امتیاز " . $scoretype['max']);
+		}
 
 		$check = $this->sql()->tableScore()
 					->whereClassification_id($classificationid)

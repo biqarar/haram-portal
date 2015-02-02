@@ -4,8 +4,21 @@ route(/score/, function(){
 
 route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function(){
 	function l(a) {console.log(a);}
+	_warn = '<span class="status-warn" style="background: #FFECB3;
+			border: 1px solid #FFD54F;
+			padding: 3px 10px;
+			margin-right: 5px;
+			font-size: 12px;
+			display: inline-block;">تاریخ ثبت نشده است.</span>';
+	_fatal = '<span class="status-fatal" style="background: #FFCDD2;
+			border: 1px solid #E57373;
+			padding: 3px 10px;
+			margin-right: 5px;
+			font-size: 12px;
+			display: inline-block;">تاریخ ثبت نشده است.</span>';
+	_true = '<span class="icolikes" style="margin-right: 5px;padding: 0;display: inline-block;"></span>';
 
-	$('.score-mark', this).blur(function(){
+	$('.score-mark', this).change(function(){
 		$(this).attr('disabled', 'disabled');
 		classificationid = $(this).attr("classificationid")
 		scoretypeid = $(this).attr("scoretypeid");
@@ -16,17 +29,22 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 			return;
 		}
 		_self = $(this);
+		$(_self).next('span').remove();
+		$(_self).attr('disabled', 'disabled');
 		$.ajax({
 			type: "POST",
 			url : "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value,
 			success : function(data){
+				$(_self).removeAttr('disabled');
 				if(data.fatal){
-					$("<b>ff</b>").insertAfter(_self);
-					xhr_error(data.fatal[0]);
+					$(_fatal).html(data.fatal[0]).insertAfter(_self);
+					// xhr_error(data.fatal[0]);
 				}else if(data.warn){
-					xhr_warn(data.warn[0]);
+					$(_warn).html(data.warn[0]).insertAfter(_self);
+					// xhr_warn(data.warn[0]);
 				}else{
-					xhr_true(data.true[0]);
+					$(_true).insertAfter(_self);
+					// xhr_true(data.true[0]);
 				}
 			}
 		});

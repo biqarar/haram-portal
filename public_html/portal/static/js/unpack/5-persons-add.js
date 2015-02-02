@@ -19,6 +19,7 @@ route(/portal\/person\/status=(add|edit)/, function(){
 	$( "#nationality", this).combobox(OBJ);
 	
 	$( "#education_id", this).combobox();
+	$( "#education_howzah_id", this).combobox();
 });
 route(/portal\/person\/status=edit/, function(){
 	$(".ajx", this).ajxOptions({
