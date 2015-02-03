@@ -9,11 +9,11 @@ class model extends main_model{
 	}
 
 	public function makeQuery() {
-
+		$value = preg_replace("/\,/", "", post::value());
 		return $this->sql()->tablePrice()
 				->setUsers_id($this->xuId("usersid"))
 				->setDate(post::date())			
-				->setValue(post::value())
+				->setValue($value)
 				->setPay_type(post::pay_type())
 				->setCard(post::card())
 				->setTitle(post::title())
@@ -40,7 +40,23 @@ class model extends main_model{
 		});
 	}
 
-	public function post_edit_price(){}
+	public function post_edit_price(){
+		if(!$this->check_price()){
+			debug_lib::fatal("اطلاعات وارد شده با مقادیر حساب تناقض دارد");
+		}else{
+			$sql = $this->makeQuery()->whereId($this->xuId())->update();
+		}
+
+		
+		$this->commit(function() {
+			debug_lib::true("[[update price successful]]");
+		});
+		
+		$this->rollback(function() {
+			debug_lib::fatal("[[update price failed]]");
+		});
+
+	}
 
 	public function check_price() {
 		$usersid  = $this->xuId("usersid");

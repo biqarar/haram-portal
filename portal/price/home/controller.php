@@ -10,7 +10,15 @@ class controller extends main_controller{
 			"url"=>array("status" => "add" , "usersid" => "/^\d+$/")
 			), function(){
 				save(array("price","option"));
-			$this->permission = array("price" => array("insert" => array("public", "private")));
+			$this->permission = array("price" => array("insert" => array("public")));
+		});
+
+	$this->listen(array(
+			"max" => 4,
+			"url"=>array("status" => "edit" , "id" => "/^\d+$/", "usersid" => "/^\d+$/")
+			), function(){
+				save(array("price","option"));
+			$this->permission = array("price" => array("update" => array("public")));
 		});
 
 		$this->listen(array(
@@ -18,7 +26,7 @@ class controller extends main_controller{
 			"url"=>array("status" => "detail" , "usersid" => "/^\d+$/")
 			), function(){
 				save(array("price","detail"));
-			$this->permission = array("price" => array("insert" => array("public", "private")));
+			$this->permission = array("price" => array("select" => array("public")));
 		});
 	}
 }

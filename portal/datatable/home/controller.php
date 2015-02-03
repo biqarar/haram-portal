@@ -21,7 +21,7 @@ class controller extends main_controller{
 			),
 			function() {
 				save(array("class" => "datatable", "method"=> "api", "mod" => "list"));
-				$this->permission  =array("classification" => array("select" => array("public", "private")));
+				$this->access = global_cls::supervisor()
 			} );
 	}	
 	

@@ -55,9 +55,9 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 });	
 
 route(/score\/calculation\/status\=(add|edit)/, function(){
-	console.log($("#plan_id"));
+	// console.log($("#plan_id"));
 	$("#plan_id option").blur(function(){
-	console.log('fuck');
+	// console.log('fuck');
 		
 	})
 });

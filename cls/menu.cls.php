@@ -127,7 +127,7 @@ class menu_cls  {
 			"url"         => 'pricechange/status=add',
 			"name"        =>  _("مدیریت شهریه"),
 			"tag"         => array(
-			"price"  => array("insert" => array("public"))
+			"price_change"  => array("insert" => array("public"))
 				)
 			);
 
@@ -281,7 +281,7 @@ class menu_cls  {
 			"url" => "person/status=add", 
 			"name" =>  _("menu person add"), 
 			"tag" => array(
-				"users" => array("insert" => array("public", "private"))
+				"users" => array("insert" => array("public"))
 				)
 			);
 		//------------------------------  users list
@@ -301,7 +301,7 @@ class menu_cls  {
 			"url" => "price/status=list", 
 			"name" =>  "لیست شهریه ها", 
 			"tag" => array(
-				"price" => array("insert" => array("public", "private"))
+				"price" => array("select" => array("public"))
 				)
 			);
 
@@ -311,7 +311,7 @@ class menu_cls  {
 			"url" => "bridge/status=list", 
 			"name" =>  "پل های ارتباطی", 
 			"tag" => array(
-				"bridge" => array("insert" => array("public", "private"))
+				"bridge" => array("insert" => array("public"))
 				)
 			);
 
@@ -321,7 +321,7 @@ class menu_cls  {
 			"url" => "teacher/status=list/type=teacher", 
 			"name" =>  "لیست اساتید", 
 			"tag" => array(
-				"teacher" => array("insert" => array("public", "private"))
+				"teacher" => array("insert" => array("public"))
 				)
 			);
 
@@ -331,7 +331,7 @@ class menu_cls  {
 			"url" => "teacher/status=list/type=operator", 
 			"name" =>  "لیست کارشناسان", 
 			"tag" => array(
-				"users" => array("insert" => array("public", "private"))
+				"users" => array("insert" => array("public"))
 				)
 			);
 
@@ -351,8 +351,7 @@ class menu_cls  {
 			"url" => "classes/status=list/", 
 			"name" =>  _("list") . " " . _("classes") , 
 			"tag" => array(
-				"classes" => array("select" => array("public")),
-				"classification" => array("insert" => array("public"))
+				"classes" => array("select" => array("public"))
 				)
 			);
 
@@ -383,8 +382,7 @@ class menu_cls  {
 			"url" => "classes/status=list/type=absence", 
 			"name" =>  _("attendance"), 
 			"tag" => array(
-				"classes" => array("select" => array("public")),
-				"classification" => array("insert" => array("public"))
+				"absence" => array("select" => array("public"))
 				)
 			);
 

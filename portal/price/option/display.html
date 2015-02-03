@@ -1,24 +1,9 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
-<h4>ثبت شهریه برای فراگیر {{global.name}}</h4>
+<h4>{{global.status}} شهریه برای فراگیر {{global.name}}</h4>
 <form class="ajx" method="post" action="price/{{global.url}}">
 	{{forms.make(form.price)}}
 </form>
 
-<script type="text/javascript">
-		function formatNumber (num) {
-		 return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-		}
-
-
-	$('#value').keyup(function(e) {
-		_val = $(this).val().replace(/(\,)/, "");
-		console.log(_val);
-		$(this).val("");
-		// console.log(val);
-		// console.info(formatNumber(_val)); // 111,102,665
-		$(this).val(formatNumber(_val));
-	});
-</script>
 {%endblock%}

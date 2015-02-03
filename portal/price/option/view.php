@@ -12,8 +12,9 @@ class view extends main_view {
 		$usersid = ($this->xuId("usersid") != 0) ? $this->xuId("usersid") : $this->sql("#find_usersid", $this->xuId("id"));
 
 		//------------------------------  url
-		$this->global->url =  $this->urlStatus() ."/usersid=" . $usersid;
-	
+		$this->global->url .=  "/usersid=" . $usersid;
+		$this->global->status =  gettext($this->urlStatus()); 
+		// var_dump($this->global->url);exit();
 		
 		$f = $this->form('@price', $this->urlStatus());
 		// $f->remove("title");
