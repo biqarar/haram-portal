@@ -3,7 +3,7 @@ class model extends main_model {
 	public function post_api() {
 		
 		$dtable = $this->dtable->table("price")
-		->fields('id', "username", "date", "pay_type", "value" , "pricechangename" , "transactions" ,"description")
+		->fields('id', "username", "date", "pay_type", "value" , "pricechangename" , "transactions" ,"description", "id edit")
 		->search_fields("users_id", "date", "transactions")
 		->query(function($q){
 			$q->joinPrice_change()->whereId("#price.title")->fieldName("pricechangename");
@@ -17,7 +17,7 @@ class model extends main_model {
 			}
 		})
 		->result(function($r) {
-			// $r->edit = '<a class="icoedit" href="price/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			$r->edit = '<a class="icoedit" href="price/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 		});
 		$this->sql(".dataTable", $dtable);
 	}

@@ -7,39 +7,18 @@
 </form>
 
 <script type="text/javascript">
-	function CommaFormatted(amount) {
-		var delimiter = ","; // replace comma if desired
-		var _val = amount;
-		// a = amount.split('.',2)
-		// d = a[1];
-		// i = parseInt(a[0]);
-		// if (isNaN(i)) { return ''; }
-		// minus = '';
-		// if (i < 0) { minus = '-'; }
-		// i = Math.abs(i);
-		// n = new String(i);
-		// a = [];
-		// while (n.length > 3) {
-		// 	nn = n.substr(n.length-3);
-		// 	a.unshift(nn);
-		// 	n = n.substr(0,n.length-3);
-		// }
-		// 
-		while (_val.length > 3) {
-			var nn = _val.substr(_val.length-3);
-			console.log(nn);
+		function formatNumber (num) {
+		 return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 		}
-		// 
-		// if (n.length > 0) { a.unshift(n); }
-		// n = a.join(delimiter);
-		// if (d.length < 1) { amount = n; }
-		// else { amount = n + '.' + d; }
-		// amount = minus + amount;
-		// return amount;
-	}
 
-	$('#value').keyup(function() {
-		CommaFormatted($(this).val());
+
+	$('#value').keyup(function(e) {
+		_val = $(this).val().replace(/(\,)/, "");
+		console.log(_val);
+		$(this).val("");
+		// console.log(val);
+		// console.info(formatNumber(_val)); // 111,102,665
+		$(this).val(formatNumber(_val));
 	});
 </script>
 {%endblock%}

@@ -4,6 +4,10 @@
 */
 class model extends main_model{
 
+	public function sql_find_usersid($score_id = false) {
+		return $this->sql()->tablePrice()->whereId($score_id)->limit(1)->fieldUsers_id()->select()->assoc("users_id");
+	}
+
 	public function makeQuery() {
 
 		return $this->sql()->tablePrice()
