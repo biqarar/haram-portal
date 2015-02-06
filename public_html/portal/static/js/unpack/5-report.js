@@ -35,7 +35,11 @@ route(/report\/classes\/status\=apilist/, function(){
 		_checked.call($('.list', this), addToList(index));
 	});
 	$(".start-report").click(function(){
-		var list = returnList();
+		var _list = returnList();
+		var list = Array();
+		for(i = 0; i < _list.length; i++) {
+			if(_list[i]) list.push(_list[i]);
+		}
 		newlist = list.join(',');
 		$(this).attr("href", "report/classes/status=reportall/classesid=" + newlist);
 		// $.ajax({
