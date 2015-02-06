@@ -1,24 +1,42 @@
-
-route(/report\/classes\/status\=apilist/, function(){
-	function l(a) {console.log(a);}
-	 list = Array();
-	$(".list", this).click(function(){
-		 index = $(this).attr("classesid");
-		 if(list[index]  && list[index] == "ok") {
-		 	delete list[index];
-		 }else{
-		 	list[index] = "ok";
-		 }
-		l(list);
-	});
-
-	$(".start-report").click(function(){
-		 newlist = "";
-		for (a in list) {
-			if(list[a] == "ok") {
-				newlist += a + ",";
-			}
+(function(){
+	var list = Array();
+	function _addToList(id){
+		id = parseInt(id);
+		if(list.indexOf(id) !== -1) {
+			delete list[list.indexOf(id)];
+			return false;
+		}else{
+			list.push(id);
+			return true;
 		}
+	}
+
+	function _returnList(){
+		return list;
+	}
+
+	addToList = _addToList;
+	returnList = _returnList;
+})();
+route(/report\/classes\/status\=apilist/, function(){
+	_list = returnList();
+	for(i=0; i< _list.length; i++){
+		$('.list[classesid='+_list[i]+']', this).attr('checked', true);
+	}
+	function _checked(check){
+		if(check){
+			$(this).attr('checked', true);
+		}else{
+			$(this).attr('checked', false);
+		}
+	}
+	$(".list", this).parents('tr').click(function(){
+		index = $('.list', this).attr("classesid");
+		_checked.call($('.list', this), addToList(index));
+	});
+	$(".start-report").click(function(){
+		var list = returnList();
+		newlist = list.join(',');
 		$(this).attr("href", "report/classes/status=reportall/classesid=" + newlist);
 		// $.ajax({
 		// 	type: "POST",
@@ -27,5 +45,5 @@ route(/report\/classes\/status\=apilist/, function(){
 		// 		// document.write(data);
 		// 	}
 		// });		
-	});
-});	
+});
+});
