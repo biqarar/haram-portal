@@ -18,6 +18,7 @@
 	addToList = _addToList;
 	returnList = _returnList;
 })();
+
 route(/report\/classes\/status\=apilist/, function(){
 	_list = returnList();
 	for(i=0; i< _list.length; i++){

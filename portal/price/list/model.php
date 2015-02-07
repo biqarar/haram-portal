@@ -4,7 +4,7 @@ class model extends main_model {
 		
 		$dtable = $this->dtable->table("price")
 		->fields('id', "username", "date", "pay_type", "value" , "pricechangename" , "transactions" ,"description", "id edit")
-		->search_fields("users_id", "date", "transactions")
+		->search_fields("username", "date", "transactions")
 		->query(function($q){
 			$q->joinPrice_change()->whereId("#price.title")->fieldName("pricechangename");
 			$q->joinUsers()->whereId("#price.users_id")->fieldUsername("username");

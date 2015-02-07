@@ -74,7 +74,7 @@ class model extends main_model {
 		->result(function($r, $ico, $url){
 
 			$tag = $this->tag("input")->type("checkbox")->class("list")->classesid($r->classification)->render();
-			$r->classification ="<div class='form-element'>" .  $tag . "</div>";
+			$r->classification ="<label class='label-custom'>".$tag . "<span class='brk-form-custom'><span></span><span></span></span></label>";
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 		}, $ico , $url);
 
