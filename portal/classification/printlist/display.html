@@ -14,18 +14,37 @@
 			display: none;
 		}
 	}
-	#type a {
+	#type a,label {
 		padding: 5px;
 		font-family: "WRoya";
 	}
 	</style>
+
 {%endblock%}
 {% block body %}
 <div id="type">
 	<a href="classification/printlist/classesid={{classesid}}/type=default" class="a-undefault">دوره های کوتاه مدت</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=hefz" class="a-undefault">دوره های حفظ</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=score" class="a-undefault">لیست نمرات</a>
+	<label class="label-custom" >نمایش پل های ارتباطی
+	<input type="checkbox" value="checked" id="bridge" checked="checked" >
+	<span class="brk-form-custom">
+		<span></span>
+		<span></span>
+	</span></label>
 </div>
+	<script type="text/javascript">
+	$("#bridge").click(function(){
+
+		if($(this).val() == "checked") {
+			$(this).val("no");
+			$(".bridge").css("display", "none");
+		}else{
+			$(this).val("checked");
+			$(".bridge").css("display", "block");
+		}	
+	});
+	</script>
 	{% if type == 'default' or type == '0' %}
 		{{ include('classification/printlist/defaultList.html') }}
 	{% elseif type == 'hefz'%}
