@@ -10,7 +10,7 @@ class view extends main_view {
 
 		//------------------------------ load form
 		$f = $this->form("@report", $this->urlStatus());
-
+// var_dump($f);
 		//------------------------------ list of report
 		$this->data->dataTable = $this->dtable(
 			"report/status=api/", 
