@@ -1,5 +1,6 @@
 <?php
 namespace sql;
+
 class dev {
 	public $id       = array('type'=> 'int@10', 'autoI', 'label' => 'dev_id');
 	public $date = array('type'=> 'int@10', 'label' => 'date');

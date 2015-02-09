@@ -151,6 +151,11 @@ class main_model{
 		if(!isset($this->plugin) || !$this->plugin) return;
 	}
 
+	public function sms(){
+		if(!$this->sms_api) $this->sms_api = new sms_lib();
+		return call_user_func_array(array($this->sms_api, 'send'), func_get_args());
+	}
+
 	public function __call($name, $args){
 		if(preg_grep('/^'.$name.'$/', $this->controller->__autocallMethod)){
 			return call_user_func_array(array($this->controller, $name), $args);
