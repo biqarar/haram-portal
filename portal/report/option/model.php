@@ -13,6 +13,7 @@ class model extends main_model {
 	}
 
 	public function post_add_report() {
+		// $this->sms("09356032043", "FUCK YOU");
 		//------------------------------ insert report
 		$sql = $this->makeQuery()->insert();
 
