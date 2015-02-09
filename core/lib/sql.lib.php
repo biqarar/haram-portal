@@ -403,9 +403,8 @@ class sql_lib{
 			if(method_exists($tables, $key)){
 				if(isset($tables->{$key}->closure)){
 					$closure = $tables->{$key}->closure;
+					// if(get_class($closure->$key) !== 'Closure') return;
 					call_user_func($closure->$key);
-					if($key == 'name' && get_class($tables) == 'sql\person'){
-					}
 				}
 			}
 		}
