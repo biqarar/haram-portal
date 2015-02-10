@@ -8,7 +8,11 @@ class model extends main_model {
 		$classes_id = preg_split("/\,/", $classesid);
 		
 		$classification = $this->sql()->tableClassification()
-		->groupOpen();
+		->groupOpen()
+			->condition("and", "#date_delete" , "is", "#null")
+			->condition("or", "#because", "is", "#null")
+		->groupClose();
+		$classification->groupOpen();
 		
 		foreach ($classes_id as $key => $value) {
 			$classification->orClasses_id($value);

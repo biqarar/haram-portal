@@ -30,7 +30,7 @@ class model extends main_model {
 			->fieldEnd_date()
 			->fieldWeek_days();
 
-		$classification->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacher")->fieldFamily("teachers");
+		$classification->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacherName")->fieldFamily("teacherFamily");
 
 		$classification->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
 		
@@ -44,7 +44,7 @@ class model extends main_model {
 
 		$x = $classification->groupValue()->select();
 		$x = $x->allAssoc();
-
+		var_dump($x);exit();
 		return $x;
 		
 
