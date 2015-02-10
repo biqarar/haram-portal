@@ -1,5 +1,5 @@
 {# reza mohiti #}
 {% extends layout %}
-{% block content %}
-{{list|raw}}
+{% block body %}
+{{tagMaker.reportList(list)}}
 {%endblock%}

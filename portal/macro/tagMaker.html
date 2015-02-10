@@ -92,3 +92,65 @@
 	</div>
 {%endif%}
 {%- endmacro -%}
+
+{%- macro reportList(array) -%}
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			direction: rtl;
+		}
+
+		.list-wrapper {
+			display: inline-block;
+		}
+
+		table {
+			width: 100%;
+			direction: rtl;
+		}
+
+		tr:nth-child(2n) {
+			background: #eee;
+		}
+
+		td, th {
+			padding: 5px;
+			border: 1px solid black;
+			font-size: 10px;
+		}
+
+		.list-header {
+			background: #eee;
+			padding: 10px;
+			font-size: 1.618rem;
+			border: 1px solid black;
+		}
+	</style>
+<div class="list-wrapper">
+		<div class="list-header">{{array.title}}</div>
+		<table cellspacing="0" cellpadding="0">
+			<tbody>
+				{% for key, list in array %}
+					{% if key == 0 %}
+						<tr>
+						{% for field, item in list %}
+							<th>{{field|lang}}</th>
+						{%endfor%}
+						</tr>
+					{%endif%}
+
+				<tr>
+				{% for j, item in list %}
+					<td>{{item|lang}}</td>
+				{%endfor%}
+				</tr>
+			{%endfor%}
+			</tbody>
+		</table>
+	</div>
+
+{%- endmacro -%}

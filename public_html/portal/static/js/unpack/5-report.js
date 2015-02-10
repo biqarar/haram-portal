@@ -51,4 +51,12 @@ route(/report\/classes\/status\=apilist/, function(){
 		// 	}
 		// });		
 	});
+
+
+		console.log("fuck");
+	$("#lists").click(function(){
+	});
+});
+route(/report\/status\=(add|edit)/, function(){
+	$("#tables", this).combobox();
 });

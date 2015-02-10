@@ -16,7 +16,7 @@ class report {
 	}
 
 	public function tables() {
-		$this->form("#fatext")->name("tables")->label("tables");
+		$this->form("select")->name("tables")->label("tables")->addClass("notselect");
 		$this->validate();
 	}
 	public function name() {
@@ -26,7 +26,7 @@ class report {
 
 	}
 	public function url() {
-		$this->form("#fatext")->name("url")->label("url");
+		$this->form("text")->name("url")->label("url");
 		$this->validate();
 
 	}

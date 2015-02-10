@@ -386,6 +386,25 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "letters", 
+			"url" => "report/status=add/", 
+			"name" =>  "ثبت گزارش جدید", 
+			"tag" => array(
+				"branch" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "letters", 
+			"url" => "report/classes/", 
+			"name" =>  "گزارش از کلاس", 
+			"tag" => array(
+				"report" => array("classes" => array("public"))
+				)
+			);
 
 		
 

@@ -7,7 +7,7 @@ class model extends main_model {
 	public function makeQuery() {
 		//------------------------------ make sql object
 		return $this->sql()->tableReport()
-			->setTable(post::table())
+			->setTables(post::tables())
 			->setName(post::name())
 			->setUrl(post::url());
 	}

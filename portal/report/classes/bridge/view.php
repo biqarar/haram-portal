@@ -7,7 +7,8 @@ class view extends main_view{
 
 	public function config(){
 		// var_dump("fuck");exit();
-		$list = $this->sql("#list", $this->xuId("classesid"));
+		$list = $this->sql("#bridge_list", $this->xuId("classesid"));
+		$list['title'] = "لیست شماره های تماس فراگیران";
 		$this->data->list = $list;
 		// ------------------------------ global
 		

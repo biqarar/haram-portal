@@ -143,11 +143,13 @@ class model extends main_model{
 
 			"CREATE TABLE IF NOT EXISTS `report` (
 			`id` int(10) NOT NULL,
-			  `table` varchar(64) NOT NULL,
+			  `tables` varchar(64) NOT NULL,
 			  `name` varchar(255) NOT NULL,
 			  `url` varchar(255) NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
-
+			
+			"ALTER TABLE `report` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `report` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
 			//-----------------------------------------------------------------------------
 			"DROP TRIGGER IF EXISTS `report_delete`",
 
