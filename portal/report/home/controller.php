@@ -19,24 +19,32 @@ class controller extends main_controller {
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 
-	//----------------------------
+	//---------------------------- bridge
 	$this->listen(array(
-			"max" => 3,
-			"url" => array("classes", "status" => "report")
+			"url" => array("classes", "type" => "person", "/(.*)/")
 			), function (){
-				save(array("report","classes","report",  "mod" => "report"));
+				save(array("report","classes","person"));
 				$this->permission = array("report" => array("select" => array("public")));
-
 	});
+	
+	//----------------------------
+	// $this->listen(array(
+	// 		"max" => 3,
+	// 		"url" => array("classes", "status" => "report")
+	// 		), function (){
+	// 			save(array("report","classes","report",  "mod" => "report"));
+	// 			$this->permission = array("report" => array("select" => array("public")));
+
+	// });
 
 	//----------------------------
-	$this->listen(array(
-				"max" => 3,
-				"url" => array("classes")
-				), function (){
-					save(array("report","classes"));
-					$this->permission = array("report" => array("select" => array("public")));
-		});		
+	// $this->listen(array(
+	// 			"max" => 3,
+	// 			"url" => array("classes")
+	// 			), function (){
+	// 				save(array("report","classes"));
+	// 				$this->permission = array("report" => array("select" => array("public")));
+	// 	});		
 	}
 }
 ?>  

@@ -1,0 +1,13 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<form method ="post" action ="" class=" ">
+	{{forms.make(report_list)}}
+</form>
+
+<!-- <br> -->
+<!-- <a href="" class="start-report a-undefault" target="_blank"> شروع گزارش </a> -->
+<!-- <br> -->
+
+{{dtable.make(dataTable)}}
+{%endblock%}
