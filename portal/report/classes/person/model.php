@@ -6,22 +6,19 @@
 class model extends main_model {
 	
 	public function sql_bridge_list($classesid = false) {
+		
 		$classes_id = preg_split("/\,/", $classesid);
 		
 		$classification = $this->sql()->tableClassification()
 		->groupOpen();
-		
 		foreach ($classes_id as $key => $value) {
 			$classification->orClasses_id($value);
 		}
-
 		$classification->groupClose()->fieldId();
 
 		$classification->joinUsers()->whereId("#classification.users_id")->fieldUsername();
 
 		// $classification->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
-
-
 
 		$classification->joinClasses()->whereId("#classification.classes_id")
 			->fieldStart_time()
@@ -41,6 +38,7 @@ class model extends main_model {
 		$classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue("mobile");
 
 
+		// var_dump("d");exit();
 
 		$x = $classification->groupValue()->select();
 		$x = $x->allAssoc();

@@ -27,7 +27,7 @@ class controller extends main_controller {
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 	
-	//----------------------------
+	// ----------------------------
 	// $this->listen(array(
 	// 		"max" => 3,
 	// 		"url" => array("classes", "status" => "report")
@@ -38,13 +38,13 @@ class controller extends main_controller {
 	// });
 
 	//----------------------------
-	// $this->listen(array(
-	// 			"max" => 3,
-	// 			"url" => array("classes")
-	// 			), function (){
-	// 				save(array("report","classes"));
-	// 				$this->permission = array("report" => array("select" => array("public")));
-	// 	});		
+	$this->listen(array(
+				"max" => 3,
+				"url" => array("classes")
+				), function (){
+					save(array("report","classes"));
+					$this->permission = array("report" => array("select" => array("public")));
+		});		
 	}
 }
 ?>  

@@ -6,20 +6,21 @@
 class model extends main_model {
 	public function sql_bridge_list($classesid = false) {
 		$classes_id = preg_split("/\,/", $classesid);
+		if(!$classesid || empty($classes_id)) return false;
 		
-		$classification = $this->sql()->tableClassification()
-		->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-		->groupClose();
+		$classification = $this->sql()->tableClassification();
+		
 		$classification->groupOpen();
-		
 		foreach ($classes_id as $key => $value) {
 			$classification->orClasses_id($value);
 		}
-
 		$classification->groupClose()->fieldId();
-
+		
+		$classification->groupOpen()
+			->condition("and", "#date_delete" , "is", "#null")
+			->condition("or", "#because", "is", "#null")
+		->groupClose();
+		
 		$classification->joinUsers()->whereId("#classification.users_id")->fieldUsername();
 
 		$classification->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
@@ -35,18 +36,12 @@ class model extends main_model {
 		
 		$classification->joinPlace()->whereId("#classes.place_id")->fieldName("place");
 		
-		
-		
 		$classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue("mobile");
-
-
 
 		$x = $classification->groupValue()->select();
 		$x = $x->allAssoc();
 
 		return $x;
-		
-
 	}
 	public function post_report(){
 	
