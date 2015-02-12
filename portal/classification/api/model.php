@@ -5,14 +5,13 @@
 class model extends main_model {
 
 	public function post_insert() {
-				// var_dump("fuck");
+
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
 		// $name_famil 
 		//------------------------------ key for check duplicate
 		$duplicate = false;
-
 		//------------------------------ check for duplicate this classes inserted 
 		$check = $this->sql()->tableClassification()->whereUsers_id($users_id)->andClasses_id($classes_id)->limit(1)->select();
 		
@@ -25,9 +24,8 @@ class model extends main_model {
 				//------------------------------ check price 
 				if(!$this->sql(".price.checkClasses", $users_id , $classes_id, $this->dateNow())) {
 					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
-				// }elseif(!$this->sql(".pasportCheck", $users_id)){
-					// var_dump("fuck");
-					// debug_lib::fatal("تاریخ اتمام گذرنامه این فرد به اتمام رسیده است.");
+				}elseif(!$this->sql(".pasportCheck", $users_id)){
+					debug_lib::fatal("تاریخ اتمام گذرنامه این فرد به اتمام رسیده است.");
 				}else{
 					//------------------------------ insert classification
 					$classification = $this->sql()->tableClassification()
@@ -35,8 +33,6 @@ class model extends main_model {
 							->setClasses_id($classes_id)
 							->setDate_entry($this->dateNow())
 							->insert();
-			// var_dump("1");
-							// var_dump($classification);
 					//------------------------------- set classification count in to classes table
 					$this->sql(".classesCount", $classes_id);
 				}

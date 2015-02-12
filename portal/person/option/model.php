@@ -52,7 +52,7 @@ class model extends main_model{
 		//------------------------------ check for empty text for name,family,father
 		if(post::name() == '' || post::family() == '' || post::father() == ''){
 			$key = false;
-			debug_lib::fatal("empty name, family, father");
+			debug_lib::fatal("نام، نام خانوادگی و نا ‍پدر وارد نشده است");
 		}
 
 		//------------------------------ check captcha if loaded
@@ -76,7 +76,7 @@ class model extends main_model{
 			
 			if($duplicate_person >= 1) {
 				$key = false;
-				debug_lib::fatal("duplicate entry for national code");
+				debug_lib::fatal("کد ملی تکراری است");
 			} 
 		}
 
@@ -105,16 +105,16 @@ class model extends main_model{
 						->setUsername($username)
 						->insert();
 			$users_id = $q_users_id->LAST_INSERT_ID();
-			ilog($q_users_id->string());
+			
 
 			
 			//------------------------------ insert into person table
 			$person = $this->makeQuery()->setUsers_id($users_id)->insert();
-			ilog($person->string());
+			
 			
 			//------------------------------ insert into bridge table, phone and mobile
 			if(post::mobile() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile())->insert();
-			if(post::phone() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("phone")->setValue(post::phone())->insert();
+			if(post::phone()  !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("phone")->setValue(post::phone())->insert();
 			
 			//------------------------------ set users_branch if other sql is ok
 			if(debug_lib::$status){
@@ -122,7 +122,7 @@ class model extends main_model{
 						->setUsers_id($users_id)
 						->setBranch_id(post::branch_id())
 						->insert();
-				ilog($sqlBranch->string());
+				
 
 			}
 
@@ -150,7 +150,7 @@ class model extends main_model{
 
 		//----------------------------- update query
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
-		// ilog($sql->string());
+		
 	
 		//----------------------------- commit code
 		$this->commit(function() {

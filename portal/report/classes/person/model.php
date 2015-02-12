@@ -8,6 +8,8 @@ class model extends main_model {
 	public function sql_bridge_list($classesid = false) {
 		
 		$classes_id = preg_split("/\,/", $classesid);
+
+		if(!$classesid || empty($classes_id)) return false;
 		
 		$classification = $this->sql()->tableClassification()
 		->groupOpen();
@@ -35,12 +37,13 @@ class model extends main_model {
 		
 		
 		
-		$classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue("mobile");
+		// $classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue("mobile");
 
 
 		// var_dump("d");exit();
 
 		$x = $classification->groupValue()->select();
+		echo($x->string());exit();
 		$x = $x->allAssoc();
 		var_dump($x);exit();
 		return $x;
