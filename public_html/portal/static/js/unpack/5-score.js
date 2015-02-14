@@ -57,7 +57,9 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 route(/score\/calculation\/status\=(add|edit)/, function(){
 	$("#plan_id").combobox( "destroy" );
 	$("#plan_id", this).combobox({
-		change : function(){
+		change : function(op){
+			item = op.item.option.value
+			console.log(item);
 		}
 	});
 });
