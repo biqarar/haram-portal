@@ -43,7 +43,7 @@ class model extends main_model {
 		// var_dump("d");exit();
 
 		$x = $classification->groupValue()->select();
-		echo($x->string());exit();
+		// echo($x->string());exit();
 		$x = $x->allAssoc();
 		var_dump($x);exit();
 		return $x;
