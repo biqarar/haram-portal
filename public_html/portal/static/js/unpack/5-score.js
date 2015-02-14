@@ -59,7 +59,17 @@ route(/score\/calculation\/status\=(add|edit)/, function(){
 	$("#plan_id", this).combobox({
 		change : function(op){
 			item = op.item.option.value
-			console.log(item);
+			$.ajax({
+				type: "POST",
+				url : "score/type/api/id=" + item,
+			success : function(data){
+				console.log(data);
+				for(a in data.msg) {
+					x = data.msg[a]['title'];
+						$("<a href=''>" + x + "</a>").appendTo("#list");
+					}
+				}
+			});
 		}
 	});
 });

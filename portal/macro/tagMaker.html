@@ -107,6 +107,13 @@
 		.list-wrapper {
 			display: inline-block;
 		}
+		
+		tbody{
+		page-break-inside:avoid;
+		page-break-after:auto;
+		border-collapse: collapse;
+		/*display:table;*/
+		}
 
 		table {
 			width: 100%;
@@ -133,23 +140,24 @@
 <div class="list-wrapper">
 		<div class="list-header">{{array.title}}</div>
 		<table cellspacing="0" cellpadding="0">
-			<tbody>
+			
 				{% for key, list in array %}
 					{% if key == 0 %}
+					<tbody>
 						<tr>
-							<th>ردیف</th>
 						{% for field, item in list %}
 							<th>{{field|lang}}</th>
 						{%endfor%}
 						</tr>
+					<tbody>
 					{%endif%}
-
-				<tr>
-					<td>{{key + 1}}</td>
-				{% for j, item in list %}
-					<td>{{item|lang}}</td>
-				{%endfor%}
-				</tr>
+				<tbody>
+					<tr>
+					{% for j, item in list %}
+						<td>{{item|lang}}</td>
+					{%endfor%}
+					</tr>
+				<tbody>
 			{%endfor%}
 			</tbody>
 		</table>

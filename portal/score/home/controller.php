@@ -95,6 +95,15 @@ class controller extends main_controller {
 					save(array("score","calculation" ,"list", "mod" => "api"));
 					$this->permission = array("score" => array("insert" => array("public")));
 				});
+
+		$this->listen(array(
+				"max" => 3,
+				"url" => array("type", "api", "id" => "/^\d+$/")
+				),
+				function(){
+					save(array("score","type" ,"api", "mod" => "api"));
+					$this->permission = array("score" => array("insert" => array("public")));
+				});
 	}
 }
 ?>  
