@@ -8,12 +8,13 @@ class model extends main_model {
 		//------------------------------ make sql object
 		return $this->sql()->tableDrafts()
 			->setTag(post::tag())
+			->setGroup(post::group())
 			->setText(post::text());
 	}
 
 	public function post_add_drafts() {
-		$this->sql(".sms.send_classes", 2, "classification");
-		exit();
+		// $this->sql(".sms.send_classes", 2, "classification");
+		// exit();
 		// $this->sql(".sms.classes", 108, "hi");
 
 		//------------------------------ insert drafts
@@ -48,7 +49,7 @@ class model extends main_model {
 	public function post_list() {
 		
 		$dtable = $this->dtable->table("drafts")
-		->fields('id', 'tag', 'text', "id edit")
+		->fields('id', 'group' ,'tag', 'text', "id edit")
 		->search_fields("tag", "text")
 		->result(function($r) {
 			$r->edit = '<a class="icoedit" href="sms/drafts/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';

@@ -181,6 +181,7 @@ class model extends main_model{
 
 			"CREATE TABLE IF NOT EXISTS `drafts` (
 			  `id` int(10) NOT NULL,
+			  `group` enum('classes', 'classification', 'score', 'person','absence') COLLATE utf32_persian_ci NOT NULL,
 			  `tag` varchar(255) NOT NULL,
 			  `text` text NOT NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",

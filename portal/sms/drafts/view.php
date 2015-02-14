@@ -14,7 +14,7 @@ class view extends main_view {
 		//------------------------------ list of drafts
 		$this->data->dataTable = $this->dtable(
 			"sms/drafts/status=apilist/", 
-			array("id", "tag", "text", "edit"));
+			array("id",'group', "tag", "text", "edit"));
 
 		// $this->data->list = $list->compile();
 		//------------------------------ edit form

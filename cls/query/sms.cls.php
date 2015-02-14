@@ -50,7 +50,5 @@ class query_sms_cls extends query_cls
 
 	}
 
-	
-
 }
 ?>
