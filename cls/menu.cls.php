@@ -120,16 +120,6 @@ class menu_cls  {
 			"permission"  => array("insert" => array("public"))
 				)
 			);
-		
-		//------------------------------ permission add
-		self::$menu[] = array(
-			"submenu"     => "home",
-			"url"         => 'pricechange/status=add',
-			"name"        =>  _("مدیریت شهریه"),
-			"tag"         => array(
-			"price_change"  => array("insert" => array("public"))
-				)
-			);
 
 		//------------------------------ city add
 		self::$menu[] = array(
@@ -211,26 +201,6 @@ class menu_cls  {
 				)
 			);
 
-			//------------------------------  score
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'score/type/status=add', 
-			"name" =>  _("ثبت نوع نمرات"), 
-			"tag" => array(
-				"score_type" => array("insert" => array("public"))
-				)
-			);
-
-
-			//------------------------------  score
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'score/calculation/status=add', 
-			"name" =>  _("روش محاسبه امتیاز"), 
-			"tag" => array(
-				"score_calculation" => array("insert" => array("public"))
-				)
-			);
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
 		//------------------------------  teacher show detail 
@@ -295,16 +265,7 @@ class menu_cls  {
 				)
 			);
 
-		// ------------------------------   price list
-		self::$menu[] = array(
-			"submenu" => "user", 
-			"url" => "price/status=list", 
-			"name" =>  "لیست شهریه ها", 
-			"tag" => array(
-				"price" => array("select" => array("public"))
-				)
-			);
-
+		
 		//------------------------------   bridge list
 		self::$menu[] = array(
 			"submenu" => "user", 
@@ -354,10 +315,50 @@ class menu_cls  {
 				"classes" => array("select" => array("public"))
 				)
 			);
+		
+		//------------------------------ price add
+		self::$menu[] = array(
+			"submenu"     => "price",
+			"url"         => 'pricechange/status=add',
+			"name"        =>  _("مدیریت شهریه"),
+			"tag"         => array(
+			"price_change"  => array("insert" => array("public"))
+				)
+			);
+
+			//------------------------------  score
+		self::$menu[] = array(
+			"submenu" => "score", 
+			"url" => 'score/type/status=add', 
+			"name" =>  _("ثبت نوع نمرات"), 
+			"tag" => array(
+				"score_type" => array("insert" => array("public"))
+				)
+			);
+
+
+			//------------------------------  score
+		self::$menu[] = array(
+			"submenu" => "score", 
+			"url" => 'score/calculation/status=add', 
+			"name" =>  _("روش محاسبه امتیاز"), 
+			"tag" => array(
+				"score_calculation" => array("insert" => array("public"))
+				)
+			);
+		// ------------------------------   price list
+		self::$menu[] = array(
+			"submenu" => "price", 
+			"url" => "price/status=list", 
+			"name" =>  "لیست شهریه ها", 
+			"tag" => array(
+				"price" => array("select" => array("public"))
+				)
+			);
 
 		//------------------------------ classes list
 		self::$menu[] = array(
-			"submenu" => "class", 
+			"submenu" => "score", 
 			"url" => "classes/status=list/type=score", 
 			"name" =>  "ثبت نمرات کلاس" , 
 			"tag" => array(
@@ -385,6 +386,15 @@ class menu_cls  {
 				"absence" => array("select" => array("public"))
 				)
 			);
+		//------------------------------ drafts add
+		self::$menu[] = array(
+			"submenu" => "mail", 
+			"url" => "sms/drafts/status=add", 
+			"name" =>  _("menu_drafts_add"), 
+			"tag" => array(
+				"drafts" => array("insert" => array("public"))
+				)
+			);
 
 		//------------------------------ classes list
 		self::$menu[] = array(
@@ -406,7 +416,6 @@ class menu_cls  {
 				)
 			);
 
-		
 
 		//------------------------------ posts add
 		self::$menu[] = array(

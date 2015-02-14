@@ -137,18 +137,20 @@ class validateExtends_cls{
 	}
 
 	public function description($max = false) {
-
 		if($this->value == '') return true;
 		
 
 		$this->value = trim($this->value);
 		$this->value = preg_replace("/\s+/", " ", $this->value);
 
-		$max = ($max && preg_match("/^\d$/", $max)) ? $max : false;
+		$max = ($max) ? intval($max) : false;
 
 		$allCharset = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼a-zA-Z0-9]";
-		if($max){
+		if($max && $max != -1){
+			
 			$reg = "/^" . $allCharset . "{3," . $max . "}$/";
+		}elseif($max == -1){
+			$reg = "/(.*)/";
 		}else{
 			$reg = "/^" . $allCharset . "{3,255}$/";
 		}

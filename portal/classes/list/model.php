@@ -17,7 +17,7 @@ class model extends main_model {
 			$ico = "icoattendance";
 		}elseif($type == "score"){
 			$url = "score/classes/";
-			$ico = "icohome";
+			$ico = "icoscore";
 		}
 
 

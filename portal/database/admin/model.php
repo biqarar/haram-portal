@@ -176,7 +176,88 @@ class model extends main_model{
 			"CREATE TRIGGER `report_update` AFTER UPDATE ON `report`
 			 FOR EACH ROW BEGIN
 			call setHistory('report', 'update', OLD.id);
+			END",
+
+
+			"CREATE TABLE IF NOT EXISTS `drafts` (
+			  `id` int(10) NOT NULL,
+			  `tag` varchar(255) NOT NULL,
+			  `text` text NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `drafts` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `drafts` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `drafts_delete`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `drafts_delete` AFTER DELETE ON `drafts`
+			 FOR EACH ROW BEGIN
+			call setHistory('drafts', 'delete', OLD.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `drafts_insert`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `drafts_insert` AFTER INSERT ON `drafts`
+			 FOR EACH ROW BEGIN
+			call setCash('drafts', NEW.id, @branch_id);
+			call setHistory('drafts', 'insert', NEW.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `drafts_update`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `drafts_update` AFTER UPDATE ON `drafts`
+			 FOR EACH ROW BEGIN
+			call setHistory('drafts', 'update', OLD.id);
+			END",
+
+
+			"CREATE TABLE IF NOT EXISTS `sms_log` (
+			  `id` int(10) NOT NULL,
+			  `sender` int(10) NOT NULL,
+			  `text` int(10) NOT NULL,
+			  `reciver` int(10) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `sms_log` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `sms_log` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+
+			"ALTER TABLE `sms_log` ADD CONSTRAINT `sms_log_ibfk_1` FOREIGN KEY (`sender`) REFERENCES `users` (`id`)",
+			"ALTER TABLE `sms_log` ADD CONSTRAINT `sms_log_ibfk_2` FOREIGN KEY (`reciver`) REFERENCES `users` (`id`)",
+			"ALTER TABLE `sms_log` ADD CONSTRAINT `sms_log_ibfk_3` FOREIGN KEY (`text`) REFERENCES `drafts` (`id`)",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `sms_log_delete`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `sms_log_delete` AFTER DELETE ON `sms_log`
+			 FOR EACH ROW BEGIN
+			call setHistory('sms_log', 'delete', OLD.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `sms_log_insert`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `sms_log_insert` AFTER INSERT ON `sms_log`
+			 FOR EACH ROW BEGIN
+			call setHistory('sms_log', 'insert', NEW.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `sms_log_update`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `sms_log_update` AFTER UPDATE ON `sms_log`
+			 FOR EACH ROW BEGIN
+			call setHistory('sms_log', 'update', OLD.id);
+			END",
+
+			
+			"CREATE DEFINER=`root`@`localhost` PROCEDURE `set_sms_log`(IN `_sender` INT(10), IN `_reciver` INT(10), IN `_text` INT(10)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+			INSERT INTO sms_log 
+			(sender,reciver,sms_log.text)
+			VALUES
+			(_sender, _reciver, _text);
 			END"
+
+
+
+
 
 			);
 

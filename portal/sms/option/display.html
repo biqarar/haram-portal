@@ -1,0 +1,8 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+<form class="ajx" method="post" action="drafts/{{global.url}}">
+	{{forms.make(form.drafts)}}
+</form>
+{{dtable.make(dataTable)}}
+{%endblock%}

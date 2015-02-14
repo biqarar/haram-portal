@@ -262,6 +262,31 @@ body {
   #sound > div.dropdown > div:first-child {
     background: #4dbddc; }
 
+#calendar {
+  background-image: url(../svg/icons/calendar.svg); }
+  #calendar > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
+#certification {
+  background-image: url(../svg/icons/certification.svg); }
+  #certification > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
+#mail {
+  background-image: url(../svg/icons/mail.svg); }
+  #mail > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
+#price {
+  background-image: url(../svg/icons/price.svg); }
+  #price > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
+#score {
+  background-image: url(../svg/icons/score.svg); }
+  #score > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
 .icoallteacher {
   display: block;
   width: 16px;
@@ -492,6 +517,46 @@ body {
   height: 16px;
   margin: 0 auto;
   background: url(../svg/icons/redclose.svg);
+  background-size: 100% 100%; }
+
+.icocalendar {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/calendar.svg);
+  background-size: 100% 100%; }
+
+.icocertification {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/certification.svg);
+  background-size: 100% 100%; }
+
+.icomail {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/mail.svg);
+  background-size: 100% 100%; }
+
+.icoprice {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/price.svg);
+  background-size: 100% 100%; }
+
+.icoscore {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/score.svg);
   background-size: 100% 100%; }
 
 #tabs.ui-widget-content {

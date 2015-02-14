@@ -5,10 +5,9 @@ class query_pasportCheck_cls extends query_cls {
 		ini_set('xdebug.var_display_max_depth', -1);
 		ini_set('xdebug.var_display_max_children', -1);
 		ini_set('xdebug.var_display_max_data', -1);
-		var_dump("expression");
+		
 		$person = $this->sql()->tablePerson()->whereUsers_id($usersid)
-					->fieldPasport_date()
-					->fieldNationality()->limit(1)->select();
+					->select();
 
 					var_dump($person);exit();
 		

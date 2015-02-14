@@ -96,6 +96,7 @@ class dbconnection_lib{
 	}
 
 	public function error($error = null, $errno = null) {
+		// var_dump($error, $errno);
 		$reg = new dberror_lib();
 		$f = "$errno";
 		$aError = $reg->$f($error);

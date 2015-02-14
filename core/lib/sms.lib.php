@@ -110,6 +110,14 @@ How to Use:
 
 		public function send($_receptor, $_message, $_type= 1, $_date= 0, $_LocalMessageid= null)
 		{
+			/**
+
+			*/
+			ilog("number: " . $_receptor . ", text: " . $_message); exit(); die();
+			/**
+
+			*/
+
 			$receptor 	= is_array($_receptor)? join(",", $_receptor): $_receptor;
 			$path 		= $this->get_path(__FUNCTION__);
 			$params 	= array(
