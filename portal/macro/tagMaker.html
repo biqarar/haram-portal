@@ -137,6 +137,7 @@
 				{% for key, list in array %}
 					{% if key == 0 %}
 						<tr>
+							<th>ردیف</th>
 						{% for field, item in list %}
 							<th>{{field|lang}}</th>
 						{%endfor%}
@@ -144,6 +145,7 @@
 					{%endif%}
 
 				<tr>
+					<td>{{key + 1}}</td>
 				{% for j, item in list %}
 					<td>{{item|lang}}</td>
 				{%endfor%}

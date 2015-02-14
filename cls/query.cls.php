@@ -27,5 +27,11 @@ class query_cls {
 		}
 		return $sql;
 	}
+	
+	public function dateNow($type = "Ymd"){
+		$time =  new jTime_lib;
+		return $time->date($type, false, false);
+		
+	}
 }
 ?>

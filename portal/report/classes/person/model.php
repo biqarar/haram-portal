@@ -46,6 +46,8 @@ class model extends main_model {
 		}
 
 		return $reprot;
+
+		
 		var_dump($reprot);
 		exit();
 		//------------------------------ find lis of person in classes

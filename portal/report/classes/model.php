@@ -4,6 +4,10 @@
 * @auther reza mohiti
 */
 class model extends main_model {
+
+		public function post_reports() {
+			return;
+		}
 		public function post_api(){
 		// $type = $this->xuId("type");
 		// var_dump($type); exit();

@@ -36,15 +36,15 @@ class query_reports_cls extends query_cls
 
 		$age = 0;
 		$sum = 0;
-		// var_dump($classification); exit();
+	
 		foreach ($classification as $key => $value) {
 			if(preg_match("/^(\d{4})(\d{4})$/", $value['birthday'], $y)) {
-				$age += $y[1];
+				$age += intval($this->dateNow("Y")) - intval($y[1]);
 				$sum++;
 			}
 		}
 
-		return round($age / $sum);
+		return ($sum > 0) ? round($age / $sum): "-";
 
 
 	}

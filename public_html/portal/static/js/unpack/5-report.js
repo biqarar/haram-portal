@@ -35,28 +35,41 @@ route(/report\/classes\/status\=apilist/, function(){
 		index = $('.list', this).attr("classesid");
 		_checked.call($('.list', this), addToList(index));
 	});
-	$(".start-report").click(function(){
+
+	url_ ="person";
+	$("#lists").combobox();
+	$("#lists", this).combobox({
+		change : function(op){
+			url_ = op.item.option.value
+		}
+	});
+
+	$(".start-reports").click(function(){
 		var _list = returnList();
 		var list = Array();
 		for(i = 0; i < _list.length; i++) {
 			if(_list[i]) list.push(_list[i]);
 		}
 		newlist = list.join(',');
-		$(this).attr("href", "report/classes/status=reportall/classesid=" + newlist);
-		// $.ajax({
-		// 	type: "POST",
-		// 	url : "report/classes/status=reportall/classesid=" + newlist,
-		// 	success : function(data){
-		// 		// document.write(data);
-		// 	}
-		// });		
+		$("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
+		console.log(url_);	
 	});
 
 
-		console.log("fuck");
-	$("#lists").click(function(){
-	});
+		// console.log("fuck");
+	// $("#lists").click(function(){
+	// });
 });
 route(/report\/status\=(add|edit)/, function(){
 	$("#tables", this).combobox();
+});
+
+route(/report\/classes/, function(){
+	// $("#lists").combobox();
+	// $("#lists", this).combobox({
+	// 	change : function(op){
+	// 		item = op.item.option.value
+	// 		$(".start-reports",this).
+	// 	}
+	// });
 });

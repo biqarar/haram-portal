@@ -9,24 +9,24 @@ class view extends main_view{
 		//------------------------------ global
 		$this->global->page_title = "classes";
 
-		$hidden = $this->form("#hidden")->value("reprot");
-		$lists =  $this->form("select")->name("lists")->label("reports");
-		$submit = $this->form("#submitedit")->value("select");
+		$hidden = $this->form("#hidden")->value("reports");
+		$lists =  $this->form("select")->name("lists")->label("reports")->addClass("notselect");
+		$submit = $this->form("#submitedit")->value("select")->addClass("start-reports");
 
 		$list = $this->sql(".reports.rList", "classes");
 
 		foreach ($list as $key => $value) {
-			$lists->child()->name($value['tables'])->label($value['name'])->value($value['tables']);
+			$lists->child()->name($value['tables'])->label($value['name'])->value($value['url']);
 		}
 
 		
-		$reprot = array();
+		$reports = array();
 		
-		$reprot[] = $hidden->compile();
-		$reprot[] = $lists->compile();
-		$reprot[] = $submit->compile();
+		$reports[] = $hidden->compile();
+		$reports[] = $lists->compile();
+		$reports[] = $submit->compile();
 		
-		$this->data->report_list = $reprot;
+		$this->data->report_list = $reports;
 
 		$this->data->dataTable = $this->dtable("report/classes/status=apilist/"
 			, array(
