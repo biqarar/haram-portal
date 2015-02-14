@@ -17,8 +17,14 @@ class query_sms_cls extends query_cls
 		return $tag;
 	}
 
+	public function replase_str($text = false) {
+			/**
+			* name:tablePerson()->fieldName();
+			* statrt_time:tableClasses()->fieldStart_time()
+			*/
+	}
+
 	public function send_users($users_id = false, $tag = false) {
-		
 			$number = $this->sql()->tableBridge()
 				->whereUsers_id($users_id)
 				->andTitle("mobile")

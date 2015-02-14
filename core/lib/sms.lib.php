@@ -113,7 +113,8 @@ How to Use:
 			/**
 
 			*/
-			ilog("number: " . $_receptor . ", text: " . $_message); exit(); die();
+			ilog("number: " . $_receptor . ", text: " . $_message); return;
+			exit(); die();
 			/**
 
 			*/
