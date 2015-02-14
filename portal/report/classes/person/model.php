@@ -12,6 +12,7 @@ class model extends main_model {
 		if(!$classesid || empty($classes_id)) return false;
 		
 		$classification = $this->sql()->tableClassification()
+		
 		->groupOpen();
 		foreach ($classes_id as $key => $value) {
 			$classification->orClasses_id($value);
@@ -43,7 +44,7 @@ class model extends main_model {
 		// var_dump("d");exit();
 
 		$x = $classification->groupValue()->select();
-		echo($x->string());exit();
+		// echo($x->string());exit();
 		$x = $x->allAssoc();
 		var_dump($x);exit();
 		return $x;

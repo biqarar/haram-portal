@@ -13,6 +13,7 @@ class model extends main_model {
 
 	public function post_add_drafts() {
 		$this->sql(".sms.send_classes", 2, "classification");
+		exit();
 		// $this->sql(".sms.classes", 108, "hi");
 
 		//------------------------------ insert drafts
