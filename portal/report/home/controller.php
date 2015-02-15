@@ -44,7 +44,26 @@ class controller extends main_controller {
 				), function (){
 					save(array("report","classes"));
 					$this->permission = array("report" => array("select" => array("public")));
-		});		
+		});	
+
+	//----------------------------
+	$this->listen(array(
+				"max" => 3,
+				"url" => array("price")
+				), function (){
+					save(array("report","price"));
+					$this->permission = array("report" => array("select" => array("public")));
+		});
+	
+
+	//----------------------------
+	$this->listen(array(
+				"max" => 5,
+				"url" => array("price", "weekly", "startdate" => "/^\d{8}$/", "enddate" => "/^\d{8}$/")
+				), function (){
+					save(array("report","price", "weekly"));
+					$this->permission = array("report" => array("select" => array("public")));
+		});	
 	}
 }
 ?>  

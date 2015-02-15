@@ -409,8 +409,8 @@ class menu_cls  {
 		//------------------------------ classes list
 		self::$menu[] = array(
 			"submenu" => "letters", 
-			"url" => "report/classes/", 
-			"name" =>  "گزارش از کلاس", 
+			"url" => "report/", 
+			"name" =>  "گزارشات", 
 			"tag" => array(
 				"report" => array("classes" => array("public"))
 				)

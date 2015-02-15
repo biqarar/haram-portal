@@ -9,11 +9,11 @@ class query_pasportCheck_cls extends query_cls {
 		$person = $this->sql()->tablePerson()->whereUsers_id($usersid)
 					->select();
 
-					var_dump($person);exit();
+					var_dump($person , $person->string());exit();
 		
-		$jtime =  new jTime_lib;
-		$dateNow =  $jtime->date("Ymd", false, false);
-		// var_dump($dateNow);
+
+		$dateNow = $this->dateNow("Ymd");
+		var_dump($dateNow);
 
 		if($person['nationality'] != 97 && $dateNow > $person['pasport_date'] && !global_cls::superperson()) {
 			return false;
