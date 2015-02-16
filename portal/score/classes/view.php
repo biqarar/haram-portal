@@ -11,16 +11,22 @@ class view extends main_view {
 		$classesid = $this->xuId("classesid");
 		$score_type = $this->sql("#score_type", $classesid);
 		
- 		
  		$list = array();
+
  		foreach ($score_type as $key => $value) {
+ 			
  			$title = "ثبت امتیاز " . $value['title'];
  			$list['list'][0][$title] = $this->tag("a")->href("score/classes/status=add/classesid=$classesid/scoretypeid=" . $value['id'])
  									->class("icodadd")->render();
  		}
 
+ 		if(!empty($list)) $list['list'][0]["نمایش کارنامه کلاس"] = 
+ 									$this->tag("a")
+ 										->href("score/classes/status=show/classesid=$classesid")
+ 									->class("icoscore")->render();
+
  		$this->data->a = $list;
-// var_dump($this->data->score_type );
+
 		//------------------------------ get detail classes
 		if(config_lib::$surl['classesid']){
 			//------------------------------ classes id

@@ -9,19 +9,19 @@ class query_xlsx_cls extends query_cls {
         header("Expires: 0");
        
         //define separator (defines columns in excel & tabs in word)
-        $sep = ($fieltype == "xlsx") ? "\t" : "\t\t\t"; //tabbed character
-        
+        $sep = ($fieltype == "xlsx") ? "\t" : "\t\t\t";
+        $newline = "\n";
+
         echo $sep;
         echo $title;
-        echo "\n";
+        echo $newline;
+        
         //start of printing column names 
-
         foreach ($allAssoc[0] as $key => $value) {
             print(gettext($key));
             echo  $sep;
         }
-        print("\n"); 
-
+        print($newline); 
 
         foreach ($allAssoc as $key => $value) {
             if(is_array($value)){
@@ -29,12 +29,11 @@ class query_xlsx_cls extends query_cls {
                 foreach ($value as $k => $v) {
                         print(gettext($v) . $sep);
                 }
-                print "\n";
-
+                print $newline;
             }
         }
-        print "\n";
+        print $newline;
         exit();
-    }   
+    }
 }
 ?>

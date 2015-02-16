@@ -1,64 +1,62 @@
 <?php
 class query_classesDetail_cls extends query_cls
 {
-	public function config($classes_id = false)	{
-		return $this->sql(".list","classes", function($query,$classes_id) {
-			$query->foreignCourse_id();
-			$query->foreignPlan_id();
-			$query->foreignPlace_id();
-			// $query->whereId($classes_id);
-			// var_dump($query);
-		},$classes_id)->removeCol("
-		id,
-		course_id,
-		plan_id,
-		place_id,
-		teacher,
-		status,
-		type,
-		begin_time,
-		expert,
-		branch_id,
-		Course_end_time,
-		Course_expert,
-		Branch_id,
-		Group_id,
-		plan_price,
-		plan_certification,
-		plan_mark,
-		plan_rule,
-		plan_min_person,
-		plan_max_person,
-		plan_description,
-		Plan_price,
-		Plan_certification,
-		Plan_mark,
-		Plan_rule,
-		Plan_min_person,
-		Plan_max_person,
-		Plan_description,
-		Course_id,
-		Plan_absence,
-		Place_description,
-		Place_id,
-		Branch_id,
-		group_id
-		price,
-		absence,
-		certificate,
-		mark,
-		rule,
-		Course_begin_time,
-		group_id,
-		description,
-		Course_branch_id,
-		Plan_id,
-		Plan_group_id,
-		Plan_certificate,
-		Place_branch_id,
-		price,
-		min_person,
-		max_person");
+	public function config($classesid = false){
+		
+		//------------------------------ get detail classes
+		if($classesid){
+			$return = array();
+
+			$return['classesid'] = $classesid;
+
+			$classes_detail = $this->sql(".list" , "classes", function ($query, $classesid) {
+				$query->whereId($classesid);
+			}, $classesid)->removeCol("meeting_no,start_date,end_date")
+
+			//------------------------------ print link
+			->addCol("print", "print")
+			->select(-1, "print")
+			->html(
+				$this->tag("a")
+				->href("classification/printlist/classesid=%id%")
+				->class("icoletters a-undefault"))
+
+			->compile();
+			
+			//------------------------------ change users id to name and family to show
+			$classes_detail = $this->detailClasses($classes_detail);
+			
+			$return['page_title']
+				 = gettext("class").' '.
+				$classes_detail['list'][0]['plan_id'] . ' استاد ' .
+				$classes_detail['list'][0]['teacher'] . ' ' .
+				$classes_detail['list'][0]['place_id'] ;
+			
+			$return['list'] = $classes_detail;
+
+			return $return;
+	}
+}
+
+	/**
+	*	some field in the classes table must be change (foreign) to other field in other table
+	*/
+	public function detailClasses($classes_detail = false) {
+		if(isset($classes_detail['list'])){	
+			foreach ($classes_detail ['list'] as $key => $value) {
+				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
+				// $classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
+				$classes_detail ['list'][$key]['teacher']   = 
+				$this->sql(".assoc.foreign", "person", $value["teacher"], "name", "users_id") . ' ' . 
+				$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");
+				$classes_detail ['list'][$key]['place_id']  = $this->sql(".assoc.foreign", "place", $value["place_id"], "name");
+			}	
+		}
+		return $classes_detail;
+	}
+
+	public function tag($tag = false) {
+		return new tagMaker_lib($tag);
 	}
 }
 ?>

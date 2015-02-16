@@ -4,6 +4,15 @@ class controller extends main_controller {
 	public function config(){
 
 		$this->listen(array(
+				"max" => 3,
+				"url" => array("status" => "show" ,"classesid" => "/^\d+$/" )
+				),
+				function(){
+					save(array("score", "show"));
+					$this->permission = array("score" => array("select" => array("public")));
+				});
+
+		$this->listen(array(
 				"max" => 4,
 				"url" => array("status" => "add" ,"classesid" => "/^\d+$/" , "scoretypeid" => "/^\d+$/")
 				),

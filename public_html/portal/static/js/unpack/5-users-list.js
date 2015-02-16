@@ -21,11 +21,12 @@ route(/classification\/class\/classesid\=\d+/,function(){
 				var classesid = href.match(/classesid=(\d+)#?.*$/)[1];
 				var _xhrUrl = "classification/api/usersid="+usersid+"/classesid="+classesid;
 				tabName.removeClass('copier-true').removeClass('copier-error').addClass('copier-load');
+				console.log(_xhrUrl);
 				$.ajax({
 					type: "POST",
 					url : _xhrUrl,
 					success : function(data){
-						// console.log(data);
+						console.log(data);
 						if(data.fatal){
 							xhr_error(data.fatal[0]);
 						}else if(data.warn){
