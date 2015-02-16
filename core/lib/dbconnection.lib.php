@@ -282,6 +282,7 @@ class dbconnection_lib{
 	}
 
 	public function string() {
+		var_dump($this->status);
 		if(!$this->status){
 			return "error";
 		}
