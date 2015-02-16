@@ -24,7 +24,7 @@ class model extends main_model {
 				//------------------------------ check price 
 				if(!$this->sql(".price.checkClasses", $users_id , $classes_id, $this->dateNow())) {
 					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
-				}elseif(false){
+				}elseif(!$this->sql(".pasportCheck", $users_id)){
 					debug_lib::fatal("تاریخ اتمام گذرنامه این فرد به اتمام رسیده است.");
 				}else{
 					//------------------------------ insert classification

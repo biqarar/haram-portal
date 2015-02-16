@@ -81,7 +81,7 @@ class dbconnection_lib{
 			'9'
 			);
 		$string = preg_replace($patterns, $replacements, $string);
-		// var_dump($string);
+		var_dump($string);
 		if(debug_lib::$status || self::$resum_on_error){
 			$this->string = $string;
 			$this->result = self::$connection->query($string);
