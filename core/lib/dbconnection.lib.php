@@ -282,6 +282,9 @@ class dbconnection_lib{
 	}
 
 	public function string() {
+		if(!$this->status){
+			return "error";
+		}
 		return $this->string;
 	}
 
