@@ -91,6 +91,8 @@ class dbconnection_lib{
 				$this->error(self::$connection->error, self::$connection->errno);
 
 			}
+		}else (!debug_lib::$status){
+			$this->status = false;
 		}
 		return $this;
 	}
