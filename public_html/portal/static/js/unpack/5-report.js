@@ -43,19 +43,6 @@ route(/report\/classes\/status\=apilist/, function(){
 			url_ = op.item.option.value
 		}
 	});
-
-	$(".start-reports").click(function(){
-		var _list = returnList();
-		var list = Array();
-		for(i = 0; i < _list.length; i++) {
-			if(_list[i]) list.push(_list[i]);
-		}
-		newlist = list.join(',');
-		$("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
-		console.log(url_);	
-	});
-
-
 		// console.log("fuck");
 	// $("#lists").click(function(){
 	// });
@@ -72,4 +59,52 @@ route(/report\/classes/, function(){
 	// 		$(".start-reports",this).
 	// 	}
 	// });
+});
+
+function mkData(){
+	var Data = new Object();
+	Data.names = Array();
+	Data.values = Array();
+	$(this).find("select, input, button, textarea").each(function(){
+		var value = false;
+		var name = this.name;
+		if (name == '_post') return;
+		if($(this).is(':radio, :checkbox')){
+			if($(this).is(":checked")){
+				value = this.value;
+			}else{
+				value = false;
+			}
+		}else{
+			value = this.value;
+		}
+		if(value !== false && name != false){
+			if(name == 'lists'){
+				Data.lists = value;
+			}else{
+				Data.names.push(name);
+				Data.values.push(value);
+			}
+		}
+	});
+	return Data;
+}
+
+route(/report\/price/, function(){
+	// alert(0);
+	$("#report_form").submit(function(){
+		var data = mkData.call(this);
+		var string = (location.pathname).replace(/\/$/, '') + data.lists;
+		for(i=0; i< data.names.length; i++){
+			string += "/"+data.names[i]+"="+data.values[i];
+		}
+		// console()
+		location.href = string;
+		console.log(string);	
+		// location.href = "report/classes/type=" + url_ + "/classesid=" + newlist;
+		return false;
+		// return "report/classes/type=" + url_ + "/classesid=" + newlist;
+		$("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
+		console.log(url_);	
+	});
 });
