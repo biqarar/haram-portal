@@ -81,7 +81,7 @@ class dbconnection_lib{
 			'9'
 			);
 		$string = preg_replace($patterns, $replacements, $string);
-		var_dump($string);
+		// var_dump($string);
 		if(debug_lib::$status || self::$resum_on_error){
 			$this->string = $string;
 			$this->result = self::$connection->query($string);
@@ -91,9 +91,10 @@ class dbconnection_lib{
 				$this->error(self::$connection->error, self::$connection->errno);
 
 			}
-		}else (!debug_lib::$status){
+		}else if(!debug_lib::$status){
 			$this->status = false;
 		}
+		$this->string = $string;
 		return $this;
 	}
 
@@ -284,9 +285,9 @@ class dbconnection_lib{
 	}
 
 	public function string() {
-		var_dump($this->status);
-		if(!$this->status){
-			return "error";
+		if(!$this->status ){
+			return "error in debug\n"
+			.$this->string;
 		}
 		return $this->string;
 	}
