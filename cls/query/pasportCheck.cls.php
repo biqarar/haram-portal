@@ -2,11 +2,11 @@
 
 class query_pasportCheck_cls extends query_cls {
 	public function config($usersid) {
-
+			return true;
 		$person = $this->sql()->tablePerson()->limit(10)->whereUsers_id($usersid)
 					->select();
-
-					var_dump($person->string());exit();
+						// var_dump(debug_lib::compile());
+					// var_dump($person->string());exit();
 		
 
 		$dateNow = $this->dateNow("Ymd");

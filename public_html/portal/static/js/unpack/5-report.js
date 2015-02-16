@@ -44,7 +44,7 @@ route(/report\/classes\/status\=apilist/, function(){
 		}
 	});
 
-	$(".start-reports").click(function(){
+	$(".start-reports").submit(function(){
 		var _list = returnList();
 		var list = Array();
 		for(i = 0; i < _list.length; i++) {
