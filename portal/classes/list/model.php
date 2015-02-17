@@ -31,7 +31,7 @@ class model extends main_model {
 			"age_range",
 			"start_time",
 			"end_time",
-			"maxp plan.max_person",
+			"name",
 			"count",
 			"id classification",
 			"id detail")

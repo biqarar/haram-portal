@@ -43,13 +43,26 @@ class view extends main_view {
 			$f->tables->child()->name("table_" . $value)->label(_($value))->value($value);
 		}
 
-		//------------------------------ edit form
-		$this->sql(".edit", "permission", $this->xuId(), $f);
-
+		if($this->urlStatus() == "edit") {
+			//------------------------------ edit form
+			$this->sql(".edit", "permission", $this->xuId(), $f);
+			$f->users_id->attr['value'] = $this->sql("#find_username", $f->users_id->attr['value']);
+		}
 		//------------------------------ list of users pemission
 		$this->data->dataTable = $this->dtable(
 			"permission/status=api/", 
-			array("id","username", "users_id", "tables", "select", "insert", "update", "delete", "condition", "edit"));
+			array("id",
+				"username",
+				"name",
+				"family",
+			 "users_id",
+			 "tables",
+			 "select",
+			 "insert",
+			 "update",
+			 "delete",
+			 "condition",
+			 "edit"));
 		
 	}
 }

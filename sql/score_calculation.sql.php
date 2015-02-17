@@ -31,7 +31,7 @@ class score_calculation {
 
 	public function	calculation(){
 		$this->form("#text_desc")->name("calculation")->label("calculation");
-		$this->validate();
+		$this->validate()->description(-1);
 	}
 
 	public function	status(){

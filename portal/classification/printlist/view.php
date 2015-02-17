@@ -22,7 +22,16 @@ class view extends main_view {
 		$plan_id = $classes_detail['list'][0]['plan_id'];
 
 		//------------------------------ convert plan_id , teacher , place id , ... to name of this
-		$classes_detail = $this->detailClasses($classes_detail);
+		if(isset($classes_detail['list'])){	
+			foreach ($classes_detail ['list'] as $key => $value) {
+				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
+				$classes_detail ['list'][$key]['teacher']   = 
+				$this->sql(".assoc.foreign", "person", $value["teacher"], "name", "users_id") . ' ' . 
+				$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");
+				$classes_detail ['list'][$key]['place_id']  = $this->sql(".assoc.foreign", "place", $value["place_id"], "name");
+			}	
+		}
+
 		$this->data->classesid = $this->xuId("classesid");
 		$this->data->type = $this->xuId("type");
 		// var_dump($classes_detail , $classes_list); exit();

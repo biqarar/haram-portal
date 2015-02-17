@@ -13,7 +13,7 @@ class controller extends main_controller {
 
 	//---------------------------- bridge
 	$this->listen(array(
-			"url" => array("classes", "type" => "bridge", "/(.*)/")
+			"url" => array("classes", "bridge", "/(.*)/")
 			), function (){
 				save(array("report","classes","bridge"));
 				$this->permission = array("report" => array("select" => array("public")));
@@ -21,7 +21,7 @@ class controller extends main_controller {
 
 	//---------------------------- bridge
 	$this->listen(array(
-			"url" => array("classes", "type" => "person", "/(.*)/")
+			"url" => array("classes", "person", "/(.*)/")
 			), function (){
 				save(array("report","classes","person"));
 				$this->permission = array("report" => array("select" => array("public")));

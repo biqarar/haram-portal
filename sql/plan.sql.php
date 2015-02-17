@@ -32,7 +32,7 @@ class plan {
 	}
 	
 	public function price() {
-		$this->form("#price")->name("price");
+		$this->form("#price")->name("price")->id("no-icon-price");
 		$this->validate()->number(3, 7)->form->number("entered price is not valid");
 	}
 	

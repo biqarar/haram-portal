@@ -22,7 +22,7 @@ class view extends main_view{
 				"age_range",
 				"start_time",
 				"end_time",
-				"capacity",
+				"name",
 				"count",
 				"$type",
 				"detail"

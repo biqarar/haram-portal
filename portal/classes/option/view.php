@@ -11,7 +11,7 @@ class view extends main_view {
 
 		//------------------------------ load form
 		$f = $this->form("@classes", $this->urlStatus());
-
+		$f->remove("status");
 		//------------------------------ list of branch
 		$this->listBranch($f);
 

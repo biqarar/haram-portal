@@ -4,11 +4,20 @@
 */
 class model extends main_model {
 
+	public function sql_find_username($users_id = false) {
+		return $this->sql()->tableUsers()->whereId($users_id)->limit(1)->select()->assoc("username");
+	}
+
+	public function sql_find_users_id($username = false) {
+		return $this->sql()->tableUsers()->whereUsername($username)->limit(1)->select()->assoc("id");
+	}
+
+	
 	public function makeQuery() {
 		//------------------------------ make sql object
 		 return $this->sql()->tablePermission()
 		 		// ->setTables(post::tables())
-		 		->setUsers_id(post::users_id())
+		 		->setUsers_id($this->sql_find_users_id(post::users_id()))
 		 		->setSelect(post::select())
 		 		->setUpdate(post::update())
 		 		->setInsert(post::insert())

@@ -1,6 +1,22 @@
 <?php
 class model extends main_model {
 
+	public function sql_find_calculation($classesid = false) {
+		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldPlan_id();
+		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
+		$calculation->joinScore_calculation()->wherePlan_id("#classes.plan_id")->andStatus("active");
+		$calculation->joinClassification()->whereClasses_id("#classes.id")
+		               	->groupOpen()
+						->condition("and", "#date_delete" , "is", "#null")
+						->condition("or", "#because", "is", "#null")
+						->groupClose()
+		               	 ->fieldUsers_id();
+		$calculation->joinScore()->whereClassification_id("#classification.id");
+		$calculation->joinScore_type()->whereId("#score.score_type_id");
+		$calculation = $calculation->select()->allAssoc();
+		return $calculation;
+	}
+
 	public function sql_score_type($classesid = false) {
 		$plan_id = $this->sql()->tableClasses()->whereId($classesid)->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
 		$score_type = $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
