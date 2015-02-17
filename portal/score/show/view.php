@@ -9,40 +9,26 @@ class view extends main_view {
 		//------------------------------ global
 		$this->global->page_title ="show score classes";
 		$classesid = $this->xuId("classesid");
-		$this->score_classes($classesid);
+
+		$this->classesDetail();
+		
+		//------------------------------ list of score/show
+		$this->data->dataTable = $this->dtable("score/show/status=apilist/classesid=$classesid/",
+			$this->replase($this->sql("#field_list", $classesid)));
 
 	}
 
-	public function _eval($arg = false) {
-		$run = false;
-		$list = array();
-		foreach ($arg as $key => $value) {
-			if(is_array($value)) {
-				$run = true;
-				foreach ($value as $k => $v) {
-					if($k == 'score_type_id' || $k == 'value' || $k == 'title'){
-						$list[$value['users_id']][$k][] = $v;
-					}
-				}	
+	public function replase($field_list = false) {
+		$return = array();
+		array_push($return, "username", "name", "family");
+		foreach ($field_list as $key => $value) {
+			if(preg_match("/^users\_\id\s(.*)$/", $value)){
+				array_push($return, preg_replace("/^users\_\id\s(.*)$/", "$1", $value));
 			}
 		}
-		if($run) {
-			$calculation = $arg[0]['calculation'];
-			foreach ($list as $key => $value) {
-				foreach ($value as $k => $v) {
-					// var_dump($k, $v);
-				}
-			}
-			// var_dump($calculation);
-		}
-		var_dump($list);
+		return $return;
 	}
 
-	public function score_classes($classesid = false) {
-		$x = ($this->sql("#find_calculation",$classesid));
-		$this->_eval($x);
-		// var_dump($x); 
-		exit();
-	}
+
 }
 ?>

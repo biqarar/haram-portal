@@ -14,6 +14,15 @@ class controller extends main_controller {
 
 		$this->listen(array(
 				"max" => 4,
+				"url" => array("status" => "apilist", "classesid" => "/^\d+$/"  )
+				),
+				function(){
+					save(array("score", "show" , "mod" => "api"));
+					$this->permission = array("score" => array("select" => array("public")));
+				});
+
+		$this->listen(array(
+				"max" => 4,
 				"url" => array("status" => "add" ,"classesid" => "/^\d+$/" , "scoretypeid" => "/^\d+$/")
 				),
 				function(){

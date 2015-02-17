@@ -17,7 +17,8 @@ class view extends main_view {
  		foreach ($score_type as $key => $value) {
  			
  			$title = "ثبت امتیاز " . $value['title'];
- 			$list['list'][0][$title] = $this->tag("a")->href("score/classes/status=add/classesid=$classesid/scoretypeid=" . $value['id'])
+ 			$list['list'][0][$title] = 
+ 				$this->tag("a")->href("score/classes/status=add/classesid=$classesid/scoretypeid=" . $value['id'])
  									->class("icodadd")->render();
  		}
 
