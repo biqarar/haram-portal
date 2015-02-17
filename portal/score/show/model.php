@@ -1,7 +1,12 @@
 <?php
 class model extends main_model {
 
-	public function find_calculation($classesid = false) {
+	/**
+	*	list of score saved 
+	* 	score type title
+	*	username, name, family
+	*/
+	public function list_score($classesid = false) {
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
 		$calculation->joinScore_calculation()->wherePlan_id("#classes.plan_id")->andStatus("active");
@@ -20,12 +25,10 @@ class model extends main_model {
 		return $calculation;
 	}
 
-	public function sql_score_type($classesid = false) {
-		$plan_id = $this->sql()->tableClasses()->whereId($classesid)->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
-		$score_type = $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
-		return $score_type;
-	}
-
+	/**
+	*	list of field
+	* 	whit select score type of plan
+	*/
 	public function sql_field_list($classesid = false) {
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
@@ -49,8 +52,7 @@ class model extends main_model {
 
 		$list = $this->score_classes($classesid);
 
-		$score_type = $this->sql_score_type();
-		
+	
 		$dtable = $this->dtable->table("classification")
 			->fields($this->sql_field_list($classesid))
 			->search_fields("username", "name person.name", "family person.family")
@@ -122,7 +124,7 @@ class model extends main_model {
 	}
 		 
 	public function score_classes($classesid = false) {
-		return $this->_eval($this->find_calculation($classesid));
+		return $this->_eval($this->list_score($classesid));
 	}
 }
 ?>

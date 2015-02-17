@@ -12,12 +12,16 @@ class view extends main_view {
 
 		$this->classesDetail();
 		
-		//------------------------------ list of score/show
+		//------------------------------ list of score saved in database
 		$this->data->dataTable = $this->dtable("score/show/status=apilist/classesid=$classesid/",
 			$this->replase($this->sql("#field_list", $classesid)));
 
 	}
 
+	/**
+	*	remove 'users_id' from field name 
+	* 	it use in dtable in mode.php
+	*/
 	public function replase($field_list = false) {
 		$return = array();
 		array_push($return, "username", "name", "family");
@@ -28,7 +32,5 @@ class view extends main_view {
 		}
 		return $return;
 	}
-
-
 }
 ?>
