@@ -226,7 +226,8 @@ class main_view{
 		// //------------------------------ get detail classes
 		if(isset(config_lib::$surl['classesid']) || (config_lib::$surl['status'] == 'detail')){
 			//------------------------------ classes id
-			$classesid = (config_lib::$surl['status'] == 'detail') ? $this->xuId() : config_lib::$surl['classesid'];
+			$classesid = (isset(config_lib::$surl['status']) 
+				&& config_lib::$surl['status'] == 'detail') ? $this->xuId() : config_lib::$surl['classesid'];
 
 			$classes_detail = $this->sql(".classesDetail", $classesid);
 			$this->global->classesid = $classes_detail['classesid'];

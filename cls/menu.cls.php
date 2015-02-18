@@ -396,6 +396,17 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ drafts add
+		self::$menu[] = array(
+			"submenu" => "mail", 
+			"url" => "sms/send", 
+			"name" =>  _("send sms"), 
+			"tag" => array(
+				"sms" => array("insert" => array("public"))
+				)
+			);
+
+
 		//------------------------------ classes list
 		self::$menu[] = array(
 			"submenu" => "letters", 

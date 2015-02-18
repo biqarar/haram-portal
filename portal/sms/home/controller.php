@@ -2,9 +2,20 @@
 /**
  * @author Reza Mohiti <rm.biqarar@gmail.com>
  */
+
 class controller extends main_controller{
 
 	public function config() {
+
+		//----------------------------- drafts
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("send") 
+			), function(){
+			save(array("sms","send"));
+
+			$this->permission = array("sms" => array("insert" => array("public")));
+		});
 		//----------------------------- drafts
 		$this->listen(array(
 			"max" => 3,
