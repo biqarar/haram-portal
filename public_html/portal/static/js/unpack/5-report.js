@@ -74,6 +74,24 @@ route(/report\/classes/, function(){
 	// 	}
 	// });
 });
+function convertDate(date) {
+	if(date.test(/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/)) {
+		
+		date = date.split("-");
+   		if(date[0].length == 4) y = date[0];
+   		
+   		if(date[1].length != 2) {
+   			m = "0" + date[1];
+    	}
+   		
+   		if(date[2].length != 2) {
+   			d = "0" + date[2];
+    	}
+   		
+   		return y + "" + m + "" + d;
+	}
+	return data;
+}
 
 function mkData(){
 	var Data = new Object();
@@ -98,6 +116,7 @@ function mkData(){
 			}else{
 				Data.names.push(name);
 				Data.values.push(value);
+				// Data.values.push(convertDate(value));
 			}
 		}
 	});
@@ -108,7 +127,7 @@ route(/report\/price/, function(){
 	// alert(0);
 	$("#report_form").submit(function(){
 		var data = mkData.call(this);
-		var string = (location.pathname).replace(/\/$/, '') + data.lists;
+		var string = (location.pathname).replace(/\/$/, '') +'/' + data.lists;
 		for(i=0; i< data.names.length; i++){
 			string += "/"+data.names[i]+"="+data.values[i];
 		}

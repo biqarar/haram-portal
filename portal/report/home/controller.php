@@ -59,7 +59,7 @@ class controller extends main_controller {
 	//----------------------------
 	$this->listen(array(
 				"max" => 5,
-				"url" => array("price", "weekly", "startdate" => "/^\d{8}$/", "enddate" => "/^\d{8}$/")
+				"url" => array("price", "weekly", "start_date" => "/(.*)/", "end_date" => "/(.*)/")
 				), function (){
 					save(array("report","price", "weekly"));
 					$this->permission = array("report" => array("select" => array("public")));

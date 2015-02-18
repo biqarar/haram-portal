@@ -19,7 +19,7 @@ class view extends main_view{
 
 
 		foreach ($list as $key => $value) {
-			$lists->child()->name($value['tables'])->label($value['name'])->value($value['tables']);
+			$lists->child()->name($value['tables'])->label($value['name'])->value($value['url']);
 		}
 
 		

@@ -7,15 +7,31 @@ class view extends main_view{
 
 	public function config(){
 		// var_dump("fuck");exit();
-		$list = $this->sql("#weekly", $this->xuId("startdate"), $this->xuId("enddate"));
+		$start_date  = $this->convert_date($this->xuId("start_date"));
+		$end_date  = $this->convert_date($this->xuId("end_date"));
+		$list = $this->sql("#weekly", $start_date, $end_date);
 		$this->global->url = config_lib::$url;
 		$list['title'] = "گزارش مالی  - هفتگی";
 		if($this->xuId("xlsx") == 1) {
-			$this->sql(".xlsx", $list, $list['title'], $this->xuId("startdate") .'-'. $this->xuId("enddate"));
+			$this->sql(".xlsx", $list, $list['title'], $start_date .'-'. $end_date);
 		}
 		$this->data->list = $list;
 		// ------------------------------ global
 		
+	}
+
+	public function convert_date($date = false) {
+		if (!preg_match("/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/", $date, $nDate)) {
+			return false;
+		}else{
+			$date = $nDate[1]
+			.
+			((intval($nDate[3]) < 10) ? "0".intval($nDate[3]) : intval($nDate[3]))
+			.
+			((intval($nDate[5]) < 10) ? "0".intval($nDate[5]) : intval($nDate[5]));
+		}
+		return $date;
+	
 	}
 }
 ?>
