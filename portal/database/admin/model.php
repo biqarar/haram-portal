@@ -270,7 +270,7 @@ class model extends main_model{
 			"ALTER TABLE `update_log` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
 
 			"ALTER TABLE `update_log` ADD CONSTRAINT `update_log_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
-	
+			"ALTER TABLE `update_log` ADD `time` TIMESTAMP NOT NULL ",
 			);
 
 
