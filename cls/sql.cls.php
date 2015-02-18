@@ -141,7 +141,8 @@ class sql_cls {
 		// 	`record_id` = '$record_id' ,
 		// 	`old_value` = '$old_value',
 		// 	`new_value` = '" . preg_replace("/\#\'/", "", $new_value). "'\n\n";
-		
+		if(isset($_SESSION['users_id'])){
+			
 		$assoc = $sql->query("INSERT INTO update_log 
 			SET 
 			`users_id` = '". $_SESSION['users_id'] ."' , 
@@ -151,6 +152,8 @@ class sql_cls {
 			`old_value` = '$old_value',
 			`new_value` = '$new_value'");
 		$sql->query("COMMIT");
+		}
+		
 	}
 
 }
