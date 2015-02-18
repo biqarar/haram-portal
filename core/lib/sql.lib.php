@@ -170,6 +170,9 @@ class sql_lib{
 		if(count($this->maker->conditions) > 0){
 			$string .= " WHERE".$this->condition($this->maker);
 		}
+		if(autoload::check("sql_cls") && method_exists("sql_cls", "update_log")) {
+				sql_cls::update_log($this->maker ,$this->condition($this->maker) );
+		}
 		return $string;
 	}
 

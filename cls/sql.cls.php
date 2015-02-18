@@ -110,7 +110,48 @@ class sql_cls {
 				$q = $sql->query("CALL insertPerm($users_id, $branch_id) ");
 			}
 		}
-
 	}
+
+	static function update_log($maker = flase, $condition = false) {
+		$sql = new dbconnection_lib;
+		$assoc = $sql->query("select * from `" .$maker->table . "` WHERE " . $condition . " LIMIT 0,1");
+		$old = $assoc->assoc();
+		// print_r($maker);
+		
+		if($old && is_array($old)){
+			foreach ($old as $key => $value) {
+				if(isset($maker->set[$key])){
+					if($value <> $maker->set[$key]){
+						self::set_update_log($maker->table, $key, $value, $maker->set[$key], $maker->conditions[0]['value']);
+					}
+				}
+			}
+		}
+	}
+
+	static function set_update_log($table = false, $field =false, $old_value =false, $new_value =false, $record_id =false ){
+		$sql = new dbconnection_lib;
+		$new_value = preg_replace("/'|\#/", "", $new_value);
+		
+		// echo "INSERT INTO update_log 
+		// 	SET 
+		// 	`users_id` = '". $_SESSION['users_id'] ."' , 
+		// 	`table` = '$table',
+		// 	`field` = '$field',
+		// 	`record_id` = '$record_id' ,
+		// 	`old_value` = '$old_value',
+		// 	`new_value` = '" . preg_replace("/\#\'/", "", $new_value). "'\n\n";
+		
+		$assoc = $sql->query("INSERT INTO update_log 
+			SET 
+			`users_id` = '". $_SESSION['users_id'] ."' , 
+			`table` = '$table',
+			`field` = '$field',
+			`record_id` = '$record_id' ,
+			`old_value` = '$old_value',
+			`new_value` = '$new_value'");
+		$sql->query("COMMIT");
+	}
+
 }
 ?>

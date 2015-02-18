@@ -254,12 +254,23 @@ class model extends main_model{
 			(sender,reciver,sms_log.text)
 			VALUES
 			(_sender, _reciver, _text);
-			END"
+			END",
 
+			"CREATE TABLE IF NOT EXISTS `update_log` (
+			  `id` int(10) NOT NULL,
+			  `users_id` int(10) NOT NULL,
+			  `table` varchar(255) NOT NULL,
+			  `field` varchar(64) NOT NULL,
+			  `record_id` int(10) NOT NULL,
+			  `old_value` text NOT NULL,
+			  `new_value` text NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `update_log` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `update_log` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
 
-
-
-
+			"ALTER TABLE `update_log` ADD CONSTRAINT `update_log_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
+	
 			);
 
 
