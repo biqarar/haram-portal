@@ -7,6 +7,14 @@ class controller extends main_controller{
 	function config(){
 
 		$this->listen(array(
+			"max" => 2,
+			"url" => array("score", "id" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "score"));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
+
+		$this->listen(array(
 			"max" => 1,
 			"url" => array("id" => "/^\d+$/")
 			), function() {

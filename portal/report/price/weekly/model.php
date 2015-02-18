@@ -6,8 +6,8 @@
 class model extends main_model {
 	public function sql_weekly($startdate = false, $enddate = false) {
 	$price = $this->sql()->tablePrice()
-			->condition("where", "#date" , ">", $startdate)
-			->condition("and", "#date", "<", $enddate)
+			->condition("where", "#date" , ">=", $startdate)
+			->condition("and", "#date", "<=", $enddate)
 			->condition("and", "#pay_type", "like", "pos%")
 			->fieldDate()
 			->fieldPay_type()
