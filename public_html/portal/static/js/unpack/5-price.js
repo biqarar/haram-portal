@@ -15,4 +15,6 @@ route(/price\/status\=(add|edit)/,function(){
 		$(this).val("");
 		$(this).val(formatNumber(_val));
 	});
+
+	
 });

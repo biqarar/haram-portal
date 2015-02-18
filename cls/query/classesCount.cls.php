@@ -2,7 +2,10 @@
 class query_classesCount_cls extends query_cls
 {
 	public function config($classes_id = false){
-		$update = $this->sql()->tableClasses()->setCount($this->count($classes_id))->whereId($classes_id)->update();
+		$update = $this->sql()
+			->tableClasses()
+			->setCount($this->count($classes_id))
+			->whereId($classes_id)->update();
 	}
 
 

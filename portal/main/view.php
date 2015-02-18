@@ -224,11 +224,14 @@ class main_view{
 	public function classesDetail($classes_detail = false) {
 		// var_dump("fuck");exit();
 		// //------------------------------ get detail classes
-		if(config_lib::$surl['classesid']){
+		if(isset(config_lib::$surl['classesid']) || (config_lib::$surl['status'] == 'detail')){
 			//------------------------------ classes id
-			$classes_detail = $this->sql(".classesDetail", config_lib::$surl['classesid']);
+			$classesid = (config_lib::$surl['status'] == 'detail') ? $this->xuId() : config_lib::$surl['classesid'];
+
+			$classes_detail = $this->sql(".classesDetail", $classesid);
 			$this->global->classesid = $classes_detail['classesid'];
 			$this->global->page_title = $classes_detail['page_title'];
+			
 			$this->data->list = $classes_detail['list'];
 		}
 	}

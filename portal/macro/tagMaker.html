@@ -29,7 +29,7 @@
 			{% if child is iterable %}
 				<td>{{tag.make(child)}}</td>
 			{% else %}
-				<td>{{child|lang}}</td>
+				<td>{{child|lang|raw}}</td>
 			{% endif %}
 		{%endfor%}
 	</tr>

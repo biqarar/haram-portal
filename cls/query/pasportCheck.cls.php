@@ -1,16 +1,14 @@
 <?php
-
 class query_pasportCheck_cls extends query_cls {
+
 	public function config($usersid) {
-			return true;
-		$person = $this->sql()->tablePerson()->limit(10)->whereUsers_id($usersid)
-					->select();
-						// var_dump(debug_lib::compile());
-					// var_dump($person->string());exit();
-		
+
+		$person = $this->sql()->tablePerson()->limit(1)->whereUsers_id($usersid)
+					->fieldPasport_date()
+					->fieldNationality()
+					->select()->assoc();	
 
 		$dateNow = $this->dateNow("Ymd");
-		var_dump($dateNow);
 
 		if($person['nationality'] != 97 && $dateNow > $person['pasport_date'] && !global_cls::superperson()) {
 			return false;
@@ -18,4 +16,4 @@ class query_pasportCheck_cls extends query_cls {
 		return true;
 	}
 }
-?>1
+?>

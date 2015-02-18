@@ -18,6 +18,13 @@ class view extends main_view {
 		->addColFirst("name", "name")
 		->removeCol("branch_id,title,id,users_id")
 		->compile();
+		foreach ($price['list'] as $key => $value) {
+			if($value['changeName'] == 'شرکت در کلاس') {
+				$price['list'][$key]['transactions'] = $this->tag("a")
+					->href("classes/status=detail/id=" . $value['transactions'])
+					->vtext("نمایش اطلاعات کلاس" .$value['transactions'] )->render();
+			}
+		}
 
 		$this->data->list = $price;
 	}

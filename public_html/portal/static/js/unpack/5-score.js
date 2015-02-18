@@ -53,8 +53,18 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 		return false;		
 	});
 });	
+function xxx(a) {
 
+	// console.log($("#calculation").html());
+	x = $("#calculation").html()
+	$("#calculation").html(x + '=' + $(a).html() + '=');
+}
 route(/score\/calculation\/status\=(add|edit)/, function(){
+
+	$(".xxx").click(function(){
+		console.log("fuck");
+	});
+
 	$("#plan_id").combobox( "destroy" );
 	$("#plan_id", this).combobox({
 		change : function(op){
@@ -63,13 +73,18 @@ route(/score\/calculation\/status\=(add|edit)/, function(){
 				type: "POST",
 				url : "score/type/api/id=" + item,
 			success : function(data){
-				console.log(data);
+				$("#list").html('');
+				$("#list").val("");
+
 				for(a in data.msg) {
-					x = data.msg[a]['title'];
-						$("<a href=''>" + x + "</a>").appendTo("#list");
+					 if(data.msg[a]['title']){
+							$("<a class='xxx' onclick='xxx(this);'>" + data.msg[a]['title'] + "</a><br>").appendTo("#list");
+					 	}
 					}
 				}
 			});
 		}
 	});
+
+
 });

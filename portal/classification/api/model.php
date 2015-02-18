@@ -5,7 +5,6 @@
 class model extends main_model {
 
 	public function post_insert() {
-// var_dump("expression");
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
@@ -22,10 +21,14 @@ class model extends main_model {
 				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
 			}else{
 				//------------------------------ check price 
-				if(!$this->sql(".price.checkClasses", $users_id , $classes_id, $this->dateNow())) {
+				if(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
+	
 					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
+			
 				}elseif(!$this->sql(".pasportCheck", $users_id)){
-					debug_lib::fatal("تاریخ اتمام گذرنامه این فرد به اتمام رسیده است.");
+				
+					debug_lib::fatal("اعتبار گذرنامه این فراگیر به اتمام رسیده است");
+				
 				}else{
 					//------------------------------ insert classification
 					$classification = $this->sql()->tableClassification()
@@ -54,8 +57,6 @@ class model extends main_model {
 		$this->rollback(function() {
 			debug_lib::fatal("خطا در ثبت");
 		});
-// var_dump("fuck");exit();
 	}
-
 }
 ?>
