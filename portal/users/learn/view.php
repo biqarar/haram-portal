@@ -108,9 +108,19 @@ class view extends main_view  {
 				->vtext($this->sql("#absence_list" , $users_id , $classification_list['classes'][$key]['id']))
 				->render();
 
+
+			$score_value = $this->tag("a")
+				// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
+				// ->style("text-decoration: none")
+				->vtext($this->sql("#score_list" , $users_id , $classification_list['classes'][$key]['id']))
+				->render();
+
+
 			//------------------------------   list of active classes
 			$classification["list"]['list'][0][$classes_title] = $classes_value;
 			$absence['list']['list'][0][$absence_title] = $absence_value;
+			$score['list']['list'][0][$absence_title] = $score_value;
+
 		}
 
 		//------------------------------  global of classification card
@@ -136,6 +146,20 @@ class view extends main_view  {
 	// var_dump($absence);exit();	
 		$this->data->absence = $absence;
 
+
+		
+
+		//------------------------------  make classification card
+		
+		$score["titleLink"]= "classes/status=list/type=score"; 
+
+
+		//------------------------------  global of score card
+		$score['title'] = "score";
+		$score["moreLink"] = "users/learn/score/id=$users_id";
+		$score['addLink'] = "score/status=add/usersid=$users_id";
+	// var_dump($score);exit();	
+		$this->data->score = $score;
 	}
 } 
 ?>
