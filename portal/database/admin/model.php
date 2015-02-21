@@ -271,6 +271,166 @@ class model extends main_model{
 
 			"ALTER TABLE `update_log` ADD CONSTRAINT `update_log_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
 			"ALTER TABLE `update_log` ADD `time` TIMESTAMP NOT NULL ",
+
+
+			/////////////////////////////////////////////////////
+			"CREATE TABLE IF NOT EXISTS `file_tag` (
+			`id` int(10) NOT NULL,
+			`tag` varchar(64) NOT NULL,
+			`table` enum('users','posts','plan') NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `file_tag` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `file_tag` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_tag_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_tag_delete` AFTER DELETE ON `file_tag`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_tag', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_tag_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_tag_insert` AFTER INSERT ON `file_tag`
+			 FOR EACH ROW BEGIN
+			call setCash('file_tag', NEW.id, @branch_id);
+			call setHistory('file_tag', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_tag_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_tag_update` AFTER UPDATE ON `file_tag`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_tag', 'update', OLD.id);
+			END",
+			////////////////////////////////////////////////////
+
+			"CREATE TABLE IF NOT EXISTS `file_user` (
+			`id` int(10) NOT NULL,
+			`file_id` int(10) NOT NULL,
+			`users_id` int(10) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `file_user` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `file_user` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `file_user` ADD CONSTRAINT `file_user_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`)",
+			"ALTER TABLE `file_user` ADD CONSTRAINT `file_user_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_user_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_user_delete` AFTER DELETE ON `file_user`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_user', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_user_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_user_insert` AFTER INSERT ON `file_user`
+			 FOR EACH ROW BEGIN
+			call setCash('file_user', NEW.id, @branch_id);
+			call setHistory('file_user', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_user_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_user_update` AFTER UPDATE ON `file_user`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_user', 'update', OLD.id);
+			END",
+			////////////////////////////////////////////////////
+
+			"CREATE TABLE IF NOT EXISTS `file_post` (
+			`id` int(10) NOT NULL,
+			`file_id` int(10) NOT NULL,
+			`posts_id` int(10) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `file_post` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `file_post` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `file_post` ADD CONSTRAINT `file_post_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`)",
+			"ALTER TABLE `file_post` ADD CONSTRAINT `file_post_ibfk_2` FOREIGN KEY (`posts_id`) REFERENCES `posts` (`id`)",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_post_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_post_delete` AFTER DELETE ON `file_post`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_post', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_post_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_post_insert` AFTER INSERT ON `file_post`
+			 FOR EACH ROW BEGIN
+			call setCash('file_post', NEW.id, @branch_id);
+			call setHistory('file_post', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_post_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_post_update` AFTER UPDATE ON `file_post`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_post', 'update', OLD.id);
+			END",
+			////////////////////////////////////////////////////
+			////////////////////////////////////////////////////
+
+			"CREATE TABLE IF NOT EXISTS `file_plan` (
+			`id` int(10) NOT NULL,
+			`file_id` int(10) NOT NULL,
+			`plan_id` int(10) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `file_plan` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `file_plan` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `file_plan` ADD CONSTRAINT `file_plan_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`)",
+			"ALTER TABLE `file_plan` ADD CONSTRAINT `file_plan_ibfk_2` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`id`)",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_plan_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_plan_delete` AFTER DELETE ON `file_plan`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_plan', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_plan_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_plan_insert` AFTER INSERT ON `file_plan`
+			 FOR EACH ROW BEGIN
+			call setCash('file_plan', NEW.id, @branch_id);
+			call setHistory('file_plan', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_plan_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_plan_update` AFTER UPDATE ON `file_plan`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_plan', 'update', OLD.id);
+			END",
+			////////////////////////////////////////////////////
 			);
 
 

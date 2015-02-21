@@ -28,7 +28,7 @@ class model extends main_model {
 		$classesid = $this->xuId("classesid");
 
 		$list = $this->sql(".scoreCalculation.score_classes",$classesid);
-
+		// print_r($list);
 	
 		$dtable = $this->dtable->table("classification")
 			->fields($this->sql_field_list($classesid))

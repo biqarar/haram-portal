@@ -4,6 +4,10 @@
 */
 class model extends main_model {
 
+	public function sql_score_list($users_id = false, $classes_id = false) {
+		
+	}
+
 	public function sql_absence_list($usersid = false, $classes_id = false) {
 		$list = $this->sql()->tableAbsence();
 		$list->joinClassification()->whereId("#absence.classification_id")
