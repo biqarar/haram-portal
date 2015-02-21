@@ -430,6 +430,12 @@ class model extends main_model{
 			 FOR EACH ROW BEGIN
 			call setHistory('file_plan', 'update', OLD.id);
 			END",
+
+			"DROP TABLE IF EXISTS `table_files`",
+			"ALTER TABLE `files` ADD `file_tag_id` int(10) NOT NULL",
+			"ALTER TABLE `files` ADD CONSTRAINT `file_ibfk_5` FOREIGN KEY (`file_tag_id`) REFERENCES `file_tag` (`id`)",
+
+
 			////////////////////////////////////////////////////
 			);
 
