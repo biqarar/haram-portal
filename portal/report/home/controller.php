@@ -2,6 +2,13 @@
 class controller extends main_controller {
 	public function config(){
 
+	//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("classes", "bridge", "/(.*)/")
+			), function (){
+				save(array("report","classes","bridge"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
 	//----------------------------
 	$this->listen(array(
 			"max" => 3,
@@ -11,13 +18,6 @@ class controller extends main_controller {
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 
-	//---------------------------- bridge
-	$this->listen(array(
-			"url" => array("classes", "bridge", "/(.*)/")
-			), function (){
-				save(array("report","classes","bridge"));
-				$this->permission = array("report" => array("select" => array("public")));
-	});
 
 	//---------------------------- bridge
 	$this->listen(array(

@@ -256,6 +256,60 @@ class model extends main_model{
 			(_sender, _reciver, _text);
 			END",
 
+			////////////////////////////////////////////////////
+			"TRUNCATE table_files",
+			"DROP TABLE `table_files`",
+			"DROP TABLE `files`",
+			"CREATE TABLE IF NOT EXISTS `files` (
+			`id` int(10) NOT NULL,
+			`title` varchar(255) NOT NULL,
+			`size` float NOT NULL,
+			`type` varchar(6) NOT NULL,
+			`folder` int(4) NOT NULL,
+			`file_tag_id` int(10) NOT NULL,
+			`description` text NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `files` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `files` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `files` ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`file_tag_id`) REFERENCES `file_tag` (`id`)",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `files_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `files_delete` AFTER DELETE ON `files`
+			 FOR EACH ROW BEGIN
+			call setHistory('files', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `files_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `files_insert` AFTER INSERT ON `files`
+			 FOR EACH ROW BEGIN
+			call setCash('files', NEW.id, @branch_id);
+			call setHistory('files', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `files_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `files_update` AFTER UPDATE ON `files`
+			 FOR EACH ROW BEGIN
+			call setHistory('files', 'update', OLD.id);
+			END",
+
+			"CREATE TRIGGER `set_folder` BEFORE INSERT ON `files`
+				 FOR EACH ROW BEGIN
+				SET NEW.folder =1000 + CEILING((SELECT AUTO_INCREMENT FROM
+				 information_schema.TABLES WHERE TABLE_SCHEMA
+				 =DATABASE() AND TABLE_NAME = 'files')/1000);
+				END",
+
+			////////////////////////////////////////////////////
 			"CREATE TABLE IF NOT EXISTS `update_log` (
 			  `id` int(10) NOT NULL,
 			  `users_id` int(10) NOT NULL,
@@ -431,59 +485,7 @@ class model extends main_model{
 			call setHistory('file_plan', 'update', OLD.id);
 			END",
 
-			////////////////////////////////////////////////////
 
-			"CREATE TABLE IF NOT EXISTS `files` (
-			`id` int(10) NOT NULL,
-			`title` varchar(255) NOT NULL,
-			`size` float NOT NULL,
-			`type` varchar(6) NOT NULL,
-			`folder` int(4) NOT NULL,
-			`file_tag_id` int(10) NOT NULL,
-
-			`description` text NOT NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
-			
-			"ALTER TABLE `files` ADD PRIMARY KEY(`id`)",
-			"ALTER TABLE `files` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			"ALTER TABLE `files` ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`file_tag_id`) REFERENCES `file_tag` (`id`)",
-
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `files_delete`",
-
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `files_delete` AFTER DELETE ON `files`
-			 FOR EACH ROW BEGIN
-			call setHistory('files', 'delete', OLD.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `files_insert`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `files_insert` AFTER INSERT ON `files`
-			 FOR EACH ROW BEGIN
-			call setCash('files', NEW.id, @branch_id);
-			call setHistory('files', 'insert', NEW.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `files_update`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `files_update` AFTER UPDATE ON `files`
-			 FOR EACH ROW BEGIN
-			call setHistory('files', 'update', OLD.id);
-			END",
-
-			"CREATE TRIGGER `set_folder` BEFORE INSERT ON `files`
-				 FOR EACH ROW BEGIN
-				SET NEW.folder =1000 + CEILING((SELECT AUTO_INCREMENT FROM
-				 information_schema.TABLES WHERE TABLE_SCHEMA
-				 =DATABASE() AND TABLE_NAME = 'files')/1000);
-				END"
-
-			////////////////////////////////////////////////////
 			);
 
 
