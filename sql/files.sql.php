@@ -2,17 +2,20 @@
 /**
  * @author reza mohiti
  */
+
 namespace sql;
 class files {
 	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'files_id');
 	public $title       = array('type'=> 'varchar@32', 'label' => 'files_title');
 	public $size        = array('type'=> 'float@', 'label' => 'files_size');
 	public $type        = array('type'=> 'varchar@6', 'label' => 'files_type');
-	public $folders  = array('type'=> 'int@10', 'label' => 'files_folders');
+	public $folder      = array('type'=> 'int@10', 'label' => 'files_folder');
+	public $file_tag_id = array('type' => 'int@10', 'label'=> "file_tag");
 	public $description = array('type'=> 'varchar@255', 'label' => 'files_description');
 	
-	public $unique      = array("id");
-	public $index       = array("folders_id");
+	// public $unique      = array("id");
+	// public $index       = array("folder_id");
+	public $foreign = array("file_tag_id" => "file_tag@id!tag");
 
 	public function id() {
 		$this->validate("id");
@@ -24,7 +27,23 @@ class files {
 			$this->value = preg_replace("/[^a-zA-Z0-9".FACHR."]/", '-', $this->value);
 		});
 	}
+
+	public function size(){
+
+	}
 	
+	public function type(){
+		
+	}
+
+	public function folder() {
+		
+	}
+
+	public function file_tag_id(){
+		$this->validate("id");
+	}
+
 	public function description() {
 		$this->form("#text_desc")->name("description");
 	}
