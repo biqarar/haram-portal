@@ -7,11 +7,10 @@ class view extends main_view  {
 		//------------------------------  global
 		$this->global->page_title = _("وضعیت پرونده") . " " . _("student");
 		////////////////////////////////////////////////
-		//------------------------------ list of branch
-	
+				//------------------------------ list of branch
 		$this->data->dataTable = $this->dtable(
-			"users/learn/score/status=apilist/id=" . $this->xuId() . "/", 
-			array("id", "plan", "teachername","teacherfamily","ریز نمرات","امتیاز نهایی"));
+			"users/learn/status/status=apilist/id=" . $this->xuId() . "/", 
+			array("id", "plan", "teachername","teacherfamily","date_entry","date_delete","because", "تعداد غیبت", "امتیاز نهایی"));
 	}
 } 
 ?>

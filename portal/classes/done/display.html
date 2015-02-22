@@ -1,0 +1,38 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+{{tagMaker.list(list)}}
+<br>
+<p><b>
+	ثبت اتمام کلاس یعنی:
+</b></p>
+<p>
+	بعد از ثبت اتمام کلاس امکان تغییر فراگیر (حذف و اضافه)، ثبت و حذف غیبت و تغییر در نمرات وجود ندارد.
+</p>
+<p>
+	به ازای نمراتی که برای قرآن آموزان در این کلاس ثبت نشده است به صورت خودکار «صفر» قرار داده می شود.
+</p>
+<p>
+	امکان ثبت درخواست گواهی نامه از طرف فراگیرانی که امتیاز قبولی را کسب کرده اند بعد از ثبت اتمام کلاس فعال می شود.
+</p>
+<style type="text/css">
+	.classes-done {
+		/*height: 75px;*/
+		width: 100px;
+		background: #f16971;
+		border-radius: 7px;
+		padding: 25px 50px 25px 50px !important;
+		text-align: center;
+		display: inline-block;
+
+	}
+	a {
+		text-decoration: none;
+	}
+</style>
+<a href="">
+	<div class="classes-done">
+	ثبت اتمام کلاس
+	</div>
+</a>
+{%endblock%}

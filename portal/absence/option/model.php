@@ -26,11 +26,9 @@ class model extends main_model {
 	}
 
 	public function sql_active_classes($usersid = false) {
-		$allClass_users = $this->sql()->tableClassification()->whereUsers_id($usersid)->fieldId("classification_id")
-			->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-			->groupClose();
+		$allClass_users = $this->sql()->tableClassification()->whereUsers_id($usersid)->fieldId("classification_id");
+
+		$allClass_users = $this->classification_finde_active_list($allClass_users);
 
 		$allClass_users->joinClasses()->whereId("#classification.classes_id")->fieldId("classes_id")
 			->groupOpen()

@@ -33,11 +33,10 @@ class query_sms_cls extends query_cls
 	}
 
 	public function send_classes($classes_id = false, $tag = false) {
-		$classes_list = $this->sql()->tableClassification()->whereClasses_id($classes_id)
-			->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-			->groupClose()->fieldId();
+		$classes_list = $this->sql()->tableClassification()->whereClasses_id($classes_id)->fieldId();
+
+		$classes_list = $this->classification_finde_active_list($classes_list);
+		
 		$classes_list->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue();
 
 		$list = $classes_list->select()->allAssoc();

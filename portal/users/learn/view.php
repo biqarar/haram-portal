@@ -102,24 +102,24 @@ class view extends main_view  {
 				->vtext(" کلاس شماره  "  . ++$i_absence)
 				->render();
 
-			$absence_value = $this->tag("a")
-				// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
-				// ->style("text-decoration: none")
-				->vtext($this->sql("#absence_list" , $users_id , $classification_list['classes'][$key]['id']))
-				->render();
+			// $absence_value = $this->tag("a")
+			// 	// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
+			// 	// ->style("text-decoration: none")
+			// 	->vtext($this->sql("#absence_list" , $users_id , $classification_list['classes'][$key]['id']))
+			// 	->render();
 
 
-			$score_value = $this->tag("a")
-				// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
-				// ->style("text-decoration: none")
-				->vtext($this->sql("#score_list" , $users_id , $classification_list['classes'][$key]['id']))
-				->render();
+			// $score_value = $this->tag("a")
+			// 	// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
+			// 	// ->style("text-decoration: none")
+			// 	->vtext($this->sql("#score_list" , $users_id , $classification_list['classes'][$key]['id']))
+			// 	->render();
 
 
 			//------------------------------   list of active classes
 			$classification["list"]['list'][0][$classes_title] = $classes_value;
-			$absence['list']['list'][0][$absence_title] = $absence_value;
-			$score['list']['list'][0][$absence_title] = $score_value;
+			// $absence['list']['list'][0][$absence_title] = $absence_value;
+			// $score['list']['list'][0][$absence_title] = $score_value;
 
 		}
 
@@ -136,28 +136,25 @@ class view extends main_view  {
 
 		//------------------------------  make classification card
 		
-		$absence["titleLink"]= "classes/status=list/type=absence"; 
+	// 	$absence["titleLink"]= "classes/status=list/type=absence"; 
 
 
-		//------------------------------  global of absence card
-		$absence['title'] = "absence";
-		$absence["moreLink"] = "users/learn/absence/id=$users_id";
-		$absence['addLink'] = "absence/status=add/usersid=$users_id";
-	// var_dump($absence);exit();	
-		$this->data->absence = $absence;
+	// 	//------------------------------  global of absence card
+	// 	$absence['title'] = "absence";
+	// 	$absence["moreLink"] = "users/learn/absence/id=$users_id";
+	// 	$absence['addLink'] = "absence/status=add/usersid=$users_id";
+	// // var_dump($absence);exit();	
+	// 	$this->data->absence = $absence;
 
 
 		
 
 		//------------------------------  make classification card
-		
-		$score["titleLink"]= "classes/status=list/type=score"; 
-
-
-		//------------------------------  global of score card
-		$score['title'] = "score";
-		$score["moreLink"] = "users/learn/score/id=$users_id";
-		$score['addLink'] = "score/status=add/usersid=$users_id";
+		$score['title'] = "پرونده تحصیلی";
+		// $score["moreLink"] = "users/learn/score/id=$users_id";
+		$score['list']['list'][0]["غیبت و نمرات"] = $this->tag("a")->href("users/learn/status/id=". $users_id)
+		->vtext("نمایش اطلاعات")->render();
+		// $score['addLink'] = "score/status=add/usersid=$users_id";
 	// var_dump($score);exit();	
 		$this->data->score = $score;
 	}

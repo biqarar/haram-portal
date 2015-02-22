@@ -8,11 +8,10 @@ class query_reports_cls extends query_cls
 
 	public function person_classes($classes_id = false, $condition = "id=0") {
 
-		$classification = $this->sql()->tableClassification()->whereClasses_id($classes_id)
-		->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-		->groupClose();
+		$classification = $this->sql()->tableClassification()->whereClasses_id($classes_id);
+
+		$classification = $this->classification_finde_active_list($classification);
+		
 
 		$condition = preg_match("/^(.*)\=(.*)$/", $condition, $where);
 	
@@ -25,11 +24,9 @@ class query_reports_cls extends query_cls
 
 	public function classes_average_age($classes_id = false) {
 
-		$classification = $this->sql()->tableClassification()->whereClasses_id($classes_id)
-		->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-		->groupClose();
+		$classification = $this->sql()->tableClassification()->whereClasses_id($classes_id);
+		$classification = $this->classification_finde_active_list($classification);
+		
 		$classification->joinPerson()->whereUsers_id("#classification.users_id")->fieldBirthday();
 
 		$classification = $classification->select()->allAssoc();

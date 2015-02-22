@@ -89,11 +89,8 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		}
 	
 	
-		$allClass_users = $this->sql()->tableClassification()->whereUsers_id($users_id)
-			->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-			->groupClose();
+		$allClass_users = $this->sql()->tableClassification()->whereUsers_id($users_id);
+		$allClass_users = $this->classification_finde_active_list($allClass_users);
 
 		$allClass_users->joinClasses()->whereId("#classification.classes_id")
 			->groupOpen()

@@ -16,18 +16,16 @@ class model extends main_model {
 	}
 
 	public function post_add_classification() {
-		// $sql = $this->makeQuery()->insert();
-		// $this->commit(function() {
-		// 	debug_lib::true("[[insert classification successful]]");
-		// });
-		// $this->rollback(function() {
-		// 	debug_lib::fatal("[[insert classification failed]]");
-		// });
+
 	}
 
 	public function post_edit_classification() {
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 		$classes_id = $this->sql()->tableClassification()->whereId($this->xuId())->limit(1)->select()->assoc("classes_id");
+		
+
+		die("آیا می خواهید شهریه باز گردانده شود.");
+
 		$this->sql(".classesCount", $classes_id);
 		$this->commit(function() {
 			debug_lib::true("[[update classification successful]]");

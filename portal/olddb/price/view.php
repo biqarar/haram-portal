@@ -13,9 +13,12 @@ class view extends main_view {
 			$query->whereParvande($id);
 		}, $this->xuId());
 
-		$oldprice->removeCol("id,code,description1,valueback,branch,date_erja,erja_status,date_o");
+		$oldprice->removeCol("code,description1,valueback,branch,date_erja,erja_status,date_o");
 
-
+		// $oldprice->addCol("add","انتقال به دوره جدید");
+		// $oldprice->select(-1, "add")->html($this->tag("a")->class("icodadd")->href("%id%")->render());
+		// var_dump($oldprice->compile());exit();
+		
 		$this->data->list = $oldprice->compile();
 	}
 }

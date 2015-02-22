@@ -4,40 +4,34 @@
 */
 class model extends main_model {
 
-	public function post_api() {
+	public function post_api(){
+		$usersid = $this->xuId();
 
-		$dtable = $this->dtable->table("absence")
-		->fields("planname", "teacherfamily", 'date date', 'type', "id edit" , "classificationid delete")
-		->search_fields("date", "classes_id")
-		
+		$dtable = $this->dtable->table("classification")
+		->fields("id", "plan", "teachername","teacherfamily","date_entry","date_delete","because", "id absence", "mark mark")
+		->search_fields("plan", "teacher")
 		->query(function($q){
-			$q->joinClassification()->whereId("#absence.classification_id")
-			->andUsers_id($this->xuId("usersid"))->fieldClasses_id("classesid")->fieldId("classificationid");
-
-			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classes_id")->fieldPlan_id("plan_id");
-			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
-			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily");
-
-		})
-		->order(function($q, $n, $b){
-			if($n === 'orderTeacherfamily'){
-				$q->join->person->orderFamily($b);
-			}elseif($n === 'orderPlanname'){
-				$q->join->plan->orderName($b);
-			}elseif($n === 'orderClasses_id'){
-				$q->join->classes->orderId($b);
-			}else{
-				return true;
-			}
+			$q->whereUsers_id($this->xuId());
+			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid");
+			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
+			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
 		})
 		->result(function($r) {
-			$r->edit = '<a class="icoedit" href="absence/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
-			$r->delete = $this->tag("a")->class("icoredclose absenceDelete")->date($r->date)
-			->classificationid($r->delete)->render();
+			$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
+			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
 		});
 		$this->sql(".dataTable", $dtable);
-
 	}
+
+	public function find_count_absence($classificationid = false) {
+		$absence = $this->sql()->tableAbsence()->whereClassification_id($classificationid)->select()->num();
+		if($absence > 0) {
+			return $absence;
+		}
+		return null;
+	}
+
+
 	public function sql_classification_list($usersid = false) {
 		$return = array();
 		$return['sum_active'] = 0;

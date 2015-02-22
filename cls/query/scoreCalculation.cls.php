@@ -17,12 +17,11 @@ class query_scoreCalculation_cls extends query_cls {
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
 		$calculation->joinScore_calculation()->wherePlan_id("#classes.plan_id")->andStatus("active");
-		$calculation->joinClassification()->whereClasses_id("#classes.id")
-		               	->groupOpen()
-						->condition("and", "#date_delete" , "is", "#null")
-						->condition("or", "#because", "is", "#null")
-						->groupClose()
-		               	 ->fieldId();
+
+		$x = $calculation->joinClassification()->whereClasses_id("#classes.id")->fieldId();
+		
+		$this->classification_finde_active_list($x);
+
 		$calculation->joinScore()->whereClassification_id("#classification.id")->fieldValue();
 		$calculation->joinScore_type()->whereId("#score.score_type_id")->fieldTitle();
 		$calculation->joinPerson()->whereUsers_id("classification.users_id")->fieldName()->fieldFamily();

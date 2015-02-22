@@ -10,14 +10,9 @@ class query_classesCount_cls extends query_cls
 
 
 	public function count($classes_id = false) {
-			//------------------------------- set classification count in to classes table
-				return $this->sql()->tableClassification()
-						->whereClasses_id($classes_id)
-						->groupOpen()
-						->condition("and", "#date_delete" , "is", "#null")
-						->condition("or", "#because", "is", "#null")
-						->groupClose()
-						->select()->num();
+	//------------------------------- set classification count in to classes table
+		$count = $this->sql()->tableClassification()->whereClasses_id($classes_id);
+		return $this->classification_finde_active_list($count)->select()->num();
 
 	}
 }

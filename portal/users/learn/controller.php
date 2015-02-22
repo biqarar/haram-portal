@@ -5,6 +5,37 @@
 class controller extends main_controller{
 	
 	function config(){
+		$this->listen(array(
+			"max" => 5,
+			"url" => array("score","status" => "apilist", "id" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "score" , "mod" => "api"));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
+
+		$this->listen(array(
+			"max" => 5,
+			"url" => array("score", "id" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "score"));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
+
+		$this->listen(array(
+			"max" => 5,
+			"url" => array("status","status" => "apilist", "id" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "status" , "mod" => "api"));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
+
+		$this->listen(array(
+			"max" => 2,
+			"url" => array("status", "id" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "status"));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
 
 		$this->listen(array(
 			"max" => 2,

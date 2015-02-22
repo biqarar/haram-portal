@@ -5,7 +5,16 @@
 class controller extends main_controller{
 
 	function config(){
-		
+		//------------------------------ pending classes
+		$this->listen(array(
+			"max" => 2,
+			"url" => array("status" => "done", "classesid" => "/^\d+$/")
+			), 
+			function () {
+				save(array("classes", "done"));
+				$this->permission = array("classes" => array("delete" => array("public"), "update" => array("public")));
+			}
+		);
 		//------------------------------ pending classes
 		$this->listen(array(
 			"max" => 2,

@@ -12,6 +12,7 @@ class view extends main_view{
 
 		$this->data->dataTable = $this->dtable("bridge/status=api/"
 			, array(
+			"more",
 			"username",
 			"name",
 			"family",

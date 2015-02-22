@@ -51,12 +51,10 @@ class model extends main_model {
 		var_dump($reprot);
 		exit();
 		//------------------------------ find lis of person in classes
-		$classification = $this->sql()->tableClassification()
-		->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-		->groupClose()
-		->groupOpen();
+		$classification = $this->sql()->tableClassification();
+		$classification = $this->classification_finde_active_list($classification);
+
+		$classification->groupOpen();
 
 		//------------------------------ all classes_id (is called)
 		foreach ($classes_id as $key => $value) {

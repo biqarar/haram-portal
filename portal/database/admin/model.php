@@ -91,7 +91,7 @@ class model extends main_model{
 		$this->ready(4);
 		
 		//----------------------------- new version function (database change)	
-		$this->database_change();		
+		// $this->database_change();		
 		
 		//----------------------------- new version function (query on record)
 		$this->query_on_record();
@@ -108,7 +108,22 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
+		$classification = $this->sql()->tableClassification();
 
+		$classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile");
+		$classification = $classification->select()->allAssoc();
+		
+		header('Content-Type: text/html; charset=utf-8'); 
+        header("Content-Disposition: attachment; filename=1.xlsx");  
+        header("Pragma: no-cache"); 
+        header("Expires: 0");
+
+		print "<table>";
+		foreach ($classification as $key => $value) {
+			print "<tr><td>" . $value['value'] . "</td></tr>";
+		}
+		print "</table>";
+		exit();
 		// $this->title("change passwrod");
 		// $all = $this->sql()->tableBridge()->whereTitle("mobile");
 		// $all->joinClassification()->whereUsers_id("#bridge.users_id");

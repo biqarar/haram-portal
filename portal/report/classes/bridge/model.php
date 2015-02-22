@@ -16,10 +16,7 @@ class model extends main_model {
 		}
 		$classification->groupClose()->fieldId();
 		
-		$classification->groupOpen()
-			->condition("and", "#date_delete" , "is", "#null")
-			->condition("or", "#because", "is", "#null")
-		->groupClose();
+		$this->classification_finde_active_list($classification);
 		
 		$classification->joinUsers()->whereId("#classification.users_id")->fieldUsername();
 

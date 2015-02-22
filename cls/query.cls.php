@@ -33,5 +33,13 @@ class query_cls {
 		return $time->date($type, false, false);
 		
 	}
+
+	public function classification_finde_active_list($q = false) {
+		 return 
+		 $q->groupOpen()
+		->condition("and", "#date_delete" , "is", "#null")
+		->condition("or", "#because", "is", "#null")
+		->groupClose();
+	}
 }
 ?>

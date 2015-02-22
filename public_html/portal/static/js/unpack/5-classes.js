@@ -6,3 +6,8 @@ route(/portal\/classes\/status=(add|edit)/, function(){
 	
 });
 
+route(/classes\/status\=done\/classesid\=\d+/, function(){
+	$(".classes-done", this).click(function(){
+		alert("fuck");
+	});
+});

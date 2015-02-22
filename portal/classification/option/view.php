@@ -33,6 +33,7 @@ class view extends main_view {
 			// $course = $this->sql(".assoc.foreign", "course", $course_id, "name");
 
 			$f->classes_id->value($plan);
+			
 		}
 	}
 }
