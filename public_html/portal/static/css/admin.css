@@ -1070,4 +1070,7 @@ ul.copire-contextmenu {
   font-size: 12px;
   display: inline-block; }
 
+a {
+  text-decoration: none !important; }
+
 /*# sourceMappingURL=admin.css.map */

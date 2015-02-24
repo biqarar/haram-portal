@@ -8,7 +8,9 @@ class model extends main_model {
 		$certification = $this->sql()->tableClassification()->whereUsers_id($usersid)->fieldId()->fieldMark();
 		$certification->joinClasses()->whereId("#classification.classes_id")->fieldId();
 		$certification->joinPlan()->whereId("#classes.id")->condition("and", "##classification.mark", ">=" , "#plan.mark")->fieldName("planname");
-		// $certification->joinCertification()->whereClassifi
+		$certification->joinCertification()->whereClassification_id("<>" , "#classification.id");
+		// echo $certification->select()->string();
+		// exit();
 		// mikham join out konam yani oni ke govahi barash sabt nashode biyad :))
 		
 		

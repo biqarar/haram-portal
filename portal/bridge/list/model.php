@@ -35,6 +35,8 @@ class model extends main_model {
 
 			$r->edit = '<a class="icoedit" href="bridge/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 			$r->more = $this->tag("a")->href("users/status=detail/id=". $r->more)->class("icomore")->render();
+			$r->username = $this->tag("a")->href("users/status=list?username=" . $r->username)
+			->target("_blank")->vtext($r->username)->render();
 			// // $r->absence = '<a class="icoattendance" href="classification/absence/bridgeid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
 			// $r->detail = '<a class="icomore" href="bridge/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
