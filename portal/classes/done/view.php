@@ -24,6 +24,8 @@ class view extends main_view {
 			}	
 		$this->data->list = $classes_detail;
 
+		$this->global->classesid = $this->xuId("classesid");
+
 		
 	}
 }

@@ -11,7 +11,7 @@ class certification {
 	// public $unique = array("name");
 	public $index = array("users_id", "classification_id");
 
-	public $foreign = array("classification_id" => "classes@id!name");
+	public $foreign = array("classification_id" => "classification@id!id");
 
 	public function id() {
 		$this->validate("id");

@@ -1,0 +1,8 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<form class="ajx" method="post" action="certification/{{global.url}}">
+	{{forms.make(form.certification)}}
+</form>
+{{dtable.make(dataTable)}}
+{%endblock%}

@@ -6,21 +6,16 @@ class query_scoreCalculation_cls extends query_cls {
 	* 	score type title
 	*	username, name, family
 	*/
-	public function list_score($classesid = false , $type = "classes") {
+	public function list_score($classesid = false) {
 
-		// if($type == "users") {
-		// 	$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
-		// }else{
-		// 	$classification->classification->claaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		// }
-
+	
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
 		$calculation->joinScore_calculation()->wherePlan_id("#classes.plan_id")->andStatus("active");
 
 		$x = $calculation->joinClassification()->whereClasses_id("#classes.id")->fieldId();
 		
-		$this->classification_finde_active_list($x);
+		// $this->classification_finde_active_list($x);
 
 		$calculation->joinScore()->whereClassification_id("#classification.id")->fieldValue();
 		$calculation->joinScore_type()->whereId("#score.score_type_id")->fieldTitle();
@@ -32,7 +27,7 @@ class query_scoreCalculation_cls extends query_cls {
 	}
 
 
-	public function _eval($arg = false) {
+	public function _eval($arg = false, $type = "classes") {
 		$run = false;
 		$list = array();
 		foreach ($arg as $key => $value) {
@@ -46,7 +41,7 @@ class query_scoreCalculation_cls extends query_cls {
 					|| $k == 'username' ){
 						$list[$value['users_id']][$k][] = $v;
 					}
-				}	
+				}
 			}
 		}
 		if($run) {
@@ -60,12 +55,13 @@ class query_scoreCalculation_cls extends query_cls {
 				$list[$key]['result'] = (@eval("return " . $x . ";" ) ? @eval("return " . $x . ";" ) : "-");
 				// print_r($list[$key]['result'] . "\n");			
 			}
+
 			return $list;
 		}
 	}
 		 
 	public function score_classes($classesid = false , $type = "classes") {
-		return $this->_eval($this->list_score($classesid, $type));
+		return $this->_eval($this->list_score($classesid), $type);
 	}
 }
 ?>

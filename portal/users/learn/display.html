@@ -1,10 +1,16 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
+
+<p style="display: block; clear: both">
+	<b>	وضعیت پرونده فراگیر :</b> لیست کلاس های شرکت کرده ، نمرات، غیبت ها، گواهی نامه
+</p>
+{{dtable.make(dataTable)}}
 {{tagMaker.card(olddb)}}
 {{tagMaker.card(price)}}
-{{tagMaker.card(classification)}}
-{{tagMaker.card(absence)}}
-{{tagMaker.card(score)}}
 {{tagMaker.card(certification)}}
+<!-- {{tagMaker.card(classification)}} -->
+<!-- {{tagMaker.card(absence)}} -->
+<!-- {{tagMaker.card(score)}} -->
+
 {%endblock%}

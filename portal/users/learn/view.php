@@ -51,7 +51,6 @@ class view extends main_view  {
 		$price['title'] = "price";
 		$price["moreLink"] = "price/status=detail/usersid=$users_id";
 		$price['addLink'] = "price/status=add/usersid=$users_id";
-	// var_dump($price);exit();	
 		$this->data->price = $price;
 
 
@@ -70,7 +69,6 @@ class view extends main_view  {
 
 		//------------------------------  active classes tag
 		$active_classes = $this->tag("a")
-			// ->href("sdsdfsdfsdfdsf")
 			->style("text-decoration: none")
 			->vtext("تعداد کلاس های فعال")
 			->render();
@@ -102,24 +100,9 @@ class view extends main_view  {
 				->vtext(" کلاس شماره  "  . ++$i_absence)
 				->render();
 
-			// $absence_value = $this->tag("a")
-			// 	// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
-			// 	// ->style("text-decoration: none")
-			// 	->vtext($this->sql("#absence_list" , $users_id , $classification_list['classes'][$key]['id']))
-			// 	->render();
-
-
-			// $score_value = $this->tag("a")
-			// 	// ->href("classes/status=detail/id=". $classification_list['classes'][$key]['id'])
-			// 	// ->style("text-decoration: none")
-			// 	->vtext($this->sql("#score_list" , $users_id , $classification_list['classes'][$key]['id']))
-			// 	->render();
-
 
 			//------------------------------   list of active classes
 			$classification["list"]['list'][0][$classes_title] = $classes_value;
-			// $absence['list']['list'][0][$absence_title] = $absence_value;
-			// $score['list']['list'][0][$absence_title] = $score_value;
 
 		}
 
@@ -135,28 +118,38 @@ class view extends main_view  {
 
 
 		//------------------------------  make classification card
-		
-	// 	$absence["titleLink"]= "classes/status=list/type=absence"; 
-
-
-	// 	//------------------------------  global of absence card
-	// 	$absence['title'] = "absence";
-	// 	$absence["moreLink"] = "users/learn/absence/id=$users_id";
-	// 	$absence['addLink'] = "absence/status=add/usersid=$users_id";
-	// // var_dump($absence);exit();	
-	// 	$this->data->absence = $absence;
-
-
-		
-
-		//------------------------------  make classification card
 		$score['title'] = "پرونده تحصیلی";
-		// $score["moreLink"] = "users/learn/score/id=$users_id";
 		$score['list']['list'][0]["غیبت و نمرات"] = $this->tag("a")->href("users/learn/status/id=". $users_id)
 		->vtext("نمایش اطلاعات")->render();
-		// $score['addLink'] = "score/status=add/usersid=$users_id";
-	// var_dump($score);exit();	
 		$this->data->score = $score;
+
+
+		$this->data->dataTable = $this->dtable(
+			"users/learn/status/status=apilist/id=" . $this->xuId() . "/", 
+			array("id"
+			, "plan"
+			, "teachername"
+			,"teacherfamily"
+			,"date_entry"
+			,"date_delete"
+			,"because"
+			, "تعداد غیبت"
+			, "امتیاز نهایی"
+			, "certification"));
+
+		$certification['title'] = "certification";
+		$list_certification = $this->sql("#find_list_certification", $users_id);
+		foreach ($list_certification as $key => $value) {
+		$certification['list']['list'][0][" دوره " . $value['planname']] = $this->tag("a")
+		->style("text-decoration: none")
+		->href("")
+		->class("insert-certification")
+		->classificationid($value['id'])
+			->vtext("ثبت گواهی نامه با امتیاز " . $value['mark'])->render();
+			
+		}
+		$this->data->certification = $certification;
+
 	}
 } 
 ?>

@@ -8,6 +8,22 @@ route(/portal\/classes\/status=(add|edit)/, function(){
 
 route(/classes\/status\=done\/classesid\=\d+/, function(){
 	$(".classes-done", this).click(function(){
-		alert("fuck");
+		classesid = $(this).attr("classesid");
+		$.ajax({
+			type: "POST",
+			url : "classes/status=setdone/classesid=" + classesid,
+
+			success : function(data){
+				if(data.fatal){
+					xhr_error(data.fatal[0]);
+
+				}else if(data.warn){
+					xhr_warn(data.warn[0]);
+
+				}else{
+					xhr_true(data.true[0]);
+				}
+			}
+		});
 	});
 });

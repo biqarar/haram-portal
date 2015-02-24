@@ -20,7 +20,13 @@ class view extends main_view {
 		})
 		->addColFirst("edit", "edit")
 		->select(0, "edit")
-		->html($edit_link)
+		->html($edit_link);
+
+		$classes_detail = $classes_detail->addColEnd("done", "done")
+		->select(0, "done")
+		->html($this->tag("a")->href("classes/status=done/classesid=%id%")
+		->addClass("icoredclose")
+		->style("margin : 0px !important;")->render())
 		->compile();
 
 		//------------------------------ convert paln_id , teacher , place id , ... to name of this

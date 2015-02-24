@@ -8,7 +8,7 @@ class model extends main_model {
 		$usersid = $this->xuId();
 
 		$dtable = $this->dtable->table("classification")
-		->fields("id", "plan", "teachername","teacherfamily","date_entry","date_delete","because", "id absence", "mark mark")
+		->fields("id", "plan", "teachername","teacherfamily","date_entry","date_delete","because", "id absence", "mark mark", "id certification")
 		->search_fields("plan", "teacher")
 		->query(function($q){
 			$q->whereUsers_id($this->xuId());
@@ -19,10 +19,27 @@ class model extends main_model {
 		->result(function($r) {
 			$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
+			$r->certification = $this->tag("a")->href("users/learn/certification/id=" . 1)->vtext($this->find_status_certification($r->certification))->render();
 		});
 		$this->sql(".dataTable", $dtable);
 	}
 
+	public function find_status_certification($classificationid = false ) {
+
+		$certification = $this->sql()->tableCertification()->whereClassification_id($classificationid)->limit(1)->select();
+		return $certification->num();
+		// if($certification->num() == 1) {
+		// 	foreach ($certification->assoc() as $key => $value) {
+		// 		print_r("key :" . $key . " val : " . $value . "\n");
+		// 		if($value != "") {
+		// 			// return $return;
+		// 		}else{
+		// 			$return =  ($key) . " : " . $value;
+		// 		}
+		// 	}
+		// 	var_dump($return); exit();
+		// }
+	}
 	public function find_count_absence($classificationid = false) {
 		$absence = $this->sql()->tableAbsence()->whereClassification_id($classificationid)->select()->num();
 		if($absence > 0) {
