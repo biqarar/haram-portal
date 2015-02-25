@@ -192,6 +192,15 @@ class sql_lib{
 		return $string;
 	}
 
+	// public function outerjoin(){
+	// 	$string = "";
+	// 	foreach ($this->maker->join as $key => $value) {
+	// 		$string .= " OUTER JOIN ".$value->table." ON";
+	// 		$string .= $this->condition($value);
+	// 	}
+	// 	return $string;
+	// }
+
 	/**
 	 * [condition description]
 	 * @param  [type] $maker [description]

@@ -5,11 +5,13 @@
 class view extends main_view {
 
 	public function config() {
+		
 
 		//------------------------------ global
 		$this->global->page_title ="score";
 
 		$this->global->score_type = $this->sql("#score_type", $this->xuId("scoretypeid"), "title");
+		$this->data->score_type_list = $this->sql(".scoreTypeList", $this->xuId("classesid"));
 
 		$this->classesDetail();
 		

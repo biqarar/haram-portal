@@ -1,9 +1,13 @@
 {% extends layout %}
 {% block content %}
-<!-- classes detail -->
 <div class="class-detail">
 	{{ tagMaker.list(list) }}
 </div>
-<br>
+{{tagMaker.detail(score_type_list)}}
+<h3>
+	نمایش کارنامه کلاس
+
+</h3>
+
 {{dtable.make(dataTable)}}
 {%endblock%}
