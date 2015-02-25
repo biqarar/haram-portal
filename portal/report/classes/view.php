@@ -8,7 +8,8 @@ class view extends main_view{
 	public function config(){
 		//------------------------------ global
 		$this->global->page_title = "classes";
-
+		$this->global->url = "portal/report/classes";
+		
 		$hidden = $this->form("#hidden")->value("reports");
 		$lists =  $this->form("select")->name("lists")->label("reports")->addClass("notselect");
 		$submit = $this->form("#submitedit")->value("select")->addClass("start-reports");
