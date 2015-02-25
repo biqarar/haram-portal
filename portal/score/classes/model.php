@@ -1,17 +1,9 @@
 <?php
 class model extends main_model {
 
-	public function sql_score_type($classesid = false) {
-		$plan_id = $this->sql()->tableClasses()->whereId($classesid)->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
-		$score_type = $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
-		return $score_type;
-	}
 	public function post_api() {
 
-		$score_type = $this->sql_score_type();
-// var_dump("fuck");exit();
 		$array = array("name person.name", "family person.family","id input");
-		
 		
 		$dtable = $this->dtable->table("classification")
 			->fields($array)
@@ -36,15 +28,7 @@ class model extends main_model {
 									  ->value($this->get_value($r->input, $this->xuId("scoretypeid")))
 									  ->render() . "</div>";
 
-				// $r->insert 	   = $this->tag("a")
-				//  						->style("cursor: pointer;")
-				// 					  ->addClass("icodadd a-undefault")
-				// 					  ->addClass("insertAbsenceApi")
-				// 					  ->classification($r->insert)
-				// 					  ->tabindex("-1")
-				// 					  ->render();
 
-				// $r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->tabindex("-1")->render();
 			});
 			$this->sql(".dataTable", $dtable);
 	}

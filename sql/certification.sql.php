@@ -9,9 +9,9 @@ class certification {
 	public $date_request      = array('type'=> 'int@10', 'label' => 'certification_date_request');
 
 	// public $unique = array("name");
-	public $index = array("users_id", "classification_id");
+	// public $index = array("users_id", "classification_id");
 
-	public $foreign = array("classification_id" => "classification@id!id");
+	// public $foreign = array("classification_id" => "classification@id!id");
 
 	public function id() {
 		$this->validate("id");

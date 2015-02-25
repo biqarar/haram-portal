@@ -6,8 +6,23 @@ class model extends main_model{
 
 	public function post_insertapi() {
 		$classificationid = $this->xuId("classificationid");
-		var_dump($classificationid);
-		exit();
+
+		// $mark = $this->sql()->tableClassification()->whereId($classificationid)->limit(1)->select();
+		$duplicate = $this->sql()->tableCertification()->whereClassification_id($classificationid)
+			->limit(1)->select()->num();
+
+		if($duplicate == 0 ) {
+			$x = $this->sql()->tableCertification()
+				->setClassification_id($classificationid)
+				->setDate_request($this->dateNow())
+				->insert();
+				// var_dump($x);exit();
+				debug_lib::true("گواهی نامه با موفقیت ثبت شد");
+		}elseif($duplicate != 0 ){
+			debug_lib::fatal("این گواهی نامه قبلا ثبت شده است");
+		}else{
+			debug_lib::fatal("ثبت گواهی نامه با خطا مواجه شده است");
+		}
 	}
 	
 	public function makeQuery() {

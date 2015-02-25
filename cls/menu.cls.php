@@ -366,6 +366,15 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ certification list
+		self::$menu[] = array(
+			"submenu" => "certification", 
+			"url" => "certification/status=list", 
+			"name" =>  "لیست گواهی نامه ها" , 
+			"tag" => array(
+				"certification" => array("select" => array("public"))
+				)
+			);
 
 		//------------------------------ plan add
 		self::$menu[] = array(

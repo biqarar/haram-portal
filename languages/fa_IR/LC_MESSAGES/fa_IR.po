@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "teachername"
+msgstr "نام استاد"
+
+msgid "teacherfamily"
+msgstr "نام خانوادگی استاد"
+
 msgid "min"
 msgstr "حد اقل"
 
@@ -34,9 +40,6 @@ msgstr "روش محاسبه نمره"
 
 msgid "score"
 msgstr "امتیاز"
-
-desactive
-
 
 msgid "education_academic_id"
 msgstr "تحصیلات کلاسیک"

@@ -44,16 +44,12 @@ class view extends main_view  {
 			->render();
 		$price["list"]['list'][0][$count_transaction] = $price_list['count_transaction'];
 
-	
-	
 
 		//------------------------------  global of price card
 		$price['title'] = "price";
 		$price["moreLink"] = "price/status=detail/usersid=$users_id";
 		$price['addLink'] = "price/status=add/usersid=$users_id";
 		$this->data->price = $price;
-
-
 
 
 		//------------------------------  make classification card
@@ -136,20 +132,19 @@ class view extends main_view  {
 			, "تعداد غیبت"
 			, "امتیاز نهایی"
 			, "certification"));
-
-		$certification['title'] = "certification";
+		$certification = array();
 		$list_certification = $this->sql("#find_list_certification", $users_id);
 		foreach ($list_certification as $key => $value) {
+		$certification['title'] = "certification";
 		$certification['list']['list'][0][" دوره " . $value['planname']] = $this->tag("a")
 		->style("text-decoration: none")
 		->href("")
 		->class("insert-certification")
 		->classificationid($value['id'])
 			->vtext("ثبت گواهی نامه با امتیاز " . $value['mark'])->render();
-			
 		}
-		$this->data->certification = $certification;
-
+		// var_dump($certification);exit();
+		$this->data->certification = !empty($certification) ? $certification : false;
 	}
 } 
 ?>

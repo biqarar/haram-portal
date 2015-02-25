@@ -25,11 +25,14 @@ $.ajax({
 route(/users\/learn\/id\=\d+/, function(){
 	$(".insert-certification").click(function(){
 		classificationid = $(this).attr("classificationid");
+		console.log("certification/status=insertapi/classificationid=" + classificationid);
+
 		$.ajax({
 			type: "POST",
 			url : "certification/status=insertapi/classificationid=" + classificationid,
 
 			success : function(data){
+				console.log(data);
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
 
