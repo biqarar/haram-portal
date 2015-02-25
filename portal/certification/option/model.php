@@ -16,15 +16,17 @@ class model extends main_model{
 				->setClassification_id($classificationid)
 				->setDate_request($this->dateNow())
 				->insert();
-
-				print_r($x);exit();
+		$this->commit(function(){
 				debug_lib::true("گواهی نامه با موفقیت ثبت شد");
+			
+		});
+
+				// print_r($x);exit();
 		}elseif($duplicate != 0 ){
 			debug_lib::fatal("این گواهی نامه قبلا ثبت شده است");
 		}else{
 			debug_lib::fatal("ثبت گواهی نامه با خطا مواجه شده است");
 		}
-		$this->commit(function(){});
 	}
 	
 	public function makeQuery() {
