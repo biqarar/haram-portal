@@ -16,7 +16,9 @@ class model extends main_model{
 				->setClassification_id($classificationid)
 				->setDate_request($this->dateNow())
 				->insert();
+
 		$this->commit(function(){
+
 				debug_lib::true("گواهی نامه با موفقیت ثبت شد");
 			
 		});

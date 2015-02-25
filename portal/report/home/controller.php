@@ -21,7 +21,7 @@ class controller extends main_controller {
 
 	//---------------------------- bridge
 	$this->listen(array(
-			"url" => array("classes", "person", "/(.*)/")
+			"url" => array("classes","type" => "person", "/(.*)/")
 			), function (){
 				save(array("report","classes","person"));
 				$this->permission = array("report" => array("select" => array("public")));

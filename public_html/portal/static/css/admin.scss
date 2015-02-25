@@ -209,9 +209,9 @@ ul.copire-contextmenu{
 #status-xhr{
 	border: 1px solid #00BBEC;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-	position: absolute;
+	position: fixed;
 	z-index: 9999999;
-	top:80px;
+	top:0;
 	left: 50%;
 	margin-left: -100px;
 	background: white;
