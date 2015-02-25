@@ -5,6 +5,16 @@
 class controller extends main_controller{
 	
 	function config(){
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("certification", "usersid" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "certification" ));
+			$this->permission = array("certification" => array("select" => array("public")));
+		});
+
+
 		$this->listen(array(
 			"max" => 5,
 			"url" => array("score","status" => "apilist", "id" => "/^\d+$/")

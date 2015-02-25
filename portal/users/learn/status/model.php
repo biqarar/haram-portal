@@ -8,7 +8,16 @@ class model extends main_model {
 		$usersid = $this->xuId();
 
 		$dtable = $this->dtable->table("classification")
-		->fields("id", "plan", "teachername","teacherfamily","date_entry","date_delete","because", "id absence", "mark mark", "id certification")
+		->fields("id","classesid class"
+		, "plan"
+		, "teachername"
+		,"teacherfamily"
+		 ,"date_entry"
+		,"date_delete"
+		,"because"
+		, "id absence"
+		, "mark mark"
+		, "id certification")
 		->search_fields("plan", "teacher")
 		->query(function($q){
 			$q->whereUsers_id($this->xuId());
@@ -16,10 +25,23 @@ class model extends main_model {
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
 		})
+		->order(function($q, $n, $b){
+
+			if($n === 'orderTeachername'){
+				$q->join->person->orderName($b);
+			}elseif($n === 'orderPlan'){
+				$q->join->plan->orderName($b);
+			}elseif($n === 'orderTeacherfamily'){
+				$q->join->person->orderName($b);
+			}else{
+				$q->orderId("DESC");
+			}
+		})
 		->result(function($r) {
 			$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
-			$r->certification = $this->tag("a")->href("users/learn/certification/id=" . 1)->vtext($this->find_status_certification($r->certification))->render();
+			$r->certification = $this->tag("a")->href("users/learn/certification/usersid=" . $this->xuId())->class($this->find_status_certification($r->certification))->render();
+			$r->class = $this->tag("a")->href("classes/status=detail/id=". $r->class)->class("icoclass")->render();
 		});
 		$this->sql(".dataTable", $dtable);
 	}
@@ -27,7 +49,11 @@ class model extends main_model {
 	public function find_status_certification($classificationid = false ) {
 
 		$certification = $this->sql()->tableCertification()->whereClassification_id($classificationid)->limit(1)->select();
-		return $certification->num();
+		if($certification->num() == 1) {
+			return "icocertification";
+		}
+		return "icoredclose";
+		// return $certification->num();
 		// if($certification->num() == 1) {
 		// 	foreach ($certification->assoc() as $key => $value) {
 		// 		print_r("key :" . $key . " val : " . $value . "\n");

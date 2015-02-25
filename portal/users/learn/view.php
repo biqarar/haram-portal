@@ -13,6 +13,10 @@ class view extends main_view  {
 		//------------------------------ check users (if teacher , can not be display another users by id)
 		$this->check_users_type($users_id);
 
+		$this->data->users_name_family = $this->sql(".userNameFamily", $users_id);
+		$this->data->title = "وضعیت پرونده تحصیلی فراگیر : ";
+		$this->data->description = "کلاس های شرکت کرده، غیبت ها، نمرات و گواهی نامه";
+		
 		//------------------------------  make classification card
 		$price_list = $this->sql("#price_list" , $users_id);
 
@@ -123,6 +127,7 @@ class view extends main_view  {
 		$this->data->dataTable = $this->dtable(
 			"users/learn/status/status=apilist/id=" . $this->xuId() . "/", 
 			array("id"
+				, "class"
 			, "plan"
 			, "teachername"
 			,"teacherfamily"

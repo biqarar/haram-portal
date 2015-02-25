@@ -5,17 +5,32 @@
 class model extends main_model {
 
 	public function sql_find_list_certification($usersid = false) {
-		$certification = $this->sql()->tableClassification()->whereUsers_id($usersid)->condition("and", "certification.classification_id", "IS", "NULL")->fieldId()->fieldMark();
-		$certification->joinClasses()->whereId("#classification.classes_id")->fieldId();
-		$certification->joinPlan()->whereId("#classes.plan_id")->condition("and", "##classification.mark", ">=" , "#plan.mark")->fieldName("planname");
-		$certification->joinCertification("LEFT OUTER")->whereClassification_id("=" , "#classification.id");
+		$certification = $this->sql()->tableClassification()
+			->whereUsers_id($usersid)
+			->condition("and", "certification.classification_id", "IS", "NULL")
+			->fieldId()->fieldMark();
+		$certification->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid");
+		$certification->joinPlan()->whereId("#classes.plan_id")
+			->condition("and", "##classification.mark", ">=" , "#plan.mark")
+			->fieldName("planname")->fieldId("planid");
+		$certification->joinCertification("LEFT OUTER")
+			->whereClassification_id("=" , "#classification.id");
 
-		// echo($certification->select()->string());
-		// exit();
-		// mikham join out konam yani oni ke govahi barash sabt nashode biyad :))
+		$ready = $certification->select()->allAssoc();
 		
+		// return $ready;
+
+		$duplicate = $this->sql()->tableCertification();
+		$duplicate->joinClassification()->whereId("#certification.classification_id");
+		$duplicate->joinClasses()->whereId("#classification.classes_id");
+		$q = $duplicate->joinPlan()->whereId("#classes.plan_id");
+		foreach ($ready as $key => $value) {
+			$q->andId("=", $value['planid']);
+		}
 		
-		return $certification->select()->allAssoc();
+		$duplicate = $duplicate->select()->num();
+
+		return ($duplicate == 0) ? $ready : array();
 		
 	}
 

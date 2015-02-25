@@ -9,11 +9,12 @@ class global_cls{
 	}
 
 	static function superprice() {
+
 		if(isset($_SESSION['user_permission']['tables']['price']['condition'])
 		&&  $_SESSION['user_permission']['tables']['price']['condition'] = "*"){
 			return true;
 		}
-		return false;
+		return self::supervisor();
 	}
 
 	static function superperson() {
@@ -21,7 +22,7 @@ class global_cls{
 		&&  $_SESSION['user_permission']['tables']['person']['condition'] = "*"){
 			return true;
 		}
-		return false;
+		return self::supervisor();
 	}
 }
 ?>

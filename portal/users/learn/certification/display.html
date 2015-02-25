@@ -3,8 +3,6 @@
 {%block content%}
 {{ include('users/learn/userDetail.html') }}
 
-{{dtable.make(dataTable)}}
-{{tagMaker.card(olddb)}}
-{{tagMaker.card(price)}}
-{{tagMaker.card(certification)}}
+<p>{{global.users_datail}}</p>
+{{tagMaker.list(list)}}
 {%endblock%}
