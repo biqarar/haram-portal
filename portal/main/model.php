@@ -79,8 +79,8 @@ class main_model{
 		}
 		if(isset($this->$endEfect) && isset($aEndEfect[0]) && is_object($aEndEfect[0])){
 			call_user_func_array($aEndEfect[0], array_slice($this->$endEfect, 1));
-			$sQl->query("$endEfect");
 		}
+		$sQl->query("$endEfect");
 		$this->endProcess = true;
 	}
 	// public final function validate($name = false){

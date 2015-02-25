@@ -17,14 +17,13 @@ class model extends main_model{
 				->setDate_request($this->dateNow())
 				->insert();
 
-				print_r($x);exit();
+				// print_r($x);exit();
 				debug_lib::true("گواهی نامه با موفقیت ثبت شد");
 		}elseif($duplicate != 0 ){
 			debug_lib::fatal("این گواهی نامه قبلا ثبت شده است");
 		}else{
 			debug_lib::fatal("ثبت گواهی نامه با خطا مواجه شده است");
 		}
-		$this->commit(function(){});
 	}
 	
 	public function makeQuery() {
