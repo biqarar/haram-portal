@@ -17,7 +17,7 @@ class query_olddb_cls extends query_cls {
 				$olddb["list"]['list'][0][$key] =
 				 "<a style='text-decoration: none' >".$c .  $arrayValue . $m ."&nbsp&nbsp&nbsp&nbsp</a>"
 				// ->style("text-decoration: none")
-				."<a style='text-decoration: none' href='olddb/" .$key . '/id='. $query_olddb['student'] . " '>نمایش کامل اطلاعات</a>";
+				."<a style='text-decoration: none' href='olddb/" .$key . '/id='. $query_olddb['student'] . "'>نمایش کامل اطلاعات</a>";
 				$i++;
 			}
 			//------------------------------  make global of olddb card

@@ -186,20 +186,12 @@ class sql_lib{
 	public function join(){
 		$string = "";
 		foreach ($this->maker->join as $key => $value) {
-			$string .= " INNER JOIN ".$value->table." ON";
+			$joinCondition = $value->joinCondition;
+			$string .= " $joinCondition JOIN ".$value->table." ON";
 			$string .= $this->condition($value);
 		}
 		return $string;
 	}
-
-	// public function outerjoin(){
-	// 	$string = "";
-	// 	foreach ($this->maker->join as $key => $value) {
-	// 		$string .= " OUTER JOIN ".$value->table." ON";
-	// 		$string .= $this->condition($value);
-	// 	}
-	// 	return $string;
-	// }
 
 	/**
 	 * [condition description]

@@ -5,10 +5,11 @@
 class model extends main_model {
 
 	public function sql_find_list_certification($usersid = false) {
-		$certification = $this->sql()->tableClassification()->whereUsers_id($usersid)->fieldId()->fieldMark();
+		$certification = $this->sql()->tableClassification()->whereUsers_id($usersid)->condition("and", "certification.classification_id", "IS", "NULL")->fieldId()->fieldMark();
 		$certification->joinClasses()->whereId("#classification.classes_id")->fieldId();
 		$certification->joinPlan()->whereId("#classes.plan_id")->condition("and", "##classification.mark", ">=" , "#plan.mark")->fieldName("planname");
-		// $certification->joinCertification()->whereClassification_id("<>" , "#classification.id");
+		$certification->joinCertification("LEFT OUTER")->whereClassification_id("=" , "#classification.id");
+
 		// echo($certification->select()->string());
 		// exit();
 		// mikham join out konam yani oni ke govahi barash sabt nashode biyad :))

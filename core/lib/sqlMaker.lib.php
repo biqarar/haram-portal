@@ -174,10 +174,11 @@ class sqlMaker_lib{
 		$sql->table = $name;
 		return $sql;
 	}
-	public function joinCaller($name){
+	public function joinCaller($name, $args){
 		$sql = new sqlMaker_lib;
 		$this->join->$name = $sql;
 		$sql->table = $name;
+		$sql->joinCondition = isset($args[0]) && $args[0] ? $args[0] : "INNER";
 		$sql->subClass = true;
 		return $sql;
 	}
