@@ -20,6 +20,14 @@ class model extends main_model {
 				'users_id detail',
 				'users_id learn',
 				'users_id')
+			->order(function($q, $n, $b){
+				if($n === 'orderUsername'){
+					$q->join->users->orderUsername($b);
+				}else{
+					return true;
+					$q->orderId($b);
+				}
+			})
 			->search_fields('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode")
 			->query(function($q){
 				$q->joinUsers()->whereId("#person.users_id")->fieldUsername("username");

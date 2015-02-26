@@ -40,7 +40,7 @@ class model extends main_model {
 		->result(function($r) {
 			$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
-			$r->certification = $this->tag("a")->href("users/learn/certification/usersid=" . $this->xuId())->class($this->find_status_certification($r->certification))->render();
+			$r->certification = $this->find_status_certification($r->certification);
 			$r->class = $this->tag("a")->href("classes/status=detail/id=". $r->class)->class("icoclass")->render();
 		});
 		$this->sql(".dataTable", $dtable);
@@ -50,9 +50,14 @@ class model extends main_model {
 
 		$certification = $this->sql()->tableCertification()->whereClassification_id($classificationid)->limit(1)->select();
 		if($certification->num() == 1) {
-			return "icocertification";
+			return $this->tag("a")
+			->href("users/learn/certification/usersid=" . $this->xuId())
+			->class("icocertification")->render();
+		
 		}
-		return "icoredclose";
+			return $this->tag("a")->class("icocertificationdisable")->disable("disable")->render();
+		
+		// return "icocertificationdisable";
 		// return $certification->num();
 		// if($certification->num() == 1) {
 		// 	foreach ($certification->assoc() as $key => $value) {

@@ -63,7 +63,8 @@ class model extends main_model {
 			}elseif($n === 'orderMaxp'){
 				$q->join->plan->orderMax_person($b);
 			}else{
-				return true;
+				$q->orderId("DESC");
+				
 			}
 		})
 		->query(function($q){

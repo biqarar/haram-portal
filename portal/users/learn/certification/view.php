@@ -7,7 +7,7 @@ class view extends main_view  {
 		//------------------------------  global
 		$this->global->page_title = "certification";
 
-		$this->data->users_name_family = $this->sql(".userNameFamily", $users_id);
+		$this->data->users_name_family = $this->sql(".userNameFamily", $this->xuId("usersid"));
 		$this->data->title = "گواهی نامه های ثبت شده برای فراگیر";
 		// $this->data->description = "کلاس های شرکت کرده، غیبت ها، نمرات و گواهی نامه";
 		

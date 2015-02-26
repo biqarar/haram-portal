@@ -287,6 +287,19 @@ body {
   #score > div.dropdown > div:first-child {
     background: #4dbddc; }
 
+#certificationdisable {
+  background-image: url(../svg/icons/certificationdisable.svg); }
+  #certificationdisable > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
+.icocertificationdisable {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/certificationdisable.svg);
+  background-size: 100% 100%; }
+
 .icoallteacher {
   display: block;
   width: 16px;
