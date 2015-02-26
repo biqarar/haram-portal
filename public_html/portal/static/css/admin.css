@@ -1086,4 +1086,13 @@ ul.copire-contextmenu {
 a {
   text-decoration: none !important; }
 
+.title {
+  width: 285px;
+  height: 75px;
+  background: url(../svg/title.svg) no-repeat center center;
+  position: absolute;
+  top: 7px;
+  right: 172px;
+  z-index: 99999; }
+
 /*# sourceMappingURL=admin.css.map */

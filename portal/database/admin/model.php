@@ -91,7 +91,7 @@ class model extends main_model{
 		$this->ready(4);
 		
 		//----------------------------- new version function (database change)	
-		// $this->database_change();		
+		$this->database_change();		
 		
 		//----------------------------- new version function (query on record)
 		$this->query_on_record();
@@ -500,7 +500,10 @@ class model extends main_model{
 			call setHistory('file_plan', 'update', OLD.id);
 			END",
 
-
+			"ALTER TABLE `price`  ADD `type` enum('common','paln','rule') NOT NULL  AFTER `value`",
+			"ALTER TABLE `price`  ADD `status` enum('active','void') NOT NULL DEFAULT 'active'",
+			"ALTER TABLE `price`  ADD `plan_id` int(10)",
+			
 			);
 
 

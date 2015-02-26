@@ -4,7 +4,9 @@
 */
 class model extends main_model {
 	public function post_api(){
-
+		$type = $this->xuId("type");
+		// $type = isset($type) && $type != "" ? $type : "learn";
+			// var_dump($type);exit();
 		$dtable = $this->dtable->table('person')
 			->fields(
 				'username users.username',
@@ -43,11 +45,21 @@ class model extends main_model {
 			// 	// print_r($result);exit();
 			// 	// $result->condition("or" "#person.s", "LIKE" "%$vsearch%");
 			// })
-			->result(function($r){
-				$r->learn = $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $r->learn)->render();
+			->result(function($r, $type){
+				$r->learn = $this->type($type , $r->learn);
 				$r->detail = $this->tag("a")->addClass("icomore")->href("users/status=detail/id=". $r->detail)->render();
-			});
+			}, $type);
 		$this->sql(".dataTable", $dtable);
 	}	
+
+	public function type($type = false, $id = false) {
+		// var_dump($type, $id);exit();
+		if($type == "price"  ) {
+			return $this->tag("a")
+			->addClass("icoprice")->href('price/status=add/usersid='. $id)->render();
+		}else{
+			return $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $id)->render();
+		}
+	}
 }
 ?>

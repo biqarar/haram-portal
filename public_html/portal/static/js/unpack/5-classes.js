@@ -14,6 +14,7 @@ route(/classes\/status\=done\/classesid\=\d+/, function(){
 			url : "classes/status=setdone/classesid=" + classesid,
 
 			success : function(data){
+				console.log(data)
 				if(data.fatal){
 					xhr_error(data.fatal[0]);
 

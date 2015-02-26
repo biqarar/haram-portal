@@ -1,6 +1,6 @@
 route(/price/, function(){
 	$("#users_id", this).sautocomplate();
-	$("#title", this).combobox();
+	$("#title,#plan_id", this).combobox();
 });
 
 route(/price\/status\=(add|edit)/,function(){
@@ -15,6 +15,13 @@ route(/price\/status\=(add|edit)/,function(){
 		$(this).val("");
 		$(this).val(formatNumber(_val));
 	});
+});
 
-	
+route(/price\/status\=add\/usersid\=\d+/, function(){
+	// _self = $(this);
+	// $("#common", this).click(function(){
+	// 	// alert("fuck");
+	// 	$("#plan_id",_self).fadeOut();
+	// })
+
 });

@@ -315,7 +315,15 @@ class menu_cls  {
 				"classes" => array("select" => array("public"))
 				)
 			);
-		
+		//------------------------------ price add
+		self::$menu[] = array(
+			"submenu"     => "price",
+			"url"         => 'price/add',
+			"name"        =>  _("ثبت شهریه"),
+			"tag"         => array(
+			"price_change"  => array("insert" => array("public"))
+				)
+			);
 		//------------------------------ price add
 		self::$menu[] = array(
 			"submenu"     => "price",

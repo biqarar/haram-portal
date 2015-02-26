@@ -2,24 +2,33 @@
 class query_price_cls extends query_cls {
 
 	public function checkClasses($users_id = false, $classes_id = false) {
-		
+		var_dump($users_id, $classes_id);
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
 		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select()->assoc("price");
-		if($price == null) return true;
+		// if($price == null) return true;
 		$user_active_price = $this->sum_price($users_id);
 		
-		
+		$this->price_type_check($classes_id, $users_id);
 		if(intval($user_active_price) >= intval($price) || global_cls::superprice()){
 			$this->price_low($users_id, $classes_id, $price);
-			return true;
+			// return true;
 		}else{
-			return false;
+			// return false;
 		}
+	var_dump("fuck");exit();		
+	}
+
+	public function price_type_check($classes_id = false, $users_id = false) {
+		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)
+			->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
+
+		$price = $this->sql()->tablePrice()->whereUsers_id($users_id)->andStatus("active");
+		$price->joinPrice_change()->whereId("#price.title")->fieldType("priceChangeType");
+		$price = $price->select()->allAssoc();
+		var_dump($price);
 	}
 
 	public function price_low($users_id = false, $classes_id = false, $price = false) {
-		
-
 		$x = $this->sql()->tablePrice()
 			->setUsers_id($users_id)
 			->setDate($this->dateNow("Ymd"))
@@ -28,9 +37,6 @@ class query_price_cls extends query_cls {
 			->setTitle(5)
 			->setTransactions($classes_id)
 			->insert();
-		
-
-
 	}
 
 	public function sum_price($users_id) {
@@ -61,6 +67,5 @@ class query_price_cls extends query_cls {
 		
 		return $ret['sum_active'];
 	}
-
 }
 ?>

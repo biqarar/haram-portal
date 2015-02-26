@@ -28,6 +28,8 @@ class view extends main_view {
 							 $this->sql(".assoc.foreign", "person", $usersid, "family", "users_id");
 
 		//------------------------------ load form
+
+
 	}
 }
 ?>

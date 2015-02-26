@@ -17,6 +17,24 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "common"
+msgstr "مشترک"
+
+msgid "void"
+msgstr "باطل شده"
+
+msgid "disactive"
+msgstr "غیر فعال"
+
+msgid "mail"
+msgstr "اطلاع رسانی"
+
+msgid "menu_draft_add"
+msgstr "ثبت پیش نویس"
+
+msgid "send sms"
+msgstr "ارسال پیامک"
+
 msgid "teachername"
 msgstr "نام استاد"
 
