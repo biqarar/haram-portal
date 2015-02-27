@@ -9,7 +9,7 @@ class model extends main_model {
 		if(!$this->sql(".loginCounter.login") && (!isset($_SESSION['CAPTCHA_GNA']) || $_SESSION['CAPTCHA_GNA'] != post::captcha())){
 			
 			$_SESSION['load_captcha'] = true;
-			debug_lib::fatal("captcha incorrect");
+			debug_lib::fatal("اعداد درون تصویر را به صورت صحیح وارد کنید");
 			$this->redirect("login");
 		
 		}else{
@@ -48,7 +48,7 @@ class model extends main_model {
 					debug_lib::msg("captcha", true);
 				}
 				$this->redirect("login");
-				debug_lib::fatal("username or password incorrect");
+				debug_lib::fatal("نام کاربری و یا کلمه عبور اشتباه است");
 			}
 		}
 	}

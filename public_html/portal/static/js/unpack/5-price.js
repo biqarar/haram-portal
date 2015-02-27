@@ -18,10 +18,18 @@ route(/price\/status\=(add|edit)/,function(){
 });
 
 route(/price\/status\=add\/usersid\=\d+/, function(){
-	// _self = $(this);
-	// $("#common", this).click(function(){
-	// 	// alert("fuck");
-	// 	$("#plan_id",_self).fadeOut();
-	// })
+	_self = $(this);
+	
+	$("label[for=plan_id]",_self).fadeOut(1);
+	$("#plan_id",_self).next().fadeOut(1);
 
+	$("#common", this).click(function(){
+		$("#plan_id,label[for=plan_id]",_self).fadeOut();
+		$("#plan_id",_self).next().fadeOut();
+	})
+	
+	$("#plan").click(function(){
+		$("label[for=plan_id]",_self).fadeIn();
+		$("#plan_id",_self).next().fadeIn();
+	});
 });

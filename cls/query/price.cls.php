@@ -2,8 +2,12 @@
 class query_price_cls extends query_cls {
 
 	public function checkClasses($users_id = false, $classes_id = false) {
-		var_dump($users_id, $classes_id);
+		var_dump("users_id = " . $users_id, "classes = " . $classes_id);
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
+		var_dump("plan_id = " . $plan_id);
+		$this->price_type($users_id, $plan_id);
+
+		var_dump("fuck");exit();		
 		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select()->assoc("price");
 		// if($price == null) return true;
 		$user_active_price = $this->sum_price($users_id);
@@ -15,9 +19,40 @@ class query_price_cls extends query_cls {
 		}else{
 			// return false;
 		}
-	var_dump("fuck");exit();		
 	}
 
+	public function price_type($users_id = false, $plan_id = false){
+		$type = $this->sql()->tablePrice()
+			->whereUsers_id($users_id)
+			->andPlan_id($plan_id)
+			->andStatus("active")
+			->fieldType("typePrice")
+			->fieldValue("value");
+		$type->joinPrice_change()->whereId("#price.title")->fieldType("type");
+		$type = $type->select()->allAssoc();
+		var_dump($type);
+		$this->sum_price_($type);
+	}
+
+	public function sum_price_($array = false) {
+		$sum_active = array();
+		$sum_low = array();
+		$sum_all = 0;
+		$count = 0;
+		// $sum_active[$arry['typePrice']] = 0;
+		foreach ($array as $key => $value) {
+			if($value['type'] == "price_add"){
+				$sum_active[$value['typePrice']] = $sum_active[$value['typePrice']] + intval($value['value']);
+				$sum_all = $sum_all + intval($value['value']);
+			}elseif($value['type'] == "price_low"){
+				$sum_active[$value['typePrice']] = $sum_active[$value['typePrice']] - intval($value['value']);
+				$sum_low = $sum_low + intval($value['value']);
+			}
+			$count++;
+		}
+		var_dump($sum_all, $sum_active);
+		
+	}
 	public function price_type_check($classes_id = false, $users_id = false) {
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)
 			->limit(1)->fieldPlan_id()->select()->assoc("plan_id");

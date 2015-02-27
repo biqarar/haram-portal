@@ -11,6 +11,10 @@ class view extends main_view {
 		//------------------------------ load form
 		$f = $this->form("@users");
 
+		$f->username->style("text-align: left");
+		$f->password->style("text-align: left");
+
+
 		//------------------------------ set hidden value to get $_POST in model
 		$f->hidden->value("login");
 		

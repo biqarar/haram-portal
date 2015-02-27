@@ -317,11 +317,7 @@ class sql_lib{
 					$value = preg_replace("/^\\\#/", "#", $value);
 					$v = new validator_lib(array($field, $value), $gTable->validate, 'form');
 					$value = $v->compile();
-// <<<<<<< HEAD
-					// $value = ($value === false)? "NULL" : $value;
-// =======
 					$value = (($value == '' && is_string($value)) || ($value === false))? "NULL" : $value;
-// >>>>>>> ea5c51e3f8f2a25b498b901b9e5dac8199cace38
 					if($value == "NULL"){
 						$cInt = true;
 					}

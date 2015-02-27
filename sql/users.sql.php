@@ -3,7 +3,7 @@ namespace sql;
 class users {
 	
 	public $id       = array('type'=> 'int@10', 'autoI', 'label' => 'users_id');
-	public $username = array('type'=> 'int@10', 'label' => 'users_name');
+	public $username = array('type'=> 'int@10', 'label' => 'username');
 	public $password = array('type'=> 'varchar@32', 'label' => 'users_password');
 
 	public $email    = array('type'=> 'varchar@64', 'label' => 'users_email');

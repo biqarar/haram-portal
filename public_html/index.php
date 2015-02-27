@@ -41,6 +41,7 @@ error_reporting(E_ALL);
 /**
  * local lang
  */
+
 $locale = 'fa_IR';
 putenv( "LC_ALL={$locale}" );
 setlocale( LC_ALL, $locale );

@@ -10,16 +10,18 @@ class view extends main_view {
 
 		//------------------------------ set users id
 		$usersid = ($this->xuId("usersid") != 0) ? $this->xuId("usersid") : $this->sql("#find_usersid", $this->xuId("id"));
-
+		$this->global->usersid = $usersid;
 		//------------------------------  url
 		$this->global->url .=  "/usersid=" . $usersid;
 		$this->global->status =  gettext($this->urlStatus()); 
 		// var_dump($this->global->url);exit();
 		
 		$f = $this->form('@price', $this->urlStatus());
-		// $f->remove("title");
-		// var_dump($f);exit();
-
+	
+		$f->type->child(0)->checked("checked");
+		$f->title->child(0)->selected("selected");
+		$f->remove("status");
+	
 		$this->sql(".edit", "price", $this->xuId(), $f);
 	
 		//------------------------------  set name and family

@@ -17,7 +17,7 @@ class model extends main_model{
 				->setPay_type(post::pay_type())
 				->setCard(post::card())
 				->setType(post::type())
-				->setStatus(post::status())
+				->setStatus("active")
 				->setTitle(post::title())
 				->setPlan_id(post::plan_id())
 				->setTransactions(post::transactions())
@@ -25,12 +25,16 @@ class model extends main_model{
 	}
 
 	public function post_add_price(){
-
+		$sql = $this->makeQuery();
 		if(!$this->check_price()){
 			debug_lib::fatal("اطلاعات وارد شده با مقادیر حساب تناقض دارد");
 		}else{
-			$sql = $this->makeQuery()->insert();
-			// print_r($sql->string());
+			if(post::type() == 'plan' && post::plan_id() == '') {
+				debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
+			}elseif(post::type() == "common" && post::plan_id() != ""){
+				$sql->setPlan_id("");
+			}
+			$sql = $sql->insert();
 		}
 
 		
