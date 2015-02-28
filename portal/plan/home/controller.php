@@ -14,6 +14,17 @@ class controller extends main_controller{
 				$this->permission = array("plan_section" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
+
+		//------------------------------ plan section (use in classification)
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("api", "id" => "/^\d+$/")
+			), 
+			function () {
+				save(array("plan", "api", "mod" => "api"));
+				$this->permission = array("price" => array("insert" => array("public"), "update" => array("public")));
+			}
+		);
 	}
 }
 ?>

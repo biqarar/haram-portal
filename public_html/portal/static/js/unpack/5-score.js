@@ -62,7 +62,7 @@ function xxx(a) {
 route(/score\/calculation\/status\=(add|edit)/, function(){
 
 	$(".xxx").click(function(){
-		console.log("fuck");
+		// console.log("fuck");
 	});
 
 	$("#plan_id").combobox( "destroy" );
