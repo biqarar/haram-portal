@@ -1,5 +1,6 @@
-route("users/status=api", function(url){
+route(/users\/status=api/, function(url){
 	$('tbody>tr', this).attr('copier-context-subject', 'user');
+	console.log(10);
 });
 route(/classification\/class\/classesid\=\d+/,function(){
 	var _self;
