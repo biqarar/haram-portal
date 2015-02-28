@@ -14,7 +14,7 @@ class model extends main_model{
 	public $title = "";
 	public $version;
 
-	public function xecho($str = false) {echo "<pre><br>" . $str . "<br></pre>";}
+	public function xecho($str = false) {echo "<pre><br>" . $str . "</pre>";}
 	
 	public function ready($version = "new version") {
 
@@ -500,9 +500,63 @@ class model extends main_model{
 			call setHistory('file_plan', 'update', OLD.id);
 			END",
 
-			"ALTER TABLE `price`  ADD `type` enum('common','paln','rule') NOT NULL  AFTER `value`",
+			"ALTER TABLE `price`  ADD `type` enum('common','plan','rule') NOT NULL  AFTER `value`",
 			"ALTER TABLE `price`  ADD `status` enum('active','void') NOT NULL DEFAULT 'active'",
 			"ALTER TABLE `price`  ADD `plan_id` int(10)",
+
+
+			"CREATE TABLE IF NOT EXISTS `userprice` (
+			`id` int(10) NOT NULL,
+			`users_id` int(10) NOT NULL,
+			`date` int(8) NOT NULL,
+			`value` int(7) NOT NULL,
+			`status` enum('fullpayment','debtor','return','invalid') NOT NULL,
+			`value_back` int(7) NULL,
+			`title` int(10) NOT NULL,
+			`plan_id` int(10) NULL DEFAULT '0',
+			`classes_id` int(10) NULL DEFAULT '0',
+			`card` int(10) NOT NULL,
+			`transactions` varchar(32) NOT NULL,
+			`pay_type` enum('bank','pos_mellat','cash','rule','pos_melli') NOT NULL,
+			`description` text NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `userprice` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `userprice` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
+			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_2` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`id`)",
+			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_3` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
+			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_4` FOREIGN KEY (`title`) REFERENCES `price_change` (`id`)",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `userprice_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `userprice_delete` AFTER DELETE ON `userprice`
+			 FOR EACH ROW BEGIN
+			call setHistory('userprice', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `userprice_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `userprice_insert` AFTER INSERT ON `userprice`
+			 FOR EACH ROW BEGIN
+			call setCash('userprice', NEW.id, @branch_id);
+			call setHistory('userprice', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `userprice_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `userprice_update` AFTER UPDATE ON `userprice`
+			 FOR EACH ROW BEGIN
+			call setHistory('userprice', 'update', OLD.id);
+			END",
+			////////////////////////////////////////////////////
+
 			
 			);
 

@@ -34,10 +34,6 @@ class model extends main_model {
 		
 	}
 
-	public function sql_score_list($users_id = false, $classes_id = false) {
-		
-	}
-
 	public function sql_absence_list($usersid = false, $classes_id = false) {
 		$list = $this->sql()->tableAbsence();
 		$list->joinClassification()->whereId("#absence.classification_id")
@@ -49,22 +45,20 @@ class model extends main_model {
 	}
 
 	public function sql_price_list($users_id = false) {
-		$price = $this->sql()->tablePrice()->whereUsers_id($users_id);
-		$price->joinPrice_change()->whereId("#price.title");
+		$price = $this->sql()->tableUserprice()->whereUsers_id($users_id);
+		$price->joinPrice_change()->whereId("#userprice.title");
 		$price = $price->select()->allAssoc();
-		
-		$sum_active = 0;
 		$sum_low = 0;
 		$sum_all = 0;
+		$sum_active = 0;
 		$count = 0;
 		foreach ($price as $key => $value) {
-			if($value['type'] == "price_add"){
+			if($value['status'] == "fullpayment"){
 				$sum_active = $sum_active + intval($value['value']);
-				$sum_all = $sum_all + intval($value['value']);
-			}elseif($value['type'] == "price_low"){
-				$sum_active = $sum_active - intval($value['value']);
+			}else{
 				$sum_low = $sum_low + intval($value['value']);
 			}
+			$sum_all = $sum_all + intval($value['value']);
 			$count++;
 		}
 		$ret = array();
@@ -73,6 +67,27 @@ class model extends main_model {
 		$ret['sum_active'] = $sum_active;
 		$ret['count_transaction'] = $count;
 		return $ret;
+
+		// $sum_active = 0;
+		// $sum_low = 0;
+		// $sum_all = 0;
+		// $count = 0;
+		// foreach ($price as $key => $value) {
+		// 	if($value['type'] == "price_add"){
+		// 		$sum_active = $sum_active + intval($value['value']);
+		// 		$sum_all = $sum_all + intval($value['value']);
+		// 	}elseif($value['type'] == "price_low"){
+		// 		$sum_active = $sum_active - intval($value['value']);
+		// 		$sum_low = $sum_low + intval($value['value']);
+		// 	}
+		// 	$count++;
+		// }
+		// $ret = array();
+		// $ret['sum_all'] = $sum_all;
+		// $ret['sum_low'] = $sum_low;
+		// $ret['sum_active'] = $sum_active;
+		// $ret['count_transaction'] = $count;
+		// return $ret;
 	}
 
 	public function sql_classification_list($usersid = false) {

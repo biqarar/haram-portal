@@ -5,6 +5,7 @@
 class model extends main_model {
 
 	public function post_insert() {
+		
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];

@@ -17,6 +17,18 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "fullpayment"
+msgstr "پرداخت کامل"
+
+msgid "debtor"
+msgstr "بدهکار"
+
+msgid "return"
+msgstr "ارجاع داده شده"
+
+msgid "invalid"
+msgstr "باطل شده"
+
 msgid "common"
 msgstr "مشترک"
 
