@@ -6,8 +6,10 @@ class view extends main_view  {
 	public function config() {
 		//------------------------------ global
 		$this->global->page_title  = "person_list";
+		$type = $this->xuId("type");
+		$type = $type ? $type : "learn";
 		$this->data->dataTable = $this->dtable(
-			'users/status=api/type=users/',
+			"users/status=api/type=".$type."/",
 			array(
 				'casecode',
 				'name',
@@ -20,7 +22,7 @@ class view extends main_view  {
 				// 'marriage',
 				// 'education_id',
 				'detail',
-				'learn')
+				$type)
 			);
 	}
 }

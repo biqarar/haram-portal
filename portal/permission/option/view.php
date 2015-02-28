@@ -40,7 +40,7 @@ class view extends main_view {
 		
 			if(preg_grep("/^$value$/", $black)) continue;
 		
-			$f->tables->child()->name("table_" . $value)->label(_($value))->value($value);
+			$f->tables->child()->name("table_" . $value)->label($value . " ")->value($value);
 		}
 
 		if($this->urlStatus() == "edit") {

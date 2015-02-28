@@ -57,7 +57,7 @@ function xxx(a) {
 
 	// console.log($("#calculation").html());
 	x = $("#calculation").html()
-	$("#calculation").html(x + '=' + $(a).html() + '=');
+	$("#calculation").html(x + 'fuck' + $(a).html() + 'fuck');
 }
 route(/score\/calculation\/status\=(add|edit)/, function(){
 

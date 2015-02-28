@@ -191,15 +191,15 @@ class menu_cls  {
 				)
 			);
 		
-		//------------------------------  course
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'course/status=add', 
-			"name" =>  _("menu course add"), 
-			"tag" => array(
-				"course" => array("insert" => array("public"))
-				)
-			);
+		// //------------------------------  course
+		// self::$menu[] = array(
+		// 	"submenu" => "share", 
+		// 	"url" => 'course/status=add', 
+		// 	"name" =>  _("menu course add"), 
+		// 	"tag" => array(
+		// 		"course" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
@@ -318,7 +318,7 @@ class menu_cls  {
 		//------------------------------ price add
 		self::$menu[] = array(
 			"submenu"     => "price",
-			"url"         => 'price/add',
+			"url"         => 'users/status=list/type=price',
 			"name"        =>  _("ثبت شهریه"),
 			"tag"         => array(
 			"price_change"  => array("insert" => array("public"))

@@ -108,34 +108,12 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
-		// $classification = $this->sql()->tableClassification();
-
-		// $classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile");
-		// $classification = $classification->select()->allAssoc();
-		
-		// header('Content-Type: text/html; charset=utf-8'); 
-  //       header("Content-Disposition: attachment; filename=1.xlsx");  
-  //       header("Pragma: no-cache"); 
-  //       header("Expires: 0");
-
-		// print "<table>";
-		// foreach ($classification as $key => $value) {
-		// 	print "<tr><td>" . $value['value'] . "</td></tr>";
-		// }
-		// print "</table>";
-		// exit();
-		// $this->title("change passwrod");
-		// $all = $this->sql()->tableBridge()->whereTitle("mobile");
-		// $all->joinClassification()->whereUsers_id("#bridge.users_id");
-		// $all->joinBranch_cash()->whereTable("classification")->andRecord_id("#classification.id")->andBranch_id(1);
-		// $a = $all->select();
-		// var_dump($a->num(), $a->string());
-		// echo "<table>";
-		// foreach ($a->allAssoc() as $key => $value) {
-		// 	echo "<tr><td>" . $value['value'] . "</td></tr>";
-		// }
-		// echo "</table>";
-		// $this->flush();
+		$classes = $this->sql()->tableClasses()->setStatus("running")->where("1")->update();
+		$this->commit(function(){
+			echo "set all classes on runnign";
+		});
+		var_dump($classes->string());
+		$this->flush();
 
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
@@ -271,6 +249,42 @@ class model extends main_model{
 			(_sender, _reciver, _text);
 			END",
 
+						/////////////////////////////////////////////////////
+			"CREATE TABLE IF NOT EXISTS `file_tag` (
+			`id` int(10) NOT NULL,
+			`tag` varchar(64) NOT NULL,
+			`table` enum('users','posts','plan') NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `file_tag` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `file_tag` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_tag_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_tag_delete` AFTER DELETE ON `file_tag`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_tag', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_tag_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_tag_insert` AFTER INSERT ON `file_tag`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_tag', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `file_tag_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `file_tag_update` AFTER UPDATE ON `file_tag`
+			 FOR EACH ROW BEGIN
+			call setHistory('file_tag', 'update', OLD.id);
+			END",
+
 			////////////////////////////////////////////////////
 			"TRUNCATE table_files",
 			"DROP TABLE `table_files`",
@@ -287,7 +301,7 @@ class model extends main_model{
 			
 			"ALTER TABLE `files` ADD PRIMARY KEY(`id`)",
 			"ALTER TABLE `files` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			"ALTER TABLE `files` ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`file_tag_id`) REFERENCES `file_tag` (`id`)",
+			"ALTER TABLE `files` ADD CONSTRAINT `files_ibfk_2` FOREIGN KEY (`file_tag_id`) REFERENCES `file_tag` (`id`)",
 
 			//-----------------------------------------------------------------------------
 			"DROP TRIGGER IF EXISTS `files_delete`",
@@ -342,42 +356,7 @@ class model extends main_model{
 			"ALTER TABLE `update_log` ADD `time` TIMESTAMP NOT NULL ",
 
 
-			/////////////////////////////////////////////////////
-			"CREATE TABLE IF NOT EXISTS `file_tag` (
-			`id` int(10) NOT NULL,
-			`tag` varchar(64) NOT NULL,
-			`table` enum('users','posts','plan') NOT NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
-			
-			"ALTER TABLE `file_tag` ADD PRIMARY KEY(`id`)",
-			"ALTER TABLE `file_tag` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `file_tag_delete`",
 
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `file_tag_delete` AFTER DELETE ON `file_tag`
-			 FOR EACH ROW BEGIN
-			call setHistory('file_tag', 'delete', OLD.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `file_tag_insert`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `file_tag_insert` AFTER INSERT ON `file_tag`
-			 FOR EACH ROW BEGIN
-			call setCash('file_tag', NEW.id, @branch_id);
-			call setHistory('file_tag', 'insert', NEW.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `file_tag_update`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `file_tag_update` AFTER UPDATE ON `file_tag`
-			 FOR EACH ROW BEGIN
-			call setHistory('file_tag', 'update', OLD.id);
-			END",
 			////////////////////////////////////////////////////
 
 			"CREATE TABLE IF NOT EXISTS `file_user` (
@@ -499,65 +478,7 @@ class model extends main_model{
 			 FOR EACH ROW BEGIN
 			call setHistory('file_plan', 'update', OLD.id);
 			END",
-
-			"ALTER TABLE `price`  ADD `type` enum('common','plan','rule') NOT NULL  AFTER `value`",
-			"ALTER TABLE `price`  ADD `status` enum('active','void') NOT NULL DEFAULT 'active'",
-			"ALTER TABLE `price`  ADD `plan_id` int(10)",
-
-
-			"CREATE TABLE IF NOT EXISTS `userprice` (
-			`id` int(10) NOT NULL,
-			`users_id` int(10) NOT NULL,
-			`date` int(8) NOT NULL,
-			`value` int(7) NOT NULL,
-			`status` enum('fullpayment','debtor','return','invalid') NOT NULL,
-			`value_back` int(7) NULL,
-			`title` int(10) NOT NULL,
-			`plan_id` int(10) NULL DEFAULT '0',
-			`classes_id` int(10) NULL DEFAULT '0',
-			`card` int(10) NOT NULL,
-			`transactions` varchar(32) NOT NULL,
-			`pay_type` enum('bank','pos_mellat','cash','rule','pos_melli') NOT NULL,
-			`description` text NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
-			
-			"ALTER TABLE `userprice` ADD PRIMARY KEY(`id`)",
-			"ALTER TABLE `userprice` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)",
-			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_2` FOREIGN KEY (`plan_id`) REFERENCES `plan` (`id`)",
-			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_3` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
-			"ALTER TABLE `userprice` ADD CONSTRAINT `userprice_ibfk_4` FOREIGN KEY (`title`) REFERENCES `price_change` (`id`)",
-
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `userprice_delete`",
-
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `userprice_delete` AFTER DELETE ON `userprice`
-			 FOR EACH ROW BEGIN
-			call setHistory('userprice', 'delete', OLD.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `userprice_insert`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `userprice_insert` AFTER INSERT ON `userprice`
-			 FOR EACH ROW BEGIN
-			call setCash('userprice', NEW.id, @branch_id);
-			call setHistory('userprice', 'insert', NEW.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `userprice_update`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `userprice_update` AFTER UPDATE ON `userprice`
-			 FOR EACH ROW BEGIN
-			call setHistory('userprice', 'update', OLD.id);
-			END",
-			////////////////////////////////////////////////////
-
-			
+			////////////////////////////////////////////////////			
 			);
 
 

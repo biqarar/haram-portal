@@ -1,0 +1,16 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<h3>
+<a href="price/status=detail/usersid={{global.usersid}}">نمایش </a>
+یا
+<a href="price/status=add/usersid={{global.usersid}}">افزودن</a>
+ شهریه برای فراگیر 
+<a href="users/learn/id={{global.usersid}}"> {{global.name}}</a>
+</h3>
+
+<form class="ajx" method="post" action="price/{{global.url}}">
+	{{forms.make(form.userprice)}}
+</form>
+
+{%endblock%}

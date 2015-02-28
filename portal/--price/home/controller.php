@@ -4,6 +4,14 @@
  */
 class controller extends main_controller{
 	public function config(){
+
+		$this->listen(array(
+			"max" => 2,
+			"url"=>array("add")
+			), function(){
+				save(array("price","add"));
+			$this->permission = array("price" => array("insert" => array("public")));
+		});
 		
 	$this->listen(array(
 			"max" => 2,
