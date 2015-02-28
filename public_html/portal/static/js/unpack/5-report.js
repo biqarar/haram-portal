@@ -15,26 +15,36 @@
 		return list;
 	}
 
+
+	function _clear(){
+		list = Array();
+	}
 	addToList = _addToList;
 	returnList = _returnList;
+	list_clear = _clear;
+
 })();
 
 route(/report\/classes\/status\=apilist/, function(){
+	// list_clear();
 	_list = returnList();
+	console.log(_list);
 	for(i=0; i< _list.length; i++){
-		$('.list[classesid='+_list[i]+']', this).attr('checked', true);
+		if(!_list[i]) continue;
+		$('.list[classesid='+_list[i]+']', this).attr('checked', 'checked');
 	}
-	function _checked(check){
-		if(check){
-			$(this).attr('checked', true);
-		}else{
-			$(this).attr('checked', false);
-		}
-	}
-	$(".list", this).parents('tr').click(function(){
+	function _checked(){
 		index = $('.list', this).attr("classesid");
-		_checked.call($('.list', this), addToList(index));
-	});
+		check = addToList(index);
+		if(check){
+			$('input', this).attr('checked', 'checked');
+		}else{
+			$('input', this).removeAttr('checked');
+		}
+		// console.log(check);
+		// return false;
+	}
+	$("tbody>tr", this).click(_checked);
 
 	url_ ="person";
 	$("#lists").combobox();
@@ -123,8 +133,7 @@ function mkData(){
 	return Data;
 }
 
-route(/report\/price/, function(){
-	// alert(0);
+route(/report\//, function(){
 	$("#report_form").submit(function(){
 		var data = mkData.call(this);
 		var string = (location.pathname).replace(/\/$/, '') +'/' + data.lists;
@@ -133,11 +142,7 @@ route(/report\/price/, function(){
 		}
 		// console()
 		location.href = string;
-		console.log(string);	
-		// location.href = "report/classes/type=" + url_ + "/classesid=" + newlist;
+		console.log(string);
 		return false;
-		// return "report/classes/type=" + url_ + "/classesid=" + newlist;
-		$("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
-		console.log(url_);	
 	});
 });
