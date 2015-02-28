@@ -2,8 +2,6 @@ route("*", function(){
 	$('.dtable', this).each(dTable_each);
 });
 
-
-
 function dTable_each(){
 	var _self = this;
 	var _data = false;
@@ -54,13 +52,4 @@ function dTable_each(){
 			$('*',row).persian_nu();
 		}
 	});
-	DTABLE_XN = $(this).DataTable();
-
-	$.fn.dataTable.ext.search.push(
-		function( settings, data, dataIndex ) {
-			alert(10);
-			console.log(settings);
-			return true;
-		}
-		);
 }
