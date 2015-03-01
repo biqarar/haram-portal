@@ -4,7 +4,7 @@
 */
 class controller extends main_controller{
 	public $permission = array("files" => array("insert" => array("public"),
-						"update" => array("public")));
+		"update" => array("public")));
 	function config(){
 		$this->listen(array(
 			"max" =>2,
@@ -17,6 +17,24 @@ class controller extends main_controller{
 			"max" => 2,
 			"url" => array("edit", "/^\d+$/")
 			), array("files", "option"));
+
+		/**
+		 * tags
+		 */
+		$this->listen(array(
+			"max" =>2,
+			"url"=>array("tag", 'add')
+			), function(){
+			save(array("files","tagOption"));
+			$this->permission = array("file_tag" => array("insert"));
+		});
+		$this->listen(array(
+			"max" =>4,
+			"url" =>array("files", "tag", "status=api", "/session=\d+/")
+			), function(){
+			save(array("files","tagOption"));
+			$this->permission = array("file_tag" => array("insert"));
+		});
 	}
 }
 ?>

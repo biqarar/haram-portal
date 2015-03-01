@@ -5,7 +5,7 @@ route(/price/, function(){
 
 route(/price\/status\=(add|edit)/,function(){
 	function formatNumber (num) {
-	 return num.toString().replace(/,/, "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+		return num.toString().replace(/,/, "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 	}
 	
 	$("#value").val(formatNumber($("#value").val()));
@@ -27,10 +27,10 @@ route(/price\/status\=add\/usersid\=\d+/, function(){
 			$.ajax({
 				type: "POST",
 				url : "plan/api/id=" + item,
-			success : function(data){
-				console.log(data);
-				$("#value", _self).val(data.msg.price);
-			}
+				success : function(data){
+					console.log(data);
+					$("#value", _self).val(data.msg.price);
+				}
 			});
 		}
 	});

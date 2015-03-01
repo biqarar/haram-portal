@@ -7,7 +7,7 @@ namespace sql;
 class file_tag {
 	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'file_paln_id');
 	public $tag    = array('type'=> 'varchar@64', 'label' => 'tag');
-	public $table        = array('type'=> 'enum@users,posts,plan', 'label' => 'table');
+	public $table_name        = array('type'=> 'enum@users,posts,plan', 'label' => 'table_name');
 
 	
 	public function id() {
@@ -15,11 +15,10 @@ class file_tag {
 	}
 	
 	public function tag(){
-		$this->form("select")->name("tag")->label("tag");
-		$this->setChild();
+		$this->form("text")->name("tag")->label("tag");
 	}
-	public function table(){
-		$this->form("select")->name("table")->label("table");
+	public function table_name(){
+		$this->form("select")->name("table_name")->label("table_name");
 		$this->setChild();
 	}
 	
