@@ -5,17 +5,17 @@ route(/score/, function(){
 route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function(){
 	function l(a) {console.log(a);}
 	_warn = '<span class="status-warn" style="background: #FFECB3;
-			border: 1px solid #FFD54F;
-			padding: 3px 10px;
-			margin-right: 5px;
-			font-size: 12px;
-			display: inline-block;">تاریخ ثبت نشده است.</span>';
+	border: 1px solid #FFD54F;
+	padding: 3px 10px;
+	margin-right: 5px;
+	font-size: 12px;
+	display: inline-block;">تاریخ ثبت نشده است.</span>';
 	_fatal = '<span class="status-fatal" style="background: #FFCDD2;
-			border: 1px solid #E57373;
-			padding: 3px 10px;
-			margin-right: 5px;
-			font-size: 12px;
-			display: inline-block;">تاریخ ثبت نشده است.</span>';
+	border: 1px solid #E57373;
+	padding: 3px 10px;
+	margin-right: 5px;
+	font-size: 12px;
+	display: inline-block;">تاریخ ثبت نشده است.</span>';
 	_true = '<span class="icolikes" style="margin-right: 5px;padding: 0;display: inline-block;"></span>';
 
 	$('.score-mark', this).change(function(){
@@ -58,7 +58,19 @@ function insert_(a) {
 
 	// console.log($("#calculation").html());
 	x = $("#calculation").html()
+
 	$("#calculation").html(x + '=' + $(a).html() + '=');
+
+
+	// x = $("#calculation").val()
+	// $($(a).html()).appendTo('#calculation');
+	// function insertMetachars(sStartTag, sEndTag) {
+	// 	var bDouble = arguments.length > 1, oMsgInput = document.myForm.myTxtArea, nSelStart = oMsgInput.selectionStart, nSelEnd = oMsgInput.selectionEnd, sOldText = oMsgInput.value;
+	// 	oMsgInput.value = sOldText.substring(0, nSelStart) + (bDouble ? sStartTag + sOldText.substring(nSelStart, nSelEnd) + sEndTag : sStartTag) + sOldText.substring(nSelEnd);
+	// 	oMsgInput.setSelectionRange(bDouble || nSelStart === nSelEnd ? nSelStart + sStartTag.length : nSelStart, (bDouble ? nSelEnd : nSelStart) + sStartTag.length);
+	// 	oMsgInput.focus();
+	// }
+
 }
 route(/score\/calculation\/status\=(add|edit)/, function(){
 
@@ -69,14 +81,15 @@ route(/score\/calculation\/status\=(add|edit)/, function(){
 			$.ajax({
 				type: "POST",
 				url : "score/type/api/id=" + item,
-			success : function(data){
-				$("#list").html('');
-				$("#list").val("");
+				success : function(data){
+					$("#list").html('');
+					$("#list").val("");
 
 				for(a in data.msg) {
 					 if(data.msg[a]['title']){
 							$("<a  onclick='insert_(this);'>" + data.msg[a]['title'] + "</a><br>").appendTo("#list");
 					 	}
+
 					}
 				}
 			});
