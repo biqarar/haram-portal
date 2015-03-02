@@ -33,13 +33,13 @@ class score_type {
 	}
 
 	public function	min(){
-		$this->form("#number")->name("min")->label("min");
-		$this->validate()->number()->form->number("number is not valid");
+		$this->form("text")->name("min")->label("min");
+		$this->validate()->float()->form->float("number is not valid");
 	}
 
 	public function	max(){
-		$this->form("#number")->name("max")->label("max");
-		$this->validate()->number()->form->number("number is not valid");
+		$this->form("text")->name("max")->label("max");
+		$this->validate()->float()->form->float("number is not valid");
 	}
 
 	public function	description(){

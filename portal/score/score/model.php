@@ -9,7 +9,7 @@ class model extends main_model {
 
 		$score_type = $this->sql_score_type();
 // var_dump("fuck");exit();
-		$array = array("name person.name", "family person.family","id input");
+		$array = array("usersid more","username users.username","name person.name", "family person.family","id input");
 		
 		
 		$dtable = $this->dtable->table("classification")
@@ -19,6 +19,8 @@ class model extends main_model {
 				$q->andClasses_id($this->xuId("classesid"));
 
 				$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
+
+				$q->joinUsers()->whereId("#classification.users_id")->fieldUsername()->fieldId("usersid");
 
 			})
 			->search_result(function($result){
@@ -35,15 +37,7 @@ class model extends main_model {
 									  ->value($this->get_value($r->input, $this->xuId("scoretypeid")))
 									  ->render() . "</div>";
 
-				// $r->insert 	   = $this->tag("a")
-				//  						->style("cursor: pointer;")
-				// 					  ->addClass("icodadd a-undefault")
-				// 					  ->addClass("insertAbsenceApi")
-				// 					  ->classification($r->insert)
-				// 					  ->tabindex("-1")
-				// 					  ->render();
-
-				// $r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->tabindex("-1")->render();
+				$r->more = $this->tag("a")->class("icomore")->href("users/status=detail/id=". $r->more)->render();
 			});
 			$this->sql(".dataTable", $dtable);
 	}

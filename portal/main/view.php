@@ -222,7 +222,6 @@ class main_view{
 	*	some field in the classes table must be change (foreign) to other field in other table
 	*/
 	public function classesDetail($classes_detail = false) {
-		// var_dump("fuck");exit();
 		// //------------------------------ get detail classes
 		if(isset(config_lib::$surl['classesid']) || (config_lib::$surl['status'] == 'detail')){
 			//------------------------------ classes id
@@ -230,21 +229,22 @@ class main_view{
 				&& config_lib::$surl['status'] == 'detail') ? $this->xuId() : config_lib::$surl['classesid'];
 
 			$classes_detail = $this->sql(".classesDetail", $classesid);
-			$this->global->classesid = $classes_detail['classesid'];
-			$this->global->page_title = $classes_detail['page_title'];
-			
-			$this->data->list = $classes_detail['list'];
+			if($classes_detail){
+				$this->global->classesid = $classes_detail['classesid'];
+				$this->global->page_title = $classes_detail['page_title'];
+				$this->data->list = $classes_detail['list'];
+			}
 		}
 	}
 
-		/**
+	/**
 	*	some field in the classes table must be change (foreign) to other field in other table
 	*/
 	public function detailClasses($classes_detail = false) {
+
 		if(isset($classes_detail['list'])){	
 			foreach ($classes_detail ['list'] as $key => $value) {
 				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
-				// $classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
 				$classes_detail ['list'][$key]['teacher']   = 
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "name", "users_id") . ' ' . 
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");

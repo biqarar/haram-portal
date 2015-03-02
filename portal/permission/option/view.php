@@ -62,7 +62,8 @@ class view extends main_view {
 			 "update",
 			 "delete",
 			 "condition",
-			 "edit"));
+			 "edit",
+			 "delete"));
 		
 	}
 }

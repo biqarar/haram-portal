@@ -14,15 +14,20 @@ class view extends main_view {
 			$query->joinPrice_change()->whereId("#price.title")->fieldName("changeName");
 			$query->joinPerson()->whereUsers_id("#price.users_id")->fieldName()->fieldFamily();		
 		})
+		->removeCol("branch_id,title,users_id")
 		->addColFirst("family", "family")
 		->addColFirst("name", "name")
-		->removeCol("branch_id,title,id,users_id")
+		->addColFirst("id", "id")
 		->compile();
 		foreach ($price['list'] as $key => $value) {
+			$plan_id = $this->sql(".assoc.foreign", "classes", $price['list'][$key]['transactions'] , "plan_id");
+			$plan_name = $this->sql(".assoc.foreign", "plan", $plan_id , "name");
+
 			if($value['changeName'] == 'شرکت در کلاس') {
 				$price['list'][$key]['transactions'] = $this->tag("a")
 					->href("classes/status=detail/id=" . $value['transactions'])
-					->class("icoclass")->title("در کلاس استفاده شده است")->render();
+					->class("icoclass")->title("در کلاس استفاده شده است")->render() . " $plan_name  " ;
+
 			}
 		}
 

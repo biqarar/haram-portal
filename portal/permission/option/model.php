@@ -4,6 +4,17 @@
 */
 class model extends main_model {
 
+	public function post_deleteapi(){
+		$id = $this->xuId();
+		$this->sql()->tablePermission()->whereId($id)->delete();
+		$this->commit(function(){
+			debug_lib::true("حذف سطح دسترسی انجام شد");
+		});
+		$this->rollback(function(){
+			debug_lib::fatal("حذف سطح دسترسی با خطا مواجه شد");
+		});
+	}
+
 	public function sql_find_username($users_id = false) {
 		return $this->sql()->tableUsers()->whereId($users_id)->limit(1)->select()->assoc("username");
 	}

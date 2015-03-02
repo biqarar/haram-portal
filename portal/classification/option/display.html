@@ -1,6 +1,54 @@
 {% extends layout %}
 {% block content %}
 <form class="ajx" method="post" action="classification/{{global.url}}">
+	<input type="hidden" name="id" id="id" value="{{id}}" >
+	<input type="hidden" name="usersid" id="usersid" value="{{users_id}}" >
+	<input type="hidden" name="classesid" id="classesid" value="{{classes_id}}" >
 	{{forms.make(form.classification)}}
 </form>
+<style type="text/css">
+	.question {
+		background-color: #ececec;
+		height: 150px;
+		width: 500px;
+		border-radius: 5px;
+		text-align: center;
+		padding: 10px;
+		margin: 20px;
+		display: none;
+	}
+	.yesprice{
+		background-color: #9fbe03;
+		display: inline;
+		/*height: 10px;*/
+		/*width: 10px;*/
+		padding: 10px 20px 10px 20px;
+		border-radius: 5px;
+		margin-bottom: 30px;
+
+	}
+	.noprice{
+		background-color: #f16971;
+		display: inline;
+		/*height: 10px;*/
+		/*width: 10px;*/
+		padding: 10px 20px 10px 20px;
+		border-radius: 5px;
+		margin-bottom: 30px;
+	}
+	.result-ajx {
+		margin-right: 100px !important;
+		display: initial;
+		padding: 28px;
+	}
+</style>
+<div id="result-ajx"></div>
+<div class="question">
+	برای این فراگیر در این کلاس مبلغ <span id="sumprice"></span> ثبت شده است.
+	آیا می خواهید این مبلغ به حساب فراگیر باز گردانده شود؟
+	<br>
+	<br>
+	<a href=""><div class="yesprice">بلی</div></a>
+	<a href=""><div class="noprice">خیر</div></a>	
+</div>
 {%endblock%}

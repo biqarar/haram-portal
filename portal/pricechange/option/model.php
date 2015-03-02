@@ -33,7 +33,7 @@ class model extends main_model{
 
 		//------------------------------ commit code
 		$this->commit(function() {
-			debug_lib::true("[[update price_change ture]]");
+			debug_lib::true("[[update price_change successful]]");
 		});
 
 		//------------------------------ rolback code

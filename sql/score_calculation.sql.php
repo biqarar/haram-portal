@@ -8,7 +8,7 @@ class score_calculation {
 	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'score_calculation_id');
 	public $plan_id     = array('type'=> 'int@10', 'label' => 'plan_id');
 	public $calculation = array('type'=> 'text@', 'label' => 'calculation');
-	public $status       = array('type'=> 'enum@active,desactive', 'label' => 'status');
+	public $status       = array('type'=> 'enum@active,disactive', 'label' => 'status');
 	public $description = array('type'=> 'text@', 'label' => 'description');
 	
 

@@ -9,7 +9,7 @@ class model extends main_model {
 			// var_dump($type);exit();
 		$dtable = $this->dtable->table('person')
 			->fields(
-				'username users.username',
+				'username',
 				'name',
 				'family',
 				'father',

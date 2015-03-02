@@ -17,6 +17,45 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "tag"
+msgstr "نشانک"
+
+msgid "drafts"
+msgstr "پیش نویس پیامک"
+
+msgid "file_plan"
+msgstr "فایل های مرتبط با طرح"
+
+msgid "file_post"
+msgstr "فایل های مرتبط با اخبار"
+
+msgid "file_tag"
+msgstr "نشانک فایل"
+
+msgid "file_user"
+msgstr "فایل های مرتبط با کاربران"
+
+msgid "sms_log"
+msgstr "تاریخچه ارسال پیامک"
+
+msgid "update_log"
+msgstr "تاریخچه به روز رسانی"
+
+msgid "userprice"
+msgstr "شهریه"
+
+msgid "menu_drafts_add"
+msgstr "ثبت پیش نویس پیامک"
+
+msgid "number"
+msgstr "شماره"
+
+msgid "send"
+msgstr "ارسال"
+
+msgid "price_id"
+msgstr "شماره شهریه"
+
 msgid "fullpayment"
 msgstr "پرداخت کامل"
 
@@ -1209,7 +1248,7 @@ msgid "graduate_classes"
 msgstr "کلاس های دانش آموخته"
 
 msgid "group"
-msgstr "گروه های علمی"
+msgstr "گروه"
 
 msgid "group_expert"
 msgstr "کارشناس گروه ها"

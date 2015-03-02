@@ -4,6 +4,13 @@ class model extends main_model {
 		$dtable = $this->dtable->table("score_type")
 			->fields("id","name","title", "min","max","description", "id edit")
 			->search_fields("name plan.name")
+			->order(function($q, $n, $b){
+			if($n === 'orderName'){
+				$q->join->plan->orderName($b);
+			}else{
+				$q->orderId("DESC");	
+			}
+		})
 			->query(function($q){
 				$q->joinPlan()->whereId("#score_type.plan_id")->fieldName();
 			})

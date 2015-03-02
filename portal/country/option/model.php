@@ -30,7 +30,7 @@ class model extends main_model{
 
 		//------------------------------ commit code
 		$this->commit(function() {
-			debug_lib::true("[[update country ture]]");
+			debug_lib::true("[[update country successful]]");
 		});
 
 		//------------------------------ rolback code

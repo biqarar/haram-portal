@@ -4,7 +4,23 @@
  */
 class controller extends main_controller{
 	public function config(){
+
+	$this->listen(array(
+		"max" => 3,
+		"url"=>array("status" => "classeslist" , "classesid" => "/^\d+$/")
+		), function(){
+			save(array("price","classes", "mod" => "api"));
+		$this->permission = array("price" => array("select" => array("public")));
+	});
 		
+	$this->listen(array(
+			"max" => 2,
+			"url"=>array("classes" , "classesid" => "/^\d+$/")
+			), function(){
+				save(array("price","classes"));
+			$this->permission = array("price" => array("insert" => array("public")));
+		});	
+
 	$this->listen(array(
 			"max" => 2,
 			"url"=>array("status" => "add" , "usersid" => "/^\d+$/")

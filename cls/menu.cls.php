@@ -344,7 +344,15 @@ class menu_cls  {
 				)
 			);
 
-
+		//------------------------------ price add
+		self::$menu[] = array(
+			"submenu"     => "price",
+			"url"         => 'classes/status=list/type=price',
+			"name"        =>  _("مدیریت شهریه کلاس"),
+			"tag"         => array(
+			"price_change"  => array("insert" => array("public"))
+				)
+			);
 			//------------------------------  score
 		self::$menu[] = array(
 			"submenu" => "score", 

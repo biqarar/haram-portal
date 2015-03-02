@@ -15,7 +15,8 @@ class model extends main_model{
 		$sql = $this->makeQuery()
 				->insert();
 		$this->commit(function() {
-			debug_lib::true("[[insert course_description ture]]");
+			debug_lib::true("[[insert course_description 
+successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[insert course_description failed]]");
@@ -27,7 +28,7 @@ class model extends main_model{
 				->whereId($this->uId())
 				->update();
 		$this->commit(function() {
-			debug_lib::true("[[update course_description ture]]");
+			debug_lib::true("[[update course_description successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[update course_description failed]]");

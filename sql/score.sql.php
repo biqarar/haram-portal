@@ -23,7 +23,7 @@ class score {
 	}
 
 	public function value() {
-
+		$this->validate()->float()->form->float("number is not valid");
 	}
 }
 ?>

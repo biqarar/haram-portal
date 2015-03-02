@@ -35,6 +35,7 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 			type: "POST",
 			url : "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value,
 			success : function(data){
+				console.log(data);
 				$(_self).removeAttr('disabled');
 				if(data.fatal){
 					$(_fatal).html(data.fatal[0]).insertAfter(_self);
@@ -53,17 +54,13 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 		return false;		
 	});
 });	
-function xxx(a) {
+function insert_(a) {
 
 	// console.log($("#calculation").html());
 	x = $("#calculation").html()
-	$("#calculation").html(x + 'fuck' + $(a).html() + 'fuck');
+	$("#calculation").html(x + '=' + $(a).html() + '=');
 }
 route(/score\/calculation\/status\=(add|edit)/, function(){
-
-	$(".xxx").click(function(){
-		// console.log("fuck");
-	});
 
 	$("#plan_id").combobox( "destroy" );
 	$("#plan_id", this).combobox({
@@ -78,7 +75,7 @@ route(/score\/calculation\/status\=(add|edit)/, function(){
 
 				for(a in data.msg) {
 					 if(data.msg[a]['title']){
-							$("<a class='xxx' onclick='xxx(this);'>" + data.msg[a]['title'] + "</a><br>").appendTo("#list");
+							$("<a  onclick='insert_(this);'>" + data.msg[a]['title'] + "</a><br>").appendTo("#list");
 					 	}
 					}
 				}

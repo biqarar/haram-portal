@@ -1,17 +1,22 @@
 <?php
 namespace sql;
 class price {
+	public $type    	 = array('type'=> 'enum@common,plan!commod', "label" => "type");
+
+	public $plan_id    	 = array('type'=> 'int@10', "label" => "plan_id");
+
 	public $id           = array('type'=> 'int@10', 'autoI', 'label' => 'price_id');
 	public $users_id     = array('type'=> 'int@10', "label" => "users_id");
 	public $date		 = array("type" => "int@8", "label" => "date");
 	public $title		 = array('type' => "int@10", "price_title");
-	public $card        = array('type'=> 'int@7', "label" => "card");
-	public $value        = array('type'=> 'int@7', "label" => "price_value");
 	public $pay_type     = array('type'=> 'enum@pos_mellat,pos_melli,rule', "label" => "pay_type");
+	public $value        = array('type'=> 'int@7', "label" => "price_value");
+	public $card         = array('type'=> 'int@7', "label" => "card");
 	public $transactions = array('type'=> 'varchar@255', "label" => "price_transactions");
 	public $description  = array('type'=> 'text@' , "label" => "description");
+	public $status    	 = array('type'=> 'enum@active,void!active', "label" => "status");
 	
-	public $foreign = array("title" => "price_change@id!name");
+	public $foreign = array("title" => "price_change@id!name", "plan_id" => "plan@id!name");
 	
 	public function id(){
 		$this->validate("id");
@@ -35,6 +40,15 @@ class price {
 		});
 	}
 
+	public function type(){
+		$this->form("radio")->name("type")->label("type");
+		$this->setChild($this->form);
+	}
+
+	public function plan_id(){
+		$this->form("select")->name("plan_id")->label("plan_id")->class("notselect");
+		$this->setChild();
+	}
 
 	public function card(){
 		$this->form("text")->name("card")->label("card")->pl("4 رقم آخر شماره کارت");
@@ -58,9 +72,13 @@ class price {
 
 	public function description() {
 		$this->form("#text_desc")->name("description");
-		$this->validate()->description()->form->description("description must be between 3 and 255 charset");
+		$this->validate()->description(-1)->form->description("description must be between 3 and 255 charset");
 	}
 
+	public function status(){
+		$this->form("radio")->name("status")->label("status");
+		$this->setChild($this->form);
+	}
 	
 }	
 ?>

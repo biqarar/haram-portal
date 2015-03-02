@@ -28,7 +28,7 @@ class model extends main_model{
 				->whereId($this->uId())
 				->update();
 		$this->commit(function() {
-			debug_lib::true("[[update consultation ture]]");
+			debug_lib::true("[[update consultation successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[update consultation failed]]");

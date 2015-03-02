@@ -86,7 +86,7 @@ class model extends main_model{
 		->whereId($this->uId())
 		->update();
 		$this->commit(function() {
-			debug_lib::true("[[update files ture]]");
+			debug_lib::true("[[update files successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[update files failed]]");

@@ -75,14 +75,8 @@ route(/report\/status\=(add|edit)/, function(){
 	$("#tables", this).combobox();
 });
 
-route(/report\/classes/, function(){
-	// $("#lists").combobox();
-	// $("#lists", this).combobox({
-	// 	change : function(op){
-	// 		item = op.item.option.value
-	// 		$(".start-reports",this).
-	// 	}
-	// });
+route(/report/, function(){
+	$("#lists", this).combobox();
 });
 function convertDate(date) {
 	if(date.test(/^(\d{4})(\-|\/|)(\d{1,2})(\-|\/|)(\d{1,2})$/)) {

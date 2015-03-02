@@ -20,6 +20,10 @@ class view extends main_view {
 		if($this->urlStatus() == "edit") {
 			$this->sql(".edit", "classification", $this->xuId(), $f);
 
+			$this->data->users_id = $f->users_id->attr['value'];
+			$this->data->classes_id =$f->classes_id->attr['value'];
+			$this->data->id = $this->xuId();
+			
 			//------------------------------ set name and family instead users_id
 			$name = $this->sql(".assoc.foreign", "person", $f->users_id->attr['value'] ,"name", "users_id");
 			$family = $this->sql(".assoc.foreign", "person", $f->users_id->attr['value'] ,"family", "users_id");

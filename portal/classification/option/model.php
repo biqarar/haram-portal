@@ -20,19 +20,17 @@ class model extends main_model {
 	}
 
 	public function post_edit_classification() {
-		$sql = $this->makeQuery()->whereId($this->xuId())->update();
-		$classes_id = $this->sql()->tableClassification()->whereId($this->xuId())->limit(1)->select()->assoc("classes_id");
 		
-
-		die("آیا می خواهید شهریه باز گردانده شود.");
-
-		$this->sql(".classesCount", $classes_id);
-		$this->commit(function() {
-			debug_lib::true("[[update classification successful]]");
-		});
-		$this->rollback(function() {
-			debug_lib::fatal("[[update classification failed]]");
-		});
+		// $sql = $this->makeQuery()->whereId($this->xuId())->update();
+		// $classes_id = $this->sql()->tableClassification()->whereId($this->xuId())->limit(1)->select()->assoc("classes_id");
+		
+		// $this->sql(".classesCount", $classes_id);
+		// $this->commit(function() {
+		// 	debug_lib::true("[[update classification successful]]");
+		// });
+		// $this->rollback(function() {
+		// 	debug_lib::fatal("[[update classification failed]]");
+		// });
 	}
 }
 ?>

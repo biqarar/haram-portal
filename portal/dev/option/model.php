@@ -31,7 +31,7 @@ class model extends main_model{
 				->whereId($this->uId())
 				->update();
 		$this->commit(function() {
-			debug_lib::true("[[update dev ture]]");
+			debug_lib::true("[[update dev successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[update dev failed]]");

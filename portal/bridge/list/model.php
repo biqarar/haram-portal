@@ -9,9 +9,9 @@ class model extends main_model {
 		$dtable = $this->dtable->table("bridge")
 		->fields(
 			"usersid more",
-			"username username",
-			"name person.name",
-			"family person.family",
+			"username",
+			"name",
+			"family",
 			"title",
 			"value",
 			"id edit"
@@ -19,6 +19,10 @@ class model extends main_model {
 		->order(function($q, $n, $b){
 			if($n === 'orderUsername'){
 				$q->join->users->orderUsername($b);
+			}elseif($n === 'orderName'){
+				$q->join->person->orderName($b);
+			}elseif($n === 'orderFamily'){
+				$q->join->person->orderFamily($b);
 			}else{
 				return true;
 			}

@@ -22,19 +22,22 @@ class query_classesDetail_cls extends query_cls
 				->class("icoletters a-undefault"))
 
 			->compile();
-			
-			//------------------------------ change users id to name and family to show
-			$classes_detail = $this->detailClasses($classes_detail);
-			
-			$return['page_title']
-				 = gettext("class").' '.
-				$classes_detail['list'][0]['plan_id'] . ' استاد ' .
-				$classes_detail['list'][0]['teacher'] . ' ' .
-				$classes_detail['list'][0]['place_id'] ;
-			
-			$return['list'] = $classes_detail;
+			if(isset($classes_detail['list'][0])){
 
-			return $return;
+				//------------------------------ change users id to name and family to show
+				$classes_detail = $this->detailClasses($classes_detail);
+				
+				$return['page_title']
+					 = gettext("class").' '.
+					$classes_detail['list'][0]['plan_id'] . ' استاد ' .
+					$classes_detail['list'][0]['teacher'] . ' ' .
+					$classes_detail['list'][0]['place_id'] ;
+				
+				$return['list'] = $classes_detail;
+
+				return $return;
+
+			}
 	}
 }
 

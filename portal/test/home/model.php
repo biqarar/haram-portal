@@ -27,7 +27,7 @@ class model extends main_model{
 	// 			->whereId($this->uId())
 	// 			->update();
 	// 	$this->commit(function() {
-	// 		debug_lib::true("[[update group ture]]");
+	// 		debug_lib::true("[[update group successful]]");
 	// 	});
 	// 	$this->rollback(function() {
 	// 		debug_lib::fatal("[[update group failed]]");

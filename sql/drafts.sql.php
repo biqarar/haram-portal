@@ -6,9 +6,9 @@ namespace sql;
 class drafts {
 
 	public $id     = array('type'=> 'int@10', 'autoI', 'label' => 'drafts_id');
-	public $group   = array('type'=> 'enum@classes,classification,score,person,absence','label' => 'drafts_tag');
-	public $tag   = array('type'=> 'varchar@255', 'label' => 'drafts_tag');
-	public $text   = array('type'=> 'text@', 'label' => 'drafts_text');
+	public $group   = array('type'=> 'enum@classes,classification,score,person,absence','label' => 'group');
+	public $tag   = array('type'=> 'varchar@255', 'label' => 'tag');
+	public $text   = array('type'=> 'text@', 'label' => 'text');
 
 	public function id() {
 		$this->validate("id");

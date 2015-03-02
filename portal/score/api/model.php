@@ -6,7 +6,7 @@ class model extends main_model {
 
 		$classificationid = $this->xuId("classificationid");
 		$scoretypeid = $this->xuId("scoretypeid");
-		$value = intval($this->xuId("value"));
+		$value = ($this->xuId("value"));
 
 		if($classificationid == 0 or $scoretypeid == 0 ) {
 			debug_lib::fatal("خطا در اطلاعات");

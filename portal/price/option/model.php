@@ -11,7 +11,7 @@ class model extends main_model{
 	public function makeQuery() {
 		$value = preg_replace("/\,/", "", post::value());
 		return $this->sql()->tablePrice()
-				->setUsers_id($this->xuId("usersid"))
+				// ->setUsers_id($this->xuId("usersid"))
 				->setDate(post::date())			
 				->setValue($value)
 				->setPay_type(post::pay_type())
@@ -22,15 +22,23 @@ class model extends main_model{
 	}
 
 	public function post_add_price(){
+		$sql = $this->makeQuery();
+		
+		$sql->setUsers_id($this->xuId("usersid"));
 
 		if(!$this->check_price()){
 			debug_lib::fatal("اطلاعات وارد شده با مقادیر حساب تناقض دارد");
 		}else{
-			$sql = $this->makeQuery()->insert();
-			// print_r($sql->string());
+			if(post::type() == 'plan' && post::plan_id() == '') {
+				debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
+			}elseif(post::type() == "common" && post::plan_id() != ""){
+				$sql->setDescription("");
+			}elseif(post::type() == 'plan' && post::plan_id() != '') {
+				$sql->setDescription($this->plan_name(post::plan_id()));
+			}
+			$sql = $sql->insert();
 		}
-
-		
+	
 		$this->commit(function() {
 			debug_lib::true("[[insert price successful]]");
 		});
@@ -40,14 +48,26 @@ class model extends main_model{
 		});
 	}
 
+	public function plan_name($plan_id = false) {
+		return $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->fieldName()->select()->assoc("name");
+	}
+
 	public function post_edit_price(){
+		$sql = $this->makeQuery();
+
 		if(!$this->check_price()){
 			debug_lib::fatal("اطلاعات وارد شده با مقادیر حساب تناقض دارد");
 		}else{
-			$sql = $this->makeQuery()->whereId($this->xuId())->update();
+			if(post::type() == 'plan' && post::plan_id() == '') {
+				debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
+			}elseif(post::type() == "common" && post::plan_id() != ""){
+				$sql->setDescription("");
+			}elseif(post::type() == 'plan' && post::plan_id() != '') {
+				$sql->setDescription($this->plan_name(post::plan_id()));
+			}
+			$sql->whereId($this->xuId())->update();
 		}
 
-		
 		$this->commit(function() {
 			debug_lib::true("[[update price successful]]");
 		});
@@ -55,7 +75,6 @@ class model extends main_model{
 		$this->rollback(function() {
 			debug_lib::fatal("[[update price failed]]");
 		});
-
 	}
 
 	public function check_price() {

@@ -4,6 +4,88 @@
 */
 class model extends main_model {
 
+	public function post_priceback() {
+		$usersid = $this->xuId("usersid");
+		$classesid = $this->xuId("classesid");
+		$price = $this->sql()->tablePrice()
+			->whereUsers_id($usersid)
+			->andPay_type("rule")
+			->andStatus("active")
+			->andTitle(5)
+			->andTransactions($classesid)
+			->select();
+
+		if($price->num() >= 1) {
+			
+			$sum_price = 0;
+			foreach ($price->allAssoc() as $key => $value) {
+			
+				$back = $this->sql()->tablePrice()
+					->setUsers_id($usersid)
+					->setDate($this->dateNow())
+					->setValue($value['value'])
+					->setPay_type("rule")
+					->setTitle(2)
+					->setTransactions($value['id'])
+					// ->setStatus("void")
+					->insert()->LAST_INSERT_ID();
+				$this->commit(function(){
+					debug_lib::msg("msg","شهریه به دوره جدید منتقل شد");
+				});
+			}
+		}else{
+			debug_lib::msg("msg", "هیچ شهریه ای برای این کلاس ثبت نشده است.");
+		}
+		debug_lib::msg("msg", "هیچ شهریه ای برای این کلاس ثبت نشده است.");
+
+		// var_dump("fuck");exit();
+	}
+
+	public function post_classificationapi() {
+		$usersid = $this->xuId("usersid");
+		$classesid = $this->xuId("classesid");
+		$price = $this->sql()->tablePrice()
+			->whereUsers_id($usersid)
+			->andPay_type("rule")
+			->andStatus("active")
+			->andTitle(5)
+			->andTransactions($classesid)
+			->setStatus("void")->update();
+
+		$classes_id = $this->sql()->tableClassification()->whereId($this->xuId())->limit(1)->select()->assoc("classes_id");
+		$this->sql(".classesCount", $classes_id);
+		
+		$classification =  $this->sql()->tableClassification()		
+			->setDate_delete($this->xuId("date"))
+			->setBecause($this->xuId("because"))
+			->whereId($this->xuId())->update();
+			$this->commit(function(){
+				debug_lib::msg("msg", "به روز رسانی اطلاعات انجام شد.");
+			});
+		debug_lib::msg("msg", "به روز رسانی اطلاعات انجام شد.");
+
+	}
+
+	public function post_price() {
+		$usersid = $this->xuId("usersid");
+		$classesid = $this->xuId("classesid");
+		$price = $this->sql()->tablePrice()
+			->whereUsers_id($usersid)
+			->andPay_type("rule")
+			->andStatus("active")
+			->andTitle(5)
+			->andTransactions($classesid)
+			->select();
+
+		$sum_price = 0;
+		if($price->num() >= 1) {
+			foreach ($price->allAssoc() as $key => $value) {
+				$sum_price = $sum_price + intval($value['value']);
+			}
+		}
+		debug_lib::msg("sum_price", $sum_price);
+	}
+
 	public function post_insert() {
 		
 		//------------------------------ set users id and classes id
@@ -22,7 +104,11 @@ class model extends main_model {
 				debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
 			}else{
 				//------------------------------ check price 
-				if(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
+				if(!$this->sql(".plan.maxPerson", $classes_id)) {
+	
+					debug_lib::fatal("ظرفیت این کلاس تکمیل است و امکان ثبت فراگیر وجود ندارد.");
+			
+				}elseif(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
 	
 					debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
 			

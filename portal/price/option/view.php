@@ -17,8 +17,9 @@ class view extends main_view {
 		// var_dump($this->global->url);exit();
 		
 		$f = $this->form('@price', $this->urlStatus());
-		// $f->remove("title");
-		// var_dump($f);exit();
+		$f->type->child(0)->checked("checked");
+		$f->remove("status");
+		$f->title->child(0)->selected("selected");
 
 		$this->sql(".edit", "price", $this->xuId(), $f);
 	

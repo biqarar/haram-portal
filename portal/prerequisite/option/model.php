@@ -25,7 +25,7 @@ class model extends main_model{
 				->whereId($this->uId())
 				->update();
 		$this->commit(function() {
-			debug_lib::true("[[update prerequisite ture]]");
+			debug_lib::true("[[update prerequisite successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[update prerequisite failed]]");

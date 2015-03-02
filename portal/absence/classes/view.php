@@ -13,10 +13,8 @@ class view extends main_view {
 		$absence_tag = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
 
 		//------------------------------ get detail classes
-		// $this->classesDetail();
-//------------------------------ get detail classes
 		if(config_lib::$surl['classesid']){
-		// var_dump("fuck");exit();
+
 
 			//------------------------------ classes id
 			$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
@@ -38,7 +36,6 @@ class view extends main_view {
 			$classes_detail = $classes_detail->addCol("date", "date")->select(-1 , "date")
 			->html($main_absence_tag);
 
-
 			$classes_detail = $classes_detail->compile();
 			
 			//------------------------------ change users id to name and family to show
@@ -48,15 +45,8 @@ class view extends main_view {
 			$this->data->list = $classes_detail;
 		}
 			
-
-			
-
-			$this->data->dataTable = $this->dtable("absence/status=classeslist/classesid=" . $this->xuId("classesid").'/',
+		$this->data->dataTable = $this->dtable("absence/status=classeslist/classesid=" . $this->xuId("classesid").'/',
 			array("name", "family", "date_entry", "date_delete", "type" ,"ثبت غیبت" , "ثبت غیبت بیشتر" , "نمایش غیبت ها"));
-
-		// $this->data->classes_id = $this->data->list['list'][0]['id'];
-
-
 	}
 }
 ?>

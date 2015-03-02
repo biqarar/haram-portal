@@ -26,7 +26,7 @@ class model extends main_model{
 				->whereId($this->uId())
 				->update();
 		$this->commit(function() {
-			debug_lib::true("[[update folders ture]]");
+			debug_lib::true("[[update folders successful]]");
 		});
 		$this->rollback(function() {
 			debug_lib::fatal("[[update folders failed]]");

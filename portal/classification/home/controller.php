@@ -2,7 +2,7 @@
 class controller extends main_controller{
 	
 	function config(){
-		//------------------------------ load form to search in person
+		//------------------------------ load form to search in person // apipriceback apiclassification
 		$this->listen(array(
 			"max" => 3,
 			"url" => "/^(search)\/(classesid\=\d+)$/"
@@ -40,6 +40,44 @@ class controller extends main_controller{
 			function () {
 				save(array("classification", "classes"));
 				$this->permission = array("classification" => array("insert" => array("public")));
+			}
+		);
+
+		//------------------------------ api to insert users to classes
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("apipriceback", "usersid" => "/^\d+$/", "classesid" => "/^\d+$/")
+		), 
+		function () {
+			save(array("class" => "classification", "method"=> "api", "mod" => "priceback"));
+				$this->permission = array("classification" => array("insert" => array("public", "private")));
+			}
+		);
+
+		//------------------------------ api to insert users to classes
+		$this->listen(array(
+			"max" => 7,
+			"url" => array(
+			  "apiclassification"
+			, "id" => "/^\d+$/"
+			, "date" => "/^(.*)+$/"
+			, "because" => "/^(.*)$/"
+			, "usersid" => "/^\d+$/"
+			, "classesid" => "/^\d+$/")
+		), 
+		function () {
+			save(array("class" => "classification", "method"=> "api", "mod" => "classificationapi"));
+				$this->permission = array("classification" => array("insert" => array("public", "private")));
+			}
+		);
+		//------------------------------ api to insert users to classes
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("apiprice", "usersid" => "/^\d+$/", "classesid" => "/^\d+$/")
+		), 
+		function () {
+			save(array("class" => "classification", "method"=> "api", "mod" => "price"));
+				$this->permission = array("classification" => array("insert" => array("public", "private")));
 			}
 		);
 		

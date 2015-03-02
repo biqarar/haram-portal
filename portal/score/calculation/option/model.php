@@ -34,7 +34,7 @@ class model extends main_model{
 
 		//------------------------------ commit code
 		$this->commit(function() {
-			debug_lib::true("[[update score_calculation ture]]");
+			debug_lib::true("[[update score_calculation successful]]");
 		});
 
 		//------------------------------ rolback code

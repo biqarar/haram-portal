@@ -17,7 +17,9 @@ class model extends main_model {
 			$ico = "icoattendance";
 		}elseif($type == "score"){
 			$url = "score/classes/";
-			$ico = "icoscore";
+		}elseif($type == "price"){
+			$url = "price/classes/";
+			$ico = "icoprice";
 		}
 
 
@@ -60,11 +62,16 @@ class model extends main_model {
 				$q->join->person->orderName($b);
 			}elseif($n === 'orderPlacename'){
 				$q->join->place->orderName($b);
-			}elseif($n === 'orderMaxp'){
-				$q->join->plan->orderMax_person($b);
+			}elseif($n === 'orderCount'){
+				$q->orderCount($b);
+			}elseif($n === 'orderStart_time'){
+				$q->orderStart_time($b);
+			}elseif($n === 'orderEnd_time'){
+				$q->orderEnd_time($b);
+			}elseif($n === 'orderName'){
+				$q->orderName($b);
 			}else{
-				$q->orderId("DESC");
-				
+				$q->orderId("DESC");	
 			}
 		})
 		->query(function($q){

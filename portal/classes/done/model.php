@@ -13,6 +13,9 @@ class model extends main_model {
 
 		$this->score($classes_id);
 
+		$this->sql(".voidPrice.classes", $classes_id);
+
+
 		$classification = $this->sql()->tableClassification()->whereClasses_id($classes_id);
 		$classification = $this->classification_finde_active_list($classification);
 		$classification->setDate_delete($this->dateNow())->setBecause("done")->update();

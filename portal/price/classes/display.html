@@ -1,0 +1,13 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<div class="class-detail">
+	{{ tagMaker.list(list) }}
+</div>
+
+<!-- classes list -->
+<div class="class-detail">
+	{{dtable.make(dataTable)}}
+</div>
+
+{%endblock%}

@@ -478,6 +478,12 @@ class model extends main_model{
 			 FOR EACH ROW BEGIN
 			call setHistory('file_plan', 'update', OLD.id);
 			END",
+			"ALTER TABLE `price`  ADD `status` enum('active','void') NOT NULL DEFAULT 'active'",
+			
+
+			"ALTER TABLE `score_type` CHANGE `min` `min` FLOAT NOT NULL",
+			"ALTER TABLE `score_type` CHANGE `max` `max` FLOAT NOT NULL",
+			"ALTER TABLE `score_calculation` CHANGE `status` `status` ENUM('active','disactive') CHARACTER SET utf32 COLLATE utf32_persian_ci NULL DEFAULT NULL",
 			////////////////////////////////////////////////////			
 			);
 
