@@ -12,7 +12,7 @@ class view extends main_view{
 		$hidden = $this->form("#hidden")->value("reprot");
 		$start_date =  $this->form("text")->name("start_date")->label("start_date")->date("date");
 		$end_date =  $this->form("text")->name("end_date")->label("end_date")->date("date");
-		$lists =  $this->form("select")->name("lists")->label("reports")->addClass("notselect");
+		$lists =  $this->form("select")->name("lists")->label("نوع گزارش")->addClass("notselect");
 		$submit = $this->form("#submitedit")->value("select");
 
 		$list = $this->sql(".reports.rList", "price");

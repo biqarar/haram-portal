@@ -66,8 +66,6 @@ route(/report\/classes\/status\=apilist/, function(){
 		console.log(url_);	
 	});
 
-
-		// console.log("fuck");
 	// $("#lists").click(function(){
 	// });
 });

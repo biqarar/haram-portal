@@ -321,7 +321,7 @@ class menu_cls  {
 			"url"         => 'users/status=list/type=price',
 			"name"        =>  _("ثبت شهریه"),
 			"tag"         => array(
-			"price_change"  => array("insert" => array("public"))
+			"price"  => array("insert" => array("public"))
 				)
 			);
 		//------------------------------ price add

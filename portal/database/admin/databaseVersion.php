@@ -9,7 +9,7 @@ class databaseVersion {
 	}
 
 	public function x() {
-		return "fuck";
+		return;
 	}
 }
 
