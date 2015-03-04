@@ -8,20 +8,27 @@ class view extends main_view{
 		$this->global->page_title='files';
 		$this->global->url = $this->uStatus(true);
 		$hidden = $this->form("#hidden")->value("files");
-		$oldpasswd = $this->form("password")->name("oldpasswd")->label("oldpasswd");
-		$newpasswd = $this->form("password")->name("newpasswd")->label("newpasswd");
-		$repasswd =  $this->form("password")->name("repasswd")->label("repasswd");
-		$submit = $this->form("#submitedit")->value("update");
+		$tag = $this->form("select")->name("tag")->label("tag");
+		$id = $this->form("text")->name("id")->label("id")->id("type-combo")->addClass("notselect");
+		$file =  $this->form("file")->name("file")->label("file");
+		$submit = $this->form("#submitedit")->value("send");
 		
+		$base = config_lib::$surl['base'];
+		$tagList = $this->sql("@get_tag", $base);
+		foreach ($tagList as $key => $value) {
+			$tag->child()->value($value->id)->label($value->tag);
+		}
+
 		$files = array();
 		
 		$files[] = $hidden->compile();
-		$files[] = $oldpasswd->compile();
-		$files[] = $newpasswd->compile();
-		$files[] = $repasswd->compile();
+		$files[] = $tag->compile();
+		$files[] = $id->compile();
+		$files[] = $file->compile();
 		$files[] = $submit->compile();
 		
 		$this->data->files = $files;
+		$this->data->baseOption = $base;
 	}
 }
 ?>

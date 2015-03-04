@@ -5,6 +5,11 @@
 
 class model extends main_model{
 
+	public function sql_get_tag($base){
+		$sql = $this->sql()->tableFile_tag()->whereTable_name($base);
+		return $sql->select()->allObject();
+	}
+
 	public function post_add_files(){
 		$uploadPath = query_files_cls::getAddr();
 		$FILE = isset($_FILES) && isset($_FILES['file'])? $_FILES['file'] : false;

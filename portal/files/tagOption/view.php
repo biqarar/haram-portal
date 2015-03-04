@@ -14,7 +14,7 @@ class view extends main_view {
 		//------------------------------ edit form
 		$this->sql(".edit", "file_tag", $this->xuId(), $f);
 		//------------------------------ list of country
-		$this->data->dataTable = $this->dtable("files/tag/status=api/", array("id","tag", "table_name"));
+		$this->data->dataTable = $this->dtable("files/type=tag/status=api/", array("id","tag", "table_name"));
 	}
 }
 ?>

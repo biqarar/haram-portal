@@ -253,7 +253,7 @@ class main_controller{
 	* @example if url = status=edit/id=10 then return 10;
 	*/
 	public function xuId($id = "id") {
-		return (isset(config_lib::$surl[$id])) ? config_lib::$surl[$id]: 0;
+		return (isset(config_lib::$surl[$id])) ? urldecode(config_lib::$surl[$id]): 0;
 	}
 
 	public function uStatus($index = 1, $url = false, $url2 = false){
