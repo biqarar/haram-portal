@@ -8,8 +8,11 @@ class view extends main_view{
 		$this->global->page_title='files';
 		$this->global->url = $this->uStatus(true);
 		$hidden = $this->form("#hidden")->value("files");
+		$id = $this->form("hidden")->name("id")->label("id")->id("id");
+		$crop_size = $this->form("hidden")->name("crop_size")->label("crop_size")->id("crop_size");
+
 		$tag = $this->form("select")->name("tag")->label("tag");
-		$id = $this->form("text")->name("id")->label("id")->id("type-combo")->addClass("notselect");
+		$user = $this->form("text")->name("user")->label("user")->id("type-combo")->addClass("notselect");
 		$file =  $this->form("file")->name("file")->label("file");
 		$submit = $this->form("#submitedit")->value("send");
 		
@@ -22,8 +25,10 @@ class view extends main_view{
 		$files = array();
 		
 		$files[] = $hidden->compile();
-		$files[] = $tag->compile();
 		$files[] = $id->compile();
+		$files[] = $crop_size->compile();
+		$files[] = $tag->compile();
+		$files[] = $user->compile();
 		$files[] = $file->compile();
 		$files[] = $submit->compile();
 		

@@ -3,7 +3,8 @@
 <form class="ajx" method="post" action="files/{{global.url}}" enctype="multipart/form-data">
 	{{forms.make(files)}}
 </form>
+	<div id="image-target"></div>
 {%if debug.msg is defined%}
-	<a href="files/get/{{debug.msg.id}}/{{debug.msg.title}}">دریاف فایل</a>
+<a href="files/get/{{debug.msg.id}}/{{debug.msg.title}}">دریاف فایل</a>
 {%endif%}
 {%endblock%}

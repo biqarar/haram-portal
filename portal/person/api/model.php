@@ -38,13 +38,13 @@ class model extends main_model
 		foreach ($sql->allAssoc() as $key => $value) {
 			$array[] = array(
 				"value" => $value['name'].' '.$value['family'] . ' ' . $value['father'],
-				"id" =>  $value['users_id']
+				"id" =>  $value['users_id'],
+				"person_id" =>  $value['id']
 
 				);
 		}
 		
 		debug_lib::msg("list", $array);
-
 	}
 }
 ?>
