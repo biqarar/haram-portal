@@ -3,7 +3,12 @@
 <form class="ajx" method="post" action="files/{{global.url}}" enctype="multipart/form-data">
 	{{forms.make(files)}}
 </form>
-	<div id="image-target"></div>
+
+<div id="image-target">
+<button type="submit" value="send">
+<img src="static/svg/icons/redclose.svg" style='width:20px'>
+</button>
+</div>
 {%if debug.msg is defined%}
 <a href="files/get/{{debug.msg.id}}/{{debug.msg.title}}">دریاف فایل</a>
 {%endif%}

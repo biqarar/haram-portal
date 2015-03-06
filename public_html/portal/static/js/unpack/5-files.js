@@ -2,7 +2,7 @@ route(/portal\/files/, function(){
 	var Jcrop_api;
 	$("#tag").selectmenu({
 		change: function( event, ui ) {
-			setResize();
+			checkType.call($("#file")[0]);
 		}
 	});
 	$( "#type-combo").autocomplete({
@@ -16,21 +16,22 @@ route(/portal\/files/, function(){
 			$("#id").val(ui.item.id);
 		}
 	});
-	$("#file").change(CheckImageSize);
+	$("#file").change(checkType);
 
 
-	function CheckImageSize(){
+	function checkType(){
+		clear_file();
 		var base = $("#image-target");
 		var file = this;
 		var file = file.files[0];
+		if(!file) return;
 		var imageType = /image.*/;
-
-		if (file.type.match(imageType)) {
+		if (file.type.match(imageType) && file.size < (1024*1024*30)) {
 			var reader = new FileReader();
 
 			reader.onload = function(e) {
-				base.empty();
 				var img = new Image();
+				img.setAttribute('id', 'image-target-img');
 				img.src = reader.result;
 				base.append(img);
 				setResize();
@@ -38,11 +39,23 @@ route(/portal\/files/, function(){
 
 			reader.readAsDataURL(file);	
 		}else{
-			if(Jcrop_api){
-				Jcrop_api.destroy();
+			var SRC = '';
+			if (file.type.match(/^image/)){
+				SRC = 'pictures';
+			}else if(file.type.match(/^audio/)){
+				SRC = 'sound';
+			}else if(file.type.match(/^video/)){
+				SRC = 'media';
+			}else{
+				SRC = 'folder';
 			}
-			$('#image-target img').remove();
+			var img = new Image();
+			img.setAttribute('id', 'image-target-img');
+			img.setAttribute('src', 'static/svg/icons/'+SRC+".svg");
+			base.append(img);
+			$('#image-target').show();
 		}
+		$("#file").hide();
 	}
 	function imageChangeSize(w, c){
 		$("#crop_size").val(c.x+" "+c.y+" "+c.w+" "+c.h+" "+ w);
@@ -50,12 +63,9 @@ route(/portal\/files/, function(){
 
 
 	function setResize(){
-		if(Jcrop_api){
-			Jcrop_api.destroy();
-		}
+		$('#image-target').show();
 		var tag = $("#tag").val();
-		var img = $('#image-target img');
-		console.log(tag);
+		var img = $('#image-target-img');
 		var size_tag = {
 			'4' : (1/1)
 		}
@@ -82,5 +92,10 @@ route(/portal\/files/, function(){
 		});
 	}
 
-
+	function clear_file(){
+		$("#image-target-img").remove();
+		if(Jcrop_api){
+			Jcrop_api.destroy();
+		}
+	}
 });

@@ -1095,4 +1095,15 @@ a {
   right: 172px;
   z-index: 99999; }
 
+#image-target {
+  float: right;
+  margin-right: 30px;
+  display: none; }
+  #image-target button {
+    display: block; }
+  #image-target button img {
+    margin-top: 5px; }
+  #image-target img#image-target-img {
+    display: block; }
+
 /*# sourceMappingURL=admin.css.map */

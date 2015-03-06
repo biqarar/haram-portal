@@ -296,11 +296,25 @@ a {
 
 
 .title {
-  width: 285px;
-  height: 75px;
-  background: url(../svg/title.svg) no-repeat center center;
-  position: absolute;
-  top: 7px;
-  right: 172px;
-  z-index: 99999;
+	width: 285px;
+	height: 75px;
+	background: url(../svg/title.svg) no-repeat center center;
+	position: absolute;
+	top: 7px;
+	right: 172px;
+	z-index: 99999;
+}
+#image-target{
+	float: right;
+	margin-right: 30px;
+	display: none;
+	button {
+		display: block;
+	}
+	button img{
+		margin-top: 5px;
+	}
+	img#image-target-img {
+		display: block;
+	}
 }

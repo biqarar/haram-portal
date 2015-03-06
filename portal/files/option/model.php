@@ -5,6 +5,11 @@
 
 class model extends main_model{
 
+
+	public function post_files(){
+		
+	}
+
 	public function sql_get_tag($base){
 		$sql = $this->sql()->tableFile_tag()->whereTable_name($base);
 		return $sql->select()->allObject();
