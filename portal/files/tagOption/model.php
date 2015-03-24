@@ -6,7 +6,7 @@ class model extends main_model{
 
 	public function post_api() {
 		$dtable = $this->dtable->table("file_tag")
-		->fields("id", "tag", "table_name", "id edit")
+		->fields("id", "tag", "table_name", "type", "max_size")
 		->search_fields("tag")
 		->result(function($r){
 			// $r->edit = '<a href="country/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';
@@ -16,7 +16,23 @@ class model extends main_model{
 
 	public function makeQuery() {
 		//------------------------------ make sql object
-		return $this->sql()->tableFile_tag()->setTag(post::tag())->setTable_name(post::table_name());
+		$condition = '';
+		if(post::type() == "image"){
+			$condition .= "width:".post::width();
+			$ratio = preg_split("[/]", post::ratio(), 2);
+			if(count($ratio) > 1){
+				$ratio = $ratio[0] / $ratio[1];
+			}else{
+				$ratio = $ratio[0];
+			}
+			$condition .= ";ratio:".$ratio;
+		}
+		return $this->sql()->tableFile_tag()
+		->setTag(post::tag())
+		->setTable_name(post::table_name())
+		->setType(post::type())
+		->setMax_size(post::max_size())
+		->setCondition($condition);
 	}
 
 	public function post_add_file_tag(){

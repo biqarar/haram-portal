@@ -12,14 +12,14 @@ class view extends main_view{
 		$crop_size = $this->form("hidden")->name("crop_size")->label("crop_size")->id("crop_size");
 
 		$tag = $this->form("select")->name("tag")->label("tag");
-		$user = $this->form("text")->name("user")->label("user")->id("type-combo")->addClass("notselect");
+		$user = $this->form("text")->label("user")->id("type-combo")->addClass("notselect");
 		$file =  $this->form("file")->name("file")->label("file");
 		$submit = $this->form("#submitedit")->value("send");
 		
 		$base = config_lib::$surl['base'];
 		$tagList = $this->sql("@get_tag", $base);
 		foreach ($tagList as $key => $value) {
-			$tag->child()->value($value->id)->label($value->tag);
+			$tag->child()->value($value->id)->label($value->tag)->data_condition($value->condition);
 		}
 
 		$files = array();

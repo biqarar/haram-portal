@@ -123,3 +123,13 @@ ready(function(base){
 ready(function(){
 	$("#perload-blockoff").remove();
 });
+
+function parseCondition(string){
+	var obj = new Object();
+	var str = string.split(";");
+	for(var i=0; i < str.length; i++){
+		var str_spl = (str[i]).split(":");
+		obj[str_spl[0]] = str_spl[1];
+	}
+	return (obj);
+}

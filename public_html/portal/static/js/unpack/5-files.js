@@ -1,8 +1,8 @@
-route(/portal\/files/, function(){
+route(/portal\/files.*type=files/, function(){
 	var Jcrop_api;
 	$("#tag").selectmenu({
 		change: function( event, ui ) {
-			checkType.call($("#file")[0]);
+			checkType.call($("#file")[0],null, true);
 		}
 	});
 	$( "#type-combo").autocomplete({
@@ -19,14 +19,18 @@ route(/portal\/files/, function(){
 	$("#file").change(checkType);
 
 
-	function checkType(){
-		clear_file();
+	function checkType(event, jump){
+		clear_file(jump);
 		var base = $("#image-target");
 		var file = this;
 		var file = file.files[0];
 		if(!file) return;
 		var imageType = /image.*/;
-		if (file.type.match(imageType) && file.size < (1024*1024*30)) {
+		if (file.type.match(imageType) && file.size < 10000000) {
+			if(jump){
+				setResize();
+				return;
+			}
 			var reader = new FileReader();
 
 			reader.onload = function(e) {
@@ -63,16 +67,17 @@ route(/portal\/files/, function(){
 
 
 	function setResize(){
+		var _resize;
 		$('#image-target').show();
 		var tag = $("#tag").val();
+		var condition = $("option[value="+tag+"]");
 		var img = $('#image-target-img');
-		var size_tag = {
-			'4' : (1/1)
-		}
-		if(size_tag[tag]){
-			_resize = size_tag[tag];
+		var condition = $("option[value="+tag+"]").attr('data-condition');
+		if(condition){
+			var parse = parseCondition(condition);
+			_resize = (parse.ratio) ? parse.ratio : 1;
 		}else{
-			_resize = (16/9);
+			_resize = 1;
 		}
 		fnChangeSize = imageChangeSize;
 		if(img.width() > img.height()){
@@ -92,10 +97,30 @@ route(/portal\/files/, function(){
 		});
 	}
 
-	function clear_file(){
-		$("#image-target-img").remove();
+	function clear_file(jump){
+		if(!jump)	$("#image-target-img").remove();
 		if(Jcrop_api){
 			Jcrop_api.destroy();
 		}
 	}
+	$("#remove").click(function(){
+		clear_file();
+		$('#image-target').hide();
+		$("#file").val('');
+		$("#file").show();
+	});
+});
+
+route(/portal\/files.*type=tag/, function(){
+	$("input#width").parents(".form-element").hide();
+	$("input#ratio").parents(".form-element").hide();
+	$("#type", this).on( "selectmenuchange", function(event, ui) {
+		if(ui.item.value == "image"){
+			$("input#width").parents(".form-element").fadeIn("fast");
+			$("input#ratio").parents(".form-element").fadeIn("fast");
+		}else{
+			$("input#width").parents(".form-element").fadeOut("fast");
+			$("input#ratio").parents(".form-element").fadeOut("fast");
+		}
+	});
 });
