@@ -1,5 +1,6 @@
 route(/portal\/files.*type=files/, function(){
 	var Jcrop_api;
+	$("#file_upload").ajxCall(remove);
 	$("#tag").selectmenu({
 		change: function( event, ui ) {
 			checkType.call($("#file")[0],null, true);
@@ -103,12 +104,15 @@ route(/portal\/files.*type=files/, function(){
 			Jcrop_api.destroy();
 		}
 	}
-	$("#remove").click(function(){
+
+	function remove(){
 		clear_file();
 		$('#image-target').hide();
 		$("#file").val('');
 		$("#file").show();
-	});
+	}
+
+	$("#remove").click(remove);
 });
 
 route(/portal\/files.*type=tag/, function(){

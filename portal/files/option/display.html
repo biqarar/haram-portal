@@ -1,6 +1,6 @@
 {% extends layout %}
 {% block content %}
-<form class="ajx" method="post" action="files/{{global.url}}" enctype="multipart/form-data">
+<form class="ajx" method="post" action="files/{{global.url}}" enctype="multipart/form-data" id="file_upload">
 	{{forms.make(files)}}
 </form>
 

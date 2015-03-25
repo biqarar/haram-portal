@@ -18,6 +18,7 @@ class model extends main_model{
 			'tag' => $tag
 			);
 		if(!$this->condition($file)) return;
+		if(!$this->org_upload($file)) return;
 	}
 
 	private function condition($file){
@@ -27,6 +28,7 @@ class model extends main_model{
 		$list = $get_condition->Object();
 		$this->post_file->list = $list;
 		$condition = conditions_cls::parse($list->condition);
+		$condition->ratio = number_format($condition->ratio, 9);
 		$this->post_file->condition = $condition;
 		$exec = array();
 		switch ($list->type) {
@@ -55,32 +57,39 @@ class model extends main_model{
 			return false;
 		}
 		if($list->type == 'image'){
-			$crop = $this->post_file->crop = explode(" ", post::crop_size());
+			$crop = explode(" ", post::crop_size());
+			foreach ($crop as $key => $value) {
+				$crop[$key] = (float) $value;
+			}
+			$this->post_file->crop = $crop;
 			switch ($condition->ratio) {
 				case '1.777777778':
-				case '1.7777777777778':
-					$rat_name = '16:9';
-					break;
+				$rat_name = '16:9';
+				break;
 				case '1.333333333':
-				case '1.3333333333333':
-					$rat_name = '4:3';
-					break;
+				$rat_name = '4:3';
+				break;
 				case '0.75':
-					$rat_name = '3:4';
-					break;
+				$rat_name = '3:4';
+				break;
 				case '0.5625':
-					$rat_name = '9:16';
-					break;
+				$rat_name = '9:16';
+				break;
 				default:
-					$rat_name = $condition->ratio;
-					break;
+				$rat_name = $condition->ratio;
+				break;
 			}
-			if($condition->ratio != $crop[2] / $crop[3]){
+			$crop_rat = number_format($crop[2] / $crop[3], 9);
+			if($condition->ratio != $crop_rat){
 				debug_lib::fatal("ratio must be ". $rat_name);
 				return false;
 			}
 		}
 		return true;
+	}
+
+	private function upload_file($file){
+		
 	}
 
 	public function sql_get_tag($base){
