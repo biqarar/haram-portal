@@ -4,21 +4,51 @@
 */
 
 class model extends main_model{
+	public $original_path;
+	public $file_transaction = array();
 
 	public $post_file = array();
 
 	public function post_files(){
+		$this->rollback(function(){
+			debug_lib::fatal("file uploaded error");
+			foreach ($this->file_transaction as $key => $value) {
+				unlink($this->original_path.$value);
+			}
+		});
 		$base = config_lib::$surl['base'];
-		$id = post::id();
+		$parm_id = post::id();
 		$tag = post::tag();
 		$file = $_FILES['file'];
 		$this->post_file = (object) array(
 			'base' => $base,
-			'id' => $id,
+			'parm_id' => $parm_id,
 			'tag' => $tag
 			);
 		if(!$this->condition($file)) return;
-		if(!$this->org_upload($file)) return;
+		$insert_query = $this->sql()->tableFiles()
+		->setTitle(post::title())
+		->setType(post::title())
+		->setSize($file['size']/ 1000000)
+		->setFile_tag_id($tag)
+		->setType($this->post_file->type)
+		->setDescription(post::description());
+		$this->post_file->query = $insert_query;
+		$insert_query = $insert_query->insert();
+		if(!$insert_query){
+			return false;
+		}
+		$this->post_file->id = $insert_query->LAST_INSERT_ID();
+		if($this->post_file->id === false){
+			return false;
+		}
+		if(!$this->upload_file($file)) return;
+		if($this->post_file->list->type == 'image'){
+			$this->crop($file);
+		}
+		$this->commit(function(){
+			debug_lib::true("file uploaded");
+		});
 	}
 
 	private function condition($file){
@@ -48,6 +78,7 @@ class model extends main_model{
 		}
 		$file_name = explode(".", $file['name']);
 		$file_exec = strtolower(end($file_name));
+		$this->post_file->type = $file_exec;
 		if(!preg_grep("/^{$file_exec}$/", $exec)){
 			debug_lib::fatal("type must be ". join(', ', $exec));
 			return false;
@@ -87,9 +118,93 @@ class model extends main_model{
 		}
 		return true;
 	}
-
 	private function upload_file($file){
-		
+		$path = $this->original_path = root_dir.'../haram_updfiles/';
+		if(!is_dir($path)){
+			if(!mkdir($path)){
+				debug_lib::fatal("haram_updfiles path is not exists");
+				return false;
+			}
+		}
+		if(!move_uploaded_file($file['tmp_name'], $path.$this->post_file->id)){
+			debug_lib::fatal("The file was not moved");
+			return false;
+		}
+		array_push($this->file_transaction, $this->post_file->id);
+		return true;
+	}
+
+	private function crop(){
+		$src = $this->original_path.$this->post_file->id;
+		$options = preg_split("[ ]", post::crop_size());
+
+		$image_size = getimagesize($src);
+		if(isset($options[4])){
+			$options[4] = (int) $options[4];
+			$Wx = $image_size[0];
+			$Hx = $image_size[1];
+			$nw = $options[4];
+			$aM = $Wx / $options[4];
+			$nh = $Hx / $aM;
+			$options[0] *= $aM;
+			$options[1] = ($options[1] * $Hx) / $nh;
+			$options[2] *= $aM;
+			$options[3] *= $aM;
+		}
+		switch ($this->post_file->type) {
+			case 'jpg':
+			case 'jpeg':
+			$img_r = imagecreatefromjpeg($src);
+			break;
+			case 'png':
+			$img_r = imagecreatefrompng($src);
+			break;
+			case 'gif':
+			$img_r = imagecreatefromgif($src);
+			break;
+		}
+		foreach (array('120') as $key => $value) {
+			if(!$this->save_crop($value, $options, $img_r)){
+				return false;
+			}
+		}
+
+		foreach (preg_split("[ ]", $this->post_file->condition->width) as $key => $value) {
+			if(!$this->save_crop($value, $options, $img_r)){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private function save_crop($value, $options, $img_r){
+		$targ_w = $value;
+		$targ_h = $value/$this->post_file->condition->ratio;
+		$dst_r = ImageCreateTrueColor($targ_w, $targ_h);
+		imagecopyresampled($dst_r, $img_r, 0, 0, $options[0], $options[1],  $targ_w, $targ_h, $options[2], $options[3]);
+		$isub_query = clone $this->post_file->query;
+		$isub_query->setDependence($this->post_file->id)
+		->setSize("#NULL");
+		$sub_query = $isub_query->insert();
+		if($sub_query){
+			$id = $sub_query->LAST_INSERT_ID();
+			if(imagejpeg($dst_r, $this->original_path.$id, 100)){
+				array_push($this->file_transaction, $id);
+				$size = filesize($this->original_path.$id);
+				$isub_query = clone $this->post_file->query;
+				$q = $isub_query->setSize($size / 1000000)
+				->whereId($id)
+				->setDependence($this->post_file->id)
+				->update();
+			}else{
+				debug_lib::fatal("error in crop size ". $value);
+				return false;
+			}
+		}else{
+			debug_lib::fatal("error in crop size ". $value);
+			return false;
+		}
+		return true;
 	}
 
 	public function sql_get_tag($base){

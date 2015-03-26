@@ -145,7 +145,7 @@ class validateExtends_cls{
 
 		$max = ($max) ? intval($max) : false;
 
-		$allCharset = "[ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء﷼a-zA-Z0-9]";
+		$allCharset = ".";
 		if($max && $max != -1){
 			
 			$reg = "/^" . $allCharset . "{3," . $max . "}$/";
@@ -154,7 +154,6 @@ class validateExtends_cls{
 		}else{
 			$reg = "/^" . $allCharset . "{3,255}$/";
 		}
-		
 		if (preg_match($reg, $this->value)) {
 			return true;
 		}

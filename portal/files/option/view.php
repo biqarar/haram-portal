@@ -13,6 +13,8 @@ class view extends main_view{
 
 		$tag = $this->form("select")->name("tag")->label("tag");
 		$user = $this->form("text")->label("user")->id("type-combo")->addClass("notselect");
+		$title = $this->form("text")->label("title")->name("title");
+		$description = $this->form("textarea")->label("description")->name("description");
 		$file =  $this->form("file")->name("file")->label("file");
 		$submit = $this->form("#submitedit")->value("send");
 		
@@ -29,6 +31,8 @@ class view extends main_view{
 		$files[] = $crop_size->compile();
 		$files[] = $tag->compile();
 		$files[] = $user->compile();
+		$files[] = $title->compile();
+		$files[] = $description->compile();
 		$files[] = $file->compile();
 		$files[] = $submit->compile();
 		

@@ -75,24 +75,25 @@ class sql_lib{
 	}
 
 	public function order(&$string){
-		$aorder = false;
+		$aorder = array();
 		if($this->maker->order){
-			$aorder = array($this->maker->table, $this->maker->order);
+			foreach ($this->maker->order as $key => $value) {
+				array_push($aorder, array($this->maker->table, $value));
+			}
 		}
 		foreach ($this->maker->join as $key => $value) {
 			if($value->order){
-				$aorder = array($value->table, $value->order);
-			}
-		}
-		if($aorder){
-			if(preg_match("/^([^\s]+)(\s(ASC|DESC))?$/", $aorder[1], $order)){
-				if(count($order) == 4){
-					$sort = $order[3];
-					$orderField = $this->oString($aorder[0], $order[1]);
-					$string .= ($aorder[1]) ? " ORDER BY $orderField $sort" : '';
+				foreach ($this->maker->order as $k => $v) {
+					array_push($aorder, array($value->table, $v));
 				}
 			}
 		}
+		$array_string_order = array();
+		foreach ($aorder as $key => $value) {
+			$orderField = $this->oString($value[0], $value[1][0]);
+			array_push($array_string_order, "$orderField {$value[1][1]}");
+		}
+		$string .= " ORDER BY ".join(', ', $array_string_order);
 	}
 
 	/**
@@ -171,7 +172,7 @@ class sql_lib{
 			$string .= " WHERE".$this->condition($this->maker);
 		}
 		if(autoload::check("sql_cls") && method_exists("sql_cls", "update_log")) {
-				sql_cls::update_log($this->maker ,$this->condition($this->maker) );
+			sql_cls::update_log($this->maker ,$this->condition($this->maker) );
 		}
 		return $string;
 	}
