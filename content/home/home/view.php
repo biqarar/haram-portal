@@ -5,7 +5,8 @@
 class view extends main_view {
 	public function config() {
 		
-		$data = $this->sql(".postsList", $this->uId(1), 5);
+		// var_dump($this->uId(1));exit();
+		$data = $this->sql(".postsList", $this->xuId(1), 5);
 		$this->global->page_title = $data['title'];
 		foreach ($data['list'] as $key => $value) {
 			foreach ($value as $k => $v) {

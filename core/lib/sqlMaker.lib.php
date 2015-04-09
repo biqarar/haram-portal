@@ -236,9 +236,4 @@ class sqlMaker_lib{
 		return $sql;
 	}
 }
-// $sql()->tablePerson()
-// 	->condition("where" "1", "=", "#func()");
-// $sql->joinUsers()
-// 	->whereId("#person.id");
-// $sql->select();
 ?>

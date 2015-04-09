@@ -15,11 +15,11 @@
 		return list;
 	}
 
-
 	function _clear(){
 		list = Array();
 	}
-	addToList = _addToList;
+	
+	addToList  = _addToList;
 	returnList = _returnList;
 	list_clear = _clear;
 

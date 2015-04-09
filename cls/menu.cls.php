@@ -448,7 +448,7 @@ class menu_cls  {
 			"url" => "report/", 
 			"name" =>  "گزارشات", 
 			"tag" => array(
-				"report" => array("classes" => array("public"))
+				"report" => array("select" => array("public"))
 				)
 			);
 

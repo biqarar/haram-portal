@@ -87,7 +87,7 @@ class dbconnection_lib{
 			$this->result = self::$connection->query($string);
 			if (self::$connection->error) {
 				$this->status = false;
-				// ilog("error : "  . self::$connection->error . " no: " . self::$connection->errno);
+				ilog("error : "  . self::$connection->error . " no: " . self::$connection->errno);
 				$this->error(self::$connection->error, self::$connection->errno);
 
 			}

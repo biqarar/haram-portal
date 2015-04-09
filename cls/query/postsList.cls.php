@@ -3,6 +3,7 @@ class query_postsList_cls extends query_cls
 {
 	
 	public function config($posts_id = false, $limit = false) {
+		// var_dump($posts_id);exit();
 		$posts = $this->sql()->tablePosts();
 		$return = array();
 		if($posts_id) {
