@@ -5,7 +5,6 @@
 class query_scoreTypeList_cls extends query_cls {
 
 	public function config($classesid = false) {
-		
 		$score_type = $this->score_type($classesid);
 		foreach ($score_type as $key => $value) {
 			// var_dump($value['id']);exit();

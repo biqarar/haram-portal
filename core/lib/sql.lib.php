@@ -73,31 +73,7 @@ class sql_lib{
 		}
 
 	}
-	public function order(&$string){
-		$aorder = array();
-		if($this->maker->order){
-			foreach ($this->maker->order as $key => $value) {
-				array_push($aorder, array($this->maker->table, $value));
-			}
-		}
-		foreach ($this->maker->join as $key => $value) {
-			if($value->order){
-				foreach ($value->order as $k => $v) {
-					array_push($aorder, array($value->table, $v));
-				}
-			}
-		}
-		$array_string_order = array();
-		foreach ($aorder as $key => $value) {
-			$orderField = $this->oString($value[0], $value[1][0]);
-			array_push($array_string_order, "$orderField {$value[1][1]}");
-		}
-		if($aorder){
-			$string .= " ORDER BY ".join(', ', $array_string_order);
-		}
-	}
 	// public function order(&$string){
-	// 	// return;
 	// 	$aorder = array();
 	// 	if($this->maker->order){
 	// 		foreach ($this->maker->order as $key => $value) {
@@ -106,7 +82,7 @@ class sql_lib{
 	// 	}
 	// 	foreach ($this->maker->join as $key => $value) {
 	// 		if($value->order){
-	// 			foreach ($this->maker->order as $k => $v) {
+	// 			foreach ($value->order as $k => $v) {
 	// 				array_push($aorder, array($value->table, $v));
 	// 			}
 	// 		}
@@ -116,8 +92,30 @@ class sql_lib{
 	// 		$orderField = $this->oString($value[0], $value[1][0]);
 	// 		array_push($array_string_order, "$orderField {$value[1][1]}");
 	// 	}
-	// 	$string .= " ORDER BY ".join(', ', $array_string_order);
+	// 	if($aorder){
+	// 		$string .= " ORDER BY ".join(', ', $array_string_order);
+	// 	}
 	// }
+	public function order(&$string){
+		$aorder = false;
+		if($this->maker->order){
+			$aorder = array($this->maker->table, $this->maker->order);
+		}
+		foreach ($this->maker->join as $key => $value) {
+			if($value->order){
+				$aorder = array($value->table, $value->order);
+			}
+		}
+		if($aorder){
+			if(preg_match("/^([^\s]+)(\s(ASC|DESC))?$/", $aorder[1], $order)){
+				if(count($order) == 4){
+					$sort = $order[3];
+					$orderField = $this->oString($aorder[0], $order[1]);
+					$string .= ($aorder[1]) ? " ORDER BY $orderField $sort" : '';
+				}
+			}
+		}
+	}
 
 	/**
 	 * function for make select query

@@ -88,10 +88,7 @@ class sqlMaker_lib{
 
 	private function orderCaller($name, $args){
 		$order = (isset($args[0]) && strtolower($args[0]) == "desc")? 'DESC' : 'ASC';
-		if(!is_array($this->order)){
-			$this->order = array();
-		}
-		array_push($this->order, array($name, $order));
+		$this->order = $name . " $order";
 	}
 
 	private function limitCaller($name, $args){

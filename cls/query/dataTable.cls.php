@@ -29,7 +29,7 @@ class query_dataTable_cls extends query_cls
 						}
 					}else{
 						if(preg_match("/^([^\s]*)\s(.*)\.(.*)$/", $sOrder, $psOrder)){
-							$result->join->{$psOrder[2]}->{"order".ucfirst($psOrder[3])}();
+							$result->join->{$psOrder[2]}->{"order".ucfirst($psOrder[3])}($by);
 							// print_r($result->join->users);
 						}else{
 							$result->$sOrder($by);
