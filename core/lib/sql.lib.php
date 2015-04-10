@@ -82,7 +82,7 @@ class sql_lib{
 		}
 		foreach ($this->maker->join as $key => $value) {
 			if($value->order){
-				foreach ($this->maker->order as $k => $v) {
+				foreach ($value->order as $k => $v) {
 					array_push($aorder, array($value->table, $v));
 				}
 			}

@@ -17,6 +17,7 @@ class query_dataTable_cls extends query_cls
 			call_user_func_array($object->query, $args);
 		}
 		if($order = $this->get('order')){
+			// echo "\n-------------------------\n";
 			if($column = $this->get('columns', $order['column'])){
 				$by = (isset($order['dir']) && strtolower($order['dir']) == "desc") ? "DESC" : "ASC";
 				$sOrder = "order".ucfirst($iFields[$column['data']]);
@@ -27,10 +28,16 @@ class query_dataTable_cls extends query_cls
 							$result->$sOrder($by);
 						}
 					}else{
-						$result->$sOrder($by);
+						if(preg_match("/^([^\s]*)\s(.*)\.(.*)$/", $sOrder, $psOrder)){
+							$result->join->{$psOrder[2]}->{"order".ucfirst($psOrder[3])}();
+							// print_r($result->join->users);
+						}else{
+							$result->$sOrder($by);
+						}
 					}
 				}
 			}
+			// echo "\n++++++++++++++++++++++++++++\n";
 		}
 		if(!isset($_SESSION['draw_'.config_lib::$surl['session']])){
 			$sql_count = $this->sql();
@@ -106,13 +113,13 @@ class query_dataTable_cls extends query_cls
 			}
 			if(isset($object->result)){
 				if(is_array($object->result)){
-					 	$result_object = $object->result[0];
-					 	$result_args = $object->result;
-					 	$result_args = array_splice($result_args, 1);
-					 	array_unshift($result_args, $allData[$vkey]);
+					$result_object = $object->result[0];
+					$result_args = $object->result;
+					$result_args = array_splice($result_args, 1);
+					array_unshift($result_args, $allData[$vkey]);
 				}else{
-						$result_object = $object->result;
-					 	$result_args = array($allData[$vkey]);
+					$result_object = $object->result;
+					$result_args = array($allData[$vkey]);
 				}
 				// print_r($result_args);
 				call_user_func_array($result_object, $result_args);
