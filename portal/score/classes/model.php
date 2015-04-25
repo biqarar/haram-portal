@@ -22,6 +22,7 @@ class model extends main_model {
 			})
 			->query(function($q){
 				$q->andClasses_id($this->xuId("classesid"));
+				$q = $this->classification_finde_active_list($q);
 				$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
 				$q->joinUsers()->whereId("#classification.users_id")->fieldUsername("username")->fieldId("usersid");
 			})

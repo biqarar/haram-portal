@@ -22,6 +22,7 @@ class view extends main_view{
 				"age_range",
 				"start_time",
 				"end_time",
+				//"week_days",
 				"name",
 				"count",
 				"$type",

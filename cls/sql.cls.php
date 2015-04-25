@@ -4,9 +4,10 @@
 */
 class sql_cls {
 	static function config($maker = false) {
+
 		//------------------------------ join each query whit branch_cash table (permission)
 		if(isset($_SESSION['users_id']) && isset($_SESSION['branch_active']) && !global_cls::supervisor()){
-
+			
 			$users_id = $_SESSION['users_id'];
 			
 			//------------------------------ public table (no permission set on this tables)
@@ -20,7 +21,8 @@ class sql_cls {
 							"tables",
 							"posts_group",
 							"posts",
-							"branch_users_key"
+							"branch_users_key",
+							"report"
 							);
 			
 			//------------------------------ called table
@@ -42,7 +44,8 @@ class sql_cls {
 					}
 				}
 				$x->groupClose();
-				$x->fieldId();
+				//$x->fieldId("BranchCashId");
+				$x->fieldBranch_id("sqlClsBranchId");
 				// $x->groupbyTable();
 				// $x->groupbyRecord_id();
 	

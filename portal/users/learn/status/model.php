@@ -41,7 +41,7 @@ class model extends main_model {
 			$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
 			$r->certification = $this->find_status_certification($r->certification);
-			$r->class = $this->tag("a")->href("classes/status=detail/id=". $r->class)->class("icoclass")->render();
+			$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->render();
 		});
 		$this->sql(".dataTable", $dtable);
 	}

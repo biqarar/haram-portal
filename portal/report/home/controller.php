@@ -1,5 +1,7 @@
 <?php  
 class controller extends main_controller {
+
+	public $permission = array("report" => array("select" => array("public")));
 	public function config(){
 
 	//---------------------------- bridge

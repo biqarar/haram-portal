@@ -35,6 +35,7 @@ class model extends main_model {
 			"age_range",
 			"start_time",
 			"end_time",
+			//"week_days",
 			"name",
 			"count",
 			"id classification",
