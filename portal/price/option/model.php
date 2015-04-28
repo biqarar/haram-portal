@@ -32,9 +32,9 @@ class model extends main_model{
 			if(post::type() == 'plan' && post::plan_id() == '') {
 				debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
 			}elseif(post::type() == "common" && post::plan_id() != ""){
-				$sql->setDescription("");
+				$sql->setDescription(post::description());
 			}elseif(post::type() == 'plan' && post::plan_id() != '') {
-				$sql->setDescription($this->plan_name(post::plan_id()));
+				$sql->setDescription($this->plan_name(post::plan_id()) . " - " . post::description());
 			}
 			$sql = $sql->insert();
 		}
@@ -61,9 +61,9 @@ class model extends main_model{
 			if(post::type() == 'plan' && post::plan_id() == '') {
 				debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
 			}elseif(post::type() == "common" && post::plan_id() != ""){
-				$sql->setDescription("");
+				$sql->setDescription(post::description());
 			}elseif(post::type() == 'plan' && post::plan_id() != '') {
-				$sql->setDescription($this->plan_name(post::plan_id()));
+				$sql->setDescription($this->plan_name(post::plan_id()) . " - " . post::description());
 			}
 			$sql->whereId($this->xuId())->update();
 		}
