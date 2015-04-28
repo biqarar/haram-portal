@@ -21,6 +21,5 @@ class model extends main_model
 		// print_r($)
 		debug_lib::msg("assoc", $return);
 	}
-	
 }
 ?>
