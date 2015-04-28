@@ -7,7 +7,7 @@ class query_dataTable_cls extends query_cls
 		$iFields = $object->fields;
 		$sql = $this->sql();
 		$result = $sql::$table();
-		$length = $_GET['length'];
+		$length = $_POST['length'];
 		$search = isset($object->search_fields) ? $object->search_fields : false;
 		$search = is_array($search) ? $search : array($search);
 		if(isset($object->query)){
@@ -56,7 +56,7 @@ class query_dataTable_cls extends query_cls
 		}
 		$recordsFiltered = $recordsTotal;
 		
-		if ($search !== false && isset($_GET['search']) && isset($_GET['search']['value']) && !empty($_GET['search']['value'])){
+		if ($search !== false && isset($_POST['search']) && isset($_POST['search']['value']) && !empty($_POST['search']['value'])){
 			if(isset($object->search_result)){
 				$arg = func_get_args();
 				$args = array_splice($arg, 2);
@@ -68,7 +68,7 @@ class query_dataTable_cls extends query_cls
 						$search[$key] = $nvalue[1];
 					}
 				}
-				$vsearch = $_GET['search']['value'];
+				$vsearch = $_POST['search']['value'];
 				$ssearch = preg_split("[ ]", $vsearch);
 				$vsearch = str_replace(" ", "_", $vsearch);
 				$csearch = $search;
@@ -91,7 +91,7 @@ class query_dataTable_cls extends query_cls
 				$result->groupClose();
 			}
 		}
-		$result->limit($_GET['start'], $length);
+		$result->limit($_POST['start'], $length);
 
 		$query = $result->select();
 
@@ -135,7 +135,7 @@ class query_dataTable_cls extends query_cls
 		}
 		$q = $result->field("#count(0)")->limit(0,10);
 		$recordsFiltered = (int) $q->select()->alist(0)[0];
-		debug_lib::property("draw", (int) $_GET['draw']);
+		debug_lib::property("draw", (int) $_POST['draw']);
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", $recordsFiltered);
 		debug_lib::property("data", $array);

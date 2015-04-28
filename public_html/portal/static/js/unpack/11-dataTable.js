@@ -22,7 +22,10 @@ function dTable_each(){
 	.dataTable( {
 		"processing": true,
 		"serverSide": true,
-		"ajax": url+"session="+sesseion,
+		"ajax": {
+			"url": url+"session="+sesseion,
+			"type": "POST"
+		},
 		language: {
 			processing:     "درحال بارگذاری",
 			search:         "جستجو:",
