@@ -38,7 +38,13 @@ class model extends main_model {
 			}
 		})
 		->result(function($r) {
-			$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
+			$absence_count = $this->find_count_absence($r->absence);
+			// var_dump($absence_count);exit();
+			if (!$absence_count || $absence_count == 0 || $absence_count == null) {
+				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->class("icoattendance")->render();
+			}else{
+				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
+			}
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
 			$r->certification = $this->find_status_certification($r->certification);
 			$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->render();

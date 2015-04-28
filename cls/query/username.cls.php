@@ -2,7 +2,7 @@
 class query_username_cls extends query_cls
 {
 	public function set() {
-		$year = "393";
+		$year = "394";
 		$isset_key = $this->sql()->tableBranch_users_key()->wherePkey($year)->limit(1)->select();
 		if($isset_key->num() == 0) {
 			$this->sql()->tableBranch_users_key()->setPkey($year)->setKey("1")->insert();

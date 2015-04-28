@@ -29,6 +29,7 @@ class model extends main_model{
 		
 			set_time_limit(30000);
 			ini_set('memory_limit', '-1');
+			ini_set("max_execution_time", "-1");
 		
 			if (ob_get_level() == 0) ob_start();
 
@@ -88,8 +89,36 @@ class model extends main_model{
 	public function sql_admin() {
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
-		$this->ready(4);
-		
+		//$this->ready(4);
+		$c = $this->sql()->tableClasses()->select()->allAssoc();
+		foreach ($c as $key => $value) {
+			echo $value['id'] . "\n";
+		}
+		exit();
+		var_dump("start");
+		$x = $this->sql()->tableClasses()->groupbyPlan_id()->select();
+		//var_dump("classes count    " .$x->num());
+		$list = $x->allAssoc();
+		foreach ($list as $key => $value) {
+			$ne = $this->sql()->tableClasses()->wherePlan_id($value['plan_id'])->fieldId("cId");
+			$ne->joinPlan()->whereId("#classes.plan_id")->fieldName("plname");
+			$ne = $ne->select();
+			$count = $ne->num();
+			//$name = $ne->assoc();
+			$allclassesList = $ne->allAssoc();
+			$f = $allclassesList;
+			//$classification = $this->sql()->tableClassification()->whereClasses
+			$c =	0;
+			foreach ($f as $k => $v) {
+				
+					$c += $this->sql()->tableClassification()->whereClasses_id($v['cId'])->select()->num();
+					
+			}
+			
+			var_dump("plan :   " . $f[0]['plname'] . "   sum classes  " . $count . "   classification count    " . $c);
+		}
+
+		var_dump("end"); exit();
 		//----------------------------- new version function (database change)	
 		$this->database_change();		
 		
@@ -114,6 +143,7 @@ class model extends main_model{
 		// });
 		// var_dump($classes->string());
 		// $this->flush();
+
 
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
