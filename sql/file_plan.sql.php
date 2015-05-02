@@ -5,9 +5,9 @@
 
 namespace sql;
 class file_plan {
-	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'file_paln_id');
-	public $files_id    = array('type'=> 'int@10', 'label' => 'files_id');
-	public $plan_id        = array('type'=> 'float@', 'label' => 'plan_id');
+	public $id       = array('type'=> 'int@10', 'autoI', 'label' => 'file_paln_id');
+	public $files_id = array('type'=> 'int@10', 'label' => 'files_id');
+	public $plan_id  = array('type'=> 'float@', 'label' => 'plan_id');
 
 	public $foreign = array("files_id" => "files@id!title", "plan_id" => "plan@id!name");
 

@@ -12,7 +12,6 @@ class view extends main_view {
 		$classesid = $this->xuId("classesid");
 		$this->data->score_type_list = $this->sql(".scoreTypeList", $classesid);
 
-
 		//------------------------------ get detail classes
 		$this->classesDetail();
 	}

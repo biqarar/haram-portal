@@ -4,10 +4,11 @@
 */
 class sql_cls {
 	static function config($maker = false) {
+		// var_dump(isset($_SESSION['users_id']) , isset($_SESSION['branch_active']) , global_cls::supervisor());
 
 		//------------------------------ join each query whit branch_cash table (permission)
 		if(isset($_SESSION['users_id']) && isset($_SESSION['branch_active']) && !global_cls::supervisor()){
-			
+			// var_dump("f");exit();
 			$users_id = $_SESSION['users_id'];
 			
 			//------------------------------ public table (no permission set on this tables)
