@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "payment_count"
+msgstr "دفعات پرداخت"
+
 msgid "news"
 msgstr "اخبار"
 

@@ -4,13 +4,15 @@ class query_price_cls extends query_cls {
 	public function checkClasses($users_id = false, $classes_id = false) {
 		
 		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
-		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select()->assoc("price");
-		if($price == null) return true;
+		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select();
+		$price = $price->assoc();
+		if($price['price'] == null) return true;
 		$user_active_price = $this->sum_price($users_id);
 		
 		
-		if(intval($user_active_price) >= intval($price) || global_cls::superprice()){
-			$this->price_low($users_id, $classes_id, $price);
+		if(intval($user_active_price) >= intval($price['price']) || global_cls::superprice()){
+			$this->price_low($users_id, $classes_id, $price['price']);
+			$this->payment_coutn_check($price, $users_id);
 			return true;
 		}else{
 			return false;
@@ -28,14 +30,15 @@ class query_price_cls extends query_cls {
 			->setTitle(5)
 			->setTransactions($classes_id)
 			->insert();
-		
+	}
 
-
+	public function payment_coutn_check($price, $users_id) {
+		var_dump($price);exit();
 	}
 
 	public function sum_price($users_id) {
 		
-		$price = $this->sql()->tablePrice()->whereUsers_id($users_id);
+		$price = $this->sql()->tablePrice()->whereUsers_id($users_id)->andVisible(1);
 		$price->joinPrice_change()->whereId("#price.title");
 		$price = $price->select()->allAssoc();
 		

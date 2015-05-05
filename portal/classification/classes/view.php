@@ -9,6 +9,7 @@ class view extends main_view {
 		//------------------------------ global
 		$this->global->page_title ="classification";
 
+
 		//------------------------------ get detail classes
 		$this->classesDetail();
 		

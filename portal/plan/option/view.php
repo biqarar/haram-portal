@@ -31,6 +31,7 @@ class view extends main_view{
 				"min_person",
 				"max_person",
 				"expired_price",
+				"payment_count",
 				"edit"));
 	}
 }

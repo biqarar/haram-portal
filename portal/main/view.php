@@ -185,6 +185,13 @@ class main_view{
 
 	}
 
+	public function topLinks($links = false) {
+
+		if($links) {
+			$this->data->topLinks = $links;
+		}
+	}
+
 	public function setUrl() {
 		if($this->urlStatus() == "edit") {
 			$this->global->url = "status=".$this->urlStatus() . "/id=" . $this->xuId();
@@ -218,12 +225,28 @@ class main_view{
 	 	// ->attr("target", "_blank");
 	}
 
+	public function classeTopLinks(){
+		$this->topLinks(
+				array(
+					array("title"=> "کلاسها", 'url' =>"classes/status=list"),
+					array("title"=> "کلاسبندی", 'url' =>"classification/class/classesid=" . $this->xuId("classesid")),
+					array("title"=> "غیبت", 'url' =>"absence/classes/classesid=" . $this->xuId("classesid")),
+					array("title"=> "نمرات", 'url' =>"score/classes/classesid=" . $this->xuId("classesid")),
+					array("title"=> "شهریه", 'url' =>"price/classes/classesid=" . $this->xuId("classesid")),
+					array("title"=> "اطلاعات", 'url' =>"classes/status=detail/id=" . $this->xuId("classesid")),
+					array("title"=> "اصلاح", 'url' =>"classes/status=edit/id=" . $this->xuId("classesid")),
+					// array("title"=> "چاپ", 'url' =>"classification/printlist/classesid=" . $this->xuId("classesid")),
+					)
+			);
+	}
 	/**
 	*	some field in the classes table must be change (foreign) to other field in other table
 	*/
 	public function classesDetail($classes_detail = false) {
 		// //------------------------------ get detail classes
 		if(isset(config_lib::$surl['classesid']) || (config_lib::$surl['status'] == 'detail')){
+			$this->classeTopLinks();
+			
 			//------------------------------ classes id
 			$classesid = (isset(config_lib::$surl['status']) 
 				&& config_lib::$surl['status'] == 'detail') ? $this->xuId() : config_lib::$surl['classesid'];

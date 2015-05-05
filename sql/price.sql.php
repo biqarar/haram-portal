@@ -15,6 +15,7 @@ class price {
 	public $transactions = array('type'=> 'varchar@255', "label" => "price_transactions");
 	public $description  = array('type'=> 'text@' , "label" => "description");
 	public $status    	 = array('type'=> 'enum@active,void!active', "label" => "status");
+	public $visible    	 = array('type'=> 'int@1', "label" => "visible");
 	
 	public $foreign = array("title" => "price_change@id!name", "plan_id" => "plan@id!name");
 	
@@ -78,6 +79,10 @@ class price {
 	public function status(){
 		$this->form("radio")->name("status")->label("status");
 		$this->setChild($this->form);
+	}
+
+	public function visible() {
+		$this->validate()->number();
 	}
 	
 }	

@@ -146,7 +146,22 @@
 			</ul>
 
 			<div id="tab-1">
+			{%if topLinks%}
+			<div class="top-links">
+				<div class="top-links-icon"></div>
+				<div class="top-links-wrapper">
+					{%for link in topLinks%}
+					<span class="top-links-span">
+						<a href="{{link.url}}">
+							{{link.title|raw}}
+						</a>
+					</span>
+					{%endfor%}
+				</div>
+			</div>
+			{%endif%}
 				{%block content%}
+
 				{%endblock%}
 				<!-- <div id="showDatatable"></div> -->
 				{%if debug%}

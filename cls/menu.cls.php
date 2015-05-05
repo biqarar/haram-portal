@@ -539,15 +539,14 @@ class menu_cls  {
 
 	public function public_menu() {
 		return  array(
-			array('href' => '', 'title' => 'home page'),
-			// array('href' => 'http://'.DOMAIN.'/portal/users/register', 'title' => 'ثبت نام'),
-			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'register'),
-			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'login'),
-			array('href' => 'posts/more', 'title' => 'news'),
+			array('href' => '', 'title' => gettext('home page')),
+			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => gettext('register')),
+			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => gettext('login')),
+			array('href' => 'posts/more', 'title' => gettext('news')),
 		 	// array('href' => 'graduate/', 'title' => 'دانش آموختگان'),
-			array('href' => 'strategy', 'title' => 'strategy'),
+			array('href' => 'strategy', 'title' => gettext('strategy')),
 		 	// array('href' => 'about', 'title' => 'درباره ما'),
-			array('href' => 'contact', 'title' => 'contact'),
+			array('href' => 'contact', 'title' => gettext('contact')),
 			);
 	}
 }

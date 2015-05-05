@@ -9,6 +9,7 @@ class view extends main_view {
 		//------------------------------ global
 		$this->global->page_title = "absence";
 
+		$this->classeTopLinks();
 		//------------------------------ absence tag
 		$absence_tag = $this->tag("input")->type("text")->date("date")->addClass("absence-date");
 

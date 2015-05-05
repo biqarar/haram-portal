@@ -6,6 +6,7 @@ class view extends main_view{
 
 
 	public function config(){
+
 		//------------------------------ global
 		$this->global->page_title = "classes";
 		

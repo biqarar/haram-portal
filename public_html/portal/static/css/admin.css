@@ -1111,3 +1111,60 @@ a {
     margin-top: 5px; }
   #image-target img#image-target-img {
     display: block; }
+
+.top-links {
+  text-align: center; }
+
+.top-links-icon {
+  width: 20px;
+  height: 20px;
+  background: red;
+  display: inline-block;
+  background: url("../img/ico-top-links-off.png") no-repeat;
+  -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1);
+  /* older webkit */
+  -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* easeOutBack */
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* easeOutBack */ }
+
+.top-links-wrapper {
+  display: inline-block;
+  height: 20px; }
+
+.top-links:hover .top-links-icon {
+  background: url("../img/ico-top-links-on.png") no-repeat; }
+
+.top-links-span {
+  height: 20px;
+  display: inline-block;
+  width: 0;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1);
+  /* older webkit */
+  -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* easeOutBack */
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* easeOutBack */ }
+
+.top-links:hover .top-links-span {
+  width: 70px;
+  visibility: visible;
+  opacity: 1; }
