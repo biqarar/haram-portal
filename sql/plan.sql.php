@@ -11,6 +11,7 @@ class plan {
 	public $rule        = array('type'=> 'int@10', 'label' => 'plan_rule');
 	public $min_person  = array('type'=> 'int@3', 'label' => 'plan_min_person');
 	public $max_person  = array('type'=> 'int@4', 'label' => 'plan_max_person');
+	public $expired_price 	= array("type" => "int@3", 'label' => "plan_expired_price");
 
 	public $unique = array("group");
 	public $index = array("group_id");
@@ -63,6 +64,11 @@ class plan {
 	public function max_person() {
 		$this->form("#number")->name("max_person");
 		$this->validate()->number(1, 4)->form->number("maximum persons number is not valid");
+	}
+
+	public function expired_price() {
+		$this->form("#number")->name("expired_price")->pl("تعداد روز");
+		$this->validate()->number()->form->number("expired_price is not valid");
 	}
 }
 ?>

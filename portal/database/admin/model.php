@@ -138,7 +138,11 @@ class model extends main_model{
 				
 		$sql = new dbconnection_lib;
 		$database_change = array(
+			
+			"ALTER TABLE `plan`  ADD `expired_price` INT(3) NULL",
+			// "ALTER TABLE `price`  ADD `date_expired` INT(8) NULL",
 			"ALTER TABLE `score` ADD UNIQUE `unique_index`(`classification_id`, `score_type_id`);",
+			"ALTER TABLE `certification` ADD UNIQUE `unique_index`(`classification_id`);",
 			"ALTER TABLE `file_tag`  ADD `type` ENUM('image','multimedia','doc','zip','binary') NULL,  ADD `max_size` INT(10) NULL,  ADD `condition` VARCHAR(255) NULL;",
 		);
 

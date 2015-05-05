@@ -107,7 +107,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu"     => "home",
 			"url"         => 'profile',
-			"name"        =>  _("اخبار مرکز"),
+			"name"        =>  _("news"),
 			"tag"         => "public"
 			);
 
@@ -115,7 +115,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu"     => "home",
 			"url"         => 'permission/status=add',
-			"name"        =>  _("menu permission add"),
+			"name"        =>  _("add permission"),
 			"tag"         => array(
 			"permission"  => array("insert" => array("public"))
 				)
@@ -125,7 +125,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'city/status=add', 
-			"name" =>  _("menu city add"), 
+			"name" =>  _("add city"), 
 			"tag" => array(
 				"city" => array("insert" => array("public"))
 				)
@@ -135,7 +135,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'province/status=add', 
-			"name" =>  _("ثبت استان ها"), 
+			"name" =>  _("add province"), 
 			"tag" => array(
 				"province" => array("insert" => array("public"))
 				)
@@ -145,7 +145,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'education/status=add', 
-			"name" =>  _("menu_education_add"), 
+			"name" =>  _("add education"), 
 			"tag" => array(
 				"education" => array("insert" => array("public"))
 				)
@@ -155,7 +155,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "home", 
 			"url" => 'country/status=add', 
-			"name" =>  _("menu_country_add"), 
+			"name" =>  _("add country"), 
 			"tag" => array(
 				"country" => array("insert" => array("public"))
 				)
@@ -165,7 +165,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'branch/status=add', 
-			"name" => _("menu branch add"), 
+			"name" => _("add branch"), 
 			"tag" => array(
 				"branch" => array("insert" => array("public"))
 				)
@@ -175,7 +175,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'group/status=add', 
-			"name" =>  _("menu group add"), 
+			"name" =>  _("add group"), 
 			"tag" => array(
 				"group" => array("insert" => array("public"))
 				)
@@ -185,21 +185,21 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'plan/status=add', 
-			"name" =>  _("menu plan add"), 
+			"name" =>  _("add plan"), 
 			"tag" => array(
 				"plan" => array("insert" => array("public"))
 				)
 			);
 		
-		// //------------------------------  course
-		// self::$menu[] = array(
-		// 	"submenu" => "share", 
-		// 	"url" => 'course/status=add', 
-		// 	"name" =>  _("menu course add"), 
-		// 	"tag" => array(
-		// 		"course" => array("insert" => array("public"))
-		// 		)
-		// 	);
+		//------------------------------  course
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'course/status=add', 
+			"name" =>  _("add course"), 
+			"tag" => array(
+				"course" => array("insert" => array("public"))
+				)
+			);
 
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
@@ -207,7 +207,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "teacher", 
 			"url" => 'teacher/status=detail/id=' . $this->usersid(), 
-			"name" =>  _("نمایش اطلاعات"), 
+			"name" =>  _("show detail"), 
 			"tag" => $this->teacher_form("show")
 			);
 
@@ -215,7 +215,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "teacher", 
 			"url" => 'teacher/extera/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("تکمیل مشخصات"), 
+			"name" =>  _("edit extera detail"), 
 			"tag" => $this->teacher_form("person_extera")
 			);
 
@@ -223,7 +223,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "teacher", 
 			"url" => 'teacher/education/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("اطلاعات تحصیلی"), 
+			"name" =>  _("education information"), 
 			"tag" => $this->teacher_form("education_users")
 			);
 
@@ -231,7 +231,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "teacher", 
 			"url" => 'teacher/teachinghistory/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("سوابق علمی و اجرایی"), 
+			"name" =>  _("teaching history"), 
 			"tag" => $this->teacher_form("teachinghistory")
 			);
 
@@ -239,7 +239,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "teacher", 
 			"url" => 'teacher/bridge/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("پل های ارتباطی"), 
+			"name" =>  _("bridge"), 
 			"tag" => $this->teacher_form("bridge")
 			);
 		
@@ -249,16 +249,16 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "user", 
 			"url" => "person/status=add", 
-			"name" =>  _("menu person add"), 
+			"name" =>  _("add person"), 
 			"tag" => array(
-				"users" => array("insert" => array("public"))
+				"person" => array("insert" => array("public"))
 				)
 			);
 		//------------------------------  users list
 		self::$menu[] = array(
 			"submenu" => "user", 
 			"url" => "users/status=list", 
-			"name" =>  _("menu person list"), 
+			"name" =>  _("person list"), 
 			"tag" => array(
 				"person" => array("select" => array("public")),
 				"users" => array("select" => array("public"))
@@ -270,9 +270,9 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "user", 
 			"url" => "bridge/status=list", 
-			"name" =>  "پل های ارتباطی", 
+			"name" =>  _("bridge"), 
 			"tag" => array(
-				"bridge" => array("insert" => array("public"))
+				"bridge" => array("select" => array("public"))
 				)
 			);
 
@@ -280,9 +280,9 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "allteacher", 
 			"url" => "teacher/status=list/type=teacher", 
-			"name" =>  "لیست اساتید", 
+			"name" =>  _("teacher list"), 
 			"tag" => array(
-				"teacher" => array("insert" => array("public"))
+				"teacher" => array("select" => array("public"))
 				)
 			);
 
@@ -290,9 +290,9 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "allteacher", 
 			"url" => "teacher/status=list/type=operator", 
-			"name" =>  "لیست کارشناسان", 
+			"name" =>  _("operator list"), 
 			"tag" => array(
-				"users" => array("insert" => array("public"))
+				"users" => array("select" => array("public"))
 				)
 			);
 
@@ -300,7 +300,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=add", 
-			"name" =>  _("menu_classes_add"), 
+			"name" =>  _("add classes"), 
 			"tag" => array(
 				"classes" => array("insert" => array("public"))
 				)
@@ -310,7 +310,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=list/", 
-			"name" =>  _("list") . " " . _("classes") , 
+			"name" =>  _("classes list") , 
 			"tag" => array(
 				"classes" => array("select" => array("public"))
 				)
@@ -319,7 +319,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu"     => "price",
 			"url"         => 'users/status=list/type=price',
-			"name"        =>  _("ثبت شهریه"),
+			"name"        =>  _("add price"),
 			"tag"         => array(
 			"price"  => array("insert" => array("public"))
 				)
@@ -328,7 +328,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu"     => "price",
 			"url"         => 'pricechange/status=add',
-			"name"        =>  _("مدیریت شهریه"),
+			"name"        =>  _("manage price"),
 			"tag"         => array(
 			"price_change"  => array("insert" => array("public"))
 				)
@@ -338,7 +338,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "score", 
 			"url" => 'score/type/status=add', 
-			"name" =>  _("ثبت نوع نمرات"), 
+			"name" =>  _("score type"), 
 			"tag" => array(
 				"score_type" => array("insert" => array("public"))
 				)
@@ -348,25 +348,27 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu"     => "price",
 			"url"         => 'classes/status=list/type=price',
-			"name"        =>  _("مدیریت شهریه کلاس"),
+			"name"        =>  _("manage classes price"),
 			"tag"         => array(
-			"price_change"  => array("insert" => array("public"))
+			"pirce"  => array("select" => array("public"))
 				)
 			);
-			//------------------------------  score
+		
+		//------------------------------  score
 		self::$menu[] = array(
 			"submenu" => "score", 
 			"url" => 'score/calculation/status=add', 
-			"name" =>  _("روش محاسبه امتیاز"), 
+			"name" =>  _("score calculation"), 
 			"tag" => array(
 				"score_calculation" => array("insert" => array("public"))
 				)
 			);
 		// ------------------------------   price list
+		
 		self::$menu[] = array(
 			"submenu" => "price", 
 			"url" => "price/status=list", 
-			"name" =>  "لیست شهریه ها", 
+			"name" =>  _("price list"), 
 			"tag" => array(
 				"price" => array("select" => array("public"))
 				)
@@ -376,9 +378,9 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "score", 
 			"url" => "classes/status=list/type=score", 
-			"name" =>  "ثبت نمرات کلاس" , 
+			"name" =>  _("manage classes price"), 
 			"tag" => array(
-				"score" => array("insert" => array("public"))
+				"score" => array("select" => array("public"))
 				)
 			);
 
@@ -386,7 +388,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "certification", 
 			"url" => "certification/status=list", 
-			"name" =>  "لیست گواهی نامه ها" , 
+			"name" =>  _("certification list") , 
 			"tag" => array(
 				"certification" => array("select" => array("public"))
 				)
@@ -396,7 +398,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "place/status=add", 
-			"name" =>  _("menu_place_add"), 
+			"name" =>  _("add place"), 
 			"tag" => array(
 				"place" => array("insert" => array("public"))
 				)
@@ -411,11 +413,23 @@ class menu_cls  {
 				"absence" => array("select" => array("public"))
 				)
 			);
+
+		//------------------------------ drafts add
+		self::$menu[] = array(
+			"submenu" => "folder", 
+			"url" => "files/type=files/status=add/base=users", 
+			"name" =>  _("upload users file"), 
+			"tag" => array(
+				"file" => array("insert" => array("public"))
+				)
+			);
+
+
 		//------------------------------ drafts add
 		self::$menu[] = array(
 			"submenu" => "mail", 
 			"url" => "sms/drafts/status=add", 
-			"name" =>  _("menu_drafts_add"), 
+			"name" =>  _("add drafts"), 
 			"tag" => array(
 				"drafts" => array("insert" => array("public"))
 				)
@@ -436,9 +450,9 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "letters", 
 			"url" => "report/status=add/", 
-			"name" =>  "ثبت گزارش جدید", 
+			"name" =>  _("add report"), 
 			"tag" => array(
-				"branch" => array("insert" => array("public"))
+				"report" => array("insert" => array("public"))
 				)
 			);
 
@@ -446,33 +460,22 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "letters", 
 			"url" => "report/", 
-			"name" =>  "گزارشات", 
+			"name" =>  _("report"), 
 			"tag" => array(
 				"report" => array("select" => array("public"))
 				)
 			);
 
-
 		//------------------------------ posts add
 		self::$menu[] = array(
 			"submenu" => "letters", 
 			"url" => "posts/status=add", 
-			"name" =>  _("menu_posts_add"), 
+			"name" =>  _("add posts"), 
 			"tag" => array(
 				"posts" => array("insert" => array("public"))
 				)
 			);
 
-		// //------------------------------ classes list
-		// self::$menu[] = array(
-		// 	"submenu" => "settings", 
-		// 	"url" => "classes/status=list/type=absence", 
-		// 	"name" =>  "گزارشات", 
-		// 	"tag" => array(
-		// 		"classes" => array("select" => array("public")),
-		// 		"classification" => array("insert" => array("public"))
-		// 		)
-		// 	);
 
 		//------------------------------ public menu
 
@@ -536,15 +539,15 @@ class menu_cls  {
 
 	public function public_menu() {
 		return  array(
-			array('href' => '', 'title' => 'صفحه اصلی'),
+			array('href' => '', 'title' => 'home page'),
 			// array('href' => 'http://'.DOMAIN.'/portal/users/register', 'title' => 'ثبت نام'),
-			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'ثبت نام'),
-			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'ورود کاربران'),
-			array('href' => 'posts/more', 'title' => 'اخبار بیشتر'),
+			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'register'),
+			array('href' => 'http://'.DOMAIN.'/portal/login', 'title' => 'login'),
+			array('href' => 'posts/more', 'title' => 'news'),
 		 	// array('href' => 'graduate/', 'title' => 'دانش آموختگان'),
-			array('href' => 'strategy', 'title' => 'سیاست ها'),
+			array('href' => 'strategy', 'title' => 'strategy'),
 		 	// array('href' => 'about', 'title' => 'درباره ما'),
-			array('href' => 'contact', 'title' => 'تماس با ما'),
+			array('href' => 'contact', 'title' => 'contact'),
 			);
 	}
 }

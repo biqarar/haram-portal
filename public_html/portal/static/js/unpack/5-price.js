@@ -35,8 +35,8 @@ route(/price\/status\=add\/usersid\=\d+/, function(){
 		}
 	});
 	
-	$("label[for=plan_id]",_self).fadeOut(1);
-	$("#plan_id",_self).next().fadeOut(1);
+	// $("label[for=plan_id]",_self).fadeOut(1);
+	// $("#plan_id",_self).next().fadeOut(1);
 
 	$("#common", this).click(function(){
 		$("#plan_id,label[for=plan_id]",_self).fadeOut();

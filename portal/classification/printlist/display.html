@@ -18,10 +18,19 @@
 		padding: 5px;
 		font-family: "WRoya";
 	}
+	#backPortal {
+		float: left;
+	}
 	</style>
 
 {%endblock%}
 {% block body %}
+
+<button type="submit" id="backPortal">
+	<a href="classification/class/classesid={{classesid}}" class="a-undefault">
+		<img src="static/svg/icons/redclose.svg" style="width:20px">
+	</a>
+</button>
 <div id="type">
 	<a href="classification/printlist/classesid={{classesid}}/type=default" class="a-undefault">دوره های کوتاه مدت</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=hefz" class="a-undefault">دوره های حفظ</a>

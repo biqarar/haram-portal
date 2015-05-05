@@ -27,6 +27,7 @@ class main_controller{
 		$this->addMethod('xuId');
 		$this->addMethod('SESSION_usersid');
 		$this->addMethod("checkPermissions");
+		$this->addMethod('changeDate');
 		if(method_exists($this, 'config')){
 			$this->config();
 		}
@@ -127,6 +128,13 @@ class main_controller{
 		}
 	}
 
+
+
+	public function changeDate($date = false, $days = 0, $operator = "+") {
+		$x =  new changeDate_cls;
+		return $x->change($date, $days, $operator);
+	}
+	
 	public function tag($tag = false) {
 		return new tagMaker_lib($tag);
 	}

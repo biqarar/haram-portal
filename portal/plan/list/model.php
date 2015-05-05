@@ -11,6 +11,7 @@ class model extends main_model {
 				"mark",
 				"min_person",
 				"max_person",
+				"expired_price",
 				"id edit")
 		->search_fields("name", "price")
 		->result(function($r){

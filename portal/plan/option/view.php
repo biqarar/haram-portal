@@ -30,6 +30,7 @@ class view extends main_view{
 				"mark",
 				"min_person",
 				"max_person",
+				"expired_price",
 				"edit"));
 	}
 }
