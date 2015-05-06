@@ -8,11 +8,11 @@ class query_price_cls extends query_cls {
 		$price = $price->assoc();
 		if($price['price'] == null) return true;
 		$user_active_price = $this->sum_price($users_id);
-		
+		$user_active_price = $user_active_price['sum_active'];
 		
 		if(intval($user_active_price) >= intval($price['price']) || global_cls::superprice()){
 			$this->price_low($users_id, $classes_id, $price['price']);
-			$this->payment_coutn_check($price, $users_id);
+			$this->payment_coutn_check($price, $users_id, $classes_id);
 			return true;
 		}else{
 			return false;
@@ -32,8 +32,32 @@ class query_price_cls extends query_cls {
 			->insert();
 	}
 
-	public function payment_coutn_check($price, $users_id) {
-		var_dump($price);exit();
+	public function payment_coutn_check($price, $users_id, $classes_id) {
+		$payment_count	= intval($price['payment_count']);
+		$expired_price	= intval($price['expired_price']);
+		$price	= $price['price'];
+		$date = $this->dateNow("Ymd");
+
+		for($i = 1; $i <= $payment_count; $i++) {
+			
+			$date = $this->changeDate($date, $expired_price, "+");
+			
+
+			$x = $this->sql()->tablePrice()
+				->setUsers_id($users_id)
+				->setValue($price)
+				->setPay_type("rule")
+				->setTitle(8)
+				->setTransactions($classes_id)
+				->setVisible("#0")
+				->setDate($date)
+				->insert()->LAST_INSERT_ID();
+				// $this->commit();
+				// var_dump($x);
+				
+		}
+		
+		// var_dump($price);exit();
 	}
 
 	public function sum_price($users_id) {
@@ -62,7 +86,7 @@ class query_price_cls extends query_cls {
 		$ret['sum_active'] = $sum_active;
 		$ret['count_transaction'] = $count;
 		
-		return $ret['sum_active'];
+		return $ret;
 	}
 
 }

@@ -82,7 +82,8 @@ class price {
 	}
 
 	public function visible() {
-		$this->validate()->number();
+		// $this->form("text")->name("card")->label("card")->pl("4 رقم آخر شماره کارت");
+		$this->validate()->number()->form->number("price visible is not valid");
 	}
 	
 }	

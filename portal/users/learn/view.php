@@ -18,8 +18,8 @@ class view extends main_view  {
 		$this->data->description = "کلاس های شرکت کرده، غیبت ها، نمرات و گواهی نامه";
 		
 		//------------------------------  make classification card
-		$price_list = $this->sql("#price_list" , $users_id);
-
+		$price_list = $this->sql(".price.sum_price" , $users_id);
+		
 		$price["titleLink"]= "price/status=list"; 
 
 		$sum_active = $this->tag("a")

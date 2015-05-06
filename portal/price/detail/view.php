@@ -10,11 +10,11 @@ class view extends main_view {
 
 		//------------------------------ list of classes
 		$price = $this->sql(".list", "price", function ($query) {
-			$query->whereUsers_id($this->xuId("usersid"));
+			$query->whereUsers_id($this->xuId("usersid"))->andVisible(1);
 			$query->joinPrice_change()->whereId("#price.title")->fieldName("changeName")->fieldType("priceChangeType");
 			$query->joinPerson()->whereUsers_id("#price.users_id")->fieldName()->fieldFamily();		
 		})
-		->removeCol("branch_id,title,statu,susers_id")
+		->removeCol("branch_id,title,status,users_id,visible")
 		->addColFirst("priceChangeType", "priceChangeType")
 		->addColFirst("family", "family")
 		->addColFirst("name", "name")

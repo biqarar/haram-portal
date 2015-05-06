@@ -34,6 +34,12 @@ class query_cls {
 		
 	}
 
+
+	public function changeDate($date = false, $days = 0, $operator = "+") {
+		$x =  new changeDate_cls;
+		return $x->change($date, $days, $operator);
+	}
+	
 	public function classification_finde_active_list($q = false) {
 		 return 
 		 $q->groupOpen()
