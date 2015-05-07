@@ -10,7 +10,7 @@ route(/lassification\/status\=edit\/id\=\d+/, function(){
 				type: "POST",
 				url : "classification/apiprice/usersid=" + usersid + "/classesid=" + classesid,
 			success : function(data){
-		console.log("sdss");
+		
 				price = data.msg.sum_price;
 				console.log(price);
 				if(price > 0) {
@@ -19,8 +19,6 @@ route(/lassification\/status\=edit\/id\=\d+/, function(){
 					$("#sumprice",_self).html(price);
 
 					$(".yesprice", _self).click(function(){
-						console.log("classification/apipriceback/usersid=" + usersid + "/classesid=" + classesid);
-
 						$.ajax({
 							type: "POST",
 							url : "classification/apipriceback/usersid=" + usersid + "/classesid=" + classesid,

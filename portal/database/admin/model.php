@@ -130,7 +130,9 @@ class model extends main_model{
 				
 		$sql = new dbconnection_lib;
 		$database_change = array(
-			
+			"SET GLOBAL event_scheduler = 'ON'",
+			"DROP EVENT `price_active_expired` ",
+			"CREATE DEFINER=`root`@`localhost` EVENT `price_active_expired` ON SCHEDULE EVERY 1 DAY STARTS '2015-05-07 23:00:00' ON COMPLETION NOT PRESERVE ENABLE DO update `price` set visible = 1 where (visible = 0 and price.date = dateNow())",
 			"ALTER TABLE `plan`  ADD `expired_price` INT(3) NULL",
 			"ALTER TABLE `plan`  ADD `payment_count` INT(2) NULL",
 			"ALTER TABLE `price`  ADD `visible` BOOLEAN DEFAULT 1",

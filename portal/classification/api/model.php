@@ -41,9 +41,24 @@ class model extends main_model {
 		// var_dump("fuck");exit();
 	}
 
+
+	public function remove_payment_coutn($usersid = false, $classesid = false) {
+		$this->sql()->tablePrice()
+			->whereUsers_id($usersid)
+			->andVisible(0)
+			->andTransactions($classesid)
+			->andTitle(8)
+			->delete();
+	}
+
 	public function post_classificationapi() {
+
+		
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");
+		
+		$this->remove_payment_coutn($usersid, $classesid);
+		
 		$price = $this->sql()->tablePrice()
 			->whereUsers_id($usersid)
 			->andPay_type("rule")

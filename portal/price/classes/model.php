@@ -30,6 +30,7 @@ class model extends main_model {
 			->result(function($r){
 				$r->more = $this->tag("a")->addClass("icomore")->href("price/status=detail/usersid=". $r->more)->render();
 				$cash = $this->sql(".price.sum_price", $r->cash);
+				$cash = $cash['sum_active'];
 				if($cash < 0) {
 					$r->cash = $this->tag("a")->vtext($cash)->style("color :red;")->render();
 				}else{
