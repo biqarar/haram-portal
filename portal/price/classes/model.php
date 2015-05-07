@@ -23,7 +23,7 @@ class model extends main_model {
 			
 			})
 			->search_result(function($result){
-				$vsearch = $_GET['search']['value'];
+				$vsearch = $_POST['search']['value'];
 				$vsearch = str_replace(" ", "_", $vsearch);
 				$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
 			})
