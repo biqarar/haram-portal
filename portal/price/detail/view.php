@@ -15,7 +15,11 @@ class view extends main_view {
 			$query->joinPerson()->whereUsers_id("#price.users_id")->fieldName()->fieldFamily();		
 		})
 		->removeCol("branch_id,title,status,users_id,visible")
+
+		->addColFirst("changeName", "changeName")
 		->addColFirst("priceChangeType", "priceChangeType")
+		->addColFirst("value", "value")
+		->addColFirst("date", "date")
 		->addColFirst("family", "family")
 		->addColFirst("name", "name")
 		->addColFirst("id", "id")
@@ -25,7 +29,7 @@ class view extends main_view {
 			$plan_id = $this->sql(".assoc.foreign", "classes", $price['list'][$key]['transactions'] , "plan_id");
 			$plan_name = $this->sql(".assoc.foreign", "plan", $plan_id , "name");
 
-			if($value['changeName'] == 'شرکت در کلاس') {
+			if($value['changeName'] == 'شرکت در کلاس' || $value['changeName'] == 'پرداخت دوره ای' ) {
 				$price['list'][$key]['transactions'] = $this->tag("a")
 					->href("classes/status=detail/id=" . $value['transactions'])
 					->class("icoclass")->title("در کلاس استفاده شده است")->render() . " $plan_name  " ;

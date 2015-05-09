@@ -35,9 +35,10 @@ class price {
 	public function title(){
 		$this->form("select")->name("title")->id("title")->addClass("select-title notselect")->label("type");
 		$this->setChild(function($q){
-			// var_dump($q);
+			// $q->joinPrice_change()->whereId("#price.title")->fieldType('type');
 		}, function($child, $value){
-			$child->label($value['name'])->value($value['id']); 
+			// var_dump($value);exit();
+			$child->label(gettext($value['type']) . " > " .  $value['name'])->value($value['id']); 
 		});
 	}
 
