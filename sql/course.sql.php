@@ -8,7 +8,7 @@ class course {
 	public $begin_time = array('type'=> 'int@10', 'label' => 'course_begin_time');
 	public $end_time   = array('type'=> 'int@10', 'label' => 'course_end_time');
 	public $name       = array('type'=> 'varchar@64', 'label' => 'course_name');
-	public $expert     = array('type'=> 'int@10', 'label' => 'course_expert');
+	// public $expert     = array('type'=> 'int@10', 'label' => 'course_expert');
 	public $branch_id  = array('type'=> 'int@10', 'label' => 'branch_id');
 	
 	public $unique    = array("id");
@@ -31,13 +31,14 @@ class course {
 	
 	public function name() {
 		$this->form("#fatext")->name("name");
+		$this->validate()->description();
 	}
 	
-	public function expert() {
-		$this->form("select")->name("expert");
-		// $this->setChild();
-		$this->validate("id");
-	}
+	// public function expert() {
+	// 	$this->form("select")->name("expert");
+	// 	// $this->setChild();
+	// 	$this->validate("id");
+	// }
 	
 	public function branch_id() {
 		$this->form("select")->name("branch_id");

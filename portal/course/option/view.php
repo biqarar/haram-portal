@@ -19,10 +19,10 @@ class view extends main_view{
 		//------------------------------ edit form
 		$this->sql(".edit", "course", $this->xuId(), $f);
 
-		//------------------------------ list of course
-		$this->data->list = $this->sql(".list","course")
-			->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("course"))
-			->compile();
+		$this->data->dataTable = $this->dtable(
+			"course/status=api/", 
+			array("begin_time", "end_time", "name", "edit"));
+
 		
 	}
 }
