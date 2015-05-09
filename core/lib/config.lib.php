@@ -261,7 +261,7 @@ class post{
 			'8',
 			'9'
 			);
-		if($post) {
+		if($post && !is_array($post)) {
 			$post = preg_replace($patterns, $replacements, $post);
 		}
 		return $post;

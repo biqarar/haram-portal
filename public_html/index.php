@@ -42,12 +42,23 @@ error_reporting(E_ALL);
  * local lang
  */
 
+// $locale = 'fa_IR';
+// putenv( "LC_ALL={$locale}" );
+// setlocale( LC_ALL, $locale );
+// $domain = $locale;
+// bindtextdomain($domain, root_dir.'languages/');
+// textdomain("*");
 $locale = 'fa_IR';
-putenv( "LC_ALL={$locale}" );
-setlocale( LC_ALL, $locale );
+
+putenv("LC_ALL=$locale");
+putenv("LANG=$locale");
+putenv("LANGUAGE=$locale");
+setlocale(LC_ALL,$locale);
+// setlocale(LC_MESSAGES,$locale);
 $domain = $locale;
 bindtextdomain($domain, root_dir.'languages/');
-textdomain("*");
+bind_textdomain_codeset($domain, 'UTF-8');
+textdomain($domain);
 session_start();
 //load auto load
 require_once(core."autoload.php");

@@ -144,7 +144,7 @@ class query_dataTable_cls extends query_cls
 	}
 
 	function get($name, $index = 0){
-		if($gName = get::$name()){
+		if($gName = post::$name()){
 			if(is_array($gName) && isset($gName[$index])){
 				return $gName[$index];
 			}
