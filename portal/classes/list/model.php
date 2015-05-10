@@ -22,6 +22,9 @@ class model extends main_model {
 		}elseif($type == "price"){
 			$url = "price/classes/";
 			$ico = "icoprice";
+		}elseif($type == "courseclasses"){
+			$url = "courseclasses/apiadd/";
+			$ico = "icodadd";
 		}
 
 
@@ -85,6 +88,13 @@ class model extends main_model {
 		->result(function($r, $ico, $url){
 			$r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
+
+			// if($ico == "icodadd") {
+				// if($th)
+				// $r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
+
+			// }
+
 		}, $ico , $url);
 
 		$this->sql(".dataTable", $dtable);

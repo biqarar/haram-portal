@@ -8,6 +8,11 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "price";
 
+		$usersid = $this->xuId("usersid");
+		$this->topLinks(array(
+				array("title" => "ثبت", "url" => "price/status=add/usersid=$usersid"),
+				array("title" => "نمایش", "url" => "price/status=detail/usersid=$usersid")
+			));
 		//------------------------------ list of classes
 		$price = $this->sql(".list", "price", function ($query) {
 			$query->whereUsers_id($this->xuId("usersid"))->andVisible(1);

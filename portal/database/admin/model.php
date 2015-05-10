@@ -126,7 +126,45 @@ class model extends main_model{
 				
 		$sql = new dbconnection_lib;
 		$database_change = array(
-			"select dateNow()",
+			"CREATE TABLE IF NOT EXISTS `courseclasses` (
+			`id` int(10) NOT NULL,
+			  `classes_id` int(10) NOT NULL,
+			  `course_id` int(10) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			
+			"ALTER TABLE `courseclasses` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `courseclasses` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `courseclasses_delete`",
+
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `courseclasses_delete` AFTER DELETE ON `courseclasses`
+			 FOR EACH ROW BEGIN
+			call setHistory('courseclasses', 'delete', OLD.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `courseclasses_insert`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `courseclasses_insert` AFTER INSERT ON `courseclasses`
+			 FOR EACH ROW BEGIN
+			call setCash('courseclasses', NEW.id, @branch_id);
+			call setHistory('courseclasses', 'insert', NEW.id);
+			END",
+		
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `courseclasses_update`",
+			
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `courseclasses_update` AFTER UPDATE ON `courseclasses`
+			 FOR EACH ROW BEGIN
+			call setHistory('courseclasses', 'update', OLD.id);
+			END",
+			"ALTER TABLE `courseclasses` ADD UNIQUE `unique_index`(`classes_id`, `course_id`);",
+			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)",
+			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_2` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
+
 
 		);
 

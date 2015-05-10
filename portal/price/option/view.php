@@ -11,6 +11,11 @@ class view extends main_view {
 		//------------------------------ set users id
 		$usersid = ($this->xuId("usersid") != 0) ? $this->xuId("usersid") : $this->sql("#find_usersid", $this->xuId("id"));
 
+		$this->topLinks(array(
+				array("title" => "ثبت", "url" => "price/status=add/usersid=$usersid"),
+				array("title" => "نمایش", "url" => "price/status=detail/usersid=$usersid")
+			));
+
 		//------------------------------  url
 		$this->global->url .=  "/usersid=" . $usersid;
 		$this->global->status =  gettext($this->urlStatus()); 

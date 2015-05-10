@@ -17,6 +17,18 @@ class controller extends main_controller{
 				$this->permission = array("course_description" => array("insert" => array("public") , "update" => array("public")));
 			}
 		);
+
+		//------------------------------ course description
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("courseclasses",  "status" => "add")
+			
+			), 
+			function () {
+				save(array("course", "courseclasses"));
+				$this->permission = array("courseclasses" => array("insert" => array("public") , "update" => array("public")));
+			}
+		);
 	}
 }
 ?>
