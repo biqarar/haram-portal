@@ -17,14 +17,14 @@ class plan_section {
 	}
 
 	public function plan_id() {
-		$this->form("select")->name("plan_id");
+		$this->form("select")->name("plan_id")->class("notselect");;
 		$this->setChild();
 		$this->validate("id");
 	}
 	
 	public function section() {
 		$this->form("#fatext")->name("section");
-		$this->validate()->farsi(3, 64);
+		$this->validate()->farsi()->form->farsi("text must be persian");
 	}
 }
 ?>

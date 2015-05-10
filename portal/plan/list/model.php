@@ -21,6 +21,24 @@ class model extends main_model {
 		});
 		$this->sql(".dataTable", $dt);
 	}
+
+	function post_apisection() {
+		$dt = $this->dtable->table('plan_section')->fields(
+				"id",
+				"plan",
+				"section",
+				"id edit")
+		->search_fields("section", "plan.name")
+		->query(function($q) {
+			$q->joinPlan()->whereId("#plan_section.plan_id")->fieldName("plan");
+		})
+		->result(function($r){
+			$r->edit = '<a class= "icoedit" href="plan/section/status=edit/id='. $r->edit . '"></a>';
+			
+		});
+		$this->sql(".dataTable", $dt);
+
+	}
 }
 
 ?>

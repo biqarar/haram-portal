@@ -1,7 +1,8 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
-<form class="ajx" method="post" action="plan/{{global.url}}">
+<form class="ajx" method="post" action="plan/section/{{global.url}}">
 	{{forms.make(form.plan_section)}}
 </form>
+{{dtable.make(dataTable)}}
 {%endblock%}

@@ -7,14 +7,34 @@ class controller extends main_controller{
 		//------------------------------ plan section (use in classification)
 		$this->listen(array(
 			"max" => 3,
-			"url" => array("section", "/^(add|edit)$/")
+			"url" => array("section", "status" => "add")
 			), 
 			function () {
 				save(array("plan", "section"));
-				$this->permission = array("plan_section" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("plan_section" => array("insert" => array("public")));
 			}
 		);
 
+		//------------------------------ plan section (use in classification)
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("section", "status" => "edit", "id" => "/^\d+$/")
+			), 
+			function () {
+				save(array("plan", "section"));
+				$this->permission = array("plan_section" => array("update" => array("public")));
+			}
+		);
+		//------------------------------ plan section (use in classification)
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("status" => "apisection")
+			), 
+			function () {
+				save(array("plan", "list", "mod"=> "apisection"));
+				$this->permission = array("plan_section" => array("select" => array("public")));
+			}
+		);
 		//------------------------------ plan section (use in classification)
 		$this->listen(array(
 			"max" => 3,

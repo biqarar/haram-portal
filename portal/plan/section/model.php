@@ -21,7 +21,7 @@ class model extends main_model {
 	}
 
 	public function post_edit_plan_section() {
-		$sql = $this->makeQuery()->whereId($this->uId(3))->update();
+		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 		$this->commit(function() {
 			debug_lib::true("[[update plan_section successful]]");
 		});

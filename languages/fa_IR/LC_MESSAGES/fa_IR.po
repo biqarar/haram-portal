@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "add plan section"
+msgstr "ثبت مقاطع طرح"
+
 msgid "payment_count"
 msgstr "دفعات پرداخت"
 
