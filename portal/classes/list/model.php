@@ -90,8 +90,13 @@ class model extends main_model {
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
 			// if($ico == "icodadd") {
-				// if($th)
-				// $r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
+			// 	if($this->courseclasses_check($r->id)){
+			// 		$r->classification = $this->tag("a")->class("icolikes")->render();
+			// 	}else{
+			// 		$r->classification = $this->tag("a")->class("icodadd")->href(
+			// 			"course/courseclasses/apiadd/courseid=" . $this->xuId("courseid") . "/classesid=" . $r->id
+			// 			)->render();
+			// 	}
 
 			// }
 
@@ -99,5 +104,17 @@ class model extends main_model {
 
 		$this->sql(".dataTable", $dtable);
 	}	
+
+	// public $courseclasses_list = false;
+
+	// public function courseclasses_check($classesid){
+	// 	$check = $this->sql()->tableCourseclasses()->whereCourse_id($this->xuId("courseid"))->andClasses_id($classesid)
+	// 		->select()->num();
+	// 		if($check == 1 ){
+	// 			return true;
+	// 		}else{
+	// 			return false;
+	// 		}
+	// }
 }
 ?>

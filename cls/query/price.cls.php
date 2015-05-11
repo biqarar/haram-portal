@@ -38,10 +38,12 @@ class query_price_cls extends query_cls {
 		$price	= $price['price'];
 		$date = $this->dateNow("Ymd");
 
+		$week_days = $this->sql()->tableClasses()->whereId($classes_id)->fieldWeek_days()->select()->assoc("week_days");
+		$week_days = count(preg_split("/\,/", $week_days));
+
 		for($i = 1; $i <= $payment_count; $i++) {
 			
-			$date = $this->changeDate($date, $expired_price, "+");
-			
+			$date = $this->changeDate($date, ((intval($expired_price)/$week_days) * 7), "+");
 
 			$x = $this->sql()->tablePrice()
 				->setUsers_id($users_id)

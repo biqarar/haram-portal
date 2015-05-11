@@ -68,7 +68,7 @@ class plan {
 	}
 
 	public function expired_price() {
-		$this->form("#number")->name("expired_price")->pl("تعداد روز");
+		$this->form("#number")->name("expired_price")->pl("تعداد جلسات");
 		$this->validate()->number()->form->number("expired_price is not valid");
 	}
 
