@@ -50,7 +50,7 @@ class model extends main_model{
 		$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacherName")->fieldFamily("teacherFamily");
 		$q = $q->select()->allAssoc();
 		debug_lib::msg($q);
-		// var_dump($this->xuId("courseid"));exit();
+		// var_dump($q);exit();
 	}
 }
 ?>

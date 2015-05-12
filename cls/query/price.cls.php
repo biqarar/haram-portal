@@ -3,7 +3,7 @@ class query_price_cls extends query_cls {
 
 	public function checkClasses($users_id = false, $classes_id = false) {
 		
-			->whereId($classes_id)->limit(1)->select()
+			$plan_id = $this->tableClasses()->whereId($classes_id)->limit(1)->select()
 			->fieldPlan_id()
 			->fieldWeek_days()
 			->assoc();
