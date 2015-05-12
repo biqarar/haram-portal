@@ -1,8 +1,27 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	#courseclasses-list {
+		display:block;
+		clear: both;
+		margin: 20px;
+	}
+	.courseclasses-item {
+		background:#ececec;
+		padding: 5px;
+		border-radius: 3px;
+		margin: 5px;
+	}
+</style>
 <form class="ajx" method="post" action="courseclasses/{{global.url}}">
 	{{forms.make(form.courseclasses)}}
 </form>
+<div id="courseclasses-list" >
+	<span class="courseclasses-item">
+		<a class="icoredclose" style="display: inline-block " href=""></a>
+		طرح کوثر استاد کاشی زاده
+	</span>
+</div>
 {{dtable.make(dataTable)}}
 {%endblock%}

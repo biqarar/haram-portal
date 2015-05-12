@@ -42,5 +42,15 @@ class model extends main_model{
 			debug_lib::fatal("[[update courseclasses failed]]");
 		});
 	}
+
+	public function post_apilist(){
+		$q = $this->sql()->tableCourseclasses()->whereCourse_id($this->xuId("courseid"));
+		$q->joinClasses()->whereId("#courseclasses.classes_id")->fieldTeacher()->fieldPlan_id();
+		$q->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
+		$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacherName")->fieldFamily("teacherFamily");
+		$q = $q->select()->allAssoc();
+		debug_lib::msg($q);
+		// var_dump($this->xuId("courseid"));exit();
+	}
 }
 ?>

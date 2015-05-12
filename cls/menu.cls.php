@@ -197,7 +197,7 @@ class menu_cls  {
 			"url" => 'plan/section/status=add', 
 			"name" =>  _("add plan section"), 
 			"tag" => array(
-				"plan" => array("insert" => array("public"))
+				"plan_section" => array("insert" => array("public"))
 				)
 			);
 		//------------------------------  course

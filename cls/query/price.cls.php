@@ -3,8 +3,12 @@ class query_price_cls extends query_cls {
 
 	public function checkClasses($users_id = false, $classes_id = false) {
 		
-		$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc("plan_id");
-		$price = $this->sql()->tablePlan()->whereId($plan_id)->limit(1)->select();
+			->whereId($classes_id)->limit(1)->select()
+			->fieldPlan_id()
+			->fieldWeek_days()
+			->assoc();
+
+		$price = $this->sql()->tablePlan()->whereId($plan_id['plan_id'])->limit(1)->select();
 		$price = $price->assoc();
 		if($price['price'] == null) return true;
 		$user_active_price = $this->sum_price($users_id);
