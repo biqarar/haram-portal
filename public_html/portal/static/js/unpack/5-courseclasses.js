@@ -30,7 +30,9 @@ route(/course\/courseclasses\/status\=add/, function(){
 
 						 	$(".courseclasses-item a").click(function(){
 						 		delete_courseclasses($(this));
-						 		$(this).parents(".courseclasses-item").fadeOut();
+						 		$(this).parents(".courseclasses-item").fadeOut(function(){
+						 			console.error($(this));
+						 		});
 								return false;
 							});
 					 	}

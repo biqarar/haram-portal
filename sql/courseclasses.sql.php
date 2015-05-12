@@ -12,7 +12,7 @@ class courseclasses {
 	}
 
 	public function course_id() {
-		$this->form("select")->name("course_id");
+		$this->form("select")->name("course_id")->class("notselect");
 		$this->setChild();
 	}
 

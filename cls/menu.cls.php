@@ -315,6 +315,16 @@ class menu_cls  {
 				)
 			);
 
+		//------------------------------ classes add
+		self::$menu[] = array(
+			"submenu" => "class", 
+			"url" => "course/courseclasses/status=add", 
+			"name" =>  _("course classes"), 
+			"tag" => array(
+				"courseclasses" => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------ classes list
 		self::$menu[] = array(
 			"submenu" => "class", 
