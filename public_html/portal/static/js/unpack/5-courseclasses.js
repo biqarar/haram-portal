@@ -14,36 +14,46 @@ route(/course\/courseclasses\/status\=add/, function(){
 				type: "POST",
 				url : "course/courseclasses/apilist/courseid=" + item,
 				success : function(data){
+					courseclasses_list(data);
 					console.log(data);
-					$("#courseclasses-list").html('');
-					$("#courseclasses-list").val("");
-
-				for(a in data.msg) {
-					 if(data.msg[a]['planname']){
-					 	$('<span class="courseclasses-item" id="'+ data.msg[a]['id']+'">
-							<a class="icoredclose" style="display: inline-block "></a>
-							'+
-							data.msg[a]['planname'] + "  استاد "
-							+data.msg[a]['teacherName'] + " "
-							+data.msg[a]['teacherFamily'] +
-							'</span>').appendTo("#courseclasses-list");
-
-						 	$(".courseclasses-item a").click(function(){
-						 		delete_courseclasses($(this));
-						 		$(this).parents(".courseclasses-item").fadeOut(function(){
-						 			console.error($(this));
-						 		});
-								return false;
-							});
-					 	}
-
-					}
 				}
 			});
 		}
 	});
-function delete_courseclasses (tag){
-console.log(tag)
-}
+});
+function courseclasses_list (data) {
+	$("#courseclasses-list").html('');
+	$("#courseclasses-list").val("");
+	for(a in data.msg) {
+		 if(data.msg[a]['planname']){
+		 	$('<span class="courseclasses-item">'+
+				data.msg[a]['planname'] + "  استاد "
+				+data.msg[a]['teacherName'] + " "
+				+data.msg[a]['teacherFamily'] +
+				'</span>').appendTo("#courseclasses-list");
 
+			 	$(".courseclasses-item a").click(function(){
+			 		delete_courseclasses($(this));
+			 		$(this).parents(".courseclasses-item").fadeOut(function(){
+			 		console.error($(this));
+			 	});
+				return false;
+			});
+		}
+	}
+}		
+
+
+route(/classes\/status\=api\/type\=courseclasses/, function () {
+	$(".courseclasses-apiadd" , this).click(function(){
+		$.ajax({
+			type: "POST",
+			url : "course/courseclasses/apilist/courseid=" + item,
+			success : function(data){
+				console.log(data);
+				$("#courseclasses-list").html('');
+				$("#courseclasses-list").val("");
+			}
+		});
+	})
 });

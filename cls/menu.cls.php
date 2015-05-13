@@ -397,7 +397,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "score", 
 			"url" => "classes/status=list/type=score", 
-			"name" =>  _("manage classes price"), 
+			"name" =>  _("insert classes score"), 
 			"tag" => array(
 				"score" => array("select" => array("public"))
 				)

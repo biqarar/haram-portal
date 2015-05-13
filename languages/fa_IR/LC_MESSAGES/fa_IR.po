@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "insert classes score"
+msgstr "ثبت نمرات کلاس"
+
 msgid "add plan section"
 msgstr "ثبت مقاطع طرح"
 
