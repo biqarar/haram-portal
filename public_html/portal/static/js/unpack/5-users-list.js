@@ -12,6 +12,7 @@ route(/classification\/class\/classesid\=\d+/,function(){
 	_self.scontextmenu({
 		user : {
 			click : function(){
+				xhr_true("لطفا کمی صبر کنید...");
 				var id = $(this).attr('id');
 				var tabName = $("#tabs>ul>li[aria-controls='"+id+"'] a");
 				var href = tabName.attr("href");

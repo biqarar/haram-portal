@@ -3,9 +3,10 @@ class query_price_cls extends query_cls {
 
 	public function checkClasses($users_id = false, $classes_id = false) {
 		
-			$plan_id = $this->tableClasses()->whereId($classes_id)->limit(1)->select()
+			$plan_id = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)
 			->fieldPlan_id()
 			->fieldWeek_days()
+			->select()
 			->assoc();
 
 		$price = $this->sql()->tablePlan()->whereId($plan_id['plan_id'])->limit(1)->select();
