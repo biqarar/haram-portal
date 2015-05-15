@@ -6,26 +6,49 @@
 class model extends main_model {
 		public function post_api(){
 		$type = $this->xuId("type");
-		// var_dump($type); exit();
-		$url = "classification/class/";
-		$ico = "icoclass";
-		if($type == "classification" || $type == "") {
-			$url = "classification/class/";
-			$ico = "icoclass";
-		}elseif($type == "absence"){
-			$url = "absence/classes/";
-			$ico = "icoattendance";
-		}elseif($type == "score"){
-			$url = "score/classes/";
-			$ico = "icoscore";
+		
+		switch ($type) {
 
-		}elseif($type == "price"){
-			$url = "price/classes/";
-			$ico = "icoprice";
-		}elseif($type == "courseclasses"){
-			$url = "courseclasses/apiadd/";
-			$ico = "icodadd";
+			case 'classification':
+			case '':
+				$url = "classification/class/";
+				$ico = "icoclass";
+				break;
+
+			case 'absence':
+				$url = "absence/classes/";
+				$ico = "icoattendance";
+				break;
+
+				
+			case 'score':
+				$url = "score/classes/";
+				$ico = "icoscore";
+				break;
+
+			case 'price':
+				$url = "price/classes/";
+				$ico = "icoprice";
+				break;
+
+			case 'courseclasses':
+				$url = "courseclasses/";
+				$ico = "icodadd";
+				break;
+
+			case 'presence':
+				$url = "presence/apiadd/";
+				$ico = "icodattendance";
+				break;
+
+
+			default:
+				$url = "classification/class/";
+				$ico = "icoclass";
+				break;
 		}
+		
+
 
 
 		$dtable = $this->dtable->table("classes")
@@ -103,16 +126,5 @@ class model extends main_model {
 		$this->sql(".dataTable", $dtable);
 	}	
 
-	// public $courseclasses_list = false;
-
-	// public function courseclasses_check($classesid){
-	// 	$check = $this->sql()->tableCourseclasses()->whereCourse_id($this->xuId("courseid"))->andClasses_id($classesid)
-	// 		->select()->num();
-	// 		if($check == 1 ){
-	// 			return true;
-	// 		}else{
-	// 			return false;
-	// 		}
-	// }
 }
 ?>

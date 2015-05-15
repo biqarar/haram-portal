@@ -433,6 +433,16 @@ class menu_cls  {
 				)
 			);
 
+
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "attendance", 
+			"url" => "classes/status=list/type=presence", 
+			"name" =>  _("presence"), 
+			"tag" => array(
+				"absence" => array("select" => array("public"))
+				)
+			);
 		//------------------------------ drafts add
 		self::$menu[] = array(
 			"submenu" => "folder", 
