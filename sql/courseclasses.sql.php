@@ -1,7 +1,7 @@
 <?php
 namespace sql;
 class courseclasses {
-	public $id           = array('type'=> 'int@10', 'autoI', 'label' => 'prerequisite_id');
+	public $id           = array('type'=> 'int@10', 'autoI', 'label' => 'courseclasses_id');
 	public $course_id      = array('type'=> 'int@10', 'label' => 'course_id');
 	public $classes_id      = array('type'=> 'int@10', 'label' => 'classes_id');
 

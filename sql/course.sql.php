@@ -11,9 +11,9 @@ class course {
 	// public $expert     = array('type'=> 'int@10', 'label' => 'course_expert');
 	public $branch_id  = array('type'=> 'int@10', 'label' => 'branch_id');
 	
-	public $unique    = array("id");
-	public $foreign    = array("expert"=> "group_expert@id!id", "branch_id"=> "branch@id!name");
-	public $index     = array("expert", "branch_id");
+	// public $unique    = array("id");
+	// public $foreign    = array("expert"=> "group_expert@id!id", "branch_id"=> "branch@id!name");
+	// public $index     = array("expert", "branch_id");
 
 	public function id() {
 		$this->validate("id");
@@ -41,9 +41,9 @@ class course {
 	// }
 	
 	public function branch_id() {
-		$this->form("select")->name("branch_id");
-		// $this->setChild();
-		$this->validate("id");
+		// $this->form("select")->name("branch_id");
+		// // $this->setChild();
+		// $this->validate("id");
 	}
 }
 ?>

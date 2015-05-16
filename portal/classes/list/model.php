@@ -32,12 +32,12 @@ class model extends main_model {
 				break;
 
 			case 'courseclasses':
-				$url = "courseclasses/";
+				$url = "courseclasses/apiadd/";
 				$ico = "icodadd";
 				break;
 
 			case 'presence':
-				$url = "presence/apiadd/";
+				$url = "presence/";
 				$ico = "icodattendance";
 				break;
 
