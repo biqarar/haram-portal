@@ -15,7 +15,7 @@ class query_scoreCalculation_cls extends query_cls {
 
 		$x = $calculation->joinClassification()->whereClasses_id("#classes.id")->fieldId();
 		
-		// $this->classification_finde_active_list($x);
+		$this->classification_finde_active_list($x);
 
 		$calculation->joinScore()->whereClassification_id("#classification.id")->fieldValue();
 		$calculation->joinScore_type()->whereId("#score.score_type_id")->fieldTitle();

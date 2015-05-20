@@ -164,6 +164,10 @@ class model extends main_model{
 			"ALTER TABLE `courseclasses` ADD UNIQUE `unique_index`(`classes_id`, `course_id`);",
 			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)",
 			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_2` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
+			
+			"ALTER TABLE `score`  ADD `plan_section_id` INT(10)  AFTER `classification_id`",
+
+			"ALTER TABLE `score` ADD CONSTRAINT `score_ibfk_4` FOREIGN KEY (`plan_section_id`) REFERENCES `plan_section` (`id`)",
 
 
 		);
