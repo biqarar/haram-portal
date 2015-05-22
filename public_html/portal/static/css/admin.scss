@@ -375,3 +375,12 @@ a {
 			visibility: visible;
 			opacity: 1;
 		}
+
+.courseclasses-information {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	/*margin: 0 auto;*/
+	background: url(../svg/icons/information.svg);
+	background-size: 100% 100%;
+}

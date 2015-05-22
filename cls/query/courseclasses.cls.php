@@ -25,27 +25,26 @@ class query_courseclasses_cls extends query_cls
 					
 					if($duplicate){
 						$return_msg[] = $this->return_msg($classes_id, "اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
+					}
 
-					}elseif(!$this->sql(".plan.maxPerson", $classes_id)){
+					if(!$this->sql(".plan.maxPerson", $classes_id)){
 					
 						$return_msg[] = $this->return_msg($classes_id, "ظرفیت این کلاس تکمیل است و امکان ثبت فراگیر وجود ندارد.");
-
-
-					}elseif(!$this->sql(".price.checkClasses", $users_id , $classes_id)){
-
-						$return_msg[] = $this->return_msg($classes_id, "شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
-
-					}else{
-						//------------------------------ insert classification
-						$classification = $this->sql()->tableClassification()
-							->setUsers_id($users_id)
-							->setClasses_id($classes_id)
-							->setDate_entry($this->dateNow())
-							->insert();
-							$this->sql(".classesCount", $classes_id);
-
-						$return_msg[] = $this->return_msg($classes_id, "فراگیر در کلاس اضافه شد", 'true');
 					}
+
+					if(!$this->sql(".price.checkClasses", $users_id , $classes_id)){
+						$return_msg[] = $this->return_msg($classes_id, "شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
+					}
+
+					//------------------------------ insert classification
+					$classification = $this->sql()->tableClassification()
+						->setUsers_id($users_id)
+						->setClasses_id($classes_id)
+						->setDate_entry($this->dateNow())
+						->insert();
+						$this->sql(".classesCount", $classes_id);
+
+					$return_msg[] = $this->return_msg($classes_id, "فراگیر در کلاس اضافه شد", 'true');
 				
 				}else{
 					$return_msg[] = $this->return_msg($classes_id, 'این فراگیر قبلا در کلاس ثبت شده است');
@@ -58,6 +57,7 @@ class query_courseclasses_cls extends query_cls
 			return false;
 		}
 	}
+	
 	function return_msg( $classes_id, $msg,$status = 'fatal') {
 		return array( 'status' => $status,'classes_id' => $classes_id, "msg" => $msg);
 	}

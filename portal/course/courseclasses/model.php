@@ -52,5 +52,12 @@ class model extends main_model{
 		debug_lib::msg($q);
 		// var_dump($q);exit();
 	}
+
+	public function post_apiadd(){
+		$classes_id = $this->xuId("classesid");
+		$course_id = $this->xuId("courseid");
+		$sql = $this->sql()->tableCourseclasses()->setClasses_id($classes_id)->setCourse_id($course_id)->insert();
+		$this->post_apilist();
+	}
 }
 ?>

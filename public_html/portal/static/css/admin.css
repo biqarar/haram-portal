@@ -574,6 +574,14 @@ body {
   background: url(../svg/icons/score.svg);
   background-size: 100% 100%; }
 
+.icoinformation {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/information.svg);
+  background-size: 100% 100%; }
+
 #tabs.ui-widget-content {
   background: transparent; }
 
@@ -1168,3 +1176,11 @@ a {
   width: 70px;
   visibility: visible;
   opacity: 1; }
+
+.courseclasses-information {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  /*margin: 0 auto;*/
+  background: url(../svg/icons/information.svg);
+  background-size: 100% 100%; }

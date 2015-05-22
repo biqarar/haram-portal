@@ -10,10 +10,10 @@
 define('db_name', 'quran_hadith');
 
 /** MySQL database username */
-define('db_user', 'root');
+define('db_user', 'QuranHadith');
 
 /** MySQL database password */
-define('db_password', 'root');
+define('db_password', 'Quran!!))Hadith');
 
 /** MySQL hostname  */
 define('db_host', 'localhost');

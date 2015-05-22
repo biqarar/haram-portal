@@ -161,7 +161,7 @@ class model extends main_model{
 			 FOR EACH ROW BEGIN
 			call setHistory('courseclasses', 'update', OLD.id);
 			END",
-			"ALTER TABLE `courseclasses` ADD UNIQUE `unique_index`(`classes_id`, `course_id`);",
+			"ALTER TABLE `courseclasses` ADD UNIQUE `unique_index`(`classes_id`);",
 			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)",
 			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_2` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
 			
