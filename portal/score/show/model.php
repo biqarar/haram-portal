@@ -19,6 +19,7 @@ class model extends main_model {
 		}
 
 		array_push($field_list, "users_id score");
+		array_push($field_list, "id certification");
 		
 		return $field_list;
 	}
@@ -62,12 +63,25 @@ class model extends main_model {
 				
 				}
 
+				$r->certification = $this->check_certification($r->certification);
+
 
 			}, $list);
 
 			$this->sql(".dataTable", $dtable);
 	}
 
+	function check_certification($classification_id = false) {
+		// return "f";
+		$check = $this->sql()->tableCertification()->whereClassification_id($classification_id)->limit(1)->select()->num();
+		if($check == 0 ) {
+			return $this->tag("a")->class("icocertification")->render();
+		}else{
+			return $this->tag("a")->class("icocertificationdisable")->render();
+		}
+	// `$list_certification = $this->sql(".findListCertification.classes", $classification_id);
+		
+	}
 
 }
 ?>

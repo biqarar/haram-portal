@@ -99,13 +99,13 @@ class classes {
 	}
 	
 	public function start_date() {
-		$this->form("#date")->name("start_date");
-		$this->validate()->date()->form->date("start date is not valid")->required();
+		$this->form("#date")->name("start_date")->required();
+		$this->validate()->date()->form->date("start date is not valid");
 	}
 	
 	public function end_date() {
-		$this->form("#date")->name("end_date");
-		$this->validate()->date()->form->date("end date is not valid")->required();
+		$this->form("#date")->name("end_date")->required();
+		$this->validate()->date()->form->date("end date is not valid");
 	}
 	
 	public function week_days() {

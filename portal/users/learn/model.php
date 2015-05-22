@@ -4,33 +4,7 @@
 */
 class model extends main_model {
 
-	public function sql_find_list_certification($usersid = false) {
-		$certification = $this->sql()->tableClassification()
-			->whereUsers_id($usersid)
-			->condition("and", "certification.classification_id", "IS", "NULL")
-			->fieldId()->fieldMark();
-		$certification->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid");
-		$certification->joinPlan()->whereId("#classes.plan_id")
-			->condition("and", "##classification.mark", ">=" , "#plan.mark")
-			->fieldName("planname")->fieldId("planid");
-		$certification->joinCertification("LEFT OUTER")
-			->whereClassification_id("=" , "#classification.id");
 
-		$ready = $certification->select()->allAssoc();
-
-		$duplicate = $this->sql()->tableCertification();
-		$duplicate->joinClassification()->whereId("#certification.classification_id");
-		$duplicate->joinClasses()->whereId("#classification.classes_id");
-		$q = $duplicate->joinPlan()->whereId("#classes.plan_id");
-		foreach ($ready as $key => $value) {
-			$q->andId("=", $value['planid']);
-		}
-		
-		$duplicate = $duplicate->select()->num();
-
-		return ($duplicate == 0) ? $ready : array();
-		
-	}
 
 	public function sql_absence_list($usersid = false, $classes_id = false) {
 		$list = $this->sql()->tableAbsence();

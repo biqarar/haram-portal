@@ -31,6 +31,7 @@ class view extends main_view {
 				array_push($return, preg_replace("/^users\_\id\s(.*)$/", "$1", $value));
 			}
 		}
+		array_push($return, "certification");
 		return $return;
 	}
 }

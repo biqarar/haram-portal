@@ -145,7 +145,7 @@ class view extends main_view  {
 			, "امتیاز نهایی"
 			, "certification"));
 		$certification = array();
-		$list_certification = $this->sql("#find_list_certification", $users_id);
+		$list_certification = $this->sql(".findListCertification", $users_id);
 		foreach ($list_certification as $key => $value) {
 		$certification['title'] = "certification";
 		$certification['list']['list'][0][" دوره " . $value['planname']] = $this->tag("a")
