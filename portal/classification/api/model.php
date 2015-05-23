@@ -110,6 +110,7 @@ class model extends main_model {
 
 		//------------------------------ insert courseclasses
 		$courseclasses = $this->sql(".courseclasses", $classes_id, $users_id);
+		// var_dump($courseclasses);
 		if(!$courseclasses){
 
 		//------------------------------ key for check duplicate

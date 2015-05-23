@@ -25,7 +25,7 @@ class query_classesDetail_cls extends query_cls
 			if(isset($classes_detail['list'][0])){
 
 				//------------------------------ change users id to name and family to show
-				$classes_detail = $this->detailClasses($classes_detail);
+				$classes_detail = $this->detailClasses($classes_detail, $classesid);
 				
 				$return['page_title']
 					 = gettext("class").' '.
@@ -44,11 +44,10 @@ class query_classesDetail_cls extends query_cls
 	/**
 	*	some field in the classes table must be change (foreign) to other field in other table
 	*/
-	public function detailClasses($classes_detail = false) {
+	public function detailClasses($classes_detail = false, $classesid = false) {
 		if(isset($classes_detail['list'])){	
 			foreach ($classes_detail ['list'] as $key => $value) {
-				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
-				// $classes_detail ['list'][$key]['course_id'] = $this->sql(".assoc.foreign", "course", $value["course_id"], "name");
+				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".courseclassesInformation", $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name"), $classesid);
 				$classes_detail ['list'][$key]['teacher']   = 
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "name", "users_id") . ' ' . 
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "family", "users_id");

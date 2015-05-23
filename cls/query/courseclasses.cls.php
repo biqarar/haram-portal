@@ -3,13 +3,15 @@ class query_courseclasses_cls extends query_cls
 {
 	public function config($classes_id = false, $users_id = false){
 		$course = $this->sql()->tableCourseclasses()->whereClasses_id($classes_id);
-		$course->joinCourse()->whereId("#courseclasses.course_id")
-				->andBegin_time("<", $this->dateNow())
-				->andEnd_time(">", $this->dateNow());
+		$course->joinCourse()->whereId("#courseclasses.course_id");
+				// ->andBegin_time("<", $this->dateNow())
+				// ->andEnd_time(">", $this->dateNow());
 		$course = $course->limit(1)->select();
 	
 		if($course->num() == 1) {
 			$return_msg = array();
+			
+			$insert = true;
 
 			$list = $this->sql()->tableCourseclasses()->whereCourse_id($course->assoc("course_id"))->select()->allAssoc();
 			
@@ -25,17 +27,28 @@ class query_courseclasses_cls extends query_cls
 					
 					if($duplicate){
 						$return_msg[] = $this->return_msg($classes_id, "اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
+						$insert = false;
 					}
 
 					if(!$this->sql(".plan.maxPerson", $classes_id)){
-					
 						$return_msg[] = $this->return_msg($classes_id, "ظرفیت این کلاس تکمیل است و امکان ثبت فراگیر وجود ندارد.");
+						$insert = false;
 					}
 
 					if(!$this->sql(".price.checkClasses", $users_id , $classes_id)){
 						$return_msg[] = $this->return_msg($classes_id, "شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
+						$insert = false;
 					}
+			
+				}else{
+					$return_msg[] = $this->return_msg($classes_id, 'این فراگیر قبلا در کلاس ثبت شده است');
+				}
+			}
+			if($insert) {
 
+				foreach ($list as $key => $value) {
+					
+					$classes_id = $value['classes_id'];
 					//------------------------------ insert classification
 					$classification = $this->sql()->tableClassification()
 						->setUsers_id($users_id)
@@ -45,12 +58,10 @@ class query_courseclasses_cls extends query_cls
 						$this->sql(".classesCount", $classes_id);
 
 					$return_msg[] = $this->return_msg($classes_id, "فراگیر در کلاس اضافه شد", 'true');
-				
-				}else{
-					$return_msg[] = $this->return_msg($classes_id, 'این فراگیر قبلا در کلاس ثبت شده است');
 				}
-			}
 
+			}
+			// var_dump($this->debug_msg($return_msg));
 			return ($this->debug_msg($return_msg));
 			
 		}else{

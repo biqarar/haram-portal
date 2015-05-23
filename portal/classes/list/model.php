@@ -99,7 +99,6 @@ public $assoc = array();
 			// $q->joinCourse()->whereId("#courseclasses.course_id")->fieldName("coursename");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
-			// $this->assoc = $q->select()->allAssoc();
 		})
 		->result(function($r, $ico, $url){
 			if($ico == "icodadd") {
@@ -111,27 +110,16 @@ public $assoc = array();
 			}else{
 				$r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
 			}
-			$r->planname = $this->courseclasses_information($r->planname, $r->detail);
+			$r->planname = $this->sql(".courseclassesInformation",$r->planname, $r->detail);
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
 
 		}, $ico , $url);
 
 		$this->sql(".dataTable", $dtable);
-		// var_dump($this->assoc);exit();
 	}	
 
-	function courseclasses_information($planname = false, $classesid = false) {
-		$courseclasses = $this->sql()->tableCourseclasses()->whereClasses_id($classesid);
-		$courseclasses->joinCourse()->whereId("#courseclasses.course_id")->fieldName("coursename");
-		$courseclasses = $courseclasses->limit(1)->select();
-		if($courseclasses->num() == 1) {
-			$title = "ثبت شده در دوره \n ";
-			return  $planname .' <a class="courseclasses-information" title="'.$title. $courseclasses->assoc("coursename"). '"></a>';
-		}else{
-			return $planname;
-		}
-	}
+	
 
 }
 ?>
