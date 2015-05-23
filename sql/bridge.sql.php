@@ -31,7 +31,7 @@ class bridge {
 	}
 
 	public function value() {
-		$this->form("text")->name("value");
+		$this->form("text")->name("value")->required();
 		$this->validate()->reg("/^(.*)$/")->form->reg("entered value is not valid");
 	}
 

@@ -23,7 +23,7 @@ class plan_section {
 	}
 	
 	public function section() {
-		$this->form("#fatext")->name("section");
+		$this->form("#fatext")->name("section")->required();
 		$this->validate()->farsi()->form->farsi("text must be persian");
 	}
 }

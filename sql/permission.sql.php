@@ -20,11 +20,11 @@ class permission {
 	}
 	
 	public function tables() {
-		$this->form("checkbox")->name("tables");
+		$this->form("checkbox")->name("tables")->required();
 	}
 	
 	public function users_id() {
-		$this->form("text")->name("users_id");
+		$this->form("text")->name("users_id")->required();
 		// $this->setChild();
 	}
 	

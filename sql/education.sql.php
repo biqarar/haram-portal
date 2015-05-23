@@ -19,7 +19,7 @@ class education {
 		$this->setChild($this->form);
 	}
 	public function section() {
-		$this->form("#fatext")->name("section");
+		$this->form("#fatext")->name("section")->required();
 		$this->validate()->farsi()->form->farsi("education is not valid");
 	}
 }

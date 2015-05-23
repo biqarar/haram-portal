@@ -30,7 +30,7 @@ class course {
 	}
 	
 	public function name() {
-		$this->form("#fatext")->name("name");
+		$this->form("#fatext")->name("name")->required();
 		$this->validate()->description();
 	}
 	

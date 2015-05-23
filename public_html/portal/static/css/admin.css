@@ -1184,3 +1184,7 @@ a {
   /*margin: 0 auto;*/
   background: url(../svg/icons/information.svg);
   background-size: 100% 100%; }
+
+.fieldrequired {
+  color: red;
+  /*margin: 0px;*/ }

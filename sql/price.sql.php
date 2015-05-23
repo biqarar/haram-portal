@@ -28,7 +28,7 @@ class price {
 	}
 
 	public function date() {
-		$this->form("#date")->name("date")->label("date");
+		$this->form("#date")->name("date")->label("date")->required();
 		$this->validate()->date()->form->date("date incorect");
 	}
 
@@ -53,12 +53,12 @@ class price {
 	}
 
 	public function card(){
-		$this->form("text")->name("card")->label("card")->pl("4 رقم آخر شماره کارت");
+		$this->form("text")->name("card")->label("card")->pl("4 رقم آخر شماره کارت")->required();
 		$this->validate()->number()->form->number("price card is not valid");
 	}
 
 	public function value(){
-		$this->form("text")->name("value")->label("مبلغ")->pl("به ریال");
+		$this->form("text")->name("value")->label("مبلغ")->pl("به ریال")->required();
 		$this->validate()->price()->form->price("price value is not valid");
 	}
 
@@ -68,7 +68,7 @@ class price {
 	}
 
 	public function transactions(){
-		$this->form("text")->name("transactions")->label("transactions");
+		$this->form("text")->name("transactions")->label("transactions")->required();
 		$this->validate()->transactions()->form->transactions("transactions is not valid");
 	}
 

@@ -14,7 +14,7 @@ class country {
 	}
 
 	public function name() {
-		$this->form("#fatext")->name("name");
+		$this->form("#fatext")->name("name")->required();
 		$this->validate()->farsi()->form->farsi("country name should be persian");
 	}
 }

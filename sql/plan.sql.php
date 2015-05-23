@@ -29,17 +29,17 @@ class plan {
 	}
 	
 	public function name() {
-		$this->form("#fatext")->name("name");
+		$this->form("#fatext")->name("name")->required();
 		$this->validate()->farsi()->form->farsi("plan name should be persian");
 	}
 	
 	public function price() {
-		$this->form("#price")->name("price")->id("no-icon-price");
+		$this->form("#price")->name("price")->id("no-icon-price")->required();
 		$this->validate()->number(3, 7)->form->number("entered price is not valid");
 	}
 	
 	public function absence() {
-		$this->form("#number")->name("absence");
+		$this->form("#number")->name("absence")->required();
 		$this->validate()->number(1, 2)->form->number("absences number is not valid");
 	}
 	
@@ -49,7 +49,7 @@ class plan {
 	}
 	
 	public function mark() {
-		$this->form("#number")->name("mark")->addClass('slider-number')->min(0)->max(100);
+		$this->form("#number")->required()->name("mark")->addClass('slider-number')->min(0)->max(100);
 		$this->validate()->number(1, 3)->form->number("plan score is not valid");
 	}
 	
@@ -58,12 +58,12 @@ class plan {
 	}
 	
 	public function min_person() {
-		$this->form("#number")->name("min_person");
+		$this->form("#number")->name("min_person")->required();
 		$this->validate()->number(1, 3)->form->number("minimum persons number is not valid");
 	}
 	
 	public function max_person() {
-		$this->form("#number")->name("max_person");
+		$this->form("#number")->name("max_person")->required();
 		$this->validate()->number(1, 4)->form->number("maximum persons number is not valid");
 	}
 

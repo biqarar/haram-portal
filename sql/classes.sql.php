@@ -42,7 +42,7 @@ class classes {
 	// }
 
 	public function plan_id() {
-		$this->form("select")->name("plan_id")->addClass("select-plan notselect");
+		$this->form("select")->name("plan_id")->addClass("select-plan notselect")->required();
 		$this->setChild(function($q){
 		}, function($child, $value){
 			$child->label(gettext($value['name']))->value($value['id']); 
@@ -51,12 +51,12 @@ class classes {
 	}
 
 	public function meeting_no() {
-		$this->form("#number")->name("meeting_no");
+		$this->form("#number")->name("meeting_no")->required();
 		$this->validate()->number(1, 3)->form->number("meetings number should be between 1 and 999");
 	}
 
 	public function teacher() {
-		 $this->form("text")->name("teacher")->id("teachername")->addClass("select-teacher")->data_url("teacher/api/");
+		 $this->form("text")->name("teacher")->required()->id("teachername")->addClass("select-teacher")->data_url("teacher/api/");
 		// $this->form("select")->name("teacher")->addClass("select-teacher notselect");
 		// $this->setChild(function($q){
 		// 	$q->whereType("teacher");
@@ -80,7 +80,7 @@ class classes {
 	}
 	
 	public function place_id() {
-		$this->form("select")->name("place_id")->addClass("select-place notselect");
+		$this->form("select")->name("place_id")->addClass("select-place notselect")->required();
 		$this->setChild(function($q){
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 
@@ -100,16 +100,16 @@ class classes {
 	
 	public function start_date() {
 		$this->form("#date")->name("start_date");
-		$this->validate()->date()->form->date("start date is not valid");
+		$this->validate()->date()->form->date("start date is not valid")->required();
 	}
 	
 	public function end_date() {
 		$this->form("#date")->name("end_date");
-		$this->validate()->date()->form->date("end date is not valid");
+		$this->validate()->date()->form->date("end date is not valid")->required();
 	}
 	
 	public function week_days() {
-		$this->form("checkbox")->name("week_days");
+		$this->form("checkbox")->name("week_days")->required();
 		$this->setChild();
 	}
 	

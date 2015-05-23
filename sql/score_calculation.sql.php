@@ -30,7 +30,7 @@ class score_calculation {
 
 
 	public function	calculation(){
-		$this->form("#text_desc")->name("calculation")->label("calculation");
+		$this->form("#text_desc")->name("calculation")->label("calculation")->required();
 		$this->validate()->description(-1);
 	}
 

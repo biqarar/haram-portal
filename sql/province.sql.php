@@ -11,7 +11,7 @@ class province {
 	}
 
 	public function name() {
-		$this->form("text")->name("name");
+		$this->form("text")->name("name")->required();
 		$this->validate()->farsi();
 	}
 }

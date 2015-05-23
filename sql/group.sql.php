@@ -11,7 +11,7 @@ class group {
 	}
 
 	public function name() {
-		$this->form("#fatext")->name("name");
+		$this->form("#fatext")->name("name")->required();
 		$this->validate()->farsi()->form->farsi("group name should be persian");
 	}
 }

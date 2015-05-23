@@ -70,10 +70,10 @@
 {% macro input(array) %}
 	{% spaceless %}
 		{% if array.attr.type == 'robot' %}
-			<label for="{{array.attr.id}}" class="input-label">{{array.label}}</label>
+			<label for="{{array.attr.id}}" class="input-label">{{array.label}}</label> 	
 			<input type="text" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
-		{% else %}
-			<label for="{{array.attr.id}}" class="input-label">{{array.label}}</label>
+		{% else %}	
+			<label for="{{array.attr.id}}" class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label>
 			<input type="{{array.attr.type}}" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
 		{% endif %}
 	{% endspaceless %}

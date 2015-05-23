@@ -13,12 +13,12 @@ class city {
 	}
 	
 	public function province_id() {
-		$this->form("select")->name("province");
+		$this->form("select")->name("province")->required();
 		$this->setChild();
 	}
 	
 	public function name() {
-		$this->form("text")->name("name");
+		$this->form("text")->name("name")->required();
 		$this->validate()->farsi()->form->farsi("city name should be persian");
 	}
 }

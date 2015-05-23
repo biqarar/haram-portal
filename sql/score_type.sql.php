@@ -28,17 +28,17 @@ class score_type {
 	}
 
 	public function	title(){
-		$this->form("text")->name("title")->label("title");
+		$this->form("text")->name("title")->label("title")->required();
 		$this->validate()->farsi()->form->farsi("title is not valid");
 	}
 
 	public function	min(){
-		$this->form("text")->name("min")->label("min");
+		$this->form("text")->name("min")->label("min")->required();
 		$this->validate()->float()->form->float("number is not valid");
 	}
 
 	public function	max(){
-		$this->form("text")->name("max")->label("max");
+		$this->form("text")->name("max")->label("max")->required();
 		$this->validate()->float()->form->float("number is not valid");
 	}
 
