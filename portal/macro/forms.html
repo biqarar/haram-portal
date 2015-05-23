@@ -1,6 +1,6 @@
 {%- macro radio(array) -%}
 	{% spaceless %}
-	<label class="input-label">{{array.label}}</label>
+	<label class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label>
 		{%- for child in array.child -%}
 			<label class="label-custom label-radio">{{-child.label-}}
 				<input type="radio" name="{{array.attr.name}}" {% for attr,value in child.attr%}{{attr}}="{{value}}" {% endfor %}>
@@ -15,7 +15,7 @@
 	{% spaceless %}
 	{%if array.child%}
 	{% import _self as form%}
-	<label class="input-label">{{array.label}}</label>
+	<label class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label>
 	{%for check in array.child%}
 			<label class="label-custom">{{-check.label-}}
 				<input type="checkbox" {% for attr,value in check.attr%}{{attr}}="{{value}}" {% endfor %}>
@@ -35,7 +35,7 @@
 
 {% macro select(array) %}
 	{% spaceless %}
-		<label for="{{array.attr.id}}" class="input-label">{{array.label}}</label>
+		<label for="{{array.attr.id}}" class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label>
 		<select {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
 			<option value="" disabled="disabled" selected="selected">لطفا یکی از گزینه ها را انتخاب کنید</option>
 			{% for child in array.child%}
@@ -61,7 +61,7 @@
 
 {% macro textarea(array) %}
 	{% spaceless %}
-			<label for="{{array.attr.id}}" class="input-label">{{array.label}}</label>
+			<label for="{{array.attr.id}}" class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label>
 			<textarea type="{{array.type}}" {% for attr,value in array.attr%}{%if attr != 'value'%}{{attr}}="{{value}}"{%endif%} {% endfor %}>{{array.attr.value}}</textarea>
 	{% endspaceless %}
 {% endmacro %}
@@ -70,7 +70,7 @@
 {% macro input(array) %}
 	{% spaceless %}
 		{% if array.attr.type == 'robot' %}
-			<label for="{{array.attr.id}}" class="input-label">{{array.label}}</label> 	
+			<label for="{{array.attr.id}}" class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label> 	
 			<input type="text" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
 		{% else %}	
 			<label for="{{array.attr.id}}" class="input-label">{{array.label}}{%if array.attr.required is not null%}<span class="fieldrequired">*</span>{%endif%}</label>

@@ -24,7 +24,7 @@ class plan {
 	}
 	
 	public function group_id() {
-		$this->form("select")->name("group_id");
+		$this->form("select")->name("group_id")->required();
 		$this->setChild();
 	}
 	
