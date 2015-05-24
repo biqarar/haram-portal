@@ -329,9 +329,27 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "class", 
 			"url" => "classes/status=list/", 
-			"name" =>  _("classes list") , 
+			"name" =>  _("active classes list") , 
 			"tag" => array(
 				"classes" => array("select" => array("public"))
+				)
+			);
+		//------------------------------ classes list
+		self::$menu[] = array(
+			"submenu" => "class", 
+			"url" => "classes/status=list/type=allclasses", 
+			"name" =>  _("all classes list") , 
+			"tag" => array(
+				"classes" => array("select" => array("public"))
+				)
+			);
+		//------------------------------ classes list manage
+		self::$menu[] = array(
+			"submenu" => "class", 
+			"url" => "classes/status=manage/", 
+			"name" =>  _("manage classes") , 
+			"tag" => array(
+				"classes" => array("delete" => array("public"))
 				)
 			);
 		//------------------------------ price add

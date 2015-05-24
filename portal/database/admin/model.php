@@ -106,13 +106,13 @@ class model extends main_model{
 		/**
 
 		*/		
-		//---------------------------------------------------------------------------------------------------
-		// $classes = $this->sql()->tablePrice()->setVisible("1")->where("1")->update();
-		// $this->commit(function(){
-		// 	echo "set all price on visible";
-		// });
-		// var_dump($classes->string());
-		// $this->flush();
+		// ---------------------------------------------------------------------------------------------------
+		$classes = $this->sql()->tableClasses()->whereStatus("is", "#null")->setStatus("running")->update();
+		$this->commit(function(){
+			echo "set all active classes to runnig status";
+		});
+		var_dump($classes->string());
+		$this->flush();
 
 		/**
 

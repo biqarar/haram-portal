@@ -2,10 +2,20 @@
 class query_classesCount_cls extends query_cls
 {
 	public function config($classes_id = false){
+		$classes_count = $this->count($classes_id);
+		$min_person = $this->sql()->tableClasses()->whereId($classes_id)->andStatus("ready");
+		$min_person->joinPlan()->whereId("#classes.plan_id")->fieldMin_person();
+		$min_person = $min_person->select()->assoc("min_person");
+		
 		$update = $this->sql()
 			->tableClasses()
-			->setCount($this->count($classes_id))
-			->whereId($classes_id)->update();
+			->setCount($classes_count)
+			->whereId($classes_id);
+		
+		if($min_person < $classes_count) {
+			$update->setStatus("running");
+		}
+			$update->update();
 	}
 
 

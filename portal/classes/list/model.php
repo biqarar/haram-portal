@@ -4,7 +4,8 @@
 * @auther reza mohiti
 */
 class model extends main_model {
-public $assoc = array();
+	public $assoc = array();
+	public $allclasses = false;
 
 		public function post_api(){
 		$type = $this->xuId("type");
@@ -43,6 +44,11 @@ public $assoc = array();
 				$ico = "icodattendance";
 				break;
 
+			case 'allclasses':
+				$this->allclasses = true;
+				$url = "classification/class/";
+				$ico = "icoclass";
+				break;
 
 			default:
 				$url = "classification/class/";
@@ -94,7 +100,12 @@ public $assoc = array();
 			}
 		})
 		->query(function($q){
+			if(!$this->allclasses) {
+				$q->whereStatus("<>", "done");
+			}
+
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
+
 			// $q->joinCourseclasses()->whereClasses_id("#classes.id");
 			// $q->joinCourse()->whereId("#courseclasses.course_id")->fieldName("coursename");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");

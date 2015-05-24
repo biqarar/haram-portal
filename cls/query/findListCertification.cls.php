@@ -18,19 +18,19 @@ class query_findListCertification_cls extends query_cls {
 			->fieldName("planname")->fieldId("planid");
 		$certification->joinCertification("LEFT OUTER")
 			->whereClassification_id("=" , "#classification.id");
-
+			// var_dump($certification->select()->assoc());exit();
 		$ready = $certification->select()->allAssoc();
 
 		$duplicate = $this->sql()->tableCertification();
-		$duplicate->joinClassification()->whereId("#certification.classification_id");
+		$duplicate->joinClassification()->whereId("#certification.classification_id")->andUsers_id($usersid);
 		$duplicate->joinClasses()->whereId("#classification.classes_id");
 		$q = $duplicate->joinPlan()->whereId("#classes.plan_id");
 		foreach ($ready as $key => $value) {
 			$q->andId("=", $value['planid']);
 		}
-		
+		// echo $duplicate->select()->string();exit();
 		$duplicate = $duplicate->select()->num();
-
+		// var_dump($duplicate);exit();
 		return ($duplicate == 0) ? $ready : array();
 		
 	}

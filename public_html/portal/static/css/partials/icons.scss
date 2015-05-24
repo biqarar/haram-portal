@@ -330,6 +330,17 @@
 	}
 }
 
+#redclass {
+	background-image: url(../svg/icons/redclass.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #4dbddc;
+			}
+		}
+	}
+}
+
 //----------------------------------------------- ico{icon}
 .icocertificationdisable {
 	display: block;
@@ -643,5 +654,14 @@
 	height: 16px;
 	margin: 0 auto;
 	background: url(../svg/icons/information.svg);
+	background-size: 100% 100%;
+}
+
+.icoredclass {
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
+	background: url(../svg/icons/redclass.svg);
 	background-size: 100% 100%;
 }

@@ -1,0 +1,34 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+{{tagMaker.list(list)}}
+<br>
+<p><b>
+	فعال سازی مجدد کلاس
+</b></p>
+<p>
+	امکان اصلاح مشخصات کلاس، ثبت و اصلاح نمرات فراگیران، ثبت و اصلاح غیبت فراگیران با فعال سازی مجدد کلاس
+</p>
+
+
+<style type="text/css">
+	.classes-running {
+		/*height: 75px;*/
+		width: 100px;
+		background: #9fbe03;
+		border-radius: 7px;
+		padding: 25px 50px 25px 50px !important;
+		text-align: center;
+		display: inline-block;
+
+	}
+	a {
+		text-decoration: none;
+	}
+</style>
+<a href="">
+	<div class="classes-running" classesid="{{global.classesid}}">
+	فعال سازی کلاس
+	</div>
+</a>
+{%endblock%}

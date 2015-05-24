@@ -12,14 +12,13 @@ class view extends main_view{
 
 		$this->data->dataTable = $this->dtable("certification/status=api/"
 			, array(
-			"more",
+			"learn",
 			"username",
 			"name",
 			"family",
 			"plan",
 			"mark",
 			"date_request",
-			"date_design",
 			"date_print",
 			"date_deliver"
 				));

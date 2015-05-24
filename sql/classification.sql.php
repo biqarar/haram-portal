@@ -6,7 +6,7 @@ class classification {
 	public $classes_id      = array('type'=> 'int@10', 'label' => 'classes_id');
 	public $date_entry      = array('type'=> 'int@10', 'lable' => 'classification_date_entry');
 	public $date_delete     = array('type'=> 'int@10', 'label' => 'classification_date_delete');
-	public $because         = array('type'=> 'enum@absence,cansel,done,error_in_insert!absence', 'label' => 'classification_because');
+	public $because         = array('type'=> 'enum@absence,cansel,error_in_insert!absence', 'label' => 'classification_because');
 	public $mark            = array('type'=> 'float@12', 'label' => 'classification_mark');
 	public $plan_section_id = array('type'=> 'varchar@64', 'label' => 'plan_section_id');
 	
@@ -37,11 +37,11 @@ class classification {
 	}
 	
 	public function date_delete() {
-		$this->form("#date")->name("date_delete");
+		$this->form("#date")->name("date_delete")->required();
 	}
 	
 	public function because() {
-		$this->form("select")->name("because");
+		$this->form("select")->name("because")->required();
 		$this->setChild($this->form);
 	}
 	

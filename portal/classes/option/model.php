@@ -30,8 +30,8 @@ class model extends main_model{
 				->setStart_date(post::start_date())
 				->setEnd_date(post::end_date())
 				->setType(post::type())
-				->setWeek_days($week_days);
-				// ->setStatus(post::sta tus());
+				->setWeek_days($week_days)
+				->setStatus("ready");
 	}
 
 	public function post_add_classes() {

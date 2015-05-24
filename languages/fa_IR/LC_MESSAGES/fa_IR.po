@@ -17,6 +17,27 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "manage classes"
+msgstr "مدیریت کلاسیک"
+
+msgid "allclasses"
+msgstr "تمامی کلاس ها"
+
+msgid "active classes list"
+msgstr "کلاس های فعال"
+
+msgid "all classes list"
+msgstr "تمامی کلاس ها"
+
+msgid "presence"
+msgstr "ثبت حضور"
+
+msgid "course classes"
+msgstr "کلاس های دوره ای"
+
+msgid "courseclasses"
+msgstr "کلاس های دوره ای"
+
 msgid "insert classes score"
 msgstr "ثبت نمرات کلاس"
 

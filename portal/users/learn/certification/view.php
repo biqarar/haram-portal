@@ -18,7 +18,8 @@ class view extends main_view  {
 			$query->joinClasses()->whereId("#classification.classes_id")->fieldId();
 			$query->joinPlan()->whereId("#classes.plan_id")->fieldName();
 		});
-		$certification->removeCol("classification_id");
+		$certification->removeCol("classification_id,date_design");
+		$certification->addColFirst("date_request", "date_request");
 		$certification->addColFirst("mark", "mark");
 		$certification->addColFirst("name","name");
 		$certification->addColFirst("id", "id");

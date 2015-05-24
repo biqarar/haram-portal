@@ -294,6 +294,11 @@ body {
   #certificationdisable > div.dropdown > div:first-child {
     background: #4dbddc; }
 
+#redclass {
+  background-image: url(../svg/icons/redclass.svg); }
+  #redclass > div.dropdown > div:first-child {
+    background: #4dbddc; }
+
 .icocertificationdisable {
   display: block;
   width: 16px;
@@ -580,6 +585,14 @@ body {
   height: 16px;
   margin: 0 auto;
   background: url(../svg/icons/information.svg);
+  background-size: 100% 100%; }
+
+.icoredclass {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/redclass.svg);
   background-size: 100% 100%; }
 
 #tabs.ui-widget-content {

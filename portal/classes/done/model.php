@@ -11,14 +11,21 @@ class model extends main_model {
 			debug_lib::fatal("این کلاس به اتمام رسیده است");
 		}
 
+		$scoreCalculation = $this->sql()->tableClasses()->whereId($classes_id);
+		$scoreCalculation->joinScore_calculation()->wherePlan_id("#classes.plan_id");
+		$scoreCalculation = $scoreCalculation->limit(1)->select()->assoc();
+		
+		if(!$scoreCalculation) {
+			debug_lib::fatal("روش محاسبه امتیاز نهایی ثبت نشده است");
+		}
+
 		$this->score($classes_id);
 
 		$this->sql(".voidPrice.classes", $classes_id);
 
-
-		$classification = $this->sql()->tableClassification()->whereClasses_id($classes_id);
-		$classification = $this->classification_finde_active_list($classification);
-		$classification->setDate_delete($this->dateNow())->setBecause("done")->update();
+		// $classification = $this->sql()->tableClassification()->whereClasses_id($classes_id);
+		// $classification = $this->classification_finde_active_list($classification);
+		// $classification->setDate_delete($this->dateNow())->setBecause("done")->update();
 
 		$classification = $this->sql()->tableClassification()
 		->whereClasses_id($classes_id)
@@ -33,7 +40,7 @@ class model extends main_model {
 		
 		$this->sql()->tableClasses()->whereId($classes_id)->setStatus("done")->update();
 
-		debug_lib::true("ثبت اتمام کلاس انجام شد.");
+		debug_lib::true("ثبت اتمام کلاس انجام شد");
 
 	}
 
@@ -54,5 +61,6 @@ class model extends main_model {
 		}
 
 	}
+		
 }
 ?>

@@ -3,7 +3,7 @@ namespace sql;
 class certification {
 	public $id                = array('type'=> 'int@10', 'autoI', 'label' => 'certification_id');
 	public $classification_id = array('type'=> 'int@10', 'label' => 'classification_id');
-	public $date_design       = array('type'=> 'int@10', 'label' => 'certification_date_design');
+	// public $date_design       = array('type'=> 'int@10', 'label' => 'certification_date_design');
 	public $date_print        = array('type'=> 'int@10', 'label' => 'certification_date_print');
 	public $date_deliver      = array('type'=> 'int@10', 'label' => 'certification_date_deliver');
 	public $date_request      = array('type'=> 'int@10', 'label' => 'certification_date_request');
@@ -22,9 +22,9 @@ class certification {
 		$this->setChild();
 	}
 
-	public function date_design() {
-		$this->form("#date")->name("date_design");
-	}
+	// public function date_design() {
+	// 	$this->form("#date")->name("date_design");
+	// }
 
 	public function date_print() {
 		$this->form("#date")->name("date_print");
