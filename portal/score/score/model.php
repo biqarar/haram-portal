@@ -6,9 +6,7 @@ class model extends main_model {
 		return $this->sql()->tableScore_type()->whereId($scoretypeid)->limit(1)->select()->assoc($title);
 	}
 	public function post_api() {
-
 		$score_type = $this->sql_score_type();
-// var_dump("fuck");exit();
 		$array = array("usersid more","username users.username","name person.name", "family person.family","id input");
 		
 		

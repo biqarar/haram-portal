@@ -8,7 +8,6 @@ class view extends main_view {
 
 		//------------------------------ global
 		$this->global->page_title ="score";
-		
 		$classesid = $this->xuId("classesid");
 		$this->data->score_type_list = $this->sql(".scoreTypeList", $classesid);
 

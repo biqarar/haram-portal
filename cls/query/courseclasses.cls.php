@@ -26,7 +26,7 @@ class query_courseclasses_cls extends query_cls
 					list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.classification", $users_id, $classes_id);
 					
 					if($duplicate){
-						$return_msg[] = $this->return_msg($classes_id, "اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
+						$return_msg[] = $this->return_msg($classes_id, $msg);
 						$insert = false;
 					}
 
@@ -42,6 +42,7 @@ class query_courseclasses_cls extends query_cls
 			
 				}else{
 					$return_msg[] = $this->return_msg($classes_id, 'این فراگیر قبلا در کلاس ثبت شده است');
+					$insert = false;
 				}
 			}
 			if($insert) {

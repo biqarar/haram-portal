@@ -85,7 +85,8 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		
 		$new_classes = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc();
 		if(!isset($new_classes['id']) || $new_classes['status'] == 'done'){
-			debug_lib::fatal("failed","اطلاعات کلاس یافت نشد");
+			// debug_lib::fatal("failed","اطلاعات کلاس یافت نشد");
+			return array(true,"این کلاس به اتمام رسیده است" );
 		}
 	
 	
@@ -142,7 +143,7 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		
 		if($duplicate) {
 			$msg = $classes_detail['classes_id'];
-			return array($duplicate , $msg);
+			return array($duplicate , "اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
 		}
 		return array($duplicate , "");
 	}

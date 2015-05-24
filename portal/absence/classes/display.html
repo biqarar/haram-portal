@@ -1,9 +1,9 @@
 {# Ahamd karimi #}
 {% extends layout %}
 {%block content%}
-<!-- <a class="icouser"></a>
-<a class="icolikes"></a> -->
-<!-- classes detail -->
+{%if msg%}
+	{{msg}}
+{%else%}
 <div class="class-detail">
 	{{ tagMaker.list(list) }}
 </div>
@@ -12,5 +12,5 @@
 <div class="class-detail">
 	{{dtable.make(dataTable)}}
 </div>
-
+{%endif%}
 {%endblock%}

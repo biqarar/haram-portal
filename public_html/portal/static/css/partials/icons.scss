@@ -340,6 +340,16 @@
 		}
 	}
 }
+#dadddisable {
+	background-image: url(../svg/icons/dadddisable.svg);
+	> div.dropdown {
+		> div {
+			&:first-child {
+				background: #4dbddc;
+			}
+		}
+	}
+}
 
 //----------------------------------------------- ico{icon}
 .icocertificationdisable {
@@ -663,5 +673,13 @@
 	height: 16px;
 	margin: 0 auto;
 	background: url(../svg/icons/redclass.svg);
+	background-size: 100% 100%;
+}
+.icodadddisable {
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0 auto;
+	background: url(../svg/icons/dadddisable.svg);
 	background-size: 100% 100%;
 }

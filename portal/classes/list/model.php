@@ -112,16 +112,28 @@ class model extends main_model {
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 		})
 		->result(function($r, $ico, $url){
+			$r->planname = $this->sql(".courseclassesInformation",$r->planname, $r->detail);
 			if($ico == "icodadd") {
-				$r->classification = $this->tag("a")
-											->class("icodadd courseclasses-apiadd")
-											->id($r->classification)
-											->style("cursor:pointer")
-											->render();
+				if(preg_match("[courseclasses\-information]",$r->planname)){
+					$r->classification = $this->tag("a")
+												->class("icodadddisable")
+												->id($r->classification)
+												->disable("disable")
+												->style("cursor:pointer;")
+												->render();
+
+				}else{
+					$r->classification = $this->tag("a")
+							->class("icodadd courseclasses-apiadd")
+							->id($r->classification)
+							->style("cursor:pointer")
+							->render();
+
+				}
+				
 			}else{
 				$r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
 			}
-			$r->planname = $this->sql(".courseclassesInformation",$r->planname, $r->detail);
 			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
 
 

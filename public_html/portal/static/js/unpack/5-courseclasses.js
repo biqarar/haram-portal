@@ -61,13 +61,14 @@ function delete_courseclasses(_self){
 
 route(/classes\/status\=api\/type\=courseclasses/, function () {
 	$(".courseclasses-apiadd" , this).click(function(){
+		_self = $(this);
 		course_id =$("body #course_id option:selected").attr("value");
 		classes_id = $(this).attr("id");
 		$.ajax({
 			type: "POST",
 			url : "course/courseclasses/apiadd/courseid=" + course_id + '/classesid=' + classes_id,
 			success : function(data){
-				// console.log(data);
+				_self.removeClass("icodadd courseclasses-apiadd").addClass("icodadddisable");
 				courseclasses_list(data);
 			}
 		});

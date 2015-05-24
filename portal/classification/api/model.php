@@ -123,7 +123,7 @@ class model extends main_model {
 				//------------------------------ check duplicate other classes as time for this users
 				list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.classification", $users_id, $classes_id);
 				if($duplicate) {
-					debug_lib::fatal("اطلاعات این کلاس با کلاس شماره" . $msg . " که برای این کاربر ثبت شده است تداخل دارد ");
+					debug_lib::fatal($msg);
 				}else{
 					//------------------------------ check price 
 					if(!$this->sql(".plan.maxPerson", $classes_id)) {
