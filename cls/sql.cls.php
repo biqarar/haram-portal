@@ -3,6 +3,7 @@
 * 
 */
 class sql_cls {
+	static $first = false;
 	static function config($maker = false) {
 		// var_dump(isset($_SESSION['users_id']) , isset($_SESSION['branch_active']) , global_cls::supervisor());
 
@@ -102,18 +103,19 @@ class sql_cls {
 		}
 
 		//------------------------------ send users id, branch id and ip to mysql engine
-		if (isset($_SESSION['users_id'])) {
+		if (isset($_SESSION['users_id']) && !self::$first) {
 			$q = $sql->query("SET @users_id = $users_id ");
 			$q = $sql->query("SET @ip_ = '$ip' ");
 			$q = $sql->query("SET @branch_id = $branch_id ");
+			self::$first = true;
 		}
 
 		//------------------------------ check insert, update , delete permission
-		if ($name == "insert" || $name == "update" || $name == "delete") {
-			if ($maker->table != "login_counter" && !global_cls::supervisor()) {
-				$q = $sql->query("CALL insertPerm($users_id, $branch_id) ");
-			}
-		}
+		// if ($name == "insert" || $name == "update" || $name == "delete") {
+		// 	if ($maker->table != "login_counter" && !global_cls::supervisor()) {
+		// 		$q = $sql->query("CALL insertPerm($users_id, $branch_id) ");
+		// 	}
+		// }
 	}
 
 	static function update_log($maker = flase, $condition = false) {
