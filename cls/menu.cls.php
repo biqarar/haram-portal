@@ -191,15 +191,15 @@ class menu_cls  {
 				)
 			);
 		
-		//------------------------------  plan
-		self::$menu[] = array(
-			"submenu" => "share", 
-			"url" => 'plan/section/status=add', 
-			"name" =>  _("add plan section"), 
-			"tag" => array(
-				"plan_section" => array("insert" => array("public"))
-				)
-			);
+		// //------------------------------  plan
+		// self::$menu[] = array(
+		// 	"submenu" => "share", 
+		// 	"url" => 'plan/section/status=add', 
+		// 	"name" =>  _("add plan section"), 
+		// 	"tag" => array(
+		// 		"plan_section" => array("insert" => array("public"))
+		// 		)
+		// 	);
 		//------------------------------  course
 		self::$menu[] = array(
 			"submenu" => "share", 

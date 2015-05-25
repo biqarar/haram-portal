@@ -8,6 +8,9 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "classes_detail";
 
+		$this->classeTopLinks();
+		
+
 		$edit_link = $this->tag("a")
 		->href("classes/status=edit/id=%id%")
 		->addClass("icoedit")

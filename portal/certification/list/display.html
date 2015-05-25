@@ -1,6 +1,21 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	#report-certification {
+		padding: 5px;
+		clear: both;
+		background-color: #ececec;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+
+	}
+</style>
+<a id="report-certification" href="certification/report/type=all" target="_blank" >همه گواهی نامه ها</a>
+<a id="report-certification" href="certification/report/type=request" target="_blank" >صادر نشده</a>
+<a id="report-certification" href="certification/report/type=print" target="_blank" >چاپ نشده</a>
+<a id="report-certification" href="certification/report/type=deliver" target="_blank" >تحویل داده نشده</a>
 
 {{dtable.make(dataTable)}}
 {%endblock%}

@@ -1,0 +1,20 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<style type="text/css">
+	#report-certification {
+		padding: 5px;
+		clear: both;
+		background-color: #ececec;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+	}
+</style>
+<a id="report-certification" href="certification/report/type=all" >همه گواهی نامه ها</a>
+<a id="report-certification" href="certification/report/type=request" >صادر نشده</a>
+<a id="report-certification" href="certification/report/type=print" >چاپ نشده</a>
+<a id="report-certification" href="certification/report/type=deliver" >تحویل داده نشده</a>
+<br>
+{{tagMaker.reportList(list)}}
+{%endblock%}

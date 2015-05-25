@@ -4,11 +4,13 @@
 * @auther reza mohiti
 */
 class model extends main_model {
+		public $dateNow = false;
 		public function post_api(){
-		
+		$this->dateNow = $this->dateNow();
 		$dtable = $this->dtable->table("certification")
 		->fields(
 			"usersid learn",
+			"id id",
 			"username username",
 			"name person.name",
 			"family person.family",
@@ -26,7 +28,7 @@ class model extends main_model {
 			}
 		})
 		->search_fields(
-			"username" , "name", "family", "date_request",
+			"id certification.id","username" , "family", "date_request",
 			"date_print",
 			"date_deliver"
 		)
@@ -36,23 +38,16 @@ class model extends main_model {
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
 			$q->joinUsers()->whereId("#classification.users_id")->fieldUsername("username")->fieldId("usersid");
 			$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldFamily("family")->fieldName("name");
-			// ilog($q->select()->string());
 		})
 		->result(function($r){
-			// calendar
+
 			if($r->date_print == null) {
-				$r->date_print = $this->tag("a")->class("icocalendar")->render();
+				$r->date_print = $this->tag("a")->title("ثبت تاریخ چاپ")->style("cursor: pointer;")->certificationid($r->id)->class("icocalendar set-date-print")->dateNow($this->dateNow)->render();
 			}
 			if($r->date_deliver == null) {
-				$r->date_deliver = $this->tag("a")->class("icocalendar")->render();
+				$r->date_deliver = $this->tag("a")->title("ثبت تاریخ تحویل")->style("cursor: pointer;")->certificationid($r->id)->class("icocalendar set-date-deliver")->dateNow($this->dateNow)->render();
 			}
-			// $r->edit = '<a class="icoedit" href="certification/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 			$r->learn = $this->tag("a")->href("users/learn/id=". $r->learn)->class("icoshare")->render();
-			$r->username = $this->tag("a")->href("users/status=list?username=" . $r->username)
-			->target("_blank")->vtext($r->username)->render();
-			// // $r->absence = '<a class="icoattendance" href="classification/absence/certificationid='.$r->absence.'" title="'.gettext('absence').' '.$r->absence.'"></a>';
-			// $r->detail = '<a class="icolearn" href="certification/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
-
 		});
 
 		$this->sql(".dataTable", $dtable);

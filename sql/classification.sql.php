@@ -47,7 +47,7 @@ class classification {
 	
 	public function mark() {
 		$this->form("text")->name("mark");
-		$this->validate()->float();
+		$this->validate()->float()->form->float("classification mark is not valid");
 	}
 	
 	public function plan_section_id() {

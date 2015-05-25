@@ -13,6 +13,7 @@ class view extends main_view{
 		$this->data->dataTable = $this->dtable("certification/status=api/"
 			, array(
 			"learn",
+			"شماره گواهی نامه",
 			"username",
 			"name",
 			"family",

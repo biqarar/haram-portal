@@ -11,6 +11,7 @@ class model extends main_model {
 			"date_entry",
 			"date_delete",
 			"because",
+			"mark",
 			"id edit")
 			
 			->search_fields("username", "name", "family")

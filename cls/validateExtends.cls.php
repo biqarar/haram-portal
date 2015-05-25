@@ -127,8 +127,9 @@ class validateExtends_cls{
 	public function float(){
 
 		if($this->value == '') return true;
-		
-		if (preg_match("/^((\d+\.?\d+)|(\d+))$/", $this->value)) {
+		// ilog(gettype($this->value). " : ". $this->value . "\n");
+		// exit();
+		if (preg_match("/^((\d+\.?\d+)|(\d+)|(\d))$/", $this->value) || gettype($this->value) == "duble") {
 			$this->value = floatval($this->value);
 			return true;
 		}else{

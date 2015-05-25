@@ -47,7 +47,7 @@ class model extends main_model {
 				$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
 			})
 			->result(function($r, $list){
-
+				$r->certification = $this->check_certification($r->certification, $r->score);
 				if(is_array($list) && !empty($list)){
 
 					foreach ($list as $key => $value) {
@@ -57,27 +57,21 @@ class model extends main_model {
 						}
 						break;
 					}
-
 					$x = $r->users_id;
 					$r->score = isset($list[$x]['result']) ? $list[$x]['result'] : "-" ;
-				
 				}
-
-				$r->certification = $this->check_certification($r->certification);
-
-
 			}, $list);
 
 			$this->sql(".dataTable", $dtable);
 	}
 
-	function check_certification($classification_id = false) {
+	function check_certification($classification_id = false, $urser_id = false) {
 		// return "f";
 		$check = $this->sql()->tableCertification()->whereClassification_id($classification_id)->limit(1)->select()->num();
 		if($check == 0 ) {
-			return $this->tag("a")->class("icocertification")->render();
+			return $this->tag("a")->href("users/learn/id=". $urser_id)->title("نمایش پرونده تحصیلی فراگیر")->class("icocertification")->render();
 		}else{
-			return $this->tag("a")->class("icocertificationdisable")->render();
+			return $this->tag("a")->href("users/learn/id=". $urser_id)->title("نمایش پرونده تحصیلی فراگیر")->class("icocertificationdisable")->render();
 		}
 	// `$list_certification = $this->sql(".findListCertification.classes", $classification_id);
 		

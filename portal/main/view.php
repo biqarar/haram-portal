@@ -225,16 +225,21 @@ class main_view{
 	 	// ->attr("target", "_blank");
 	}
 
-	public function classeTopLinks(){
+	public function classeTopLinks($classesid = false){
+			if(isset(config_lib::$surl['classesid'])){
+				$classesid = $this->xuId("classesid");
+			}elseif(config_lib::$surl['status'] == 'detail'){
+				$classesid = $this->xuId();
+			}
 		$this->topLinks(
 				array(
 					array("title"=> "کلاسها", 'url' =>"classes/status=list"),
-					array("title"=> "کلاسبندی", 'url' =>"classification/class/classesid=" . $this->xuId("classesid")),
-					array("title"=> "غیبت", 'url' =>"absence/classes/classesid=" . $this->xuId("classesid")),
-					array("title"=> "نمرات", 'url' =>"score/classes/classesid=" . $this->xuId("classesid")),
-					array("title"=> "شهریه", 'url' =>"price/classes/classesid=" . $this->xuId("classesid")),
-					array("title"=> "اطلاعات", 'url' =>"classes/status=detail/id=" . $this->xuId("classesid")),
-					array("title"=> "اصلاح", 'url' =>"classes/status=edit/id=" . $this->xuId("classesid")),
+					array("title"=> "کلاسبندی", 'url' =>"classification/class/classesid=" . $classesid),
+					array("title"=> "غیبت", 'url' =>"absence/classes/classesid=" . $classesid),
+					array("title"=> "نمرات", 'url' =>"score/classes/classesid=" . $classesid),
+					array("title"=> "شهریه", 'url' =>"price/classes/classesid=" . $classesid),
+					array("title"=> "اطلاعات", 'url' =>"classes/status=detail/id=" . $classesid),
+					array("title"=> "اصلاح", 'url' =>"classes/status=edit/id=" . $classesid),
 					// array("title"=> "چاپ", 'url' =>"classification/printlist/classesid=" . $this->xuId("classesid")),
 					)
 			);
@@ -245,8 +250,8 @@ class main_view{
 	public function classesDetail($classes_detail = false) {
 		// //------------------------------ get detail classes
 		if(isset(config_lib::$surl['classesid']) || (config_lib::$surl['status'] == 'detail')){
-			$this->classeTopLinks();
 			
+			$this->classeTopLinks();
 			//------------------------------ classes id
 			$classesid = (isset(config_lib::$surl['status']) 
 				&& config_lib::$surl['status'] == 'detail') ? $this->xuId() : config_lib::$surl['classesid'];
