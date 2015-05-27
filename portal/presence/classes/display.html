@@ -4,16 +4,11 @@
 {{tagMaker.list(list)}}
 <style type="text/css">
 	.presence-insert {
-		/*height: 75px;*/
-		/*width: 165px;*/
 		background: #ececec;
 		border-radius: 7px;
 		padding: 25px 50px 25px 50px !important;
 		text-align: center;
 		display:  none;
-		/*margin-right: 179px;*/
-		/*display: inline-block;*/
-
 	}
 	a {
 		text-decoration: none;
@@ -30,8 +25,8 @@
 	ثبت حضور در تاریخ {{dateNow}}
 </b></p>
 <div class="form-element">
-	<label for="name" class="input-label">شماره پرونده یا کد ملی</label>
-	<input type="text" name="presence" placeholder="اسکن کنید" id="presence" classesid="{{global.classesid}}">
+	<label for="name" class="input-label">شماره پرونده یا کد ملی<span class="fieldrequired">*</span></label>
+	<input type="text" name="presence" placeholder="اسکن کنید" id="presence" required classesid="{{global.classesid}}">
 </div>
 
 <div class="presence-insert" ></div>

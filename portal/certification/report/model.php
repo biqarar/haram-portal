@@ -18,8 +18,9 @@ class model extends main_model {
 		->fieldFrom()
 		->fieldNationalcode();
 		$reprot->joinUsers()->whereId("#classification.users_id")->fieldUsername();
-		// $reprot->joinCity()->whereId("#person.from")->fieldName("city");
-		// $reprot->joinCountry()->whereId("#person.nationality")->fieldName("country");
+		$reprot->joinClasses()->whereId("#classification.classes_id")->fieldId("classes");
+		$reprot->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
+		// echo($reprot->select()->string());exit();
 		if($type == "print") {
 			$reprot->whereDate_print("is", "#null");
 		}elseif($type == "request"){
