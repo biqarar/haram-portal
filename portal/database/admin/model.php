@@ -138,6 +138,9 @@ class model extends main_model{
 			`id` int(10) NOT NULL,
 			  `classification_id` int(10) NOT NULL,
 			  `date` int(8) NOT NULL,
+			  `branch_id` int(10) NOT NULL,
+			  `end_time_classes` time NOT NULL,
+			  `users_id` int(10) NOT NULL,
 			  `status` enum('absence','presence') NOT NULL DEFAULT 'absence'
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
 			"ALTER TABLE `presence` ADD UNIQUE `unique_index`(`classification_id`, `date`);",

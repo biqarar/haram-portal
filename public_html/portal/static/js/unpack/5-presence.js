@@ -34,7 +34,7 @@ route(/presence\/classesid\=\d+/, function () {
 				}else{
 					xhr_true(data.true[0]);
 				}
-				location.reload();
+				// location.reload();
 			}
 		});
 	});

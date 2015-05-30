@@ -23,13 +23,16 @@ class model extends main_model {
 		
 		$classes_list = $this->sql()->tableClassification()->whereClasses_id($classesid);
 		$classes_list = $this->classification_finde_active_list($classes_list);
-
+		$classes_list->joinClasses()->whereId("#classification.classes_id")->fieldEnd_time();
 		$classes_list= $classes_list->select()->allAssoc();
 
 		foreach ($classes_list as $key => $value) {
 			$insert_absence_all = $this->sql()->tablePresence()
 				->setClassification_id($value['id'])
 				->setDate($this->dateNow())
+				->setEnd_time_classes("#'" . $value['end_time']. "'")
+				->setBranch_id($_SESSION['users_branch'][0])
+				->setUsers_id($_SESSION['users_id'])
 				->setStatus("absence")
 				->insert();
 		}
