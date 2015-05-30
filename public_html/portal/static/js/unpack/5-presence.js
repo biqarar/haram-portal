@@ -1,5 +1,5 @@
 route(/presence\/classesid\=\d+/, function () {
-	$("#presence").keyup(function(e){
+	$("#presence", this).keyup(function(e){
 		username = $("#presence").val();
 		classesid = $(this).attr("classesid");
 		if(e.keyCode == 13) {
@@ -11,5 +11,18 @@ route(/presence\/classesid\=\d+/, function () {
 				}
 			});
 		}
+	});
+
+	$(".presence-classes", this).click(function(){
+		classesid = $(this).attr("classesid");
+		$.ajax({
+			type: "POST",
+			url : "presence/apiclasses/classesid="+ classesid ,
+			success : function(data){
+				console.log(data);
+				xhr_true(data.true[0]);
+				location.reload();
+			}
+		});
 	});
 });

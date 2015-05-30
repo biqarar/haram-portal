@@ -107,19 +107,19 @@ class model extends main_model{
 
 		*/		
 		// ---------------------------------------------------------------------------------------------------
-		$classes = $this->sql()->tableClasses()->whereStatus("is", "#null")->setStatus("running")->update();
-		$this->commit(function(){
-			echo "set all active classes to runnig status";
-		});
-		var_dump($classes->string());
-		$this->flush();
+		// $classes = $this->sql()->tableClasses()->whereStatus("is", "#null")->setStatus("running")->update();
+		// $this->commit(function(){
+		// 	echo "set all active classes to runnig status";
+		// });
+		// var_dump($classes->string());
+		// $this->flush();
 
-		$classes = $this->sql()->tableClassification()->whereBecause("done")->setBecause("#null")->setDate_delete("#null")->update();
-		$this->commit(function(){
-			echo "set all active classes to runnig status";
-		});
-		var_dump($classes->string());
-		$this->flush();
+		// $classes = $this->sql()->tableClassification()->whereBecause("done")->setBecause("#null")->setDate_delete("#null")->update();
+		// $this->commit(function(){
+		// 	echo "set all active classes to runnig status";
+		// });
+		// var_dump($classes->string());
+		// $this->flush();
 
 
 		/**
@@ -134,45 +134,37 @@ class model extends main_model{
 				
 		$sql = new dbconnection_lib;
 		$database_change = array(
-			"CREATE TABLE IF NOT EXISTS `courseclasses` (
+			"CREATE TABLE IF NOT EXISTS `presence` (
 			`id` int(10) NOT NULL,
-			  `classes_id` int(10) NOT NULL,
-			  `course_id` int(10) NOT NULL
+			  `classification_id` int(10) NOT NULL,
+			  `date` int(8) NOT NULL,
+			  `status` enum('absence','presence') NOT NULL DEFAULT 'absence'
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
 			
-			"ALTER TABLE `courseclasses` ADD PRIMARY KEY(`id`)",
-			"ALTER TABLE `courseclasses` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `courseclasses_delete`",
+			"ALTER TABLE `presence` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `presence` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `presence` ADD CONSTRAINT `presence_log_ibfk_1` FOREIGN KEY (`classification_id`) REFERENCES `classification` (`id`)",
 
 			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `courseclasses_delete` AFTER DELETE ON `courseclasses`
+			"CREATE TABLE IF NOT EXISTS `presence_classes` (
+			`id` int(10) NOT NULL,
+			  `classes_id` int(10) NOT NULL,
+			  `date` int(8) NOT NULL,
+			  `start_time` varchar(32) NOT NULL,
+			  `end_time` varchar(32) NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `presence_classes_insert` AFTER INSERT ON `presence_classes`
 			 FOR EACH ROW BEGIN
-			call setHistory('courseclasses', 'delete', OLD.id);
+			call setCash('presence_classes', NEW.id, @branch_id);
+			call setHistory('presence_classes', 'insert', NEW.id);
 			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `courseclasses_insert`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `courseclasses_insert` AFTER INSERT ON `courseclasses`
-			 FOR EACH ROW BEGIN
-			call setCash('courseclasses', NEW.id, @branch_id);
-			call setHistory('courseclasses', 'insert', NEW.id);
-			END",
-		
-			//-----------------------------------------------------------------------------
-			"DROP TRIGGER IF EXISTS `courseclasses_update`",
-			
-			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `courseclasses_update` AFTER UPDATE ON `courseclasses`
-			 FOR EACH ROW BEGIN
-			call setHistory('courseclasses', 'update', OLD.id);
-			END",
-			"ALTER TABLE `courseclasses` ADD UNIQUE `unique_index`(`classes_id`);",
-			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)",
-			"ALTER TABLE `courseclasses` ADD CONSTRAINT `courseclasses_log_ibfk_2` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
+			"ALTER TABLE `presence_classes` ADD PRIMARY KEY(`id`)",
+			"ALTER TABLE `presence_classes` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+			"ALTER TABLE `presence_classes` ADD CONSTRAINT `presence_classes_log_ibfk_1` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
 
+			//-----------------------------------------------------------------------------
+						
 
 		);
 

@@ -13,8 +13,18 @@
 	a {
 		text-decoration: none;
 	}
-</style>
+	.presence-classes {
+		width: 100px;
+		background: #f16971;
+		border-radius: 7px;
+		padding: 25px 50px 25px 50px !important;
+		text-align: center;
+		display: inline-block;
 
+	}
+
+</style>
+{%if startpresence%}
 <p><b>
 	سیستم ثبت حضور فراگیران در کلاس:
 </b></p>
@@ -30,5 +40,17 @@
 </div>
 
 <div class="presence-insert" ></div>
-
+{%else%}
+<br>
+<p><b>
+	توجه داشته باشید با زدن این دکمه عملیات ثبت حضور آغاز خواهد شد و فقط کسانی که اقدام به ثبت حضور خود می کنند در لیست حاضرین امروز قرار خواهند گرفت.
+	<br>
+امکان لغو عملیات پس از شروع فرایند وجود ندارد.
+</b></p>
+<a href="">
+	<div class="presence-classes" classesid="{{global.classesid}}">
+	شروع فرایند ثبت حضور
+	</div>
+</a>
+{%endif%}
 {%endblock%}

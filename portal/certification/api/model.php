@@ -13,6 +13,12 @@ class model extends main_model {
 		}elseif($type == "setdatedeliver"){
 			$this->sql()->tableCertification()->setDate_deliver($this->dateNow())->whereId($certificationid)->update();
 			debug_lib::true("تاریخ تحویل ثبت شد");
+		}elseif($type == "deletedatedeliver"){
+			$this->sql()->tableCertification()->setDate_deliver("#null")->whereId($certificationid)->update();
+			debug_lib::true("تاریخ تحویل حذف شد");
+		}elseif($type == "deletedateprint"){
+			$this->sql()->tableCertification()->setDate_print("#null")->whereId($certificationid)->update();
+			debug_lib::true("تاریخ تحویل حذف شد");
 		}
 	}	
 }

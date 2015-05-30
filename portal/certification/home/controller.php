@@ -20,7 +20,7 @@ class controller extends main_controller{
 		//------------------------------ pending classes
 		$this->listen(array(
 			"max" => 3,
-			"url" => array("apichange","certificationid" => "/^\d+$/", "type" => "/^(setdateprint)|(setdatedeliver)$/")
+			"url" => array("apichange","certificationid" => "/^\d+$/", "type" => "/^(setdateprint)|(setdatedeliver)|(deletedateprint)|(deletedatedeliver)$/")
 			), 
 			function () {
 				save(array("certification", "api", "mod" => "apichange"));

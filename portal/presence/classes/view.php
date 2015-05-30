@@ -22,6 +22,8 @@ class view extends main_view {
 		$this->data->dateNow = $this->dateNow();
 		
 		$this->global->classesid = $this->xuId("classesid");
+
+		$this->data->startpresence = $this->sql("#startpresence", $this->xuId("classesid"));
 	}
 
 }

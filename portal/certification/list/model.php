@@ -43,9 +43,14 @@ class model extends main_model {
 
 			if($r->date_print == null) {
 				$r->date_print = $this->tag("a")->title("ثبت تاریخ چاپ")->style("cursor: pointer;")->certificationid($r->id)->class("icocalendar set-date-print")->dateNow($this->dateNow)->render();
+			}else{
+				$r->date_print = $this->tag("a")->title("حذف تاریخ چاپ")->style("cursor: pointer;")->certificationid($r->id)->class("delete-date-print")->dateNow($this->dateNow)->vtext($r->date_print)->render();
 			}
+
 			if($r->date_deliver == null) {
 				$r->date_deliver = $this->tag("a")->title("ثبت تاریخ تحویل")->style("cursor: pointer;")->certificationid($r->id)->class("icocalendar set-date-deliver")->dateNow($this->dateNow)->render();
+			}else{
+				$r->date_deliver = $this->tag("a")->title("حذف تاریخ تحویل")->style("cursor: pointer;")->certificationid($r->id)->class("delete-date-deliver")->dateNow($this->dateNow)->vtext($r->date_deliver)->render();
 			}
 			$r->learn = $this->tag("a")->href("users/learn/id=". $r->learn)->class("icoshare")->render();
 		});

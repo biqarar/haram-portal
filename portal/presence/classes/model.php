@@ -4,18 +4,64 @@
  */
 class model extends main_model {
 
+	public function post_apiclasses() {
+		$classesid = $this->xuId("classesid");
+		if(!$this->sql_startpresence($classesid)){
+			$t=time();
+			$time = date("H:i:s",$t);
+			$set = $this->sql()->tablePresence_classes()->setClasses_id($classesid)->setDate($this->dateNow())->setStart_time("#'" .  $time .  "'")->insert();
+			$this->insert_absence_all($classesid);
+			// debug_lib::true("عملیات ثبت حضرو فعال شد");
+		}else{
+			// debug_lib::fatal("فرایند ثبت حضور این کلاس در حال اجرا یا به پایان رسیده است");
+		}
+
+exit();
+	}
+
+	function insert_absence_all($classesid = false){
+		
+		$classes_list = $this->sql()->tableClassification()->whereClasses_id($classesid);
+		$classes_list = $this->classification_finde_active_list($classes_list);
+
+		$classes_list= $classes_list->select()->allAssoc();
+
+		foreach ($classes_list as $key => $value) {
+			$insert_absence_all = $this->sql()->tablePresence()
+				->setClassification_id($value['id'])
+				->setDate($this->dateNow())
+				->setStatus("absence")
+				->insert();
+				$this->commit();
+				var_dump($insert_absence_all->string());
+		}
+	}
+
+	public function sql_startpresence($classesid = false) {
+		$check = $this->sql()->tablePresence_classes()->whereClasses_id($classesid)->limit(1)->select()->num();
+		if($check == 1) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	function post_apiadd() {
 		$data = $this->xuId("username");
 		$classesid = $this->xuId("classesid");
+
 		$users_id = $this->find_users_id($data);
 		
-		$this->check_classes($users_id, $classesid);
+		$check_classes = $this->check_classes($users_id, $classesid);
 
-		$this->insert_absence_all($classesid);
+		if($check_classes) {
+			$this->insert_absence_all($classesid);
+		}
 
 
-		var_dump($data);
+		var_dump($data, $classesid);
 		var_dump("fuck");exit();
+
 	}
 
 	function find_users_id($username = false){
@@ -44,7 +90,7 @@ class model extends main_model {
 	}
 
 	function check_classes($users_id = false, $classesid = false){
-		var_dump($users_id);
+		// var_dump($users_id);
 		$check = $this->sql()->tableClassification()
 			->whereUsers_id($users_id)
 			->andClasses_id($classesid);
@@ -58,23 +104,7 @@ class model extends main_model {
 		}	
 	}
 
-	function insert_absence_all($classesid = false){
-		$classes_list = $this->sql()->tableClassification()->whereClasses_id($classesid);
-		$classes_list = $this->classification_finde_active_list($classes_list);
 
-		$classes_list= $classes_list->select()->allAssoc();
-
-		foreach ($classes_list as $key => $value) {
-			$insert_absence_all = $this->sql()->tableAbsence()
-				->setClassification_id($value['id'])
-				->setDate($this->dateNow())
-				->setType("unjustified absence")
-				->setBecause("presence insert system")
-				->insert();
-				$this->commit();
-				var_dump($insert_absence_all->string());
-		}
-	}
 
 	function insert_presence($users_id = false, $classes_id = false){
 

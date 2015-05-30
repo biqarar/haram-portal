@@ -5,6 +5,7 @@
 class controller extends main_controller{
 	
 	function config(){	
+
 		//------------------------------ branch descriptiion
 		$this->listen(array(
 			"max" => 1,
@@ -23,6 +24,17 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("presence", "classes", "mod" => "apiadd"));
+				$this->permission = array("absence" => array("insert" => array("public"), "update" => array("public")));
+			}
+		);
+
+			//------------------------------ branch descriptiion
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("apiclasses","classesid"=> "/^\d+$/")
+			), 
+			function() {
+				save(array("presence", "classes", "mod" => "apiclasses"));
 				$this->permission = array("absence" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
