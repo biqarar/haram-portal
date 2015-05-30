@@ -140,6 +140,7 @@ class model extends main_model{
 			  `date` int(8) NOT NULL,
 			  `status` enum('absence','presence') NOT NULL DEFAULT 'absence'
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			"ALTER TABLE `presence` ADD UNIQUE `unique_index`(`classification_id`, `date`);",
 			
 			"ALTER TABLE `presence` ADD PRIMARY KEY(`id`)",
 			"ALTER TABLE `presence` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
@@ -153,6 +154,8 @@ class model extends main_model{
 			  `start_time` varchar(32) NOT NULL,
 			  `end_time` varchar(32) NULL
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			"ALTER TABLE `presence_classes` ADD UNIQUE `unique_index`(`classes_id`, `date`);",
+
 			//-----------------------------------------------------------------------------
 			"CREATE TRIGGER `presence_classes_insert` AFTER INSERT ON `presence_classes`
 			 FOR EACH ROW BEGIN
