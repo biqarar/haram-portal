@@ -89,8 +89,12 @@ class model extends main_model{
 	public function sql_admin() {
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
-		$this->ready(6);
 
+		// $this->branch_id_set();
+		// exit();
+		// die();
+
+		$this->ready(6);
 		//----------------------------- new version function (database change)	
 		$this->database_change();		
 		
@@ -134,19 +138,81 @@ class model extends main_model{
 				
 		$sql = new dbconnection_lib;
 		$database_change = array(
+			"ALTER TABLE `users`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `users` ADD CONSTRAINT `users_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"ALTER TABLE `classes`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `classes` ADD CONSTRAINT `classes_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"ALTER TABLE `price`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `price` ADD CONSTRAINT `price_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"ALTER TABLE `plan`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `plan` ADD CONSTRAINT `plan_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"ALTER TABLE `group`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `group` ADD CONSTRAINT `group_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			//---------------------------------------------------------
+
+			"update users as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'users' 
+			set us.branch_id = br.branch_id",
+
+
+			"update classes as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' 
+			set us.branch_id = br.branch_id",
+
+
+			"update place as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'place' 
+			set us.branch_id = br.branch_id",
+
+
+			"update price as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'price' 
+			set us.branch_id = br.branch_id",
+
+
+			"update plan as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'plan' 
+			set us.branch_id = br.branch_id",
+
+
+			"update course as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'course' 
+			set us.branch_id = br.branch_id",
+
+
+			"update `group` as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'group' 
+			set us.branch_id = br.branch_id",
+
+
+			"ALTER TABLE `users`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			"ALTER TABLE `classes`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			"ALTER TABLE `price`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			"ALTER TABLE `plan`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			"ALTER TABLE `group`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+
+			//-----------------------------------------------------------------------
+
 			"CREATE TABLE IF NOT EXISTS `presence` (
-			`id` int(10) NOT NULL,
+			`id` int(10) NULL DEFAULT NULL,
 			  `classification_id` int(10) NOT NULL,
+			  `type` enum('presence','unjustified absence') NOT NULL DEFAULT 'unjustified absence',
 			  `date` int(8) NOT NULL,
-			  `branch_id` int(10) NOT NULL,
-			  `end_time_classes` time NOT NULL,
-			  `users_id` int(10) NOT NULL,
-			  `status` enum('absence','presence') NOT NULL DEFAULT 'absence'
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
+			  `because` time NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci",
 			"ALTER TABLE `presence` ADD UNIQUE `unique_index`(`classification_id`, `date`);",
 			
-			"ALTER TABLE `presence` ADD PRIMARY KEY(`id`)",
-			"ALTER TABLE `presence` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
+		
 			"ALTER TABLE `presence` ADD CONSTRAINT `presence_log_ibfk_1` FOREIGN KEY (`classification_id`) REFERENCES `classification` (`id`)",
 
 			//-----------------------------------------------------------------------------
@@ -200,5 +266,7 @@ class model extends main_model{
 
 		*/
 	}
+
+
 }
 ?>

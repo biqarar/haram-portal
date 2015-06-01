@@ -30,12 +30,12 @@ class model extends main_model {
 			$insert_absence_all = $this->sql()->tablePresence()
 				->setClassification_id($value['id'])
 				->setDate($this->dateNow())
-				->setEnd_time_classes("#'" . $value['end_time']. "'")
-				->setBranch_id($_SESSION['users_branch'][0])
-				->setUsers_id($_SESSION['users_id'])
-				->setStatus("absence")
+				->setType("unjustified absence")
+				->setBecause("#'" . $value['end_time'] . "'")
 				->insert();
+				// var_dump($insert_absence_all->string());
 		}
+		// exit();
 	}
 
 	public function sql_startpresence($classesid = false) {
@@ -115,7 +115,7 @@ class model extends main_model {
 		$insert_presence = $this->sql()->tablePresence()
 			->whereClassification_id($this->classification_id['id'])
 			->andDate($this->dateNow())
-			->setStatus("presence")->update()->result();
+			->setType("presence")->update()->result();
 		if($insert_presence){
 			return true;
 		}
