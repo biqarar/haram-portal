@@ -96,7 +96,7 @@ class model extends main_model{
 
 		$this->ready(6);
 		//----------------------------- new version function (database change)	
-		$this->database_change();		
+		// $this->database_change();		
 		
 		//----------------------------- new version function (query on record)
 		$this->query_on_record();
@@ -107,9 +107,34 @@ class model extends main_model{
 	}
 
 	public function query_on_record() {
+		$sql = new dbconnection_lib;
+		$sql::$resum_on_error = true;
+		$s = $sql->query("set @branch_id = 2");
 		/**
 
-		*/		
+		*/
+		$plan = array("مبین","منهاج","تبیان","رضا","من","اوپ");
+		foreach ($plan as $key => $value) {
+			$new_name = array("شش جزء اول", "شش جزء دوم");
+			foreach ($new_name as $k => $v) {
+				$plan_id = $this->sql()->tablePlan()
+					->setGroup_id("3")
+					->setName($value  ." " .$v)
+					->setPrice("350000")
+					->setAbsence("2")
+					->setCertificate("yes")
+					->setMark("16")
+					->setMin_person("10")
+					->setMax_person("12")
+					->setPayment_count("122")
+					->setExpired_price(6)->insert()->LAST_INSERT_ID();
+						$this->commit(function(){
+							echo "set all active classes to runnig status";
+						});
+					var_dump($plan_id);
+			}
+		}
+		exit("d");
 		// ---------------------------------------------------------------------------------------------------
 		// $classes = $this->sql()->tableClasses()->whereStatus("is", "#null")->setStatus("running")->update();
 		// $this->commit(function(){
@@ -138,67 +163,67 @@ class model extends main_model{
 				
 		$sql = new dbconnection_lib;
 		$database_change = array(
-			"ALTER TABLE `users`  ADD `branch_id` INT(10) NULL",
-			"ALTER TABLE `users` ADD CONSTRAINT `users_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			// "ALTER TABLE `users`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `users` ADD CONSTRAINT `users_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
 
-			"ALTER TABLE `classes`  ADD `branch_id` INT(10) NULL",
-			"ALTER TABLE `classes` ADD CONSTRAINT `classes_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			// "ALTER TABLE `classes`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `classes` ADD CONSTRAINT `classes_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
 
-			"ALTER TABLE `price`  ADD `branch_id` INT(10) NULL",
-			"ALTER TABLE `price` ADD CONSTRAINT `price_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			// "ALTER TABLE `price`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `price` ADD CONSTRAINT `price_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
 
-			"ALTER TABLE `plan`  ADD `branch_id` INT(10) NULL",
-			"ALTER TABLE `plan` ADD CONSTRAINT `plan_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			// "ALTER TABLE `plan`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `plan` ADD CONSTRAINT `plan_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
 
-			"ALTER TABLE `group`  ADD `branch_id` INT(10) NULL",
-			"ALTER TABLE `group` ADD CONSTRAINT `group_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			// "ALTER TABLE `group`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `group` ADD CONSTRAINT `group_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
 
-			//---------------------------------------------------------
+			// //---------------------------------------------------------
 
-			"update users as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'users' 
-			set us.branch_id = br.branch_id",
-
-
-			"update classes as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' 
-			set us.branch_id = br.branch_id",
+			// "update users as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'users' 
+			// set us.branch_id = br.branch_id",
 
 
-			"update place as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'place' 
-			set us.branch_id = br.branch_id",
+			// "update classes as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' 
+			// set us.branch_id = br.branch_id",
 
 
-			"update price as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'price' 
-			set us.branch_id = br.branch_id",
+			// "update place as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'place' 
+			// set us.branch_id = br.branch_id",
 
 
-			"update plan as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'plan' 
-			set us.branch_id = br.branch_id",
+			// "update price as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'price' 
+			// set us.branch_id = br.branch_id",
 
 
-			"update course as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'course' 
-			set us.branch_id = br.branch_id",
+			// "update plan as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'plan' 
+			// set us.branch_id = br.branch_id",
 
 
-			"update `group` as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'group' 
-			set us.branch_id = br.branch_id",
+			// "update course as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'course' 
+			// set us.branch_id = br.branch_id",
 
 
-			"ALTER TABLE `users`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+			// "update `group` as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'group' 
+			// set us.branch_id = br.branch_id",
 
-			"ALTER TABLE `classes`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 
-			"ALTER TABLE `price`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+			// "ALTER TABLE `users`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 
-			"ALTER TABLE `plan`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+			// "ALTER TABLE `classes`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 
-			"ALTER TABLE `group`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+			// "ALTER TABLE `price`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			// "ALTER TABLE `plan`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			// "ALTER TABLE `group`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 
 
 			//-----------------------------------------------------------------------

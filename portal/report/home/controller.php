@@ -6,9 +6,25 @@ class controller extends main_controller {
 
 	//---------------------------- bridge
 	$this->listen(array(
-			"url" => array("classes", "bridge", "/(.*)/")
+			"url" => array("classes", "type" => "bridge", "/(.*)/")
 			), function (){
 				save(array("report","classes","bridge"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+
+	//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("classes", "type" => "classification", "/(.*)/")
+			), function (){
+				save(array("report","classes","classification"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+
+	//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("classes", "type" => "person", "/(.*)/")
+			), function (){
+				save(array("report","classes","person"));
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 	//----------------------------
@@ -23,9 +39,9 @@ class controller extends main_controller {
 
 	//---------------------------- bridge
 	$this->listen(array(
-			"url" => array("classes","type" => "person", "/(.*)/")
+			"url" => array("classes","type" => "personstatus", "/(.*)/")
 			), function (){
-				save(array("report","classes","person"));
+				save(array("report","classes","personstatus"));
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 	
