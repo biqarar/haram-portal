@@ -96,7 +96,7 @@ class model extends main_model{
 
 		$this->ready(6);
 		//----------------------------- new version function (database change)	
-		// $this->database_change();		
+		$this->database_change();		
 		
 		//----------------------------- new version function (query on record)
 		$this->query_on_record();
@@ -107,34 +107,7 @@ class model extends main_model{
 	}
 
 	public function query_on_record() {
-		$sql = new dbconnection_lib;
-		$sql::$resum_on_error = true;
-		$s = $sql->query("set @branch_id = 2");
-		/**
-
-		*/
-		$plan = array("مبین","منهاج","تبیان","رضا","من","اوپ");
-		foreach ($plan as $key => $value) {
-			$new_name = array("شش جزء اول", "شش جزء دوم");
-			foreach ($new_name as $k => $v) {
-				$plan_id = $this->sql()->tablePlan()
-					->setGroup_id("3")
-					->setName($value  ." " .$v)
-					->setPrice("350000")
-					->setAbsence("2")
-					->setCertificate("yes")
-					->setMark("16")
-					->setMin_person("10")
-					->setMax_person("12")
-					->setPayment_count("122")
-					->setExpired_price(6)->insert()->LAST_INSERT_ID();
-						$this->commit(function(){
-							echo "set all active classes to runnig status";
-						});
-					var_dump($plan_id);
-			}
-		}
-		exit("d");
+		
 		// ---------------------------------------------------------------------------------------------------
 		// $classes = $this->sql()->tableClasses()->whereStatus("is", "#null")->setStatus("running")->update();
 		// $this->commit(function(){
