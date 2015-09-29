@@ -21,7 +21,7 @@ class model extends main_model {
 		->search_fields("plan", "teacher")
 		->query(function($q){
 			$q->whereUsers_id($this->xuId());
-			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid");
+			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid")->fieldStatus("classesstatus");
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
 		})
@@ -47,7 +47,13 @@ class model extends main_model {
 			}
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
 			$r->certification = $this->find_status_certification($r->certification);
-			$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->render();
+			if($r->classesstatus == "اتمام") {
+				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoredclass")->title("کلاس به اتمام رسیده است")->render();
+
+			}else{
+				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->title("کلاس فعال است")->render();
+			}
+			
 		});
 		$this->sql(".dataTable", $dtable);
 	}

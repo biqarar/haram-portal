@@ -42,7 +42,7 @@ class model extends main_model {
 	}
 
 
-	public function remove_payment_coutn($usersid = false, $classesid = false) {
+	public function remove_payment_count($usersid = false, $classesid = false) {
 		$this->sql()->tablePrice()
 			->whereUsers_id($usersid)
 			->andVisible(0)
@@ -57,7 +57,7 @@ class model extends main_model {
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");
 		
-		$this->remove_payment_coutn($usersid, $classesid);
+		$this->remove_payment_count($usersid, $classesid);
 		
 		$price = $this->sql()->tablePrice()
 			->whereUsers_id($usersid)

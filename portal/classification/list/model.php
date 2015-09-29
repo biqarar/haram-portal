@@ -29,11 +29,28 @@ class model extends main_model {
 			})
 			->result(function($r){
 				// $r->usersid = "sss";
-				$r->more = $this->tag("a")->addClass("icoshare")->href("users/learn/id=" . $r->more)->render();
-				$r->edit = $this->tag("a")->addClass("icoedit")->href("classification/status=edit/id=". $r->edit)->render();
+				if($this->check_classification($r->edit)){
+					$r->edit = $this->tag("a")->addClass("icoredclose")->href("classification/status=edit/id=". $r->edit)->render();
+				}else{
+					$r->edit = $this->tag("a")->addClass("icodadd")->href("classification/returnclasses/usersid=". $r->edit)->render();
+				}
+					$r->more = $this->tag("a")->addClass("icoshare")->href("users/learn/id=" . $r->more)->render();
+				// var_dump($r->more);exit();
 				// $r->edit = "fff";
 			});
 			$this->sql(".dataTable", $dtable);
 	}
+	function check_classification($classificationid = false) {
+		$check_classification = $this->sql()
+		->tableClassification()
+		->whereId($classificationid)
+		->limit(1)->select()->assoc();
+		if($check_classification['date_delete'] == "" and $check_classification['because'] == ""){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
 ?>

@@ -18,7 +18,7 @@ class query_xlsx_cls extends query_cls {
         
         //start of printing column names 
         foreach ($allAssoc[0] as $key => $value) {
-            print(gettext($key));
+            print(($key));
             echo  $sep;
         }
         print($newline); 
@@ -27,7 +27,7 @@ class query_xlsx_cls extends query_cls {
             if(is_array($value)){
 
                 foreach ($value as $k => $v) {
-                        print(gettext($v) . $sep);
+                        print(($v) . $sep);
                 }
                 print $newline;
             }

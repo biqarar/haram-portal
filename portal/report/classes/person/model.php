@@ -6,7 +6,7 @@
 class model extends main_model {
 	
 	public function sql_bridge_list($classesid = false) {
-		
+	// var_dump("fuck");exit();		
 		$classes_id = preg_split("/\,/", $classesid);
 		if(!$classesid || empty($classes_id)) return false;
 		

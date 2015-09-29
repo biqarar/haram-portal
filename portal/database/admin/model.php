@@ -94,12 +94,12 @@ class model extends main_model{
 		// exit();
 		// die();
 
+		$this->query_on_record();
 		$this->ready(6);
 		//----------------------------- new version function (database change)	
-		$this->database_change();		
+		// $this->database_change();		
 		
 		//----------------------------- new version function (query on record)
-		$this->query_on_record();
 		
 		$this->end();
 		//---------------------------------------------------------------------------------------------------
@@ -109,13 +109,27 @@ class model extends main_model{
 	public function query_on_record() {
 		
 		// ---------------------------------------------------------------------------------------------------
-		// $classes = $this->sql()->tableClasses()->whereStatus("is", "#null")->setStatus("running")->update();
-		// $this->commit(function(){
-		// 	echo "set all active classes to runnig status";
-		// });
-		// var_dump($classes->string());
-		// $this->flush();
-
+		$person = $this->sql()->tablePerson();//->select()->string();
+		$person->joinBranch_cash()->whereTable("person")->andRecord_id("#person.id")->andBranch_id(7);
+		// $person->joinBridge()->whereUsers_id("#person.users_id");
+		$person = $person->select()->allAssoc();
+		foreach ($person as $key => $value) {
+			$bridge = $this->sql()->tableBridge()->whereUsers_id($value['users_id'])->select()->allAssoc();
+			// var_dump($value);exit();
+			$person[$key]['phone'] = isset($bridge[0]['value']) ? $bridge[0]['value'] : "-";
+			$person[$key]['mobile'] = isset($bridge[1]['value']) ? $bridge[1]['value'] : "-";
+			$person[$key]['education_id'] = $this->sql(".assoc.foreign", "education", $value['education_id'], "section");
+			$person[$key]['from'] = $this->sql(".assoc.foreign", "city", $value['from'], "name");
+			$person[$key]['nationality'] = $this->sql(".assoc.foreign", "country", $value['nationality'], "name");
+			$person[$key]['id'] = $this->sql(".assoc.foreign", "users", $value['users_id'], "username");
+			// var_dump( $this->sql(".assoc.foreign", "users", $value['users_id'], "username"));exit();
+			// echo $value['value'] . "<br>";
+			// var_dump($this->sql(".assoc.foreign", "city", $value['from'], "name"));exit();
+		}
+		// var_dump($person);exit();
+		// var_dump(count($person));
+		$this->sql(".xlsx", $person);exit();
+exit();
 		// $classes = $this->sql()->tableClassification()->whereBecause("done")->setBecause("#null")->setDate_delete("#null")->update();
 		// $this->commit(function(){
 		// 	echo "set all active classes to runnig status";

@@ -7,7 +7,7 @@ class view extends main_view {
 	public function config() {
 
 		//------------------------------ globals
-		$this->global->page_title ="classification";
+		$this->global->page_title ="return classes";
 
 		//------------------------------ load form
 		$f = $this->form("@classification", $this->urlStatus());

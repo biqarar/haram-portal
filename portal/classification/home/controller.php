@@ -15,6 +15,14 @@ class controller extends main_controller{
 
 		$this->listen(array(
 			"max" => 3,
+			"url" => array("returnclasses","usersid" =>  "/^\d+$/")
+			), function () {
+			save(array("classification", "returnclasses"));
+			$this->permission = array("classification" => array("insert" => array("public")));
+		});
+
+		$this->listen(array(
+			"max" => 3,
 			"url" => array("classes", "/^\d+$/", "/^\d+$/")
 			), function () {
 			save(array("classification", "api", "classification"));

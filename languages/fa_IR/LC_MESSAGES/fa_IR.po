@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "return classes"
+msgstr "بازگشت به کلاس"
+
 msgid "manage classes"
 msgstr "مدیریت کلاسیک"
 

@@ -1,0 +1,81 @@
+{% extends layout %}
+{% block content %}
+
+<br>
+<p><b>
+	ثبت مجدد فراگیر در کلاس
+</b></p>
+<p>
+	این فراگیر قبلا در این کلاس بوده است و به علت {{global.because}} در تاریخ {{global.date_delete}} حذف شده است
+	<br>
+	در صورتی که میخواهید فرایگر مجددا به کلاس اضافه شود بر روی دکمه زیر کلیک کنید
+	
+</p>
+
+
+<style type="text/css">
+	.classes-running {
+		/*height: 75px;*/
+		width: 100px;
+		background: #9fbe03;
+		border-radius: 7px;
+		padding: 25px 50px 25px 50px !important;
+		text-align: center;
+		display: inline-block;
+
+	}
+	a {
+		text-decoration: none;
+	}
+</style>
+<a href="">
+	<div class="classes-running" classesid="{{global.classesid}}">
+	ثبت مجدد در کلاس
+	</div>
+</a>
+<style type="text/css">
+	.question {
+		background-color: #ececec;
+		height: 150px;
+		width: 500px;
+		border-radius: 5px;
+		text-align: center;
+		padding: 10px;
+		margin: 20px;
+		display: none;
+	}
+	.yesprice{
+		background-color: #9fbe03;
+		display: inline;
+		/*height: 10px;*/
+		/*width: 10px;*/
+		padding: 10px 20px 10px 20px;
+		border-radius: 5px;
+		margin-bottom: 30px;
+
+	}
+	.noprice{
+		background-color: #f16971;
+		display: inline;
+		/*height: 10px;*/
+		/*width: 10px;*/
+		padding: 10px 20px 10px 20px;
+		border-radius: 5px;
+		margin-bottom: 30px;
+	}
+	.result-ajx {
+		margin-right: 100px !important;
+		display: initial;
+		padding: 28px;
+	}
+</style>
+<div id="result-ajx"></div>
+<div class="question">
+	برای این فراگیر در این کلاس مبلغ <span id="sumprice"></span> ثبت شده است.
+	آیا می خواهید این مبلغ به حساب فراگیر باز گردانده شود؟
+	<br>
+	<br>
+	<a href=""><div class="yesprice">بلی</div></a>
+	<a href=""><div class="noprice">خیر</div></a>	
+</div>
+{%endblock%}
