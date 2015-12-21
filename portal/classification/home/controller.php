@@ -99,8 +99,8 @@ class controller extends main_controller{
 		
 		//------------------------------ api to insert users to classes
 		$this->listen(array(
-			"max" => 4,
-			"url" => array("api", "usersid" => "/^\d+$/", "classesid" => "/^\d+$/")
+			"max" => 5,
+			"url" => array("api", "usersid" => "/^\d+$/", "classesid" => "/^\d+$/" , "type" => "/^(add|returnclasses)$/")
 		), 
 		function () {
 			save(array("class" => "classification", "method"=> "api", "mod" => "insert"));

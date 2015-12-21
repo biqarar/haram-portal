@@ -21,7 +21,7 @@ route(/classification\/class\/classesid\=\d+/,function(){
 				var name = arguments[1][0] +" "+arguments[1][1];
 				var classname = tabName.text();
 				var classesid = href.match(/classesid=(\d+)#?.*$/)[1];
-				var _xhrUrl = "classification/api/usersid="+usersid+"/classesid="+classesid;
+				var _xhrUrl = "classification/api/usersid="+usersid+"/classesid="+classesid+"/type=add";
 				tabName.removeClass('copier-true').removeClass('copier-error').addClass('copier-load');
 				console.log(_xhrUrl);
 				$.ajax({

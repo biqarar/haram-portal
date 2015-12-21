@@ -110,11 +110,13 @@ class model extends main_model {
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
+		$add_or_returnclasses = $this->xuId("type");
 		// $name_famil 
+
+		// var_dump($users_id, $classes_id, );exit();
 
 		//------------------------------ insert courseclasses
 		$courseclasses = $this->sql(".courseclasses", $classes_id, $users_id);
-		// var_dump($courseclasses);
 		if(!$courseclasses){
 
 		//------------------------------ key for check duplicate
@@ -122,7 +124,7 @@ class model extends main_model {
 		//------------------------------ check for duplicate this classes inserted 
 			$check = $this->sql()->tableClassification()->whereUsers_id($users_id)->andClasses_id($classes_id)->limit(1)->select();
 			
-			if($check->num() == 0) {
+			if($check->num() == 0 || $add_or_returnclasses == "returnclasses") {
 
 				//------------------------------ check duplicate other classes as time for this users
 				list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.classification", $users_id, $classes_id);
@@ -136,7 +138,7 @@ class model extends main_model {
 				
 					}elseif(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
 		
-						debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام فرمایید.");
+						debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام نمایید.");
 				
 					}elseif(!$this->sql(".pasportCheck", $users_id)){
 					
@@ -144,13 +146,24 @@ class model extends main_model {
 					
 					}else{
 
+						//------------------------------ insert classification  or return classes
+						if($add_or_returnclasses == "add") {
+							//------------------------------ insert classification
+							$classification = $this->sql()->tableClassification()
+									->setUsers_id($users_id)
+									->setClasses_id($classes_id)
+									->setDate_entry($this->dateNow())
+									->insert();
+							
+						}elseif($add_or_returnclasses == "returnclasses") {
+							//------------------------------ return classification
+							$classification = $this->sql()->tableClassification()
+									->setDate_delete("")
+									->setBecause("")
+									->whereUsers_id($users_id)->andClasses_id($classes_id)
+									->update()->string();
+						}	
 
-						//------------------------------ insert classification
-						$classification = $this->sql()->tableClassification()
-								->setUsers_id($users_id)
-								->setClasses_id($classes_id)
-								->setDate_entry($this->dateNow())
-								->insert();
 						//------------------------------- set classification count in to classes table
 						$this->sql(".classesCount", $classes_id);
 						

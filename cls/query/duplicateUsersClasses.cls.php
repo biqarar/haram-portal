@@ -85,6 +85,7 @@ class query_duplicateUsersClasses_cls extends query_cls {
 		
 		$new_classes = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assoc();
 		if(!isset($new_classes['id']) || $new_classes['status'] == 'done'){
+			// var_dump($new_classes);exit();
 			// debug_lib::fatal("failed","اطلاعات کلاس یافت نشد");
 			return array(true,"این کلاس به اتمام رسیده است" );
 		}
