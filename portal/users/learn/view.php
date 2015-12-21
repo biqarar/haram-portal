@@ -133,8 +133,8 @@ class view extends main_view  {
 
 		$this->data->dataTable = $this->dtable(
 			"users/learn/status/status=apilist/id=" . $this->xuId() . "/", 
-			array("id"
-				, "class"
+			array(
+			"class"
 			, "plan"
 			, "teachername"
 			,"teacherfamily"

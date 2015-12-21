@@ -4,6 +4,10 @@
 */
 class model extends main_model {
 
+	public function post_apireturnclassification() {
+		return;
+	}
+
 	public function post_priceback() {
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");

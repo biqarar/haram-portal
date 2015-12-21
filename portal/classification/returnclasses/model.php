@@ -4,6 +4,10 @@
 */
 class model extends main_model {
 
+	public function sql_classification_detail($field = false , $id = false) {
+		return $this->sql()->tableClassification()->whereId($id)->limit(1)->select()->assoc($field);
+	}
+
 	public function makeQuery() {
 		return $this->sql()->tableClassification()
 				// ->setUsers_id(post::users_id())

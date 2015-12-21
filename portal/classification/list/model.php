@@ -32,7 +32,7 @@ class model extends main_model {
 				if($this->check_classification($r->edit)){
 					$r->edit = $this->tag("a")->addClass("icoredclose")->href("classification/status=edit/id=". $r->edit)->render();
 				}else{
-					$r->edit = $this->tag("a")->addClass("icodadd")->href("classification/returnclasses/usersid=". $r->edit)->render();
+					$r->edit = $this->tag("a")->addClass("icodadd")->href("classification/returnclasses/id=". $r->edit)->render();
 				}
 					$r->more = $this->tag("a")->addClass("icoshare")->href("users/learn/id=" . $r->more)->render();
 				// var_dump($r->more);exit();

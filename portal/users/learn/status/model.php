@@ -8,7 +8,7 @@ class model extends main_model {
 		$usersid = $this->xuId();
 
 		$dtable = $this->dtable->table("classification")
-		->fields("id","classesid class"
+		->fields("classesid class"
 		, "plan"
 		, "teachername"
 		,"teacherfamily"
