@@ -6,7 +6,7 @@ function ilog($v){
 	$v = preg_replace("/WHERE/i", "\n\tWHERE", $v);
 	$v = preg_replace("/ORDER/i", "\n\tORDER", $v);
 	$v = preg_replace("/LIMIT/i", "\n\tLIMIT", $v);
-	file_put_contents("../../../log.txt", urldecode($_SERVER['REQUEST_URI'])."\n".$v."\n", FILE_APPEND);
+	//file_put_contents("../../../log.txt", urldecode($_SERVER['REQUEST_URI'])."\n".$v."\n", FILE_APPEND);
 }
 if(!function_exists('apache_request_headers')) {
 	function apache_request_headers() {

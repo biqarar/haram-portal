@@ -5,9 +5,11 @@ class model extends main_model{
 	*/
 	public function post_list(){
 
-		$sql = $this->sql()->tableCity()->likeName("%".$this->xuId("search")."%");
+		$sql = $this->sql()->tableCity()->likeName("%".$this->xuId("search")."%")->orlike("##province.name","%".$this->xuId("search")."%" );
 		$sql->joinProvince()->whereId("#city.province_id")->fieldName("pname");
 		$r = $sql->limit(10)->select();
+		// var_dump($r->string());
+		// var_dump("expression");exit();
 		$array = array();
 		foreach ($r->allAssoc() as $key => $value) {
 			$array[] = array(

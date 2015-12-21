@@ -34,7 +34,7 @@ class plan {
 	}
 	
 	public function price() {
-		$this->form("#price")->name("price")->id("no-icon-price")->required();
+		$this->form("#price")->name("price")->id("no-icon-price");
 		$this->validate()->number(3, 7)->form->number("entered price is not valid");
 	}
 	
@@ -67,14 +67,14 @@ class plan {
 		$this->validate()->number(1, 4)->form->number("maximum persons number is not valid");
 	}
 
-	public function expired_price() {
-		$this->form("#number")->name("expired_price")->pl("تعداد جلسات");
-		$this->validate()->number()->form->number("expired_price is not valid");
-	}
+	// public function expired_price() {
+	// 	$this->form("#number")->name("expired_price")->pl("تعداد جلسات");
+	// 	$this->validate()->number()->form->number("expired_price is not valid");
+	// }
 
-	public function payment_count() {
-		$this->form("#number")->name("payment_count")->label("دفعات پرداخت");
-		$this->validate()->number()->form->number("payment_count is not valid");
-	}
+	// public function payment_count() {
+	// 	$this->form("#number")->name("payment_count")->label("دفعات پرداخت");
+	// 	$this->validate()->number()->form->number("payment_count is not valid");
+	// }
 }
 ?>

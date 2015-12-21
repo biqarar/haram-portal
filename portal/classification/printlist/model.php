@@ -8,7 +8,7 @@ class model extends main_model {
 		$q =  $this->sql()->tableClassification()->whereClasses_id($classes_id);
 
 		$q = $this->classification_finde_active_list($q);
-		$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName()->fieldFamily();
+		$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName()->fieldFamily()->orderFamily();
 		// $q->joinBridge()->whereUsers_id("#classification.users_id")->fieldValue();
 		$q->joinUsers()->whereId("#classification.users_id")->fieldUsername();
 		$x = $q->fieldUsers_id()->select()->allAssoc();

@@ -15,9 +15,9 @@ class model extends main_model{
 				->setMark(post::mark())
 				// ->setRule(post::rule())
 				->setMin_person(post::min_person())
-				->setMax_person(post::max_person())
-				->setPayment_count(post::payment_count())
-				->setExpired_price(post::expired_price());
+				->setMax_person(post::max_person());
+				// ->setPayment_count(post::payment_count())
+				// ->setExpired_price(post::expired_price());
 	}
 
 	public function post_add_plan() {

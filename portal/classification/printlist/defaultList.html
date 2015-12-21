@@ -40,7 +40,7 @@
 	{% for key, header in detail.header %}
 	<div class="class-detail normal-font">
 		<div class="class-detail-title">{{header|lang}}:</div>
-		<div class="class-detail-value">{{detail.list[0][key]|lang}}</div>
+		<div class="class-detail-value"><b>{{detail.list[0][key]|lang}}</b></div>
 	</div>
 	{%endfor%}
 
