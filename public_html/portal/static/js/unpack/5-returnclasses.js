@@ -14,6 +14,7 @@ route(/classification\/returnclasses\/id\=\d+/, function(){
 				}else{
 					xhr_true(data.true[0]);
 				}
+				
 			}
 		});
 	});

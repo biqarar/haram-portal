@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "item"
+msgstr "گزینه ها"
+
+msgid "validation"
+msgstr "اعتبار سنجی"
+
 msgid "return classes"
 msgstr "بازگشت به کلاس"
 

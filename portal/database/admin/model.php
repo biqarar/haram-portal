@@ -17,7 +17,7 @@ class model extends main_model{
 	public function xecho($str = false) {echo "<pre><br>" . $str . "</pre>";}
 	
 	public function ready($version = "new version") {
-
+// var_dump("fuck", $_GET);exit();
 		$this->xecho("In The Name Of Allah");
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");
@@ -90,14 +90,10 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		//---------------------------------------------------------------------------------------------------
 
-		// $this->branch_id_set();
-		// exit();
-		// die();
-
 		$this->query_on_record();
-		$this->ready(6);
+		$this->ready(8);
 		//----------------------------- new version function (database change)	
-		// $this->database_change();		
+		$this->database_change();		
 		
 		//----------------------------- new version function (query on record)
 		
@@ -109,33 +105,15 @@ class model extends main_model{
 	public function query_on_record() {
 		
 		// ---------------------------------------------------------------------------------------------------
-		$person = $this->sql()->tablePerson();//->select()->string();
-		$person->joinBranch_cash()->whereTable("person")->andRecord_id("#person.id")->andBranch_id(7);
-		// $person->joinBridge()->whereUsers_id("#person.users_id");
-		$person = $person->select()->allAssoc();
-		foreach ($person as $key => $value) {
-			$bridge = $this->sql()->tableBridge()->whereUsers_id($value['users_id'])->select()->allAssoc();
-			// var_dump($value);exit();
-			$person[$key]['phone'] = isset($bridge[0]['value']) ? $bridge[0]['value'] : "-";
-			$person[$key]['mobile'] = isset($bridge[1]['value']) ? $bridge[1]['value'] : "-";
-			$person[$key]['education_id'] = $this->sql(".assoc.foreign", "education", $value['education_id'], "section");
-			$person[$key]['from'] = $this->sql(".assoc.foreign", "city", $value['from'], "name");
-			$person[$key]['nationality'] = $this->sql(".assoc.foreign", "country", $value['nationality'], "name");
-			$person[$key]['id'] = $this->sql(".assoc.foreign", "users", $value['users_id'], "username");
-			// var_dump( $this->sql(".assoc.foreign", "users", $value['users_id'], "username"));exit();
-			// echo $value['value'] . "<br>";
-			// var_dump($this->sql(".assoc.foreign", "city", $value['from'], "name"));exit();
-		}
-		// var_dump($person);exit();
-		// var_dump(count($person));
-		$this->sql(".xlsx", $person);exit();
-exit();
-		// $classes = $this->sql()->tableClassification()->whereBecause("done")->setBecause("#null")->setDate_delete("#null")->update();
-		// $this->commit(function(){
-		// 	echo "set all active classes to runnig status";
-		// });
-		// var_dump($classes->string());
-		// $this->flush();
+		// echo "<table>";
+	
+		// $sql = $this->sql()->tableBridge()->whereTitle("mobile")->select()->allAssoc();
+
+		// foreach ($sql as $key => $value) {
+		// 	echo "<tr><td>" . $value['value'] . "</td></tr>";
+		// }
+		// echo "</table>";
+		// exit();
 
 
 		/**
@@ -215,37 +193,137 @@ exit();
 
 			//-----------------------------------------------------------------------
 
-			"CREATE TABLE IF NOT EXISTS `presence` (
-			`id` int(10) NULL DEFAULT NULL,
-			  `classification_id` int(10) NOT NULL,
-			  `type` enum('presence','unjustified absence') NOT NULL DEFAULT 'unjustified absence',
-			  `date` int(8) NOT NULL,
-			  `because` time NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci",
-			"ALTER TABLE `presence` ADD UNIQUE `unique_index`(`classification_id`, `date`);",
 			
-		
-			"ALTER TABLE `presence` ADD CONSTRAINT `presence_log_ibfk_1` FOREIGN KEY (`classification_id`) REFERENCES `classification` (`id`)",
 
-			//-----------------------------------------------------------------------------
-			"CREATE TABLE IF NOT EXISTS `presence_classes` (
-			`id` int(10) NOT NULL,
-			  `classes_id` int(10) NOT NULL,
-			  `date` int(8) NOT NULL,
-			  `start_time` varchar(32) NOT NULL,
-			  `end_time` varchar(32) NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci AUTO_INCREMENT=1 ",
-			"ALTER TABLE `presence_classes` ADD UNIQUE `unique_index`(`classes_id`, `date`);",
+			"CREATE TABLE IF NOT EXISTS `nezarat_item` (
+			  `id` int(10) NOT NULL,
+			  `title` varchar(255) COLLATE utf8_persian_ci NOT NULL,
+			  `validation` enum('number','text') COLLATE utf8_persian_ci NOT NULL,
+			  `group` enum('مالی','ارزیابی','عملکرد','نظرسنجی','خود ارزیابی','شناسه ای','آسیب ها و مشکلات') COLLATE utf8_persian_ci DEFAULT NULL,
+			  `description` text COLLATE utf8_persian_ci
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;",
 
+	"ALTER TABLE `nezarat_item`
+			  ADD PRIMARY KEY (`id`);",
+			  	"ALTER TABLE `nezarat_item`
+			  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;",
+
+
+			"DROP TRIGGER IF EXISTS `nezarat_item_delete`",
 			//-----------------------------------------------------------------------------
-			"CREATE TRIGGER `presence_classes_insert` AFTER INSERT ON `presence_classes`
+			"CREATE TRIGGER `nezarat_item_delete` AFTER DELETE ON `nezarat_item`
 			 FOR EACH ROW BEGIN
-			call setCash('presence_classes', NEW.id, @branch_id);
-			call setHistory('presence_classes', 'insert', NEW.id);
+			call setHistory('nezarat_item', 'delete', OLD.id);
 			END",
-			"ALTER TABLE `presence_classes` ADD PRIMARY KEY(`id`)",
-			"ALTER TABLE `presence_classes` CHANGE `id` `id` INT(10) NOT NULL AUTO_INCREMENT",
-			"ALTER TABLE `presence_classes` ADD CONSTRAINT `presence_classes_log_ibfk_1` FOREIGN KEY (`classes_id`) REFERENCES `classes` (`id`)",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `nezarat_item_insert`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_item_insert` AFTER INSERT ON `nezarat_item`
+			 FOR EACH ROW BEGIN
+			call setCash('nezarat_item', NEW.id, @branch_id);
+			call setHistory('nezarat_item', 'insert', NEW.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `nezarat_item_update`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_item_update` AFTER UPDATE ON `nezarat_item`
+			 FOR EACH ROW BEGIN
+			call setHistory('nezarat_item', 'update', OLD.id);
+			END",
+
+
+			"CREATE TABLE IF NOT EXISTS `nezarat_program` (
+			  `id` int(10) NOT NULL,
+			  `title` varchar(255) COLLATE utf8_persian_ci NOT NULL,
+			  `parent` int(10) NOT NULL,
+			  `description` text COLLATE utf8_persian_ci
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;",
+
+
+			"ALTER TABLE `nezarat_program`
+			  ADD PRIMARY KEY (`id`);",
+			"ALTER TABLE `nezarat_program`
+			  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;",
+
+			"ALTER TABLE  `nezarat_program` CHANGE  `parent`  `parent` INT( 10 ) NULL DEFAULT NULL ;",
+			
+			"DROP TRIGGER IF EXISTS `nezarat_program_delete`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_program_delete` AFTER DELETE ON `nezarat_program`
+			 FOR EACH ROW BEGIN
+			call setHistory('nezarat_program', 'delete', OLD.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `nezarat_program_insert`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_program_insert` AFTER INSERT ON `nezarat_program`
+			 FOR EACH ROW BEGIN
+			call setCash('nezarat_program', NEW.id, @branch_id);
+			call setHistory('nezarat_program', 'insert', NEW.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `nezarat_program_update`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_program_update` AFTER UPDATE ON `nezarat_program`
+			 FOR EACH ROW BEGIN
+			call setHistory('nezarat_program', 'update', OLD.id);
+			END",
+
+			"CREATE TABLE IF NOT EXISTS `nezarat_program_item` (
+			  `id` int(10) NOT NULL,
+			  `nezarat_program_id` int(10) NOT NULL,
+			  `nezarat_item_id` int(10) NOT NULL,
+			  `value` text COLLATE utf8_persian_ci,
+			  `users_id` int(10) DEFAULT NULL,
+			  `description` text COLLATE utf8_persian_ci
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;",
+
+
+			"ALTER TABLE `nezarat_program_item`
+			  ADD PRIMARY KEY (`id`),
+			  ADD KEY `nezarat_program_id` (`nezarat_program_id`),
+			  ADD KEY `nezarat_item_id` (`nezarat_item_id`);",
+
+
+		
+
+		
+
+			"ALTER TABLE `nezarat_program_item`
+			  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;",
+
+
+			"DROP TRIGGER IF EXISTS `nezarat_program_item_delete`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_program_item_delete` AFTER DELETE ON `nezarat_program_item`
+			 FOR EACH ROW BEGIN
+			call setHistory('nezarat_program_item', 'delete', OLD.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `nezarat_program_item_insert`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_program_item_insert` AFTER INSERT ON `nezarat_program_item`
+			 FOR EACH ROW BEGIN
+			call setCash('nezarat_program_item', NEW.id, @branch_id);
+			call setHistory('nezarat_program_item', 'insert', NEW.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `nezarat_program_item_update`",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `nezarat_program_item_update` AFTER UPDATE ON `nezarat_program_item`
+			 FOR EACH ROW BEGIN
+			call setHistory('nezarat_program_item', 'update', OLD.id);
+			END",
+
+		
+
+
+
+
+
+			"ALTER TABLE `nezarat_program_item`
+			  ADD CONSTRAINT `nezarat_program_item_ibfk_1` FOREIGN KEY (`nezarat_program_id`) REFERENCES `nezarat_program` (`id`),
+			  ADD CONSTRAINT `nezarat_program_item_ibfk_2` FOREIGN KEY (`nezarat_item_id`) REFERENCES `nezarat_item` (`id`);"
 
 			//-----------------------------------------------------------------------------
 						
