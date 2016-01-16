@@ -25,6 +25,7 @@ class model extends main_model {
 
 				
 			case 'score':
+				$this->allclasses = true;
 				$url = "score/classes/";
 				$ico = "icoscore";
 				break;

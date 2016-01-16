@@ -19,11 +19,11 @@ class controller extends main_controller{
 		//------------------------------ branch move (manage branch_cash)
 		$this->listen(array(
 			"max" => 3,
-			"url" => array("cash", "table" => "/^(.*)$/")
+			"url" => array("move", "users")
 			), 
 			function() {
-				save(array("branch", "cash"));
-				$this->permission = array("branch_description" => array("insert" => array("public"), "update" => array("public")));
+				save(array("branch", "move"));
+				$this->permission = array("branch" => array("delete" => array("public")));
 			}
 		);
 

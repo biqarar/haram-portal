@@ -10,7 +10,7 @@ class view extends main_view {
 		$this->global->page_title ="show score classes";
 		$classesid = $this->xuId("classesid");
 		$this->data->score_type_list = $this->sql(".scoreTypeList", $this->xuId("classesid"));
-		
+		// var_dump($this->data->score_type_list);exit();
 		$this->classesDetail();
 		
 		//------------------------------ list of score saved in database
