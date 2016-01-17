@@ -35,6 +35,8 @@
 	<a href="classification/printlist/classesid={{classesid}}/type=default" class="a-undefault">دوره های کوتاه مدت</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=hefz" class="a-undefault">دوره های حفظ</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=score" class="a-undefault">لیست نمرات</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=bridge" class="a-undefault">لیست پل های ارتباطی</a>
+
 	<label class="label-custom" >نمایش پل های ارتباطی
 	<input type="checkbox" value="checked" id="bridge" checked="checked" >
 	<span class="brk-form-custom">
@@ -60,6 +62,8 @@
 		{{ include('classification/printlist/hefzList.html') }}
 	{% elseif type == 'score'%}
 		{{ include('classification/printlist/scoreList.html') }}
+	{% elseif type == 'bridge'%}
+		{{ include('classification/printlist/bridgeList.html') }}
 	{% else %}
 		{{ include('classification/printlist/defaultList.html') }}
 	{% endif %}

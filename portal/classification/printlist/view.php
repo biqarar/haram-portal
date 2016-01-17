@@ -7,11 +7,23 @@ class view extends main_view {
 	public function config() {
 		//------------------------------ get classes list
 		$classes_list = $this->sql("#classes_list", $this->xuId("classesid"));
-
 		//------------------------------ add name, family, phone, mobile to classes array
-		foreach ($classes_list as $key => $value) {
-			$classes_list[$key]['phone'] = $this->sql(".assoc.foreign", "bridge", $value['users_id'], "value" , "users_id" , "title=phone");
-			$classes_list[$key]['mobile'] = $this->sql(".assoc.foreign", "bridge", $value['users_id'], "value" , "users_id" , "title=mobile");
+
+		if($this->xuId("type") == "bridge") {
+			foreach ($classes_list as $key => $value) {
+				$bridge = $this->sql("#bridge_list", $value['users_id']);
+				$classes_list[$key]['phone'] = isset($bridge['phone']) ? $bridge['phone'] : "";
+				$classes_list[$key]['mobile'] = isset($bridge['mobile']) ? $bridge['mobile'] : "";
+				$classes_list[$key]['moreBridge'] = isset($bridge['moreBridge']) ? $bridge['moreBridge'] : "";
+			}
+
+		}else{
+
+			foreach ($classes_list as $key => $value) {
+				$classes_list[$key]['phone'] = $this->sql(".assoc.foreign", "bridge", $value['users_id'], "value" , "users_id" , "title=phone");
+				$classes_list[$key]['mobile'] = $this->sql(".assoc.foreign", "bridge", $value['users_id'], "value" , "users_id" , "title=mobile");
+			}
+			
 		}
 
 		//------------------------------ list of classes

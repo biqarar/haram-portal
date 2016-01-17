@@ -1,0 +1,79 @@
+<style type="text/css">
+    .cls1{
+        width:22px;
+    }
+    .cls2{
+        width:130px;
+    }
+    .cls3{
+        width:130px;
+    }
+    .cls4{
+        width:130px;
+
+    }
+    .cslc{
+        width:50px;
+    }
+    .clst{
+        width:300px;
+    }
+    .clse{
+        width:140px;
+
+    }
+    tbody{
+        page-break-inside:avoid;
+        page-break-after:auto;
+        border-collapse: collapse;
+        display:table;
+    }
+    td{
+        height:23px;
+    }
+    @page {
+        size: A4 landscape;
+        margin:1.5cm 1cm 1cm 1cm;
+    }
+</style>
+<div class="class-details colory">
+    {% for key, header in detail.header %}
+    <div class="class-detail normal-font">
+        <div class="class-detail-title">{{header|lang}}:</div>
+        <div class="class-detail-value"><b>{{detail.list[0][key]|lang}}</b></div>
+    </div>
+    {%endfor%}
+
+
+    <div style="clear:both"></div>
+</div>
+
+<table cellspacing="0" cellpadding="0">
+    <!-- header -->
+    <tr>
+        <td class="small-font system-default cls1" rowspan="2">ردیف</td>
+        <td class="small-font system-default cls2" rowspan="2">نام و نام خانوادگی</td>
+        <td class="small-font system-default cls3" rowspan="2">نام کاربری</td>
+        <td class="small-font system-default cls4 bridge" rowspan="2"><span>شماره همراه</span></td>
+
+        <td class="small-font system-default clst bridge" rowspan="2"><span>شماره تماس</span></td>
+        <td class=" small-font system-default clst bridge" rowspan="2"><span>سایر پل های ارتباطی</span></td>
+        <td class="small-font system-default clse" rowspan="2">توضیحات</td>
+    </tr>
+    <!-- end of header -->
+    <!-- record -->
+    {% for key, list in list %}
+    <tbody>
+        <tr>
+            <td rowspan="2" class="cls1">{{key +1}}</td>
+            <td class=" cls2" rowspan="2">{{list.name}} {{list.family}}</td>
+            <td rowspan="2" class=" cls3">{{list.username}}</td>
+            <td class=" cls4 bridge"><span>{{list.mobile}}</span></td>
+            <td class=" clst bridge"><span>{{list.phone}}</span></td>
+            <td rowspan="2" class=" clst bridge"><span>{{list.moreBridge}}</span></td>
+            <td rowspan="2" class="clse">{{list.price}}</td>
+        </tr>
+      
+    </tbody>
+    {%endfor%}
+</table>

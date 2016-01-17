@@ -4,6 +4,25 @@
 */
 class model extends main_model {
 
+	public function sql_bridge_list($users_id = false) {
+		$bridge = $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
+		$return  = array();
+		foreach ($bridge as $key => $value) {
+			if($value['title'] == "phone" && !isset($return['phone'])){
+				$return['phone'] = $value['value'];
+			}elseif($value['title'] == "mobile" && !isset($return['mobile'])){
+				$return['mobile'] = $value['value'];
+			}else{
+				if(isset($return['moreBridge'])) {
+					$return['moreBridge'] = $return['moreBridge'] . " # " . _($value['title']) ." : " .  $value['value'] . "  " . $value['description'];
+				}else{
+					$return['moreBridge'] = _($value['title']) ." : " . $value['value']. "  " . $value['description'];
+				}
+			}
+		}
+		return $return;
+	}
+
 	public function sql_classes_list($classes_id = false) {
 		$q =  $this->sql()->tableClassification()->whereClasses_id($classes_id);
 
