@@ -6,14 +6,26 @@
 class model extends main_model {
 	
 	public function sql_bridge_list($classesid = false) {
-	// var_dump("fuck");exit();		
-		$classes_id = preg_split("/\,/", $classesid);
-		if(!$classesid || empty($classes_id)) return false;
+	$classesid = preg_split("/\,/", $classesid);
+		$return = array();
+		foreach ($classesid as $key => $value) {
+			if(preg_match("/(\d+)\-(\d+)/", $value,$c)){
+				for ($i=$c[1]; $i <= $c[2] ; $i++) { 
+					$return[] = $i;
+				}
+			}else{
+				$return[] = $value;
+			}
+		}
+		$classesid = $return;
+
+		if(!$classesid || empty($classesid)) return false;
+		
 		
 		$classification = $this->sql()->tableClassification();
 		
 		$classification->groupOpen();
-		foreach ($classes_id as $key => $value) {
+		foreach ($classesid as $key => $value) {
 			$classification->orClasses_id($value);
 		}
 		$classification->groupClose()->fieldId();
@@ -38,6 +50,7 @@ class model extends main_model {
 		$classification->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue("mobile");
 
 		$x = $classification->groupValue()->select();
+		// echo $x->string(); exit();
 		$x = $x->allAssoc();
 
 		return $x;

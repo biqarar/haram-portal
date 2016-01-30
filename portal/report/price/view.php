@@ -16,7 +16,7 @@ class view extends main_view{
 		$submit = $this->form("#submitedit")->value("select");
 
 		$list = $this->sql(".reports.rList", "price");
-
+// var_dump($list);exit();
 
 		foreach ($list as $key => $value) {
 			$lists->child()->name($value['tables'])->label($value['name'])->value($value['url']);

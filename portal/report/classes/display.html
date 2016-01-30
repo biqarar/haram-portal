@@ -1,13 +1,27 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	.report-link {
+		padding: 10px;
+		clear: both;
+		background-color: #ececec;
+		border: 1px solid green;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+
+	}
+
+</style>
+
 <form method ="post"  class="notajx" id="report_form">
 	<input type="hidden" name="path-url" value="{{global.url}}">
+	<a  style="display:none; " class="a-undefault report-link" target="_blank"> شروع گزارش </a>
 	{{forms.make(report_list)}}
 </form>
 
 <!-- <br> -->
-<!-- <a href="" class="start-report a-undefault" target="_blank"> شروع گزارش </a> -->
 <!-- <br> -->
 
 {{dtable.make(dataTable)}}

@@ -1,7 +1,7 @@
 <?php
 class query_xlsx_cls extends query_cls {
    
-    public function config($allAssoc = false, $title = "Untitled" ,$filename = "Untitled" , $fieltype = "xlsx") {
+    public function config($allAssoc = false, $title = "Untitled" ,$filename = "Untitled" , $fieltype = "csv") {
        
         header('Content-Type: text/html; charset=utf-8'); 
         header("Content-Disposition: attachment; filename=$filename.$fieltype");  
@@ -9,7 +9,7 @@ class query_xlsx_cls extends query_cls {
         header("Expires: 0");
        
         //define separator (defines columns in excel & tabs in word)
-        $sep = ($fieltype == "xlsx") ? "\t" : "\t\t\t";
+        $sep = ($fieltype == "csv") ? "\t" : "\t\t\t";
         $newline = "\n";
 
         echo $sep;

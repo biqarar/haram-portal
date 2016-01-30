@@ -3,6 +3,14 @@ class controller extends main_controller {
 
 	public $permission = array("report" => array("select" => array("public")));
 	public function config(){
+// var_dump(config_lib::$aurl);exit();
+//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("plan", "classes")
+			), function (){
+				save(array("report","plan","classes" ,"mod" =>"classes"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
 
 	//---------------------------- bridge
 	$this->listen(array(
@@ -98,6 +106,15 @@ class controller extends main_controller {
 					save(array("report","price", "weekly"));
 					$this->permission = array("report" => array("select" => array("public")));
 		});	
+
+		//---------------------------- plan
+	$this->listen(array(
+			"max" => 2,
+			"url" => "plan"
+			), function (){
+				save(array("report","plan"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
 	}
 }
 ?>  

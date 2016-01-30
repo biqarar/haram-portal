@@ -1,6 +1,20 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	.report-main-link {
+		padding: 10px;
+		clear: both;
+		background-color: #ececec;
+		border: 1px solid green;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+
+	}
+</style>
+<br>
+
 <form method ="post" action ="" id= "report_form">
 	{{forms.make(report_list)}}
 </form>

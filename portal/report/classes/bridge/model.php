@@ -6,6 +6,18 @@
 class model extends main_model {
 	public function sql_bridge_list($classesid = false) {
 		$classes_id = preg_split("/\,/", $classesid);
+		$return = array();
+		foreach ($classes_id as $key => $value) {
+			if(preg_match("/(\d+)\-(\d+)/", $value,$c)){
+				for ($i=$c[1]; $i <= $c[2] ; $i++) { 
+					$return[] = $i;
+				}
+			}else{
+				$return[] = $value;
+			}
+		}
+		$classes_id = $return;
+
 		if(!$classesid || empty($classes_id)) return false;
 		
 		$classification = $this->sql()->tableClassification();

@@ -12,7 +12,7 @@ class view extends main_view{
 		
 		$hidden = $this->form("#hidden")->value("reports");
 		$lists =  $this->form("select")->name("lists")->label("reports")->addClass("notselect");
-		$submit = $this->form("#submitedit")->value("select")->addClass("start-reports");
+		$submit = $this->form("button")->value("select")->addClass("start-reports");
 
 		$list = $this->sql(".reports.rList", "classes");
 

@@ -25,7 +25,7 @@
 
 })();
 
-route(/report\/classes\/status\=apilist/, function(){
+route(/report\/classes/, function(){
 	// list_clear();
 	_list = returnList();
 	console.log(_list);
@@ -50,25 +50,41 @@ route(/report\/classes\/status\=apilist/, function(){
 	$("#lists").combobox();
 	$("#lists", this).combobox({
 		change : function(op){
-			url_ = op.item.option.value
+			console.log(op);
+			url_ = op.item.option.value;
+			$(".report-link").fadeOut();
+
 		}
 	});
 
-
-	$(".start-reports").submit(function(){
+	$(".start-reports", this).click(function(){
+		console.log("fuck");
 		var _list = returnList();
 		var list = Array();
 		for(i = 0; i < _list.length; i++) {
 			if(_list[i]) list.push(_list[i]);
 		}
 		newlist = list.join(',');
-		$("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
+		if(url_ == "activeclasses") {
+			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_);
+		}else{
+			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_ + "/classesid=" + newlist);
+		}
+		console.log(newlist);
+		// $("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
 		console.log(url_);	
 	});
 
 	// $("#lists").click(function(){
 	// });
 });
+
+route(/report\/plan/, function(){
+	
+}); 
+
+
+
 route(/report\/status\=(add|edit)/, function(){
 	$("#tables", this).combobox();
 });

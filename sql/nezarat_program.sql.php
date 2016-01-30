@@ -22,7 +22,7 @@ class nezarat_program {
 	}
 	
 	public function parent() {
-		$this->form("select")->name("parent")->addClass("select-parent")->data_url("nezarat/api/");
+		$this->form("text")->name("parent");
 		// $this->setChild(function($q){
 		// }, function($child, $value){
 		// 	$child->label($value['title'])->value($value['id']); 

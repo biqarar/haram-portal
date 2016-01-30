@@ -1,7 +1,25 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
-<a href="report/classes/"	> گزارش از کلاس ها </a>
+<style type="text/css">
+	.report-main-link {
+		padding: 10px;
+		clear: both;
+		background-color: #ececec;
+		border: 1px solid green;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+		display: none;
+
+	}
+</style>
 <br>
-<a href="report/price/"> گزارش مالی </a>
+<a class="report-main-link" href="report/classes/" > گزارش از کلاس ها </a>
+<a class="report-main-link" href="report/price/" > گزارش مالی </a>
+<a class="report-main-link" href="report/plan/" > گزارشات مبتنی بر طرح </a>
+<a class="report-main-link" href="report/plan/" > گزارشات روزانه </a>
+<script type="text/javascript">
+	$(".report-main-link").fadeIn(1000);
+</script>
 {%endblock%}

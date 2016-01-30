@@ -20,6 +20,12 @@ msgstr "ماشین نیستم!"
 msgid "item"
 msgstr "گزینه ها"
 
+msgid "url"
+msgstr "آدرس"
+
+msgid "reports"
+msgstr "گزارش ها"
+
 msgid "validation"
 msgstr "اعتبار سنجی"
 
@@ -27,7 +33,7 @@ msgid "return classes"
 msgstr "بازگشت به کلاس"
 
 msgid "manage classes"
-msgstr "مدیریت کلاسیک"
+msgstr "مدیریت کلاس"
 
 msgid "allclasses"
 msgstr "تمامی کلاس ها"

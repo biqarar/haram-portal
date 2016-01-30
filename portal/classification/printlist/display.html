@@ -21,6 +21,16 @@
 	#backPortal {
 		float: left;
 	}
+	.botton-link {
+		padding: 10px;
+		clear: both;
+		background-color: #ececec;
+		border: 1px solid green;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+
+	}
 	</style>
 
 {%endblock%}
@@ -32,10 +42,12 @@
 	</a>
 </button>
 <div id="type">
-	<a href="classification/printlist/classesid={{classesid}}/type=default" class="a-undefault">دوره های کوتاه مدت</a>
-	<a href="classification/printlist/classesid={{classesid}}/type=hefz" class="a-undefault">دوره های حفظ</a>
-	<a href="classification/printlist/classesid={{classesid}}/type=score" class="a-undefault">لیست نمرات</a>
-	<a href="classification/printlist/classesid={{classesid}}/type=bridge" class="a-undefault">لیست پل های ارتباطی</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=default" class=" botton-link a-undefault">دوره های کوتاه مدت</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=hefz" class=" botton-link a-undefault">دوره های حفظ</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=score" class=" botton-link a-undefault">لیست نمرات</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=bridge" class=" botton-link a-undefault">لیست پل های ارتباطی</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=rokhani" class=" botton-link a-undefault">آزمون روخوانی</a>
+	<a href="classification/printlist/classesid={{classesid}}/type=tajvid" class=" botton-link a-undefault">آزمون تجوید</a>
 
 	<label class="label-custom" >نمایش پل های ارتباطی
 	<input type="checkbox" value="checked" id="bridge" checked="checked" >
@@ -64,6 +76,12 @@
 		{{ include('classification/printlist/scoreList.html') }}
 	{% elseif type == 'bridge'%}
 		{{ include('classification/printlist/bridgeList.html') }}
+	{% elseif type == 'rokhani'%}
+		{{ include('classification/printlist/rokhani.html') }}
+	{% elseif type == 'tajvid'%}
+		{{ include('classification/printlist/tajvid.html') }}
+	{% elseif type == 'absence'%}
+		{{ include('classification/printlist/absence.html') }}
 	{% else %}
 		{{ include('classification/printlist/defaultList.html') }}
 	{% endif %}

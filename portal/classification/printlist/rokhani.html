@@ -1,0 +1,112 @@
+<style type="text/css">
+* {
+	direction: rtl;
+	font-family: 'WRoya' !important;
+
+}
+
+.s6 {
+	font-size: 16px !important;
+}
+	
+</style>
+<!-- header classes info -->
+	<div class="class-details colory">
+	    {% for key, header in detail.header %}
+	    <div class="class-detail normal-font">
+	        <div class="class-detail-title">{{header|lang}}:</div>
+	        <div class="class-detail-value"><b>{{detail.list[0][key]|lang}}</b></div>
+	    </div>
+	    {%endfor%}
+   	 <div style="clear:both"></div>
+   	 </div>
+
+<table cellspacing="0" border="0">
+	<colgroup width="43"></colgroup>
+	<colgroup width="223"></colgroup>
+	<colgroup width="160"></colgroup>
+	<colgroup width="92"></colgroup>
+	<colgroup width="121"></colgroup>
+	<colgroup span="3" width="147"></colgroup>
+	<colgroup width="92"></colgroup>
+	<colgroup width="176"></colgroup>
+	<!-- title -->
+	<tr>
+		<td class="s6" style="border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" class="normal-font" colspan=10 height="48" align="center" valign=middle>فرم امتیاز دهی آزمون روان خوانی
+		</td>
+		</tr>
+	<tr>
+		<td class= "s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=10 height="77" align="center" valign=middle >
+		اشکالات رو خوانی:  اشتباه در حرکات، تبدیل حرکات کوتاه به کشیده و بالعکس، اشتباه در حروف ساکن، مشدّد، تنوین دار، حروف ناخوانا، التقاء ساکنین، خواندن از ابتدای همزه وصل، نحوه وقف برکلمات و جابجايي حروف يك كلمه.<br></td>
+		</tr>
+	<tr>
+		<td class= "s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=10 height="77" align="right" valign=middle >  اشکالات روان خوانی :  اشکالات اشتباه در تکرار نابجا و مکث زیاد، تبدیل حرکات کوتاه به کشیده و بالعکس اشکالات فقط یک بارتذکر داده شده و در صورت عدم تصحیح توسط قرآن آموز، داور تصحیح می نماید.<br>                                                                          *جهت حفظ آرامش و عدم ایجاد اضطراب در قرآن آموزان، داور از تذکر و اصلاح اشکالات پرهیز نماید.</td>
+		</tr>
+	<tr>
+		<td style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" rowspan=3 height="87" align="center" valign=middle bgcolor="#F2F2F2">ردیف</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign=middle bgcolor="#F2F2F2">نام و نام خانوادگی</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign=middle bgcolor="#F2F2F2">نام کاربری <br> شماره تماس</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign=middle bgcolor="#F2F2F2">شماره<br>صفحه</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000" rowspan=3 align="center" valign=middle bgcolor="#F2F2F2">تاریخ</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=2 align="center" valign=middle bgcolor="#F2F2F2">اشکالات روخوانی</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="left" valign=middle bgcolor="#F2F2F2">اشکالات روان خوانی</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 1px solid #000000" rowspan=3 align="center" valign=middle bgcolor="#F2F2F2">جمع امتیاز</td>
+		<td class="s6" style="border-top: 2px solid #000000; border-bottom: 2px solid #000000; border-right: 2px solid #000000" rowspan=3 align="center" valign=middle bgcolor="#F2F2F2">نام و امضای ممتحن / توضیحات</td>
+	</tr>
+	<tr>
+		<td class="s6" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#F2F2F2">در صورت تصحیح</td>
+		<td class="s6" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#F2F2F2">در صورت عدم تصحیح</td>
+		<td class="s6" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#F2F2F2">هر دو مورد</td>
+		</tr>
+	<tr>
+		<td class="s6" style="border-top: 1px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#F2F2F2">0/25</td>
+		<td class="s6" style="border-top: 1px solid #000000; border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#F2F2F2">0/5</td>
+		<td class="s6" style="border-top: 1px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" align="center" valign=middle bgcolor="#F2F2F2">0/25</td>
+		</tr>
+<!-- record -->
+
+<style type="text/css">
+	.s1 {
+		border-bottom: 1px solid #000000;
+		font-size: 13px !important;
+		border-top: 2px solid #000000;
+	}
+	.s2 {
+		border-left: 2px solid #000000;
+	}
+	.s3 {
+		border-right: 2px solid #000000;
+	}
+	.s4 {
+		border-right: 1px solid #000000;
+	}
+	.s5 {
+		border-left: 1px solid #000000;
+	}	
+</style>
+{% for key, list in list %}
+    <tbody>
+    	<tr>
+			<td class="s1  s2 s3" height="39" align="center" valign=middle sdval="1" sdnum="1033;">
+				{{key+1}}
+			</td>
+			<td class="s1 s4" valign=center >{{list.name}} {{list.family}}</td>
+			<td class="s1 s5 s4" valign=center>{{list.username}} <br> {{list.mobile}} - {{list.phone}}</td>
+			<td class="s1 s5 s4" valign=center></td>
+			<td class="s1 s4" valign=center></td>
+			<td class="s1 s2 s4" valign=center> </td>
+			<td class="s1 s5 s3" valign=center> </td>
+			<td class="s2 s3" valign=center> </td>
+			<td class="s1 s2 s4" valign=center> </td>
+			<td class="s1 s3" valign=top>{{list.price}} </td>
+		</tr>
+      
+    </tbody>
+{%endfor%}
+<!-- foter -->
+	
+		<td class="s6" style="border-bottom: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #000000" colspan=10 height="39" align="center" valign=middle bgcolor="#D9D9D9">
+		تذکر: محدوده آزمون 10 خط از اجزاء 28 و 29 قرآن کریم می باشد که 5 دقیقه پیش از آزمون جهت آمادگی به اطلاع قرآن آموز می رسد.</td>
+		</tr>
+</table>
+
