@@ -17,6 +17,48 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "sat"
+msgstr "شنبه"
+
+msgid "sun"
+msgstr "یک شنبه"
+
+msgid "mon"
+msgstr "دو شنبه"
+
+msgid "tue"
+msgstr "سه شنبه"
+
+msgid "wed"
+msgstr "چهار شنبه"
+
+msgid "thu"
+msgstr "پنج شنبه"
+
+msgid "fri"
+msgstr "جمعه"
+
+msgid "average_age"
+msgstr "میانگین سن شرکت کنندگان"
+
+msgid "teacherFamily"
+msgstr "نام خانواگی استاد"
+
+msgid "teacherName"
+msgstr "نام استاد"
+
+msgid "planname"
+msgstr "نام طرح"
+
+msgid "classescount"
+msgstr "تعداد کلاس ها"
+
+msgid "classificationcount"
+msgstr "تعداد نفرات"
+
+msgid "average_classes"
+msgstr "میانگین هر کلاس"
+
 msgid "item"
 msgstr "گزینه ها"
 
@@ -669,7 +711,7 @@ msgid "null"
 msgstr " "
 
 msgid "report"
-msgstr "گزارش اشکالات"
+msgstr "گزارش"
 
 msgid "person edit"
 msgstr "اصلاح مشخصات فردی"

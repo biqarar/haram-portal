@@ -1,0 +1,29 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+<style type="text/css">
+	.report-day-link {
+		padding: 10px;
+		clear: both;
+		background-color: #ececec;
+		border: 1px solid green;
+		display: inline-block;
+		margin: 2px 10px 10px auto;
+		border-radius: 5px;
+		/*display: none;*/
+
+	}
+</style>
+<!-- <a class="a-undefault icomessage" title="دریافت فایل اکسل" href="{{global.url}}/xlsx=1"></a><br> -->
+
+<!-- <br> -->
+<a class="report-day-link" href="report/daily/day=sat" >شنبه</a>
+<a class="report-day-link" href="report/daily/day=sun" >یکشنبه</a>
+<a class="report-day-link" href="report/daily/day=mon" >دوشنبه</a>
+<a class="report-day-link" href="report/daily/day=tue" >سه شنبه</a>
+<a class="report-day-link" href="report/daily/day=wed" >چهار شنبه</a>
+<a class="report-day-link" href="report/daily/day=thu" >پنج شنبه</a>
+<a class="report-day-link" href="report/daily/day=fri" >جمعه</a>
+
+{{tagMaker.reportList(list)}}
+{%endblock%}

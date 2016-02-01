@@ -18,7 +18,7 @@ class model extends main_model {
 		->fieldFrom()
 		->fieldNationalcode();
 		$reprot->joinUsers()->whereId("#classification.users_id")->fieldUsername();
-		$reprot->joinClasses()->whereId("#classification.classes_id")->fieldId("classes");
+		$reprot->joinClasses()->whereId("#classification.classes_id")->fieldId("classes")->fieldMeeting_no("meeting_no");
 		$reprot->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
 		// echo($reprot->select()->string());exit();
 		if($type == "print") {
@@ -38,6 +38,17 @@ class model extends main_model {
 			}
 			if($value['from'] != "") {
 				$reprot[$key]['from'] = $this->sql()->tableCity()->whereId($value['from'])->limit(1)->select()->assoc("name");
+			}
+			// var_dump($value['gender']);exit();
+			if($value['gender'] == "female") {
+				$reprot[$key]['gender'] = "خواهر";
+			}else{
+				$reprot[$key]['gender'] = "برادر";
+			}
+			if($value['birthday'] != "") {
+				$x = preg_match("/^(?P<year>\d{4})(\d{4})$/", $value['birthday'], $year);
+				// var_dump($x);
+				$reprot[$key]['birthday'] = $year['year'];
 			}
 		}
 		// var_dump($reprot);exit();

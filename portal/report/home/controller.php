@@ -3,12 +3,25 @@ class controller extends main_controller {
 
 	public $permission = array("report" => array("select" => array("public")));
 	public function config(){
-// var_dump(config_lib::$aurl);exit();
-//---------------------------- bridge
+		//---------------------------- bridge
 	$this->listen(array(
-			"url" => array("plan", "classes")
+			"url" => array("daily")
 			), function (){
-				save(array("report","plan","classes" ,"mod" =>"classes"));
+				save(array("report","daily"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+			//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("daily", "day" => "/^(sat)|(sun)|(mon)|(tue)|(wed)|(thu)|(fri)$/")
+			), function (){
+				save(array("report","daily"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+			//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("classes", "type" =>"planstatusactive")
+			), function (){
+				save(array("report","classes","planstatusactive"));
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 
@@ -115,6 +128,15 @@ class controller extends main_controller {
 				save(array("report","plan"));
 				$this->permission = array("report" => array("select" => array("public")));
 	});
+
+		//----------------------------
+	$this->listen(array(
+				"max" => 5,
+				"url" => array("plan", "planstatus", "start_date" => "/(.*)/", "end_date" => "/(.*)/")
+				), function (){
+					save(array("report","plan", "planstatus"));
+					$this->permission = array("report" => array("select" => array("public")));
+		});	
 	}
 }
 ?>  

@@ -140,9 +140,9 @@
 <div class="list-wrapper">
 		<div class="list-header">{{array.title}}</div>
 		<table cellspacing="0" cellpadding="0">
-			
+			{% set first_item = 0 %}
 				{% for key, list in array %}
-					{% if key == 0 %}
+					{% if first_item == 0 %}
 					<tbody>
 						<tr>
 						{% for field, item in list %}
@@ -150,6 +150,7 @@
 						{%endfor%}
 						</tr>
 					<tbody>
+					{% set first_item = 1 %}
 					{%endif%}
 				<tbody>
 					<tr>

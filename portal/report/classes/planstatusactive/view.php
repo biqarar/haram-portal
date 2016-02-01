@@ -9,13 +9,10 @@ class view extends main_view{
 		// var_dump("fuck");exit();
 		$start_date  = $this->convert_date($this->xuId("start_date"));
 		$end_date  = $this->convert_date($this->xuId("end_date"));
-		$list = $this->sql("#weekly", $start_date, $end_date);
-		// var_dump($_SESSION);
+		$list = $this->sql("#classes", $start_date, $end_date);
 		// var_dump($list);exit();
 		$this->global->url = config_lib::$url;
-		$list['title'] = "لیست درآمد  - 
-							گزارش مالی  هفتگی -
-							از تاریخ $start_date تا تاریخ $end_date  ";
+		$list['title'] = "گزارش کلاس های فعال ";
 		if($this->xuId("xlsx") == 1) {
 			$this->sql(".xlsx", $list, $list['title'], $start_date .'-'. $end_date);
 		}

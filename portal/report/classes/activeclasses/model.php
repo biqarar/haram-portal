@@ -33,7 +33,7 @@ class model extends main_model {
 		$classification = $classification->select()->allAssoc();
 		$all = array();
 		if (ob_get_level() == 0) ob_start();
-		var_dump("tel to 09109610612 :|");die();
+		echo("tel to 09109610612 :|");die();
 		foreach ($classification as $key => $value) {
 			ob_flush();
 			flush();

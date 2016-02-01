@@ -16,7 +16,9 @@ class model extends main_model {
 
 	$price->joinPerson()->whereUsers_id("#price.users_id")->fieldName()->fieldFamily();
 	$price = $price->select()->allAssoc();
+	// var_dump($price);exit();
 			return $price;
+
 
 		// var_dump($startdate, $enddate); exit();
 		

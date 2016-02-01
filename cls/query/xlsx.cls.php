@@ -15,24 +15,24 @@ class query_xlsx_cls extends query_cls {
         echo $sep;
         echo $title;
         echo $newline;
-        
-        //start of printing column names 
-        foreach ($allAssoc[0] as $key => $value) {
-            print(($key));
-            echo  $sep;
-        }
-        print($newline); 
-
-        foreach ($allAssoc as $key => $value) {
-            if(is_array($value)){
-
-                foreach ($value as $k => $v) {
-                        print(($v) . $sep);
-                }
-                print $newline;
+        if(is_array($allAssoc) && !empty($allAssoc) && isset($allAssoc[current(array_keys($allAssoc))])){            
+            foreach ($allAssoc[current(array_keys($allAssoc))] as $key => $value) {
+                print(_($key));
+                echo  $sep;
             }
+            print($newline); 
+
+            foreach ($allAssoc as $key => $value) {
+                if(is_array($value)){
+
+                    foreach ($value as $k => $v) {
+                            print(($v) . $sep);
+                    }
+                    print $newline;
+                }
+            }
+            print $newline;
         }
-        print $newline;
         exit();
     }
 }

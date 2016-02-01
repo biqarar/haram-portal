@@ -65,7 +65,7 @@ route(/report\/classes/, function(){
 			if(_list[i]) list.push(_list[i]);
 		}
 		newlist = list.join(',');
-		if(url_ == "activeclasses") {
+		if(url_ == "activeclasses" || url_ == "planstatusactive") {
 			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_);
 		}else{
 			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_ + "/classesid=" + newlist);
