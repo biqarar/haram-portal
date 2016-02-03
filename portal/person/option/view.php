@@ -47,6 +47,11 @@ class view extends main_view{
 		$mobile->validate()->number(11);
 		$f->add("mobile", $mobile);
 
+		//------------------------------ get mobile2 number in form
+		$mobile2 = $this->form("#number")->name("mobile2")->label(_("mobile") . " 2 ");
+		$mobile2->validate()->number(11);
+		$f->add("mobile2", $mobile2);
+
 		//------------------------------  default select Iran country
 		$f->nationality->addClass("select-nationality")->addClass("notselect");
 

@@ -114,6 +114,7 @@ class model extends main_model{
 			
 			//------------------------------ insert into bridge table, phone and mobile
 			if(post::mobile() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile())->insert();
+			if(post::mobile2() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile2())->insert();
 			if(post::phone()  !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("phone")->setValue(post::phone())->insert();
 			
 			//------------------------------ set users_branch if other sql is ok
