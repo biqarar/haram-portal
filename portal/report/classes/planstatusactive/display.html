@@ -2,5 +2,11 @@
 {% extends layout %}
 {% block content %}
 <a class="a-undefault icomessage" title="دریافت فایل اکسل" href="{{global.url}}/xlsx=1"></a><br>
+<br>
+تعداد کلاس های فعال هم اکنون :
+<b>{{activeclasses['class_count']}} </b>
+<br>
+تعداد فراگیران حاضر  : <b> {{activeclasses['person_count']}} </b>
+<br>
 {{tagMaker.reportList(list)}}
 {%endblock%}

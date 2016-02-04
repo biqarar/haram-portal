@@ -18,7 +18,7 @@ route(/portal\/files.*type=files/, function(){
 		}
 	});
 	$("#file").change(checkType);
-
+	
 
 	function checkType(event, jump){
 		clear_file(jump);

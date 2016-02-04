@@ -9,14 +9,15 @@ class view extends main_view{
 		// var_dump("fuck");exit();
 		$start_date  = $this->convert_date($this->xuId("start_date"));
 		$end_date  = $this->convert_date($this->xuId("end_date"));
-		$list = $this->sql("#classes", $start_date, $end_date);
-		// var_dump($list);exit();
+		list($list,$activeclasses) = $this->sql("#classes", $start_date, $end_date);
+		// var_dump($activeclasses);exit();
 		$this->global->url = config_lib::$url;
 		$list['title'] = "گزارش کلاس های فعال ";
 		if($this->xuId("xlsx") == 1) {
 			$this->sql(".xlsx", $list, $list['title'], $start_date .'-'. $end_date);
 		}
 		$this->data->list = $list;
+		$this->data->activeclasses = $activeclasses;
 		// ------------------------------ global
 		
 	}

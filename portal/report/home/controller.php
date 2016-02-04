@@ -17,6 +17,21 @@ class controller extends main_controller {
 				save(array("report","daily"));
 				$this->permission = array("report" => array("select" => array("public")));
 	});
+
+			//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("daily","bridge", "day" => "/^(sat)|(sun)|(mon)|(tue)|(wed)|(thu)|(fri)$/")
+			), function (){
+				save(array("report","daily","bridge"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+				//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("daily","bridge", "day" => "/^(sat)|(sun)|(mon)|(tue)|(wed)|(thu)|(fri)$/", "xlsx" =>"1")
+			), function (){
+				save(array("report","daily","bridge"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
 			//---------------------------- bridge
 	$this->listen(array(
 			"url" => array("classes", "type" =>"planstatusactive")

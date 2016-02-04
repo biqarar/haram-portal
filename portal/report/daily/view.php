@@ -17,6 +17,7 @@ class view extends main_view{
 			$this->sql(".xlsx", $list, $list['title'], $start_date .'-'. $end_date);
 		}
 		$this->data->list = $list;	
+		$this->data->day = $day;	
 		$this->data->day_count = $day_count;	
 	}
 }

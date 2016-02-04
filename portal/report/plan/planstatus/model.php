@@ -13,7 +13,7 @@ class model extends main_model {
 	$classes->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
 
 	$classes = $classes->select()->allAssoc();
-		
+		// var_dump($classes);exit();
 		$return = array();
 		// $return = array("طرح","تعداد کلاس های تشکیل شده","تعداد نفرات شرکت کننده","میانگین هر کلاس");
 	foreach ($classes as $key => $value) {
