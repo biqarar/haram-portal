@@ -57,7 +57,7 @@
 
 
 {% macro input(array) %}
-	{% spaceless %}
+	{% spaceless %}d
 		{% if array.attr.type == 'robot' %}
 			<label for="{{array.attr.id}}">{{array.label}}</label>
 			<input type="text" {% for attr,value in array.attr%}{{attr}}="{{value}}" {% endfor %}>
