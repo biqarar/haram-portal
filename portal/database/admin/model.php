@@ -17,7 +17,7 @@ class model extends main_model{
 	public function xecho($str = false) {echo "<pre><br>" . $str . "</pre>";}
 	
 	public function ready($version = "new version") {
-// var_dump("fuck", $_GET);exit();
+
 		$this->xecho("In The Name Of Allah");
 		if(!isset($_GET['password']) || $_GET['password'] != 'ali110') {
 			$this->xecho("password incorect.");

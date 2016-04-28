@@ -1,8 +1,26 @@
 <?php
 class query_username_cls extends query_cls
 {
+	public function get_year() {
+		
+		$jTime = new jTime_lib;
+		
+		$year = $jTime->date("Y");
+		
+		$patterns = array(		'/۰/',	'/۱/',	'/۲/',	'/۳/',	'/۴/',	'/۵/',	'/۶/',	'/۷/',	'/۸/',	'/۹/');
+		$replacements = array(	'0',	'1',	'2',	'3',	'4',	'5',	'6',	'7',	'8',	'9');
+		
+		$year = preg_replace($patterns, $replacements, $year);
+		
+		$year = preg_replace("/^1(\d{3})$/", "$1", $year);
+
+		return $year;
+		
+		
+	}
 	public function set() {
-		$year = "394";
+		$year = $this->get_year();
+
 		$isset_key = $this->sql()->tableBranch_users_key()->wherePkey($year)->limit(1)->select();
 		if($isset_key->num() == 0) {
 			$this->sql()->tableBranch_users_key()->setPkey($year)->setKey("1")->insert();

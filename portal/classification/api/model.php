@@ -42,7 +42,7 @@ class model extends main_model {
 		}
 		debug_lib::msg("msg", "هیچ شهریه ای برای این کلاس ثبت نشده است.");
 
-		// var_dump("fuck");exit();
+		
 	}
 
 

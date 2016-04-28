@@ -6,6 +6,7 @@
 class view extends main_view{
 	public function config(){
 
+
 		//------------------------------ set global
 		$this->global->page_title = "register";
 
@@ -22,6 +23,7 @@ class view extends main_view{
 
 		//------------------------------ list of branch
 		$this->listBranch($f);
+
 
 		//------------------------------ set province list
 		// $province_list = $this->sql(".assoc.province");
@@ -83,10 +85,24 @@ class view extends main_view{
 
 		//------------------------------ edit peron but some field can not update
 		if($this->urlStatus() == "edit"){
+
+
 			$f->remove("email,mobile,phone");
+			
 			$this->sql(".edit", "person", $this->xuId(), $f);
-			// var_dump($f);exit();
-			// $f->from->attr['value'] = ($this->sql("#find_from_name", $f->from->attr['value']));
+
+			$f->add("checked_data", 	"button")	->name("checked_data")		->value("checked Data");
+			$f->add("sendPortalMessage","button")	->name("sendPortalMessage")	->value("send Portal Message");
+			$f->add("sendEmail", 		"button")	->name("sendEmail")			->value("send Email");
+			$f->add("sendSMS", 			"button")	->name("sendSMS")			->value("send SMS");
+			$f->add("blocked", 			"button")	->name("blocked")			->value("blocked");
+			$f->add("delete", 			"button")	->name("delete")			->value("delete");
+			
+			
+			$load_file = $this->sql("#load_file", $this->xuId());
+
+			$this->data->files = $load_file;
+			
 		}else{
 			$f->nationality->child(35)->selected("selected");
 		}

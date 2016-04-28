@@ -115,22 +115,23 @@ class model extends main_model {
 		->result(function($r, $ico, $url){
 			$r->planname = $this->sql(".courseclassesInformation",$r->planname, $r->detail);
 			if($ico == "icodadd") {
-				if(preg_match("[courseclasses\-information]",$r->planname)){
-					$r->classification = $this->tag("a")
-												->class("icodadddisable")
-												->id($r->classification)
-												->disable("disable")
-												->style("cursor:pointer;")
-												->render();
+				// if(preg_match("[courseclasses\-information]",$r->planname)){
+			// var_dump($r->planname);
+					// $r->classification = $this->tag("a")
+					// 							->class("icodadddisable")
+					// 							->id($r->classification)
+					// 							->disable("disable")
+					// 							->style("cursor:pointer;")
+					// 							->render();
 
-				}else{
+				// }else{
 					$r->classification = $this->tag("a")
 							->class("icodadd courseclasses-apiadd")
 							->id($r->classification)
 							->style("cursor:pointer")
 							->render();
 
-				}
+				// }
 				
 			}else{
 				$r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';

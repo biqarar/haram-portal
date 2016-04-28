@@ -10,7 +10,7 @@ class view extends main_view{
 
 		$this->global->page_title = "plan";
 
-		// var_dump("fuck");exit();
+
 		
 		$hidden = $this->form("#hidden")->value("reprot");
 		$start_date =  $this->form("text")->name("start_date")->label("start_date")->date("date");

@@ -58,21 +58,22 @@ route(/report\/classes/, function(){
 	});
 
 	$(".start-reports", this).click(function(){
-		console.log("fuck");
+
 		var _list = returnList();
 		var list = Array();
 		for(i = 0; i < _list.length; i++) {
 			if(_list[i]) list.push(_list[i]);
 		}
 		newlist = list.join(',');
-		if(url_ == "activeclasses" || url_ == "planstatusactive") {
+		
+		if(url_ == "activeclasses" || url_ == "planstatusactive" || url_ == "personactive") {
 			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_);
 		}else{
 			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_ + "/classesid=" + newlist);
 		}
-		console.log(newlist);
+		// console.log(newlist);
 		// $("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
-		console.log(url_);	
+		// console.log(url_);	
 	});
 
 	// $("#lists").click(function(){

@@ -13,7 +13,7 @@ define('db_name', 'quran_hadith');
 define('db_user', 'QuranHadith');
 
 /** MySQL database password */
-define('db_password', 'Quran!!))Hadith');
+define('db_password', 'Quran!!))Hadith!!))');
 
 /** MySQL hostname  */
 define('db_host', 'localhost');

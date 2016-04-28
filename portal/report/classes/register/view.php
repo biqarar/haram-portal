@@ -6,7 +6,7 @@ class view extends main_view{
 
 
 	public function config(){
-		// var_dump("fuck");exit();
+		
 		$list = $this->sql("#register");
 		// var_dump($list);exit();
 		$list['title'] = "فراگیران فعال";

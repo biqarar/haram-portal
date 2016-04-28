@@ -22,22 +22,22 @@ class files {
 	}
 	
 	public function title() {
-		$x = $this->form("#fatext")->name("title");
-		$x->validate()->rename(function (){
-			$this->value = preg_replace("/[^a-zA-Z0-9".FACHR."]/", '-', $this->value);
-		});
+		$x = $this->form("text")->name("title");
+		// $x->validate()->rename(function (){
+		// 	$this->value = preg_replace("/[^a-zA-Z0-9".FACHR."]/", '-', $this->value);
+		// });
 	}
 
 	public function size(){
-
+		$this->validate("id");
 	}
 	
 	public function type(){
-		
+		$this->validate("id");
 	}
 
 	public function folder() {
-		
+		$this->validate("id");
 	}
 
 	public function file_tag_id(){
@@ -45,7 +45,7 @@ class files {
 	}
 
 	public function description() {
-		$this->form("#text_desc")->name("description");
+		$this->form("textarea")->name("description");
 	}
 }
 ?>

@@ -3,4 +3,15 @@
 <form class="ajx" method="post" action="person/{{global.url}}">
 	{{forms.make(form.person)}}
 </form>
+
+
+{%for i, file in files%}
+	
+	<a href="piczoom">
+		<img src="{{file}}">
+		<a href= "deletepic" class="icoredclose" style="display: inline-block;"></a>
+	</a>
+	
+
+{%endfor%}
 {%endblock%}

@@ -162,25 +162,25 @@ class menu_cls  {
 			);
 
 		//------------------------------  nezarat
-		//------------------------------  item
-		self::$menu[] = array(
-			"submenu" => "home", 
-			"url" => 'nezarat/item', 
-			"name" => "آیتم های برنامه", 
-			"tag" => array(
-				"nezarat_item" => array("insert" => array("public"))
-				)
-			);
+		// //------------------------------  item
+		// self::$menu[] = array(
+		// 	"submenu" => "home", 
+		// 	"url" => 'nezarat/item', 
+		// 	"name" => "آیتم های برنامه", 
+		// 	"tag" => array(
+		// 		"nezarat_item" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
-		//------------------------------  branch
-		self::$menu[] = array(
-			"submenu" => "home", 
-			"url" => 'nezarat/program', 
-			"name" => "تعریف برنامه", 
-			"tag" => array(
-				"nezarat_program" => array("insert" => array("public"))
-				)
-			);
+		// //------------------------------  branch
+		// self::$menu[] = array(
+		// 	"submenu" => "home", 
+		// 	"url" => 'nezarat/program', 
+		// 	"name" => "تعریف برنامه", 
+		// 	"tag" => array(
+		// 		"nezarat_program" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
 		// //------------------------------  branch
 		// self::$menu[] = array(

@@ -59,5 +59,13 @@ class model extends main_model{
 		$sql = $this->sql()->tableCourseclasses()->setClasses_id($classes_id)->setCourse_id($course_id)->insert();
 		$this->post_apilist();
 	}
+
+	public function post_apidelete() {
+		$classes_id = $this->xuId("classesid");
+		$course_id = $this->xuId("courseid");
+		$course_qury = $this->sql()->tableCourseclasses()->whereCourse_id($course_id)->andClasses_id($classes_id)->delete();
+		$this->post_apilist();
+		// var_dump($course_qury->string());exit();
+	}
 }
 ?>

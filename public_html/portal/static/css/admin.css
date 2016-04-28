@@ -10,13 +10,11 @@ body {
   src: url("../fonts/YekanWeb-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'WRoya';
   src: url("../fonts/RoyaWeb-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-
 .top-tape {
   height: 8px;
   background: #f9f9f9 url(../svg/top-text.svg) repeat-x center right;
@@ -978,16 +976,12 @@ label {
 @-webkit-keyframes statePerload {
   0% {
     width: 20%; }
-
   50% {
     width: 80%; }
-
   75% {
     width: 100%; }
-
   100% {
     width: 0; } }
-
 .filebox-form {
   display: none; }
 
@@ -1222,3 +1216,5 @@ a {
 .fieldrequired {
   color: red;
   /*margin: 0px;*/ }
+
+/*# sourceMappingURL=admin.css.map */

@@ -40,6 +40,15 @@ class controller extends main_controller {
 				$this->permission = array("report" => array("select" => array("public")));
 	});
 
+			//---------------------------- bridge
+	$this->listen(array(
+			"url" => array("classes", "type" =>"personactive")
+			), function (){
+				save(array("report","classes","personactive"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+
+
 	//---------------------------- bridge
 	$this->listen(array(
 			"url" => array("classes", "type" => "bridge", "/(.*)/")

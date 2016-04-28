@@ -4,7 +4,7 @@ class model extends main_model{
 	* return list of nezarat in province
 	*/
 	public function post_list(){
-		var_dump("fuck");exit();
+		var_dump(1);exit();
 		$sql = $this->sql()->tableNezarat_program()->likeTitle("%".$this->xuId("search")."%");
 		$r = $sql->limit(10)->select();
 		// var_dump($r->string());

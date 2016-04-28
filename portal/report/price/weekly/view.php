@@ -6,7 +6,7 @@ class view extends main_view{
 
 
 	public function config(){
-		// var_dump("fuck");exit();
+
 		$start_date  = $this->convert_date($this->xuId("start_date"));
 		$end_date  = $this->convert_date($this->xuId("end_date"));
 		$list = $this->sql("#weekly", $start_date, $end_date);

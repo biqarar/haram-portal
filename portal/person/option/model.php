@@ -5,6 +5,30 @@
 
 class model extends main_model{
 
+	public function sql_load_file($person_id = false) {
+		$users_id = $this->sql()->tablePerson()->whereId($person_id)->fieldUsers_id()->limit(1)->select()->assoc("users_id");
+		return $this->load_file($users_id);
+	}
+
+
+	public function load_file($users_id = false) {
+
+		$file_user = $this->sql()->tableFile_user()->whereUsers_id($users_id)->select();
+		
+		$directory = "../updfile/";
+
+		$path = array();
+
+		if($file_user->num() > 0 ) {
+			foreach ($file_user->allAssoc() as $key => $value) {
+				$file = $this->sql()->tableFiles()->whereId($value['file_id'])->limit(1)->select()->assoc();
+				$path[] = $directory . $file['folder'] . '/' . $file['title'] . "." . $file['type'];
+			}
+		}
+		return $path;
+
+	}
+
 	public function sql_find_from_name($id = false){
 		$ret = '';
 		if($id != ""){
