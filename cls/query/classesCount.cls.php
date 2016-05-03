@@ -2,6 +2,9 @@
 class query_classesCount_cls extends query_cls
 {
 	public function config($classes_id = false){
+		///------------------- check branch
+		$this->sql(".branch.classes", $classes_id);
+
 		$classes_count = $this->count($classes_id);
 		$min_person = $this->sql()->tableClasses()->whereId($classes_id)->andStatus("ready");
 		$min_person->joinPlan()->whereId("#classes.plan_id")->fieldMin_person();

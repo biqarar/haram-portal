@@ -4,6 +4,10 @@
  */
 class model extends main_model{
 	public function sql_find_teacher_name($users_id = 0) {
+
+		//----------------- check branch
+		$this->sql(".branch.person", $users_id);
+
 		$return = $this->sql()->tablePerson()->whereUsers_id($users_id)->fieldName()->fieldFamily()->limit(1)->select()->assoc();
 		return $return['name'] . ' ' . $return['family'];
 	}
@@ -14,6 +18,15 @@ class model extends main_model{
 		if(!empty($week_days) && is_array($week_days)){
 			$week_days = join($week_days, ",");
 		}
+
+		//------------------------check branch
+		$branch_id = $this->sql(".branch.plan",post::plan_id());
+		if($branch_id == $this->sql(".branch.place",post::place_id())){
+			$this->sql(".branch.users",post::teacher(), $branch_id);
+		}else{
+			debug_lib::fatal("branch, place and teacher branch not mathc");
+		}
+		
 
 		//------------------------------ make sql object
 		return $this->sql()->tableClasses()
@@ -54,6 +67,8 @@ class model extends main_model{
 
 	public function post_edit_classes() {
 
+		//---------------------- chekc branch
+		$this->sql(".branch.classes", $this->xuId());
 
 		//------------------------------ check duplicate classes
 		$this->check_duplication("update");
@@ -93,6 +108,10 @@ class model extends main_model{
 		$end_date   = post::end_date();
 		$end_date = $this->convert_date($end_date);
 
+
+		//--------------- check branch
+		$this->sql(".branch.place", post::place_id());
+
 		//------------------------------  place id
 		$place      = post::place_id();
 
@@ -115,6 +134,17 @@ class model extends main_model{
 				->condition("and", "#end_date", ">=" , $start_date)
 				->groupClose()
 				->andPlace_id($place);
+
+
+		$class->joinPlan()->whereId("#classes.plan_id");
+		//---------- get branch id in the list
+		foreach ($this->branch() as $key => $value) {
+			if($key == 0){
+				$class->condition("and", "plan.branch_id","=",$value);
+			}else{
+				$class->condition("or","plan.branch_id","=",$value);
+			}
+		}
 		$class->joinPlace()->whereId("#classes.place_id")->fieldMulticlass();
 		$class = $class->select();
 				
@@ -211,11 +241,23 @@ class model extends main_model{
 	* @return array (liset of users whit teacher type)
 	*/
 	function sql_users_name_family() {
-
+// var_dump("fuc");exit();
 		$x = $this->sql()->tableUsers();
 		$x->whereType('teacher');
 		// ->andStatus("enable"); // fase 2
 		$x->joinPerson()->whereUsers_id("#users.id");
+
+		$x->joinUsers_branch()->whereUsers_id("#users.id");
+
+		//---------- get branch id in the list
+		foreach ($this->branch() as $key => $value) {
+			if($key == 0){
+				$x->condition("and", "users_branch.branch_id","=",$value);
+			}else{
+				$x->condition("or","users_branch.branch_id","=",$value);
+			}
+		}
+		
 		$y = $x->select()->allAssoc();
 
 		$ret = array();

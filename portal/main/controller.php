@@ -18,6 +18,8 @@ class main_controller{
 		$this->querys = (object) "query";
 		$this->addPeroperty('querys');
 		$this->addMethod('tag');
+		$this->addMethod('branch');
+		$this->addMethod('post_branch');
 		$this->addMethod('jTime');
 		$this->addMethod('dateNow');
 		$this->addMethod('xuStatus');
@@ -311,7 +313,7 @@ class main_controller{
 
 		}else{
 			// check permission
-			$session_permission = isset($_SESSION['user_permission']['tables']) ? $_SESSION['user_permission']['tables'] : false;
+			$session_permission = isset($_SESSION['user']['permission']['tables']) ? $_SESSION['user']['permission']['tables'] : false;
 			$page_permission = $this->permission;
 			$closeF = false;
 			foreach ($page_permission as $table => $oprator) {
@@ -334,7 +336,15 @@ class main_controller{
 	}
 
 	public function SESSION_usersid() {
-		return (isset($_SESSION['users_id'])) ? $_SESSION['users_id'] : 0;
+		return (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : 0;
+	}
+
+	public function branch($arg = false) {
+		return $this->sql(".branch.check", $arg);
+	}
+
+	public function post_branch() {
+		return $this->sql(".branch.post_branch");
 	}
 }
 

@@ -47,5 +47,9 @@ class query_cls {
 		->condition("or", "#because", "is", "#null")
 		->groupClose();
 	}
+
+	public function redirect($url) {
+		new redirector_cls($url);
+	}
 }
 ?>

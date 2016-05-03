@@ -11,10 +11,21 @@ class model extends main_model
 		// $sql->fieldName("name")->fieldFamily("family")->fieldFather("father");//->fieldUsersid("id");
 // 
 		$sql->joinUsers()->whereId("#person.users_id")->andType("teacher")->fieldUsername();
+		$sql->joinUsers_branch()->whereUsers_id("#users.id");
+
+		//---------- get branch id in the list
+		foreach ($this->branch() as $key => $value) {
+			if($key == 0){
+				$sql->condition("and", "users_branch.branch_id","=",$value);
+			}else{
+				$sql->condition("or","users_branch.branch_id","=",$value);
+			}
+		}
 		// $sql->condition("or", "##users.username" , "=" ,$this->xuId("search"));
 		
 		$sql = $sql->limit(10)->select();
 		$array = array();
+		// echo $sql->string();exit();/
 		// ilog($sql->string());
 		foreach ($sql->allAssoc() as $key => $value) {
 			$array[] = array(

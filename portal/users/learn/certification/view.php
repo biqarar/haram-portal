@@ -10,7 +10,9 @@ class view extends main_view  {
 		$this->data->users_name_family = $this->sql(".userNameFamily", $this->xuId("usersid"));
 		$this->data->title = "گواهی نامه های ثبت شده برای فراگیر";
 		// $this->data->description = "کلاس های شرکت کرده، غیبت ها، نمرات و گواهی نامه";
-		
+			//----------------------- check banch
+		$this->sql(".branch.users",$this->xuId("usersid"));
+
 		$certification = $this->sql(".list", "certification", function ($query) {
 			$query->joinClassification()->whereId("#certification.classification_id")
 			->andUsers_id($this->xuId("usersid"))

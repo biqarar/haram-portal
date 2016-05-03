@@ -10,6 +10,10 @@ class view extends main_view  {
 		//------------------------------  set users_id
 		$users_id  = $this->xuId();
 
+			//----------------------- check banch
+		$this->sql(".branch.users",$users_id);
+
+
 		$this->topLinks(array(
 			array("title" => "نمایش", "url" => "users/learn/absence/id=$users_id"),
 			array("title" => "ثبت", "url" => "absence/status=add/usersid=$users_id"),

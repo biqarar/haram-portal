@@ -70,16 +70,7 @@ class controller extends main_controller{
 				$this->permission = array("classes" => array("delete" => array("public")));
 			}
 		);
-		//------------------------------ pending classes
-		$this->listen(array(
-			"max" => 2,
-			"url" => array("pending", "/^(|add|edit)$/")
-			), 
-			function () {
-				save(array("classes", "pending"));
-				$this->permission = array("pending_classes" => array("insert" => array("public")));
-			}
-		);
+		
 	}
 }
 ?>

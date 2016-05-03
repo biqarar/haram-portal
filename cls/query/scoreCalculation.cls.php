@@ -8,7 +8,9 @@ class query_scoreCalculation_cls extends query_cls {
 	*/
 	public function list_score($classesid = false) {
 
-	
+	//-------------------- check branch
+		$this->sql(".branch.classes", $classesid);
+		
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
 		$calculation->joinScore_calculation()->wherePlan_id("#classes.plan_id")->andStatus("active");

@@ -9,10 +9,14 @@ class model extends main_model {
 	}
 
 	public function post_edit_users() {
+
+		//----------------- check branch
+		$this->sql(".branch.users",$this->xuId());
+		
 		//------------------------------  update users
 		$users_sql = $this->sql()->tableUsers()
 			->setEmail(post::email())
-			->setType(post::type())
+			// ->setType(post::type())
 			->setStatus(post::status())
 			->whereId($this->xuId())
 			->update();

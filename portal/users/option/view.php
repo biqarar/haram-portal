@@ -17,6 +17,9 @@ class view extends main_view {
 
 		$f->remove("username,password");
 
+
+		//--------------- check branch
+		$this->sql(".branch.users", $this->xuId());
 		//------------------------------ edit person form whit id
 		$this->sql(".edit", "users", $this->xuId(), $f);
 

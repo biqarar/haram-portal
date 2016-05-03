@@ -4,13 +4,19 @@
 */
 class model extends main_model{
 	public function makeQuery() {
-		return $this->sql()->tableGroup()->setName(post::name());
+		return $this->sql()->tableGroup()
+							->setName(post::name())
+							->setBranch_id($this->post_branch());
 	}
 	
 	public function post_add_group() {
 
 		//------------------------------ check for duplicate entry for group name
-		$duplicate = $this->sql()->tableGroup()->whereName(post::name())->limit(1)->select()->num();
+		$duplicate = $this->sql()->tableGroup()
+						->whereName(post::name())
+						->andBranch_id($this->post_branch())
+						->limit(1)->select()->num();
+
 		if($duplicate >= 1 ) {
 			debug_lib::fatal("duplicate entry for name");
 		}else{
@@ -29,6 +35,8 @@ class model extends main_model{
 	}
 
 	public function post_edit_group() {
+		//---------- check branch
+		$this->sql(".branch.group", $this->xuId());
 
 		//------------------------------ can not set null for field when update
 		if(post::name() != "") {

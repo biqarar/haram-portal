@@ -12,6 +12,10 @@ class view extends main_view {
 		$this->classesDetail();
 		//------------------------------ set users id
 
+
+		//------------------ check branch
+		$this->sql(".branch.classes",$this->xuId("classesid"));
+		
 		$this->data->dataTable = $this->dtable("price/status=classeslist/classesid=" . $this->xuId("classesid").'/',
 			array("username", "name", "family", "date_entry", "date_delete", "because",  "موجودی فعال" , "more"));
 

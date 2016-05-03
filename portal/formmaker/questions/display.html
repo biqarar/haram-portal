@@ -1,8 +1,0 @@
-{# reza mohiti #}
-{% extends layout %}
-{% block content %}
-<form class="ajx" method="post" action="formmaker/questions{{global.url}}">
-	{{forms.make(form.form_questions)}}
-</form>
-{{tagMaker.list(list)}}
-{%endblock%}

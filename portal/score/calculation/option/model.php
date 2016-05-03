@@ -5,6 +5,10 @@
 class model extends main_model{
 
 	public function makeQuery() {
+
+		//---------------- check branch
+		$this->sql(".branch.plan", post::plan_id());
+
 		//------------------------------ make sql object
 		return $this->sql()->tableScore_calculation()
 						   ->setPlan_id(post::plan_id())
@@ -29,6 +33,10 @@ class model extends main_model{
 	}
 
 	public function post_edit_score_calculation(){
+
+		//---------------- check branch
+		$this->sql(".branch.score_calculation", $this->xuId());
+		
 		//------------------------------ update score_calculation
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 

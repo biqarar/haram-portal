@@ -6,10 +6,18 @@
 class model extends main_model{
 
 	public function sql_person_extera_id($usersid = false) {
+
+		//---------------------- check branch
+		$this->sql(".branch.users", $usersid);
+
 		return $this->sql()->tablePerson_extera()->whereUsers_id($usersid)->limit(1)->select()->assoc("id");
 	}
 
 	public function makeQuery() {
+
+		//---------------------- check branch
+		$this->sql(".branch.users", $this->xuId("usersid"));
+
 		return  $this->sql()->tablePerson_extera()
   					->setUsers_id($this->xuId("usersid"))
   					->setPlace_birth("'" . post::place_birth() . "'")

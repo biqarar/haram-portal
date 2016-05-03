@@ -4,6 +4,10 @@
 */
 class model extends main_model {
 	public function sql_find_users_id($absence_id = false) {
+
+		//--------------- check branch 
+		$this->sql(".branch.absence", $absence_id);
+
 		$usersid = $this->sql()->tableAbsence()->whereId($absence_id)->fieldClassification_id();
 		$usersid->joinClassification()->whereId("#absence.classification_id")->fieldUsers_id()->fieldClasses_id();
 		$usersid = $usersid->limit(1)->select()->assoc();
@@ -11,6 +15,10 @@ class model extends main_model {
 	}
 
 	public function sql_classes_name($classes_id = false) {
+
+		//--------------- check branch 
+		$this->sql(".branch.classes", $classes_id);
+		
 		$return = $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->fieldId();
 		$return->joinPlan()->whereId("#classes.plan_id")->fieldName("plan_name");
 		$return->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacher_name")->fieldFamily("teacher_family");
@@ -26,6 +34,10 @@ class model extends main_model {
 	}
 
 	public function sql_active_classes($usersid = false) {
+
+		//--------------- check branch 
+		$this->sql(".branch.users", $usersid);
+		
 		$allClass_users = $this->sql()->tableClassification()->whereUsers_id($usersid)->fieldId("classification_id");
 
 		$allClass_users = $this->classification_finde_active_list($allClass_users);
@@ -51,6 +63,11 @@ class model extends main_model {
 		$i = 0;
 		foreach ($_POST as $key => $value) {
 			if(preg_match("/^classes\_(\d+)$/", $key)){
+
+
+				//--------------- check branch 
+				$this->sql(".branch.classification", $value);
+				
 				//------------------------------ insert absence
 				$sql = $this->makeQuery()->setClassification_id($value)->insert();
 				$this->commit(function() {
@@ -72,6 +89,11 @@ class model extends main_model {
 	}
 
 	public function post_edit_absence() {
+
+
+		//--------------- check branch 
+		$this->sql(".branch.absence", $this->xuId());
+		
 
 		//------------------------------ edit absence
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();

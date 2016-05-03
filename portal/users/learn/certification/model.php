@@ -6,6 +6,8 @@ class model extends main_model {
 
 	public function post_api(){
 		$usersid = $this->xuId();
+			//----------------------- check banch
+		$this->sql(".branch.users",$usersid);
 
 		$dtable = $this->dtable->table("classification")
 		->fields("id", "plan", "teachername","teacherfamily","id score","mark mark")

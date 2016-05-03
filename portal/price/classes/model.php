@@ -17,6 +17,9 @@ class model extends main_model {
 			->search_fields("username", "name", "family")
 			->query(function($q){
 
+				//------------------ check branch
+				$this->sql(".branch.classes",$this->xuId("classesid"));
+				
 				$q->andClasses_id($this->xuId("classesid"));
 				$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
 				$q->joinUsers()->whereId("#classification.users_id")->fieldUsername("username");

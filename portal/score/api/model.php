@@ -6,6 +6,14 @@ class model extends main_model {
 
 		$classificationid = $this->xuId("classificationid");
 		$scoretypeid = $this->xuId("scoretypeid");
+
+		//----------------- check branch
+		if(
+			$this->sql(".branch.score_type", $scoretypeid) !=
+			$this->sql(".branch.classification", $classificationid)) {
+			debug_lib::fatal("score_type and classification branch not match");
+		}
+
 		$value = ($this->xuId("value"));
 
 		if($classificationid == 0 or $scoretypeid == 0 ) {

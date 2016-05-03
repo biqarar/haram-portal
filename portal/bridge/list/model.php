@@ -33,6 +33,16 @@ class model extends main_model {
 		->query(function($q){
 			$q->joinPerson()->whereUsers_id("#bridge.users_id")->fieldFamily("family")->fieldName("name");
 			$q->joinUsers()->whereId("#bridge.users_id")->fieldUsername("username")->fieldId("usersid");
+			
+			$q->joinUsers_branch()->whereUsers_id("users.id");
+
+			foreach ($this->branch() as $key => $value) {
+					if($key == 0){
+						$q->condition("and", "users_branch.branch_id","=",$value);
+					}else{
+						$q->condition("or","users_branch.branch_id","=",$value);
+					}
+				}
 			// ilog($q->select()->string());
 		})
 		->result(function($r){

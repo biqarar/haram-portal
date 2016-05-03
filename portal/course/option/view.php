@@ -14,7 +14,10 @@ class view extends main_view{
 		$this->listBranch($f);
 
 		//------------------------------ remove branch_id because list of branch is loaded
-		$f->remove("branch_id");
+		// $f->remove("branch_id");
+		
+		//----------------- check branch
+		$this->sql(".branch.course", $this->xuId());
 		
 		//------------------------------ edit form
 		$this->sql(".edit", "course", $this->xuId(), $f);

@@ -11,7 +11,7 @@ class controller extends main_controller {
 			), 
 		function() {
 			save(array("login"));
-			if(isset($_SESSION['users_id'])){
+			if(isset($_SESSION['user']['id'])){
 				$this->redirect("profile");
 			}
 			

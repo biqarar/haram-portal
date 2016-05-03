@@ -2,7 +2,9 @@
 class query_classesDetail_cls extends query_cls
 {
 	public function config($classesid = false){
-		
+		///------------------- check branch
+		$this->sql(".branch.classes", $classesid);
+
 		//------------------------------ get detail classes
 		if($classesid){
 			$return = array();

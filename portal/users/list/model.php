@@ -5,6 +5,8 @@
 class model extends main_model {
 	public function post_api(){
 		$type = $this->xuId("type");
+		
+		// $this->branch();
 		// $type = isset($type) && $type != "" ? $type : "learn";
 			// var_dump($type);exit();
 		$dtable = $this->dtable->table('person')
@@ -33,6 +35,18 @@ class model extends main_model {
 			->search_fields('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode")
 			->query(function($q){
 				$q->joinUsers()->whereId("#person.users_id")->fieldUsername("username");
+				$q->joinUsers_branch()->whereUsers_id("users.id");
+				// ->groupOpen();
+				//---------- get branch id in the list
+				foreach ($this->branch() as $key => $value) {
+					if($key == 0){
+						$q->condition("and", "users_branch.branch_id","=",$value);
+					}else{
+						$q->condition("or","users_branch.branch_id","=",$value);
+					}
+				}
+				// $q->groupClose();
+				// echo ($q->select()->string());exit();
 			})
 			// ->search_result(function($result){
 			// 	$vsearch = $_GET['search']['value'];

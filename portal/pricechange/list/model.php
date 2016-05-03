@@ -4,6 +4,17 @@ class model extends main_model {
 		$dtable = $this->dtable->table("price_change")
 			->fields("id", "name" , "type", "id edit")
 			->search_fields("name")
+			->query(function($q){
+		
+				foreach ($this->branch() as $key => $value) {
+					if($key == 0){
+						$q->condition("where", "branch_id","=",$value);
+					}else{
+						$q->condition("or","branch_id","=",$value);
+					}	
+				}
+
+			})
 			->result(function($r){
 				$r->edit = '<a href="pricechange/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';
 			});

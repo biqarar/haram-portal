@@ -5,16 +5,19 @@
 class model extends main_model {
 
 	public function sql_classification_detail($field = false , $id = false) {
+		//------------- check branch
+		$this->sql(".branch.classification", $id);
+		
 		return $this->sql()->tableClassification()->whereId($id)->limit(1)->select()->assoc($field);
 	}
 
 	public function makeQuery() {
-		return $this->sql()->tableClassification()
+		// return $this->sql()->tableClassification()
 				// ->setUsers_id(post::users_id())
 				// ->setDate_entry(post::date_entry())
 				// ->setClasses_id(post::classes_id())
-				->setDate_delete(post::date_delete())
-				->setBecause(post::because());
+				// ->setDate_delete(post::date_delete())
+				// ->setBecause(post::because());
 				// ->setMark(post::mark());
 				// ->setPlan_section_id(post::plan_section_id());
 	}

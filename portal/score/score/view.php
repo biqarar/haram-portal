@@ -12,6 +12,10 @@ class view extends main_view {
 		
 		$this->data->msg = false;
 
+		//----------------- check branch
+		$this->sql(".branch.score_type", $this->xuId("scoretypeid"));
+		$this->sql(".branch.classes", $this->xuId("classesid"));
+
 		$this->global->score_type = $this->sql("#score_type", $this->xuId("scoretypeid"), "title");
 		$this->data->score_type_list = $this->sql(".scoreTypeList", $this->xuId("classesid"));
 

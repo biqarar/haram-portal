@@ -10,6 +10,9 @@ class model extends main_model{
 
 	public function makeQuery() {
 		$value = preg_replace("/\,/", "", post::value());
+		//--------------- check branch
+		$this->sql(".branch.price_change", post::title());
+
 		return $this->sql()->tablePrice()
 				// ->setUsers_id($this->xuId("usersid"))
 				->setDate(post::date())			
@@ -22,15 +25,22 @@ class model extends main_model{
 	}
 
 	public function post_add_price(){
+		// var_dump($this->sql(".branch.users",$this->xuId("usersid") , $this->sql(".branch.plan", post::plan_id())));exit();
 		$sql = $this->makeQuery();
+		//---------------- check branch
+		$this->sql(".branch.users",$this->xuId("usersid"));
 		
 		$sql->setUsers_id($this->xuId("usersid"));
+
 
 		if(post::type() == 'plan' && post::plan_id() == '') {
 			debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
 		}elseif(post::type() == "common" && post::plan_id() != ""){
 			$sql->setDescription(post::description());
 		}elseif(post::type() == 'plan' && post::plan_id() != '') {
+			//---------------- check branch
+			$this->sql(".branch.users",$this->xuId("usersid") , $this->sql(".branch.plan", post::plan_id()));
+
 			$sql->setDescription($this->plan_name(post::plan_id()) . " - " . post::description());
 		}
 		$sql = $sql->insert();
@@ -52,11 +62,17 @@ class model extends main_model{
 	public function post_edit_price(){
 		$sql = $this->makeQuery();
 
+		//----------------- check branch
+		$this->sql(".branch.price" ,$this->xuId());
+
 		if(post::type() == 'plan' && post::plan_id() == '') {
 			debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
 		}elseif(post::type() == "common" && post::plan_id() != ""){
 			$sql->setDescription(post::description());
 		}elseif(post::type() == 'plan' && post::plan_id() != '') {
+			//---------------- check branch
+			$this->sql(".branch.plan", post::plan_id());
+			
 			$sql->setDescription($this->plan_name(post::plan_id()) . " - " . post::description());
 		}
 		$sql->whereId($this->xuId())->update();
@@ -71,8 +87,13 @@ class model extends main_model{
 	}
 
 	public function check_price() {
+
 		$usersid  = $this->xuId("usersid");
+		//----------------- check branch
+		$this->sql(".branch.users" ,$this->xuId("usersid"));
+
 		$value    = post::value();
+
 		$title = post::title();
 
 		$type = $this->sql()->tablePrice_change()->whereId($title)->limit(1)->select()->assoc("type");

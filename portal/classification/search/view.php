@@ -7,9 +7,9 @@ class view extends main_view {
 	public function config() {
 
 
-		$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
+		// $classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
 
-		$this->global->classesid = $classes_id;
+		// $this->global->classesid = $classes_id;
 		
 		// //------------------------------ search form
 		// $hidden = $this->form("#hidden")->value("xsearch");

@@ -5,12 +5,12 @@
 class sql_cls {
 	static $first = false;
 	static function config($maker = false) {
-		// var_dump(isset($_SESSION['users_id']) , isset($_SESSION['branch_active']) , global_cls::supervisor());
+		// var_dump(isset($_SESSION['user']['id']) , isset($_SESSION['user']['branch_active']) , global_cls::supervisor());
 
 		//------------------------------ join each query whit branch_cash table (permission)
-		if(isset($_SESSION['users_id']) && isset($_SESSION['branch_active']) && !global_cls::supervisor()){
+		if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['branch_active']) && !global_cls::supervisor()){
 			// var_dump("f");exit();
-			$users_id = $_SESSION['users_id'];
+			$users_id = $_SESSION['user']['id'];
 			
 			//------------------------------ public table (no permission set on this tables)
 			$freeTable = array("city",
@@ -32,32 +32,33 @@ class sql_cls {
 
 			if(!preg_grep("/^$table$/", $freeTable)){
 				
-				//------------------------------ join to permission
-				$x = $maker->joinBranch_cash()
-					->whereTable($table)
-					->andRecord_id("#".$table.".id")
-					->groupOpen();
+				// //------------------------------ join to permission
+				// $x = $maker->joinBranch_cash()
+				// 	->whereTable($table)
+				// 	->andRecord_id("#".$table.".id")
+				// 	->groupOpen();
 
-				foreach ($_SESSION['branch_active'] as $key => $value) {
-					if($key == 0){
-						$x->andBranch_id($value);
-					}else{
-						$x->orBranch_id($value);
-					}
-				}
-				$x->groupClose();
-				//$x->fieldId("BranchCashId");
-				$x->fieldBranch_id("sqlClsBranchId");
-				// $x->groupbyTable();
+				// foreach ($_SESSION['user']['branch_active'] as $key => $value) {
+				// 	if($key == 0){
+				// 		$x->andBranch_id($value);
+				// 	}else{
+				// 		$x->orBranch_id($value);
+				// 	}
+				// }
+				// $x->groupClose();
+				// //$x->fieldId("BranchCashId");
+				// $x->fieldBranch_id("sqlClsBranchId");
+				// // $x->groupbyTable();
 				// $x->groupbyRecord_id();
 	
 				//------------------------------ paging record limit 200
-				if(isset(config_lib::$surl['page']) || (isset(config_lib::$surl['status']) && config_lib::$surl['status'] == "list")){
-					$start_page = (isset(config_lib::$surl['page'])) ? ((intval(config_lib::$surl['page']) - 1)* 20) : 0;
-					$limit_start = $start_page;
-					$limit_end = 200;
-					$maker->limit($limit_start, $limit_end);
-				}
+				// if(isset(config_lib::$surl['page']) || 
+				// 	(isset(config_lib::$surl['status']) && config_lib::$surl['status'] == "list")){
+				// 	$start_page = (isset(config_lib::$surl['page'])) ? ((intval(config_lib::$surl['page']) - 1)* 20) : 0;
+				// 	$limit_start = $start_page;
+				// 	$limit_end = 200;
+				// 	$maker->limit($limit_start, $limit_end);
+				// }
 			}
 		}else{
 			$users_id = 0;
@@ -69,13 +70,13 @@ class sql_cls {
 		$sql = new dbconnection_lib;
 
 		//------------------------------ users id
-		$users_id = isset($_SESSION['users_id']) ? $_SESSION['users_id'] : 0;
+		$users_id = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 0;
 
 		//------------------------------ ip
 		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 0;
 
 		//------------------------------ users_branch
-		$users_branch = isset($_SESSION['users_branch']) ? $_SESSION['users_branch']: array();
+		$users_branch = isset($_SESSION['user']['branch']) ? $_SESSION['user']['branch']: array();
 
 		//------------------------------ set branch id
 		if(post::branch_id() && global_cls::supervisor()){
@@ -94,7 +95,7 @@ class sql_cls {
 			
 			// ------------------------------ developer bug
 			// $branch_id = 0;
-			$branch_id = $_SESSION['users_branch'][0];
+			$branch_id = $_SESSION['user']['branch'][0];
 		
 		} else {
 		
@@ -103,7 +104,7 @@ class sql_cls {
 		}
 
 		//------------------------------ send users id, branch id and ip to mysql engine
-		if (isset($_SESSION['users_id']) && !self::$first) {
+		if (isset($_SESSION['user']['id']) && !self::$first) {
 			$q = $sql->query("SET @users_id = $users_id ");
 			$q = $sql->query("SET @ip_ = '$ip' ");
 			$q = $sql->query("SET @branch_id = $branch_id ");
@@ -141,17 +142,17 @@ class sql_cls {
 		
 		// echo "INSERT INTO update_log 
 		// 	SET 
-		// 	`users_id` = '". $_SESSION['users_id'] ."' , 
+		// 	`users_id` = '". $_SESSION['user']['id'] ."' , 
 		// 	`table` = '$table',
 		// 	`field` = '$field',
 		// 	`record_id` = '$record_id' ,
 		// 	`old_value` = '$old_value',
 		// 	`new_value` = '" . preg_replace("/\#\'/", "", $new_value). "'\n\n";
-		if(isset($_SESSION['users_id'])){
+		if(isset($_SESSION['user']['id'])){
 			
 		$assoc = $sql->query("INSERT INTO update_log 
 			SET 
-			`users_id` = '". $_SESSION['users_id'] ."' , 
+			`users_id` = '". $_SESSION['user']['id'] ."' , 
 			`table` = '$table',
 			`field` = '$field',
 			`record_id` = '$record_id' ,

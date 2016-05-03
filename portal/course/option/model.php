@@ -10,7 +10,7 @@ class model extends main_model{
 				->setBegin_time(post::begin_time())
 				->setEnd_time(post::end_time())
 				// ->setExpert(post::expert())
-				->setBranch_id(post::branch_id())
+				->setBranch_id($this->post_branch())
 				->setName(post::name());
 	}
 
@@ -32,6 +32,7 @@ class model extends main_model{
 
 	public function post_edit_course() {
 
+		$this->sql(".branch.course", $this->xuId());
 		//------------------------------ update course
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 

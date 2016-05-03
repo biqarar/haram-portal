@@ -8,6 +8,10 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "student";
 
+
+		//------------------- check branch
+		$this->sql(".branch.olddb", "student", $this->xuId());
+		
 		//------------------------------ list of classes
 		$student = $this->sql(".list", "student", function ($query, $id) {
 			$query->whereName1($id);

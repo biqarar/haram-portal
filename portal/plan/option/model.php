@@ -6,6 +6,10 @@ class model extends main_model{
 	
 	public function makeQuery() {
 		//------------------------------ make sql object
+		if($this->sql(".branch.group",post::group_id()) != $this->post_branch()){
+			debug_lib::fatal("branch not match");
+		}
+
 		return $this->sql()->tablePlan()
 				->setGroup_id(post::group_id())
 				->setName(post::name())
@@ -13,7 +17,7 @@ class model extends main_model{
 				->setAbsence(post::absence())
 				->setCertificate(post::certificate())
 				->setMark(post::mark())
-				// ->setRule(post::rule())
+				->setBranch_id($this->post_branch())
 				->setMin_person(post::min_person())
 				->setMax_person(post::max_person());
 				// ->setPayment_count(post::payment_count())
@@ -37,6 +41,9 @@ class model extends main_model{
 
 	public function post_edit_plan() {
 
+		//-------------------- check branch
+		$this->sql(".branch.plan", $this->xuId());
+		
 		//------------------------------ update paln
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 		

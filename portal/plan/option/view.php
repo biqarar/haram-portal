@@ -15,6 +15,9 @@ class view extends main_view{
 		//------------------------------ list of branch
 		$this->listBranch($f);
 
+		//--------------- check branch
+		$this->sql(".branch.plan", $this->xuId());
+		
 		//------------------------------ edit form
 		$this->sql(".edit", "plan", $this->xuId(), $f);
 		

@@ -11,6 +11,9 @@ class model extends main_model {
 		->search_fields("date", "classes_id")
 		
 		->query(function($q){
+			//-------------------- check branch
+			$this->sql(".branch.users",$this->xuId("usersid"));
+			
 			$q->joinClassification()->whereId("#absence.classification_id")
 			->andUsers_id($this->xuId("usersid"))->fieldClasses_id("classesid")->fieldId("classificationid");
 

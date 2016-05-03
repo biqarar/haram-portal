@@ -8,6 +8,9 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "certification";
 
+		//------------------- check branch
+		$this->sql(".branch.olddb", "oldcertification", $this->xuId());
+		
 		//------------------------------ list of classes
 		$certification = $this->sql(".list", "oldcertification", function ($query, $id) {
 			$query->whereParvande($id);

@@ -88,153 +88,173 @@ class model extends main_model{
 
 	public function sql_admin() {
 		//---------------------------------------------------------------------------------------------------
-		//---------------------------------------------------------------------------------------------------
+		$this->ready(10);
 
-		$this->query_on_record();
-		$this->ready(8);
 		//----------------------------- new version function (database change)	
 		$this->database_change();		
 		
 		//----------------------------- new version function (query on record)
+		$this->query_on_record();
 		
+		//---------------------------------------------------------------------------------------------------
 		$this->end();
-		//---------------------------------------------------------------------------------------------------
-		//---------------------------------------------------------------------------------------------------
+
 	}
 
 	public function query_on_record() {
 		
 		// ---------------------------------------------------------------------------------------------------
-		// echo "<table>";
-	
-		// $sql = $this->sql()->tableBridge()->whereTitle("mobile")->select()->allAssoc();
 
-		// foreach ($sql as $key => $value) {
-		// 	echo "<tr><td>" . $value['value'] . "</td></tr>";
-		// }
-		// echo "</table>";
-		// exit();
-
-
-		/**
-
-		*/
 	}
 
 	public function database_change() {
 		/**
-
+		* database change
 		*/
 				
 		$sql = new dbconnection_lib;
 
 
 		$database_change = array(
-			// "ALTER TABLE `users`  ADD `branch_id` INT(10) NULL",
-			// "ALTER TABLE `users` ADD CONSTRAINT `users_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
 
-			// "ALTER TABLE `classes`  ADD `branch_id` INT(10) NULL",
-			// "ALTER TABLE `classes` ADD CONSTRAINT `classes_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+			"ALTER TABLE `plan`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `plan` ADD CONSTRAINT `plan_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"update plan as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'plan' 
+			set us.branch_id = br.branch_id",
+
+			"ALTER TABLE `plan`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			
+			"ALTER TABLE `course`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `course` ADD CONSTRAINT `course_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"update course as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'course' 
+			set us.branch_id = br.branch_id",
+
+			"ALTER TABLE `course`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+			"ALTER TABLE `place`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `place` ADD CONSTRAINT `place_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"update place as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'place' 
+			set us.branch_id = br.branch_id",
+
+			"ALTER TABLE `place`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+
+
+			// "ALTER TABLE `price_change`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `price_change` ADD CONSTRAINT `price_change_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			// "update price_change as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'price_change' 
+			// set us.branch_id = br.branch_id",
+
+			// "ALTER TABLE `price_change`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 
 			// "ALTER TABLE `price`  ADD `branch_id` INT(10) NULL",
 			// "ALTER TABLE `price` ADD CONSTRAINT `price_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
-
-			// "ALTER TABLE `plan`  ADD `branch_id` INT(10) NULL",
-			// "ALTER TABLE `plan` ADD CONSTRAINT `plan_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
-
-			// "ALTER TABLE `group`  ADD `branch_id` INT(10) NULL",
-			// "ALTER TABLE `group` ADD CONSTRAINT `group_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
-
-			// //---------------------------------------------------------
-
-			// "update users as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'users' 
-			// set us.branch_id = br.branch_id",
-
-
-			// "update classes as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' and br.branch_id = 1 
-			// set us.plan_id =181 where us.plan_id = 26",
-
-
-			// "update score_type as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'score_type' and br.branch_id = 1 
-			// set us.plan_id =181 where us.plan_id = 26",
-
-			// "update score_calculation as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'score_calculation' and br.branch_id = 1 
-			// set us.plan_id =181 where us.plan_id = 26",
-			
-			// "delete from branch_cash where branch_cash.table = 'plan' and branch_cash.record_id = 26 and branch_cash.branch_id = 1";
-
-
-			// "update place as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'place' 
-			// set us.branch_id = br.branch_id",
-
 
 			// "update price as us 
 			// inner join branch_cash as br on us.id = br.record_id and br.table = 'price' 
 			// set us.branch_id = br.branch_id",
 
+			// "ALTER TABLE `price`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 
-			// "update plan as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'plan' 
-			// set us.branch_id = br.branch_id",
+			"ALTER TABLE `group`  ADD `branch_id` INT(10) NULL",
+			"ALTER TABLE `group` ADD CONSTRAINT `group_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			"update `group` as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'group' 
+			set us.branch_id = br.branch_id",
 
 
-			// "update course as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'course' 
-			// set us.branch_id = br.branch_id",
+			"ALTER TABLE `group`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
+			
+  
+
+			"CREATE TABLE `logs` (
+			  `id` bigint(20) UNSIGNED NOT NULL,
+			  `user_id` int(10) UNSIGNED DEFAULT NULL,
+			  `log_data` varchar(200) DEFAULT NULL,
+			  `log_meta` mediumtext,
+			  `log_status` enum('enable','disable','expire','deliver') DEFAULT NULL,
+			  `log_createdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+
+			"ALTER TABLE `logs`
+			  ADD PRIMARY KEY (`id`),
+			  ADD KEY `logs_users_id` (`user_id`) USING BTREE;",
+
+  			"ALTER TABLE `logs`
+  				MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;",
 
 
-			// "update `group` as us 
-			// inner join branch_cash as br on us.id = br.record_id and br.table = 'group' 
-			// set us.branch_id = br.branch_id",
+
+			"DROP TABLE `dev`",
+
+			"DROP TABLE `form_answer`",
+			
+			"DROP TABLE `form_group`",
+			
+			"DROP TABLE `form_group_item`",
+			
+			"DROP TABLE `form_questions`",
+			
+			"DROP TABLE `nezarat_program_item`",
+			
+			"DROP TABLE `nezarat_item`",
+			
+			"DROP TABLE `nezarat_program`",
+
+			"ALTER TABLE `group` DROP INDEX `name`, ADD UNIQUE `name` (`name`, `branch_id`) USING BTREE;",
+
+			"ALTER TABLE `users_branch` ADD `type` ENUM('student','teacher','operator') NOT NULL DEFAULT 'student'",
+
+			"update `users_branch` as br 
+			inner join users as us on us.id = br.users_id  
+			set br.type = us.type",
+
+			"ALTER TABLE `users` DROP `type`",
+			
+
+
+
 
 		);
-		$change_id = array(
-			25 => 180,
-			26 => 181,
-			27 => 182,
-			29 => 183,
-			31 => 184,
-			33 => 185,
-			35 => 186,
-			36 => 187,
-			37 => 188,
-			45 => 189,
-			46 => 190,
-			48 => 191,
-			49 => 192,
-			50 => 193,
-			71 => 194,
-			72 => 195
-
-			);
-		foreach ($change_id as $old => $new) {
-			array_push($database_change, "update classes as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' and br.branch_id = 1 
-			set us.plan_id =$new where us.plan_id = $old");
 
 
-			array_push($database_change,"update score_type as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'score_type' and br.branch_id = 1 
-			set us.plan_id =$new where us.plan_id = $old");
-
-			array_push($database_change,"update score_calculation as us 
-			inner join branch_cash as br on us.id = br.record_id and br.table = 'score_calculation' and br.branch_id = 1 
-			set us.plan_id =$new where us.plan_id = $old");
-			
-			array_push($database_change,"delete from branch_cash where branch_cash.table = 'plan' and branch_cash.record_id = $old and branch_cash.branch_id = 1");
+		$this->run($database_change);
 
 
+		$list_table = $sql->query("SELECT * FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA` LIKE 'quran_hadith'");
+
+		$list_table = $list_table->allAssoc('TABLE_NAME');
+
+		foreach ($list_table as $key => $value) {
+				$this->run($this->trigger($value));
 		}
+		
+		// exit();
+		
+	
+		/**
+
+		*/
+	}
+
+	public function run($array =false) {
+		
+		$sql = new dbconnection_lib;
 
 		$error = 0;
 		$all = 0;
 
-		foreach ($database_change as $key => $value) {
+		foreach ($array as $key => $value) {
 			$this->title($value);
 			$s = $sql->query($value);
 			$this->xecho( "<b>Result:</b>". $sql->result . "\n");
@@ -248,15 +268,48 @@ class model extends main_model{
 			$this->flush();
 			$all++;
 		}
-		
-		$this->xecho( "<div style='background :green'>done.  Database set on version ". $this->version ." 
+
+			$this->xecho( "<div style='background :green'>done.  Database set on version ". $this->version ." 
 			 all perosses =  <b> $all </b>    
 			 by <b> $error </b> error </div></pre>");
 
-		/**
-
-		*/
 	}
+
+
+	public function trigger($table = false) {
+			return  array(
+				//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `{$table}_insert`",
+
+			"ALTER TABLE `$table` ADD `date_insert` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ",
+
+			"ALTER TABLE `$table` ADD `date_modified` TIMESTAMP on update CURRENT_TIMESTAMP  NULL ",
+			
+			// //-----------------------------------------------------------------------------
+			// "CREATE TRIGGER `" . $table . "_insert` AFTER INSERT ON `$table`
+			// FOR EACH ROW BEGIN
+			// call setHistory('$table', 'insert', NEW.id);
+			// END",
+
+					//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `" . $table . "_update`",
+			
+			// //-----------------------------------------------------------------------------
+			// "CREATE TRIGGER `" . $table . "_update` AFTER UPDATE ON `$table`
+			// FOR EACH ROW BEGIN
+			// call setHistory('$table', 'update', OLD.id);
+			// END",
+
+			//-----------------------------------------------------------------------------
+			"DROP TRIGGER IF EXISTS `" . $table . "_delete`",
+			
+			// //-----------------------------------------------------------------------------
+			// "CREATE TRIGGER `" . $table . "_delete` AFTER DELETE ON `$table`
+			// FOR EACH ROW BEGIN
+			// call setHistory('$table', 'delete', OLD.id);
+			// END"
+			);
+	} 
 
 
 }

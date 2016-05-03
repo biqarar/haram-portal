@@ -17,6 +17,10 @@ class view extends main_view {
 		->style("margin : 0px !important;")
 		->render();
 
+
+		//---------------------- check branch
+		$this->sql(".branch.classes", $this->xuId());
+		
 		//------------------------------ list of classes
 		$classes_detail = $this->sql(".list", "classes", function ($query) {
 			$query->whereId($this->xuId());

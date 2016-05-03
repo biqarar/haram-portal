@@ -9,14 +9,14 @@ class model extends main_model{
 		return $this->sql()->tablePlace()
 				->setName(post::name())
 				->setMulticlass(post::multiclass())
-				->setBranch_id(post::branch_id())
+				->setBranch_id($this->post_branch())
 				->setDescription(post::description());
 	}
 
 	public function post_add_place() {
 
 		//------------------------------ check duplicate entry
-		$duplicate = $this->sql()->tablePlace()->whereName(post::name())->andBranch_id(post::branch_id())->select()->num();
+		$duplicate = $this->sql()->tablePlace()->whereName(post::name())->andBranch_id($this->post_branch())->select()->num();
 
 		if($duplicate >= 1){
 			$this->rollback(function() {
@@ -40,6 +40,10 @@ class model extends main_model{
 
 	public function post_edit_place() {
 
+
+		//---------------- check branch
+		$this->sql(".branch.place", $this->xuId());
+		
 		//------------------------------ update place
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 

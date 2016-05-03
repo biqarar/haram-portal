@@ -32,7 +32,8 @@ class query_price_cls extends query_cls {
 			->setDate($this->dateNow("Ymd"))
 			->setValue($price)
 			->setPay_type("rule")
-			->setTitle(5)
+			->setCard("000")
+			->setTitle($this->get_price_change("شرکت در کلاس"))
 			->setTransactions($classes_id)
 			->insert();
 	}
@@ -54,7 +55,7 @@ class query_price_cls extends query_cls {
 				->setUsers_id($users_id)
 				->setValue($price)
 				->setPay_type("rule")
-				->setTitle(8)
+				->setTitle($this->get_price_change("پرداخت دوره ای"))
 				->setTransactions($classes_id)
 				->setVisible("#0")
 				->setDate($date)
@@ -96,6 +97,7 @@ class query_price_cls extends query_cls {
 		return $ret;
 	}
 	public function voidClasses($classesid = false){
+		
 		$classification = $this->sql()->tableClassification()->whereClasses_id($classesid)
 			->groupOpen()
 			->condition("and", "#date_delete" , "is", "#null")
@@ -105,7 +107,7 @@ class query_price_cls extends query_cls {
 		$classification->joinPrice()->whereUsers_id("#classification.users_id")
 			->andPay_type("rule")
 			->andStatus("active")
-			->andTitle(5)
+			->andTitle($this->get_price_change("شرکت در کلاس"))
 			->andTransactions($classesid)->fieldId("priceid");
 		$classification = $classification->select()->allAssoc();
 		foreach ($classification as $key => $value) {
@@ -123,12 +125,17 @@ class query_price_cls extends query_cls {
 		$classification->joinPrice()->whereUsers_id("#classification.users_id")
 			->andPay_type("rule")
 			->andStatus("void")
-			->andTitle(5)
+			->andTitle($this->get_price_change("شرکت در کلاس"))
 			->andTransactions($classesid)->fieldId("priceid");
 		$classification = $classification->select()->allAssoc();
 		foreach ($classification as $key => $value) {
 			$this->sql()->tablePrice()->whereId($value['priceid'])->setStatus("active")->update();
 		}
+	}
+
+	public function get_price_change($name = false) {
+		
+		return $this->sql(".branch.price_change", $this->sql()->tablePrice_change()->whereName($name)->select()->assoc("id"));
 	}
 }
 ?>

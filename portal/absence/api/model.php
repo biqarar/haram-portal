@@ -5,7 +5,9 @@
 class model extends main_model {
 	
 	function post_api()	{
+
 		$classification = $this->xuId("classification");
+		
 		$date = $this->xuId("date");
 		$type = $this->xuId("type");
 		
@@ -13,13 +15,17 @@ class model extends main_model {
 
 		if($check != 0) {
 			debug_lib::fatal("برای این فراگیر در این تاریخ ثیبت ثبت شده است");
-		}
+		}else{
+			//--------------- check if this classification id in the users branch or no.
+			$this->sql(".branch.classification", $classification);
 
-		$x = $this->sql()->tableAbsence()
-					->setClassification_id($classification)
-					->setType($type)
-					->setDate($date)
-					->insert();
+			$x = $this->sql()->tableAbsence()
+						->setClassification_id($classification)
+						->setType($type)
+						->setDate($date)
+						->insert();
+			
+		}
 
 		$this->commit(function(){
 			debug_lib::true("غیبت ثبت شد");

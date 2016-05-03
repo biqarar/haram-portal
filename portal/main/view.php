@@ -165,15 +165,16 @@ class main_view{
 	}
 
 	public function listBranch($f, $type = "select") {
-		$branch_list = $this->sql(".a");
+		$branch_list = $this->sql(".branch.get_list");
+		
 		if($type == "select"){
 			$branch = $this->form("select")->name("branch_id")->classname("select-branch")->label("branch");
 			foreach ($branch_list as $key => $value) {
 				$branch->child()->name($value['name'])->label($value['name'])->value($value["id"]);
 			}
 			$branch->child(0)->selected("selected");
-			$f->add("branch", $branch);
-			$f->atFirst("branch");
+			$f->add("branch_id", $branch);
+			$f->atFirst("branch_id");
 		}elseif ($type == "chekbox") {
 			foreach ($branch_list as $key => $value) {
 				$branch_id = $value['id'];
@@ -301,8 +302,8 @@ class main_view{
 
 	public function colPermission($table, $operat) {
 		if(global_cls::supervisor()) return true;
-		if(isset($_SESSION['user_permission']['tables'][$table][$operat]) && 
-			$_SESSION['user_permission']['tables'][$table][$operat] == 'public'){
+		if(isset($_SESSION['user']['permission']['tables'][$table][$operat]) && 
+			$_SESSION['user']['permission']['tables'][$table][$operat] == 'public'){
 			return true;
 		}
 		return false;
@@ -318,10 +319,10 @@ class main_view{
 	}
 
 	public function check_users_type($users_id = false) {
-		if(isset($_SESSION['users_id']) && isset($_SESSION['users_type'])) {
+		if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['type'])) {
 			list($access, $msg) = $this->checkPermissions();
 			if(!$access){
-				if(($_SESSION['users_type'] == "teacher" || $_SESSION['users_type'] == "operator") && $_SESSION['users_id'] != $users_id) {
+				if(($_SESSION['user']['type'] == "teacher" || $_SESSION['user']['type'] == "operator") && $_SESSION['user']['id'] != $users_id) {
 					page_lib::access("what are you looking for ?");
 				}
 			}

@@ -11,6 +11,10 @@ class view extends main_view {
 		//------------------------------ load form
 		$f = $this->form("@score_type", $this->urlStatus());
 
+
+		//----------------- check branch
+		$this->sql(".branch.score_type", $this->xuId());
+		
 		//------------------------------ edit form
 		$this->sql(".edit", "score_type", $this->xuId(), $f);
 

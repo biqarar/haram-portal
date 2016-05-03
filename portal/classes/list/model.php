@@ -107,10 +107,21 @@ class model extends main_model {
 
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
 
+			//---------- get branch id in the list
+			foreach ($this->branch() as $key => $value) {
+				if($key == 0){
+					$q->condition("and", "plan.branch_id","=",$value);
+				}else{
+					$q->condition("or","plan.branch_id","=",$value);
+				}
+			}
 			// $q->joinCourseclasses()->whereClasses_id("#classes.id");
 			// $q->joinCourse()->whereId("#courseclasses.course_id")->fieldName("coursename");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
+
+			// echo $q->select()->string();exit();
+
 		})
 		->result(function($r, $ico, $url){
 			$r->planname = $this->sql(".courseclassesInformation",$r->planname, $r->detail);

@@ -5,12 +5,12 @@
 class model extends main_model {
 
 	public function makeQuery() {
-		return $this->sql()->tableClassification()
+		// return $this->sql()->tableClassification()
 				// ->setUsers_id(post::users_id())
 				// ->setDate_entry(post::date_entry())
 				// ->setClasses_id(post::classes_id())
-				->setDate_delete(post::date_delete())
-				->setBecause(post::because());
+				// ->setDate_delete(post::date_delete())
+				// ->setBecause(post::because());
 				// ->setMark(post::mark());
 				// ->setPlan_section_id(post::plan_section_id());
 	}

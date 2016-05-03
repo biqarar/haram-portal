@@ -11,6 +11,10 @@ class view extends main_view {
 		//------------------------------ load form
 		$f = $this->form("@price_change", $this->urlStatus());
 		$this->listBranch($f);
+
+		//------------- check branch
+		$this->sql(".branch.price_change", $this->xuId());
+		
 		//------------------------------ edit form
 		$this->sql(".edit", "price_change", $this->xuId(), $f);
 

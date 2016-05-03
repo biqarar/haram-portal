@@ -6,6 +6,7 @@
 class model extends main_model{
 
 	public function makeQuery() {
+		var_dump("useless");exit();
 		return  $this->sql()->tablePerson_extera()
   					->setUsers_id($this->xuId("usersid"))
   					->setPlace_birth(post::place_birth())

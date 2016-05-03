@@ -38,6 +38,14 @@ class model extends main_model {
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
 			$q->joinUsers()->whereId("#classification.users_id")->fieldUsername("username")->fieldId("usersid");
 			$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldFamily("family")->fieldName("name");
+			foreach ($this->branch() as $key => $value) {
+				if($key == 0){
+					$q->condition("and", "plan.branch_id","=",$value);
+				}else{
+					$q->condition("or","plan.branch_id","=",$value);
+				}
+			}
+
 		})
 		->result(function($r){
 

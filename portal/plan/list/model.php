@@ -18,6 +18,16 @@ class model extends main_model {
 		->result(function($r){
 			$r->edit = '<a class= "icoedit" href="plan/status=edit/id='. $r->edit . '"></a>';
 			
+		})
+		->query(function ($q){
+			//---------- get branch id in the list
+			foreach ($this->branch() as $key => $value) {
+				if($key == 0){
+					$q->condition("where", "plan.branch_id","=",$value);
+				}else{
+					$q->condition("or","plan.branch_id","=",$value);
+				}
+			}
 		});
 		$this->sql(".dataTable", $dt);
 	}

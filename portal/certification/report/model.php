@@ -20,15 +20,22 @@ class model extends main_model {
 		$reprot->joinUsers()->whereId("#classification.users_id")->fieldUsername();
 		$reprot->joinClasses()->whereId("#classification.classes_id")->fieldId("classes")->fieldMeeting_no("meeting_no");
 		$reprot->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
+			foreach ($this->branch() as $key => $value) {
+				if($key == 0){
+					$reprot->condition("and", "plan.branch_id","=",$value);
+				}else{
+					$reprot->condition("or","plan.branch_id","=",$value);
+				}
+			}
 		// echo($reprot->select()->string());exit();
 		if($type == "print") {
-			$reprot->whereDate_print("is", "#null");
+			$reprot->andDate_print("is", "#null");
 		}elseif($type == "request"){
-			$reprot->whereDate_print("is", "#null")->andDate_deliver("is", "#null");
+			$reprot->andDate_print("is", "#null")->andDate_deliver("is", "#null");
 		}elseif($type == "all"){
 			// all 
 		}elseif($type == "deliver"){
-			$reprot->whereDate_deliver("is", "#null");
+			$reprot->andDate_deliver("is", "#null");
 		}
 		// echo "string";($reprot->select()->string());exit();
 		$reprot = $reprot->select()->allAssoc();

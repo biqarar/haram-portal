@@ -9,6 +9,10 @@ class view extends main_view  {
 
 		//------------------------------  set users_id
 		$users_id  = $this->xuId();
+
+			//----------------------- check banch
+		$this->sql(".branch.users",$users_id);
+
 		//------------------------------ check users (if teacher , can not be display another users by id)
 		$this->check_users_type($users_id);
 

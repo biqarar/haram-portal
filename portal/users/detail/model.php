@@ -8,6 +8,10 @@ class model extends main_model {
 	}
 
 	public function sql_users_detail($id = false) {
+
+		//--------------- check branch
+		$this->sql(".branch.users", $id);
+		
 		$return = array();
 		$users = $this->sql()->tableUsers()->whereId($id)->limit(1)->select();
 		if($users->num() == 1) {
@@ -23,6 +27,9 @@ class model extends main_model {
 	}
 
 	public function sql_bridge_detail($users_id = false) {
+		//--------------- check branch
+		$this->sql(".branch.users", $users_id);
+		
 		$bridge = $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
 		return $bridge;
 	}

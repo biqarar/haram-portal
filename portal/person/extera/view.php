@@ -12,6 +12,10 @@ class view extends main_view{
 		//------------------------------ check users (if teacher, can not be display by changing id)
 		$this->check_users_type($this->xuId("usersid"));
 
+
+		//------------------ check brnach
+		$this->sql(".brnach.users", $this->xuId("usersid"));
+		
 		//------------------------------ url
 		$this->global->url = ($this->xuId("status") == "add") ? 
 				"usersid=" . $this->xuId("usersid") :

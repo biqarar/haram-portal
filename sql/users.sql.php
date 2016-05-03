@@ -7,7 +7,7 @@ class users {
 	public $password = array('type'=> 'varchar@32', 'label' => 'users_password');
 
 	public $email    = array('type'=> 'varchar@64', 'label' => 'users_email');
-	public $type = array("type" => "enum@student,teacher,operator,baby!student");
+	// public $type = array("type" => "enum@student,teacher,operator,baby!student");
 	public $status = array("type" => "enum@waiting,block,delete,enable!waiting");
 	public $unique   = array("username", "email");
 	
@@ -26,10 +26,10 @@ class users {
 		$this->validate()->reg("/(.*){3,32}/");
 	}
 
-	public function type() {
-		$this->form("select")->name("type")->label("type");
-		$this->setChild($this->form);
-	}
+	// public function type() {
+	// 	$this->form("select")->name("type")->label("type");
+	// 	$this->setChild($this->form);
+	// }
 
 	public function status() {
 		$this->form("select")->name("status")->label("status");

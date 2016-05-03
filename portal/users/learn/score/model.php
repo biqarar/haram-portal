@@ -5,7 +5,12 @@
 class model extends main_model {
 
 	public function post_api(){
+
 		$usersid = $this->xuId();
+
+			//----------------------- check banch
+		$this->sql(".branch.users",$usersid);
+
 
 		$dtable = $this->dtable->table("classification")
 		->fields("id", "plan", "teachername","teacherfamily","id score","mark mark")
@@ -25,6 +30,8 @@ class model extends main_model {
 	}
 
 	public function find_score($classificationid = false) {
+
+		$this->sql(".branch.classification", $classificationid);
 		$score = $this->sql()->tableScore()->whereClassification_id($classificationid);
 		$score->joinScore_type()->whereId("#score.score_type_id");
 		$score = $score->select()->allAssoc();

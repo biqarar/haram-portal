@@ -7,6 +7,10 @@ class model extends main_model {
 	* 	whit select score type of plan
 	*/
 	public function sql_field_list($classesid = false) {
+		
+		//---------------- check branch
+		$this->sql(".branch.classes", $classesid);
+
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
 		$calculation->joinScore_type()->wherePlan_id("#plan.id")->fieldTitle();
@@ -28,6 +32,10 @@ class model extends main_model {
 
 		$classesid = $this->xuId("classesid");
 
+		//---------------- check branch
+		$this->sql(".branch.classes", $classesid);
+
+
 		$list = $this->sql(".scoreCalculation.score_classes",$classesid);
 		// print_r($list);exit();
 	
@@ -35,7 +43,7 @@ class model extends main_model {
 			->fields($this->sql_field_list($classesid))
 			->search_fields("username", "name person.name", "family person.family")
 			->query(function($q){
-
+				
 				$q->andClasses_id($this->xuId("classesid"));
 				$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("pname")->fieldFamily("family");
 				$q->joinUsers()->whereId("#classification.users_id")->fieldUsername("username");

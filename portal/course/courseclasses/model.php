@@ -5,6 +5,14 @@
 class model extends main_model{
 
 	public function makeQuery() {
+
+		//----------------- check branch
+		if(
+			$this->sql(".branch.course", post::course_id() != 
+			$this->sql(".branch.classes", post::classes_id()))){
+
+			debug_lib::fatal("شعبه دوره با شعبه کلاس مطابقت ندارد");
+		}
 		//------------------------------ make sql object to insert and update fields
 		return $this->sql()->tableCourseclasses()
 				->setCourse_id(post::course_id())
@@ -29,6 +37,10 @@ class model extends main_model{
 
 	public function post_edit_courseclasses() {
 
+
+		//---------------- check branch
+		$this->sql(".branch.courseclasses", $this->xuId());
+
 		//------------------------------ update courseclasses
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 
@@ -44,6 +56,10 @@ class model extends main_model{
 	}
 
 	public function post_apilist(){
+
+		//----------------- check branch
+		$this->sql(".branch.course", $this->xuId("courseid"));
+
 		$q = $this->sql()->tableCourseclasses()->whereCourse_id($this->xuId("courseid"));
 		$q->joinClasses()->whereId("#courseclasses.classes_id")->fieldTeacher()->fieldPlan_id();
 		$q->joinPlan()->whereId("#classes.plan_id")->fieldName("planname");
@@ -54,6 +70,14 @@ class model extends main_model{
 	}
 
 	public function post_apiadd(){
+		//----------------- check branch
+		if(
+			$this->sql(".branch.course", $this->xuId("courseid") != 
+			$this->sql(".branch.classes", $this->xuId("courseid")))){
+
+			debug_lib::fatal("branch not match");
+		}
+
 		$classes_id = $this->xuId("classesid");
 		$course_id = $this->xuId("courseid");
 		$sql = $this->sql()->tableCourseclasses()->setClasses_id($classes_id)->setCourse_id($course_id)->insert();
@@ -61,6 +85,14 @@ class model extends main_model{
 	}
 
 	public function post_apidelete() {
+		//----------------- check branch
+		if(
+			$this->sql(".branch.course", $this->xuId("courseid") != 
+			$this->sql(".branch.classes", $this->xuId("courseid")))){
+
+			debug_lib::fatal("branch not match");
+		}
+		
 		$classes_id = $this->xuId("classesid");
 		$course_id = $this->xuId("courseid");
 		$course_qury = $this->sql()->tableCourseclasses()->whereCourse_id($course_id)->andClasses_id($classes_id)->delete();

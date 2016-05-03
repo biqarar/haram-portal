@@ -15,7 +15,10 @@ class view extends main_view {
 		//------------------------------ get detail classes
 		$this->classesDetail();
 			
+		//----------------------------- check branch
+		$this->sql(".branch.classes",  $this->xuId("classesid"));
 
+		
 			$this->data->dataTable = $this->dtable("classification/status=api/classesid=" . $this->xuId("classesid").'/',
 			array("name", "family", "date_entry", "date_delete", "because", "absence"));
 

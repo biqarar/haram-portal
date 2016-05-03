@@ -5,6 +5,9 @@
 class query_scoreTypeList_cls extends query_cls {
 
 	public function config($classesid = false) {
+		//-------------------- check branch
+		$this->sql(".branch.classes", $classesid);
+
 		$score_type = $this->score_type($classesid);
 		foreach ($score_type as $key => $value) {
 			// var_dump($value['id']);exit();
@@ -21,6 +24,9 @@ class query_scoreTypeList_cls extends query_cls {
 	}
 
 	public function score_type($classesid = false) {
+		//-------------------- check branch
+		$this->sql(".branch.classes", $classesid);
+		
 		$plan_id = $this->sql()->tableClasses()->whereId($classesid)->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
 		$score_type = $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
 		// var_dump($score_type,$classesid);exit();	

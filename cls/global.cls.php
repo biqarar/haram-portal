@@ -1,8 +1,8 @@
 <?php
 class global_cls{
 	static function supervisor(){
-		if(isset($_SESSION['user_permission']['tables']['branch']['condition'])
-		&&  $_SESSION['user_permission']['tables']['branch']['condition'] = "*"){
+		if(isset($_SESSION['user']['permission']['tables']['branch']['condition'])
+		&&  $_SESSION['user']['permission']['tables']['branch']['condition'] = "*"){
 			// return false;
 			return true;
 		}
@@ -11,16 +11,16 @@ class global_cls{
 
 	static function superprice() {
 
-		if(isset($_SESSION['user_permission']['tables']['price']['condition'])
-		&&  $_SESSION['user_permission']['tables']['price']['condition'] = "*"){
+		if(isset($_SESSION['user']['permission']['tables']['price']['condition'])
+		&&  $_SESSION['user']['permission']['tables']['price']['condition'] = "*"){
 			return true;
 		}
 		return self::supervisor();
 	}
 
 	static function superperson() {
-		if(isset($_SESSION['user_permission']['tables']['person']['condition'])
-		&&  $_SESSION['user_permission']['tables']['person']['condition'] = "*"){
+		if(isset($_SESSION['user']['permission']['tables']['person']['condition'])
+		&&  $_SESSION['user']['permission']['tables']['person']['condition'] = "*"){
 			return true;
 		}
 		return self::supervisor();
@@ -28,8 +28,8 @@ class global_cls{
 	
 
 	static function superclassification() {
-		if(isset($_SESSION['user_permission']['tables']['classification']['condition'])
-		&&  $_SESSION['user_permission']['tables']['classification']['condition'] = "*"){
+		if(isset($_SESSION['user']['permission']['tables']['classification']['condition'])
+		&&  $_SESSION['user']['permission']['tables']['classification']['condition'] = "*"){
 			return true;
 		}
 		return self::supervisor();

@@ -10,6 +10,9 @@ class view extends main_view  {
 		//------------------------------  set users_id
 		$users_id  = $this->xuId();
 
+		//--------------- check branch
+		$this->sql(".branch.users", $users_id);
+		
 
 		$this->topLinks(array(
 			array("title" => "آموزش", "url" =>"users/learn/id=$users_id"),

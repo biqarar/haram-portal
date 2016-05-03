@@ -17,6 +17,11 @@ class model extends main_model {
 			->search_fields("name person.name", "family person.family")
 			
 			->query(function($q){
+
+				//--------------- CHECK BRANCH
+				$this->sql(".branch.classes", $this->xuId("classesid"));
+
+			
 				$q->andClasses_id($this->xuId("classesid"));
 
 				$q = $this->classification_finde_active_list($q);

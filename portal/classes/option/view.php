@@ -13,10 +13,13 @@ class view extends main_view {
 		$f = $this->form("@classes", $this->urlStatus());
 		$f->remove("status");
 		//------------------------------ list of branch
-		$this->listBranch($f);
+		// $this->listBranch($f);
 
 		//------------------------------ edit form
 		if($this->urlStatus() == "edit") {
+
+			//---------------- check branch
+			$this->sql(".branch.classes", $this->xuId());
 
 			$this->sql(".edit", "classes", $this->xuId(), $f);
 			

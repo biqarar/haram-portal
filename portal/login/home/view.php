@@ -26,11 +26,11 @@ class view extends main_view {
 		}
 
 		//------------------------------ redirect if login
-		if(isset($_SESSION['redirect']) && isset($_SESSION['users_id'])){
+		if(isset($_SESSION['redirect']) && isset($_SESSION['user']['id'])){
 			$redirect = $_SESSION['redirect'];
 			unset($_SESSION['redirect']);
 			$this->redirect($redirect);
-		}elseif(isset($_SESSION['users_id'])){
+		}elseif(isset($_SESSION['user']['id'])){
 			$this->redirect("/profile");
 		}
 		

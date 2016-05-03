@@ -18,7 +18,9 @@ class view extends main_view {
 		//------------------------------ get detail classes
 		if(config_lib::$surl['classesid']){
 
-
+			//-------------- ceck branch
+			$this->sql(".branch.classes", config_lib::$surl['classesid']);
+			
 			//------------------------------ classes id
 			$classes_id = isset(config_lib::$surl['classesid']) ? config_lib::$surl['classesid'] : 0;
 			$this->global->classesid = $classes_id;

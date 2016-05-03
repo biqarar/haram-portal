@@ -5,6 +5,9 @@
 class model extends main_model {
 
 	public function sql_bridge_list($users_id = false) {
+		//------------------- check branch
+		$this->sql(".branch.users",$users_id);
+
 		$bridge = $this->sql()->tableBridge()->whereUsers_id($users_id)->select()->allAssoc();
 		$return  = array();
 		foreach ($bridge as $key => $value) {
@@ -24,6 +27,10 @@ class model extends main_model {
 	}
 
 	public function sql_classes_list($classes_id = false) {
+
+		//---------------- check branch
+		$this->sql(".branch.classes", $classes_id);
+
 		$q =  $this->sql()->tableClassification()->whereClasses_id($classes_id);
 
 		$q = $this->classification_finde_active_list($q);
@@ -49,10 +56,16 @@ class model extends main_model {
 	}
 
 	public function sql_classes_detail($classes_id = false) {
+		//---------------- check branch
+		$this->sql(".branch.classes", $classes_id);
+		
 		return $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assco();
 	}
 
 	public function sql_score_type($plan_id = false) {
+		//---------------- check branch
+		$this->sql(".branch.plan", $plan_id);
+		
 		return $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
 	}
 

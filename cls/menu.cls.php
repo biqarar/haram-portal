@@ -47,8 +47,8 @@ class menu_cls  {
 				foreach ($value['tag'] as $table => $v) {
 					foreach ($v as $oprator => $publicPrivate) {
 						foreach ($publicPrivate as $i => $p) {
-							if(isset($_SESSION['user_permission']['tables'][$table]) && isset($_SESSION['user_permission']['tables'][$table][$oprator])){
-								if($_SESSION['user_permission']['tables'][$table][$oprator] == $p){
+							if(isset($_SESSION['user']['permission']['tables'][$table]) && isset($_SESSION['user']['permission']['tables'][$table][$oprator])){
+								if($_SESSION['user']['permission']['tables'][$table][$oprator] == $p){
 									$make = true;
 									break;
 								}	
@@ -482,15 +482,15 @@ class menu_cls  {
 			);
 
 
-		//------------------------------ classes list
-		self::$menu[] = array(
-			"submenu" => "attendance", 
-			"url" => "classes/status=list/type=presence", 
-			"name" =>  _("presence"), 
-			"tag" => array(
-				"absence" => array("select" => array("public"))
-				)
-			);
+		// //------------------------------ classes list
+		// self::$menu[] = array(
+		// 	"submenu" => "attendance", 
+		// 	"url" => "classes/status=list/type=presence", 
+		// 	"name" =>  _("presence"), 
+		// 	"tag" => array(
+		// 		"absence" => array("select" => array("public"))
+		// 		)
+		// 	);
 		//------------------------------ drafts add
 		self::$menu[] = array(
 			"submenu" => "folder", 
@@ -561,7 +561,7 @@ class menu_cls  {
 		// 	"submenu" => "settings", 
 		// 	"url" => 'settings', 
 		// 	"name" =>  _("تنظیمات شعب"), 
-		// 	"tag" => (isset($_SESSION['users_branch']) && count($_SESSION['users_branch']) > 1 ) ? "public" : "one branch"
+		// 	"tag" => (isset($_SESSION['user']['branch']) && count($_SESSION['user']['branch']) > 1 ) ? "public" : "one branch"
 		// 	);
 		//------------------------------ (public) change password menu 
 		self::$menu[] = array(
@@ -590,15 +590,15 @@ class menu_cls  {
 	}
 
 	public function usersid() {
-		if(isset($_SESSION['users_id'])) {
-			return $_SESSION['users_id'];
+		if(isset($_SESSION['user']['id'])) {
+			return $_SESSION['user']['id'];
 		}else{
 			return false;
 		}
 	}
 
 	public function teacher_form() {
-		if(isset($_SESSION['users_type']) && $_SESSION['users_type'] == "teacher") {
+		if(isset($_SESSION['user']['type']) && $_SESSION['user']['type'] == "teacher") {
 			return "public";
 		}else{
 			return "jost for teacher load this menu";

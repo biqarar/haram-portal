@@ -9,10 +9,10 @@ class model extends main_model {
 		$msg = "error";
 
 		//------------------------------ if old password is true
-		if(isset($_SESSION['users_id'])){
+		if(isset($_SESSION['user']['id'])){
 			$user = $this->sql()
 				->tableUsers()
-				->whereId($_SESSION['users_id'])
+				->whereId($_SESSION['user']['id'])
 				->andPassword(md5(post::oldpasswd()))
 				->limit(1)
 				->select();
@@ -23,7 +23,7 @@ class model extends main_model {
 					$changepasswd = $this->sql()
 						->tableUsers()
 						->setPassword(md5(post::newpasswd()))
-						->whereId($_SESSION['users_id'])
+						->whereId($_SESSION['user']['id'])
 						->update();
 				}else{
 					//------------------------------ make fatal error (password != repasswrod)

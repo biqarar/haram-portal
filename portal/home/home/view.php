@@ -9,17 +9,17 @@ class view extends main_view {
 		$this->global->page_title = 'Profile';
 
 		//------------------------------ globals type
-		$this->global->type = isset($_SESSION['users_type']) ? $_SESSION['users_type'] : "";		
+		$this->global->type = isset($_SESSION['user']['type']) ? $_SESSION['user']['type'] : "";		
 
 		//------------------------------ globals (name & family)
-		$this->global->name = isset($_SESSION['users_name']) ? $_SESSION['users_name'] : "";
+		$this->global->name = isset($_SESSION['user']['name']) ? $_SESSION['user']['name'] : "";
 		
-		$this->global->family = isset($_SESSION['users_family']) ? $_SESSION['users_family'] : "";
+		$this->global->family = isset($_SESSION['user']['family']) ? $_SESSION['user']['family'] : "";
 		
 		//------------------------------ globals (gender)
-		if(isset($_SESSION['users_gender'])){
+		if(isset($_SESSION['user']['gender'])){
 		
-			$this->global->gender = ($_SESSION['users_gender']  == "male") ? _("Mr.") : _("Mrs.");
+			$this->global->gender = ($_SESSION['user']['gender']  == "male") ? _("Mr.") : _("Mrs.");
 		
 		}
 	}

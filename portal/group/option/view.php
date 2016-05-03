@@ -13,9 +13,12 @@ class view extends main_view{
 
 		//------------------------------ list of branch
 		$this->listBranch($f);
-		
+		//-------------- check branch
+		$this->sql(".branch.group", $this->xuId());
 		//------------------------------ edit form
 		$this->sql(".edit", "group", $this->xuId(), $f);
+
+		// var_dump($f);exit();
 
 		$this->data->dataTable = $this->dtable('group/status=api/', array('id','name', 'edit'));	
 	}

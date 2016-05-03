@@ -26,6 +26,9 @@ class view extends main_view {
 
 		//------------------------------ edit form
 		if($this->urlStatus() == "edit") {
+			//------------------- check branch
+			$this->sql(".branch.classification", $this->xuId());
+			
 			$this->sql(".edit", "classification", $this->xuId(), $f);
 			$this->data->users_id = $f->users_id->attr['value'];
 			$this->data->classes_id =$f->classes_id->attr['value'];

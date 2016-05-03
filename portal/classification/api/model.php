@@ -8,14 +8,21 @@ class model extends main_model {
 		return;
 	}
 
+
+
 	public function post_priceback() {
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");
+
+		//----------------------- check branch
+		$this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
+			
+		
 		$price = $this->sql()->tablePrice()
 			->whereUsers_id($usersid)
 			->andPay_type("rule")
 			->andStatus("active")
-			->andTitle(5)
+			->andTitle($this->sql(".price.get_price_change", "شرکت در کلاس"))
 			->andTransactions($classesid)
 			->select();
 
@@ -29,7 +36,8 @@ class model extends main_model {
 					->setDate($this->dateNow())
 					->setValue($value['value'])
 					->setPay_type("rule")
-					->setTitle(2)
+					->setCard("000")
+					->setTitle($this->sql(".price.get_price_change","انتقال از دوره قبل به دوره جدید"))
 					->setTransactions($value['id'])
 					// ->setStatus("void")
 					->insert()->LAST_INSERT_ID();
@@ -47,11 +55,15 @@ class model extends main_model {
 
 
 	public function remove_payment_count($usersid = false, $classesid = false) {
+
+		// //----------------------- check branch
+		// $this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
+		
 		$this->sql()->tablePrice()
 			->whereUsers_id($usersid)
 			->andVisible(0)
 			->andTransactions($classesid)
-			->andTitle(8)
+			->andTitle($this->sql(".price.get_price_change","پرداخت دوره ای"))
 			->delete();
 	}
 
@@ -60,18 +72,24 @@ class model extends main_model {
 		
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");
-		
+		//----------------------- check branch
+		$x = $this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
+		// var_dump($x);exit();
 		$this->remove_payment_count($usersid, $classesid);
 		
 		$price = $this->sql()->tablePrice()
 			->whereUsers_id($usersid)
 			->andPay_type("rule")
 			->andStatus("active")
-			->andTitle(5)
+			->andTitle($this->sql(".price.get_price_change","شرکت در کلاس"))
 			->andTransactions($classesid)
 			->setStatus("void")->update();
 
 		$classes_id = $this->sql()->tableClassification()->whereId($this->xuId())->limit(1)->select()->assoc("classes_id");
+
+		//----------------------- check branch
+		$this->sql(".branch.classification", $this->xuId());
+		
 		$this->sql(".classesCount", $classes_id);
 		
 		$classification =  $this->sql()->tableClassification()		
@@ -88,11 +106,16 @@ class model extends main_model {
 	public function post_price() {
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");
+
+
+		//----------------------- check branch
+		$this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
+		
 		$price = $this->sql()->tablePrice()
 			->whereUsers_id($usersid)
 			->andPay_type("rule")
 			->andStatus("active")
-			->andTitle(5)
+			->andTitle($this->sql(".price.get_price_change","شرکت در کلاس"))
 			->andTransactions($classesid)
 			->select();
 
@@ -113,7 +136,7 @@ class model extends main_model {
 		$add_or_returnclasses = $this->xuId("type");
 		// $name_famil 
 
-		// var_dump($users_id, $classes_id, );exit();
+		$x = $this->sql(".branch.users", $users_id, $this->sql(".branch.classes", $classes_id));
 
 		//------------------------------ insert courseclasses
 		$courseclasses = $this->sql(".courseclasses", $classes_id, $users_id);

@@ -9,7 +9,10 @@ class view extends main_view {
 		$this->global->page_title = "price";
 
 		//------------------------------ set users id
-		$usersid = ($this->xuId("usersid") != 0) ? $this->xuId("usersid") : $this->sql("#find_usersid", $this->xuId("id"));
+		$usersid = ($this->xuId("usersid") != 0) ? $this->xuId("usersid") : $this->sql("#find_usersid", $this->xuId("id"));	
+
+		//------------------ check branch
+		$this->sql(".branch.users",$usersid);
 
 		$this->topLinks(array(
 				array("title" => "ثبت", "url" => "price/status=add/usersid=$usersid"),
@@ -26,8 +29,15 @@ class view extends main_view {
 		$f->remove("status");
 		$f->title->child(0)->selected("selected");
 
-		$this->sql(".edit", "price", $this->xuId(), $f);
-	
+		if($this->urlStatus() == "edit") {
+			
+			//------------------- check branch
+			$this->sql(".branch.price", $this->xuId());
+
+			$this->sql(".edit", "price", $this->xuId(), $f);
+			
+
+		}
 		//------------------------------  set name and family
 		$this->global->name = $this->sql(".assoc.foreign", "person", $usersid, "name", "users_id")
 							 . " " . 

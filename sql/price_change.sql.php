@@ -16,7 +16,7 @@ class price_change {
 	}
 
 	public function name() {
-		$this->form("#fatext")->name("name");
+		$this->form("text")->name("name");
 		$this->validate()->farsi()->form->farsi("price_change name must be persian");
 	}
 

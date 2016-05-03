@@ -13,6 +13,14 @@ class model extends main_model {
 			})
 			->query(function($q){
 				$q->joinPlan()->whereId("#score_calculation.plan_id")->fieldName();
+				//---------- get branch id in the list
+				foreach ($this->branch() as $key => $value) {
+					if($key == 0){
+						$q->condition("where", "plan.branch_id","=",$value);
+					}else{
+						$q->condition("or","plan.branch_id","=",$value);
+					}
+				}
 			})
 			->result(function($r){
 				$r->edit = '<a href="score/calculation/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';

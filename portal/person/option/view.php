@@ -22,7 +22,9 @@ class view extends main_view{
 		$f->remove("casecode,casecode_old");
 
 		//------------------------------ list of branch
-		$this->listBranch($f);
+		if($this->urlStatus() == "add") {
+			$this->listBranch($f);
+		}
 
 
 		//------------------------------ set province list
@@ -61,8 +63,8 @@ class view extends main_view{
 		$f->marriage->child(0)->checked("checked");
 
 		//------------------------------ set defult gender whit sex users
-		if(isset($_SESSION['users_gender'])){
-			$x = ($_SESSION['users_gender'] == "male") ? 0 : 1;
+		if(isset($_SESSION['user']['gender'])){
+			$x = ($_SESSION['user']['gender'] == "male") ? 0 : 1;
 			$f->gender->child($x)->checked("checked");
 		}
 

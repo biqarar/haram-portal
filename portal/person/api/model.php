@@ -5,7 +5,7 @@
 class model extends main_model
 {
 	public function post_list() {
-
+var_dump("useless");exit();
 		$srep = str_replace(" ", "_", $this->xuId("search"));
 		$search = $xsearch = array("name", "family", "father");
 		foreach ($xsearch as $key => $value) {

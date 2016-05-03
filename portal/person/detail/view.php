@@ -8,6 +8,9 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "person";
 
+		//---------------------- check branch
+		$this->sql(".branch.person", $this->xuId());
+		
 		//------------------------------ list of classes
 		$person = $this->sql(".list", "person", function ($query, $id) {
 			$query->whereUsers_id($id);

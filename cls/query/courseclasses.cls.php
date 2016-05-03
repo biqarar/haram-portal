@@ -2,6 +2,10 @@
 class query_courseclasses_cls extends query_cls
 {
 	public function config($classes_id = false, $users_id = false){
+
+		///------------------- check branch
+		$this->sql(".branch.classes", $classes_id);
+
 		$course = $this->sql()->tableCourseclasses()->whereClasses_id($classes_id);
 		$course->joinCourse()->whereId("#courseclasses.course_id");
 				// ->andBegin_time("<", $this->dateNow())

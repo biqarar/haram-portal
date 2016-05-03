@@ -8,6 +8,10 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = "oldprice";
 
+
+		//------------------- check branch
+		$this->sql(".branch.olddb", "oldprice", $this->xuId());
+		
 		//------------------------------ list of classes
 		$oldprice = $this->sql(".list", "oldprice", function ($query, $id) {
 			$query->whereParvande($id);

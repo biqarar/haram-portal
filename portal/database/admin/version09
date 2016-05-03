@@ -1,0 +1,101 @@
+		$database_change = array(
+			// "ALTER TABLE `users`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `users` ADD CONSTRAINT `users_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			// "ALTER TABLE `classes`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `classes` ADD CONSTRAINT `classes_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			// "ALTER TABLE `price`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `price` ADD CONSTRAINT `price_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			// "ALTER TABLE `plan`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `plan` ADD CONSTRAINT `plan_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			// "ALTER TABLE `group`  ADD `branch_id` INT(10) NULL",
+			// "ALTER TABLE `group` ADD CONSTRAINT `group_branch_id_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`)",
+
+			// //---------------------------------------------------------
+
+			// "update users as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'users' 
+			// set us.branch_id = br.branch_id",
+
+
+			// "update classes as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' and br.branch_id = 1 
+			// set us.plan_id =181 where us.plan_id = 26",
+
+
+			// "update score_type as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'score_type' and br.branch_id = 1 
+			// set us.plan_id =181 where us.plan_id = 26",
+
+			// "update score_calculation as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'score_calculation' and br.branch_id = 1 
+			// set us.plan_id =181 where us.plan_id = 26",
+			
+			// "delete from branch_cash where branch_cash.table = 'plan' and branch_cash.record_id = 26 and branch_cash.branch_id = 1";
+
+
+			// "update place as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'place' 
+			// set us.branch_id = br.branch_id",
+
+
+			// "update price as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'price' 
+			// set us.branch_id = br.branch_id",
+
+
+			// "update plan as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'plan' 
+			// set us.branch_id = br.branch_id",
+
+
+			// "update course as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'course' 
+			// set us.branch_id = br.branch_id",
+
+
+			// "update `group` as us 
+			// inner join branch_cash as br on us.id = br.record_id and br.table = 'group' 
+			// set us.branch_id = br.branch_id",
+
+		);
+		$change_id = array(
+			25 => 180,
+			26 => 181,
+			27 => 182,
+			29 => 183,
+			31 => 184,
+			33 => 185,
+			35 => 186,
+			36 => 187,
+			37 => 188,
+			45 => 189,
+			46 => 190,
+			48 => 191,
+			49 => 192,
+			50 => 193,
+			71 => 194,
+			72 => 195
+
+			);
+		foreach ($change_id as $old => $new) {
+			array_push($database_change, "update classes as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'classes' and br.branch_id = 1 
+			set us.plan_id =$new where us.plan_id = $old");
+
+
+			array_push($database_change,"update score_type as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'score_type' and br.branch_id = 1 
+			set us.plan_id =$new where us.plan_id = $old");
+
+			array_push($database_change,"update score_calculation as us 
+			inner join branch_cash as br on us.id = br.record_id and br.table = 'score_calculation' and br.branch_id = 1 
+			set us.plan_id =$new where us.plan_id = $old");
+			
+			array_push($database_change,"delete from branch_cash where branch_cash.table = 'plan' and branch_cash.record_id = $old and branch_cash.branch_id = 1");
+
+
+		}

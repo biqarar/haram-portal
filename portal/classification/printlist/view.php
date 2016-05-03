@@ -26,6 +26,7 @@ class view extends main_view {
 			
 		}
 
+		$this->sql(".branch.classes", $this->xuId("classesid"));
 		//------------------------------ list of classes
 		$classes_detail = $this->sql(".list", "classes", function ($query) {
 			$query->whereId($this->xuId("classesid"));

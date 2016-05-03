@@ -5,6 +5,10 @@
 class model extends main_model {
 
 	public function makeQuery() {
+
+		//--------------- check branch
+		$this->sql(".branch.classification", post::classification_id());
+
 		//------------------------------ make sql object
 		 return $this->sql()->tableAbsence()
 				->setClassification_id(post::classification_id())

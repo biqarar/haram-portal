@@ -4,6 +4,10 @@ class query_findListCertification_cls extends query_cls {
 	private $classification_id = false;
 
 	public function config($usersid = false) {
+
+		//------------ check branch
+		$this->sql(".branch.users", $usersid);
+
 		$certification = $this->sql()->tableClassification();
 		if($this->classification_id) {
 			$certification->whereId($this->classification_id);

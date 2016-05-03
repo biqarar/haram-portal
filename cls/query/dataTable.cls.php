@@ -7,13 +7,15 @@ class query_dataTable_cls extends query_cls
 		$iFields = $object->fields;
 		$sql = $this->sql();
 		$result = $sql::$table();
-		$length = $_POST['length'];
+		@$length = $_POST['length'];
 		$search = isset($object->search_fields) ? $object->search_fields : false;
 		$search = is_array($search) ? $search : array($search);
 		if(isset($object->query)){
 			$arg = func_get_args();
 			$args = array_splice($arg, 2);
 			array_unshift($args, $result);
+			// var_dump($object->query);exit();
+			// var_dump($args);//exit();
 			call_user_func_array($object->query, $args);
 		}
 		if($order = $this->get('order')){

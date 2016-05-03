@@ -145,7 +145,7 @@ class model extends main_model{
 			if(debug_lib::$status){
 				$sqlBranch = $this->sql()->tableUsers_branch()
 						->setUsers_id($users_id)
-						->setBranch_id(post::branch_id())
+						->setBranch_id($this->post_branch())
 						->insert();
 				
 
@@ -173,6 +173,10 @@ class model extends main_model{
 
 	public function post_edit_person() {
 
+		//------------------ check branch
+		$this->sql(".branch.person",$this->xuId());
+
+		
 		//----------------------------- update query
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 		

@@ -5,12 +5,19 @@
 class model extends main_model{
 
 	public function makeQuery() {
+		if(
+			$this->sql(".brach.plan", post::plan_id()) !=
+			$this->post_branch()){
+			debug_lib::fatal("plan and branch not mathc");
+		}
+
 		//------------------------------ make sql object
 		$x = $this->sql()->tableScore_type()
 						   ->setPlan_id(post::plan_id())
 						   ->setTitle(post::title())
 						   ->setMin(post::min())
 						   ->setMax(post::max())
+						   ->setBranch_id($this->post_branch())
 						   ->setDescription(post::description());
 		return $x;
 	}
@@ -31,6 +38,10 @@ class model extends main_model{
 	}
 
 	public function post_edit_score_type(){
+
+		//--------------- check branch
+		$this->sql(".branch.score_type", $this->xuId());
+		
 		//------------------------------ update score_type
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();
 

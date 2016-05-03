@@ -9,6 +9,9 @@ class model extends main_model {
 	}
 
 	public function makeQuery() {
+
+		//------------------------------ check branch
+		$this->sql(".branch.users", post::users_id());
 		//------------------------------  make sql object
 		return $this->sql()->tableBridge()
 			->setUsers_id(post::users_id())
