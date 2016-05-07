@@ -174,7 +174,29 @@ class model extends main_model{
 
 			"ALTER TABLE `group`  CHANGE `branch_id`  `branch_id` INT(10) NOT NULL",
 			
-  
+ 			
+
+ 			"ALTER TABLE `permission`  ADD `users_branch_id` INT(10) NULL AFTER `users_id`",
+
+			"ALTER TABLE `permission` ADD CONSTRAINT `permission_branch_id_ibfk_1` FOREIGN KEY (`users_branch_id`) REFERENCES `users_branch` (`id`)",
+
+			"update `permission` as perm 
+			inner join users_branch as ub  on perm.users_id = ub.users_id
+			set perm.users_branch_id = ub.id",
+
+
+			"ALTER TABLE `permission`  CHANGE `users_branch_id`  `users_branch_id` INT(10) NOT NULL",
+			
+			"ALTER TABLE `permission` DROP FOREIGN KEY `permission_ibfk_2`",
+
+			"ALTER TABLE permission DROP INDEX users_id",
+
+			"ALTER TABLE `permission` DROP `users_id`",
+
+
+			// "ALTER TABLE `quran_hadith`.`permission` DROP INDEX `table`, ADD UNIQUE `table` (`tables`, `users_id`, `users_branch_id`) USING BTREE",
+			
+
 
 			"CREATE TABLE `logs` (
 			  `id` bigint(20) UNSIGNED NOT NULL,
@@ -220,6 +242,14 @@ class model extends main_model{
 			set br.type = us.type",
 
 			"ALTER TABLE `users` DROP `type`",
+
+			"ALTER TABLE `users_branch` ADD `status` ENUM('waiting','block','delete','enable') NOT NULL DEFAULT 'waiting'",
+			"update `users_branch` as br 
+			inner join users as us on us.id = br.users_id  
+			set br.status = us.status",
+
+
+			"ALTER TABLE `users` DROP `status`",
 			
 
 
@@ -236,7 +266,20 @@ class model extends main_model{
 		$list_table = $list_table->allAssoc('TABLE_NAME');
 
 		foreach ($list_table as $key => $value) {
+			if(
+				$value == "history" || 
+				$value == "branch_users_key" || 
+				$value == "city" || 
+				$value == "province" || 
+				$value == "country" || 
+				$value == "education" || 
+				$value == "logs" 
+				
+				) {
+
+			}else{
 				$this->run($this->trigger($value));
+			}
 		}
 		
 		// exit();
@@ -278,36 +321,36 @@ class model extends main_model{
 
 	public function trigger($table = false) {
 			return  array(
+
+			// "ALTER TABLE `$table` ADD `date_insert` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ",
+
+			// "ALTER TABLE `$table` ADD `date_modified` TIMESTAMP on update CURRENT_TIMESTAMP  NULL ",
+			
 				//-----------------------------------------------------------------------------
 			"DROP TRIGGER IF EXISTS `{$table}_insert`",
-
-			"ALTER TABLE `$table` ADD `date_insert` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ",
-
-			"ALTER TABLE `$table` ADD `date_modified` TIMESTAMP on update CURRENT_TIMESTAMP  NULL ",
-			
-			// //-----------------------------------------------------------------------------
-			// "CREATE TRIGGER `" . $table . "_insert` AFTER INSERT ON `$table`
-			// FOR EACH ROW BEGIN
-			// call setHistory('$table', 'insert', NEW.id);
-			// END",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `" . $table . "_insert` AFTER INSERT ON `$table`
+			FOR EACH ROW BEGIN
+			call setHistory('$table', 'insert', NEW.id);
+			END",
 
 					//-----------------------------------------------------------------------------
 			"DROP TRIGGER IF EXISTS `" . $table . "_update`",
 			
-			// //-----------------------------------------------------------------------------
-			// "CREATE TRIGGER `" . $table . "_update` AFTER UPDATE ON `$table`
-			// FOR EACH ROW BEGIN
-			// call setHistory('$table', 'update', OLD.id);
-			// END",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `" . $table . "_update` AFTER UPDATE ON `$table`
+			FOR EACH ROW BEGIN
+			call setHistory('$table', 'update', OLD.id);
+			END",
 
 			//-----------------------------------------------------------------------------
 			"DROP TRIGGER IF EXISTS `" . $table . "_delete`",
 			
-			// //-----------------------------------------------------------------------------
-			// "CREATE TRIGGER `" . $table . "_delete` AFTER DELETE ON `$table`
-			// FOR EACH ROW BEGIN
-			// call setHistory('$table', 'delete', OLD.id);
-			// END"
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `" . $table . "_delete` AFTER DELETE ON `$table`
+			FOR EACH ROW BEGIN
+			call setHistory('$table', 'delete', OLD.id);
+			END"
 			);
 	} 
 

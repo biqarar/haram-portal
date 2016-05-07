@@ -1,0 +1,75 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block body%}
+<style>
+.box {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	overflow: auto;
+	transform: translate(-50%, -50%);
+}
+p{
+
+	font-family: 'WRoya';
+}
+.input-label  {
+	font-family: 'WRoya';
+	width: 90px !important;
+}
+
+.login-logo {
+	margin-bottom: 20px;
+}
+
+.login-logo img {
+	display: block;
+	margin: 0 auto;
+}
+
+.login-form {
+	background: #fff;
+	padding: 20px;
+	border-top: 3px solid #0C706F;
+	border-bottom: 3px solid #0C706F;
+}
+</style>
+<div class="box">
+
+	<div class="login-logo">
+		<a class="a-undefault" href="/">
+			<img src="static/img/logo.png" alt="" height="200">
+		</a>
+	</div>
+	<div class="login-form">
+	<p>
+	شما به طور همزمان در چند شعبه فعالیت دارید.
+	<br> برای ورد به پنل شخصی خود طلفا شعبه را انتخاب کنید.
+		<br>
+		ورود به عنوان:
+		<br>
+	</p>
+		<form class="xajx" method="post" >
+			{{forms.make(form.users_branch)}}
+		</form>
+		{%if debug%}
+		<div class="submit-status" style="float: none">
+			{%for key, debugs in debug%}
+			{%if key != "status" and key != "msg"%}
+			<ul class="submit-status-{{key}}">
+				{%for cKey, cDebug in debugs%}
+				{%if cDebug.error is defined%}
+				<li>{{cDebug[cDebug.group]}} : {{cDebug.error}}</li>
+				{%else%}
+				<li>{{cDebug}}</li>
+				{%endif%}
+				{%endfor%}
+			</ul>
+			{%endif%}
+			{%endfor%}
+		</div>
+		{%endif%}
+	</div>
+</div>
+
+{%endblock%}

@@ -9,7 +9,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("database", "admin"));
-				$this->access = true;
+				$this->access = global_cls::supervisor();
 			}
 		);
 	}

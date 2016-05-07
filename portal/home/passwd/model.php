@@ -9,7 +9,7 @@ class model extends main_model {
 		$msg = "error";
 
 		//------------------------------ if old password is true
-		if(isset($_SESSION['user']['id'])){
+		if($this->login()){
 			$user = $this->sql()
 				->tableUsers()
 				->whereId($_SESSION['user']['id'])

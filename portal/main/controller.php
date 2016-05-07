@@ -6,6 +6,7 @@ class main_controller{
 	public $access = false; // for after lunch
 	
 	public final function __construct(){
+		// var_dump($this->Login("*"));
 		if(global_cls::supervisor()){
 			$this->access = true; // for befor lunch
 		}
@@ -18,6 +19,7 @@ class main_controller{
 		$this->querys = (object) "query";
 		$this->addPeroperty('querys');
 		$this->addMethod('tag');
+		$this->addMethod('login');
 		$this->addMethod('branch');
 		$this->addMethod('post_branch');
 		$this->addMethod('jTime');
@@ -34,6 +36,7 @@ class main_controller{
 			$this->config();
 		}
 		list($access, $msg) = $this->checkPermissions();
+		// var_dump($access, $msg);
 		if(!$this->SESSION_usersid() && config_lib::$class != "login") {
 			if(ifAjax()){
 				page_lib::access($msg);
@@ -43,8 +46,9 @@ class main_controller{
 				exit();
 			}
 		}elseif($this->SESSION_usersid()  && config_lib::$class == "login"){
-			header("location:".host);
-			exit();
+			// 	var_dump("fufc");exit();
+			// header("location:".host);
+			// exit();
 		}
 
 		if(!$access) {
@@ -294,6 +298,9 @@ class main_controller{
 	}
 
 	public function checkPermissions() {
+			// var_dump($this->access);
+		// var_dump(config_lib::$class, config_lib::$method );
+
 		if(global_cls::supervisor()){
 			return [true, true];
 		}
@@ -336,7 +343,31 @@ class main_controller{
 	}
 
 	public function SESSION_usersid() {
-		return (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : 0;
+		return ($this->login()) ? $_SESSION['user']['id'] : 0;
+	}
+
+	public function login($arg = false) {
+		if(isset($_SESSION['user']['id'])){
+			if($arg && $arg != "all" && $arg != "*"  && $arg != "select_branch") {
+				return $_SESSION['user'][$arg];
+			}elseif($arg && ($arg == "all" || $arg == "*")){
+				return $_SESSION['user'];
+			}elseif($arg && $arg == "select_branch"){
+				// var_dump($_SESSION);
+				// var_dump((
+				// 	isset($_SESSION['user']['branch']['selected']) 
+				// 	// &&
+				//  // !empty($_SESSION['user']['branch']['selected'])
+				//  ));exit();
+				return 
+				(isset($_SESSION['user']['branch']['selected']) &&
+				 !empty($_SESSION['user']['branch']['selected'])) ? true :false;
+			}else{
+				return true;
+			}
+		}else{
+			return false;
+		}
 	}
 
 	public function branch($arg = false) {

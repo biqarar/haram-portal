@@ -9,12 +9,12 @@ class model extends main_model {
 	}
 
 	public function post_settings() {
-		unset($_SESSION['user']['branch_active']);
-		$_SESSION['user']['branch_active'] = array();
+		unset($_SESSION['user']['branch']['active']);
+		$_SESSION['user']['branch']['active'] = array();
 		foreach ($_POST as $key => $value) {
 			// var_dump($key);	
 			if(preg_match("/^branch_(\d+)$/", $key, $branch_id)) {			
-				$_SESSION['user']['branch_active'][] = $branch_id[1];
+				$_SESSION['user']['branch']['active'][] = $branch_id[1];
 			}	
 		}
 		// print_r($_SESSION);

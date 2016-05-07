@@ -10,35 +10,64 @@ class query_login_cls extends query_cls {
 	public function config($users_id = false) {
 		
 		$this->users_id = $users_id;
-		var_dump("ffff");
+		//------------------------------ set users_id session
+		$_SESSION['user']['id']     = $this->users_id;
 
-// var_dump($this->check());exit();
-		
 		return $this->check();
 
 	}
 
 	public function check() {
 
-		$_SESSION['user']['branch'] = array();
-		$_SESSION['user']['branch_active'] = array();
+		// $_SESSION['user']['branch'] = array();
+		// $_SESSION['user']['branch']['all'] = array();
+		// $_SESSION['user']['branch']['active'] = array();
 		
-		foreach ($this->users_branch() as $index => $value) {
-			//------------------------------ set branch_id  session (all branch for this user)
-			$_SESSION['user']['branch'][] = $value;
-			$_SESSION['user']['branch_active'][] = $value['branch_id'];
-		}
+		$users_branch =	$this->users_branch();
 		// var_dump($users_branch);exit();
+
+		foreach ($users_branch as $index => $value) {
+			//------------------------------ set branch_id  session (all branch for this user)
+			$_SESSION['user']['branch']['all'][$index] = $value;
+
+			if($value['status'] == "enable") {
+
+				$_SESSION['user']['branch']['active'][$index] = $value['branch_id'];
+							
+			}
+
+		}
+		
 		if(
-			count($this->users_branch()) > 1 &&
-			(!isset($_SESSION['select_branch']) || $_SESSION['select_branch'] == null)) {
-			// var_dump("fuck");exit();
-			// var_dump(expression)
-			$this->redirect("fuk");
-			// header("location:".host."/selectbranch");
+			(
+				isset($_SESSION['user']['branch']['active']) &&
+				count($_SESSION['user']['branch']['active']) > 1
+			)
+			 &&
+			(
+				!isset($_SESSION['user']['branch']['selected']) || 
+				empty($_SESSION['user']['branch']['selected'])
+			)
+
+		  ) {
+		
+			header("location:".host."/login/selectbranch");
+
 			return false;
-			// exit();
+		
 		}else{
+
+			if(    !isset($_SESSION['user']['branch']['selected'])) {
+
+				          $_SESSION['user']['branch']['selected'][0] =  
+
+					isset($_SESSION['user']['branch']['active'][0]) ? 
+
+						  $_SESSION['user']['branch']['active'][0] : 
+					
+					page_lib::access("no branch active");	
+			}
+
 			$this->set_session();
 			return true;
 		}
@@ -50,19 +79,26 @@ class query_login_cls extends query_cls {
 							 ->whereUsers_id($this->users_id)
 							 ->select()
 							 ->allAssoc();
-		
 		return $users_branch;
-
 	}
 
 
 	public function set_session( ){
 
-		$users_data = $this->sql()->tableUsers()->whereId($this->users_id)->limit(1)->select()->assoc();
+		$users_branch_data = $this->sql()->tableUsers_branch()->whereUsers_id($this->users_id)
+		->andBranch_id($_SESSION['user']['branch']['selected'][0])->limit(1)->select()->assoc();
 
 		
 		//------------------------------ set status session
-		$_SESSION['user']['status'] = $users_data['status'];
+		$_SESSION['user']['type'] = $users_branch_data['type'];
+		
+		//------------------------------ set status session
+		$_SESSION['user']['status'] = $users_branch_data['status'];
+
+
+		$users_data = $this->sql()->tableUsers()->whereId($this->users_id)->limit(1)->select()->assoc();
+
+		
 
 		//------------------------------ set email session
 		$_SESSION['user']['email'] = $users_data['email'];
@@ -80,37 +116,32 @@ class query_login_cls extends query_cls {
 		$_SESSION['user']['gender'] = $sql_person['gender'];
 
 
-		//------------------------------ set users_id session
-		$_SESSION['user']['id']     = $this->users_id;
-		
 		$this->permission();
 
 	}
 
 	public function permission() {
-		return ;
-		//------------- check type if users.type == student or == teacher 
-		// not NULL
-		// else 
-		// set permission
+		// return ;
+		$permission = $this->sql()->tablePermission();
+		$permission->joinUsers_branch()->whereId("#permission.users_branch_id");
+			foreach ($_SESSION['user']['branch']['selected'] as $key => $value) {
+				$permission->condition("and" ,"users_branch.branch_id", "=", $value);
+			}
+		$permission = $permission->select()->allAssoc();
+
 
 		//------------------------------ set list of permission session
 		$session = array();
-		$permission = $this->sql()->tablePermission();
-		$permission->joinUsers_branch()->whereId("#permission.users_branch_id")->andUsers_id($this->users_id);
-		$permission = $permission->select();
-		var_dump($permission->string());exit();
-		// ->select()->allAssoc();
 
 		foreach ($permission as $key => $value) {
 			if($value['select'] != NULL ) $session['tables'][$value["tables"]]['select'] = $value['select'];
 			if($value['update'] != NULL ) $session['tables'][$value["tables"]]['update'] = $value['update'];
 			if($value['insert'] != NULL ) $session['tables'][$value["tables"]]['insert'] = $value['insert'];
 			if($value['delete'] != NULL ) $session['tables'][$value["tables"]]['delete'] = $value['delete'];
-			if($value['condition'] != NULL ) $session['tables'][$value["tables"]]['condition'] = $value['condition'];
+			if($value['condition'] != NULL) $session['tables'][$value["tables"]]['condition'] = $value['condition'];
 		}
+
 		$_SESSION['user']['permission'] = $session;
-		
 	}
 }
 ?>

@@ -6,7 +6,7 @@ class model extends main_model {
 	
 	public function makeQuery() {
 		return $this->sql()->tablePending_classes()
-			->setUsers_id(isset($_SESSION['user']['id'])? $_SESSION['user']['id'] : 223)
+			->setUsers_id($this->login()? $_SESSION['user']['id'] : 223)
 			->setClasses_id(post::classes_id())
 			->setDate("13930616")
 			->setDescription(post::desc());

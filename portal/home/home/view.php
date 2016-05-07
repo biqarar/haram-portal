@@ -8,6 +8,7 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = 'Profile';
 
+	
 		//------------------------------ globals type
 		$this->global->type = isset($_SESSION['user']['type']) ? $_SESSION['user']['type'] : "";		
 
@@ -22,6 +23,8 @@ class view extends main_view {
 			$this->global->gender = ($_SESSION['user']['gender']  == "male") ? _("Mr.") : _("Mrs.");
 		
 		}
+
+		// var_dump($this->sql("#query"));
 	}
 }
 ?>

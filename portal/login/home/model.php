@@ -16,7 +16,7 @@ class model extends main_model {
 		// 	$this->redirect("login");
 		
 		// }else{
-			var_dump(2);
+			// var_dump(2);
 			
 			$u = $this->sql()->tableUsers();
 				if(preg_match("/@/", post::username())) {
@@ -29,20 +29,20 @@ class model extends main_model {
 
 			//------------------------------ username and password tru
 			if($u->num() == 1) {				
-				var_dump(3);
+				// var_dump(3);
 				//------------------------------ clear history of try to login
 				$this->sql(".loginCounter.clear");
-				var_dump($this->sql(".login" , $u->assoc("id")));exit();
+				// var_dump($this->sql(".login" , $u->assoc("id")));exit();
 				//------------------------------ set login session (permission, menu , ...)
 				if($this->sql(".login" , $u->assoc("id"))) {
 					//------------------------------ redirect to page (profile || save page)
-					var_dump(5);
+					// var_dump(5);
 					if(isset($_SESSION['redirect'])){
 						$redirect = $_SESSION['redirect'];
 						unset($_SESSION['redirect']);
 						$this->redirect($redirect);
 					}else{
-						var_dump(4);exit();
+						// var_dump(4);exit();
 						$this->redirect("/profile");
 					}
 				

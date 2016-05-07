@@ -19,12 +19,18 @@ class menu_cls  {
 	*/
 	static $list_menu = array();
 
+	
+
 	/**
 	* compile menu
 	* @return array
 	*/
 	public function list_menu() {
 
+		if(!$this->usersid()){
+
+			return array();
+		}
 		//------------------------------ make menu
 		$this->menus();
 
@@ -42,7 +48,7 @@ class menu_cls  {
 			}elseif(is_string($value['tag']) && $value['tag'] != "public"){
 				$make = false;
 			}else{
-
+	
 				//------------------------------ check permission and make menu
 				foreach ($value['tag'] as $table => $v) {
 					foreach ($v as $oprator => $publicPrivate) {
@@ -570,7 +576,13 @@ class menu_cls  {
 			"name" =>  _("change password"), 
 			"tag" => "public"
 			);
-		
+		//------------------------------ (public) log out menu 
+		self::$menu[] = array(
+			"submenu" => "settings", 
+			"url" => 'login/selectbranch', 
+			"name" =>  _("انتخاب شعبه"), 
+			"tag" => $this->selectbranch()
+			);
 		//------------------------------ (public) log out menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
@@ -587,6 +599,13 @@ class menu_cls  {
 		// 	"tag" => "public"
 		// 	);
 
+	}
+
+	public function selectbranch() {
+		if(isset($_SESSION['user']['branch']['active']) &&  count($_SESSION['user']['branch']['active']) > 1) {
+			return "public";
+		}
+		return "olny from some branch";
 	}
 
 	public function usersid() {

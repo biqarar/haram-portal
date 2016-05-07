@@ -6,7 +6,7 @@
 class controller extends main_controller {
 	public $permission = array();
 	public function config() {		
-		// var_dump("ddddddddd");exit();
+	
 		if(config_lib::$url == "captcha.png"){
 			new captcha_lib;
 			exit();
@@ -24,24 +24,38 @@ class controller extends main_controller {
 
 		$this->listen(array(
 			"max" => 1,
-			"url" => "/^(|profile|changepasswd)$/"
+			"url" => "/^(|profile)$/"
 			),
 		function () {
-			if(isset($_SESSION) && isset($_SESSION['user']['id'])){
+			
+			if($this->login("select_branch")){
 				$this->access = true;
+			}else{
+				header("location: ".host."/login");
+			exit();
 			}
 		}
 		);
 
 		$this->listen(array(
-			"max" => 2,
-			"url" => "changepasswd"
-			), array("home","passwd"));
+			"max" => 1,
+			"url" => "/^(changepasswd)$/"
+			),
+		function () {
+			save("home","passwd");	
+			if($this->login()){
+				$this->access = true;
+			}else{
+				header("location: ".host."/login");
+			exit();
+			}
+		}
+		);
+		// $this->listen(array(
+		// 	"max" => 2,
+		// 	"url" => "changepasswd"
+		// 	), array("home","passwd"));
 
-		$this->listen(array(
-			"max" => 2,
-			"url" => "selectbranch"
-			), array("home","passwd"));
 
 	}
 }

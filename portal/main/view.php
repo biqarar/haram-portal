@@ -319,7 +319,7 @@ class main_view{
 	}
 
 	public function check_users_type($users_id = false) {
-		if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['type'])) {
+		if($this->login() && isset($_SESSION['user']['type'])) {
 			list($access, $msg) = $this->checkPermissions();
 			if(!$access){
 				if(($_SESSION['user']['type'] == "teacher" || $_SESSION['user']['type'] == "operator") && $_SESSION['user']['id'] != $users_id) {

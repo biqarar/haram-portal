@@ -9,7 +9,7 @@ class users_branch {
 	// public $unique = array("users");
 
 	// public $foreign = array("users_id" => "users@id!id", "branch_id" => "branch@id!name");
-
+// 
 	public function id() {
 		// $this->validate("id");
 	}
@@ -20,13 +20,13 @@ class users_branch {
 	}
 
 	public function branch_id() {
-		// $this->form("select")->name("branch_id");
+		// $this->form("radio")->name("branch_id");
 		// $this->setChild();
 	}
 
 	public function type() {
-		$this->form("select")->name("type")->label("type");
-		$this->setChild($this->form);
+		// $this->form("radio")->name("type")->label("type");
+		// $this->setChild($this->form);
 	}
 }
 ?>

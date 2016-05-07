@@ -15,7 +15,7 @@ class view extends main_view {
 			$x = $this->form("checkbox")
 					->name("branch_" . $value)
 					->label($this->sql("#branch_name", $value));
-			if(isset($_SESSION['user']['branch_active']) && preg_grep("/^" . $value. "$/", $_SESSION['user']['branch_active'])){
+			if(isset($_SESSION['user']['branch']['active']) && preg_grep("/^" . $value. "$/", $_SESSION['user']['branch']['active'])){
 				$x->checked("checked");
 			}
 			$settings[] = $x->compile();

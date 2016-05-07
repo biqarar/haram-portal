@@ -48,8 +48,10 @@ class query_cls {
 		->groupClose();
 	}
 
-	public function redirect($url) {
-		new redirector_cls($url);
-	}
+	// public function redirect($redirect = false, $exit = true, $php = false){
+	// 	$redirectClass = new redirector_cls($redirect, $exit, $php);
+	// 	$this->redirect = $redirectClass;
+	// 	return $redirectClass;
+	// }
 }
 ?>
