@@ -25,7 +25,7 @@ class view extends main_view {
 		// ->addColEnd("edit","edit")->select(-1, "edit")->html($this->editLink("place"))
 		// ->compile();
 
-		$this->data->dataTable = $this->dtable('place/status=api/', array('name', "description" , "multiclass","edit"));
+		$this->data->dataTable = $this->dtable('place/status=api/', array('name', "description" , "multiclass","status","edit"));
 
 	}
 }

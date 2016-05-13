@@ -14,6 +14,7 @@ class model extends main_model {
 			->query(function($q){
 				$q->joinPlan()->whereId("#score_type.plan_id")->fieldName();
 				//---------- get branch id in the list
+				$q->groupOpen();
 				foreach ($this->branch() as $key => $value) {
 					if($key == 0){
 						$q->condition("where", "plan.branch_id","=",$value);
@@ -21,6 +22,7 @@ class model extends main_model {
 						$q->condition("or","plan.branch_id","=",$value);
 					}
 				}
+				$q->groupClose();
 			})
 			->result(function($r){
 				$r->edit = '<a href="score/type/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';

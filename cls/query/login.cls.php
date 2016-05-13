@@ -127,6 +127,7 @@ class query_login_cls extends query_cls {
 			foreach ($_SESSION['user']['branch']['selected'] as $key => $value) {
 				$permission->condition("and" ,"users_branch.branch_id", "=", $value);
 			}
+		$permission->condition("and", "users_branch.users_id", "=", $_SESSION['user']['id']);
 		$permission = $permission->select()->allAssoc();
 
 
@@ -142,6 +143,7 @@ class query_login_cls extends query_cls {
 		}
 
 		$_SESSION['user']['permission'] = $session;
+		// var_dump($_SESSION);exit();
 	}
 }
 ?>

@@ -17,7 +17,7 @@ class model extends main_model {
 		$users_sql = $this->sql()->tableUsers()
 			->setEmail(post::email())
 			// ->setType(post::type())
-			->setStatus(post::status())
+			// ->setStatus(post::status())
 			->whereId($this->xuId())
 			->update();
 

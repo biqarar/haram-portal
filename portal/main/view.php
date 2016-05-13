@@ -172,7 +172,7 @@ class main_view{
 			foreach ($branch_list as $key => $value) {
 				$branch->child()->name($value['name'])->label($value['name'])->value($value["id"]);
 			}
-			$branch->child(0)->selected("selected");
+			// $branch->child(0)->selected("selected");
 			$f->add("branch_id", $branch);
 			$f->atFirst("branch_id");
 		}elseif ($type == "chekbox") {

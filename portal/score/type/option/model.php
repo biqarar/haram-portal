@@ -5,19 +5,15 @@
 class model extends main_model{
 
 	public function makeQuery() {
-		if(
-			$this->sql(".brach.plan", post::plan_id()) !=
-			$this->post_branch()){
-			debug_lib::fatal("plan and branch not mathc");
-		}
+		$branch_plan = $this->sql(".branch.plan", post::plan_id());
 
+		// var_dump($branch_plan);exit();
 		//------------------------------ make sql object
 		$x = $this->sql()->tableScore_type()
 						   ->setPlan_id(post::plan_id())
 						   ->setTitle(post::title())
 						   ->setMin(post::min())
 						   ->setMax(post::max())
-						   ->setBranch_id($this->post_branch())
 						   ->setDescription(post::description());
 		return $x;
 	}

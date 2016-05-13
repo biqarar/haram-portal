@@ -21,6 +21,7 @@ class model extends main_model {
 		})
 		->query(function ($q){
 			//---------- get branch id in the list
+			$q->groupOpen();
 			foreach ($this->branch() as $key => $value) {
 				if($key == 0){
 					$q->condition("where", "plan.branch_id","=",$value);
@@ -28,6 +29,8 @@ class model extends main_model {
 					$q->condition("or","plan.branch_id","=",$value);
 				}
 			}
+
+			$q->groupClose();
 		});
 		$this->sql(".dataTable", $dt);
 	}

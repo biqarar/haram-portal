@@ -62,6 +62,7 @@ class view extends main_view {
 			// $classes[] = $this->form("#hidden")->value("absence_add")->compile();
 			
 			foreach ($active_classes as $key => $value) {
+				
 				$x = $this->form("checkbox")
 						->name("classes_" . $value["classes_id"])
 						->label($this->sql("#classes_name", $value['classes_id']))

@@ -15,7 +15,7 @@ class model extends main_model{
 
 		$file_user = $this->sql()->tableFile_user()->whereUsers_id($users_id)->select();
 		
-		$directory = "../updfile/";
+		$directory = "portal/updfile/";
 
 		$path = array();
 

@@ -36,7 +36,7 @@ class model extends main_model {
 			->query(function($q){
 				$q->joinUsers()->whereId("#person.users_id")->fieldUsername("username");
 				$q->joinUsers_branch()->whereUsers_id("users.id");
-				// ->groupOpen();
+				$q->groupOpen();
 				//---------- get branch id in the list
 				foreach ($this->branch() as $key => $value) {
 					if($key == 0){
@@ -45,7 +45,7 @@ class model extends main_model {
 						$q->condition("or","users_branch.branch_id","=",$value);
 					}
 				}
-				// $q->groupClose();
+				$q->groupClose();
 				// echo ($q->select()->string());exit();
 			})
 			// ->search_result(function($result){

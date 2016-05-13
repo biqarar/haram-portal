@@ -5,23 +5,34 @@
 class model extends main_model {
 
 	public function post_selectbranch() {
+		
 		$branch_id = false;
+		
 		if(post::logout()) {
+		
 			$this->redirect("logout");
+		
 		}else{
-			foreach ($_POST as $key => $value) {
-				if(preg_match("/^selectbranch\_(\d+)$/", $key, $c)){
-					$branch_id = $this->sql(".branch.check", $c[1]);
-					break;
-				}
+		
+			if(post::select_branch()){
+		
+				$branch_id = $this->sql(".branch.check", post::select_branch());
 			}
-			if($branch_id) {
+		
+			if($branch_id && $branch_id != null) {
+		
+				$_SESSION['user']['branch'] = array();
+		
 				$_SESSION['user']['branch']['selected'][] = $branch_id;
-				// var_dump($_SESSION);exit();
+
 				$this->sql(".login", $this->login("id"));
+
 				$this->redirect("profile");
+			
 			}else{
-				page_lib::access("branch error");
+				$this->redirect("login");
+				// page_lib::access("branch error");
+			
 			}
 
 		}

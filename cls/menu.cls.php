@@ -167,36 +167,6 @@ class menu_cls  {
 				)
 			);
 
-		//------------------------------  nezarat
-		// //------------------------------  item
-		// self::$menu[] = array(
-		// 	"submenu" => "home", 
-		// 	"url" => 'nezarat/item', 
-		// 	"name" => "آیتم های برنامه", 
-		// 	"tag" => array(
-		// 		"nezarat_item" => array("insert" => array("public"))
-		// 		)
-		// 	);
-
-		// //------------------------------  branch
-		// self::$menu[] = array(
-		// 	"submenu" => "home", 
-		// 	"url" => 'nezarat/program', 
-		// 	"name" => "تعریف برنامه", 
-		// 	"tag" => array(
-		// 		"nezarat_program" => array("insert" => array("public"))
-		// 		)
-		// 	);
-
-		// //------------------------------  branch
-		// self::$menu[] = array(
-		// 	"submenu" => "home", 
-		// 	"url" => 'branch/status=add', 
-		// 	"name" => _("add branch"), 
-		// 	"tag" => array(
-		// 		"branch" => array("insert" => array("public"))
-		// 		)
-		// 	);
 		//------------------------------  branch
 		self::$menu[] = array(
 			"submenu" => "share", 
@@ -226,16 +196,7 @@ class menu_cls  {
 				"plan" => array("insert" => array("public"))
 				)
 			);
-		
-		// //------------------------------  plan
-		// self::$menu[] = array(
-		// 	"submenu" => "share", 
-		// 	"url" => 'plan/section/status=add', 
-		// 	"name" =>  _("add plan section"), 
-		// 	"tag" => array(
-		// 		"plan_section" => array("insert" => array("public"))
-		// 		)
-		// 	);
+
 		//------------------------------  course
 		self::$menu[] = array(
 			"submenu" => "share", 
@@ -497,6 +458,7 @@ class menu_cls  {
 		// 		"absence" => array("select" => array("public"))
 		// 		)
 		// 	);
+
 		//------------------------------ drafts add
 		self::$menu[] = array(
 			"submenu" => "folder", 
@@ -562,13 +524,6 @@ class menu_cls  {
 
 		//------------------------------ public menu
 
-		// //------------------------------ (public) change password menu 
-		// self::$menu[] = array(
-		// 	"submenu" => "settings", 
-		// 	"url" => 'settings', 
-		// 	"name" =>  _("تنظیمات شعب"), 
-		// 	"tag" => (isset($_SESSION['user']['branch']) && count($_SESSION['user']['branch']) > 1 ) ? "public" : "one branch"
-		// 	);
 		//------------------------------ (public) change password menu 
 		self::$menu[] = array(
 			"submenu" => "settings", 
@@ -590,14 +545,6 @@ class menu_cls  {
 			"name" =>  _("logout"), 
 			"tag" => "public"
 			);
-
-		//------------------------------ (public) report bug menu 
-		// self::$menu[] = array(
-		// 	"submenu" => "letters", 
-		// 	"url" => 'report/status=add', 
-		// 	"name" => _("report"), 
-		// 	"tag" => "public"
-		// 	);
 
 	}
 
@@ -624,14 +571,6 @@ class menu_cls  {
 		}
 	}
 
-	public function x() {
-		// if (!isset($this->usersid())) return false;
-		return "public";
-		$users_id = $this->usersid();
-		// $form_users = $this->sql()->tableForm_users()->whereUsers_id($users_id)->select();
-		// var_dump($form_users);
-		// die();
-	}
 
 	public function public_menu() {
 		return  array(

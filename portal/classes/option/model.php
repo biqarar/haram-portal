@@ -21,7 +21,11 @@ class model extends main_model{
 
 		//------------------------check branch
 		$branch_id = $this->sql(".branch.plan",post::plan_id());
-		if($branch_id == $this->sql(".branch.place",post::place_id())){
+		// echo $branch_id . "\n";
+		// echo $this->sql(".branch.place",post::place_id()) . "\n";
+		// echo $this->sql(".branch.users",post::teacher(), $branch_id) . "\n";
+		// exit();
+		if($branch_id == $this->sql(".branch.place",post::place_id())){	
 			$this->sql(".branch.users",post::teacher(), $branch_id);
 		}else{
 			debug_lib::fatal("branch, place and teacher branch not mathc");

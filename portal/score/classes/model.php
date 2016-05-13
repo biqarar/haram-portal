@@ -5,6 +5,7 @@ class model extends main_model {
 
 		
 		$array = array("usersid more","username users.username","name person.name", "family person.family","id input");
+		// var_dump("fuck");exit();
 	
 		$dtable = $this->dtable->table("classification")
 			->fields($array)
@@ -21,16 +22,21 @@ class model extends main_model {
 				}
 			})
 			->query(function($q){
+				//------------------- check branch
+				$y = $this->sql(".branch.classes", $this->xuId("classesid"));
+
 				$q->andClasses_id($this->xuId("classesid"));
 				$q = $this->classification_finde_active_list($q);
 				$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName("name")->fieldFamily("family");
 				$q->joinUsers()->whereId("#classification.users_id")->fieldUsername("username")->fieldId("usersid");
+				// echo $q->select()->string();exit();
+
 			})
-			// ->search_result(function($result){
-			// 	$vsearch = $_GET['search']['value'];
-			// 	$vsearch = str_replace(" ", "_", $vsearch);
-			// 	$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
-			// })
+			->search_result(function($result){
+				$vsearch = $_POST['search']['value'];
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
+			})
 			->result(function($r){
 				$r->input ="<div class='form-element' >" .  $this->tag("input")
 									  ->type("text")

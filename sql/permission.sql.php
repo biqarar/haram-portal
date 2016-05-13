@@ -1,14 +1,14 @@
 <?php
 namespace sql;
 class permission {
-	public $id        = array('type'=> 'int@10', 'autoI', 'label' => 'permission_id');
-	public $tables = array('type'=> 'varchar@64', 'label' => 'permission_tables');
+	public $id      		 = array('type'=> 'int@10', 'autoI', 'label' => 'permission_id');
+	public $tables    		 = array('type'=> 'varchar@64', 'label' => 'permission_tables');
 	public $users_branch_id  = array('type'=> 'int@10', 'label' => 'users_branch_id');
-	public $select    = array('type'=> 'enum@private,public!private', 'label' => 'permission_select');
-	public $update    = array('type'=> 'enum@private,public!private', 'label' => 'permission_update');
-	public $insert    = array('type'=> 'enum@private,public!private', 'label' => 'permission_insert');
-	public $delete    = array('type'=> 'enum@private,public!private', 'label' => 'permission_delete');
-	public $condition    = array('type'=> 'text@', 'label' => 'condition');
+	public $select   		 = array('type'=> 'enum@private,public!private', 'label' => 'permission_select');
+	public $update   		 = array('type'=> 'enum@private,public!private', 'label' => 'permission_update');
+	public $insert   		 = array('type'=> 'enum@private,public!private', 'label' => 'permission_insert');
+	public $delete   		 = array('type'=> 'enum@private,public!private', 'label' => 'permission_delete');
+	public $condition  		 = array('type'=> 'text@', 'label' => 'condition');
 
 
 	public $unique = array("table");

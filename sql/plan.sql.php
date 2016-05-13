@@ -25,7 +25,20 @@ class plan {
 	
 	public function group_id() {
 		$this->form("select")->name("group_id")->required();
-		$this->setChild();
+		$this->setChild(function($q){
+			// var_dump($_SESSION);exit();
+			$list = isset($_SESSION['user']['branch']['selected']) ? 
+						  $_SESSION['user']['branch']['selected'] : array();
+			$q->groupOpen();
+			foreach ($list as $key => $value) {
+				if($key == 0){
+					$q->condition("where", "group.branch_id","=",$value);
+				}else{
+					$q->condition("or","group.branch_id","=",$value);
+				}
+			}	
+			$q->groupClose();
+		});
 	}
 	
 	public function name() {

@@ -40,10 +40,23 @@ class classes {
 	// 	$this->setChild();
 	// 	$this->validate("id");
 	// }
+	
 
 	public function plan_id() {
 		$this->form("select")->name("plan_id")->addClass("select-plan notselect")->required();
 		$this->setChild(function($q){
+			$list = isset($_SESSION['user']['branch']['selected']) ? 
+						  $_SESSION['user']['branch']['selected'] : array();
+			$q->groupOpen();
+			foreach ($list as $key => $value) {
+				if($key == 0){
+					$q->condition("where", "plan.branch_id","=",$value);
+				}else{
+					$q->condition("or","plan.branch_id","=",$value);
+				}
+			}	
+			$q->groupClose();
+
 		}, function($child, $value){
 			$child->label(gettext($value['name']))->value($value['id']); 
 		});
@@ -82,6 +95,7 @@ class classes {
 	public function place_id() {
 		$this->form("select")->name("place_id")->addClass("select-place notselect")->required();
 		$this->setChild(function($q){
+			$q->whereStatus("enable");
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 
 		});

@@ -10,7 +10,7 @@ class model extends main_model{
 		->fields("begin_time", "end_time", "name", "id edit")
 		->search_fields("begin_time", "end_time", "name")
 		->query(function($q){
-		
+			$q->groupOpen();
 			foreach ($this->branch() as $key => $value) {
 				if($key == 0){
 					$q->condition("where", "course.branch_id","=",$value);
@@ -18,6 +18,7 @@ class model extends main_model{
 					$q->condition("or","course.branch_id","=",$value);
 				}
 			}	
+			$q->groupClose();
 		
 		})
 		->result(function($r) {

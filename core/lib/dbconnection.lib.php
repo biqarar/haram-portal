@@ -85,6 +85,9 @@ class dbconnection_lib{
 		// var_dump($string);
 		if(debug_lib::$status || self::$resum_on_error){
 			$this->string = $string;
+
+			$this->result = self::$connection->query("SET sql_mode = '' ");
+			
 			$this->result = self::$connection->query($string);
 			if (self::$connection->error) {
 				$this->status = false;

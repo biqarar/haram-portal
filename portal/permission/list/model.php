@@ -34,8 +34,9 @@ class model extends main_model {
 			}
 		})
 		->query(function($q){
-			$q->joinUsers()->whereId("#permission.users_id")->fieldUsername("username");
-			$q->joinPerson()->whereUsers_id("#permission.users_id")->fieldName("name")->fieldFamily("family");
+			$q->joinUsers_branch()->whereId("#permission.users_branch_id");
+			$q->joinUsers()->whereId("#users_branch.users_id")->fieldUsername("username");
+			$q->joinPerson()->whereUsers_id("#users.id")->fieldName("name")->fieldFamily("family");
 		})
 		->result(function($r) {
 			$r->edit = '<a class="icoedit" href="permission/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';

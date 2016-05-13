@@ -23,7 +23,8 @@ class query_branch_cls extends query_cls {
 
 
 	public function get_users_branch() {
-		$listBranch = $this->sql()->tableUsers_branch()->whereUsers_id($_SESSION['user']['id']);
+		$listBranch = $this->sql()->tableUsers_branch()->whereUsers_id($_SESSION['user']['id'])
+		->andStatus("enable");
 		$listBranch->groupOpen();
 		foreach ($this->check() as $key => $value) {
 			if($key == 0) {
@@ -51,7 +52,7 @@ class query_branch_cls extends query_cls {
 
 		//--------------- $arg = branch_id
 		if($arg){	
-			foreach ($_SESSION['user']['branch']['active'] as $key => $value) {
+			foreach ($this->_list() as $key => $value) {
 				
 				if($value == $arg) {
 					//--------------- the branch founded in branch list
@@ -65,8 +66,14 @@ class query_branch_cls extends query_cls {
 
 		}else{
 			//--------------- return all branch users active
-			return $_SESSION['user']['branch']['active'];
+			return $this->_list();
 		}
+	}
+
+	public function _list(){
+		return isset($_SESSION['user']['branch']['selected']) ?  
+					 $_SESSION['user']['branch']['selected'] :
+					 $_SESSION['user']['branch']['active'];
 	}
 
 	public function post_branch() {
@@ -75,7 +82,7 @@ class query_branch_cls extends query_cls {
 				return post::branch_id();
 			}
 		}elseif(count($this->check()) == 1) {
-			return $_SESSION['user']['branch']['active'][0];
+			return $this->_list()[0];
 		}else{
 			$this->error("شناسه شعبه یافت نشد");
 		}
@@ -205,6 +212,7 @@ class query_branch_cls extends query_cls {
 
 
 	public function course($course_id = false) {
+
 		//--------------- 
 		$query = $this->sql()->tableCourse()->whereId($course_id)->limit(1)->select()->assoc("branch_id");
 

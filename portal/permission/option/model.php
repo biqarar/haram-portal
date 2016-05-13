@@ -4,6 +4,17 @@
 */
 class model extends main_model {
 
+	public function post_apishowbranch() {
+		$users = $this->sql(".branch.users", $this->sql_find_users_id($this->xuId("username")));
+		$users_id = $this->sql_find_users_id($this->xuId("username"));
+		$query = $this->sql()->tableUsers_branch()->whereUsers_id($users_id);//->select()->allAssoc();
+		$query->joinBranch()->whereId("#users_branch.branch_id");
+		$query = $query->select()->allAssoc();
+		debug_lib::msg("list", $query);
+
+		// var_dump($query);exit();
+	}
+
 	public function post_deleteapi(){
 		$id = $this->xuId();
 		$this->sql()->tablePermission()->whereId($id)->delete();
@@ -28,7 +39,7 @@ class model extends main_model {
 		//------------------------------ make sql object
 		 return $this->sql()->tablePermission()
 		 		// ->setTables(post::tables())
-		 		->setUsers_id($this->sql_find_users_id(post::users_id()))
+		 		// ->setUsers_id($this->sql_find_users_id(post::users_id()))
 		 		->setSelect(post::select())
 		 		->setUpdate(post::update())
 		 		->setInsert(post::insert())
@@ -37,17 +48,27 @@ class model extends main_model {
 	}
 
 	public function post_add_permission(){
-		//------------------------------ insert permission
-		foreach ($_POST as $key => $value) {
-			if(preg_match("/^table\_(.*)/", $key)) {
-				$sql = $this->makeQuery()->setTables($value)->insert();
+		// var_dump($_POST);exit();
+		$users_id = $this->sql_find_users_id(post::username());
+		$branch_id = post::branch_id();
+		$users_branch_id = $this->sql()->tableUsers_branch()->whereUsers_id($users_id)->andBranch_id($branch_id)
+							->limit(1)->select()->assoc("id");
+		if($users_branch_id){
+			//------------------------------ insert permission
+			foreach ($_POST as $key => $value) {
+				if(preg_match("/^table\_(.*)/", $key)) {
+					$sql = $this->makeQuery()
+							->setUsers_branch_id($users_branch_id)
+							->setTables($value)
+							->insert();
+				}
 			}
+			//------------------------------ commit code
+			$this->commit(function() {
+				debug_lib::true("[[insert permission successful]]");
+			});
 		}
-
-		//------------------------------ commit code
-		$this->commit(function() {
-			debug_lib::true("[[insert permission successful]]");
-		});
+		
 
 		//------------------------------ rollback code
 		$this->rollback(function() {

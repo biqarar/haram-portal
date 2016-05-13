@@ -8,7 +8,7 @@ class users {
 
 	public $email    = array('type'=> 'varchar@64', 'label' => 'users_email');
 	// public $type = array("type" => "enum@student,teacher,operator,baby!student");
-	public $status = array("type" => "enum@waiting,block,delete,enable!waiting");
+	// public $status = array("type" => "enum@waiting,block,delete,enable!waiting");
 	public $unique   = array("username", "email");
 	
 
@@ -31,10 +31,10 @@ class users {
 	// 	$this->setChild($this->form);
 	// }
 
-	public function status() {
-		$this->form("select")->name("status")->label("status");
-		$this->setChild($this->form);
-	}
+	// public function status() {
+	// 	$this->form("select")->name("status")->label("status");
+	// 	$this->setChild($this->form);
+	// }
 
 	
 	public function email() {

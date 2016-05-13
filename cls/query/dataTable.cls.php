@@ -3,11 +3,12 @@ class query_dataTable_cls extends query_cls
 {
 	function config($object)
 	{
+		// var_dump($_POST);
 		$table = $object->table;
 		$iFields = $object->fields;
 		$sql = $this->sql();
 		$result = $sql::$table();
-		@$length = $_POST['length'];
+		$length = $_POST['length'];
 		$search = isset($object->search_fields) ? $object->search_fields : false;
 		$search = is_array($search) ? $search : array($search);
 		if(isset($object->query)){
@@ -96,6 +97,7 @@ class query_dataTable_cls extends query_cls
 		$result->limit($_POST['start'], $length);
 
 		$query = $result->select();
+		// echo ($query->string());	
 
 		$allData = $query->allObject();
 		foreach ($iFields as $ifkey => $ifvalue) {

@@ -9,7 +9,7 @@ route(/course\/courseclasses\/status\=add/, function(){
 	$("#course_id", this).combobox({
 		change : function(op){
 			item = op.item.option.value
-			console.log(item);
+			// console.log(item);
 			$.ajax({
 				type: "POST",
 				url : "course/courseclasses/apilist/courseid=" + item,
@@ -44,8 +44,8 @@ function courseclasses_list (data) {
  	$(".courseclasses-item .icoredclose").click(function(){
  		delete_courseclasses($(this));
  		$(this).parents(".courseclasses-item").fadeOut(function(){
- 	});
-});
+ 		});
+	});
 }		
 function delete_courseclasses(_self){
 	console.log(_self);

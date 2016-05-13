@@ -1,7 +1,9 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
-<form method ="post" action ="settings" class="ajx">
-	{{forms.make(settings)}}
-</form>
+
+	{%for i, a in show%}
+		{{a|raw}}
+	{%endfor%}
+
 {%endblock%}

@@ -15,6 +15,14 @@ class view extends main_view {
 		//------------------------------list of branch
 		$this->listBranch($f);
 
+		$f->add("username", "text")->name("username")->label("username")->addClass("username");
+		$f->add("showbranch", "button")->name("showbranch")->value("show branch")->addClass("showbranch");
+
+		$f->after("username", "hidden");
+		$f->after("branch_id", "username");
+		$f->after("showbranch", "username");
+		$f->remove("users_branch_id");
+		// var_dump($f);exit();
 		//------------------------------ make list of table whit .sql.php file in sql folder 
 		$tables = scandir(sql);
 
@@ -31,7 +39,7 @@ class view extends main_view {
 		}
 
 		//------------------------------ this table not sohw in table list (system table)
-		$black = array(".","..", "permission", "history", "login_counter","dev", "branch_users_key", "branch_cash", "setup", "ahmad");
+		$black = array(".","..", "permission", "history", "login_counter", "branch_users_key", "setup");
 		
 
 		foreach ($tables as $key => $value) {
@@ -40,7 +48,7 @@ class view extends main_view {
 		
 			if(preg_grep("/^$value$/", $black)) continue;
 		
-			$f->tables->child()->name("table_" . $value)->label($value . " ")->value($value);
+			$f->tables->child()->name("table_" . $value)->label($value)->value($value);
 		}
 
 		if($this->urlStatus() == "edit") {

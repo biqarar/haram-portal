@@ -10,7 +10,7 @@ class model extends main_model {
 			$q->joinUsers()->whereId("#price.users_id")->fieldUsername("username");
 			$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
 			$q->joinUsers_branch()->whereUsers_id("users.id");
-
+			$q->groupOpen();
 			foreach ($this->branch() as $key => $value) {
 				if($key == 0){
 					$q->condition("and", "users_branch.branch_id","=",$value);
@@ -18,6 +18,7 @@ class model extends main_model {
 					$q->condition("or","users_branch.branch_id","=",$value);
 				}
 			}
+			$q->groupClose();
 		})
 		->order(function($q, $n, $b){
 			if($n === 'orderPricechangename'){

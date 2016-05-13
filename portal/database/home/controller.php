@@ -12,6 +12,17 @@ class controller extends main_controller{
 				$this->access = global_cls::supervisor();
 			}
 		);
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("status" => "removeduplicate" , "nationalcode" => "/^\d+$/" )
+			), 
+			function() {
+				save(array("database", "removeduplicate"));
+				$this->access = global_cls::supervisor();
+			}
+		);
+
+		
 	}
 }
  ?>

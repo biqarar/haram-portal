@@ -7,23 +7,23 @@ class view extends main_view {
 	public function config() {
 		//------------------------------ globals
 		$this->global->page_title = 'select branch';
-// var_dump("Fucffff");
+
 		$f = $this->form("@users_branch");
+		
 		$f->add("hidden", "hidden")->name("_post")->value("selectbranch");
-		// var_dump($this->sql(".branch.get_users_branch"));exit();
+		
+		$f->add("select_branch", "select")->name("select_branch");
+		
 		foreach ($this->sql(".branch.get_users_branch") as $key => $value) {
-			$f->add("select_branch_". $value['branch_id'], "submit")
-			->name("selectbranch_" .  $value['branch_id'])
-			->value(_($value['type']) . " در " . $value['name'])
-			->id($value['branch_id'])
-			// ->value()
-			->label("ورود به عنوان");
-			
+			$f->select_branch->child()
+				->name("selectbranch_" .  $value['branch_id'])
+				->value($value['branch_id'])
+				->label(_($value['type']) . " در " . $value['name']);	
 		}
-			$f->add("logout","submit")
-			->name("logout")
-			->value(_("logout"))
-			->label("خروج");
+
+			$f->add("select","submit")->name("select")->value(_("ورود   با  سمت  انتخابی"));
+
+			$f->add("logout","submit")->name("logout")->value(_("خروج از حساب کاربری"));
 		
 		$f->remove("submit");
 	}

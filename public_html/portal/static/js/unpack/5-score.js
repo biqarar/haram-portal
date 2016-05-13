@@ -87,7 +87,7 @@ route(/score\/calculation\/status\=(add|edit)/, function(){
 
 				for(a in data.msg) {
 					 if(data.msg[a]['title']){
-							$("<a  onclick='insert_(this);'>" + data.msg[a]['title'] + "</a><br>").appendTo("#list");
+							$("<a style='cursor: pointer' onclick='insert_(this);'>" + data.msg[a]['title'] + "</a><br>").appendTo("#list");
 					 	}
 
 					}
