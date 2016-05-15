@@ -3,6 +3,15 @@ route(/score/, function(){
 });
 
 route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function(){
+	//--------------- add retest attr for insert retstt in log
+	$(".score-retest",this).click(function(){
+		if($("input[classificationid="+$(this).attr('classificationid')+"]").attr("retest")){
+			$("input[classificationid="+$(this).attr('classificationid')+"]").removeAttr("retest");
+		}else{
+			$("input[classificationid="+$(this).attr('classificationid')+"]").attr("retest", "retest");
+		}
+	});
+
 	function l(a) {console.log(a);}
 	_warn = '<span class="status-warn" style="background: #FFECB3;
 	border: 1px solid #FFD54F;
@@ -29,11 +38,16 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 			return;
 		}
 		_self = $(this);
+		if($(this).attr("retest")){
+			url = "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value + "/retest=true";
+		}else{
+			url = "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value + "/retest=false";
+		}
 		$(_self).next('span').remove();
 		$(_self).attr('disabled', 'disabled');
 		$.ajax({
 			type: "POST",
-			url : "score/api/classificationid=" + classificationid + "/scoretypeid=" + scoretypeid + "/value=" + value,
+			url : url,
 			success : function(data){
 				console.log(data);
 				$(_self).removeAttr('disabled');

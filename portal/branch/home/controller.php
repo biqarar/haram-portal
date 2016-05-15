@@ -19,16 +19,24 @@ class controller extends main_controller{
 		//------------------------------ branch move (manage branch_cash)
 		$this->listen(array(
 			"max" => 3,
-			"url" => array("move", "users")
+			"url" => array("status"=> "change")
 			), 
 			function() {
-				save(array("branch", "move"));
-				$this->permission = array("branch" => array("delete" => array("public")));
+				save(array("branch", "change"));
+				$this->permission = array("users_branch" => array("update" => array("public")));
 			}
-		);
-
+		);		
 		
-			
+		//------------------------------ branch move (manage branch_cash)
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("apichange","usersbranchid"=> "/^(\d+)$/", "type" => "/^(waiting|enable|block|delete|operator|teacher|student)$/")
+			), 
+			function() {
+				save(array("branch", "change" , "mod" => "apichange"));
+				$this->permission = array("users_branch" => array("update" => array("public")));
+			}
+		);	
 	}
 
 }

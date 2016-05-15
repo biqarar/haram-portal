@@ -51,3 +51,17 @@
 	xhr_warn = _warn;
 	xhr_true = _true;
 })();
+
+function xhr_result(data){
+	console.log(data);
+	if(data.status){
+		xhr_true(data.true[0]);	
+	}
+	if(data.fatal){
+		xhr_error(data.fatal[1]);	
+	}
+	if(data.warn){
+		xhr_warn(data.warn[0])
+	}
+}
+

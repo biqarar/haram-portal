@@ -1,0 +1,15 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+لطفا در ثبت نوع فراگیر و وضعیت پرونده ایشان دقت فرمایید.
+<br>
+با کلیک بر روی آیکون های موجود در جدول زیر تغییرات اعمال خواهند شد.
+<br>
+<br>
+
+<form class="ajx" method="post">
+	{{forms.make(branch_cash)}}
+</form>
+
+{{tagMaker.list(list)}}
+{%endblock%}

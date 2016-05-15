@@ -91,8 +91,7 @@ class model extends main_model{
 		
 		//------------------------------ if nationality is iran check nationalcode
 		if(post::nationality() == 97) {
-			$duplicate_person = $this
-				->sql()
+			$duplicate_person = $this->sql()
 				->tablePerson()
 				->whereNationalcode(post::nationalcode())
 				->select()

@@ -4,7 +4,13 @@ class model extends main_model {
 	public function post_api() {
 
 		
-		$array = array("usersid more","username users.username","name person.name", "family person.family","id input");
+		$array = array("usersid more",
+					 "username users.username",
+					 "name person.name", 
+					 "family person.family",
+					 "id input", 
+					 "id retest",
+					 "id xmore");
 		// var_dump("fuck");exit();
 	
 		$dtable = $this->dtable->table("classification")
@@ -38,15 +44,25 @@ class model extends main_model {
 				$result->condition("and", "##concat(person.name, person.family)", "LIKE", "%$vsearch%");
 			})
 			->result(function($r){
-				$r->input ="<div class='form-element' >" .  $this->tag("input")
+
+				$xMore = $this->tag("a")->class("icomore")
+				->tabindex(-1)->href("users/learn/score/id=".$r->more."/classificationid=". $r->retest)
+				->render();
+				
+				// var_dump($r->show);exit();
+				$xInput ="<div class='form-element' >" .  $this->tag("input")
 									  ->type("text")
 									  ->classificationid($r->input)
 									  ->scoretypeid($this->xuId("scoretypeid"))
 									  ->addClass('score-mark')
 									  ->value($this->get_value($r->input, $this->xuId("scoretypeid")))
 									  ->render() . "</div>";
-
-
+				$xCheckbox ="<label class='label-custom'>آزمون مجدد<input type='checkbox' classificationid='".$r->input."' class='score-retest' name='retest' placeholder='آزمون مجدد'><span class='brk-form-custom'><span></span><span></span></span></label>";
+				// $r->input = $xInput . $xCheckbox;
+				$r->input =  $xInput;
+				$r->retest =  $xCheckbox;
+				$r->xmore = $xMore;
+				
 				$r->more = $this->tag("a")->class("icomore")
 				->tabindex(-1)->href("users/status=detail/id=". $r->more)->render();
 			});

@@ -4,6 +4,32 @@
 */
 class model extends main_model {
 
+	public function sql_retest($classificationid = false) {
+		$log = $this->sql()->tableLogs()
+		->condition("where", "log_meta" , "like", "'scoreretest/classificationid=" . $classificationid . "%'")
+		->select();
+		$return = array();
+		$return['title'] = "آزمون های  ثبت شده";
+		$return['list']['list'][0]['امتیاز فعلی'] = $this->find_score($classificationid);
+		if($log->num() > 0) {
+			foreach ($log->allAssoc() as $key => $value) {
+				$score_type_id = preg_match("/^scoreretest\/classificationid\=(\d+)\/scoretypeid\=(\d+)$/", $value['log_meta'], $c);
+				$score_type_id = $c[2];
+				$title = ++$key . "- آزمون " . $this->get_score_type_name($score_type_id);
+				
+				$val =  $value['log_data'] . " (ثبت شده در تاریخ " . jTime_lib::date("Y/m/d h:m:s", $value['log_createdate']) . ")" ;
+	
+				$return["list"]['list'][0][$title] = $val;
+
+			}
+		}
+
+		return $return;
+	}
+
+	public function get_score_type_name($score_type_id = false ){
+		return $this->sql()->tableScore_type()->whereId($score_type_id)->limit(1)->select()->assoc("title");
+	}
 	public function post_api(){
 
 		$usersid = $this->xuId();
@@ -23,8 +49,10 @@ class model extends main_model {
 			// $q->joinScore()->whereClassification_id("#classification.id");
 		})
 		->result(function($r) {
+
 			// $r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
-			$r->score = $this->tag("a")->vtext($this->find_score($r->score))->render();
+			$r->score = $this->tag("a")->vtext($this->find_score($r->score))
+			->href("users/learn/score/id=".$this->xuId()."/classificationid=". $r->score)->title("نمایش ریز نمرات و آزمون های ")->render();
 		});
 		$this->sql(".dataTable", $dtable);
 	}

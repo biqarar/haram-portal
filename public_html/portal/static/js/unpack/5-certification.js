@@ -4,10 +4,11 @@ function certification_api_change(certificationid, type) {
 		url : "certification/apichange/certificationid=" + certificationid + "/type=" + type,
 		success : function(data){
 			console.log(data);
-			xhr_true(data.true[0]);
+			xhr_result(data);
 		}
 	});	
 }
+
 route(/certification\/status\=api/, function(){
 	$(".set-date-print",this).click(function(){
 		certification_api_change($(this).attr("certificationid"), "setdateprint");

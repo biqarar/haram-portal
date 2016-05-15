@@ -15,15 +15,7 @@ route(/classes\/status\=done\/classesid\=\d+/, function(){
 
 			success : function(data){
 				console.log(data)
-				if(data.fatal){
-					xhr_error(data.fatal[0]);
-
-				}else if(data.warn){
-					xhr_warn(data.warn[0]);
-
-				}else{
-					xhr_true(data.true[0]);
-				}
+				xhr_result(data);
 			}
 		});
 	});
@@ -39,15 +31,7 @@ route(/classes\/status\=running\/classesid\=\d+/, function(){
 
 			success : function(data){
 				console.log(data)
-				if(data.fatal){
-					xhr_error(data.fatal[0]);
-
-				}else if(data.warn){
-					xhr_warn(data.warn[0]);
-
-				}else{
-					xhr_true(data.true[0]);
-				}
+				xhr_result(data);
 			}
 		});
 	});

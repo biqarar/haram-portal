@@ -68,11 +68,19 @@ class model extends main_model {
 
 	public function type($type = false, $id = false) {
 		// var_dump($type, $id);exit();
-		if($type == "price"  ) {
-			return $this->tag("a")
-			->addClass("icoprice")->href('price/status=add/usersid='. $id)->render();
-		}else{
-			return $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $id)->render();
+		switch ($type) {
+			case 'price':
+				return $this->tag("a")
+				->addClass("icoprice")->href('price/status=add/usersid='. $id)->render();
+				break;
+			case 'branch':
+				return $this->tag("a")
+				->addClass("icosettings")->href('branch/status=change/usersid='. $id)->render();
+				break;
+			
+			default:
+				return $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $id)->render();
+				break;
 		}
 	}
 }

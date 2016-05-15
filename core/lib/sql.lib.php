@@ -327,6 +327,7 @@ class sql_lib{
 				$cInt = true;
 			}else{
 				if(isset(self::$tables->$table->$field)){
+					// var_dump(self::$tables->$table->$field->type);
 					$type = self::$tables->$table->$field->type;
 					$int = array("int","tinyint", "smallint","decimal");
 					preg_match("/^([^@]*)@/", $type, $tp);

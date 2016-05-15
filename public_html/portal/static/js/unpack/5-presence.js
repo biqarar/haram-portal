@@ -8,13 +8,7 @@ route(/presence\/classesid\=\d+/, function () {
 				url : "presence/apiadd/classesid="+ classesid + "/username=" + username,
 				success : function(data){
 					console.log(data);
-					if(data.fatal){
-						xhr_error(data.fatal[0]);
-					}else if(data.warn){
-						xhr_warn(data.warn[0]);
-					}else{
-						xhr_true(data.true[0]);
-					}
+					xhr_result(data);
 				}
 			});
 		}
@@ -26,14 +20,8 @@ route(/presence\/classesid\=\d+/, function () {
 			type: "POST",
 			url : "presence/apiclasses/classesid="+ classesid ,
 			success : function(data){
-				console.log(data);
-				if(data.fatal){
-					xhr_error(data.fatal[0]);
-				}else if(data.warn){
-					xhr_warn(data.warn[0]);
-				}else{
-					xhr_true(data.true[0]);
-				}
+				// console.log(data);
+				xhr_result(data);
 				// location.reload();
 			}
 		});

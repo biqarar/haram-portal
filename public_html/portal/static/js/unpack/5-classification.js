@@ -49,7 +49,7 @@ route(/lassification\/status\=edit\/id\=\d+/, function(){
 			url : "classification/apiclassification/id=" + id + "/date=" + date + "/because=" + because + "/usersid=" + usersid + "/classesid=" + classesid,
 		success : function(data){
 			console.log(data);
-			xhr_true(data.msg.msg);
+			xhr_result(data);
 		}
 		});
 		// return false;

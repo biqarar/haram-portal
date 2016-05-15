@@ -284,6 +284,16 @@ class menu_cls  {
 
 		//------------------------------   bridge list
 		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "users/status=list/type=branch", 
+			"name" =>  _("تغییر شعبه فراگیر"), 
+			"tag" => array(
+				"users" => array("update" => array("public"))
+				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
 			"submenu" => "allteacher", 
 			"url" => "teacher/status=list/type=teacher", 
 			"name" =>  _("teacher list"), 

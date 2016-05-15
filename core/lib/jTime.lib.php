@@ -93,10 +93,17 @@ class jTime_lib
     public static function date($format, $stamp = false, $convert = null, $jalali = null, $timezone = null)
     {
         //Timestamp + Timezone
-        $stamp    = ($stamp !== false) ? $stamp : time();
+        if($stamp !== false)
+            $stamp = is_int($stamp)? $stamp: strtotime($stamp);
+        else
+            $stamp = time();
+        // $stamp    = ($stamp !== false) ? strtotime($stamp) : time();
+        if(!$stamp)
+            return 0;
+
         $timezone = ($timezone != null) ? $timezone : ((self::$timezone != null) ? self::$timezone : date_default_timezone_get());
-        $obj      = new DateTime('@' . $stamp, new DateTimeZone($timezone));
-        $obj->setTimezone(new DateTimeZone($timezone));
+        $obj      = new \DateTime('@' . $stamp, new \DateTimeZone($timezone));
+        $obj->setTimezone(new \DateTimeZone($timezone));
 
         if ( (self::$jalali === false && $jalali === null) || $jalali === false ) {
             return $obj->format($format);
@@ -178,14 +185,14 @@ class jTime_lib
                         $v = $jmonth;
                         break;
                     case 't':
-                    	if ($jmonth>=1 && $jmonth<=6) $v=31;
-                    	else if ($jmonth>=7 && $jmonth<=11) $v=30;
-                    	else if($jmonth==12 && $jyear % 4 ==3) $v=30;
-                    	else if ($jmonth==12 && $jyear % 4 !=3) $v=29;
+                        if ($jmonth>=1 && $jmonth<=6) $v=31;
+                        else if ($jmonth>=7 && $jmonth<=11) $v=30;
+                        else if($jmonth==12 && $jyear % 4 ==3) $v=30;
+                        else if ($jmonth==12 && $jyear % 4 !=3) $v=29;
                         break;
                     //Year
                     case 'L':
-                        $tmpObj = new DateTime('@'.(time()-31536000));
+                        $tmpObj = new \DateTime('@'.(time()-31536000));
                         $v = $tmpObj->format('L');
                         break;
                     case 'o':
@@ -309,7 +316,7 @@ class jTime_lib
         //Convert to date
         return self::date($format, $stamp, $convert, $jalali, $timezone);
     }
-	
+    
    /**
      * jDateTime::Mktime
      *
@@ -351,10 +358,10 @@ class jTime_lib
         $date = $year.'-'.sprintf('%02d', $month).'-'.sprintf('%02d', $day).' '.$hour.':'.$minute.':'.$second;
 
         if ( self::$timezone != null || $timezone != null ) {
-            $obj = new DateTime($date, new DateTimeZone(($timezone != null) ? $timezone : self::$timezone));
+            $obj = new \DateTime($date, new \DateTimeZone(($timezone != null) ? $timezone : self::$timezone));
         }
         else {
-            $obj = new DateTime($date);
+            $obj = new \DateTime($date);
         }
 
         //Return

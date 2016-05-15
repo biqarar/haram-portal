@@ -46,7 +46,7 @@ class query_branch_cls extends query_cls {
 		//--------------- supervisor can see all branch list and data
 		if(global_cls::supervisor()) {
 		
-			return ($arg) ? $arg : $this->allBranch();
+			return ($arg) ? $arg : $this->allBranch("id");
 		
 		}
 
@@ -226,8 +226,8 @@ class query_branch_cls extends query_cls {
 	
 	
 
-	public function allBranch() {
-		return $this->sql()->tableBranch()->select()->allAssoc("id");
+	public function allBranch($field = false) {
+		return $this->sql()->tableBranch()->select()->allAssoc($field);
 	}
 
 	public function olddb($table = false, $id = false) {
