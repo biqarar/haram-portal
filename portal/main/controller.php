@@ -29,6 +29,7 @@ class main_controller{
 		$this->addMethod('uStatus');
 		$this->addMethod('uId');
 		$this->addMethod('xuId');
+		$this->addMethod('db');
 		$this->addMethod('SESSION_usersid');
 		$this->addMethod("checkPermissions");
 		$this->addMethod('changeDate');
@@ -156,6 +157,11 @@ class main_controller{
 
 	public function dateNow() {
 		return $this->jTime()->date("Ymd", false, false);
+	}
+
+	public function db($string) {
+		$db = new dbconnection_lib;
+		return $db->query($string);
 	}
 
 

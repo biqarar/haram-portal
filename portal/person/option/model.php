@@ -156,11 +156,18 @@ class model extends main_model{
 								 نام کاربری شما  $username   <br>
 								 و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.
 								 ". 
-								 "<br><br>" . 
+								 "<br><br>شهریه" . 
 								 $this->tag("a")
 								 ->href("price/status=add/usersid=$users_id")
-								 ->vtext("ثبت شهریه برای این فراگیر")
-								 ->render()
+								 ->class("icoprice")
+								 ->title("ثبت شهریه برای این فراگیر")
+								 ->render() . "<br> پل های ارتباطی" . 
+								 $this->tag("a")
+								 ->href("bridge/status=add/usersid=$users_id")
+								 ->class("icoshare")
+								 ->title("ثبت پل های ارتباطی برای فراگیر")
+								 ->render() 
+								 
 								 );
 			}, $username, $users_id);
 		}

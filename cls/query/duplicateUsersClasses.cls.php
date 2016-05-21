@@ -76,8 +76,10 @@ class query_duplicateUsersClasses_cls extends query_cls {
 	public function classification($users_id = false, $classes_id = false) {
 
 		//--------------- check branch
-		$this->sql(".branch.users", $users_id, $this->sql(".branch.classes", $classes_id));
-
+		$x = $this->sql(".branch.classes", $classes_id);
+		$y = $this->sql(".branch.users", $users_id, $x);
+		 	
+		// var_dump("fuck", $x, $y, $classes_id, $users_id);exit();
 		//------------------------------ duplicate key
 		$duplicate = false;
 

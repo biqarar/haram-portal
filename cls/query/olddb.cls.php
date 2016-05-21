@@ -29,16 +29,21 @@ class query_olddb_cls extends query_cls {
 
 	public function sql_olddb($users_id = false) {
 		
-		$old_casecode = $this->sql()->tableStudent()->whereUsers_id($users_id)->limit(1)->select();
+		// $old_casecode = $this->sql()->tableStudent()->whereUsers_id($users_id)->limit(1)->select();
+		$old_casecode = $this->db("SELECT * FROM `quran_hadith_old`.`student` WHERE `users_id` LIKE '$users_id' LIMIT 0,1");
+
 		if($old_casecode->num() >= 1) {
 			
 			$old_casecode       = $old_casecode->assoc("name1");
 			
-			$old_price    	    = $this->sql()->tableOldprice()->whereParvande($old_casecode)->select()->num();
+			$old_price    	    = $this->db("SELECT * from `quran_hadith_old`.`oldprice` 
+											 WHERE `parvande` LIKE '$old_casecode'")->num();
 			
-			$old_classification = $this->sql()->tableOldclassification()->whereParvande($old_casecode)->select()->num();
+			$old_classification = $this->db("SELECT * from `quran_hadith_old`.`oldclassification` 
+											 WHERE `parvande` LIKE '$old_casecode'")->num();
 
-			$old_certification = $this->sql()->tableOldcertification()->whereParvande($old_casecode)->select()->num();
+			$old_certification = $this->db("SELECT * from `quran_hadith_old`.`oldcertification` 
+											WHERE `parvande` LIKE '$old_casecode'")->num();
 
 			return  array(
 				"student"		 => $old_casecode,

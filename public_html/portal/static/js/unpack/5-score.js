@@ -12,7 +12,6 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 		}
 	});
 
-	function l(a) {console.log(a);}
 	_warn = '<span class="status-warn" style="background: #FFECB3;
 	border: 1px solid #FFD54F;
 	padding: 3px 10px;
@@ -49,7 +48,6 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 			type: "POST",
 			url : url,
 			success : function(data){
-				console.log(data);
 				$(_self).removeAttr('disabled');
 				if(data.fatal){
 					$(_fatal).html(data.fatal[0]).insertAfter(_self);
@@ -69,10 +67,7 @@ route(/score\/classes\/status=apilist\/classesid=\d+\/scoretypeid=\d+/, function
 	});
 });	
 function insert_(a) {
-
-	// console.log($("#calculation").html());
 	x = $("#calculation").html()
-
 	$("#calculation").html(x + '=' + $(a).html() + '=');
 
 

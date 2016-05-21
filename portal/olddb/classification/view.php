@@ -12,16 +12,13 @@ class view extends main_view {
 		$this->sql(".branch.olddb", "oldclassification", $this->xuId());
 		
 		//------------------------------ list of classes
-		$oldclassification = $this->sql(".list", "oldclassification", function ($query, $id) {
-			$query->whereParvande($id);
-		}, $this->xuId());
-		$oldclassification->addColAfter("oldclasses","classes", "classes");
-		foreach ($oldclassification->list as $key => $value) {
-			$oldclassification->select($key, "classes")->html($this->sql("#oldclasses_detail", $value['oldclasses']));
+		$oldclassification = $this->sql(".olddblist", "oldclassification", $this->xuId());
+		
+		foreach ($oldclassification['list'] as $key => $value) {
+			$oldclassification['list'][$key]['oldclasses'] = $this->sql("#oldclasses_detail", $value['oldclasses']);
 		}
-		$oldclassification->removeCol("branch,id,v3");
 
-		$this->data->list = $oldclassification->compile();
+		$this->data->list = $oldclassification;
 	}
 }
 ?>

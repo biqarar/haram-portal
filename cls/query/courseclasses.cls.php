@@ -60,7 +60,7 @@ class query_courseclasses_cls extends query_cls
 						->setClasses_id($classes_id)
 						->setDate_entry($this->dateNow())
 						->insert();
-						$this->sql(".classesCount", $classes_id);
+						$this->sql(".classes.count", $classes_id);
 
 					$return_msg[] = $this->return_msg($classes_id, "فراگیر در کلاس اضافه شد", 'true');
 				}

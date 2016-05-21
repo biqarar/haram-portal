@@ -33,6 +33,11 @@ class query_cls {
 		return $time->date($type, false, false);
 		
 	}
+	
+	public function db($string) {
+		$db = new dbconnection_lib;
+		return $db->query($string);
+	}
 
 
 	public function changeDate($date = false, $days = 0, $operator = "+") {

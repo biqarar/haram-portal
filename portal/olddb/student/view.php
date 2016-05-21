@@ -13,9 +13,8 @@ class view extends main_view {
 		$this->sql(".branch.olddb", "student", $this->xuId());
 		
 		//------------------------------ list of classes
-		$student = $this->sql(".list", "student", function ($query, $id) {
-			$query->whereName1($id);
-		}, $this->xuId())->compile();
+		$student = $this->sql(".olddblist", "student", $this->xuId());
+
 
 
 		$this->data->list = $student;

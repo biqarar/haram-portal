@@ -6,7 +6,6 @@ route(/classification\/returnclasses\/id\=\d+/, function(){
 				type: "POST",
 				url : "classification/api/usersid="+usersid+"/classesid="+classesid+"/type=returnclasses",
 			success : function(data) {
-				console.log(data);
 				xhr_result(data);
 				
 			}

@@ -7,7 +7,6 @@ route(/presence\/classesid\=\d+/, function () {
 				type: "POST",
 				url : "presence/apiadd/classesid="+ classesid + "/username=" + username,
 				success : function(data){
-					console.log(data);
 					xhr_result(data);
 				}
 			});
@@ -19,10 +18,8 @@ route(/presence\/classesid\=\d+/, function () {
 		$.ajax({
 			type: "POST",
 			url : "presence/apiclasses/classesid="+ classesid ,
-			success : function(data){
-				// console.log(data);
+			success : function(data){	
 				xhr_result(data);
-				// location.reload();
 			}
 		});
 	});

@@ -3,7 +3,7 @@ function certification_api_change(certificationid, type) {
 		type: "POST",
 		url : "certification/apichange/certificationid=" + certificationid + "/type=" + type,
 		success : function(data){
-			console.log(data);
+			
 			xhr_result(data);
 		}
 	});	

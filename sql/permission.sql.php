@@ -29,7 +29,7 @@ class permission {
 	}
 
 	public function branch_id() {
-		$this->form("select")->name("branch_id")->required();
+		$this->form("select")->name("branch_id")->class("notselect")->required();
 		$this->setChild();
 	}
 	

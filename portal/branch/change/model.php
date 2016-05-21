@@ -24,7 +24,7 @@ class model extends main_model {
 	}
 
 	public function post_branch_change(){
-		
+		// var_dump("fuck");exit();
 		$sql = $this->sql()
 				->tableUsers_branch()
 				->setUsers_id($this->xuId("usersid"))

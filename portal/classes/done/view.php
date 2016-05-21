@@ -9,7 +9,7 @@ class view extends main_view {
 		$this->global->page_title = "ثبت اتمام کلاس";
 
 		//---------------------- check branch
-		$this->sql(".branch.classes", $this->xuId());
+		$this->sql(".branch.classes", $this->xuId("classesid"));
 		
 		//------------------------------ list of classes
 		$classes_detail = $this->sql(".list", "classes", function ($query) {

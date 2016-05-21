@@ -28,7 +28,7 @@ class view extends main_view {
 			$this->data->dataTable = $this->dtable(
 				"score/classes/status=apilist/classesid=" . $this->xuId("classesid")
 				.'/scoretypeid=' . $this->xuId("scoretypeid") . "/",
-				array("more", "username","name", "family", "امتیاز " . $this->global->score_type, "آزمون مجدد", "نمایش"));
+				array("more", "username","name", "family","آزمون مجدد", "امتیاز " . $this->global->score_type,  "نمایش"));
 			$this->data->classes_id = $this->data->list['list'][0]['id'];
 		}
 	}

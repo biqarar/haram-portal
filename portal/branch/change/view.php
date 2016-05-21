@@ -13,6 +13,7 @@ class view extends main_view {
 
 		$this->sql(".branch.users", $usersid);
 
+		$this->data->name_family = $this->sql(".userNameFamily", $usersid);
 		
 		//------------------------------ make chane password form
 

@@ -134,8 +134,7 @@ class query_price_cls extends query_cls {
 	}
 
 	public function get_price_change($name = false) {
-		
-		return $this->sql(".branch.price_change", $this->sql()->tablePrice_change()->whereName($name)->select()->assoc("id"));
+		return $this->sql()->tablePrice_change()->whereName($name)->select()->assoc("id");
 	}
 }
 ?>

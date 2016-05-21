@@ -37,7 +37,7 @@ define('WPLANG', 'en_US');
  * It is strongly recommended that plugin and theme developers use DEBUG
  * in their development environments.a
  */
-define('DEBUG', true);
+
 // define('FACHR', 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآيئؤكآأإة');
 define('FACHR', 'ضصثقفغعهخحجچشسیبلاتنمکگظطزرذدپوًٌٍَُِّْؤئيإأآةكٓژٰ‌ٔء');
 

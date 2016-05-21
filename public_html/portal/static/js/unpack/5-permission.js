@@ -3,8 +3,6 @@ route(/permission\/status\=api/, function(){
 
 		id = $(this).attr("value");
 		_self = $(this);
-		console.log(this);
-		console.log('permission/apidelete/id=' + id);
 		$.ajax({
 				type: "POST",
 				url : "permission/apidelete/id=" + id ,
@@ -17,27 +15,23 @@ route(/permission\/status\=api/, function(){
 });
 
 route(/permission\/status\=add/, function(){
-		$("#branch_id").combobox();
+
+	$("#branch_id", this).combobox();
+
 	$(".showbranch",this).click(function(){
 		_self = this;
 		username = $(".username").val();
-		console.log(username);
+		if(username == "") return false;
 		$("#branch_id").combobox();
 		$("#branch_id").combobox( "destroy" );
 		$("#branch_id").combobox({
 		create : function(op){
-
-			// console.log(op);
-			
-			// item = op.item.option.value
-			// console.log(item);
 			$.ajax({
 				type: "POST",
 				url : "permission/apishowbranch/username=" + username,
 				success : function(data){
 					branch_list(data);
 					$("#branch_id").combobox();
-					// console.log(data);
 				}
 			});
 		}

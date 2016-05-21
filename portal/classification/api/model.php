@@ -4,11 +4,6 @@
 */
 class model extends main_model {
 
-	public function post_apireturnclassification() {
-		return;
-	}
-
-
 
 	public function post_priceback() {
 		$usersid = $this->xuId("usersid");
@@ -54,52 +49,26 @@ class model extends main_model {
 	}
 
 
-	public function remove_payment_count($usersid = false, $classesid = false) {
 
-		// //----------------------- check branch
-		// $this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
-		
-		$this->sql()->tablePrice()
-			->whereUsers_id($usersid)
-			->andVisible(0)
-			->andTransactions($classesid)
-			->andTitle($this->sql(".price.get_price_change","پرداخت دوره ای"))
-			->delete();
-	}
 
 	public function post_classificationapi() {
 
 		
+		$id = $this->xuId("id");
+		$date = $this->xuId("date");
+		$because = $this->xuId("because");
 		$usersid = $this->xuId("usersid");
 		$classesid = $this->xuId("classesid");
-		//----------------------- check branch
-		$x = $this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
-		// var_dump($x);exit();
-		$this->remove_payment_count($usersid, $classesid);
 		
-		$price = $this->sql()->tablePrice()
-			->whereUsers_id($usersid)
-			->andPay_type("rule")
-			->andStatus("active")
-			->andTitle($this->sql(".price.get_price_change","شرکت در کلاس"))
-			->andTransactions($classesid)
-			->setStatus("void")->update();
+		$this->sql(".classification.remove", $usersid, $classesid, $id, $because, $date);
+		
 
-		$classes_id = $this->sql()->tableClassification()->whereId($this->xuId())->limit(1)->select()->assoc("classes_id");
+		if(debug_lib::$status) {
+			debug_lib::true("به روز رسانی اطلاعات انجام شد");
+		}else{
+			debug_lib::fatal("خطا در حذف از کلاس");
+		}
 
-		//----------------------- check branch
-		$this->sql(".branch.classification", $this->xuId());
-		
-		$this->sql(".classesCount", $classes_id);
-		
-		$classification =  $this->sql()->tableClassification()		
-			->setDate_delete($this->xuId("date"))
-			->setBecause($this->xuId("because"))
-			->whereId($this->xuId())->update();
-			$this->commit(function(){
-				debug_lib::msg("msg", "به روز رسانی اطلاعات انجام شد.");
-			});
-		debug_lib::msg("msg", "به روز رسانی اطلاعات انجام شد.");
 
 	}
 
@@ -133,92 +102,27 @@ class model extends main_model {
 		//------------------------------ set users id and classes id
 		$users_id   = config_lib::$surl["usersid"];
 		$classes_id = config_lib::$surl["classesid"];
+
 		$add_or_returnclasses = $this->xuId("type");
 		// $name_famil 
 
-		$x = $this->sql(".branch.users", $users_id, $this->sql(".branch.classes", $classes_id));
-
-		//------------------------------ insert courseclasses
-		$courseclasses = $this->sql(".courseclasses", $classes_id, $users_id);
-		if(!$courseclasses){
-
-		//------------------------------ key for check duplicate
-		$duplicate = false;
-		//------------------------------ check for duplicate this classes inserted 
-			$check = $this->sql()->tableClassification()->whereUsers_id($users_id)->andClasses_id($classes_id)->limit(1)->select();
-			
-			if($check->num() == 0 || $add_or_returnclasses == "returnclasses") {
-
-				//------------------------------ check duplicate other classes as time for this users
-				list($duplicate, $msg) = $this->sql(".duplicateUsersClasses.classification", $users_id, $classes_id);
-				if($duplicate) {
-					debug_lib::fatal($msg);
-				}else{
-					//------------------------------ check price 
-					if(!$this->sql(".plan.maxPerson", $classes_id)) {
+		$y = $this->sql(".branch.classes", $classes_id);
+		$x = $this->sql(".branch.users", $users_id, $y);
+		list($status, $msg) = $this->sql(".classification.insert", $users_id, $classes_id, $add_or_returnclasses);
 		
-						debug_lib::fatal("ظرفیت این کلاس تکمیل است و امکان ثبت فراگیر وجود ندارد.");
-				
-					}elseif(!$this->sql(".price.checkClasses", $users_id , $classes_id)) {
-		
-						debug_lib::fatal("شهریه کافی نیست لفطا نسبت به شارژ حساب این فراگیر اقدام نمایید.");
-				
-					}elseif(!$this->sql(".pasportCheck", $users_id)){
-					
-						debug_lib::fatal("اعتبار گذرنامه این فراگیر به اتمام رسیده است");
-					
-					}else{
+		// var_dump($x, $y);exit();
 
-						//------------------------------ insert classification  or return classes
-						if($add_or_returnclasses == "add") {
-							//------------------------------ insert classification
-							$classification = $this->sql()->tableClassification()
-									->setUsers_id($users_id)
-									->setClasses_id($classes_id)
-									->setDate_entry($this->dateNow())
-									->insert();
-							
-						}elseif($add_or_returnclasses == "returnclasses") {
-							//------------------------------ return classification
-							$classification = $this->sql()->tableClassification()
-									->setDate_delete("")
-									->setBecause("")
-									->whereUsers_id($users_id)->andClasses_id($classes_id)
-									->update()->string();
-						}	
-
-						//------------------------------- set classification count in to classes table
-						$this->sql(".classesCount", $classes_id);
-						
-							//------------------------------ commit code
-						if(!$duplicate) {
-							$this->commit(function() {
-								debug_lib::true("فراگیر به کلاس اضافه شد");	
-							});
-						}
-						
-					}
-				}
-			}else{
-
-				$duplicate = true;
-				debug_lib::fatal("این فراگیر قبلا در کلاس ثبت شده است");
-			}	
+		if($status) {
+			$this->commit(function() {
+				debug_lib::true("فراگیر به کلاس اضافه شد");	
+			});
 		}else{
-			$type = $courseclasses['type'];
-			if($type == 'fatal'){
-				debug_lib::fatal($courseclasses['msg']);
-			}else{
-				debug_lib::true($courseclasses['msg']);
-			}
+			$this->rollback(function() {
+				debug_lib::fatal("ثبت اطلاعات ناموفق");	
+			});
 		}
-	
-	
 
-		// //------------------------------ rolback code
-		// $this->rollback(function() {
-		// 	debug_lib::fatal("خطا در ثبت");
-		// });
+
 	}
 }
 ?>

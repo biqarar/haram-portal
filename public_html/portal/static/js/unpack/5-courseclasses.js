@@ -9,13 +9,13 @@ route(/course\/courseclasses\/status\=add/, function(){
 	$("#course_id", this).combobox({
 		change : function(op){
 			item = op.item.option.value
-			// console.log(item);
+			
 			$.ajax({
 				type: "POST",
 				url : "course/courseclasses/apilist/courseid=" + item,
 				success : function(data){
 					courseclasses_list(data);
-					// console.log(data);
+					
 				}
 			});
 		}
@@ -23,13 +23,12 @@ route(/course\/courseclasses\/status\=add/, function(){
 });
 
 function courseclasses_list (data) {
-		// redclose = '<a class="icoredclose" style="display: inline-block" courseclassesid="'+data.msg[a]['id']+'"></a>';
-		 	// console.log(data);
+	
 	$("#courseclasses-list").html('');
 	$("#courseclasses-list").val("");
 	for(a in data.msg) {
 		 if(data.msg[a]['planname']){
-		 	// console.log(data.msg[a])
+		 
 		 	$('<span class="courseclasses-item"><a  href="classification/class/classesid='+ data.msg[a]['classes_id'] + '" courseid ="'+ data.msg[a]['course_id'] +'" target="_blank">' +
 				data.msg[a]['planname'] + "  استاد "
 				+data.msg[a]['teacherName'] + " "
@@ -38,9 +37,6 @@ function courseclasses_list (data) {
 
 		}
 	}
- // 	$(".courseclasses-item a.icoredclose").hover(function(){
-	// 	$(this).parents("span").css("background","red").delay(10).css("background:green");
-	// });
  	$(".courseclasses-item .icoredclose").click(function(){
  		delete_courseclasses($(this));
  		$(this).parents(".courseclasses-item").fadeOut(function(){
@@ -48,7 +44,6 @@ function courseclasses_list (data) {
 	});
 }		
 function delete_courseclasses(_self){
-	console.log(_self);
 	courseclassesid = _self.attr("courseclassesid");
 	course_id = _self.attr("courseid");
 	classes_id = _self.attr("classesid");
@@ -56,7 +51,6 @@ function delete_courseclasses(_self){
 		type: "POST",
 		url : "course/courseclasses/apidelete/courseid=" + course_id + '/classesid=' + classes_id,
 		success : function(data){
-			// console.log(data);
 			courseclasses_list(data);
 		}
 	});

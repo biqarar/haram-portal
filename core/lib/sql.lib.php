@@ -209,7 +209,7 @@ class sql_lib{
 		$string = "";
 		foreach ($this->maker->join as $key => $value) {
 			$joinCondition = $value->joinCondition;
-			$string .= " $joinCondition JOIN ".$value->table." ON";
+			$string .= " $joinCondition JOIN `".$value->table."` ON";
 			$string .= $this->condition($value);
 		}
 		return $string;

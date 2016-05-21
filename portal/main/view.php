@@ -226,12 +226,13 @@ class main_view{
 	 	// ->attr("target", "_blank");
 	}
 
-	public function classeTopLinks($classesid = false){
+	public function classeTopLinks($classes_id = false){
 			if(isset(config_lib::$surl['classesid'])){
 				$classesid = $this->xuId("classesid");
 			}elseif(config_lib::$surl['status'] == 'detail'){
 				$classesid = $this->xuId();
 			}
+			if($classes_id) $classesid = $classes_id;
 		$this->topLinks(
 				array(
 					array("title"=> "کلاسها", 'url' =>"classes/status=list"),

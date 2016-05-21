@@ -3,6 +3,8 @@
 * 
 */
 class model extends main_model {
+
+	public $type = false;
 	
 	function post_api()	{
 
@@ -24,18 +26,18 @@ class model extends main_model {
 						->setType($type)
 						->setDate($date)
 						->insert();
+
+			$this->type = $type;
 			
 		}
 
 		$this->commit(function(){
-			debug_lib::true("غیبت ثبت شد");
+			debug_lib::true(_($this->type) .  " ثبت شد");
 		});
 
 		$this->rollback(function(){
 			debug_lib::fatal("خطا در ثبت اطلاعات");
 		});
-		// var_dump($x->string(), $x->result());
-		// exit();
 	
 	}
 
@@ -49,19 +51,17 @@ class model extends main_model {
 			debug_lib::fatal("هیچ گونه غیبت برای این فراگیر در این تاریخ ثبت نشده است");
 		}
 
+		$this->type = $check->select()->assoc("type");
+
 		$x = $check->delete();
-		// ilog($x->string());
+	
 		$this->commit(function(){
-			debug_lib::true("غیبت حذف شد");
+			debug_lib::true(_($this->type) .  " حذف شد");
 		});
 
 		$this->rollback(function(){
 			debug_lib::fatal("خطا در ثبت اطلاعات");
 		});
-
-	
-		// var_dump($x->string(), $x->result());
-		// exit();
 	}
 }
 

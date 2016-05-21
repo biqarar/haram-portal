@@ -12,7 +12,7 @@ function users_branch_change(type,users_branch_id) {
 		type: "POST",
 		url : "branch/apichange/usersbranchid=" + users_branch_id + "/type=" + type,
 		success : function(data){
-			// console.log(data);
+			
 			xhr_result(data);
 		}
 	});	

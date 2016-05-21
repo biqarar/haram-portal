@@ -23,12 +23,15 @@ class query_branch_cls extends query_cls {
 
 
 	public function get_users_branch() {
+
 		$listBranch = $this->sql()->tableUsers_branch()->whereUsers_id($_SESSION['user']['id'])
 		->andStatus("enable");
 		$listBranch->groupOpen();
+		$first = true;
 		foreach ($this->check() as $key => $value) {
-			if($key == 0) {
+			if($first) {
 				$listBranch->andBranch_id($value);
+				$first = false;
 			}else{
 				$listBranch->orBranch_id($value);
 			}
@@ -36,19 +39,20 @@ class query_branch_cls extends query_cls {
 		}
 		$listBranch->groupClose();
 		$listBranch->joinBranch()->whereId("#users_branch.branch_id")->fieldName();
+		
 		return  $listBranch->select()->allAssoc();
 	}
 
 	
 	
-	public function check($arg = false) {
+	public function check($arg = false, $type = false) {
 
 		//--------------- supervisor can see all branch list and data
-		if(global_cls::supervisor()) {
+		// if(global_cls::supervisor()) {
 		
-			return ($arg) ? $arg : $this->allBranch("id");
+		// 	return ($arg) ? $arg : $this->allBranch("id");
 		
-		}
+		// }
 
 		//--------------- $arg = branch_id
 		if($arg){	
@@ -61,7 +65,9 @@ class query_branch_cls extends query_cls {
 				}
 			}
 			//--------------- this branch not set on users branch
-			// return false;
+			if($type == "users"){
+				return false;
+			}
 			$this->error();
 
 		}else{
@@ -71,6 +77,13 @@ class query_branch_cls extends query_cls {
 	}
 
 	public function _list(){
+		
+		if(global_cls::supervisor()) {
+		
+			return $this->allBranch("id");
+		
+		}
+
 		return isset($_SESSION['user']['branch']['selected']) ?  
 					 $_SESSION['user']['branch']['selected'] :
 					 $_SESSION['user']['branch']['active'];
@@ -82,7 +95,8 @@ class query_branch_cls extends query_cls {
 				return post::branch_id();
 			}
 		}elseif(count($this->check()) == 1) {
-			return $this->_list()[0];
+			$x = $this->_list();
+			return $x[0];
 		}else{
 			$this->error("شناسه شعبه یافت نشد");
 		}
@@ -129,7 +143,7 @@ class query_branch_cls extends query_cls {
 		$in_branch = false;
 		if($branch_id) {
 			foreach ($query as $key => $value) {
-				if($this->check($value['branch_id'])  && $value['branch_id'] == $branch_id){
+				if($this->check($value['branch_id'],"users")  && $value['branch_id'] == $branch_id){
 					return  $branch_id;
 				}
 			}
@@ -137,7 +151,7 @@ class query_branch_cls extends query_cls {
 			$this->error("شعبه کاربر با شعبه طرح/کلاس مغایر است");
 		}else{
 			foreach ($query as $key => $value) {
-				if($this->check($value['branch_id'])){
+				if($this->check($value['branch_id'],"users")){
 					$in_branch =   $this->check($value['branch_id']) ;
 				}
 			}
@@ -231,8 +245,26 @@ class query_branch_cls extends query_cls {
 	}
 
 	public function olddb($table = false, $id = false) {
-		$table = "table" .ucfirst($table);
-		$query = $this->sql()->$table()->whereId($id)->limit(1)->select()->assoc("branch");
+
+		$field = false;
+		switch ($table) {
+			case 'student':
+				$field = "name1";
+				break;
+			case 'oldcertification':
+			case 'oldclassification':
+			case 'oldprice':
+				$field = "parvande";
+				break;
+			case 'oldclasses':
+				$field = "code";
+				break;
+		}
+
+		$query = $this->db("SELECT * FROM  `quran_hadith_old`.`$table` WHERE `$field` = '$id'");
+
+		$query = $query->assoc("branch");
+
 		return $this->check($query);
 	}
 

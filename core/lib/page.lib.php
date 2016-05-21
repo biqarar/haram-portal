@@ -40,17 +40,46 @@ class page_lib{
 		self::make("INTERNAL ERROR($str)", $class, 500);
 	}
 	public static function make($str, $obj, $status){
+
 		header("HTTP/1.0 $status ".self::string($status));
 		// echo "<h3>$status</h3><h5>$str</h5>";
 		// exit();
-		echo "<pre>$str";
-		foreach ($obj as $key => $value) {
-			if(array_key_exists('file', $obj[$key])){
-				echo "\n\tat ".$obj[$key]['file'].':'.$obj[$key]['line'];
+		$error = preg_replace("/^(.*)\((.*)\)$/", "$2", $str);
+		if(DEBUG){
+		$error = "<pre>$str";
+
+			foreach ($obj as $key => $value) {
+				if(array_key_exists('file', $obj[$key])){
+					$error .= "\n\tat ".$obj[$key]['file'].':'.$obj[$key]['line'];
+				}
 			}
+			$error .= "\n";
+			
 		}
-		echo "\n</pre>";
+		$hadith = self::hadith();
+		$hadith = "";
+		require_once "404.php";
+
 		exit();
+	}
+
+	public static function hadith() {
+
+		$hadith = array(
+			
+			"سلام النظافته منا\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			"سلام النظافته من\n لایمانیهسیبیبیسب",
+			
+			
+			);
+		return $hadith[rand(0,5)];
 	}
 }
 

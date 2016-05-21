@@ -42,7 +42,7 @@ class model extends main_model {
 			->groupClose()
 			->setMark(0)->update();
 			
-			$this->sql(".classesCount", $classes_id);
+			$this->sql(".classes.count", $classes_id);
 			
 			$this->sql()->tableClasses()->whereId($classes_id)->setStatus("done")->update();
 

@@ -55,12 +55,6 @@ class model extends main_model {
 		return $return;
 	}
 
-	public function sql_classes_detail($classes_id = false) {
-		//---------------- check branch
-		$this->sql(".branch.classes", $classes_id);
-		
-		return $this->sql()->tableClasses()->whereId($classes_id)->limit(1)->select()->assco();
-	}
 
 	public function sql_score_type($plan_id = false) {
 		//---------------- check branch

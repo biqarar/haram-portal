@@ -12,12 +12,9 @@ class view extends main_view {
 		$this->sql(".branch.olddb", "oldcertification", $this->xuId());
 		
 		//------------------------------ list of classes
-		$certification = $this->sql(".list", "oldcertification", function ($query, $id) {
-			$query->whereParvande($id);
-		}, $this->xuId());
+		$certification = $this->sql(".olddblist", "oldcertification", $this->xuId());
 
-		$certification->removeCol("name,family,father,shsh,nationalcod,id,branch,sadere,tavalod");
-		$this->data->list = $certification->compile();
+		$this->data->list = $certification;
 	}
 }
 ?>

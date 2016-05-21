@@ -59,7 +59,7 @@ class model extends main_model{
 		$sql = new dbconnection_lib;
 		$sql::$resum_on_error = true;
 		$s = $sql->query("INSERT INTO 
-			`quran_hadith`.`database_version` 
+			`quran_hadith_log`.`database_version` 
 			(`id`, `version`, `query`, `time`) 
 			VALUES (NULL, '$version', '$query', CURRENT_TIMESTAMP)");
 		$this->xecho( "Saved in History (table database_version)");
@@ -102,22 +102,73 @@ class model extends main_model{
 	}
 
 	public function query_on_record() {
-// 		$sql = new dbconnection_lib;
-// 		$branch_cash = $this->sql()->tableBranch_cash()->select();
-// 		$list_table = $sql->query("SELECT * FROM `information_schema`.`TABLES` WHERE `TABLE_SCHEMA` LIKE 'quran_hadith'");
+		$new_database = array(
+			"CREATE DATABASE `quran_hadith_log` DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;",
 
-// 		$list_table = $list_table->allAssoc('TABLE_NAME');
-// $x = array();
-// 		foreach ($list_table as $key => $value) {
-// 			$x[$value] = $this->sql()->tableBranch_cash()->whereTable($value)->select()->allAssoc();
-// 			foreach ($x[$value] as $k => $v) {
+			"DROP TRIGGER IF EXISTS `database_version_delete`",
+			"DROP TRIGGER IF EXISTS `database_version_insert`",
+			"DROP TRIGGER IF EXISTS `database_version_update`",
+			"ALTER TABLE `quran_hadith`.`database_version` RENAME `quran_hadith_log`.`database_version`",
 
-// 				// var_dump($k, $v);
-// 			}
-// 			// exit();
-// 		}
-// 		var_dump($x);
-// 		var_dump($branch_cash->num());
+			"ALTER TABLE `quran_hadith`.`history` RENAME `quran_hadith_log`.`history`",
+
+			"DROP TRIGGER IF EXISTS `update_log_delete`",
+			"DROP TRIGGER IF EXISTS `update_log_insert`",
+			"DROP TRIGGER IF EXISTS `update_log_update`",
+			"ALTER TABLE `quran_hadith`.`update_log` RENAME `quran_hadith_log`.`update_log`",
+
+			"DROP TRIGGER IF EXISTS `branch_cash_delete`",
+			"DROP TRIGGER IF EXISTS `branch_cash_insert`",
+			"DROP TRIGGER IF EXISTS `branch_cash_update`",
+			"ALTER TABLE `quran_hadith`.`branch_cash` RENAME `quran_hadith_log`.`branch_cash`",
+			
+
+			"DROP TRIGGER IF EXISTS `oldcertification_delete`",
+			"DROP TRIGGER IF EXISTS `oldcertification_insert`",
+			"DROP TRIGGER IF EXISTS `oldcertification_update`",
+			
+			"DROP TRIGGER IF EXISTS `oldprice_delete`",
+			"DROP TRIGGER IF EXISTS `oldprice_insert`",
+			"DROP TRIGGER IF EXISTS `oldprice_update`",
+
+			"DROP TRIGGER IF EXISTS `oldclassification_delete`",
+			"DROP TRIGGER IF EXISTS `oldclassification_insert`",
+			"DROP TRIGGER IF EXISTS `oldclassification_update`",
+
+			"DROP TRIGGER IF EXISTS `student_delete`",
+			"DROP TRIGGER IF EXISTS `student_insert`",
+			"DROP TRIGGER IF EXISTS `student_update`",
+			
+			"DROP TRIGGER IF EXISTS `oldclasses_delete`",
+			"DROP TRIGGER IF EXISTS `oldclasses_insert`",
+			"DROP TRIGGER IF EXISTS `oldclasses_update`",
+
+			"CREATE DATABASE `quran_hadith_old` DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;",
+
+
+			"ALTER TABLE `quran_hadith`.`oldprice` RENAME `quran_hadith_old`.`oldprice`",
+			"ALTER TABLE `quran_hadith`.`oldclasses` RENAME `quran_hadith_old`.`oldclasses`",
+			"ALTER TABLE `quran_hadith`.`oldclassification` RENAME `quran_hadith_old`.`oldclassification`",
+			"ALTER TABLE `quran_hadith`.`oldcertification` RENAME `quran_hadith_old`.`oldcertification`",
+			"ALTER TABLE `quran_hadith`.`student` RENAME `quran_hadith_old`.`student`",
+
+
+			"DROP PROCEDURE IF EXISTS `setHistory`",
+
+			"CREATE DEFINER=`root`@`localhost` PROCEDURE `setHistory`(IN `_Table` VARCHAR(64), IN `_operator` VARCHAR(10), IN `_id` INT(10))
+			    NO SQL
+			BEGIN
+			INSERT INTO `quran_hadith_log`.`history` 
+			(users_id,history.table,query_type,record_id,date,ip)
+			VALUES
+			(@users_id, _Table ,_operator ,_id,CURRENT_TIMESTAMP(),@ip_);
+			END",
+
+
+			);
+
+		$this->run($new_database);
+
 		// ---------------------------------------------------------------------------------------------------
 
 	}
@@ -307,68 +358,7 @@ class model extends main_model{
 
 
 
-			// 	"CREATE DATABASE `quran_hadith_log` DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;",
-
-			// "DROP TRIGGER IF EXISTS `database_version_delete`",
-			// "DROP TRIGGER IF EXISTS `database_version_insert`",
-			// "DROP TRIGGER IF EXISTS `database_version_update`",
-			// "ALTER TABLE `quran_hadith`.`database_version` RENAME `quran_hadith_log`.`database_version`",
-
-			// "ALTER TABLE `quran_hadith`.`history` RENAME `quran_hadith_log`.`history`",
-
-			// "DROP TRIGGER IF EXISTS `update_log_delete`",
-			// "DROP TRIGGER IF EXISTS `update_log_insert`",
-			// "DROP TRIGGER IF EXISTS `update_log_update`",
-			// "ALTER TABLE `quran_hadith`.`update_log` RENAME `quran_hadith_log`.`update_log`",
-
-			// "DROP TRIGGER IF EXISTS `branch_cash_delete`",
-			// "DROP TRIGGER IF EXISTS `branch_cash_insert`",
-			// "DROP TRIGGER IF EXISTS `branch_cash_update`",
-			// "ALTER TABLE `quran_hadith`.`branch_cash` RENAME `quran_hadith_log`.`branch_cash`",
 			
-
-			// "DROP TRIGGER IF EXISTS `oldcertification_delete`",
-			// "DROP TRIGGER IF EXISTS `oldcertification_insert`",
-			// "DROP TRIGGER IF EXISTS `oldcertification_update`",
-			
-			// "DROP TRIGGER IF EXISTS `oldprice_delete`",
-			// "DROP TRIGGER IF EXISTS `oldprice_insert`",
-			// "DROP TRIGGER IF EXISTS `oldprice_update`",
-
-			// "DROP TRIGGER IF EXISTS `oldclassification_delete`",
-			// "DROP TRIGGER IF EXISTS `oldclassification_insert`",
-			// "DROP TRIGGER IF EXISTS `oldclassification_update`",
-
-			// "DROP TRIGGER IF EXISTS `student_delete`",
-			// "DROP TRIGGER IF EXISTS `student_insert`",
-			// "DROP TRIGGER IF EXISTS `student_update`",
-			
-			// "DROP TRIGGER IF EXISTS `oldclasses_delete`",
-			// "DROP TRIGGER IF EXISTS `oldclasses_insert`",
-			// "DROP TRIGGER IF EXISTS `oldclasses_update`",
-
-			// "CREATE DATABASE `quran_hadith_old` DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;",
-
-
-			// "ALTER TABLE `quran_hadith`.`oldprice` RENAME `quran_hadith_old`.`oldprice`",
-			// "ALTER TABLE `quran_hadith`.`oldclasses` RENAME `quran_hadith_old`.`oldclasses`",
-			// "ALTER TABLE `quran_hadith`.`oldclassification` RENAME `quran_hadith_old`.`oldclassification`",
-			// "ALTER TABLE `quran_hadith`.`oldcertification` RENAME `quran_hadith_old`.`oldcertification`",
-			// "ALTER TABLE `quran_hadith`.`student` RENAME `quran_hadith_old`.`student`",
-
-
-			// "DROP PROCEDURE IF EXISTS `setHistory`",
-
-			// "CREATE DEFINER=`root`@`localhost` PROCEDURE `setHistory`(IN `_Table` VARCHAR(64), IN `_operator` VARCHAR(10), IN `_id` INT(10))
-			//     NO SQL
-			// BEGIN
-			// INSERT INTO `quran_hadith_log`.`history` 
-			// (users_id,history.table,query_type,record_id,date,ip)
-			// VALUES
-			// (@users_id, _Table ,_operator ,_id,CURRENT_TIMESTAMP(),@ip_);
-			// END",
-
-
 
 
 		);
@@ -487,13 +477,6 @@ class model extends main_model{
 		$this->run($database_change);
 
 
-		
-		// exit();
-		
-	
-		/**
-
-		*/
 	}
 
 	public function run($array =false) {

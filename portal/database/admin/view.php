@@ -8,7 +8,8 @@ class view extends main_view{
 
 		//------------------------------ set global
 		$this->global->page_title ="DEVELOPER ADMIN :)";
-		var_dump($this->sql("#admin"));
+	
+		$this->sql("#admin");
 
 		
 	}

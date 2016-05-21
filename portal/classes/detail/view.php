@@ -28,8 +28,8 @@ class view extends main_view {
 		->addColFirst("edit", "edit")
 		->select(0, "edit")
 		->html($edit_link)
-		->compile();
-
+		 ->compile();
+		 // var_dump($classes_detail);exit();
 		// $classes_detail = $classes_detail->addColEnd("done", "done")
 		// ->select(0, "done")
 		// ->html($this->tag("a")->href("classes/status=done/classesid=%id%")

@@ -1,12 +1,13 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
-لطفا در ثبت نوع فراگیر و وضعیت پرونده ایشان دقت فرمایید.
+لطفا در ثبت نوع کاربر و وضعیت پرونده ایشان دقت فرمایید.
 <br>
 با کلیک بر روی آیکون های موجود در جدول زیر تغییرات اعمال خواهند شد.
 <br>
+تغییرات شعبه برای کاربر <b> {{name_family}} </b>
 <br>
-
+<br>
 <form class="ajx" method="post">
 	{{forms.make(branch_cash)}}
 </form>

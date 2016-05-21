@@ -14,14 +14,6 @@ class controller extends main_controller{
 		);
 
 		$this->listen(array(
-			"max" => 4,
-			"url" => array("apireturnclassification","classificationid" =>  "/^\d+$/")
-			), function () {
-			save(array("classification","api", "mod" => "apireturnclassification"));
-			$this->permission = array("classification" => array("insert" => array("public")));
-		});
-
-		$this->listen(array(
 			"max" => 3,
 			"url" => array("returnclasses","id" =>  "/^\d+$/")
 			), function () {

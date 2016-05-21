@@ -28,7 +28,6 @@
 route(/report\/classes/, function(){
 	// list_clear();
 	_list = returnList();
-	console.log(_list);
 	for(i=0; i< _list.length; i++){
 		if(!_list[i]) continue;
 		$('.list[classesid='+_list[i]+']', this).attr('checked', 'checked');
@@ -41,7 +40,6 @@ route(/report\/classes/, function(){
 		}else{
 			$('input', this).removeAttr('checked');
 		}
-		// console.log(check);
 		// return false;
 	}
 	$("tbody>tr", this).click(_checked);
@@ -50,7 +48,6 @@ route(/report\/classes/, function(){
 	$("#lists").combobox();
 	$("#lists", this).combobox({
 		change : function(op){
-			console.log(op);
 			url_ = op.item.option.value;
 			$(".report-link").fadeOut();
 
@@ -71,13 +68,10 @@ route(/report\/classes/, function(){
 		}else{
 			$(".report-link").fadeIn().attr("href" , "report/classes/type=" + url_ + "/classesid=" + newlist);
 		}
-		// console.log(newlist);
-		// $("#report_form").attr("action", "report/classes/type=" + url_ + "/classesid=" + newlist);
-		// console.log(url_);	
+
 	});
 
-	// $("#lists").click(function(){
-	// });
+
 });
 
 route(/report\/plan/, function(){
@@ -149,9 +143,9 @@ route(/report\//, function(){
 		for(i=0; i< data.names.length; i++){
 			string += "/"+data.names[i]+"="+data.values[i];
 		}
-		// console()
+	
 		location.href = string;
-		console.log(string);
+		
 		return false;
 	});
 });

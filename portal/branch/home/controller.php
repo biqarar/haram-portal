@@ -19,7 +19,7 @@ class controller extends main_controller{
 		//------------------------------ branch move (manage branch_cash)
 		$this->listen(array(
 			"max" => 3,
-			"url" => array("status"=> "change")
+			"url" => array("status"=> "change", "usersid" => "/^\d+$/")
 			), 
 			function() {
 				save(array("branch", "change"));

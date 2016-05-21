@@ -28,16 +28,12 @@ route(/price\/status\=add\/usersid\=\d+/, function(){
 				type: "POST",
 				url : "plan/api/id=" + item,
 				success : function(data){
-					console.log(data);
 					$("#value", _self).val(data.msg.price);
 				}
 			});
 		}
 	});
 	
-	// $("label[for=plan_id]",_self).fadeOut(1);
-	// $("#plan_id",_self).next().fadeOut(1);
-
 	$("#common", this).click(function(){
 		$("#plan_id,label[for=plan_id]",_self).fadeOut();
 		$("#plan_id",_self).next().fadeOut();
@@ -59,37 +55,3 @@ route(/price\/status\=add\/usersid\=\d+/, function(){
 		}
 	});
 });
-
-// route(/price\/status\=edit\/id\=\d+/, function(){
-// 	_self = $(this);
-
-// 	// $("#plan_id",this).combobox( "destroy" );
-// 	// $("#plan_id", this).combobox({
-// 	// 	change : function(op){
-// 	// 		item = op.item.option.value
-// 	// 		$.ajax({
-// 	// 			type: "POST",
-// 	// 			url : "plan/api/id=" + item,
-// 	// 		success : function(data){
-// 	// 			console.log(data);
-// 	// 			$("#value", _self).val(data.msg.price);
-// 	// 		}
-// 	// 		});
-// 	// 	}
-// 	// });
-	
-// 	$("label[for=plan_id]",_self).fadeOut(1);
-// 	$("#plan_id",_self).next().fadeOut(1);
-
-// 	$("#common", this).click(function(){
-// 		$("#plan_id,label[for=plan_id]",_self).fadeOut();
-// 		$("#plan_id",_self).next().fadeOut();
-// 		$("#value").val("");
-// 	})
-	
-// 	$("#plan").click(function(){
-// 		$("label[for=plan_id]",_self).fadeIn();
-// 		$("#plan_id",_self).next().fadeIn();
-		
-// 	});
-// });

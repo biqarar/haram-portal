@@ -8,8 +8,8 @@ class model extends main_model {
 					 "username users.username",
 					 "name person.name", 
 					 "family person.family",
-					 "id input", 
 					 "id retest",
+					 "id input", 
 					 "id xmore");
 		// var_dump("fuck");exit();
 	

@@ -30,14 +30,25 @@ echo( $die. _( 'Contact with administrator!' ) );
 exit();
 }
 
-//define config
-error_reporting(E_ALL);
-ini_set('display_errors','On');
-ini_set('display_startup_errors','On');
-ini_set('error_reporting','E_ALL | E_STRICT');
-ini_set('track_errors','On');
-ini_set('display_errors',1);
-error_reporting(E_ALL);
+preg_match("/(.*)\.(.*)$/",$_SERVER['HTTP_HOST'],$c);
+if(isset($c[2]) && $c[2] == "dev"){
+    define('DEBUG', true);
+}else{
+	define('DEBUG', false);
+}
+
+if(DEBUG){
+    ini_set('display_errors'        , 'On');
+    ini_set('display_startup_errors', 'On');
+    ini_set('error_reporting'       , 'E_ALL | E_STRICT');
+    ini_set('track_errors'          , 'On');
+    ini_set('display_errors'        , 1);
+    error_reporting(E_ALL);
+}else{
+    error_reporting(0);
+    ini_set('display_errors', 0);
+
+}
 /**
  * local lang
  */

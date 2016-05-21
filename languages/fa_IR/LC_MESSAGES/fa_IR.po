@@ -17,6 +17,42 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "tavalod"
+msgstr "تاریخ تولد"
+
+msgid "shsh"
+msgstr "شماره شناسنامه"
+
+msgid "sadere"
+msgstr "صادره"
+
+msgid "tahvil"
+msgstr "تاریخ تحویل"
+
+msgid "nationalcod"
+msgstr "کد ملی"
+
+msgid "date_o"
+msgstr "تاریخ"
+
+msgid "description۱"
+msgstr "توضیحات"
+
+msgid "valueback"
+msgstr "مبلغ بازگشتی"
+
+msgid "date_erja"
+msgstr "تاریخ ارجاع"
+
+msgid "erja_status"
+msgstr "وضعیت ارجاع"
+
+msgid "description1"
+msgstr "توضیحات"
+
+msgid "show branch"
+msgstr "نمایش شعبه ها"
+
 msgid "disable"
 msgstr "غیر فعال"
 

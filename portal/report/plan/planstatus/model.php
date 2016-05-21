@@ -11,14 +11,15 @@ class model extends main_model {
 			->condition("where", "#start_date" , "<=", $this->sql(".duplicateUsersClasses.convert_date",$end_date))
 			->condition("and", "#end_date", ">=", $this->sql(".duplicateUsersClasses.convert_date",$start_date));
 	$classes->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
-
+	$classes->joinGroup()->whereId("#plan.group_id")->fieldName("group_name");
 	$classes = $classes->select()->allAssoc();
-		// var_dump($classes);exit();
+		// var_dump($classes->string());exit();
 		$return = array();
 		// $return = array("طرح","تعداد کلاس های تشکیل شده","تعداد نفرات شرکت کننده","میانگین هر کلاس");
 	foreach ($classes as $key => $value) {
 		// var_dump($value);exit();
 		$return[$value['plan_id']]['planname'] = $value['planname'];
+		$return[$value['plan_id']]['group_name'] = $value['group_name'];
 
 		isset($return[$value['plan_id']]['classescount']) ? 
 			  $return[$value['plan_id']]['classescount']++ :

@@ -23,6 +23,12 @@ class model extends main_model {
 				$ico = "icoattendance";
 				break;
 
+			case 'move':
+				$this->allclasses = true;
+				$url = "classes/status=move/";
+				$ico = "icosettings";
+				break;
+
 				
 			case 'score':
 				$this->allclasses = true;

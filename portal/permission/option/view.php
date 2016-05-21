@@ -39,7 +39,7 @@ class view extends main_view {
 		}
 
 		//------------------------------ this table not sohw in table list (system table)
-		$black = array(".","..", "permission", "history", "login_counter", "branch_users_key", "setup");
+		$black = array(".","..", "permission", "history", "login_counter", "branch_users_key", "setup","branch_cash", "logs", "update_log");
 		
 
 		foreach ($tables as $key => $value) {

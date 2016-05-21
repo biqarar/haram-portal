@@ -51,7 +51,7 @@ class model extends main_model{
 		$classes = $this->sql()->tableClasses()->select()->allAssoc();
 		$i=0;
 		foreach ($classes as $key => $value) {
-			$this->sql(".classesCount", $value['id']);
+			$this->sql(".classes.count", $value['id']);
 			$q = $sql->query("COMMIT");
 			$i++;
 

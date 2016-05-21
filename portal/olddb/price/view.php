@@ -13,17 +13,10 @@ class view extends main_view {
 		$this->sql(".branch.olddb", "oldprice", $this->xuId());
 		
 		//------------------------------ list of classes
-		$oldprice = $this->sql(".list", "oldprice", function ($query, $id) {
-			$query->whereParvande($id);
-		}, $this->xuId());
+		$oldprice = $this->sql(".olddblist", "oldprice", $this->xuId());
 
-		$oldprice->removeCol("code,description1,valueback,branch,date_erja,erja_status,date_o");
-
-		// $oldprice->addCol("add","انتقال به دوره جدید");
-		// $oldprice->select(-1, "add")->html($this->tag("a")->class("icodadd")->href("%id%")->render());
-		// var_dump($oldprice->compile());exit();
 		
-		$this->data->list = $oldprice->compile();
+		$this->data->list = $oldprice;
 	}
 }
 ?>

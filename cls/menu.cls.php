@@ -109,13 +109,13 @@ class menu_cls  {
 			"tag"         => "public"
 			);
 
-		//------------------------------ news
-		self::$menu[] = array(
-			"submenu"     => "home",
-			"url"         => 'profile',
-			"name"        =>  _("news"),
-			"tag"         => "public"
-			);
+		// //------------------------------ news
+		// self::$menu[] = array(
+		// 	"submenu"     => "home",
+		// 	"url"         => 'profile',
+		// 	"name"        =>  _("news"),
+		// 	"tag"         => "public"
+		// 	);
 
 		//------------------------------ permission add
 		self::$menu[] = array(

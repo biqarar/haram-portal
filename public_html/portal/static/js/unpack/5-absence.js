@@ -1,5 +1,4 @@
 route(/absence\/status=classeslist\/classesid=\d+/, function(){
-	function l(a) {console.log(a);}
 
 	$(".absence-date-main")[0].callBackDate =  function(){
 		date = convert_date($(this).val());
@@ -24,7 +23,7 @@ route(/absence\/status=classeslist\/classesid=\d+/, function(){
 				type: "POST",
 				url : "absence/api/classification=" + classification + "/date=" + date + "/type=" + type,
 				success : function(data){
-					// console.log(data);
+					
 
 					if(data.fatal){
 						xhr_error(data.fatal[0]);

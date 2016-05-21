@@ -43,7 +43,7 @@ class score_type {
 	}
 
 	public function	description(){
-		$this->form("#text_desc")->name("description")->label("description");
+		// $this->form("#text_desc")->name("description")->label("description");
 	}
 
 

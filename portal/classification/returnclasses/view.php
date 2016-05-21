@@ -9,12 +9,12 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title ="return classes";
 		// var_dump($this->xuId());
-		$this->global->because = _($this->sql("#classification_detail","because", $this->xuId()));
-		$this->global->date_delete = $this->sql("#classification_detail","date_delete", $this->xuId());
+		$this->global->because = _($this->sql(".classification.detail","because", $this->xuId()));
+		$this->global->date_delete = $this->sql(".classification.detail","date_delete", $this->xuId());
 		$this->global->classification_id = $this->xuId();
 		#classification/api/usersid="+usersid+"/classesid="+classesid
-		$this->global->classesid = $this->sql("#classification_detail","classes_id", $this->xuId());
-		$this->global->usersid = $this->sql("#classification_detail","users_id", $this->xuId());
+		$this->global->classesid = $this->sql(".classification.detail","classes_id", $this->xuId());
+		$this->global->usersid = $this->sql(".classification.detail","users_id", $this->xuId());
 		// var_dump($this->global->classesid,$this->global->usersid);exit();
 		// var_dump($this->global->classesid,$this->global->usersid);exit();
 		//------------------------------ load form

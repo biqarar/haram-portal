@@ -14,7 +14,6 @@ route(/classes\/status\=done\/classesid\=\d+/, function(){
 			url : "classes/status=setdone/classesid=" + classesid,
 
 			success : function(data){
-				console.log(data)
 				xhr_result(data);
 			}
 		});
@@ -23,16 +22,34 @@ route(/classes\/status\=done\/classesid\=\d+/, function(){
 
 route(/classes\/status\=running\/classesid\=\d+/, function(){
 	$(".classes-running", this).click(function(){
-	console.log('fff');
+
 		classesid = $(this).attr("classesid");
 		$.ajax({
 			type: "POST",
 			url : "classes/status=setrunning/classesid=" + classesid,
 
 			success : function(data){
-				console.log(data)
 				xhr_result(data);
 			}
 		});
+	});
+});
+
+route(/classes\/status\=move\/classesid\=\d+\/moveto\=\d+/, function(){
+
+	$(".classes-move", this).click(function(){
+		xhr_warn("لفطا صبر کنید");
+		oldclassesid = $(this).attr("oldclassesid");
+		newclasses = $(this).attr("newclasses");
+		$.ajax({
+			type: "POST",
+			url : "classes/status=setmove/classesid=" + oldclassesid + "/moveto="+ newclasses,
+
+			success : function(data){
+				xhr_result(data);
+			}
+		});
+
+
 	});
 });

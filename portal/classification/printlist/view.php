@@ -5,6 +5,8 @@
 class view extends main_view {
 
 	public function config() {
+		$x = $this->sql(".branch.classes", $this->xuId("classesid"));
+		// var_dump($x);
 		//------------------------------ get classes list
 		$classes_list = $this->sql("#classes_list", $this->xuId("classesid"));
 		//------------------------------ add name, family, phone, mobile to classes array
@@ -26,7 +28,6 @@ class view extends main_view {
 			
 		}
 
-		$this->sql(".branch.classes", $this->xuId("classesid"));
 		//------------------------------ list of classes
 		$classes_detail = $this->sql(".list", "classes", function ($query) {
 			$query->whereId($this->xuId("classesid"));

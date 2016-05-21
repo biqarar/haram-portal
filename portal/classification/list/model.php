@@ -12,7 +12,8 @@ class model extends main_model {
 			"date_delete",
 			"because",
 			"mark",
-			"id edit")
+			"id edit",
+			"usersid")
 			
 			->search_fields("username", "name", "family")
 			->query(function($q){

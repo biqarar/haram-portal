@@ -18,7 +18,7 @@ class model extends main_model {
 			$this->sql(".price.runningClasses", $classes_id);
 			$this->sql()->tableClasses()->whereId($classes_id)->setStatus("running")->update();
 	
-			$this->sql(".classesCount", $classes_id);
+			$this->sql(".classes.count", $classes_id);
 
 			debug_lib::true("فعال سازی مجدد کلاس انجام شد");
 			

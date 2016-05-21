@@ -52,16 +52,27 @@
 	xhr_true = _true;
 })();
 
+function xhr_text(data,type){
+	text = "";
+		for(a in data[type]){
+			if(typeof data[type][a] == "string"){
+				text += data[type][a] + ", ";	
+			}
+		}
+	return text;
+}
+
 function xhr_result(data){
-	console.log(data);
-	if(data.status){
-		xhr_true(data.true[0]);	
+	// console.log(data);
+	if(data.status == 1 ){
+		xhr_true(xhr_text(data, "true"));	
 	}
-	if(data.fatal){
-		xhr_error(data.fatal[1]);	
+	if(data.status == 0){
+		xhr_error(xhr_text(data,"fatal"));	
 	}
-	if(data.warn){
-		xhr_warn(data.warn[0])
+	if(data.status == 2 ){
+		xhr_warn(xhr_text(data,"warn"));
 	}
 }
+
 

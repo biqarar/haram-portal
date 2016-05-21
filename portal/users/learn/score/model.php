@@ -9,7 +9,7 @@ class model extends main_model {
 		->condition("where", "log_meta" , "like", "'scoreretest/classificationid=" . $classificationid . "%'")
 		->select();
 		$return = array();
-		$return['title'] = "آزمون های  ثبت شده";
+		$return['title'] = "آزمون های مجدد ثبت شده";
 		$return['list']['list'][0]['امتیاز فعلی'] = $this->find_score($classificationid);
 		if($log->num() > 0) {
 			foreach ($log->allAssoc() as $key => $value) {
@@ -17,7 +17,7 @@ class model extends main_model {
 				$score_type_id = $c[2];
 				$title = ++$key . "- آزمون " . $this->get_score_type_name($score_type_id);
 				
-				$val =  $value['log_data'] . " (ثبت شده در تاریخ " . jTime_lib::date("Y/m/d h:m:s", $value['log_createdate']) . ")" ;
+				$val =  $value['log_data'];
 	
 				$return["list"]['list'][0][$title] = $val;
 
