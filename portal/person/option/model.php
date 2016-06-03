@@ -73,37 +73,50 @@ class model extends main_model{
 
 		$key = true;
 
-		//------------------------------ check for empty text for name,family,father
-		if(post::name() == '' || post::family() == '' || post::father() == ''){
-			$key = false;
-			debug_lib::fatal("نام، نام خانوادگی و نا ‍پدر وارد نشده است");
-		}
 
 		//------------------------------ check captcha if loaded
-		if(isset($_SESSION['load_captcha']) && $_SESSION['load_captcha']) {
-			if(post::captcha() != $_SESSION['CAPTCHA_GNA']){
-				$key = false;
-				debug_lib::fatal("captcha incorrect");
+		if(!$this->sql(".loginCounter.register")){
+			$key = false;
+		}
+		
+		if(isset($_SESSION['CAPTCHA_GNA']) && $_SESSION['CAPTCHA_GNA']) {
+			if(post::captcha() == $_SESSION['CAPTCHA_GNA']){
+				$key = true;
+				$this->sql(".loginCounter.clear");
 			}
 		}
+		
+
+
 
 		//------------------------------ check duplicate record
-		
+		if(post::branch_id() == "" ){
+			$key = false;
+			debug_lib::fatal("لطفا شعبه انتخاب کنید");
+		}
 		//------------------------------ if nationality is iran check nationalcode
-		if(post::nationality() == 97) {
+		// if(post::nationality() == 97) {			
+
 			$duplicate_person = $this->sql()
 				->tablePerson()
 				->whereNationalcode(post::nationalcode())
-				->select()
-				->num();
+				->select();
 			
-			if($duplicate_person >= 1) {
+			if($duplicate_person->num() >= 1) {
 				$key = false;
-				debug_lib::fatal("کد ملی تکراری است");
+				debug_lib::fatal($this->duplicate_msg($duplicate_person->assoc("users_id")));
+
 			} 
+		// }
+
+
+		//------------------------------ check for empty text for name,family,father
+		if(post::name() == '' || post::family() == '' || post::father() == ''){
+			$key = false;
+			debug_lib::fatal("نام، نام خانوادگی و نام پدر وارد نشده است");
 		}
 
-
+		
 		//------------------------------ if no error in field
 		if ($key){
 
@@ -111,10 +124,11 @@ class model extends main_model{
 			//------------------------------ disable for portal
 			//------------------------------ enable for real web site
 
-			// if(!$this->sql(".loginCounter.register", "register") && (post::captcha() != $_SESSION['CAPTCHA_GNA'])){
-			// 		debug_lib::fatal("[[insert users failed, 10 register in 600 Seconds!]]");
-			// }else{
-			// 		$this->sql(".loginCounter.clear");
+			 // if(!$this->sql(".loginCounter.register") && (post::captcha() != $_SESSION['CAPTCHA_GNA'])){
+				// 	debug_lib::fatal("[[insert users failed, 60 register in 600 Seconds!]]");
+			 // }else{
+			 // 		$this->sql(".loginCounter.clear");
+			 // }
 
 			//------------------------------ get new username
 			$username = $this->sql(".username.set");
@@ -132,28 +146,43 @@ class model extends main_model{
 
 			
 			//------------------------------ insert into person table
-			$person = $this->makeQuery()->setUsers_id($users_id)->insert();
+			$person_id = $this->makeQuery()->setUsers_id($users_id)->insert()->LAST_INSERT_ID();
 			
 			
 			//------------------------------ insert into bridge table, phone and mobile
-			if(post::mobile() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile())->insert();
-			if(post::mobile2() !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("mobile")->setValue(post::mobile2())->insert();
-			if(post::phone()  !== "") $this->sql()->tableBridge()->setUsers_id($users_id)->setTitle("phone")->setValue(post::phone())->insert();
+			if(post::mobile() !== "") 
+				$this->sql()->tableBridge()
+				->setUsers_id($users_id)
+				->setTitle("mobile")
+				->setValue(post::mobile())
+				->insert();
+
+			if(post::mobile2() !== "") 
+				$this->sql()->tableBridge()
+				->setUsers_id($users_id)
+				->setTitle("mobile")
+				->setValue(post::mobile2())
+				->insert();
+
+			if(post::phone()  !== "") 
+				$this->sql()->tableBridge()
+				->setUsers_id($users_id)
+				->setTitle("phone")
+				->setValue(post::phone())
+				->insert();
 			
 			//------------------------------ set users_branch if other sql is ok
-			if(debug_lib::$status){
-				$sqlBranch = $this->sql()->tableUsers_branch()
+			$sqlBranch = $this->sql()->tableUsers_branch()
 						->setUsers_id($users_id)
 						->setBranch_id($this->post_branch())
 						->insert();
 				
 
-			}
 
 			//------------------------------ commit code
-			$this->commit(function($username = false , $users_id = false) {
+			$this->commit(function($username = false , $users_id = false, $person_id = false) {
 				debug_lib::true("ثبت نام با موفقیت انجام شد <br> 
-								 نام کاربری شما  $username   <br>
+								 نام کاربری شما <b style='color: #0C706F'>  $username  </b> <br>
 								 و کلمه عبور شما کد ملی یا شماره گذر نامه شما می باشد.
 								 ". 
 								 "<br><br>شهریه" . 
@@ -167,9 +196,14 @@ class model extends main_model{
 								 ->class("icoshare")
 								 ->title("ثبت پل های ارتباطی برای فراگیر")
 								 ->render() 
-								 
+								   . "<br> ویرایش اطلاعات" . 
+								 $this->tag("a")
+								 ->href("person/status=edit/id=$person_id")
+								 ->class("icoedit")
+								 ->title("ویرایش اطلاعات فراگیر")
+								 ->render() 
 								 );
-			}, $username, $users_id);
+			}, $username, $users_id, $person_id);
 		}
 
 		$this->rollback(function() {
@@ -196,6 +230,61 @@ class model extends main_model{
 		$this->rollback(function() {
 			debug_lib::fatal("[[update person failed]]");
 		});
+	}
+
+	public function duplicate_msg($users_id = false) {
+		$branch = $this->sql()->tableUsers_branch()->whereUsers_id($users_id);
+		$branch->joinBranch()->whereId("#users_branch.branch_id")->fieldName("branch");
+		$branch = $branch->select();
+
+		
+
+		$username = $this->sql()->tableUsers()->whereId($users_id)->limit(1)->select()->assoc("username");
+
+		$person = $this->sql()->tablePerson()->whereUsers_id($users_id)->select()->assoc();
+
+		$branch_id = $this->post_branch();
+
+		
+		$msg = "\nکد ملی تکراری است \n ";
+		$msg .= "\n ----------------------- \n ";
+		$msg .= " پرونده این فراگیر قبلا در ";
+
+		if($branch->num()== 1) {
+			$x = $branch->assoc();
+
+			$msg .= " شعبه \n";
+			$msg .= "<b style='color: #0C706F'> " . $x['branch'] . "</b> ( " . _($x['type']) . " )\n";
+
+		}elseif($branch->num() > 1) {
+			$msg .= " شعبه های \n";
+			foreach ($branch->allAssoc() as $key => $value) {
+				$msg .= "<b style='color: #0C706F'> " .$value['branch']. "</b> ( " . _($value['type']) . " )\n";
+			}
+			
+		}
+
+		$msg .= " با شماره پرونده: <b style='color: #0C706F'>" . $username . "</b>";
+		$msg .= "\n با مشخصات";
+		$msg .= "\n نام: <b style='color:#0C706F'>"  . $person['name'] . "</b>";
+		$msg .= "\n نام خانوادگی: <b style='color: #0C706F'>" . $person['family'] . "</b>";
+		$msg .= "\n نام پدر: <b style='color: #0C706F'>" . $person['father'] . "</b>";
+
+		$msg .= "\n ثبت شده است. ";
+		$msg .= "\n ----------------------- \n ";
+		// print_r($_SESSION);exit();
+		$permission = (isset($_SESSION['user']['permission']['tables']['users_branch']['update'])) ? true : false;
+		if($permission){
+
+		$msg .= "<a style='text-decoration: none; color:white; cursor: pointer;'><div style='width: 70px;background: #0C706F;border-radius: 7px;padding: 25px 50px 25px 50px !important;text-align: center;display: inline-block;' onclick='apichangeusersbranch($branch_id,$users_id)'>انتقال پرونده به این شعبه</div></a><br>";
+
+		}else{
+		$msg .= "\n لطفا جهت فعال سازی پرونده ایشان در این شعبه \n نام کاربری فراگیر را یادداشت کرده 
+		و به مسئول شعبه خود اطلاع دهید. \n ";
+			
+		}
+
+		return nl2br($msg);
 	}
 }
 ?>

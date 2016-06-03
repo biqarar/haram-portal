@@ -2,8 +2,8 @@
 
 class model extends main_model {
 	public function post_api() {
-		$dt = $this->dtable->table('place')->fields("name", "description","multiclass" , "status" ,"id edit")
-		->search_fields("name", "description")
+		$dt = $this->dtable->table('place')->fields("name","multiclass" , "status" ,"id edit")
+		->search_fields("name")
 		->query(function ($q){
 			//---------- get branch id in the list
 			$q->groupOpen();
@@ -15,6 +15,17 @@ class model extends main_model {
 				}
 			}
 			$q->groupClose();
+		})
+		->search_result(function($result){
+				
+				$vsearch = $_POST['search']['value'];
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$result->groupOpen();
+				$result->condition("and", "place.name", "LIKE", "'%$vsearch%'");
+				// $result->condition("or", "bridge.value", "LIKE", "'%$vsearch%'");
+				$result->groupClose();
+				// echo $resultس->select()->string();exit();
+
 		})
 		->result(function($r){
 			$r->edit = '<a class= "icoedit" href="place/status=edit/id='. $r->edit . '"></a>';

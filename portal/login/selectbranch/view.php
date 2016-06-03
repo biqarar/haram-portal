@@ -6,7 +6,7 @@ class view extends main_view {
 
 	public function config() {
 		//------------------------------ globals
-		$this->global->page_title = 'select branch';
+		$this->global->page_title = _('selectbranch');
 
 		$f = $this->form("@users_branch");
 		

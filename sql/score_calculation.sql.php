@@ -21,7 +21,18 @@ class score_calculation {
 	public function	plan_id(){
 		$this->form("select")->name("plan_id")->addClass("select-plan-section")->addClass("notselect");
 		$this->setChild(function($q){
-			
+			$list = isset($_SESSION['user']['branch']['selected']) ? 
+						  $_SESSION['user']['branch']['selected'] : array();
+			$q->groupOpen();
+			foreach ($list as $key => $value) {
+				if($key == 0){
+					$q->condition("where", "plan.branch_id","=",$value);
+				}else{
+					$q->condition("or","plan.branch_id","=",$value);
+				}
+			}	
+			$q->groupClose();
+
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 
 		});

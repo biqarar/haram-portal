@@ -19,6 +19,17 @@ class model extends main_model {
 			$r->edit = '<a class= "icoedit" href="plan/status=edit/id='. $r->edit . '"></a>';
 			
 		})
+		->search_result(function($result){
+			
+			$vsearch = $_POST['search']['value'];
+			$vsearch = str_replace(" ", "_", $vsearch);
+			$result->groupOpen();
+			$result->condition("and", "plan.name", "LIKE", "'%$vsearch%'");
+			$result->condition("or", "plan.price", "LIKE", "'%$vsearch%'");
+			$result->groupClose();
+			// echo $resultس->select()->string();exit();
+
+		})
 		->query(function ($q){
 			//---------- get branch id in the list
 			$q->groupOpen();

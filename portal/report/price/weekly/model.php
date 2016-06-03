@@ -15,6 +15,19 @@ class model extends main_model {
 			->fieldCard();
 
 	$price->joinPerson()->whereUsers_id("#price.users_id")->fieldName()->fieldFamily();
+
+	$price->joinUsers_branch()->whereUsers_id("#person.users_id");
+	$price->groupOpen();
+	//---------- get branch id in the list
+	foreach ($this->branch() as $key => $value) {
+		if($key == 0){
+			$price->condition("and", "users_branch.branch_id","=",$value);
+		}else{
+			$price->condition("or","users_branch.branch_id","=",$value);
+		}
+	}
+	$price->groupClose();
+
 	$price = $price->select()->allAssoc();
 	// var_dump($price);exit();
 			return $price;

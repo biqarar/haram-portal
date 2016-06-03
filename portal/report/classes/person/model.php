@@ -44,6 +44,16 @@ class model extends main_model {
 			->fieldWeek_days();
 
 		$classification->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
+		$classification->groupOpen();
+		//---------- get branch id in the list
+		foreach ($this->branch() as $key => $value) {
+			if($key == 0){
+				$classification->condition("and", "plan.branch_id","=",$value);
+			}else{
+				$classification->condition("or","plan.branch_id","=",$value);
+			}
+		}
+		$classification->groupClose();
 		
 		$classification->joinPlace()->whereId("#classes.place_id")->fieldName("place");
 		

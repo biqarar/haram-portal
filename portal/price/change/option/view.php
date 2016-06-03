@@ -19,7 +19,7 @@ class view extends main_view {
 		$this->sql(".edit", "price_change", $this->xuId(), $f);
 
 		//------------------------------ list of price_change
-		$this->data->dataTable = $this->dtable("pricechange/status=api/", array("id","name", "type", "edit"));
+		$this->data->dataTable = $this->dtable("price/status=listapi/", array("id","name", "type", "edit"));
 	}
 }
 ?>

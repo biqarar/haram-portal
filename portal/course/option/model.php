@@ -16,6 +16,10 @@ class model extends main_model{
 
 	public function post_add_course() {
 
+		if(post::begin_time() == "" || post::end_time() == "") {
+			debug_lib::fatal("لطفا تاریخ شروع و تاریخ پایان دوره را وارد کنید");
+		}
+
 		//------------------------------ insert course
 		$sql = $this->makeQuery()->insert();
 

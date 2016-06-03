@@ -183,6 +183,15 @@ class controller extends main_controller {
 					save(array("report","plan", "planstatus"));
 					$this->permission = array("report" => array("select" => array("public")));
 		});	
+
+		//----------------------------
+	$this->listen(array(
+				"max" => 5,
+				"url" => array("plan", "dateclassesbridge", "start_date" => "/(.*)/", "end_date" => "/(.*)/")
+				), function (){
+					save(array("report","plan", "dateclassesbridge"));
+					$this->permission = array("report" => array("select" => array("public")));
+		});	
 	}
 }
 ?>  

@@ -17,7 +17,7 @@ class model extends main_model {
 
 			})
 			->result(function($r){
-				$r->edit = '<a href="pricechange/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';
+				$r->edit = '<a href="price/change/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';
 			});
 			$this->sql(".dataTable", $dtable);
 	}

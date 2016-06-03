@@ -28,7 +28,7 @@ class model extends main_model {
 			}
 		})
 		->search_fields(
-			"username" , "name", "family", "value"
+			"username" , "value"
 		)
 		->query(function($q){
 			$q->joinPerson()->whereUsers_id("#bridge.users_id")->fieldFamily("family")->fieldName("name");
@@ -45,6 +45,17 @@ class model extends main_model {
 				}
 			$q->groupClose();
 			// ilog($q->select()->string());
+		})
+		->search_result(function($result){
+				
+				$vsearch = $_POST['search']['value'];
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$result->groupOpen();
+				$result->condition("and", "users.username", "LIKE", "'%$vsearch%'");
+				$result->condition("or", "bridge.value", "LIKE", "'%$vsearch%'");
+				$result->groupClose();
+				// echo $resultس->select()->string();exit();
+
 		})
 		->result(function($r){
 

@@ -8,17 +8,14 @@ class query_branch_cls extends query_cls {
 		}
 	}
 
+	//**** show all branch active for this users
+ 	//**** to insert a record the users can insert into another branch
 	public function get_list() {
-		$listBranch = $this->sql()->tableBranch();
-			
-		foreach ($this->check() as $key => $value) {
-			if($key == 0) {
-				$listBranch->whereId($value);
-			}else{
-				$listBranch->orId($value);
-			}
-		}
+		$listBranch = $this->sql()->tableUsers_branch()->whereUsers_id($_SESSION['user']['id'])
+		->andStatus("enable");
+		$listBranch->joinBranch()->whereId("#users_branch.branch_id")->fieldName("branch_name")->fieldId("branch_id");
 		return  $listBranch->select()->allAssoc();
+		
 	}
 
 
@@ -47,19 +44,12 @@ class query_branch_cls extends query_cls {
 	
 	public function check($arg = false, $type = false) {
 
-		//--------------- supervisor can see all branch list and data
-		// if(global_cls::supervisor()) {
-		
-		// 	return ($arg) ? $arg : $this->allBranch("id");
-		
-		// }
-
 		//--------------- $arg = branch_id
 		if($arg){	
 			foreach ($this->_list() as $key => $value) {
 				
 				if($value == $arg) {
-					//--------------- the branch founded in branch list
+					//---------- the branch founded in branch list
 					//---------- return branch id 
 					return $value;
 				}
@@ -91,9 +81,12 @@ class query_branch_cls extends query_cls {
 
 	public function post_branch() {
 		if(post::branch_id()){
-			if($this->check(post::branch_id())){
-				return post::branch_id();
+			foreach($_SESSION['user']['branch']['active'] as $key => $value){
+				if(post::branch_id() == $value){
+					return post::branch_id();
+				}
 			}
+			$this->error("شناسه شعبه یافت نشد");
 		}elseif(count($this->check()) == 1) {
 			$x = $this->_list();
 			return $x[0];
@@ -102,6 +95,19 @@ class query_branch_cls extends query_cls {
 		}
 	}
 
+	public function usersbranch($users_branch_id = false){
+		
+		$us = $this->sql()->tableUsers_branch()->whereId($users_branch_id)->limit(1)->select()->assoc();
+		$users_id = $us['users_id'];
+		$branch_id = $us['branch_id'];
+
+		foreach ($_SESSION['user']['branch']['active'] as $key => $value) {
+			if($branch_id == $value){
+				return true;
+			}
+		}
+		$this->error("شما مجوز لازم برای تغییر در شعبه این فراگیر را ندارید");
+	}
 
 	/**
 	* classification JOIN classes JOIN plan and select brach id

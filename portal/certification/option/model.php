@@ -21,28 +21,30 @@ class model extends main_model{
 			$price = $this->sql(".price.sum_price", $users_id);
 
 			if($price['sum_active'] < 0 && !global_cls::supercertification()) {
-				
 				debug_lib::fatal("موجودی فعال شهریه فراگیر منفی است و امکان ثبت درخواست گواهی نامه وجود ندارد");
-
-			}else{
-
-				$x = $this->sql()->tableCertification()
-				->setClassification_id($classificationid)
-				->setDate_request($this->dateNow())
-				->insert();
-
 			}
 
-			$this->commit(function(){
+			if(!$this->sql(".pasportCheck", $users_id)){
+				debug_lib::fatal("تاریخ اعتبار گذر نامه ایشان به اتمام رسیده است");
+			}
 
+			$x = $this->sql()->tableCertification()
+			->setClassification_id($classificationid)
+			->setDate_request($this->dateNow())
+			->insert();
+
+			$this->commit(function(){
 				debug_lib::true("گواهی نامه با موفقیت ثبت شد");
-			
 			});
 
 		}elseif($duplicate != 0 ){
+
 			debug_lib::fatal("این گواهی نامه قبلا ثبت شده است");
+		
 		}else{
+		
 			debug_lib::fatal("ثبت گواهی نامه با خطا مواجه شده است");
+		
 		}
 	}
 }

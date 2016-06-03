@@ -10,8 +10,8 @@ class model extends main_model{
 				->setName(post::name())
 				->setMulticlass(post::multiclass())
 				->setStatus(post::status())
-				->setBranch_id($this->post_branch())
-				->setDescription(post::description());
+				->setBranch_id($this->post_branch());
+				// ->setDescription(post::description());
 	}
 
 	public function post_add_place() {

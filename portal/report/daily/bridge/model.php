@@ -13,8 +13,19 @@ class model extends main_model {
 			->groupClose();
 		// $classes->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->fieldValue("mobile");
 			// $classes->joinBridge()
-
+	$classes->joinPlan()->whereId("#classes.plan_id")->fieldId("classification_id");
+	$classes->groupOpen();
+	//---------- get branch id in the list
+	foreach ($this->branch() as $key => $value) {
+		if($key == 0){
+			$classes->condition("and", "plan.branch_id","=",$value);
+		}else{
+			$classes->condition("or","plan.branch_id","=",$value);
+		}
+	}
+	$classes->groupClose();
 	$classes = $classes->select()->allAssoc();
+
 	// var_dump($classes);exit();
 
 	$classification = $this->sql()->tableClassification();

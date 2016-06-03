@@ -59,7 +59,12 @@ class query_dataTable_cls extends query_cls
 		}
 		$recordsFiltered = $recordsTotal;
 		
-		if ($search !== false && isset($_POST['search']) && isset($_POST['search']['value']) && !empty($_POST['search']['value'])){
+		if (
+			$search !== false &&
+			isset($_POST['search']) &&
+			isset($_POST['search']['value']) &&
+			!empty($_POST['search']['value']))
+		{
 			if(isset($object->search_result)){
 				$arg = func_get_args();
 				$args = array_splice($arg, 2);

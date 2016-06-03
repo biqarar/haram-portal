@@ -13,8 +13,8 @@ class controller extends main_controller{
 			}
 		);
 		$this->listen(array(
-			"max" => 3,
-			"url" => array("status" => "removeduplicate" , "nationalcode" => "/^\d+$/" )
+			"max" => 2,
+			"url" => array("status" => "removeduplicate" )
 			), 
 			function() {
 				save(array("database", "removeduplicate"));

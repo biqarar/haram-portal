@@ -42,9 +42,9 @@ class page_lib{
 	public static function make($str, $obj, $status){
 
 		header("HTTP/1.0 $status ".self::string($status));
-		// echo "<h3>$status</h3><h5>$str</h5>";
-		// exit();
+
 		$error = preg_replace("/^(.*)\((.*)\)$/", "$2", $str);
+
 		if(DEBUG){
 		$error = "<pre>$str";
 
@@ -54,11 +54,16 @@ class page_lib{
 				}
 			}
 			$error .= "\n";
+			echo $error;
+
+		}else{
+
+			$hadith = self::hadith();
+			$hadith = "";
+
+			require_once "404.php";
 			
 		}
-		$hadith = self::hadith();
-		$hadith = "";
-		require_once "404.php";
 
 		exit();
 	}

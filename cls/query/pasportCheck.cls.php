@@ -10,7 +10,11 @@ class query_pasportCheck_cls extends query_cls {
 
 		$dateNow = $this->dateNow("Ymd");
 
-		if($person['nationality'] != 97  && $person['nationality'] != '' && $dateNow > $person['pasport_date'] && !global_cls::superperson()) {
+		if($person['nationality'] != 97  && 
+		   $person['nationality'] != '' && 
+		   $dateNow > $person['pasport_date'] && 
+		   !global_cls::superperson()) 
+		{
 			return false;
 		}
 		return true;

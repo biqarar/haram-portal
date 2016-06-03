@@ -14,7 +14,7 @@ class view extends main_view {
 		$this->sql(".branch.users", $usersid);
 
 		$this->data->name_family = $this->sql(".userNameFamily", $usersid);
-		
+		$this->data->usersid = $usersid;
 		//------------------------------ make chane password form
 
 		$submit = $this->form("#submitadd")->value("add");
@@ -28,6 +28,12 @@ class view extends main_view {
 		foreach ($branch_list as $key => $value) {
 			$branch->child()->name($value['name'])->label($value['name'])->value($value["id"]);
 		}
+		$type = $this->form("select")->name("type")->classname("select-type")->label("نوع کاربر");
+		
+		$type->child()->name(_("operator"))->label(_("operator"))->value("operator");
+		$type->child()->name(_("teacher"))->label(_("teacher"))->value("teacher");
+		$type->child()->name(_("student"))->label(_("student"))->value("student")->selected("selected");
+		
 
 		$list = $this->sql(".list", "users_branch", function($q){
 			$q->whereUsers_id($this->xuId("usersid"));
@@ -77,6 +83,7 @@ class view extends main_view {
 
 		$branch_cash[] = $hidden->compile();
 		$branch_cash[] = $branch->compile();
+		// $branch_cash[] = $type->compile();
 		$branch_cash[] = $submit->compile();
 		
 		$this->data->branch_cash = $branch_cash;

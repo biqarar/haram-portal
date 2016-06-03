@@ -20,12 +20,12 @@ class course {
 	}
 
 	public function begin_time() {
-		$this->form("#date")->name("begin_time");
+		$this->form("#date")->name("begin_time")->required();
 		$this->validate()->number(8);
 	}
 	
 	public function end_time() {
-		$this->form("#date")->name("end_time");
+		$this->form("#date")->name("end_time")->required();
 		$this->validate()->number(8);
 	}
 	

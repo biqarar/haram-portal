@@ -31,3 +31,14 @@ route(/portal\/person\/status=edit/, function(){
 route("*", function(){
 	$('.slider-number').sslider();
 });
+
+function apichangeusersbranch($branch_id, $users_id){
+	xhr_true("لطفا کمی صبر کنید");
+	$.ajax({
+		type: "POST",
+		url : "branch/status=apiaddbranch/usersid=" + $users_id + "/branchid="+ $branch_id,
+		success : function(data){
+			xhr_result(data);
+		}
+	});
+}

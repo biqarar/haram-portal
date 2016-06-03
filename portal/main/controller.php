@@ -6,14 +6,17 @@ class main_controller{
 	public $access = false; // for after lunch
 	
 	public final function __construct(){
-		// var_dump($this->Login("*"));
+		
 		if(global_cls::supervisor()){
 			$this->access = true; // for befor lunch
 		}
+
 		if(preg_match("/favicon\.ico$/", $_SERVER['REQUEST_URI'])){
 			die("favicon.ico");
 		}
+
 		$this->xuStatus();
+		
 		$permission = new checkPermission_cls;
 		$permission->check();
 		$this->querys = (object) "query";
@@ -190,7 +193,7 @@ class main_controller{
 		//------------------------------ if url is "status=add"
 
 		if(isset($surl['status']) && ($surl['status'] == 'add')){
-			
+
 			$this->listen(
 				array(
 					"max" => 1,
@@ -310,6 +313,7 @@ class main_controller{
 		if(global_cls::supervisor()){
 			return [true, true];
 		}
+		
 		$msg = "";
 		$access = false;
 		if($this->access) {
@@ -359,12 +363,7 @@ class main_controller{
 			}elseif($arg && ($arg == "all" || $arg == "*")){
 				return $_SESSION['user'];
 			}elseif($arg && $arg == "select_branch"){
-				// var_dump($_SESSION);
-				// var_dump((
-				// 	isset($_SESSION['user']['branch']['selected']) 
-				// 	// &&
-				//  // !empty($_SESSION['user']['branch']['selected'])
-				//  ));exit();
+				
 				return 
 				(isset($_SESSION['user']['branch']['selected']) &&
 				 !empty($_SESSION['user']['branch']['selected'])) ? true :false;

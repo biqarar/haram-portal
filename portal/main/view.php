@@ -166,11 +166,11 @@ class main_view{
 
 	public function listBranch($f, $type = "select") {
 		$branch_list = $this->sql(".branch.get_list");
-		
+		// var_dump($branch_list);
 		if($type == "select"){
 			$branch = $this->form("select")->name("branch_id")->classname("select-branch")->label("branch");
 			foreach ($branch_list as $key => $value) {
-				$branch->child()->name($value['name'])->label($value['name'])->value($value["id"]);
+				$branch->child()->name($value['branch_name'])->label($value['branch_name'])->value($value["branch_id"]);
 			}
 			// $branch->child(0)->selected("selected");
 			$f->add("branch_id", $branch);

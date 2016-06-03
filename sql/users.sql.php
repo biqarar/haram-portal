@@ -18,7 +18,7 @@ class users {
 
 	public function username() {
 		$this->form("#number")->name("username");
-		$this->validate()->number(8);
+		$this->validate()->number(8)->form->number("نام کاربری یافت نشد");
 	}
 
 	public function password() {

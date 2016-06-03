@@ -38,6 +38,8 @@ class view extends main_view {
 			
 
 		}
+		$price = $this->sql(".price.sum_price", $usersid);
+		$this->global->sum_price = $price['sum_active'];
 		//------------------------------  set name and family
 		$this->global->name = $this->sql(".assoc.foreign", "person", $usersid, "name", "users_id")
 							 . " " . 

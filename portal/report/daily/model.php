@@ -11,6 +11,17 @@ class model extends main_model {
 				->andStatus("running")
 				->orStatus("ready")
 			->groupClose();
+	$classes->joinPlan()->whereId("#classes.plan_id")->fieldId("classification_id");
+	$classes->groupOpen();
+	//---------- get branch id in the list
+	foreach ($this->branch() as $key => $value) {
+		if($key == 0){
+			$classes->condition("and", "plan.branch_id","=",$value);
+		}else{
+			$classes->condition("or","plan.branch_id","=",$value);
+		}
+	}
+	$classes->groupClose();
 	$classes = $classes->select()->allAssoc();
 	$return  = array();
 	$return['count'] = 0;
@@ -33,7 +44,16 @@ class model extends main_model {
 			->groupClose();
 			// var_dump($classes->select()->string());exit();
 	$classes->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
-
+	$classes->groupOpen();
+	//---------- get branch id in the list
+	foreach ($this->branch() as $key => $value) {
+		if($key == 0){
+			$classes->condition("and", "plan.branch_id","=",$value);
+		}else{
+			$classes->condition("or","plan.branch_id","=",$value);
+		}
+	}
+	$classes->groupClose();
 	$classes = $classes->select()->allAssoc();
 	return $classes;
 	

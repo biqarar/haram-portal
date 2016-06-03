@@ -43,7 +43,18 @@ class model extends main_model {
 				$q->orderId("DESC");	
 			}
 		})
-		
+		->search_result(function($result){
+				
+				$vsearch = $_POST['search']['value'];
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$result->groupOpen();
+				$result->condition("and", "users.username", "LIKE", "'%$vsearch%'");
+				$result->condition("or", "price.transactions", "LIKE", "'%$vsearch%'");
+				$result->condition("or", "price.date", "LIKE", "'%$vsearch%'");
+				$result->groupClose();
+				// echo $resultس->select()->string();exit();
+
+		})
 		->result(function($r) {
 			$r->edit = '<a class="icoedit" href="price/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 		});

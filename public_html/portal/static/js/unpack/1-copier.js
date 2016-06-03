@@ -15,7 +15,13 @@
 	}
 
 	function _emptymenue(){
+		// _contextmenu.append("<li><a href='fuck' >نمایش اطلاعات</a></li>");
+		// _contextmenu.append("<li><a href='fuck' >ویرایش اطلاعات</a></li>");
+		// _contextmenu.append("<li>ثبت شهریه</li>");
+		// _contextmenu.append("<li>پرونده آموزشی</li>");
+		// _contextmenu.append("<li>نمایش پل های ارتباطی</li>");
 		_contextmenu.append("<li>عملگری وجود ندارد</li>");
+		
 	}
 
 	function _show_contextmenu(e){

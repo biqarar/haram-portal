@@ -24,6 +24,17 @@ class model extends main_model {
 				}
 				$q->groupClose();
 			})
+			->search_result(function($result){
+				
+				$vsearch = $_POST['search']['value'];
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$result->groupOpen();
+				$result->condition("and", "score_type.title", "LIKE", "'%$vsearch%'");
+				$result->condition("or", "plan.name", "LIKE", "'%$vsearch%'");
+				$result->groupClose();
+				// echo $result->select()->string();exit();
+
+			})
 			->result(function($r){
 				$r->edit = '<a href="score/type/status=edit/id=' . $r->edit . '" class="icoedit" ></a>';
 			});

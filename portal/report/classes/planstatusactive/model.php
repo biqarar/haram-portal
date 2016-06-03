@@ -9,7 +9,16 @@ class model extends main_model {
 
 	$classes = $this->sql()->tableClasses()->whereStatus("running")->orStatus("ready");
 	$classes->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
-
+	$classes->groupOpen();
+	//---------- get branch id in the list
+	foreach ($this->branch() as $key => $value) {
+		if($key == 0){
+			$classes->condition("and", "plan.branch_id","=",$value);
+		}else{
+			$classes->condition("or","plan.branch_id","=",$value);
+		}
+	}
+	$classes->groupClose();
 	$classes = $classes->select()->allAssoc();
 		
 		// var_dump($classes);exit();

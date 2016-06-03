@@ -17,6 +17,12 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "selectbranch"
+msgstr "انتخاب شعبه"
+
+msgid "select branch"
+msgstr "انتخاب شعبه"
+
 msgid "tavalod"
 msgstr "تاریخ تولد"
 

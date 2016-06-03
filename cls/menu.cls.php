@@ -209,45 +209,45 @@ class menu_cls  {
 
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
-		//------------------------------  teacher show detail 
-		self::$menu[] = array(
-			"submenu" => "teacher", 
-			"url" => 'teacher/status=detail/id=' . $this->usersid(), 
-			"name" =>  _("show detail"), 
-			"tag" => $this->teacher_form("show")
-			);
+		// //------------------------------  teacher show detail 
+		// self::$menu[] = array(
+		// 	"submenu" => "teacher", 
+		// 	"url" => 'teacher/status=detail/id=' . $this->usersid(), 
+		// 	"name" =>  _("show detail"), 
+		// 	"tag" => $this->teacher_form("show")
+		// 	);
 
-		//------------------------------  teacher extera form
-		self::$menu[] = array(
-			"submenu" => "teacher", 
-			"url" => 'teacher/extera/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("edit extera detail"), 
-			"tag" => $this->teacher_form("person_extera")
-			);
+		// //------------------------------  teacher extera form
+		// self::$menu[] = array(
+		// 	"submenu" => "teacher", 
+		// 	"url" => 'teacher/extera/status=add/usersid=' . $this->usersid(), 
+		// 	"name" =>  _("edit extera detail"), 
+		// 	"tag" => $this->teacher_form("person_extera")
+		// 	);
 
-		//------------------------------  teacher education 
-		self::$menu[] = array(
-			"submenu" => "teacher", 
-			"url" => 'teacher/education/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("education information"), 
-			"tag" => $this->teacher_form("education_users")
-			);
+		// //------------------------------  teacher education 
+		// self::$menu[] = array(
+		// 	"submenu" => "teacher", 
+		// 	"url" => 'teacher/education/status=add/usersid=' . $this->usersid(), 
+		// 	"name" =>  _("education information"), 
+		// 	"tag" => $this->teacher_form("education_users")
+		// 	);
 
-		//------------------------------  teacher bridge
-		self::$menu[] = array(
-			"submenu" => "teacher", 
-			"url" => 'teacher/teachinghistory/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("teaching history"), 
-			"tag" => $this->teacher_form("teachinghistory")
-			);
+		// //------------------------------  teacher bridge
+		// self::$menu[] = array(
+		// 	"submenu" => "teacher", 
+		// 	"url" => 'teacher/teachinghistory/status=add/usersid=' . $this->usersid(), 
+		// 	"name" =>  _("teaching history"), 
+		// 	"tag" => $this->teacher_form("teachinghistory")
+		// 	);
 
-		//------------------------------  teacher bridge
-		self::$menu[] = array(
-			"submenu" => "teacher", 
-			"url" => 'teacher/bridge/status=add/usersid=' . $this->usersid(), 
-			"name" =>  _("bridge"), 
-			"tag" => $this->teacher_form("bridge")
-			);
+		// //------------------------------  teacher bridge
+		// self::$menu[] = array(
+		// 	"submenu" => "teacher", 
+		// 	"url" => 'teacher/bridge/status=add/usersid=' . $this->usersid(), 
+		// 	"name" =>  _("bridge"), 
+		// 	"tag" => $this->teacher_form("bridge")
+		// 	);
 		
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 		
@@ -288,8 +288,16 @@ class menu_cls  {
 			"url" => "users/status=list/type=branch", 
 			"name" =>  _("تغییر شعبه فراگیر"), 
 			"tag" => array(
-				"users" => array("update" => array("public"))
+				"users_branch" => array("update" => array("public"))
 				)
+			);
+
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "user", 
+			"url" => "database/status=removeduplicate", 
+			"name" =>  _("تلفیق پرونده"), 
+			"tag" => $this->supervisor()
 			);
 
 		//------------------------------   bridge list
@@ -371,10 +379,10 @@ class menu_cls  {
 		//------------------------------ price add
 		self::$menu[] = array(
 			"submenu"     => "price",
-			"url"         => 'pricechange/status=add',
+			"url"         => 'price/change/status=add',
 			"name"        =>  _("manage price"),
 			"tag"         => array(
-			"price_change"  => array("insert" => array("public"))
+			"price"  => array("delete" => array("public"))
 				)
 			);
 
@@ -506,9 +514,7 @@ class menu_cls  {
 			"submenu" => "letters", 
 			"url" => "report/status=add/", 
 			"name" =>  _("add report"), 
-			"tag" => array(
-				"report" => array("insert" => array("public"))
-				)
+			"tag" => $this->supervisor()
 			);
 
 		//------------------------------ classes list
@@ -579,6 +585,13 @@ class menu_cls  {
 		}else{
 			return "jost for teacher load this menu";
 		}
+	}
+
+	public function supervisor(){
+		if(global_cls::supervisor()) {
+			return "public";
+		}
+		return "only supervisor can see this menu";
 	}
 
 

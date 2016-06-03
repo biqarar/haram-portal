@@ -1,7 +1,7 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
-<h4>{{global.status}} شهریه برای فراگیر {{global.name}}</h4>
+<h4>{{global.status}} شهریه برای فراگیر {{global.name}} ( موجودی فعال : {{global.sum_price}} )</h4>
 <form class="ajx" method="post" action="price/{{global.url}}">
 	{{forms.make(form.price)}}
 </form>

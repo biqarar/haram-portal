@@ -8,6 +8,7 @@ route(/portal\/classes\/status=(add|edit)/, function(){
 
 route(/classes\/status\=done\/classesid\=\d+/, function(){
 	$(".classes-done", this).click(function(){
+		xhr_true("لطفا کمی صبر کنید");
 		classesid = $(this).attr("classesid");
 		$.ajax({
 			type: "POST",
@@ -23,6 +24,7 @@ route(/classes\/status\=done\/classesid\=\d+/, function(){
 route(/classes\/status\=running\/classesid\=\d+/, function(){
 	$(".classes-running", this).click(function(){
 
+		xhr_true("لطفا کمی صبر کنید");
 		classesid = $(this).attr("classesid");
 		$.ajax({
 			type: "POST",

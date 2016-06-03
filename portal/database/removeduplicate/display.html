@@ -1,7 +1,26 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
+<a style="color:red"><b>هشدار !</b></a>
+<br>
+<a>با وارد کردن دو شماره پرونده در فرم زیر تمامی اطلاعات شماره پرونده اول اعم از</a>
+<br>
+مشخصات فردی ،
+پل های ارتباطی ،
+کلاس  ها ،
+شهریه ها ،
+فایل ها 
+و توضیحات 
+<br>
+به شماره پرونده دوم منتقل می شود
+<br> 
+<a style="color:red"><b>اگر اطلاع کافی از نحوه کار این فرم را ندارید لطفا اقدام نکنید</b></a>
 
+<br>
+<br>
+<form method ="post" action ="database/status=removeduplicate" class="ajx">
+	{{forms.make(merge)}}
+</form>
 	{%for i, a in show%}
 		{{a|raw}}
 	{%endfor%}

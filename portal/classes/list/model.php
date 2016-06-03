@@ -74,9 +74,10 @@ class model extends main_model {
 			"start_time",
 			"end_time",
 			"name",
-			"count",
+			"count count",
 			"id classification",
-			"id detail")
+			"id detail",
+			"maxp maxp")
 		
 		->search_fields(
 			"id classes.id",
@@ -84,8 +85,10 @@ class model extends main_model {
 			"teachername person.name",
 			"teacherfamily person.family",
 			"placename place.name",
-			"name classes.name")
+			"name classes.name",
+			"maxp plan.max_person")
 		->order(function($q, $n, $b){
+			// var_dump($n,$b);exit();
 			if($n === 'orderPlanname'){
 				$q->join->plan->orderName($b);
 			}elseif($n === 'orderTeacherfamily'){
@@ -132,6 +135,14 @@ class model extends main_model {
 
 		})
 		->result(function($r, $ico, $url){
+			if($r->count == "") $r->count = 0;
+
+			if(intval($r->count) >= intval($r->maxp)){
+				$r->count = $this->tag("a")->style("color:red")->vtext($r->count . " از " . $r->maxp)->render();
+			}else{
+				$r->count = $this->tag("a")->vtext($r->count . " از " . $r->maxp)->render();
+			}
+
 			$r->planname = $this->sql(".courseclassesInformation",$r->planname, $r->detail);
 			if($ico == "icodadd") {
 				// if(preg_match("[courseclasses\-information]",$r->planname)){
@@ -163,7 +174,6 @@ class model extends main_model {
 		$this->sql(".dataTable", $dtable);
 	}	
 
-	
 
 }
 ?>

@@ -55,13 +55,18 @@ class validateExtends_cls{
 	}
 
 	public function nationalcode() {
-		if (isset(validator_lib::$save["form"]['nationality']) && validator_lib::$save["form"]['nationality']->value != '97') {
+
+		if(
+			!isset(validator_lib::$save["form"]['nationality']) || 
+			       validator_lib::$save["form"]['nationality']->value != '97')
+		{
 			if (preg_match("/\d/", intval($this->value))) {
 				return true;
 			}else{
 				return false;
 			}
 		}else{
+			
 			$code = $this->value;
 			$r = false;
 			if (strlen($code) == 10) {

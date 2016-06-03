@@ -96,6 +96,17 @@ class classes {
 		$this->form("select")->name("place_id")->addClass("select-place notselect")->required();
 		$this->setChild(function($q){
 			$q->whereStatus("enable");
+			$list = isset($_SESSION['user']['branch']['selected']) ? 
+						  $_SESSION['user']['branch']['selected'] : array();
+			$q->groupOpen();
+			foreach ($list as $key => $value) {
+				if($key == 0){
+					$q->condition("and", "place.branch_id","=",$value);
+				}else{
+					$q->condition("or","place.branch_id","=",$value);
+				}
+			}	
+			$q->groupClose();
 		}, function($child, $value){
 			$child->label($value['name'])->value($value['id']); 
 		});

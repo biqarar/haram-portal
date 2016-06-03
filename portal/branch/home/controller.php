@@ -36,6 +36,15 @@ class controller extends main_controller{
 				save(array("branch", "change" , "mod" => "apichange"));
 				$this->permission = array("users_branch" => array("update" => array("public")));
 			}
+		);
+		$this->listen(array(
+			"max" => 5,
+			"url" => array("status" => "apiaddbranch","usersid"=> "/^(\d+)$/","branchid"=> "/^(\d+)$/")
+			), 
+			function() {
+				save(array("branch", "change" , "mod" => "apichangeusersbranch"));
+				$this->permission = array("users_branch" => array("update" => array("public")));
+			}
 		);	
 	}
 

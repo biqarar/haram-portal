@@ -1,7 +1,7 @@
 {# reza mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {% block content %}
-<form class="ajx" method="post" action="pricechange/{{global.url}}">
+<form class="ajx" method="post" action="price/change/{{global.url}}">
 	{{forms.make(form.price_change)}}
 </form>
 {{dtable.make(dataTable)}}

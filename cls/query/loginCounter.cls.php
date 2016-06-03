@@ -6,7 +6,25 @@ class query_loginCounter_cls extends query_cls
 
 	}
 
+	public function check(){
+
+		if(isset($_SESSION['load_captcha']) AND
+			 isset($_SESSION['CAPTCHA_GNA']) AND 
+			 $_SESSION['CAPTCHA_GNA'] != post::captcha()){
+			
+			debug_lib::fatal("اعداد درون تصویر را به صورت صحیح وارد کنید");
+			
+			return false;
+
+		}else{
+						
+			return true;
+		}
+	}
+
 	public function counter($type = "login", $cCount = 3, $cTime = 300) {
+
+		if(!$this->check()) return false;
 
 		$sql = $this->sql()->tableLogin_counter();
 		$ip = $_SERVER['REMOTE_ADDR'];
@@ -14,8 +32,13 @@ class query_loginCounter_cls extends query_cls
 
 		if($n->num() == 0) {
 
-			$i = $this->sql()->tableLogin_counter()->setType($type)->setTime(time())->setCount(1)->setIp($ip)->insert();
-			// debug_lib::fatal("$i");
+			$i = $this->sql()
+				->tableLogin_counter()
+				->setType($type)
+				->setTime(time())
+				->setCount(1)
+				->setIp($ip)
+				->insert();
 			return true;
 		}else{
 			$ret = $n->assoc();
@@ -34,7 +57,7 @@ class query_loginCounter_cls extends query_cls
 				return true;
 			}else{
 				$this->load_captcha();
-				return false;
+				return true;
 			}
 		}
 	}
@@ -43,12 +66,18 @@ class query_loginCounter_cls extends query_cls
 		$_SESSION['load_captcha'] = true;
 	}
 
+	public function unload_captcha() {
+		if(isset($_SESSION['load_captcha'])) unset($_SESSION['load_captcha']);
+	}	
+
 	public function register() {
-		return $this->counter("register", 10, 600);	
+		return $this->counter("register", 60, 600);	
 	}
 
 	public function clear() {
 		$this->sql()->tableLogin_counter()->whereIp($_SERVER['REMOTE_ADDR'])->delete();
+		$this->unload_captcha();
+
 	}
 
 	public function login() {

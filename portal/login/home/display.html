@@ -9,8 +9,11 @@
 	overflow: auto;
 	transform: translate(-50%, -50%);
 }
-
-.input-label {
+li{
+	font-family: 'WYekan';
+	
+}
+.input-label  {
 	font-family: 'WRoya';
 	width: 90px !important;
 }
@@ -46,7 +49,7 @@
 		<div class="submit-status" style="float: none">
 			{%for key, debugs in debug%}
 			{%if key != "status" and key != "msg"%}
-			<ul class="submit-status-{{key}}">
+			<ul class="xsubmit-status-{{key}}">
 				{%for cKey, cDebug in debugs%}
 				{%if cDebug.error is defined%}
 				<li>{{cDebug[cDebug.group]}} : {{cDebug.error}}</li>

@@ -16,18 +16,18 @@ define("PATH", preg_replace("/index\.php$/", "", $_SERVER["SCRIPT_NAME"]));
 $dir = preg_replace("[\\\\]", "/", __DIR__);
 define("DIR", $dir);
 
-if ( file_exists( DIR . '/config.php') )
-{
+if ( file_exists( DIR . '/config.php') ){
 	/** The config file resides in DIR */
 	require_once( DIR . '/config.php' );
-}
-else
-{   // A config file doesn't exist
+}else{
+   // A config file doesn't exist
+   // Die with an error message
+    $die  = _( "There doesn't seem to be a 
+                <code>config.php</code> file. 
+                I need this before we can get started." ) . '</p>';
 
-    // Die with an error message
-$die  = _( "There doesn't seem to be a <code>config.php</code> file. I need this before we can get started." ) . '</p>';
-echo( $die. _( 'Contact with administrator!' ) );
-exit();
+    echo( $die. _( 'Contact with administrator!' ) );
+    exit();
 }
 
 preg_match("/(.*)\.(.*)$/",$_SERVER['HTTP_HOST'],$c);

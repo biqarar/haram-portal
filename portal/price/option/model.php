@@ -25,7 +25,10 @@ class model extends main_model{
 	}
 
 	public function post_add_price(){
-		// var_dump($this->sql(".branch.users",$this->xuId("usersid") , $this->sql(".branch.plan", post::plan_id())));exit();
+		// $x = $this->sql(".branch.users",$this->xuId("usersid"));
+		// $y = $this->sql(".branch.plan", post::plan_id());
+		// var_dump($x, $y);
+		// exit();
 		$sql = $this->makeQuery();
 		//---------------- check branch
 		$this->sql(".branch.users",$this->xuId("usersid"));
@@ -39,9 +42,12 @@ class model extends main_model{
 			$sql->setDescription(post::description());
 		}elseif(post::type() == 'plan' && post::plan_id() != '') {
 			//---------------- check branch
-			$this->sql(".branch.users",$this->xuId("usersid") , $this->sql(".branch.plan", post::plan_id()));
-
-			$sql->setDescription($this->plan_name(post::plan_id()) . " - " . post::description());
+			// $this->sql(".branch.users",$this->xuId("usersid") , $this->sql(".branch.plan", post::plan_id()));
+			$x = $this->sql(".branch.users",$this->xuId("usersid"));
+			$y = $this->sql(".branch.plan", post::plan_id());
+			if($x == $y){
+				$sql->setDescription($this->plan_name(post::plan_id()) . " - " . post::description());
+			}
 		}
 		$sql = $sql->insert();
 	

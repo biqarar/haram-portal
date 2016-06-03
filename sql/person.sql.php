@@ -42,17 +42,17 @@ class person {
 	}
 
 	public function name() {
-		$this->form("#fatext")->name("name")->required();
+		$this->form("#fatext")->name("name");
 		$this->validate()->form->farsi("name should be between 2 and 32 characters");
 	}
 
 	public function family() {
-		$this->form("#fatext")->name("family")->required();
+		$this->form("#fatext")->name("family");
 		$this->validate()->farsi()->form->farsi("family name should be between 2 and 32 characters");
 	}
 
 	public function father() {
-		$this->form("#fatext")->name("father")->required();
+		$this->form("#fatext")->name("father");
 		$this->validate()->farsi()->form->validate("father name should be between 2 and 32 characters");
 	}
 

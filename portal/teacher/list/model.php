@@ -6,7 +6,6 @@
 class model extends main_model {
 		public function post_api(){
 
-		// var_dump("fuck");exit();
 		$dtable = $this->dtable->table('person')
 			->fields(
 				'username users.username',
@@ -36,17 +35,36 @@ class model extends main_model {
 				}
 				$q->groupClose();
 			})
-			// ->search_result(function($result){
-			// 	$vsearch = $_GET['search']['value'];
-			// 	$vsearch = str_replace(" ", "", $vsearch);
-			// 	$result->groupOpen();
-			// 	$result->condition("or", "##concat(person.name, person.family, person.father)", "LIKE", "%$vsearch%");
-			// 	$result->groupClose();
-			// 	$result->condition("or", "users.username", "LIKE", "%$vsearch%");
-			// 	$result->condition("or", "person.nationalcode", "LIKE", "%$vsearch%");
-			// 	// print_r($result);exit();
-			// 	// $result->condition("or" "#person.s", "LIKE" "%$vsearch%");
-			// })
+			->search_result(function($result){
+				$search = array('name', 'family', 'father' , "username users.username" , "nationalcode person.nationalcode");
+				
+				foreach ($search as $key => $value) {
+					if(preg_match("/^[^\s]*\s(.*)$/", $value, $nvalue)){
+						$search[$key] = $nvalue[1];
+					}
+				}
+				$vsearch = $_POST['search']['value'];
+				$ssearch = preg_split("[ ]", $vsearch);
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$csearch = $search;
+				foreach ($search as $key => $value) {
+					$search[$key] = "IFNULL($value, '')";
+				}
+				$search  = join($search, ', ');
+				$result->groupOpen();
+				$result->condition("and", "##concat($search)", "LIKE", "%$vsearch%");
+				foreach ($csearch as $key => $value) {
+					if(isset($ssearch[$key])){
+						$sssearch = $ssearch[$key];
+						if($key === 0){
+							$result->condition("OR", "##$value", "LIKE", "%$sssearch%");
+						}else{
+							$result->condition("AND", "##$value", "LIKE", "%$sssearch%");
+						}
+					}
+				}
+				$result->groupClose();
+			})
 			->result(function($r){
 				$r->learn = $this->tag("a")->addClass("icoallteacher")->href('users/learn/id='. $r->learn)->render();
 				$r->detail = $this->tag("a")->addClass("icomore")->href("users/status=detail/id=". $r->detail)->render();

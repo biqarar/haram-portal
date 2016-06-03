@@ -21,13 +21,21 @@ class view extends main_view{
 		$f->remove("username,status,type,password");
 		$f->remove("casecode,casecode_old");
 
+		$f->atFirst("nationalcode");
 		//------------------------------ list of branch
 		if($this->urlStatus() == "add") {
 			$this->listBranch($f);
 		}
 
+		foreach ($f->branch_id->child as $key => $value) {
+			
+			if($value->attr['value'] == $_SESSION['user']['branch']['selected'][0]){
+				$f->branch_id->child[$key]->attr['selected'] = "selected";
+			} 
+		}
+		
 
-		//------------------------------ set province list
+ 		//------------------------------ set province list
 		// $province_list = $this->sql(".assoc.province");
 		// $province = $this->form("select")->name("province")->classname("select-province")->label("province");
 		// foreach ($province_list as $key => $value) {
@@ -93,12 +101,12 @@ class view extends main_view{
 			
 			$this->sql(".edit", "person", $this->xuId(), $f);
 
-			$f->add("checked_data", 	"button")	->name("checked_data")		->value("checked Data");
-			$f->add("sendPortalMessage","button")	->name("sendPortalMessage")	->value("send Portal Message");
-			$f->add("sendEmail", 		"button")	->name("sendEmail")			->value("send Email");
-			$f->add("sendSMS", 			"button")	->name("sendSMS")			->value("send SMS");
-			$f->add("blocked", 			"button")	->name("blocked")			->value("blocked");
-			$f->add("delete", 			"button")	->name("delete")			->value("delete");
+			// $f->add("checked_data", 	"button")	->name("checked_data")		->value("checked Data");
+			// $f->add("sendPortalMessage","button")	->name("sendPortalMessage")	->value("send Portal Message");
+			// $f->add("sendEmail", 		"button")	->name("sendEmail")			->value("send Email");
+			// $f->add("sendSMS", 			"button")	->name("sendSMS")			->value("send SMS");
+			// $f->add("blocked", 			"button")	->name("blocked")			->value("blocked");
+			// $f->add("delete", 			"button")	->name("delete")			->value("delete");
 			
 			
 			$load_file = $this->sql("#load_file", $this->xuId());

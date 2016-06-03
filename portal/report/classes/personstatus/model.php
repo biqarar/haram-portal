@@ -37,6 +37,16 @@ class model extends main_model {
 			$classes_detail->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teacherName")->fieldFamily("teacherFamily");
 			
 			$classes_detail->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
+			$classes_detail->groupOpen();
+			//---------- get branch id in the list
+			foreach ($this->branch() as $key => $value) {
+				if($key == 0){
+					$classes_detail->condition("and", "plan.branch_id","=",$value);
+				}else{
+					$classes_detail->condition("or","plan.branch_id","=",$value);
+				}
+			}
+			$classes_detail->groupClose();
 		
 			$classes_detail->joinPlace()->whereId("#classes.place_id")->fieldName("place");
 	

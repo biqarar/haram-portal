@@ -10,7 +10,6 @@ class view extends main_view{
 		$this->global->page_title ="DEVELOPER ADMIN :)";
 	
 		$this->sql("#admin");
-
 		
 	}
 }

@@ -72,6 +72,16 @@ class model extends main_model {
 		})
 		->query(function($q){
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
+			$q->groupOpen();
+			//---------- get branch id in the list
+			foreach ($this->branch() as $key => $value) {
+				if($key == 0){
+					$q->condition("and", "plan.branch_id","=",$value);
+				}else{
+					$q->condition("or","plan.branch_id","=",$value);
+				}
+			}
+			$q->groupClose();
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 		})
