@@ -5,6 +5,12 @@
 class controller extends main_controller
 {
 	function config(){
+
+		//***************************************
+		header("location:".host."/portal/login");
+		exit();
+		//***************************************
+
 		$this->listen(array(
 			"max" => 2,
 			"url" => array("posts", "more")

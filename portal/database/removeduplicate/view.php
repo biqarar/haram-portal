@@ -22,9 +22,6 @@ class view extends main_view {
 		$merge[] = $submit->compile();
 		
 		$this->data->merge = $merge;
-		// $x = $this->sql("#duplicate", $this->xuId("nationalcode"));
-		// var_dump($x);exit();
-		// $this->data->show = $x;
 	}
 
 }

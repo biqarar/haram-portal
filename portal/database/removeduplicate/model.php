@@ -21,7 +21,7 @@ class model extends main_model {
 		// 	$username1 = $temp;
 		// }
 		
-		// if($username1 == $username2) debug_lib::fatal("نام کاربری باهم برابر است");
+		if($username1 == $username2) debug_lib::fatal("نام کاربری باهم برابر است");
 		if($username1 == "" || $username2 == "") debug_lib::fatal("هر دو نام کاربری را وارد کنید");
 
 
@@ -68,7 +68,6 @@ class model extends main_model {
 
 		$person1 = $this->sql()->tablePerson()->whereUsers_id($users_id1)->limit(1)->select()->assoc();
 		$person2 = $this->sql()->tablePerson()->whereUsers_id($users_id2)->limit(1)->select()->assoc();
-		
 		if(!$person1 OR !$person2) return false;
 		
 		$update = $this->sql()->tablePerson()->whereId($person2['id']);
@@ -89,8 +88,8 @@ class model extends main_model {
 		}
 		if($is_update) {
 			$update = $update->update();
-			$delete = $this->sql()->tablePerson()->whereId($person1['id'])->delete()->result();
 		}
+		$delete = $this->sql()->tablePerson()->whereId($person1['id'])->delete()->result();
 
 	}
 
@@ -171,6 +170,7 @@ class model extends main_model {
 
 
 	public function _get_delete(){
+		die();
 		$table = get::table();
 		$status = get::status();
 		$id = get::id();
