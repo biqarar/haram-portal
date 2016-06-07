@@ -3,10 +3,13 @@
 * 
 */
 class sql_cls {
+	
 	static $first = false;
+	
 	static function config($maker = false) {
 
 	}
+
 	static function call($maker, $name) {
 		
 		//------------------------------ send  users_id and branch_id to mysql engine 
@@ -59,6 +62,28 @@ class sql_cls {
 		$sql->query("COMMIT");
 		}
 		
+	}
+
+	static function trash($maker = false, $condition = false) {
+		$sql = new dbconnection_lib;
+		$assoc = $sql->query("select * from `" .$maker->table . "` where " . $condition . " LIMIT 0,1");
+		$trash = $assoc->assoc();
+		$meta = "";
+		foreach ($trash as $key => $value) {
+			if($key == "id") $id = $value;
+			$meta .= $key . ":" . $value  .", ";
+		}
+		if(isset($_SESSION['user']['id'])){
+			
+			$assoc = $sql->query("INSERT INTO `quran_hadith_log`.`trash` 
+				SET 
+				`tables` = '".$maker->table."',
+				`users_id` = '". $_SESSION['user']['id'] ."' , 
+				`record_id` = '$id',
+				`meta`  = '$meta'");
+			$sql->query("COMMIT");
+
+		}
 	}
 
 }

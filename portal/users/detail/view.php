@@ -28,6 +28,7 @@ class view extends main_view  {
 
 		//------------------------------  make person card
 		$person = $this->sql(".list.card", "person", $users_id, "users_id");
+		// var_dump($person);exit();
 		unset($person['addLink']);
 		$person['titleLink'] = "users/status=list";
 		$person["editLink"] = "person/status=edit/id=" . $person['list']['list'][0]['id'];

@@ -20,8 +20,8 @@ class query_login_cls extends query_cls {
 	public function check() {
 
 		// $_SESSION['user']['branch'] = array();
-		// $_SESSION['user']['branch']['all'] = array();
-		// $_SESSION['user']['branch']['active'] = array();
+		$_SESSION['user']['branch']['all'] = array();
+		$_SESSION['user']['branch']['active'] = array();
 		
 		$users_branch =	$this->users_branch();
 		// var_dump($users_branch);exit();
@@ -46,7 +46,7 @@ class query_login_cls extends query_cls {
 			 &&
 			(
 				!isset($_SESSION['user']['branch']['selected']) || 
-				empty($_SESSION['user']['branch']['selected'])
+				 empty($_SESSION['user']['branch']['selected'])
 			)
 
 		  ) {
@@ -98,8 +98,6 @@ class query_login_cls extends query_cls {
 
 		$users_data = $this->sql()->tableUsers()->whereId($this->users_id)->limit(1)->select()->assoc();
 
-		
-
 		//------------------------------ set email session
 		$_SESSION['user']['email'] = $users_data['email'];
 		
@@ -139,9 +137,25 @@ class query_login_cls extends query_cls {
 			if($value['update'] != NULL ) $session['tables'][$value["tables"]]['update'] = $value['update'];
 			if($value['insert'] != NULL ) $session['tables'][$value["tables"]]['insert'] = $value['insert'];
 			if($value['delete'] != NULL ) $session['tables'][$value["tables"]]['delete'] = $value['delete'];
-			if($value['condition'] != NULL) $session['tables'][$value["tables"]]['condition'] = $value['condition'];
-		}
+			if($value['condition'] != NULL) {
+				
+				$session['tables'][$value["tables"]]['condition'] = $value['condition'];
 
+				// ----------------------- set supervisor session
+				if($value['tables'] == "branch" AND $value['condition'] == "*") {
+					
+					$_SESSION['supervisor'] = $_SESSION['user']['id'];
+					
+					$_SESSION['user']['branch']['active'] = array();
+					
+					foreach ($this->sql(".branch._list") as $key => $value) {
+						$_SESSION['user']['branch']['active'][] = $value; 
+					}
+
+				}
+			}
+		}
+		unset($_SESSION['user']['permission']);
 		$_SESSION['user']['permission'] = $session;
 		// var_dump($_SESSION);exit();
 	}

@@ -6,16 +6,23 @@ class model extends main_model {
 	
 	public function post_changepasswd() {
 
-		$msg = "error";
+		$msg = "خطا در تغییر کلمه عبور";
 
+		if(post::newpasswd() == "") {
+			debug_lib::fatal("لطفا کلمه عبور را وارد کنید");
+		}
+		
 		//------------------------------ if old password is true
 		if($this->login()){
 			$user = $this->sql()
 				->tableUsers()
-				->whereId($_SESSION['user']['id'])
-				->andPassword(md5(post::oldpasswd()))
-				->limit(1)
-				->select();
+				->whereId($_SESSION['user']['id']);
+
+				if(!isset($_SESSION['supervisor'])){
+					$user->andPassword(md5(post::oldpasswd()));
+				}
+
+				$user = $user->limit(1)->select();
 				
 			if($user->num() == 1){
 				//------------------------------ if password == repassword 
@@ -27,12 +34,12 @@ class model extends main_model {
 						->update();
 				}else{
 					//------------------------------ make fatal error (password != repasswrod)
-					debug_lib::fatal("[[new password not match whit repssword]]");
+					debug_lib::fatal("کلمه عبور جدید و تکرار کلمه عبور باهم برابر نیستند");
 				}
 				
 			}else{
 				//------------------------------ make falal error (old password is incurect)
-				debug_lib::fatal("[[old password is incorect]]");
+				debug_lib::fatal("کلمه عبور فعلی اشتباه است");
 			}	
 		}else{
 			// $this->redirect("login");
@@ -40,7 +47,7 @@ class model extends main_model {
 
 		//------------------------------ commit code
 		$this->commit(function(){
-			debug_lib::true("[[password changed]]");
+			debug_lib::true("کلمه عبور با موفقیت تغییر یافت");
 		});
 
 		//------------------------------ rollback code

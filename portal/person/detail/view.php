@@ -9,7 +9,7 @@ class view extends main_view {
 		$this->global->page_title = "person";
 
 		//---------------------- check branch
-		$this->sql(".branch.person", $this->xuId());
+		$this->sql(".branch.users", $this->xuId());
 		
 		//------------------------------ list of classes
 		$person = $this->sql(".list", "person", function ($query, $id) {

@@ -55,6 +55,7 @@ class model extends main_model {
 		->query(function($q){
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName('planname')->fieldMax_person("maxp");
 			//---------- get branch id in the list
+			$q->groupOpen();
 			foreach ($this->branch() as $key => $value) {
 				if($key == 0){
 					$q->condition("and", "plan.branch_id","=",$value);
@@ -62,8 +63,10 @@ class model extends main_model {
 					$q->condition("or","plan.branch_id","=",$value);
 				}
 			}
+			$q->groupClose();
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
+			// echo $q->select()->string() ;exit();
 		})
 		->result(function($r){
 			if($r->icostatus == _("running") || $r->icostatus == _("ready")) {

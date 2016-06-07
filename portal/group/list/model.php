@@ -10,7 +10,8 @@ class model extends main_model {
 		->fields("id","name", "id edit")
 		->search_fields("name")
 		->query(function($q){
-			$q->groupbyId();
+			// $q->groupbyId();
+			// var_dump($q->select()->assoc());
 		})
 		->result(function($r){
 			$r->edit = '<a class="icoedit" href="group/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';

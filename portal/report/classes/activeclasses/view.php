@@ -14,6 +14,7 @@ class view extends main_view{
 		if($this->xuId("xlsx") == 1) {
 			$this->sql(".xlsx", $list, $list['title']);
 		}
+		// $this->data->alllist = $this->sql("#activeclasseslist");
 		$this->data->list = $list;
 		// ------------------------------ global
 		

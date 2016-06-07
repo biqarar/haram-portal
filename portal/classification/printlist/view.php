@@ -52,6 +52,7 @@ class view extends main_view {
 		$score_type = $this->sql("#score_type", $plan_id);
 		// var_dump($score_type);
 		$this->data->score_type = $score_type; 
+		// var_dump($classes_detail);exit();
 		$this->data->detail = $classes_detail;
 		$this->data->list = $classes_list;
 	}

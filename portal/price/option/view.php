@@ -15,6 +15,7 @@ class view extends main_view {
 		$this->sql(".branch.users",$usersid);
 
 		$this->topLinks(array(
+				array("title" => "آموزش", "url" => "users/learn/id=$usersid"),
 				array("title" => "ثبت", "url" => "price/status=add/usersid=$usersid"),
 				array("title" => "نمایش", "url" => "price/status=detail/usersid=$usersid")
 			));

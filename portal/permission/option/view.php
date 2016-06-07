@@ -63,7 +63,7 @@ class view extends main_view {
 				"username",
 				"name",
 				"family",
-			 "users_id",
+			 "users_branch_id",
 			 "tables",
 			 "select",
 			 "insert",

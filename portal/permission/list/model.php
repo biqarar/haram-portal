@@ -8,7 +8,7 @@ class model extends main_model {
 			"username",
 			"name",
 			"family",
-			 "users_id",
+			 "users_branch_id",
 			 "tables",
 			 "select",
 			 "insert",
@@ -18,7 +18,7 @@ class model extends main_model {
 			 "id edit",
 			 "id delete_")
 		->search_fields(
-			"username",
+			"username users.username",
 			"name",
 			"family",
 			"tables")
@@ -34,11 +34,14 @@ class model extends main_model {
 			}
 		})
 		->query(function($q){
-			$q->joinUsers_branch()->whereId("#permission.users_branch_id");
-			$q->joinUsers()->whereId("#users_branch.users_id")->fieldUsername("username");
-			$q->joinPerson()->whereUsers_id("#users.id")->fieldName("name")->fieldFamily("family");
+			$q->joinUsers_branch()->whereId("#permission.users_branch_id")->fieldId("users_branch_id");
+			$q->joinUsers()->whereId("#users_branch.users_id")->fieldUsername("username")->fieldId("users_id");
+			$q->joinPerson()->whereUsers_id("#users.id")->fieldName("name")->fieldFamily("family")->fieldId("person_id");
+			// var_dump($q->select()->string());
 		})
+
 		->result(function($r) {
+			// var_dump($r);exit();
 			$r->edit = '<a class="icoedit" href="permission/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 			$r->delete_ = $this->tag("a")->class("icoredclose deletepermission")->value($r->delete_)->href("")->render();
 		});

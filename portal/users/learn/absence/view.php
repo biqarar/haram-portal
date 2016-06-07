@@ -30,7 +30,7 @@ class view extends main_view  {
 				
 
 		$this->data->dataTable = $this->dtable("users/learn/listabsence/status=xapi/usersid=$users_id/"
-					, array("plan", "teacher", 'date', 'type', "edit" , "delete"));
+					, array("plan", "teacher", 'date', 'type',"because",  "edit" , "delete"));
 	}
 } 
 ?>

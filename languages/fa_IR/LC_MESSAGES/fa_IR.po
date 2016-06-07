@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "branch not match"
+msgstr "خطا در تطابق شناسه شعبه"
+
 msgid "selectbranch"
 msgstr "انتخاب شعبه"
 

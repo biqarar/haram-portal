@@ -142,8 +142,10 @@ class query_dataTable_cls extends query_cls
 			}
 			$array[] = $iArray;
 		}
+
 		$q = $result->field("#count(0)")->limit(0,10);
-		$recordsFiltered = (int) $q->select()->alist(0)[0];
+		$recordsFiltered = (int) $q->select()->assoc("count(0)");
+		
 		debug_lib::property("draw", (int) $_POST['draw']);
 		debug_lib::property("recordsTotal", $recordsTotal);
 		debug_lib::property("recordsFiltered", $recordsFiltered);

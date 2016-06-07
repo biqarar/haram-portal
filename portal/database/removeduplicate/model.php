@@ -113,7 +113,7 @@ class model extends main_model {
 					
 			}else{
 				#duplicate must be remove
-				$delete = $this->sql()->tableBridge()->whereId($check->asssoc("id"))->delete();
+				$delete = $this->sql()->tableBridge()->whereId($check->assoc("id"))->delete();
 			}
 		}
 

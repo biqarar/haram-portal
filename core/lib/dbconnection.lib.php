@@ -1,17 +1,10 @@
 <?php
 class dbconnection_lib{
 	
-	private $converted_to_object	= false;
-	private $record_is_called		= false;
-	private $assoc_is_called		= false;
-	private $save					= false;
-	private $allrecord				= array();
-	private $allassoc				= array();
-	private $allobject				= array();
-	private $i						= 0;
-	
+
 	public $result					= false;
-	public  static $resum_on_error			= false;
+	public  static $resum_on_error	= false;
+	public static  $first 			= true;
 
 	public $status					= true;
 	public $string					= false;
@@ -41,12 +34,12 @@ class dbconnection_lib{
 	}
 	public function query($string){
 		$patterns = array(
-			'/ة/',
+			// '/ة/',
 			'/إ/',
 			'/أ/',
 			'/ي/',
-			'/ئ/',
-			'/ؤ/',
+			// '/ئ/',
+			// '/ؤ/',
 			'/ك/',
 
 			'/۰/',
@@ -61,12 +54,12 @@ class dbconnection_lib{
 			'/۹/'
 			);
 		$replacements = array(
-			'ه',
+			// 'ه',
 			'ا',
 			'ا',
 			'ی',
-			'ی',
-			'و',
+			// 'ی',
+			// 'و',
 			'ک',
 
 			'0',
@@ -81,17 +74,21 @@ class dbconnection_lib{
 			'9'
 			);
 		$string = preg_replace($patterns, $replacements, $string);
-		// ilog($string);
-		// var_dump($string);
+
 		if(debug_lib::$status || self::$resum_on_error){
+			
 			$this->string = $string;
 
-			$this->result = self::$connection->query("SET sql_mode = '' ");
+			if(self::$first){
+				$this->result = self::$connection->query("SET sql_mode = '' ");
+				self::$first = false;
+			}
 			
 			$this->result = self::$connection->query($string);
+			
 			if (self::$connection->error) {
 				$this->status = false;
-				ilog("error : "  . self::$connection->error . " no: " . self::$connection->errno);
+				// ilog("error : "  . self::$connection->error . " no: " . self::$connection->errno);
 				$this->error(self::$connection->error, self::$connection->errno);
 
 			}
@@ -102,8 +99,10 @@ class dbconnection_lib{
 		return $this;
 	}
 
-	public function error($error = null, $errno = null) {
-		// var_dump($error, $errno);
+
+	
+	public function error($error = null, $errno = null){
+
 		$reg = new dberror_lib();
 		$f = "$errno";
 		$aError = $reg->$f($error);
@@ -122,197 +121,191 @@ class dbconnection_lib{
 		return $aError;
 	}
 
+	/*
+	* @return: mysqli_result
+	*/
 	public function result() {
+
 		if($this->status){
+
 			return $this->result;
+
 		}else{
+
 			return false;
 		}
 	}
 
-	public function save() {
-		$this->save = true;
-		return $this;
-	}
-
-	public function endSave() {
-		$this->save = false;
-		return $this->allrecord;
-	}
-
-	private function onSave($i, $result) { 
-		if ($this->save) {
-			$this->allrecord[$i] = (array) $result; return $this;
-		} else { 
-			return $result; 
-		}
-	}
-
-	private function _return($i, $field = null) {
-		if (!is_int($i)) {
-			$field = $i;
-			$i = $this->i;
-		}
-		$this->check_i($i);
-		$ret = $this->record_is_called();
-		if (!empty($this->allrecord[$this->i])) {
-			if (gettype($field) == 'object') {
-				$args   = func_get_args();
-				$args   = array_splice($args, 2);
-				array_unshift($args, $this->allrecord[$this->i]);
-				$return = call_user_func_array($field, $args);
-			} elseif ($field) {
-				$return = $this->allrecord[$this->i][$field];
-			} else {
-				$return = $this->allrecord[$this->i];
-			}
-			$this->i++;
-			return $this->onSave(($this->i - 1), $return);
-		} else {
-			return false;
-		}
-	}
-
-
+	/*
+	* @return: (array) list of fields 
+	*/
 	public function fieldNames(){
-		$this->record_is_called();
+
+		if(!$this->fieldNames) $this->_return();
+
 		return $this->fieldNames;
+	
 	}
 
+	public function _return($type = false) {
+		
+
+		if ($this->result !== null){
+
+			if(method_exists($this->result, "fetch_fields")){
+
+				$fields = $this->result->fetch_fields();
+
+				$aFields = array();
+				
+				foreach ($fields as $key => $value){
+
+					if(array_search($value->name, $aFields) === false){
+
+						$this->oFieldNames[] = $value;
+						$aFields[$key] = $value->name;
+					}
+				}
+
+				$this->fieldNames = $aFields;		
+
+				$x = false;
+				
+				if($type) $x = $this->result->fetch_array();
+				
+				if($x){
+
+					$record = array();
+					
+					foreach ($aFields as $key => $value){
+						
+						$record[$value] = html_entity_decode($x[$key], ENT_QUOTES | ENT_HTML5, "UTF-8");
+					}
+
+					$return = false;
+
+					switch ($type) {
+						case 'assoc':
+							$return = $record;
+							break;
+						case 'object' :
+							$return =  (object) $record;
+							break;
+						case 'array' :
+							$return = $x;
+							break;
+					}
+
+					return $return;
+				}
+			}
+
+		}
+		return false;
+
+	}
+
+	/*
+	* @return: (array) field list for ever filds one araay
+	*/
 	public function oFieldNames(){
-		$this->record_is_called();
+
+		if(!$this->oFieldNames){
+		
+			$this->fieldNames();	
+		}
+		
 		return $this->oFieldNames;
 	}
 
-	private function record_is_called() {
-		if (!$this->record_is_called) {
-			if ($this->result !== null) {
-				$this->record_is_called = true;
-				if(method_exists($this->result, "fetch_fields")){
-					$fields = $this->result->fetch_fields();
-					$aFields = array();
-					foreach ($fields as $key => $value) {
-						if(array_search($value->name, $aFields) === false){
-							$this->oFieldNames[] = $value;
-							$aFields[$key] = $value->name;
-						}
-					}
-					$this->fieldNames = $aFields;
-					while ($x = $this->result->fetch_array()) {
-						$record = array();
-						foreach ($aFields as $key => $value) {
-							$record[$value] = html_entity_decode($x[$key], ENT_QUOTES | ENT_HTML5, "UTF-8");
-						}
-						$this->allrecord[] = $record;
-					}
-				}
-			}
-		}
+	public function fetch_array($field = false){
+
+		$return = $this->_return("array"); 
+		
+		return ($field) ? $return[$field] : $return; 
 	}
 
-	private function convert_to_array($object = null) {
+	public function allArray($field = false){
+		
 		$all = array();
-		foreach ($object as $key => $value) {
-			$all[$key] = (array) $value;
+
+		while ($x = $this->fetch_array($field)){
+			$all[] = $x;
 		}
+
 		return $all;
 	}
 
-	private function convert_to_object($array = null) {
-		if (!$this->converted_to_object) {
-			if (!$array) {
-				$this->record_is_called();
-				$array = $this->allrecord;
-			}
-			$all = array();
-			foreach ($array as $key => $value) {
-				$all[$key] = (object) $value;
-			}
-			$this->converted_to_object = true;
-			$this->allobject = $all;
-		}
-		return $this->allobject;
+	public function assoc($field = false){
+
+		$return = $this->_return('assoc'); 
+		
+		return ($field) ? $return[$field] : $return; 
 	}
 
-	private function check_i($i) {
-		if ($i) {
-			$this->i = $i;
-		}
-		if ($i < 0) {
-			$this->i = 0;
-		}
-	}
-
-	public function assoc($i = null, $field = null) {
-		return call_user_func_array(array($this, "_return"), array($i, $field));
-	}
-
-	public function allAssoc($field = null) {
-		$this->i = 0;
+	public function allAssoc($field = false){
+		
 		$all = array();
-		while ($x = $this->assoc($field)) {
+
+		while ($x = $this->assoc($field)){
 			$all[] = $x;
 		}
-		return ($this->save) ? $this : $all;
+
+		return $all;
 	}
 
-	public function alist($i = null, $field = null) {
-		$array = call_user_func_array(array($this, "_return"), array($i, $field));
-		if(is_array($array)){
-			return array_values($array);
-		}else{
-			return $array;
+	public function object($field = false) {
+
+		$return = $this->_return('object');
+
+		if($field) {
+			$return = @$return->$field;
 		}
-	}
 
-	public function allAlist($field = null) {
-		$this->i = 0;
-		$all = array();
-		while ($x = $this->alist($field)) {
-			$all[] = $x;
-		}
-		return ($this->save) ? $this : $all;
-	}
-
-	public function object($i = null, $field = null) {
-		$return = call_user_func_array(array($this, "_return"), array($i, $field));
 		return ($return) ? (is_array($return)) ? (object) $return : $return  : false;
+
 	}
 
-	public function allObject($field = null) {
+	public function allObject($field = false) {
 		$all = array();
-		$this->i = 0;
 		while ($x = $this->object($field)) {
 			$all[] = $x;
 		}
-		return ($this->save) ? $this : $all;
+		return  $all;
 	}
 
-	public function string() {
-		if(!$this->status ){
-			return "error in debug\n"
-			.$this->string;
-		}
+
+	public function string(){
+
 		return $this->string;
 	}
 
-	public function num() {
-		if ($this->status){	
+	public function num(){
+
+		if ($this->status){
+			
 			if(!$this->result){
 				return 0;
 			}
+
 			return $this->result->num_rows;
+
 		}else{
+
 			return false;
 		}
 	}
 
-	public function LAST_INSERT_ID() {
+	public function LAST_INSERT_ID(){
+
 		if ($this->status){
+
 			return self::$connection->insert_id;
 		}else{
+
 			return false;
 		}
-	}
+	}	
+
 }
 ?>

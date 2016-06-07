@@ -14,6 +14,7 @@ class view extends main_view {
 		$this->sql(".branch.users",$usersid);
 
 		$this->topLinks(array(
+				array("title" => "آموزش", "url" => "users/learn/id=$usersid"),
 				array("title" => "ثبت", "url" => "price/status=add/usersid=$usersid"),
 				array("title" => "نمایش", "url" => "price/status=detail/usersid=$usersid")
 			));
@@ -39,9 +40,18 @@ class view extends main_view {
 			$plan_name = $this->sql(".assoc.foreign", "plan", $plan_id , "name");
 
 			if($value['changeName'] == 'شرکت در کلاس' || $value['changeName'] == 'پرداخت دوره ای' ) {
+
+				$detail = $this->sql(".classes.detail", $value['transactions']);
+				$str = "کد کلاس: " . $detail['id'] . " \n";
+				$str .= "طرح: " . $detail['planname'] . " \n";
+				$str .= "نام استاد: " . $detail['teacherName'] . " " . $detail['teacherFamily'] . " \n";
+				$str .= "مدرس: " . $detail['place'] . " \n";
+				$str .= "نام کلاس: " . $detail['name'] . " \n";
+				$str .= "وضعیت کلاس : " . _($detail['status']) . " \n";
+
 				$price['list'][$key]['transactions'] = $this->tag("a")
 					->href("classes/status=detail/id=" . $value['transactions'])
-					->class("icoclass")->title("در کلاس استفاده شده است")->render() . " $plan_name  " ;
+					->class("icoclass")->title("جهت ثبت در کلاس استفاده شده است \n" . $str)->render() . " $plan_name  " ;
 
 			}
 		}

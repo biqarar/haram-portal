@@ -7,8 +7,6 @@ class users {
 	public $password = array('type'=> 'varchar@32', 'label' => 'users_password');
 
 	public $email    = array('type'=> 'varchar@64', 'label' => 'users_email');
-	// public $type = array("type" => "enum@student,teacher,operator,baby!student");
-	// public $status = array("type" => "enum@waiting,block,delete,enable!waiting");
 	public $unique   = array("username", "email");
 	
 

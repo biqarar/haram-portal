@@ -18,6 +18,7 @@ class view extends main_view{
 		}
 		$this->data->list = $list;
 		$this->data->activeclasses = $activeclasses;
+		// $this->data->alllist = $this->sql("#alllist");
 		// ------------------------------ global
 		
 	}

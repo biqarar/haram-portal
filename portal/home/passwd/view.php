@@ -9,19 +9,26 @@ class view extends main_view {
 		$this->global->page_title = 'change password';
 		
 		//------------------------------ make chane password form
-		$hidden = $this->form("#hidden")->value("changepasswd");
-		$oldpasswd = $this->form("password")->name("oldpasswd")->label("oldpasswd");
-		$newpasswd = $this->form("password")->name("newpasswd")->label("newpasswd");
-		$repasswd =  $this->form("password")->name("repasswd")->label("repasswd");
-		$submit = $this->form("#submitedit")->value("update");
-		
 		$changepasswd = array();
-		
+
+		$hidden = $this->form("#hidden")->value("changepasswd");
 		$changepasswd[] = $hidden->compile();
-		$changepasswd[] = $oldpasswd->compile();
+		
+		if(!isset($_SESSION['supervisor'])){
+			$oldpasswd = $this->form("password")->name("oldpasswd")->label("oldpasswd");
+			$changepasswd[] = $oldpasswd->compile();
+		}
+
+		$newpasswd = $this->form("password")->name("newpasswd")->label("newpasswd");
 		$changepasswd[] = $newpasswd->compile();
+		
+		$repasswd =  $this->form("password")->name("repasswd")->label("repasswd");
 		$changepasswd[] = $repasswd->compile();
+		
+		$submit = $this->form("#submitedit")->value("update");
 		$changepasswd[] = $submit->compile();
+		
+		
 		
 		$this->data->changepasswd = $changepasswd;
 	}

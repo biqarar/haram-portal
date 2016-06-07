@@ -20,10 +20,17 @@ class view extends main_view {
 				->value($value['branch_id'])
 				->label(_($value['type']) . " در " . $value['name']);	
 		}
+		if(isset($_SESSION['supervisor'])){
+			$this->data->supervisor = true;
+			$this->data->name_family = $this->sql(".userNameFamily",$_SESSION['user']['id']);
 
-			$f->add("select","submit")->name("select")->value(_("ورود   با  سمت  انتخابی"));
+			$f->add("username","text")
+				->name("supervisor")->label("ورود با نام کاربری")->pl("نام کاربری مورد نظر");
+		}
 
-			$f->add("logout","submit")->name("logout")->value(_("خروج از حساب کاربری"));
+		$f->add("select","submit")->name("select")->value(_("ورود   با  سمت  انتخابی"));
+
+		$f->add("logout","submit")->name("logout")->value(_("خروج از حساب کاربری"));
 		
 		$f->remove("submit");
 	}

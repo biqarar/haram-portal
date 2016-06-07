@@ -48,7 +48,8 @@
 	<a href="classification/printlist/classesid={{classesid}}/type=bridge" class=" botton-link a-undefault">لیست پل های ارتباطی</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=rokhani" class=" botton-link a-undefault">آزمون روخوانی</a>
 	<a href="classification/printlist/classesid={{classesid}}/type=tajvid" class=" botton-link a-undefault">آزمون تجوید</a>
-
+	<a href="classification/printlist/classesid={{classesid}}/type=cover" class=" botton-link a-undefault">جلد</a>
+	
 	<label class="label-custom" >نمایش پل های ارتباطی
 	<input type="checkbox" value="checked" id="bridge" checked="checked" >
 	<span class="brk-form-custom">
@@ -82,6 +83,8 @@
 		{{ include('classification/printlist/tajvid.html') }}
 	{% elseif type == 'absence'%}
 		{{ include('classification/printlist/absence.html') }}
+	{% elseif type == 'cover'%}
+		{{ include('classification/printlist/cover.html') }}
 	{% else %}
 		{{ include('classification/printlist/defaultList.html') }}
 	{% endif %}

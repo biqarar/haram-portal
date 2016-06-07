@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		
+		.cover * {
+			width: 100%;
+			direction: rtl;
+			/*font-family: 'WRoya';*/
+			font-family: 'WYekan';
+		}
+		h1{
+			font-size:80px;
+			/*padding: -30px;*/
+			/*margin: -30px;*/
+		}
+		h2,h3,h4,h5{
+			font-size: 45px;
+			/*padding: -30px;*/
+			/*margin: -30px;*/
+		}
+
+		h2{
+			font-size: 50px;
+		}
+		h6{
+			font-size: 25px;
+		}
+	
+		@media print{
+			#backPortal{
+				display: none;
+			}
+			@page {
+				size: A4 landscape;
+					/*size: landscape*/
+				}
+		}
+	</style>
+</head>
+	<center>
+		<div class="cover">
+			<h1>{{detail.list[0]['teacher']}}</h1>
+			<h2>{{detail.list[0]['plan_id']}} ({{detail.list[0]['age_range']|lang}})</h2>
+			<h4>ساعت: {{detail.list[0]['start_time']}} الی {{detail.list[0]['end_time']}}</h2>
+			<h5 style="font-size: 30px;">روز های : {{detail.list[0]['week_days']|lang}}</h5>
+			<h6> مدرس: {{detail.list[0]['place_id']}}</h6>
+			<h6> تاریخ شروع: {{detail.list[0]['start_date']}}</h6> 
+			<h6>کد کلاس: {{detail.list[0]['id']}}</h6>	
+		</div>
+	</center>
+<body>
+
+</body>
+</html>

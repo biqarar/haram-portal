@@ -110,6 +110,7 @@ class model extends main_model {
 			}
 		})
 		->query(function($q){
+
 			if(!$this->allclasses) {
 				$q->whereStatus("<>", "done");
 			}
@@ -131,9 +132,55 @@ class model extends main_model {
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldFamily("teacherfamily")->fieldName("teachername");
 			$q->joinPlace()->whereId("#classes.place_id")->fieldName("placename");
 
-			// echo $q->select()->string();exit();
 
 		})
+		->search_result(function($result){
+				$search = array(
+					"id classes.id",
+					"planname plan.name" ,
+					"teachername person.name",
+					"teacherfamily person.family",
+					"placename place.name",
+					"name classes.name",
+					"maxp plan.max_person");
+				
+				foreach ($search as $key => $value) {
+					if(preg_match("/^[^\s]*\s(.*)$/", $value, $nvalue)){
+						$search[$key] = $nvalue[1];
+					}
+				}
+				$vsearch = $_POST['search']['value'];
+				$ssearch = preg_split("[ ]", $vsearch);
+				$vsearch = str_replace(" ", "_", $vsearch);
+				$csearch = $search;
+				foreach ($search as $key => $value) {
+					$search[$key] = "IFNULL($value, '')";
+				}
+				$search  = join($search, ', ');
+				$result->groupOpen();
+				$result->condition("and", "##concat($search)", "LIKE", "%$vsearch%");
+				foreach ($csearch as $key => $value) {
+					if(isset($ssearch[$key])){
+						$sssearch = $ssearch[$key];
+						if($key === 0){
+							$result->condition("OR", "##$value", "LIKE", "%$sssearch%");
+						}else{
+							$result->condition("AND", "##$value", "LIKE", "%$sssearch%");
+						}
+					}
+				}
+				$result->groupClose();
+				// $vsearch = $_POST['search']['value'];
+				// // var_dump($_POST['search']['value']);exit();
+				// $vsearch = str_replace(" ", "", $vsearch);
+				// $result->condition("and", "##concat(IFNULL(person.name, ''), IFNULL(person.family, ''), IFNULL(person.father, ''))", "LIKE", "'%$vsearch%'");
+				// // $result->groupOpen();
+				// $result->condition("or", "users.username", "LIKE", "'%$vsearch%'");
+				// $result->condition("or", "person.nationalcode", "LIKE", "'%$vsearch%'");
+				// // $result->groupClose();
+				// print_r($result->select()->string());exit();
+				// // $result->condition("or" "#person.s", "LIKE" "%$vsearch%");
+			})
 		->result(function($r, $ico, $url){
 			if($r->count == "") $r->count = 0;
 

@@ -44,6 +44,7 @@ class model extends main_model {
 					}
 				}
 			$q->groupClose();
+				// echo $q->select()->string();exit();
 			// ilog($q->select()->string());
 		})
 		->search_result(function($result){
@@ -54,7 +55,6 @@ class model extends main_model {
 				$result->condition("and", "users.username", "LIKE", "'%$vsearch%'");
 				$result->condition("or", "bridge.value", "LIKE", "'%$vsearch%'");
 				$result->groupClose();
-				// echo $resultس->select()->string();exit();
 
 		})
 		->result(function($r){

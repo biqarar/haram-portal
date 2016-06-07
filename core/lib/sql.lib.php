@@ -202,6 +202,9 @@ class sql_lib{
 		$string = "DELETE FROM ";
 		$string .= "`".$this->maker->table."`";
 		$string .= " WHERE".$this->condition($this->maker);
+		if(autoload::check("sql_cls") && method_exists("sql_cls", "trash")) {
+			sql_cls::trash($this->maker ,$this->condition($this->maker));
+		}
 		return $string;
 	}
 

@@ -7,7 +7,7 @@ class model extends main_model {
 	public function post_api() {
 
 		$dtable = $this->dtable->table("absence")
-		->fields("planname", "teacherfamily", 'date date', 'type', "id edit" , "classificationid delete")
+		->fields("planname", "teacherfamily", 'date date', 'type',"because", "id edit" , "classificationid delete")
 		->search_fields("date", "classes_id")
 		
 		->query(function($q){

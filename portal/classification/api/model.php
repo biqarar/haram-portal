@@ -10,7 +10,13 @@ class model extends main_model {
 		$classesid = $this->xuId("classesid");
 
 		//----------------------- check branch
-		$this->sql(".branch.users", $usersid, $this->sql(".branch.classes", $classesid));
+		$x =$this->sql(".branch.users", $usersid);
+
+		$y =  $this->sql(".branch.classes", $classesid);
+
+		if($x != $y) {
+			debug_lib::fatal("branch not match");
+		}
 			
 		
 		$price = $this->sql()->tablePrice()

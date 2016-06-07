@@ -5,7 +5,7 @@ class users_branch {
 	public $users_id  = array('type'=> 'int@10', 'label' => 'users_id');
 	public $branch_id = array('type'=> 'int@10', 'label' => 'branch_id');
 	public $type = array("type" => "enum@student,teacher,operator!student");
-
+	public $status = array("type" => "enum@waiting,block,delete,enable!waiting");
 	// public $unique = array("users");
 
 	// public $foreign = array("users_id" => "users@id!id", "branch_id" => "branch@id!name");

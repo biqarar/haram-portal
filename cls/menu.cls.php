@@ -478,35 +478,35 @@ class menu_cls  {
 		// 	);
 
 		//------------------------------ drafts add
-		self::$menu[] = array(
-			"submenu" => "folder", 
-			"url" => "files/type=files/status=add/base=users", 
-			"name" =>  _("upload users file"), 
-			"tag" => array(
-				"file" => array("insert" => array("public"))
-				)
-			);
+		// self::$menu[] = array(
+		// 	"submenu" => "folder", 
+		// 	"url" => "files/type=files/status=add/base=users", 
+		// 	"name" =>  _("upload users file"), 
+		// 	"tag" => array(
+		// 		"file" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
 
-		//------------------------------ drafts add
-		self::$menu[] = array(
-			"submenu" => "mail", 
-			"url" => "sms/drafts/status=add", 
-			"name" =>  _("add drafts"), 
-			"tag" => array(
-				"drafts" => array("insert" => array("public"))
-				)
-			);
+		// //------------------------------ drafts add
+		// self::$menu[] = array(
+		// 	"submenu" => "mail", 
+		// 	"url" => "sms/drafts/status=add", 
+		// 	"name" =>  _("add drafts"), 
+		// 	"tag" => array(
+		// 		"drafts" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
-		//------------------------------ drafts add
-		self::$menu[] = array(
-			"submenu" => "mail", 
-			"url" => "sms/send", 
-			"name" =>  _("send sms"), 
-			"tag" => array(
-				"sms" => array("insert" => array("public"))
-				)
-			);
+		// //------------------------------ drafts add
+		// self::$menu[] = array(
+		// 	"submenu" => "mail", 
+		// 	"url" => "sms/send", 
+		// 	"name" =>  _("send sms"), 
+		// 	"tag" => array(
+		// 		"sms" => array("insert" => array("public"))
+		// 		)
+		// 	);
 
 
 		//------------------------------ classes list
@@ -551,6 +551,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "settings", 
 			"url" => 'login/selectbranch', 
+			"target" => "_blank",
 			"name" =>  _("انتخاب شعبه"), 
 			"tag" => $this->selectbranch()
 			);
@@ -566,6 +567,9 @@ class menu_cls  {
 
 	public function selectbranch() {
 		if(isset($_SESSION['user']['branch']['active']) &&  count($_SESSION['user']['branch']['active']) > 1) {
+			return "public";
+		}
+		if(isset($_SESSION['supervisor'])){
 			return "public";
 		}
 		return "olny from some branch";

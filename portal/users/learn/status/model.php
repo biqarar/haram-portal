@@ -5,6 +5,7 @@
 class model extends main_model {
 
 	public function post_api(){
+
 		$usersid = $this->xuId();
 
 			//----------------------- check banch
@@ -24,8 +25,11 @@ class model extends main_model {
 		, "id certification")
 		->search_fields("plan", "teacher")
 		->query(function($q){
+
 			$q->whereUsers_id($this->xuId());
-			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid")->fieldStatus("classesstatus");
+
+			$q->joinClasses()->whereId("#classification.classes_id")->fieldId("classesid")
+			  ->fieldStatus("classesstatus");
 			$q->joinPlan()->whereId("#classes.plan_id")->fieldName("plan");
 			$q->joinPerson()->whereUsers_id("#classes.teacher")->fieldName("teachername")->fieldFamily("teacherfamily");
 		})
@@ -42,20 +46,24 @@ class model extends main_model {
 			}
 		})
 		->result(function($r) {
+
 			$absence_count = $this->find_count_absence($r->absence);
-			// var_dump($absence_count);exit();
+
 			if (!$absence_count || $absence_count == 0 || $absence_count == null) {
-				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->class("icoattendance")->render();
+				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->class("icoattendance")->title("نمایش غیبت های فراگیر")->render();
 			}else{
-				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->render();
+				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->title("نمایش غیبت های فراگیر")->render();
 			}
+
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();
+			
 			$r->certification = $this->find_status_certification($r->certification);
+			// var_dump($r);exit();
 			if($r->classesstatus == "اتمام") {
-				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoredclass")->title("کلاس به اتمام رسیده است")->render();
+				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoredclass")->title("کلاس به اتمام رسیده است " . $r->class)->render();
 
 			}else{
-				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->title("کلاس فعال است")->render();
+				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->title("کلاس فعال است " . $r->class)->render();
 			}
 			
 		});
