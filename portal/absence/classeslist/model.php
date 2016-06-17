@@ -9,6 +9,7 @@ class model extends main_model {
 					 "family person.family",
 					 "date_entry",
 					 "date_delete",
+					 "because",
 					 "id type",
 					 "id insert",
 					 "usersid attendance",
@@ -24,7 +25,7 @@ class model extends main_model {
 			
 				$q->andClasses_id($this->xuId("classesid"));
 
-				$q = $this->classification_finde_active_list($q);
+				// $q = $this->classification_finde_active_list($q);
 				
 				$q->joinPerson()->whereUsers_id("#classification.users_id")
 								->fieldName("name")->fieldFamily("family")->fieldUsers_id("usersid");

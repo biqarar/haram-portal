@@ -1,0 +1,8 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+<form class="ajx" method="post" action="hefzlig/teams/{{global.url}}">
+	{{forms.make(form.hefz_teams)}}
+</form>
+{{dtable.make(dataTable)}}
+{%endblock%}

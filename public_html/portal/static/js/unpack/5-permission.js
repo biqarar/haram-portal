@@ -16,7 +16,7 @@ route(/permission\/status\=api/, function(){
 
 route(/permission\/status\=add/, function(){
 
-	$("#branch_id", this).combobox();
+	$(".select-branch", this).combobox();
 
 	$(".showbranch",this).click(function(){
 		_self = this;

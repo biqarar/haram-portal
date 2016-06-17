@@ -26,7 +26,7 @@ class model extends main_model {
 						->setType($type)
 						->setDate($date)
 						->insert();
-
+			$this->sql(".absence.autoremove",$classification);
 			$this->type = $type;
 			
 		}
@@ -54,7 +54,8 @@ class model extends main_model {
 		$this->type = $check->select()->assoc("type");
 
 		$x = $check->delete();
-	
+		// $this->sql(".absence.autoremove",$classification);
+		
 		$this->commit(function(){
 			debug_lib::true(_($this->type) .  " حذف شد");
 		});

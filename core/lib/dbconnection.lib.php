@@ -74,7 +74,7 @@ class dbconnection_lib{
 			'9'
 			);
 		$string = preg_replace($patterns, $replacements, $string);
-
+		// var_dump($string);
 		if(debug_lib::$status || self::$resum_on_error){
 			
 			$this->string = $string;
@@ -147,8 +147,7 @@ class dbconnection_lib{
 	
 	}
 
-	public function _return($type = false) {
-		
+	public function _return($type = false) {		
 
 		if ($this->result !== null){
 
@@ -195,7 +194,6 @@ class dbconnection_lib{
 							$return = $x;
 							break;
 					}
-
 					return $return;
 				}
 			}
@@ -239,7 +237,6 @@ class dbconnection_lib{
 	public function assoc($field = false){
 
 		$return = $this->_return('assoc'); 
-		
 		return ($field) ? $return[$field] : $return; 
 	}
 

@@ -106,6 +106,12 @@ class model extends main_model {
 				return $this->tag("a")
 				->addClass("icosettings")->href('branch/status=change/usersid='. $id)->render();
 				break;
+
+			case 'hefz_teams':
+			return $this->tag("a")
+			->addClass("icodadd")->style("cursor: pointer;")->addClass("add-hefz-teams-users")
+				->hefzteamsid($this->xuId("teamid"))->usersid($id)->render();
+			break;
 			
 			default:
 				return $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $id)->render();

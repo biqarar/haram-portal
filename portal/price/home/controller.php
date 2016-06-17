@@ -10,7 +10,8 @@ class controller extends main_controller{
 			"url"=>array("change","status" => "add")
 			), function(){
 				save(array("price", "change" ,"option"));
-			$this->permission = array("price_change" => array("insert" => array("public")));
+				$this->access = global_cls::supervisor();
+			// $this->permission = array("price_change" => array("insert" => array("public")));
 	});
 
 	$this->listen(array(
@@ -18,7 +19,8 @@ class controller extends main_controller{
 			"url"=>array("change","status" => "edit" , "id" => "/^\d+$/")
 			), function(){
 				save(array("price", "change" ,"option"));
-			$this->permission = array("price_change" => array("update" => array("public")));
+				$this->access = global_cls::supervisor();
+			// $this->permission = array("price_change" => array("update" => array("public")));
 	});
 
 	$this->listen(array(
@@ -26,7 +28,8 @@ class controller extends main_controller{
 			"url"=>array("status" => "listapi")
 			), function(){
 				save(array("price", "change" ,"list" , "mod" => "api"));
-			$this->permission = array("price_change" => array("select" => array("public")));
+				$this->access = global_cls::supervisor();
+			// $this->permission = array("price_change" => array("select" => array("public")));
 	});
 
 	$this->listen(array(

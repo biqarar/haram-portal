@@ -614,6 +614,22 @@ body {
   background: url(../svg/icons/xlsx.png);
   background-size: 100% 100%; }
 
+.icoup {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/up.svg);
+  background-size: 100% 100%; }
+
+.icodown {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: url(../svg/icons/down.svg);
+  background-size: 100% 100%; }
+
 #tabs.ui-widget-content {
   background: transparent; }
 
@@ -730,7 +746,7 @@ label {
     vertical-align: top;
     text-align: left;
     padding-left: 10px; }
-  .form-element input[type="text"], .form-element input[type="password"], .form-element input[type="email"], .form-element span.ui-selectmenu-button, .form-element .autocomplete, .form-element textarea {
+  .form-element input[type="number"], .form-element input[type="button"], .form-element input[type="text"], .form-element input[type="password"], .form-element input[type="email"], .form-element span.ui-selectmenu-button, .form-element .autocomplete, .form-element textarea {
     background: #e2e2e2;
     outline: 1px solid #b7b7b7;
     outline-offset: 1px;
@@ -743,7 +759,7 @@ label {
     font-family: "WYekan";
     font-size: 12px;
     color: #333 !important; }
-    .form-element input[type="text"]:focus, .form-element input[type="text"]:active, .form-element input[type="password"]:focus, .form-element input[type="password"]:active, .form-element input[type="email"]:focus, .form-element input[type="email"]:active, .form-element span.ui-selectmenu-button:focus, .form-element span.ui-selectmenu-button:active, .form-element .autocomplete:focus, .form-element .autocomplete:active, .form-element textarea:focus, .form-element textarea:active {
+    .form-element input[type="number"]:focus, .form-element input[type="number"]:active, .form-element input[type="button"]:focus, .form-element input[type="button"]:active, .form-element input[type="text"]:focus, .form-element input[type="text"]:active, .form-element input[type="password"]:focus, .form-element input[type="password"]:active, .form-element input[type="email"]:focus, .form-element input[type="email"]:active, .form-element span.ui-selectmenu-button:focus, .form-element span.ui-selectmenu-button:active, .form-element .autocomplete:focus, .form-element .autocomplete:active, .form-element textarea:focus, .form-element textarea:active {
       background: #e6e6e6; }
   .form-element textarea {
     resize: none;

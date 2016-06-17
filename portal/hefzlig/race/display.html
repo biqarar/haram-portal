@@ -1,0 +1,54 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+{{tagMaker.list(list)}}
+<!-- <style type="text/css">
+	.hefz-lig-tema-race {
+		/*height: 75px;*/
+		width: 100px;
+		margin: 5px;
+		background: #9fbe03;
+		font-size: 25px;
+		border-radius: 7px;
+		padding: 25px 50px 25px 50px !important;
+		text-align: center;
+		cursor: pointer;
+		display: inline-block;
+	}
+	.hefz-lig-race-start {
+		
+		background: #f16971;
+		font-size: 17px;
+	}
+</style>
+<br>
+با انتخاب دو تیم از لیست تیم ها زیر آن دو تیم را به مسابقه دعوت کنید
+<br>
+<center>
+	<b>
+	تیم های انتخابی جهت شروع مسابقه
+	</b><br>
+	<b>
+		<div class="hefz-lig-tema-race">مصباح</div>
+		<div class="hefz-lig-tema-race">منیر</div>
+	</b>
+	<br>
+	<div class="hefz-lig-tema-race hefz-lig-race-start">شروع مسابقه</div>
+		
+</center>
+
+
+<br> -->
+<!-- {{tagMaker.list(teamlist)}} -->
+
+<!-- <br><b> -->
+<!-- لیست تمامی تیم ها -->
+<!-- </b><br> -->
+<!-- برای دعوت یک تیم به مسابقه روی دکمه <b>«اضافه به مسابقه»</b> کلیک کنید. -->
+
+<form class="ajx" method="post" action="hefzlig/race/{{global.url}}">
+	{{forms.make(form.hefz_race)}}
+</form>
+<br>
+{{dtable.make(dataTable)}}
+{%endblock%}

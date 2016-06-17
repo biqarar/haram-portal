@@ -8,8 +8,8 @@ class model extends main_model{
 		//------------------------------ make sql object
 		return $this->sql()->tablePrice_change()
 		->setName(post::name())
-		->setType(post::type())
-		->setBranch_id($this->post_branch());
+		->setType(post::type());
+		// ->setBranch_id($this->post_branch());
 	}
 
 	public function post_add_price_change(){
@@ -30,7 +30,7 @@ class model extends main_model{
 	public function post_edit_price_change(){
 
 		//--------------- check branch
-		$this->sql(".branch.price_change", $this->xuId());
+		// $this->sql(".branch.price_change", $this->xuId());
 		
 		//------------------------------ update price_change
 		$sql = $this->makeQuery()->whereId($this->xuId())->update();

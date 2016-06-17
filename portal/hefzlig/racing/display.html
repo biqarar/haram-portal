@@ -1,0 +1,119 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+<style type="text/css">
+	.tema-race {
+		/*height: 75px;*/
+		width: 280px;
+		/*margin-right: 88px;*/
+		background: #9fbe03;
+		font-size: 25px;
+		border-radius: 7px;
+		padding: 4px 50px 4px 50px !important;
+		text-align: center;
+		/*cursor: pointer;*/
+		display: inline-block;
+	}
+	.race-result {
+		
+		background: #59C5C5;
+
+		/*font-size: 17px;*/
+	}
+	.racing-right {
+		width:390px; display: inline-block; float:right;
+	}
+	.racing-left{
+		width:390px;display:inline-block; float:right; margin-right:200px
+	}
+
+	.manfi-left {
+		float:left; 
+	}
+
+	.manfi-right{
+
+		/*width:390px;*/
+		display:inline-block; 
+		float:right; 
+		/*margin-right:200px*/
+
+	}
+
+</style>
+<center>
+	<div class="racing-right">
+		<div class="tema-race">{{team1.name}}</div>
+		{{tagMaker.list(team1.list)}}
+	</div>
+
+	<div class="racing-left">
+		<div class="tema-race">{{team2.name}}</div>
+		{{tagMaker.list(team2.list)}}	
+	</div>
+
+	<dir style="clear:both"></dir>
+
+
+<!-- result -->
+	<div class="racing-right">
+		<div class="tema-race race-result">
+			<span class="manfi-right">
+				<a style="font-size:15px;">امتیاز منفی:</a>
+				<a style="cursor:pointer;" name="manfiup" teamid="{{team1.id}}" class="icoup race-manfi" type='up' 
+					raceid="{{raceid}}"></a>
+				<a id="race-result-manfi-{{team1.id}}">{{result1.manfi}}</a>
+				<a style="cursor:pointer;" name="manfidown" teamid="{{team1.id}}" class="icodown race-manfi" type="down" raceid="{{raceid}}"></a>
+			</span>
+			<!-- <hr> -->
+			<span class="manfi-left">
+				<a style="font-size:15px;"> جمع : 
+					<a style="font-size:15px;" id="race-result-value-{{team1.id}}">{{result1.value}}</a>
+				</a>
+				<br>
+				نتیجه: 
+				<a id="race-result-result-{{team1.id}}" >{{result1.result}}</a>
+				<br>
+				<a style="font-size:20px;"> امتیاز : 
+					<a id="race-result-rate-{{team1.id}}">{{result1.rate}}</a>
+				</a>
+			</span>
+		</div>
+
+	</div>
+
+	<div class="racing-left">
+		<div class="tema-race race-result">
+
+			<span class="manfi-right">
+				<a style="font-size:15px;">امتیاز منفی:</a>
+				<a style="cursor:pointer;" name="manfiup" teamid="{{team2.id}}" class="icoup race-manfi" type='up' 
+					raceid="{{raceid}}"></a>
+				<a id="race-result-manfi-{{team2.id}}">{{result2.manfi}}</a>
+				<a style="cursor:pointer;" name="manfidown" teamid="{{team2.id}}" class="icodown race-manfi" type="down" raceid="{{raceid}}"></a>
+
+			</span>
+			<!-- <hr> -->
+			<span class="manfi-left">
+
+				<a style="font-size:15px;"> جمع : 
+					<a style="font-size:15px;" id="race-result-value-{{team2.id}}">{{result2.value}}</a>
+				</a>
+				<br>
+				نتیجه:
+				<a id="race-result-result-{{team2.id}}" >{{result2.result}}</a>
+				<br>
+				<a style="font-size:20px;"> امتیاز : 
+					<a id="race-result-rate-{{team2.id}}">{{result2.rate}}</a>
+				</a>
+				
+			</span>
+		</div>
+
+	</div>
+	<dir style="clear:both"></dir>
+
+</center>
+
+
+{%endblock%}

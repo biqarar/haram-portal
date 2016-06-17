@@ -24,12 +24,12 @@ class permission {
 	}
 	
 	public function users_branch_id() {
-		$this->form("text")->name("users_branch_id")->required();
+		$this->form("text")->name("users_branch_id")->addClass("notselect")->required();
 		// $this->setChild();
 	}
 
 	public function branch_id() {
-		$this->form("select")->name("branch_id")->class("notselect")->required();
+		$this->form("select")->name("branch_id")->addClass("notselect")->required();
 		$this->setChild();
 	}
 	

@@ -56,7 +56,7 @@ class view extends main_view {
 		}else{
 			
 			$this->data->dataTable = $this->dtable("absence/status=classeslist/classesid=" . $this->xuId("classesid").'/',
-				array("name", "family", "date_entry", "date_delete", "type" ,"ثبت غیبت" , "ثبت غیبت بیشتر" , "نمایش غیبت ها"));
+				array("name", "family", "date_entry", "date_delete", "because","type" ,"ثبت غیبت" , "ثبت غیبت بیشتر" , "نمایش غیبت ها"));
 		}
 	}
 }

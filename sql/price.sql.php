@@ -35,18 +35,19 @@ class price {
 	public function title(){
 		$this->form("select")->name("title")->id("title")->addClass("select-title notselect")->label("type");
 		$this->setChild(function($q){
-			$list = isset($_SESSION['user']['branch']['selected']) ? 
-						  $_SESSION['user']['branch']['selected'] : array();
-			$q->groupOpen();
-			foreach ($list as $key => $value) {
-				if($key == 0){
-					$q->condition("where", "price_change.branch_id","=",$value);
-				}else{
-					$q->condition("or","price_change.branch_id","=",$value);
-				}
-			}	
-			$q->groupClose();
-			// $q->joinPrice_change()->whereId("#price.title")->fieldType('type');
+			
+		// 	$list = isset($_SESSION['user']['branch']['selected']) ? 
+		// 				  $_SESSION['user']['branch']['selected'] : array();
+		// 	$q->groupOpen();
+		// 	foreach ($list as $key => $value) {
+		// 		if($key == 0){
+		// 			$q->condition("where", "price_change.branch_id","=",$value);
+		// 		}else{
+		// 			$q->condition("or","price_change.branch_id","=",$value);
+		// 		}
+		// 	}	
+		// 	$q->groupClose();
+		// 	// $q->joinPrice_change()->whereId("#price.title")->fieldType('type');
 		}, function($child, $value){
 			// var_dump($value);exit();
 			$child->label(gettext($value['type']) . " > " .  $value['name'])->value($value['id']); 

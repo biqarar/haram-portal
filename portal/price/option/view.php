@@ -28,7 +28,16 @@ class view extends main_view {
 		$f = $this->form('@price', $this->urlStatus());
 		$f->type->child(1)->checked("checked");
 		$f->remove("status");
-		$f->title->child(0)->selected("selected");
+		
+		if(global_cls::superprice()){
+		
+			$f->title->child(0)->selected("selected");
+			
+		}else{
+			
+			$f->remove("title");
+			unset($f->pay_type->child[2]);
+		}
 
 		if($this->urlStatus() == "edit") {
 			

@@ -17,6 +17,78 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "race_hefz"
+msgstr "مسابقه"
+
+msgid "race"
+msgstr "مسابقه"
+
+msgid "hefz_race_hefz_team_id_1"
+msgstr "تیم اول"
+
+msgid "hefz_race_hefz_team_id_2"
+msgstr "تیم دوم"
+
+msgid "hefz_race_name"
+msgstr "نام مسابقه"
+
+msgid "hefz_race_place"
+msgstr "مکان مسابقه"
+
+msgid "hefz_race_type"
+msgstr "نوع دیدار"
+
+msgid "hefz_teams_id"
+msgstr "شماره تیم"
+
+msgid "hefz_ligs_start_date"
+msgstr "تاریخ شروع مسابقات تیمی"
+
+msgid "hefz_ligs_end_date"
+msgstr "تاریخ پایان مسابقات تیمی"
+
+msgid "hefz_ligs_name"
+msgstr "نام مسابقات تیمی"
+
+msgid "lig"
+msgstr "مسابقات تیمی حفظ"
+
+msgid "ligs"
+msgstr "مسابقات تیمی"
+
+msgid "hefligs"
+msgstr "مسابقات تیمی حفظ"
+
+msgid "hefz_lig"
+msgstr "مسابقات تیمی حفظ"
+
+msgid "hefz_ligs"
+msgstr "مسابقات تیمی حفظ"
+
+msgid "hefz_teams_lig_id"
+msgstr "مسابقات تیمی"
+
+msgid "hefz_teams_name"
+msgstr "نام تیم"
+
+msgid "hefz_teams_min_person"
+msgstr "حد اقل اعظاء تیم"
+
+msgid "hefz_teams_max_person"
+msgstr "حد اکثر اعضاء تیم"
+
+msgid "hefz_teams_hefz"
+msgstr "محدوده حفظ تیم"
+
+msgid "hefz_teams_teacher"
+msgstr "نام استاد تیم"
+
+msgid "hefz_teams"
+msgstr "تیم حفظ"
+
+msgid "teams"
+msgstr "تیم"
+
 msgid "branch not match"
 msgstr "خطا در تطابق شناسه شعبه"
 

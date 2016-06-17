@@ -1,0 +1,14 @@
+{# Reza Mohiti rm.biqarar@gmail.com #}
+{% extends layout %}
+{%block content%}
+{{tagMaker.list(list)}}
+<br><b>
+افراد ثبت شده در تیم
+</b><br>
+{{tagMaker.list(teamlist)}}
+<br><b>
+لیست تمامی فراگیران
+</b><br>
+برای ثبت فراگیر در این لیست روی دکمه <b>«ثبت در این تیم»</b> کلیک کنید.
+{{dtable.make(dataTable)}}
+{%endblock%}

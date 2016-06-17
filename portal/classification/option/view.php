@@ -25,11 +25,12 @@ class view extends main_view {
 			$this->data->users_id = $f->users_id->attr['value'];
 			$this->data->classes_id =$f->classes_id->attr['value'];
 			$this->data->id = $this->xuId();
-			
+			$f->because->child(0)->selected("selected");
+
 			if($f->date_delete->attr['value'] != "") {
 				//----------------------------- return to classes
 
-
+				$this->redirect("classification/returnclasses/id=".$this->xuId());
 			}else{
 				//------------------------------ set name and family instead users_id
 				$name = $this->sql(".assoc.foreign", "person", $f->users_id->attr['value'] ,"name", "users_id");

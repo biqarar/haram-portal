@@ -60,7 +60,7 @@ class view extends main_view {
 			
 			$classes = array();
 			// $classes[] = $this->form("#hidden")->value("absence_add")->compile();
-			
+			// var_dump($active_classes);exit();
 			foreach ($active_classes as $key => $value) {
 				
 				$x = $this->form("checkbox")

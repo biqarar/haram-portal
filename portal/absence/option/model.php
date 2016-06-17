@@ -73,6 +73,7 @@ class model extends main_model {
 				$this->commit(function() {
 					debug_lib::true("[[insert absence successful]]");
 				});
+				$this->sql(".absence.autoremove",$value);
 				$i++;
 			}
 			//------------------------------ commit code

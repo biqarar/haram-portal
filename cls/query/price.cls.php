@@ -17,7 +17,7 @@ class query_price_cls extends query_cls {
 		
 		if(intval($user_active_price) >= intval($price['price']) || global_cls::superprice()){
 			$this->price_low($users_id, $classes_id, $price['price']);
-			$this->payment_coutn_check($price, $users_id, $classes_id);
+			// $this->payment_coutn_check($price, $users_id, $classes_id);
 			return true;
 		}else{
 			return false;

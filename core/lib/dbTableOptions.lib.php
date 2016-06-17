@@ -50,6 +50,7 @@ class dbTableOptions_lib{
 				}
 			}
 		}elseif( isset($table->{$this->fieldName}->foreign) ){
+			// return true;
 			// foreign written by javad @hasan: check for conflict with haram
 			// check for count of running this function with uncomment below line
 			// var_dump("test"); // this line run n times
@@ -78,6 +79,7 @@ class dbTableOptions_lib{
 				}
 			}
 		}elseif(isset($table->foreign[$this->fieldName])){
+			// return true;
 			$field = $table->foreign[$this->fieldName];
 			$options = $this->splitor($field);
 			if(isset($args[0]) && is_string($args[0])){

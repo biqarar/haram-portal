@@ -29,9 +29,9 @@ class query_classesDetail_cls extends query_cls
 				//------------------------------ change users id to name and family to show
 				$classes_detail = $this->detailClasses($classes_detail, $classesid);
 
-				$return['page_title']
-					 = gettext("class").' '.
-					preg_replace("/<a(.*)\n(.*)\/a>/", " - ثبت در دوره - ",$classes_detail['list'][0]['plan_id']) . ' استاد ' .
+				$return['page_title'] = gettext("class").' '. $classes_detail['list'][0]['id'] . ': ' . 
+					preg_replace("/<a(.*)\n(.*)\/a>/", " - ثبت در دوره - ",$classes_detail['list'][0]['plan_id']) . 
+					' استاد ' .
 					$classes_detail['list'][0]['teacher'] . ' ' .
 					$classes_detail['list'][0]['place_id'] ;
 				

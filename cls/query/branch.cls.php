@@ -11,9 +11,19 @@ class query_branch_cls extends query_cls {
 	//**** show all branch active for this users
  	//**** to insert a record the users can insert into another branch
 	public function get_list() {
-		$listBranch = $this->sql()->tableUsers_branch()->whereUsers_id($_SESSION['user']['id'])
-		->andStatus("enable");
-		$listBranch->joinBranch()->whereId("#users_branch.branch_id")->fieldName("branch_name")->fieldId("branch_id");
+
+		$list = $this->_list("active");
+		$listBranch = $this->sql()->tableBranch();
+
+		foreach ($list as $key => $value) {
+			if($key == 0) {
+				$listBranch->whereId($value);
+			}else{
+				$listBranch->orId($value);
+			}
+		}
+		
+		$listBranch = $listBranch->fieldName("branch_name")->fieldId("branch_id");
 		return  $listBranch->select()->allAssoc();
 		
 	}
@@ -66,12 +76,18 @@ class query_branch_cls extends query_cls {
 		}
 	}
 
-	public function _list(){
+	public function _list($selectOrActive = "selected"){
 		
 		if(global_cls::supervisor()) {
 		
 			return $this->allBranch("id");
 		
+		}
+
+		if($selectOrActive == "active"){
+			return isset($_SESSION['user']['branch']['active']) ?  
+						 $_SESSION['user']['branch']['active'] :
+						 $_SESSION['user']['branch']['selected'];	
 		}
 
 		return isset($_SESSION['user']['branch']['selected']) ?  
@@ -101,7 +117,7 @@ class query_branch_cls extends query_cls {
 		$users_id = $us['users_id'];
 		$branch_id = $us['branch_id'];
 
-		foreach ($_SESSION['user']['branch']['active'] as $key => $value) {
+		foreach ($this->_list("active") as $key => $value) {
 			if($branch_id == $value){
 				return true;
 			}
@@ -242,6 +258,21 @@ class query_branch_cls extends query_cls {
 	public function courseclasses($courseclasses_id = false ){
 		$query = $this->sql()->tableCourseclasses()->whereId($courseclasses_id)->limit(1)->select()->assoc("course_id");
 		return $this->course($query);
+	}
+
+	public function hefz_ligs($hefz_ligs_id = false) {
+		$query = $this->sql()->tableHefz_ligs()->whereId($hefz_ligs_id)->limit(1)->select()->assoc("branch_id");
+		return $this->check($query);
+	}
+
+	public function hefz_teams($hefz_teams_id = false ){
+		$query = $this->sql()->tableHefz_teams()->whereId($hefz_teams_id)->limit(1)->select()->assoc("lig_id");
+		return $this->hefz_ligs($query);
+	}
+
+	public function hefz_teamuser($hefz_teamuser_id = false) {
+		$query = $this->sql()->tableHefz_teamuser()->whereId($hefz_teamuser_id)->limit(1)->select()->assoc("hefz_team_id");
+		return $this->hefz_teams($query);
 	}
 	
 	

@@ -9,19 +9,28 @@ class model extends main_model{
 	}
 
 	public function makeQuery() {
+		// var_dump(post::title());exit();
 		$value = preg_replace("/\,/", "", post::value());
 		//--------------- check branch
 		$this->sql(".branch.price_change", post::title());
 
-		return $this->sql()->tablePrice()
-				// ->setUsers_id($this->xuId("usersid"))
+		$return = $this->sql()->tablePrice()
 				->setDate(post::date())			
 				->setValue($value)
 				->setPay_type(post::pay_type())
 				->setCard(post::card())
-				->setTitle(post::title())
 				->setTransactions(post::transactions())
 				->setDescription(post::description());
+				
+			if(global_cls::superprice()){
+				$return->setTitle(post::title());
+			}else{
+				if(post::pay_type() == "rule"){
+					debug_lib::fatal("شما مجوز لازم جهت ثبت شهریه از طریق آیین نامه را ندارید");
+				}
+				$return->setTitle($this->sql(".price.get_price_change","پرداخت شهریه"));
+			}
+			return $return;
 	}
 
 	public function post_add_price(){

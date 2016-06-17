@@ -206,6 +206,40 @@ class menu_cls  {
 				"course" => array("insert" => array("public"))
 				)
 			);
+		
+
+		//------------------------------  hefz_lig
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'hefzlig/ligs', 
+			"name" =>  _("ثبت لیگ حفظ"), 
+			"tag" => array(
+				"hrfzligs" => array("insert" => array("public"))
+				)
+			);
+
+		//------------------------------  hefz_team
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'hefzlig/teams', 
+			"name" =>  _("ثبت تیم های لیگ"), 
+			"tag" => array(
+				"hrfzligs" => array("insert" => array("public"))
+				)
+			);
+	
+
+
+		//------------------------------  hefz_team
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'hefzlig/race', 
+			"name" =>  _("مسابقه"), 
+			"tag" => array(
+				"hrfzligs" => array("insert" => array("public"))
+				)
+			);
+		
 
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
@@ -381,9 +415,7 @@ class menu_cls  {
 			"submenu"     => "price",
 			"url"         => 'price/change/status=add',
 			"name"        =>  _("manage price"),
-			"tag"         => array(
-			"price"  => array("delete" => array("public"))
-				)
+			"tag"         => $this->supervisor()
 			);
 
 			//------------------------------  score

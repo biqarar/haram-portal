@@ -11,6 +11,9 @@ class model extends main_model {
 	public $show = array();
 
 	public function post_merge(){
+		set_time_limit(30000);
+		ini_set('memory_limit', '-1');
+		ini_set("max_execution_time", "-1");
 
 		$username1 = post::username1();
 		$username2 = post::username2();

@@ -24,7 +24,7 @@ class model extends main_model{
 				debug_lib::fatal("موجودی فعال شهریه فراگیر منفی است و امکان ثبت درخواست گواهی نامه وجود ندارد");
 			}
 
-			if(!$this->sql(".pasportCheck", $users_id)){
+			if(!$this->sql(".pasportCheck", $users_id) && !global_cls::supervisor()){
 				debug_lib::fatal("تاریخ اعتبار گذر نامه ایشان به اتمام رسیده است");
 			}
 
