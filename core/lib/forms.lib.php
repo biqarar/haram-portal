@@ -9,8 +9,8 @@ class forms_lib{
 			return new $class;
 		}elseif(preg_match("/^\#(.*)$/", $name, $fname)){
 			$form = new forms_Extends_cls;
-			if(isset($form->$fname[1])){
-				return $form->$fname[1];
+			if(isset($form->{$fname[1]})){
+				return $form->{$fname[1]};
 			}else{
 				page_lib::page("FORM EXTEND $fname[1]");
 			}

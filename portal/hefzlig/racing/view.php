@@ -18,7 +18,7 @@ class view extends main_view {
 
 		$team1 = $this->sql(".list", "hefz_teamuser", function ($query) {
 			$query->whereHefz_team_id($this->team1_data['id']);
-			$query->joinHefz_race_result()->whereHefz_race_id($this->race_id)->andHefz_teamuser_id($this->team1_data['id']);
+			//$query->joinHefz_race_result()->whereHefz_race_id($this->race_id)->andHefz_teamuser_id($this->team1_data['id']);
 			$query->joinPerson()->whereUsers_id("#hefz_teamuser.users_id")->fieldName("personname")->fieldFamily("personfamily");
 			// $query->joinHefz_ligs()->whereId("#hefz_teams.lig_id")->fieldName("ligname");
 		});
