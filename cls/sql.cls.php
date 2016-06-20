@@ -8,6 +8,7 @@ class sql_cls {
 	
 	static function config($maker = false) {
 		
+		
 	}
 
 	static function call($maker, $name) {
