@@ -53,12 +53,21 @@ class model extends main_model {
 			$r->team2 = $this->find_team_name($r->team2);
 			$r->edit = '<a class="icoedit" href="hefzlig/race/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 
-			$r->result = "75٪  -  38٪";
+			$r->result = $this->result($r->result);
 			$r->race = $this->tag("a")->href("hefzlig/race/status=racing/id=". $r->race)->addClass("icoallusers")->render();
 
 
 		});
 		$this->sql(".dataTable", $dtable);
+	}
+
+	public function result($race_id = false) {
+		$result = $this->sql(".hefzlig.race_result",$race_id);
+		$all = array();
+		foreach ($result as $key => $value) {
+			$all[] = $value;
+		}
+		return $all[0]["main_result"] . "  -  " . $all[1]['main_result'];
 	}
 
 	public function find_team_name($team_id = false) {

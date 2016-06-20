@@ -74,7 +74,8 @@ class dbconnection_lib{
 			'9'
 			);
 		$string = preg_replace($patterns, $replacements, $string);
-		// var_dump($string);
+		// var_dump($string);.
+		// ilog($string);
 		if(debug_lib::$status || self::$resum_on_error){
 			
 			$this->string = $string;
@@ -194,6 +195,7 @@ class dbconnection_lib{
 							$return = $x;
 							break;
 					}
+
 					return $return;
 				}
 			}

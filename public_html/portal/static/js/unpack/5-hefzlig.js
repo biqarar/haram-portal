@@ -22,27 +22,21 @@ route(/portal\/hefzlig/, function(){
 	
 });
 function hefz_result(raceid,_self){
-
-
-// race-result-value-{{team1.id}}
-// race-result-result-{{team1.id}}
-		$.ajax({
-			type: "POST",
-			url : 'hefzlig/racing/status=resultapi/raceid=' + raceid,
-			success : function(data){
-				// console.log(data);
-				for(a in data['msg']['result']){
-
-					$("#race-result-value-" +a).html(persian_nu(data['msg']['result'][a]['value']));
-					$("#race-result-result-" +a).html(persian_nu(data['msg']['result'][a]['result']));
-					$("#race-result-rate-" +a).html(persian_nu(data['msg']['result'][a]['rate']));
-					$("#race-result-manfi-" +a).html(persian_nu(data['msg']['result'][a]['manfi']));
-					
-				}
-
+// console.log(raceid,_self);
+	$.ajax({
+		type: "POST",
+		url : 'hefzlig/racing/status=resultapi/raceid=' + raceid,
+		success : function(data){
+			// console.log(data);
+			for(a in data['msg']['result']){
+				// console.log($("#race-result-value-" +a).html())
+				$("#race-result-value-" +a).html(persian_nu(data['msg']['result'][a]['value']));
+				$("#race-result-result-" +a).html(persian_nu(data['msg']['result'][a]['result']));
+				$("#race-result-rate-" +a).html(persian_nu(data['msg']['result'][a]['rate']));
+				$("#race-result-manfi-" +a).html(persian_nu(data['msg']['result'][a]['manfi']));	
 			}
-		});
-
+		}
+	});
 }
 
 route(/hefzlig\/race\/status\=racing/, function(){
@@ -100,6 +94,7 @@ route(/hefzlig\/race\/status\=racing/, function(){
 					xhr_result(data);
 				}else{
 					$(_true).insertAfter(_self);
+
 					hefz_result(raceid,$(_self));
 				}
 			}

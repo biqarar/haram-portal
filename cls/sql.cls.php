@@ -7,7 +7,7 @@ class sql_cls {
 	static $first = false;
 	
 	static function config($maker = false) {
-
+		
 	}
 
 	static function call($maker, $name) {
@@ -59,7 +59,7 @@ class sql_cls {
 			`record_id` = '$record_id' ,
 			`old_value` = '$old_value',
 			`new_value` = '$new_value'");
-		$sql->query("COMMIT");
+		// $sql->query("COMMIT");
 		}
 		
 	}
@@ -81,7 +81,7 @@ class sql_cls {
 				`users_id` = '". $_SESSION['user']['id'] ."' , 
 				`record_id` = '$id',
 				`meta`  = '$meta'");
-			$sql->query("COMMIT");
+			// $sql->query("COMMIT");
 
 		}
 	}

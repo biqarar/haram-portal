@@ -212,7 +212,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'hefzlig/ligs', 
-			"name" =>  _("ثبت لیگ حفظ"), 
+			"name" =>  _("ثبت مسابقات تیمی"), 
 			"tag" => array(
 				"hrfzligs" => array("insert" => array("public"))
 				)
@@ -222,7 +222,7 @@ class menu_cls  {
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'hefzlig/teams', 
-			"name" =>  _("ثبت تیم های لیگ"), 
+			"name" =>  _("ثبت تیم های مسابقه"), 
 			"tag" => array(
 				"hrfzligs" => array("insert" => array("public"))
 				)

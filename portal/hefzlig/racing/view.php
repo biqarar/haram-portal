@@ -18,13 +18,13 @@ class view extends main_view {
 
 		$team1 = $this->sql(".list", "hefz_teamuser", function ($query) {
 			$query->whereHefz_team_id($this->team1_data['id']);
-			//$query->joinHefz_race_result()->whereHefz_race_id($this->race_id)->andHefz_teamuser_id($this->team1_data['id']);
 			$query->joinPerson()->whereUsers_id("#hefz_teamuser.users_id")->fieldName("personname")->fieldFamily("personfamily");
-			// $query->joinHefz_ligs()->whereId("#hefz_teams.lig_id")->fieldName("ligname");
 		});
+
 		// var_dump($team1);exit();
+		
 		$team1->removeCol("id,hefz_team_id,users_id");
-			$team1->addColEnd("race1","تلاوت اول")->select(-1, "race1")->html("<div class='form-element'>
+		$team1->addColEnd("race1","تلاوت اول")->select(-1, "race1")->html("<div class='form-element'>
 					<input type='text' name='race1' teamusersid='%id%' class='race-mark' raceid='{$this->race_id}' style='width:50px !important' placeholder='تلاوت اول' id='race1'>
 					</div>");
 		$team1->addColEnd("race2","تلاوت دوم")->select(-1, "race2")->html("<div class='form-element'>
@@ -40,10 +40,11 @@ class view extends main_view {
 		$team2 = $this->sql(".list", "hefz_teamuser", function ($query) {
 			$query->whereHefz_team_id($this->team2_data['id']);
 			$query->joinPerson()->whereUsers_id("#hefz_teamuser.users_id")->fieldName("personname")->fieldFamily("personfamily");
-			// $query->joinHefz_ligs()->whereId("#hefz_teams.lig_id")->fieldName("ligname");
 		});
 		// var_dump($team2);exit();
 		$team2->removeCol("id,hefz_team_id,users_id");
+		$team2->addColFirst("absence","حضور")->select(-1, "absence")->html(
+					"<label class='label-custom'><input type='checkbox' checked='checked' value='saturday' id='saturday' name='absence' placeholder='حضور'><span class='brk-form-custom'><span></span><span></span></span></label>");
 			$team2->addColEnd("race1","تلاوت اول")->select(-1, "race1")->html("<div class='form-element'>
 					<input type='text' name='race1' teamusersid='%id%' class='race-mark' raceid='{$this->race_id}' style='width:50px !important' placeholder='تلاوت اول' id='race1'>
 					</div>");
