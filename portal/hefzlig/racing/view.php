@@ -43,8 +43,8 @@ class view extends main_view {
 		});
 		// var_dump($team2);exit();
 		$team2->removeCol("id,hefz_team_id,users_id");
-		$team2->addColFirst("absence","حضور")->select(-1, "absence")->html(
-					"<label class='label-custom'><input type='checkbox' checked='checked' value='saturday' id='saturday' name='absence' placeholder='حضور'><span class='brk-form-custom'><span></span><span></span></span></label>");
+		// $team2->addColFirst("absence","حضور")->select(-1, "absence")->html(
+		// 			"<label class='label-custom'><input type='checkbox' checked='checked' value='saturday' id='saturday' name='absence' placeholder='حضور'><span class='brk-form-custom'><span></span><span></span></span></label>");
 			$team2->addColEnd("race1","تلاوت اول")->select(-1, "race1")->html("<div class='form-element'>
 					<input type='text' name='race1' teamusersid='%id%' class='race-mark' raceid='{$this->race_id}' style='width:50px !important' placeholder='تلاوت اول' id='race1'>
 					</div>");

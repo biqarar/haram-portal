@@ -8,7 +8,7 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = 'Profile';
 
-	
+	// var_dump($_SESSION['user']['permission']);exit();
 		//------------------------------ globals type
 		$this->global->type = isset($_SESSION['user']['type']) ? $_SESSION['user']['type'] : "";		
 

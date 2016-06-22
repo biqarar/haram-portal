@@ -214,7 +214,7 @@ class menu_cls  {
 			"url" => 'hefzlig/ligs', 
 			"name" =>  _("ثبت مسابقات تیمی"), 
 			"tag" => array(
-				"hefzlig" => array("insert" => array("public"))
+				"hefz_ligs" => array("insert" => array("public"))
 				)
 			);
 
@@ -224,7 +224,7 @@ class menu_cls  {
 			"url" => 'hefzlig/teams', 
 			"name" =>  _("ثبت تیم های مسابقه"), 
 			"tag" => array(
-				"hefzlig" => array("insert" => array("public"))
+				"hefz_ligs" => array("insert" => array("public"))
 				)
 			);
 	
@@ -236,7 +236,7 @@ class menu_cls  {
 			"url" => 'hefzlig/race', 
 			"name" =>  _("مسابقه"), 
 			"tag" => array(
-				"hefzlig" => array("insert" => array("public"))
+				"hefz_ligs" => array("insert" => array("public"))
 				)
 			);
 		
