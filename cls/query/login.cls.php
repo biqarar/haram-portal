@@ -139,7 +139,16 @@ class query_login_cls extends query_cls {
 			if($value['delete'] != NULL ) $session['tables'][$value["tables"]]['delete'] = $value['delete'];
 			if($value['condition'] != NULL) {
 				
-				$session['tables'][$value["tables"]]['condition'] = $value['condition'];
+				if(preg_match("/\,/", $value['condition'])){
+					$s = preg_split("/\,/", $value['condition']);
+					foreach ($s as $cKey => $cValue) {
+						$session['tables'][$value["tables"]]['condition'][$cValue] = true;
+					}
+					
+				}else{
+					$session['tables'][$value["tables"]]['condition'] = $value['condition'];
+				}			
+				
 
 				// ----------------------- set supervisor session
 				if($value['tables'] == "branch" AND $value['condition'] == "*") {
@@ -157,7 +166,8 @@ class query_login_cls extends query_cls {
 		}
 		unset($_SESSION['user']['permission']);
 		$_SESSION['user']['permission'] = $session;
-		// var_dump($_SESSION);exit();
+		// echo "<pre>";
+		// print_r($_SESSION);exit();
 	}
 }
 ?>

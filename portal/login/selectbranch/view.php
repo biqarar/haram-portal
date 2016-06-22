@@ -26,6 +26,11 @@ class view extends main_view {
 
 			$f->add("username","text")
 				->name("supervisor")->label("ورود با نام کاربری")->pl("نام کاربری مورد نظر");
+
+			$f->select_branch->child()
+				->name("selectbranch_supervisor")
+				->value("supervisor_" . $_SESSION['supervisor'])
+				->label("سوپر وایزر");
 		}
 
 		$f->add("select","submit")->name("select")->value(_("ورود   با  سمت  انتخابی"));

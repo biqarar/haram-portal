@@ -23,13 +23,12 @@ class view extends main_view {
 		//------------------------------  url
 		$this->global->url .=  "/usersid=" . $usersid;
 		$this->global->status =  gettext($this->urlStatus()); 
-		// var_dump($this->global->url);exit();
 		
 		$f = $this->form('@price', $this->urlStatus());
 		$f->type->child(1)->checked("checked");
 		$f->remove("status");
-		
-		if(global_cls::superprice()){
+
+		if(global_cls::superprice("rule")){
 		
 			$f->title->child(0)->selected("selected");
 			

@@ -41,10 +41,10 @@ class sql_lib{
 			// echo "\n<pre>\n";
 			// echo($string)."\n\n";
 			// echo "\n</pre>\n";
-			$_SESSION['time'] = microtime(true);
+			// $_SESSION['time'] = microtime(true);
 			$connection = new dbconnection_lib;
 			$result = $connection->query($string);
-			ilog(microtime(true) - $_SESSION['time'], $string);
+			// ilog(microtime(true) - $_SESSION['time'], $string);
 			return $result;
 		}else{
 			return $string;

@@ -27,7 +27,7 @@ class plan {
 		$this->form("select")->name("group_id")->required();
 		$this->setChild(function($q){
 			
-			// if(!isset($_SESSION['supervisor'])){
+			if(!isset($_SESSION['supervisor'])){
 
 				$list = isset($_SESSION['user']['branch']['selected']) ? 
 							  $_SESSION['user']['branch']['selected'] : array();
@@ -44,7 +44,7 @@ class plan {
 				}	
 				$q->groupClose();
 
-			// }
+			}
 		});
 	}
 	

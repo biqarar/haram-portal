@@ -9,11 +9,31 @@ class global_cls{
 		return false;
 	}
 
-	static function superprice() {
+	static function superprice($condition = false) {
+		
+		if(isset($_SESSION['user']['permission']['tables']['price']['condition'])){
+			
+			$price = $_SESSION['user']['permission']['tables']['price']['condition'];
 
-		if(isset($_SESSION['user']['permission']['tables']['price']['condition'])
-		&&  $_SESSION['user']['permission']['tables']['price']['condition'] = "*"){
-			return true;
+			switch ($condition) {
+				case 'classification':
+					if(isset($price['classification'])){
+						return true;
+					}
+					// break;
+
+				case 'rule':
+					if(isset($price['rule'])){
+						return true;
+					}
+					// break;
+
+				default:
+					if($price == "*"){
+						return true;
+					}
+					break;
+			}
 		}
 		return self::supervisor();
 	}

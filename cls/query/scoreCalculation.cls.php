@@ -54,7 +54,7 @@ class query_scoreCalculation_cls extends query_cls {
 				foreach ($value['title'] as $k => $v) {
 					$x = preg_replace("/\=". $v ."\=/", $value['value'][$k], $x);
 				}	
-				$list[$key]['result'] = (@eval("return " . $x . ";" ) ? @eval("return " . $x . ";" ) : "0");
+				$list[$key]['result'] = (@eval('return ' . $x . ';' ) ? @eval('return ' . $x . ';' ) : "0");
 				// print_r($list[$key]['result'] . "\n");			
 			}
 

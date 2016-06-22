@@ -97,7 +97,7 @@ class query_branch_cls extends query_cls {
 
 	public function post_branch() {
 		if(post::branch_id()){
-			foreach($_SESSION['user']['branch']['active'] as $key => $value){
+			foreach($this->_list("active") as $key => $value){
 				if(post::branch_id() == $value){
 					return post::branch_id();
 				}
