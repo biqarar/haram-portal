@@ -18,7 +18,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","racing", "mod" => "insertmanfiapi"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -31,7 +31,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","racing", "mod" => "resultapi"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -47,7 +47,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","racing", "mod" => "insertapi"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -57,7 +57,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","racing"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -67,7 +67,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","race", "mod" => "listapi"));
-				$this->permission = array("hrfzligs" => array("select" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("select" => array("public"), "update" => array("public")));
 			}
 		);
 		
@@ -77,7 +77,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","race"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -87,7 +87,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","teams", "mod"=> "apidelete"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -97,7 +97,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","teams", "mod"=> "apiadd"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -107,7 +107,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","teamsshow"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 		//------------------------------ branch descriptiion
@@ -117,7 +117,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","ligs", "mod" => "listapi"));
-				$this->permission = array("hrfzligs" => array("select" => array("public")));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
 			}
 		);
 		$this->listen(array(
@@ -126,7 +126,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","ligs"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
@@ -136,7 +136,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","teams", "mod" => "listapi"));
-				$this->permission = array("hrfzligs" => array("select" => array("public")));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
 			}
 		);
 		$this->listen(array(
@@ -145,7 +145,7 @@ class controller extends main_controller{
 			), 
 			function() {
 				save(array("hefzlig","teams"));
-				$this->permission = array("hrfzligs" => array("insert" => array("public"), "update" => array("public")));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
 			}
 		);
 
