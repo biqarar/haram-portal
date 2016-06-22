@@ -9,6 +9,7 @@ class view extends main_view{
 		//------------------------------ global
 		$this->global->page_title = "price";
 
+
 		$hidden = $this->form("#hidden")->value("reprot");
 		$start_date =  $this->form("text")->name("start_date")->label("start_date")->date("date");
 		$end_date =  $this->form("text")->name("end_date")->label("end_date")->date("date");
@@ -32,6 +33,23 @@ class view extends main_view{
 		$reprot[] = $submit->compile();
 		
 		$this->data->report_list = $reprot;
+
+
+		$this->data->dataTable = $this->dtable("report/price/status=reportpricelist/"
+			, array(
+				"id",
+				"plan",
+				_("name") . ' ' . _("teacher"),
+				_("family") . ' ' . _("teacher"),
+				"place",
+				"age_range",
+				"start_time",
+				"end_time",
+				"capacity",
+				"count",
+				"select",
+				"detail"
+				));
 		
 	}
 }

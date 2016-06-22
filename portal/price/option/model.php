@@ -12,7 +12,7 @@ class model extends main_model{
 		// var_dump(post::title());exit();
 		$value = preg_replace("/\,/", "", post::value());
 		//--------------- check branch
-		$this->sql(".branch.price_change", post::title());
+		// $this->sql(".branch.price_change", post::title());
 
 		$return = $this->sql()->tablePrice()
 				->setDate(post::date())			
@@ -22,7 +22,7 @@ class model extends main_model{
 				->setTransactions(post::transactions())
 				->setDescription(post::description());
 				
-			if(global_cls::superprice()){
+			if(global_cls::superprice("rule")){
 				$return->setTitle(post::title());
 			}else{
 				if(post::pay_type() == "rule"){
@@ -34,10 +34,7 @@ class model extends main_model{
 	}
 
 	public function post_add_price(){
-		// $x = $this->sql(".branch.users",$this->xuId("usersid"));
-		// $y = $this->sql(".branch.plan", post::plan_id());
-		// var_dump($x, $y);
-		// exit();
+		
 		$sql = $this->makeQuery();
 		//---------------- check branch
 		$this->sql(".branch.users",$this->xuId("usersid"));

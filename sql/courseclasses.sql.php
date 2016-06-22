@@ -14,18 +14,19 @@ class courseclasses {
 	public function course_id() {
 		$this->form("select")->name("course_id")->class("notselect");
 		$this->setChild(function($q){
-
-			$list = isset($_SESSION['user']['branch']['selected']) ? 
-						  $_SESSION['user']['branch']['selected'] : array();
-			$q->groupOpen();
-			foreach ($list as $key => $value) {
-				if($key == 0){
-					$q->condition("where", "course.branch_id","=",$value);
-				}else{
-					$q->condition("or","course.branch_id","=",$value);
-				}
-			}	
-			$q->groupClose();
+			if(!isset($_SESSION['supervisor'])){
+				$list = isset($_SESSION['user']['branch']['selected']) ? 
+							  $_SESSION['user']['branch']['selected'] : array();
+				$q->groupOpen();
+				foreach ($list as $key => $value) {
+					if($key == 0){
+						$q->condition("where", "course.branch_id","=",$value);
+					}else{
+						$q->condition("or","course.branch_id","=",$value);
+					}
+				}	
+				$q->groupClose();
+			}
 		});
 	}
 

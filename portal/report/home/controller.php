@@ -3,6 +3,13 @@ class controller extends main_controller {
 
 	public $permission = array("report" => array("select" => array("public")));
 	public function config(){
+
+	$this->listen(array(
+			"url" => array("price", "status" => "reportpricelist")
+			), function (){
+				save(array("report","price", "mod" => "reportpricelistr"));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
 		//---------------------------- bridge
 	$this->listen(array(
 			"url" => array("daily")
