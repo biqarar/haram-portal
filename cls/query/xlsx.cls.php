@@ -10,9 +10,6 @@ class query_xlsx_cls extends query_cls {
         header('Content-Transfer-Encoding: binary');
         header("Pragma: no-cache"); 
         header("Expires: 0");
-
-        
-        
         
            
         //define separator (defines columns in excel & tabs in word)

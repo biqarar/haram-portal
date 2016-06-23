@@ -69,8 +69,8 @@ class query_hefzlig_cls extends query_cls
 					break;
 				
 			}
-			$result[$key]['main_result'] = $d;
-			$result[$key]['result'] =" ٪ " . $d;
+			$result[$key]['main_result'] = round(floatval($d), 3);
+			$result[$key]['result'] =" ٪ " . round(floatval($d), 3);
 		}
 		
 
@@ -100,9 +100,12 @@ class query_hefzlig_cls extends query_cls
 	}
 
 	public function rate(&$result){
+		if(count($result) < 2){
+			return ;
+		}
 		$team = array();
-		$team[] = $result[array_keys($result)[0]];
-		$team[] = $result[array_keys($result)[1]];
+		$team[] =  $result[array_keys($result)[0]];
+		$team[] =  $result[array_keys($result)[1]];
 
 		$r1 = $team[0]['main_result'];
 		$r2 = $team[1]['main_result'];

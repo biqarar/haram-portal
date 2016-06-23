@@ -67,7 +67,7 @@ class model extends main_model {
 		foreach ($result as $key => $value) {
 			$all[] = $value;
 		}
-		return $all[0]["main_result"] . "  -  " . $all[1]['main_result'];
+		return (isset($all[0]) AND isset($all[1])) ? $all[0]["main_result"] . "  -  " . $all[1]['main_result'] : "نا مشخص";
 	}
 
 	public function find_team_name($team_id = false) {
