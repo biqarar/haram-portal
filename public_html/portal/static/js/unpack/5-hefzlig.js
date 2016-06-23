@@ -1,10 +1,12 @@
 route(/portal\/hefzlig/, function(){
+
 	var _self = this;
 	$( "#lig_id", this).combobox();
 	$( "#hefz_team_id_1", this).combobox();
 	$( "#hefz_team_id_2", this).combobox();
 	$( "#type", this).combobox();
 	$("#teachername", this).sautocomplate();
+
 
 	$(".delete-hefz-teams-users").click(function(){
 		teamuserid = $(this).attr("teamuserid");
@@ -22,7 +24,6 @@ route(/portal\/hefzlig/, function(){
 	
 });
 function hefz_result(raceid,_self){
-// console.log(raceid,_self);
 	$.ajax({
 		type: "POST",
 		url : 'hefzlig/racing/status=resultapi/raceid=' + raceid,
