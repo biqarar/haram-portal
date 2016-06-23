@@ -3,11 +3,18 @@ class query_xlsx_cls extends query_cls {
    
     public function config($allAssoc = false, $title = "Untitled" ,$filename = "Untitled" , $fieltype = "csv") {
        
-        header('Content-Type: text/html; charset=utf-8'); 
+        header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        // header('Content-Type:text/html; charset=UTF-8'); 
+        header('Accept-Language:en-US,en;q=0.8,fa;q=0.6');
         header("Content-Disposition: attachment; filename=$filename.$fieltype");  
+        header('Content-Transfer-Encoding: binary');
         header("Pragma: no-cache"); 
         header("Expires: 0");
-       
+
+        
+        
+        
+           
         //define separator (defines columns in excel & tabs in word)
         $sep = ($fieltype == "csv") ? "\t" : "\t\t\t";
         $newline = "\n";
