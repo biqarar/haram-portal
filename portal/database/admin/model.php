@@ -89,7 +89,7 @@ class model extends main_model{
 
 	public function sql_admin() {
 		//---------------------------------------------------------------------------------------------------
-		$this->ready(12);
+		$this->ready(13);
 
 		//----------------------------- new version function (database change)	
 		$this->database_change();		
@@ -118,12 +118,29 @@ class model extends main_model{
 
 
 		$database_change = array(
-			//
-			"ALTER TABLE `hefz_race` ADD `presence1` FLOAT NULL AFTER `manfi2`",
-			"ALTER TABLE `hefz_race` ADD `presence2` FLOAT NULL AFTER `presence1`",
-			"ALTER TABLE `hefz_race` CHANGE `manfi1` `manfi1` FLOAT NULL DEFAULT '0';",
-			"ALTER TABLE `hefz_race` CHANGE `manfi2` `manfi2` FLOAT NULL DEFAULT '0';",
-			"ALTER TABLE `price_change` DROP FOREIGN KEY `price_change_ibfk_1`",
+			//--------------------
+
+		"ALTER TABLE `hefz_group` CHANGE `descripiton` `description` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;",
+		"ALTER TABLE `hefz_teams` CHANGE `groupname` `hefz_group_id` INT(10) NULL;",
+
+		
+
+		"ALTER TABLE `hefz_teams`
+			  ADD CONSTRAINT `hefz_group_ibfk_5` FOREIGN KEY (`hefz_group_id`) REFERENCES `hefz_group` (`id`)",
+		
+		"ALTER TABLE `hefz_teams` DROP `min_person`;",
+		"ALTER TABLE `hefz_teams` DROP `max_person`;",
+		"ALTER TABLE `hefz_race_result` CHANGE `value` `value` FLOAT NOT NULL DEFAULT '0';",
+		"ALTER TABLE `hefz_race_result` ADD UNIQUE (`hefz_race_id`,`hefz_teamuser_id`, `type`)",
+		"ALTER TABLE `hefz_race_result`
+			ADD CONSTRAINT `hefz_group_ibfk_6` FOREIGN KEY (`hefz_teamuser_id`) REFERENCES `hefz_teamuser` (`id`)",
+			"ALTER TABLE `hefz_race` CHANGE `presence1` `presence1` TEXT NULL DEFAULT NULL;",
+			"ALTER TABLE `hefz_race` CHANGE `presence2` `presence2` TEXT NULL DEFAULT NULL;",
+
+			"ALTER TABLE `hefz_race`
+			ADD CONSTRAINT `hefz_race_ibfk_6` FOREIGN KEY (`hefz_team_id_1`) REFERENCES `hefz_teams` (`id`)",
+			"ALTER TABLE `hefz_race`
+			ADD CONSTRAINT `hefz_race_ibfk_7` FOREIGN KEY (`hefz_team_id_2`) REFERENCES `hefz_teams` (`id`)",
 		);
 
 

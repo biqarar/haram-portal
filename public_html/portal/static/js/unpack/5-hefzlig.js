@@ -3,6 +3,7 @@ route(/portal\/hefzlig/, function(){
 	var _self = this;
 	$( "#lig_id", this).combobox();
 	$( "#hefz_team_id_1", this).combobox();
+	$( "#hefz_group_id", this).combobox();
 	$( "#hefz_team_id_2", this).combobox();
 	$( "#type", this).combobox();
 	$("#teachername", this).sautocomplate();
@@ -41,6 +42,33 @@ function hefz_result(raceid,_self){
 }
 
 route(/hefzlig\/race\/status\=racing/, function(){
+
+	$(".hefz-race-presence").click(function(){
+		_self = $(this);
+		raceid = $(this).attr("raceid");
+		teamid = $(this).attr("teamid")
+		teamusersid = $(this).attr("teamusersid")
+		if($(this).prop('checked')){
+			checked = 'true';
+			$(_self).parents("tr").removeClass("rt-disable");
+		}else{
+			checked = 'false';
+			$(_self).parents("tr").addClass("rt-disable");
+		}
+		
+		$.ajax({
+			type: "POST",
+			url : "hefzlig/race/status=setpresence/raceid=" + raceid +  
+					"/teamid=" + teamid + "/teamusersid=" + teamusersid
+					+ "/checked=" + checked,
+			success : function(data){
+				xhr_result(data);
+
+				console.log(data);
+			}
+		});	
+		
+	});
 
 	$(".race-manfi").click(function(){
 		_self = $(this);

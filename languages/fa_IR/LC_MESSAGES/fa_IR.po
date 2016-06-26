@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "hefz_group_name"
+msgstr "گروه"
+
 msgid "race_hefz"
 msgstr "مسابقه"
 

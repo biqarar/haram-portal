@@ -218,11 +218,21 @@ class menu_cls  {
 				)
 			);
 
+			//------------------------------  hefz_lig
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'hefzlig/hefzgroup', 
+			"name" =>  _("ثبت گروه های مسابقه"), 
+			"tag" => array(
+				"hefz_ligs" => array("insert" => array("public"))
+				)
+			);
+
 		//------------------------------  hefz_team
 		self::$menu[] = array(
 			"submenu" => "share", 
 			"url" => 'hefzlig/teams', 
-			"name" =>  _("ثبت تیم های مسابقه"), 
+			"name" =>  _("ثبت و مدیریت تیم"), 
 			"tag" => array(
 				"hefz_ligs" => array("insert" => array("public"))
 				)
@@ -240,6 +250,15 @@ class menu_cls  {
 				)
 			);
 		
+		//------------------------------  hefz_team
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'hefzlig/ligs/status=show', 
+			"name" =>  _("جدول نتایج"), 
+			"tag" => array(
+				"hefz_ligs" => array("select" => array("public"))
+				)
+			);
 
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 

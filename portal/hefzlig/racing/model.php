@@ -4,6 +4,132 @@
  */
 class model extends main_model {
 
+	public function sql_presence_list($race_id = false) {
+		$check = $this->sql()->tableHefz_race()->whereId($race_id)->limit(1)->select()->assoc();
+		return array($check['presence1'], $check['presence2']);
+	}
+
+	public function post_setpresence(){
+		$race_id = $this->xuId("raceid");
+		$team_id = $this->xuId("teamid");
+		$teamusersid = $this->xuId("teamusersid");
+		$checked = $this->xuId("checked");
+
+		$check = $this->sql()->tableHefz_race()->whereId($race_id)->limit(1)->select()->assoc();
+		
+		if($check['hefz_team_id_1'] == $team_id){
+			$presence_field = "presence1";
+		}elseif($check['hefz_team_id_2'] == $team_id){
+			$presence_field = "presence2";
+		}else{
+			debug_lib::fatal("خطا در تطابق شناسه تیم و مسابقه");
+		}
+		$field = "set"  . ucfirst($presence_field);
+		if($checked == "true"){
+
+			if(preg_match("/".$teamusersid."\,/", $check[$presence_field])){
+				//---------------------------------	
+				debug_lib::true("فراگیر در مسابقه فعال است");
+			}else{
+
+				$this->sql()->tableHefz_race()
+					 ->$field($check[$presence_field] . $teamusersid . ",")
+					 ->whereId($race_id)
+					 ->update();
+				debug_lib::true("فراگیر در مسابقه فعال شد");
+			}
+
+		}elseif($checked == "false"){
+
+			if(preg_match("/".$teamusersid."\,/", $check[$presence_field])){
+				//---------------------------------	
+				$new_value = preg_replace("/".$teamusersid."\,/", "", $check[$presence_field]);
+				$this->sql()->tableHefz_race()
+					 ->$field($new_value)
+					 ->whereId($race_id)
+					 ->update();	
+				debug_lib::true("فراگیر در مسابقه غیر فعال شد");
+			}else{
+				debug_lib::true("فراگیر در مسابقه فعالیت ندارد");
+			}
+
+		}
+		
+
+		// var_dump($race_id,$team_id,$teamusersid, $checked);exit();
+	}
+
+		public function sql_get_value($teamusersid = false , $type = false , $race_id = false) {
+			$type = ($type== "race1") ? "تلاوت اول" : "تلاوت دوم";
+		return $this->sql()->tableHefz_race_result()
+		                   ->whereHefz_teamuser_id($teamusersid)
+		                   ->andType($type)
+		                   ->andHefz_race_id($race_id)
+		                   ->limit(1)
+		                   ->select()
+		                   ->assoc("value");
+	}
+
+	public function sql_insert_default_value($race_id = false ){
+		$race = $this->sql()->tableHefz_race()->whereId($race_id)->limit(1)->select();
+		if($race->num() == 1) {
+			$race = $race->assoc();
+			$this->insert_0($race_id, $race['hefz_team_id_1']);
+			$this->insert_0($race_id, $race['hefz_team_id_2']);
+		}
+
+	}
+
+	public function insert_0 ($race_id = false, $hefz_team_id = false){
+		$team1 = $this->sql()->tableHefz_teamuser()
+								 ->whereHefz_team_id($hefz_team_id)
+								 ->select()->allAssoc();
+
+			foreach ($team1 as $key => $value) {
+				
+				$check = $this->sql()->tableHefz_race_result()
+						->whereHefz_race_id($race_id)
+						->andHefz_teamuser_id($value['id'])
+						->select();
+				
+				if($check->num() == 0){
+					$insert = $this->sql()->tableHefz_race_result()
+								->setHefz_race_id($race_id)
+								->setHefz_teamuser_id($value['id'])
+								->setType("تلاوت اول")->insert()->LAST_INSERT_ID();
+					$insert = $this->sql()->tableHefz_race_result()
+								->setHefz_race_id($race_id)
+								->setHefz_teamuser_id($value['id'])
+								->setType("تلاوت دوم")->insert()->LAST_INSERT_ID();
+				}else{
+
+					$check = $check->allAssoc();
+					
+					if(count($check) == 2) {
+						continue;
+					}elseif(count($check) == 1){
+
+						foreach ($check as $k => $v) {
+							if($v['type'] == 'تلاوت اول'){
+								$insert = $this->sql()->tableHefz_race_result()
+										->setHefz_race_id($race_id)
+										->setHefz_teamuser_id($value['id'])
+										->setType("تلاوت دوم")->insert()->LAST_INSERT_ID();
+							}else{
+									$insert = $this->sql()->tableHefz_race_result()
+										->setHefz_race_id($race_id)
+										->setHefz_teamuser_id($value['id'])
+										->setType("تلاوت اول")->insert()->LAST_INSERT_ID();
+							}
+						
+						}
+						
+					}
+				}
+				
+			}
+	}
+
 	public function post_insertmanfiapi(){
 		$teamid= $this->xuId("teamid");
 		$raceid = $this->xuId("raceid");

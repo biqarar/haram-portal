@@ -59,13 +59,17 @@ class query_login_cls extends query_cls {
 
 			if(    !isset($_SESSION['user']['branch']['selected'])) {
 
+				if (isset($_SESSION['user']['branch']['active'][0])) {
+
 				          $_SESSION['user']['branch']['selected'][0] =  
-
-					isset($_SESSION['user']['branch']['active'][0]) ? 
-
-						  $_SESSION['user']['branch']['active'][0] : 
+						  $_SESSION['user']['branch']['active'][0] ; 
+				}else{
+				
+					unset($_SESSION['user']);
+					page_lib::access("no branch active!");	
+				
+				}
 					
-					page_lib::access("no branch active");	
 			}
 
 			$this->set_session();

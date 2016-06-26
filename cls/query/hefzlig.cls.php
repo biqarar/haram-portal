@@ -19,12 +19,15 @@ class query_hefzlig_cls extends query_cls
 
 		
 		$team_count = array();
-		$team_count[$team_count_query['hefz_team_id_1']] = 
-			$this->sql()->tableHefz_teamuser()->whereHefz_team_id($team_count_query['hefz_team_id_1'])->select()->num();
+		$team_count[$team_count_query['hefz_team_id_1']] = count(preg_split("/\,/",$team_count_query['presence1'])) - 1;
+		$team_count[$team_count_query['hefz_team_id_2']] = count(preg_split("/\,/",$team_count_query['presence2'])) - 1;
+		// $team_count[$team_count_query['hefz_team_id_1']] = 
+		// 	$this->sql()->tableHefz_teamuser()->whereHefz_team_id($team_count_query['hefz_team_id_1'])->select()->num();
 		
-		$team_count[$team_count_query['hefz_team_id_2']] = 
-			$this->sql()->tableHefz_teamuser()->whereHefz_team_id($team_count_query['hefz_team_id_2'])->select()->num();
-				
+		// $team_count[$team_count_query['hefz_team_id_2']] = 
+		// 	$this->sql()->tableHefz_teamuser()->whereHefz_team_id($team_count_query['hefz_team_id_2'])->select()->num();
+		// var_dump($team_count);
+		// var_dump($team_count_query);exit();
 
 		//-----------------------------------------------
 		$result = array();
@@ -40,15 +43,11 @@ class query_hefzlig_cls extends query_cls
 			
 			
 		}
-
-		foreach ($result as $key => $value) {
-			$result[$key]['value'] = $result[$key]['value'] - $manfi[$key];
-			$result[$key]['manfi'] = $manfi[$key];
-		}
 		
 
 		//-----------------------------------------------
 		foreach ($result as $key => $value) {
+			if($team_count[$key]==0) $team_count[$key]=1;
 			$d = (intval($value['value']) * 100) / (5 * 2 * intval($team_count[$key]));
 			// echo "dddddd ============" . $d . "\n";
 			switch ($d) {
@@ -69,11 +68,21 @@ class query_hefzlig_cls extends query_cls
 					break;
 				
 			}
-			$result[$key]['main_result'] = round(floatval($d), 3);
-			$result[$key]['result'] =" ٪ " . round(floatval($d), 3);
+			$result[$key]['main_result'] = round(floatval($d), 2);
+			$result[$key]['result'] =" ٪ " . round(floatval($d), 2);
 		}
 		
 
+
+		foreach ($result as $key => $value) {
+		
+			$result[$key]['main_result'] = $result[$key]['main_result'] - (intval($manfi[$key]) * 2);
+			$result[$key]['result'] = " ٪ " .  $result[$key]['main_result'];
+		
+			// $result[$key]['value'] = $result[$key]['value'] - $manfi[$key];
+		
+			$result[$key]['manfi'] = $manfi[$key];
+		}
 		//-----------------------------------------------
 		$rate = array();
 		$id = 0;
