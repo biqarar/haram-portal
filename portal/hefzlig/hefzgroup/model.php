@@ -6,7 +6,7 @@ class model extends main_model {
 
 	public function post_listapi(){
 		$dtable = $this->dtable->table("hefz_group")
-		->fields('id', 'ligid', 'name',  "id edit")
+		->fields('id', 'ligid', 'name','description',  "id edit")
 		->search_fields("name")
 		->query(function($q){
 			$q->joinHefz_ligs()->whereId("#hefz_group.lig_id")->fieldName("ligid");

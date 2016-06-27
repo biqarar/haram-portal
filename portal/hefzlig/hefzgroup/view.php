@@ -14,7 +14,7 @@ class view extends main_view {
 		//------------------------------ list of hefz_group
 		$this->data->dataTable = $this->dtable(
 			"hefzlig/hefzgroup/status=listapi/", 
-			array("id", "مسابقاتیمی", "نام گروه", "edit"));
+			array("id", "مسابقاتیمی", "نام گروه", "توضیحات", "edit"));
 
 		// $this->data->list = $list->compile();
 		//------------------------------ edit form

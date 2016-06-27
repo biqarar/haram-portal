@@ -47,7 +47,9 @@ class query_hefzlig_cls extends query_cls
 
 		//-----------------------------------------------
 		foreach ($result as $key => $value) {
-			if($team_count[$key]==0) $team_count[$key]=1;
+
+			if($team_count[$key] == 0 ) $team_count[$key] = 1; // erro number / 0 !!!
+			
 			$d = (intval($value['value']) * 100) / (5 * 2 * intval($team_count[$key]));
 			// echo "dddddd ============" . $d . "\n";
 			switch ($d) {

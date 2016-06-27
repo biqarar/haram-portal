@@ -8,7 +8,7 @@ class hefz_group {
 	public $id = array("type" => "int@10",'autoI', "label" => "hefz_ligs_id");
 	public $lig_id = array("type" =>"int@10", "label" => "hefz_teams_lig_id");
 	public $name = array("type" => "varchar@255", "label" => "hefz_group_name");
-	public $descripiton = array("type" => "text@", "label" => "description");
+	public $description = array("type" => "text@", "label" => "description");
 
 	public $foreign = array("lig_id" => "hefz_ligs@id!name");
 
@@ -43,8 +43,8 @@ class hefz_group {
 	}
 
 
-	public function descripiton() {
-		$this->form("text")->name("descripiton");
+	public function description() {
+		$this->form("text")->name("description");
 	}
 
 }

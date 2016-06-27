@@ -39,7 +39,9 @@ class model extends main_model {
 
 		}
 
-		// var_dump($result);
+		return $result;
+
+		var_dump($result);
 		// foreach ($result as $key => $value) {
 			
 		// }
