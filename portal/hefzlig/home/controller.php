@@ -5,6 +5,56 @@
 class controller extends main_controller{
 	
 	function config(){	
+		// race/status=setpresence/raceid=12/teamid=5/teamusersid=23
+		$this->listen(array(
+			"max" => 7,
+			"url" => array(
+				"race",
+			 	"status" => "setpresence",
+			 	"raceid" => "/^\d+$/",
+			 	"teamid" => "/^\d+$/",
+			 	"teamusersid" => "/^\d+$/",
+			 	"checked" => "/^(true|false)/"
+			 	)
+			), 
+			function() {
+				save(array("hefzlig","racing", "mod" => "setpresence"));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
+			}
+		);
+
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("hefzgroup", "status" => "listapi")
+			), 
+			function() {
+				save(array("hefzlig","hefzgroup", "mod" => "listapi"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("hefzgroup")
+			), 
+			function() {
+				save(array("hefzlig","hefzgroup"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array(
+			 	"status" => "showresult",
+			 	"id" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","show"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);
 
 		$this->listen(array(
 			"max" => 5,
@@ -113,7 +163,7 @@ class controller extends main_controller{
 		//------------------------------ branch descriptiion
 		$this->listen(array(
 			"max" => 4,
-			"url" => array("ligs", "status" => "listapi", "type" => "/^(race|manage)$/")
+			"url" => array("ligs", "status" => "listapi", "type" => "/^(race|manage|result)$/")
 			), 
 			function() {
 				save(array("hefzlig","ligs", "mod" => "listapi"));

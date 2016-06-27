@@ -4,7 +4,7 @@
 <style type="text/css">
 	.tema-race {
 		/*height: 75px;*/
-		width: 280px;
+		width: 368px;
 		/*margin-right: 88px;*/
 		background: #9fbe03;
 		font-size: 25px;
@@ -21,10 +21,10 @@
 		/*font-size: 17px;*/
 	}
 	.racing-right {
-		width:390px; display: inline-block; float:right;
+		width:470px; display: inline-block; float:right;
 	}
 	.racing-left{
-		width:390px;display:inline-block; float:right; margin-right:200px
+		width:470px;display:inline-block; float:right; margin-right:100px
 	}
 
 	.manfi-left {
@@ -38,6 +38,10 @@
 		float:right; 
 		/*margin-right:200px*/
 
+	}
+
+	.rt-disable{
+		background: rgb(226,226,226) !important;
 	}
 
 </style>
@@ -114,6 +118,16 @@
 	<dir style="clear:both"></dir>
 
 </center>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('input.tr-disable').each(function(){
+			console.log($(this));
+			$(this).parents("tr").addClass("rt-disable");
+		})
+	});
+</script>
 
 
 {%endblock%}

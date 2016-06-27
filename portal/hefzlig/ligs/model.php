@@ -9,7 +9,12 @@ class model extends main_model {
 		->fields('id', 'start_date', 'end_date','name',  "id edit")
 		->search_fields("name")
 		->result(function($r) {
-			$r->edit = '<a class="icoedit" href="hefzlig/ligs/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			if($this->xuId("type") == "result"){
+				$r->edit =$this->tag("a")->href("hefzlig/status=showresult/id=".$r->edit)->class("icocertification")->title(_("جدول نتایج"))->render();
+			}else{
+				$r->edit =$this->tag("a")->href("hefzlig/ligs/status=edit/id=".$r->edit)->class("icoedit")->title(_("edit"))->render();
+				
+			}
 		});
 		$this->sql(".dataTable", $dtable);
 	}

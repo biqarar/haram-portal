@@ -104,6 +104,8 @@ class model extends main_model {
 		//------------------------------ insert race
 		$sql = $this->makeQuery()->insert()->LAST_INSERT_ID();
 
+		//------------ set presence
+		$set_presence = $this->set_presence($sql);
 		//------------------------------ commit code
 		$this->commit(function($id = false) {
 			debug_lib::true("<a href='hefzlig/race/status=racing/id=$id' target='_blank' style='text-decoration: none; color:white; cursor: pointer;'><div style='width: 70px;background: #0C706F;border-radius: 7px;padding: 25px 50px 25px 50px !important;text-align: center;display: inline-block;'>شروع مسابقه</div></a><br>");
@@ -128,6 +130,25 @@ class model extends main_model {
 		$this->rollback(function() {
 			debug_lib::fatal("[[update race failed]]");
 		});
+	}
+
+
+
+	public function set_presence($race_id = false) {
+		$race = $this->sql()->tableHefz_race()->whereId($race_id)->limit(1)->select()->assoc();
+		$update = $this->sql()->tableHefz_race()
+		->setPresence1($this->set_presence_($race['hefz_team_id_1']))
+		->setPresence2($this->set_presence_($race['hefz_team_id_2']))
+		->whereId($race_id)->update();
+	}
+
+	public function set_presence_($team_id = false ){
+		$list = $this->sql()->tableHefz_teamuser()->whereHefz_team_id($team_id)->select()->allAssoc();
+		$return = "";
+		foreach ($list as $key => $value) {
+			$return .= $value['id'] . ",";
+		}
+		return $return;
 	}
 
 
