@@ -10,7 +10,7 @@ class view extends main_view {
 		if($this->xuId("status")){
 			$this->data->dataTable = $this->dtable(
 				"hefzlig/ligs/status=listapi/type=result/", 
-				array("id", "start_date", "end_date", "name", "جدول نتایج"));
+				array("id", "start_date", "end_date", "name", "آقای حفظ",  "جدول نتایج"));
 		}else{
 
 			//------------------------------ load form
