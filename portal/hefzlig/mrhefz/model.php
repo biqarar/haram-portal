@@ -6,7 +6,10 @@ class model extends main_model {
 
 	public $lig_id;
 	
+	public function sql_lig_name($lig_id = false) {
+		return $lig_name = $this->sql()->tableHefz_ligs()->whereId($lig_id)->limit(1)->select()->assoc("name");
 
+	}
 	public function sql_mrhefz($lig_id = false) {
 		
 		$this->lig_id = $lig_id;
@@ -18,6 +21,7 @@ class model extends main_model {
 		$result = array();
 
 		foreach ($teams as $key => $value) {
+
 			$teamusers = $this->sql()->tableHefz_teamuser()->whereId($value['id'])->select()->allAssoc();
 			foreach ($teamusers as $teamusersid => $v) {
 
@@ -28,7 +32,8 @@ class model extends main_model {
 				foreach ($sum as $index => $s) {
 					$sum_result = $sum_result + intval($s['value']);
 				}
-				$result[$usersid] = $sum_result;
+				$result[$usersid]['sum'] = $sum_result;
+				$result[$usersid]['team'] = $value['name'];
 				
 			}
 
@@ -39,11 +44,13 @@ class model extends main_model {
 		// $ar2 = array();
 		$i = 0;
 		foreach ($result as $key => $value) {
-			$return[$i]['ligname'] = $lig_name;
+			// $return[$i]['ligname'] = $lig_name;
+			$return[$i]['team'] = $value['team'];
 			$return[$i]['name'] = $this->sql(".userNameFamily.name", $key);
 			$return[$i]['family'] = $this->sql(".userNameFamily.family", $key);
-			$return[$i]['sum'] = $value;
-			$ar1[] = $value;
+			$return[$i]['sum'] = $value['sum'];
+
+			$ar1[] = $value['sum'];
 			$i++;
 		}
 		array_multisort($ar1,SORT_DESC,$return);
