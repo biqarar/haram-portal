@@ -103,6 +103,26 @@ class controller extends main_controller{
 
 		$this->listen(array(
 			"max" => 3,
+			"url" => array("race", "status" => "setdelete", "id" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","racedelete", "mod" => "apidelete"));
+				$this->permission = array("hefz_ligs" => array("delete" => array("public")));
+			}
+		);
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("race", "status" => "delete", "id" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","racedelete"));
+				$this->permission = array("hefz_ligs" => array("delete" => array("public")));
+			}
+		);
+
+		$this->listen(array(
+			"max" => 3,
 			"url" => array("race", "status" => "racing", "id" => "/^\d+$/")
 			), 
 			function() {

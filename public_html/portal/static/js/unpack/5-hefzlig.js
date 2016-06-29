@@ -24,6 +24,25 @@ route(/portal\/hefzlig/, function(){
 	});
 	
 });
+
+route(/portal\/hefzlig\/race\/status\=delete/, function(){
+
+	var _self = this;
+
+
+	$(".race-delete").click(function(){
+		raceid = $(this).attr("raceid");
+		_self = $(this);
+		$.ajax({
+		type: "POST",
+		url : "hefzlig/race/status=setdelete/id=" + raceid ,
+		success : function(data){		
+			xhr_result(data);
+		}
+		});	
+	});
+	
+});
 function hefz_result(raceid,_self){
 	$.ajax({
 		type: "POST",

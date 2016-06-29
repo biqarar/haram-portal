@@ -14,7 +14,7 @@ class view extends main_view {
 		
 		$this->data->dataTable = $this->dtable(
 			"hefzlig/race/status=listapi/", 
-			array('id','ligs', 'تیم اول','تیم دوم','type','description', "نتیجه","edit", "مسابقه"));
+			array('id','ligs', 'تیم اول','تیم دوم','type','description', "نتیجه","edit","delete", "مسابقه"));
 	
 	}
 

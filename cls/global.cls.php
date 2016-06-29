@@ -20,19 +20,22 @@ class global_cls{
 					if(isset($price['classification'])){
 						return true;
 					}
-					// break;
+					break;
 
 				case 'rule':
 					if(isset($price['rule'])){
 						return true;
 					}
-					// break;
+					break;
 
 				default:
 					if($price == "*"){
 						return true;
 					}
 					break;
+			}
+			if($price == "*"){
+				return true;
 			}
 		}
 		return self::supervisor();
