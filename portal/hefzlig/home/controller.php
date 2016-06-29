@@ -47,6 +47,18 @@ class controller extends main_controller{
 		$this->listen(array(
 			"max" => 3,
 			"url" => array(
+			 	"status" => "mrhefz",
+			 	"id" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","mrhefz"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);
+
+		$this->listen(array(
+			"max" => 3,
+			"url" => array(
 			 	"status" => "showresult",
 			 	"id" => "/^\d+$/")
 			), 
