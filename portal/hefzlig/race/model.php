@@ -16,6 +16,7 @@ class model extends main_model {
 			'name',
 			'id result',
 			'id edit',
+			'id delete',
 			'id race')
 		->search_fields(
 			'ligname hefz_ligs.name',
@@ -52,6 +53,8 @@ class model extends main_model {
 		->result(function($r) {
 			$r->team2 = $this->find_team_name($r->team2);
 			$r->edit = '<a class="icoedit" href="hefzlig/race/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+
+			$r->delete = $this->tag("a")->class("icoredclose")->href("hefzlig/race/status=delete/id=". $r->delete)->render();
 
 			$r->result = $this->result($r->result);
 			$r->race = $this->tag("a")->href("hefzlig/race/status=racing/id=". $r->race)->addClass("icoallusers")->render();
