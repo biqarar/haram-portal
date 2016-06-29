@@ -8,13 +8,16 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = 'آقای حفظ';
 		$header = array(
-			"مسابقات تیمی",
+			
+			"نام تیم",
 			"نام",
 			"نام خانوادگی",
 			"جمع امتیاز"
 			);
 
 		$list = $this->sql("#mrhefz", $this->xuId());
+
+		$this->data->lig_name = $this->sql("#lig_name", $this->xuId());
 
 		$this->data->result = array("header" => $header, "list" => $list);
 		// var_dump($this->xuId());exit();
