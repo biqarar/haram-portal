@@ -9,9 +9,9 @@ class view extends main_view {
 		$this->global->page_title = 'آقای حفظ';
 		$header = array(
 			
-			"نام تیم",
 			"نام",
 			"نام خانوادگی",
+			"نام تیم",
 			"جمع امتیاز"
 			);
 

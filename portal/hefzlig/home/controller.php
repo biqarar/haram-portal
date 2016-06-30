@@ -5,6 +5,25 @@
 class controller extends main_controller{
 	
 	function config(){	
+		
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("raceteam","id" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","raceteam"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);	
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("ligsapi","id" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","ligs", "mod" => "api"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);		
 		// race/status=setpresence/raceid=12/teamid=5/teamusersid=23
 		$this->listen(array(
 			"max" => 7,

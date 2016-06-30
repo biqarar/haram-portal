@@ -45,15 +45,16 @@ class model extends main_model {
 		$i = 0;
 		foreach ($result as $key => $value) {
 			// $return[$i]['ligname'] = $lig_name;
-			$return[$i]['team'] = $value['team'];
 			$return[$i]['name'] = $this->sql(".userNameFamily.name", $key);
 			$return[$i]['family'] = $this->sql(".userNameFamily.family", $key);
+			$return[$i]['team'] = $value['team'];
 			$return[$i]['sum'] = $value['sum'];
 
 			$ar1[] = $value['sum'];
 			$i++;
 		}
 		array_multisort($ar1,SORT_DESC,$return);
+		
 		return $return;
 		var_dump($ar1,$return);
 		exit();

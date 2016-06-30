@@ -1,11 +1,14 @@
 route(/portal\/hefzlig/, function(){
 
+
 	var _self = this;
 	$( "#lig_id", this).combobox();
 	$( "#hefz_team_id_1", this).combobox();
-	$( "#hefz_group_id", this).combobox();
 	$( "#hefz_team_id_2", this).combobox();
+	$( "#hefz_group_id", this).combobox();
 	$( "#type", this).combobox();
+	$( "#hefz_group", this).combobox().next("span").css("display", "none");
+	$( "label[for=hefz_group]").css("display", "none");
 	$("#teachername", this).sautocomplate();
 
 
@@ -23,6 +26,64 @@ route(/portal\/hefzlig/, function(){
 		});	
 	});
 	
+});
+function none_display_hefz_group(_self){
+	$( "#hefz_group", _self).combobox().next("span").css("display", "none");
+	$( "label[for=hefz_group]").css("display", "none");
+
+
+}
+function inline_block_display_hefz_group(_self){
+	$( "#hefz_group", _self).css("display","none").next("span").css("display", "inline-block");
+	$( "label[for=hefz_group]").css("display", "inline-block").html("گروه");
+}
+
+
+
+route(/portal\/hefzlig\/race/, function(){
+	_self = $(this);
+	$("#lig_id").combobox( "destroy" );
+	$("#lig_id", this).combobox({
+		change : function(op){
+			item = op.item.option.value
+			// race_type = $("#type option:selected").val(); 
+			$.ajax({
+				type: "POST",
+				url : "hefzlig/ligsapi/id=" + item,
+				success : function(data){
+					// if(race_type == "دوره ای"){
+						// inline_block_display_hefz_group(_self);
+					// }else{
+						none_display_hefz_group(_self);
+						$( "#hefz_team_id_1", _self).combobox("destroy");
+						$( "#hefz_team_id_2", _self).combobox("destroy");
+
+						$("#hefz_team_id_1 option").each(function(){
+							$(this).remove();
+						});
+						$("#hefz_team_id_2 option").each(function(){
+							$(this).remove();
+						});
+
+						$("<option value='' disabled='disabled' selected='selected'>لطفا یکی از گزینه ها را انتخاب کنید</option>").appendTo($("#hefz_team_id_1"));
+						$("<option value='' disabled='disabled' selected='selected'>لطفا یکی از گزینه ها را انتخاب کنید</option>").appendTo($("#hefz_team_id_2"));
+
+						for(a in data['msg']['teams']) {
+							// console.log(a);
+							$("<option type='text' value='"+data['msg']['teams'][a]['id']+"' id='"+data['msg']['teams'][a]['id']+"' placeholder='"+data['msg']['teams'][a]['name']+"'>"+data['msg']['teams'][a]['name']+"</option>").appendTo($("#hefz_team_id_1"));
+							$("<option type='text' value='"+data['msg']['teams'][a]['id']+"' id='"+data['msg']['teams'][a]['id']+"' placeholder='"+data['msg']['teams'][a]['name']+"'>"+data['msg']['teams'][a]['name']+"</option>").appendTo($("#hefz_team_id_2"));
+						}
+
+						$( "#hefz_team_id_1", _self).combobox();
+						$( "#hefz_team_id_2", _self).combobox();
+					// }
+					console.log(data);
+					// console.log(race_type);
+				}
+			});
+		}
+	});
+
 });
 
 route(/portal\/hefzlig\/race\/status\=delete/, function(){

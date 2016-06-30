@@ -8,63 +8,72 @@ class model extends main_model {
 	public $p = 0;
 
 	public function sql_result($lig_id = false) {
-	
+
 		$this->lig_id = $lig_id;
-
 		$lig_name = $this->sql()->tableHefz_ligs()->whereId($lig_id)->limit(1)->select()->assoc("name");
+		$teams = $this->sql()->tableHefz_teams()->whereLig_id($lig_id)->groupbyHefz_group_id();
+		$teams->joinHefz_group()->whereId("#hefz_teams.hefz_group_id")->fieldName("groupname");
 
-		$teams = $this->sql()->tableHefz_teams()->whereLig_id($lig_id)->select()->allAssoc();
+		$teams = $teams->select()->allAssoc();	
+
+		$return = array();
+		foreach ($teams as $key => $value) {
+			$return[] = $this->team_result($value['hefz_group_id'], $value['groupname']);
+		}
+
+		return $return;
+		var_dump($return);
+
+		exit();
+		
+	}
+
+	
+	public function team_result($group_id = false, $groupname = false) {
+
+		$teams = $this->sql()->tableHefz_teams()->whereHefz_group_id($group_id)->select()->allAssoc();
 		$result = array();
+		$ar1 = array();
 		$j = 0;
 		foreach ($teams as $key => $value) {
-			// var_dump($value);
-			$j++;
-			$result[$value['id']]['n'] = $j;
-			$result[$value['id']]['ligname'] = $lig_name;
-			$result[$value['id']]['name'] = $value['name'];
-			$result[$value['id']]['race_count'] = 	$this->sql()->tableHefz_race()
-																 ->whereHefz_team_id_1($value['id'])
-																 ->orHefz_team_id_2($value['id'])
-																 ->select()->num();
-			$r = $this->race_win($value['id']);
-
-			$result[$value['id']]['race_win'] = $r['win'];
-			$result[$value['id']]['race_ower'] = $r['ower'];
-			$result[$value['id']]['race_req'] = $r['req'];
-			$result[$value['id']]['average'] = 
-				round(floatval($r['average'] / $result[$value['id']]['race_count']),3);
-			$result[$value['id']]['race_rate'] = $r['rate'];
-			// $result[$value['id']]['more'] = $this->tag("a")->href("lig")->class("icomore")->render();
-			$result[$value['id']]['more'] = $value['id'];
-
-		}
-
-		return $result;
-
-		var_dump($result);
-		// foreach ($result as $key => $value) {
-			
-		// }
-
-
-		// exit();
-
-		// $r = array();
-		foreach ($result as $key => $value) {
-			if(!isset($this->mr[$value['race_rate']])){	
-				$this->mr[$value['race_rate'] + $this->p]  = $value;
-			}else{
-				$this->fix($this->mr[$value['race_rate']], $value);
-			}
-		}
-
-		krsort($this->mr);
-		return $this->mr;
-		var_dump($this->mr);
-		exit();
-
-		var_dump($result);
+	
 		
+			$race_count = $this->sql()->tableHefz_race()
+									 ->whereHefz_team_id_1($value['id'])
+									 ->orHefz_team_id_2($value['id'])
+									 ->select()->num();
+
+
+			$result[$j]['name'] = $value['name'];
+		
+			$result[$j]['race_count'] = $race_count;
+			
+			$r = $this->race_win($value['id'], $race_count);
+
+			$result[$j]['race_win'] = $r['win'];
+			$result[$j]['race_ower'] = $r['ower'];
+			$result[$j]['race_req'] = $r['req'];
+			
+			if($race_count == 0) $race_count = 1;
+
+			$result[$j]['average'] = round(floatval($r['average'] / $race_count),3);
+			$result[$j]['race_rate'] = $r['rate'];
+			$result[$j]['more'] = $this->tag("a")->href("hefzlig/raceteam/id=" . $value['id'])->class("icomore")->render();
+			$j++;
+
+			$ar1[] = $r['rate'];
+		}
+		array_multisort($ar1,SORT_DESC,$result);
+
+
+		$return = array();
+		$return['group_id'] = $group_id;
+		$return['groupname'] = $groupname;
+		$return['result'] = $result;
+		return $return;
+		var_dump($return);
+		// var_dump($ar1);
+		exit();		
 	}
 
 	public function fix($r1 = false , $r2 = false) {
@@ -112,8 +121,11 @@ class model extends main_model {
 	public function race_win($team_id = false){
 
 		$race = $this->sql()->tableHefz_race()
+							 ->groupOpen()
 							 ->whereHefz_team_id_1($team_id)
 							 ->orHefz_team_id_2($team_id)
+							 ->groupClose()
+							 ->andType("دوره ای")
 							 ->select()->allAssoc();
 		$return = array();
 		$return['win']  = 0;
@@ -131,7 +143,7 @@ class model extends main_model {
 			$return['rate'] = $return['rate'] + $r[$team_id]['rate'];
 
 			if($r[$team_id]['rate'] == 3) {
-			$return['win']++;
+				$return['win']++;
 			} 
 
 			if($r[$team_id]['rate'] < 3){
@@ -145,12 +157,14 @@ class model extends main_model {
 			$r1 = $t[0]['rate'];
 			$r2 = $t[1]['rate'];
 			if($r1 == $r2) {
-				$return['req']++;
+				if($r1 == 3) { // bord bord
+					$return['win']++;
+				}else{
+					$return['req']++;
+				}
 			} 
-			// var_dump($r,$team_id,  $return);
 			
 		}
-		// var_dump($return);
 		return $return;
 	}
 }

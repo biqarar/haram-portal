@@ -4,6 +4,15 @@
  */
 class model extends main_model {
 
+	public function post_api(){
+		$query = $this->sql()->tableHefz_teams()->whereLig_id($this->xuId());//->select();
+		$query->joinHefz_group()->whereId("#hefz_teams.hefz_group_id")->fieldName("groupname")->fieldId("groupid");
+		$query = $query->select();
+		if($query->num() > 0){
+			debug_lib::msg("teams", $query->allAssoc());
+		}
+	}
+
 	public function post_listapi(){
 		$fields = array('id', 'start_date', 'end_date','name',  "id edit");
 		if($this->xuId("type") == "result"){
