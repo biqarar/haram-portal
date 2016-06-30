@@ -1,5 +1,6 @@
 route(/portal\/hefzlig/, function(){
 
+
 	var _self = this;
 	$( "#lig_id", this).combobox();
 	$( "#hefz_team_id_1", this).combobox();
