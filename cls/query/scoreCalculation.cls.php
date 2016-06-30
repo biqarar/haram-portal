@@ -24,7 +24,7 @@ class query_scoreCalculation_cls extends query_cls {
 		$calculation->joinPerson()->whereUsers_id("classification.users_id")->fieldName()->fieldFamily();
 		$calculation->joinUsers()->whereId("#classification.users_id")->fieldUsername("username")->fieldId("users_id");
 		$calculation = $calculation->select()->allAssoc();
-		
+
 		return $calculation;
 	}
 
@@ -54,8 +54,12 @@ class query_scoreCalculation_cls extends query_cls {
 				foreach ($value['title'] as $k => $v) {
 					$x = preg_replace("/\=". $v ."\=/", $value['value'][$k], $x);
 				}	
-				$list[$key]['result'] = (@eval('return ' . $x . ';' ) ? @eval('return ' . $x . ';' ) : "0");
-				// print_r($list[$key]['result'] . "\n");			
+
+				if(preg_match("/\=/", $x)){
+					$list[$key]['result'] = 0;
+				}else{
+					$list[$key]['result'] = (@eval('return '.$x.';') ? @eval('return '.$x.';') : "0");
+				}		
 			}
 
 			return $list;

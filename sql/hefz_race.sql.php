@@ -6,7 +6,9 @@ namespace sql;
 class hefz_race {
 
 	public $id = array("type" => "int@10", "label" => "hefz_race_id");
+	public $lig_id = array("type" =>"int@10", "label" => "hefz_teams_lig_id");
 	public $type = array("type" => "enum@حذفی,دوره ای!حذفی", "label" => "hefz_race_type");
+	public $hefz_group = array("type" =>"int@10", "label" => "hefz_group");
 	public $hefz_team_id_1 = array("type" => "int@10", "label" => "hefz_race_hefz_team_id_1");
 	public $hefz_team_id_2 = array("type" => "int@10", "label" => "hefz_race_hefz_team_id_2");
 	public $manfi1 = array("type" => "float@", "lable"=> "hefz_race_result_value");
@@ -14,9 +16,38 @@ class hefz_race {
 	
 	public $name = array("type" => "varchar@255", "label" => "hefz_race_name");
 
-	public $foreign = array("hefz_team_id_1"=> "hefz_teams@id!name", "hefz_team_id_2" => "hefz_teams@id!name");
+	public $foreign = array(
+		"hefz_team_id_1"=> "hefz_teams@id!name", 
+		"hefz_team_id_2" => 
+		"hefz_teams@id!name",
+		"lig_id"=> "hefz_ligs@id!name");
 
 	public function id() {
+		$this->validate("id");
+	}
+
+	public function lig_id(){
+		$this->form("select")->name("lig_id")->addClass("notselect")->required();
+		$this->setChild(function($q){
+			
+				$list = isset($_SESSION['user']['branch']['selected']) ? 
+							  $_SESSION['user']['branch']['selected'] : array();
+
+				$q->groupOpen();
+				foreach ($list as $key => $value) {
+					if($key == 0){
+						$q->condition("where", "hefz_ligs.branch_id","=",$value);
+					}else{
+						$q->condition("or","hefz_ligs.branch_id","=",$value);
+					}
+				}	
+				$q->groupClose();
+
+		});
+	}
+
+	public function hefz_group(){
+		$this->form("select")->name("hefz_group")->addClass("notselect")->style("display:none;");
 
 	}
 

@@ -1,5 +1,16 @@
 {# Reza Mohiti rm.biqarar@gmail.com #}
 {% extends layout %}
 {%block content%}
-{{tagMaker.list(result)}}
+
+{%for i, link in result%}
+<center>
+	
+	<h3>
+	نتایج مسابقات در گروه 
+	<a style="color:#0C706F">{{link['groupname']}}</a>
+	</h3>
+</center>
+{{tagMaker.list(link['result'])}}
+<hr>
+{%endfor%}
 {%endblock%}
