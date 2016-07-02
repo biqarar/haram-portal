@@ -4,6 +4,12 @@
  */
 class model extends main_model {
 
+	public function post_api(){
+		$group = $this->sql()->tableHefz_group()->whereLig_id($this->xuId("ligid"))->select()->allAssoc();
+		debug_lib::msg("groupname", $group);
+		// var_dump($group);exit();
+	}
+
 	public function post_listapi(){
 		$dtable = $this->dtable->table("hefz_group")
 		->fields('id', 'ligid', 'name','description',  "id edit")

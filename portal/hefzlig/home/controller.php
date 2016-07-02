@@ -5,7 +5,16 @@
 class controller extends main_controller{
 	
 	function config(){	
-		
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("groupapi","ligid" => "/^\d+$/")
+			), 
+			function() {
+				save(array("hefzlig","hefzgroup", "mod" => "api"));
+				$this->permission = array("hefz_ligs" => array("select" => array("public")));
+			}
+		);	
+
 		$this->listen(array(
 			"max" => 3,
 			"url" => array("raceteam","id" => "/^\d+$/")

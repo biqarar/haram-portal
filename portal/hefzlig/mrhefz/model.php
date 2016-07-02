@@ -17,12 +17,18 @@ class model extends main_model {
 		$lig_name = $this->sql()->tableHefz_ligs()->whereId($lig_id)->limit(1)->select()->assoc("name");
 
 		$teams = $this->sql()->tableHefz_teams()->whereLig_id($lig_id)->select()->allAssoc();
-
+		
 		$result = array();
 
 		foreach ($teams as $key => $value) {
 
-			$teamusers = $this->sql()->tableHefz_teamuser()->whereId($value['id'])->select()->allAssoc();
+			$teamusers = $this->sql()
+							  ->tableHefz_teamuser()
+							  ->whereHefz_team_id($value['id'])
+							  ->select()
+							  ->allAssoc();
+							  // var_dump($teamusers->string());exit();
+			
 			foreach ($teamusers as $teamusersid => $v) {
 
 				$usersid = $v['users_id'];
@@ -56,8 +62,9 @@ class model extends main_model {
 		array_multisort($ar1,SORT_DESC,$return);
 		
 		return $return;
-		var_dump($ar1,$return);
+		
 		exit();
+		var_dump($ar1,$return);
 		
 		var_dump($return);		
 		
