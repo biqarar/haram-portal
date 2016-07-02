@@ -62,6 +62,8 @@ class model extends main_model {
 			// $q->joinHefz
 			$q->joinHefz_ligs()->whereId("#hefz_teams.lig_id")->fieldId("lig_id")->fieldName("ligname");
 			$q->joinHefz_group()->whereId("#hefz_teams.hefz_group_id")->fieldName("hefzgroup");
+			
+			$q->groupOpen();
 			foreach ($this->branch() as $key => $value) {
 					if($key == 0){
 						$q->condition("and", "hefz_ligs.branch_id","=",$value);
@@ -70,6 +72,18 @@ class model extends main_model {
 					}
 				}
 			$q->groupClose();
+
+		})
+		->search_result(function($result){
+			$vsearch = $_POST['search']['value'];
+			$vsearch = str_replace(" ", "_", $vsearch);
+			$result->groupOpen();
+			$result->condition("and", "hefz_teams.name", "LIKE", "'%$vsearch%'");
+			$result->condition("or", "hefz_ligs.name", "LIKE", "'%$vsearch%'");
+			$result->condition("or", "hefz_group.name", "LIKE", "'%$vsearch%'");
+			$result->groupClose();
+
+			// echo $result->select()->string();exit();
 		})
 		->result(function($r) {
 			
@@ -103,6 +117,13 @@ class model extends main_model {
 		if($x != $y) {
 			debug_lib::fatal("خطا در تطابق شناسه شعبه");
 		}
+
+		$check = $this->sql()->tableHefz_group()->whereId(post::hefz_group_id())->limit(1)->select()->assoc();
+
+		if($check['lig_id'] != post::lig_id()){
+			debug_lib::fatal("اشکال در تطابق شناسه گروه و شناسه مسابقه");
+		}
+
 		return $this->sql()
 			->tableHefz_teams()
 			->setName(post::name())

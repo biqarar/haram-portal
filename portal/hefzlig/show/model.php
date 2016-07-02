@@ -10,8 +10,11 @@ class model extends main_model {
 	public function sql_result($lig_id = false) {
 
 		$this->lig_id = $lig_id;
+
 		$lig_name = $this->sql()->tableHefz_ligs()->whereId($lig_id)->limit(1)->select()->assoc("name");
+
 		$teams = $this->sql()->tableHefz_teams()->whereLig_id($lig_id)->groupbyHefz_group_id();
+
 		$teams->joinHefz_group()->whereId("#hefz_teams.hefz_group_id")->fieldName("groupname");
 
 		$teams = $teams->select()->allAssoc();	
@@ -41,6 +44,7 @@ class model extends main_model {
 			$race_count = $this->sql()->tableHefz_race()
 									 ->whereHefz_team_id_1($value['id'])
 									 ->orHefz_team_id_2($value['id'])
+							 		 ->andType("دوره ای")
 									 ->select()->num();
 
 

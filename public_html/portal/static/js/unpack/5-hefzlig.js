@@ -27,6 +27,43 @@ route(/portal\/hefzlig/, function(){
 	});
 	
 });
+
+route(/portal\/hefzlig\/teams/, function(){
+	_self = $(this);
+	$("#lig_id").combobox( "destroy" );
+	$("#lig_id", this).combobox({
+		change : function(op){
+			item = op.item.option.value
+			
+			$.ajax({
+				type: "POST",
+				url : "hefzlig/groupapi/ligid=" + item,
+				success : function(data){
+				console.log(data);
+					$( "#hefz_group_id", _self).combobox("destroy");
+			
+					$("#hefz_group_id option").each(function(){
+						$(this).remove();
+					});
+					
+					$("<option value='' disabled='disabled' selected='selected'>لطفا یکی از گزینه ها را انتخاب کنید</option>").appendTo($("#hefz_group_id"));
+
+					for(a in data['msg']['groupname']) {
+						console.log(a);
+						if(data['msg']['groupname'][a]['id']){
+
+							$("<option type='text' value='"+data['msg']['groupname'][a]['id']+"' id='"+data['msg']['groupname'][a]['id']+"' placeholder='"+data['msg']['groupname'][a]['name']+"'>"+data['msg']['groupname'][a]['name']+"</option>").appendTo($("#hefz_group_id"));
+						}			
+					}
+
+					$( "#hefz_group_id", _self).combobox();
+				}
+			});
+		}
+	});
+
+});
+
 function none_display_hefz_group(_self){
 	$( "#hefz_group", _self).combobox().next("span").css("display", "none");
 	$( "label[for=hefz_group]").css("display", "none");
@@ -69,16 +106,17 @@ route(/portal\/hefzlig\/race/, function(){
 						$("<option value='' disabled='disabled' selected='selected'>لطفا یکی از گزینه ها را انتخاب کنید</option>").appendTo($("#hefz_team_id_2"));
 
 						for(a in data['msg']['teams']) {
-							// console.log(a);
-							$("<option type='text' value='"+data['msg']['teams'][a]['id']+"' id='"+data['msg']['teams'][a]['id']+"' placeholder='"+data['msg']['teams'][a]['name']+"'>"+data['msg']['teams'][a]['name']+"</option>").appendTo($("#hefz_team_id_1"));
-							$("<option type='text' value='"+data['msg']['teams'][a]['id']+"' id='"+data['msg']['teams'][a]['id']+"' placeholder='"+data['msg']['teams'][a]['name']+"'>"+data['msg']['teams'][a]['name']+"</option>").appendTo($("#hefz_team_id_2"));
+							console.log(a);
+							if(data['msg']['teams'][a]['id']){
+								$("<option type='text' value='"+data['msg']['teams'][a]['id']+"' id='"+data['msg']['teams'][a]['id']+"' placeholder='"+data['msg']['teams'][a]['name']+"'>"+data['msg']['teams'][a]['name']+"</option>").appendTo($("#hefz_team_id_1"));
+								$("<option type='text' value='"+data['msg']['teams'][a]['id']+"' id='"+data['msg']['teams'][a]['id']+"' placeholder='"+data['msg']['teams'][a]['name']+"'>"+data['msg']['teams'][a]['name']+"</option>").appendTo($("#hefz_team_id_2"));
+								
+							}
 						}
 
 						$( "#hefz_team_id_1", _self).combobox();
 						$( "#hefz_team_id_2", _self).combobox();
-					// }
-					console.log(data);
-					// console.log(race_type);
+					// }	
 				}
 			});
 		}
@@ -89,7 +127,6 @@ route(/portal\/hefzlig\/race/, function(){
 route(/portal\/hefzlig\/race\/status\=delete/, function(){
 
 	var _self = this;
-
 
 	$(".race-delete").click(function(){
 		raceid = $(this).attr("raceid");
@@ -109,9 +146,9 @@ function hefz_result(raceid,_self){
 		type: "POST",
 		url : 'hefzlig/racing/status=resultapi/raceid=' + raceid,
 		success : function(data){
-			// console.log(data);
+			
 			for(a in data['msg']['result']){
-				// console.log($("#race-result-value-" +a).html())
+				
 				$("#race-result-value-" +a).html(persian_nu(data['msg']['result'][a]['value']));
 				$("#race-result-result-" +a).html(persian_nu(data['msg']['result'][a]['result']));
 				$("#race-result-rate-" +a).html(persian_nu(data['msg']['result'][a]['rate']));
@@ -143,8 +180,7 @@ route(/hefzlig\/race\/status\=racing/, function(){
 					+ "/checked=" + checked,
 			success : function(data){
 				xhr_result(data);
-
-				console.log(data);
+				hefz_result(raceid);
 			}
 		});	
 		
@@ -155,6 +191,16 @@ route(/hefzlig\/race\/status\=racing/, function(){
 		teamid = $(this).attr("teamid");
 		raceid = $(this).attr("raceid")
 		type = $(this).attr("type");
+		// console.log(type);
+		// xval = $("#race-result-manfi-" +teamid).html();
+		// if(type == "up"){
+		// 	$("#race-result-manfi-" +teamid).html(xval + 1);
+		// }else{
+			
+		// 	$("#race-result-manfi-" +teamid).html(xval - 1);
+
+		// }
+
 		$.ajax({
 			type: "POST",
 			url : "hefzlig/race/status=raceapi/teamid=" + teamid + "/raceid=" + raceid +  "/type=" + type,
@@ -165,7 +211,6 @@ route(/hefzlig\/race\/status\=racing/, function(){
 				}else if(data.warn){
 					xhr_result(data);
 				}else{
-					// $(_true).insertAfter(_self);
 					hefz_result(raceid,$(_self));
 				}
 			}
@@ -182,8 +227,6 @@ route(/hefzlig\/race\/status\=racing/, function(){
 		type = $(this).attr("name");
 		if(value == "" ) {
 			$(this).removeAttr('disabled');
-			// xhr_error("امتیاز را وارد کنید");
-			console.error("امتیاز وارد نشده است");
 			return;
 		}
 		
