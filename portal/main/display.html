@@ -97,6 +97,31 @@
 </head>
 
 <body id="portal">
+
+{% if debug %}
+
+	<!-- develop mod -->
+		<div style="
+		    background-color: red;
+		    color: black;
+		    font-family: 'WYekan';
+		    font-size: 12px;
+		    position: fixed;
+		    display: block;
+		    height: 25px;
+		    width: 100%;
+		    z-index: 9999998;
+    	">
+			<center>
+				شما در حالت توسعه پورتال مرکز قرآن و حدیث آستان مقدس قم  هستید ... 
+			</center>
+		</div>
+
+		
+	<!-- debug mod -->
+
+{%endif%}
+
 	{% block body %}
 	<style type="text/css">
 		.deactive-tab{
