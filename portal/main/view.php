@@ -22,6 +22,7 @@ class main_view{
 		//$this->global->host = host;
 		//$this->global->ahost = host.path;
 
+
 		// $this->data->debug = DEBUG;
 
 		$menu =  new menu_cls;
