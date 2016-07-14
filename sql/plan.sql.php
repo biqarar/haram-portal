@@ -11,7 +11,7 @@ class plan {
 	public $rule        = array('type'=> 'int@10', 'label' => 'plan_rule');
 	public $min_person  = array('type'=> 'int@3', 'label' => 'plan_min_person');
 	public $max_person  = array('type'=> 'int@4', 'label' => 'plan_max_person');
-	public $expired_price 	= array("type" => "int@3", 'label' => "plan_expired_price");
+	public $meeting_no 	= array("type" => "int@3", 'label' => "plan_meeting_no");
 	public $payment_count = array('type' => 'int@2' , "label" => "payment_count");
 
 	public $unique = array("group");
@@ -87,10 +87,10 @@ class plan {
 		$this->validate()->number(1, 4)->form->number("maximum persons number is not valid");
 	}
 
-	// public function expired_price() {
-	// 	$this->form("#number")->name("expired_price")->pl("تعداد جلسات");
-	// 	$this->validate()->number()->form->number("expired_price is not valid");
-	// }
+	public function meeting_no() {
+		$this->form("#number")->name("meeting_no")->pl("تعداد جلسات");
+		$this->validate()->number()->form->number("meeting_no is not valid");
+	}
 
 	// public function payment_count() {
 	// 	$this->form("#number")->name("payment_count")->label("دفعات پرداخت");

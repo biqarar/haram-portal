@@ -57,6 +57,8 @@ class model extends main_model {
 				// var_dump($x);
 				$reprot[$key]['birthday'] = $year['year'];
 			}
+
+			$reprot[$key]['status'] = _($this->sql(".certification",$value['mark']));
 		}
 		// var_dump($reprot);exit();
 		return $reprot;
