@@ -17,6 +17,18 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "very good"
+msgstr "خیلی خوب"
+
+msgid "good"
+msgstr "خوب"
+
+msgid "acseptable"
+msgstr "قابل قبول"
+
+msgid "plan_meeting_no"
+msgstr "تعداد جلسات"
+
 msgid "hefz_group_name"
 msgstr "گروه"
 
@@ -1260,7 +1272,7 @@ msgid "max_person"
 msgstr "حداکثر اعضا"
 
 msgid "meeting_no"
-msgstr "تعداد جلسات"
+msgstr "ساعات آموزشی"
 
 msgid "min_person"
 msgstr "حداقل اعضا"
@@ -1885,7 +1897,7 @@ msgid "classes_id"
 msgstr "کلاس"
 
 msgid "classes_meeting_no"
-msgstr "تعداد جلسات"
+msgstr "ساعات آموزشی"
 
 msgid "classes_teacher"
 msgstr "نام استاد"

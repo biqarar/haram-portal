@@ -64,7 +64,7 @@ class classes {
 	}
 
 	public function meeting_no() {
-		$this->form("#number")->name("meeting_no")->required();
+		$this->form("#number")->name("meeting_no")->title("تعداد ساعات آموزشی این کلاس \n جهت ثبت در گواهی نامه فراگیران")->required();
 		$this->validate()->number(1, 3)->form->number("meetings number should be between 1 and 999");
 	}
 

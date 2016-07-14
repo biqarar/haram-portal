@@ -19,8 +19,8 @@ class model extends main_model{
 	public function ready($version = "new version") {
 
 		$this->xecho("In The Name Of Allah");
-
-		if(!isset($_GET['password']) || $_GET['password'] != 'ali110ali110') {
+// var_dump($_SESSION);
+		if(!isset($_GET['password']) || $_GET['password'] != 'ali110ali110' || !isset($_SESSION['supervisor'])) {
 			$this->xecho("password incorect.");
 			exit(); die();
 		}else{
@@ -105,6 +105,7 @@ class model extends main_model{
 	public function query_on_record() {
 		// ---------------------------------------------------------------------------------------------------
 
+
 	}
 
 	public function database_change() {
@@ -141,6 +142,54 @@ class model extends main_model{
 			ADD CONSTRAINT `hefz_race_ibfk_6` FOREIGN KEY (`hefz_team_id_1`) REFERENCES `hefz_teams` (`id`)",
 			"ALTER TABLE `hefz_race`
 			ADD CONSTRAINT `hefz_race_ibfk_7` FOREIGN KEY (`hefz_team_id_2`) REFERENCES `hefz_teams` (`id`)",
+
+			
+
+
+			"ALTER TABLE `plan` CHANGE `expired_price` `meeting_no` INT(3) NULL DEFAULT NULL;",
+
+
+		"CREATE TABLE `options` (
+		  `id` bigint(20) UNSIGNED NOT NULL,
+		  `users_id` int(10) UNSIGNED DEFAULT NULL,
+		  `post_id` bigint(20) UNSIGNED DEFAULT NULL,
+		  `option_cat` varchar(50) NOT NULL,
+		  `option_key` varchar(50) NOT NULL,
+		  `option_value` varchar(255) DEFAULT NULL,
+		  `option_meta` mediumtext,
+		  `option_status` enum('enable','disable','expire') NOT NULL DEFAULT 'enable',
+		  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+
+
+		"ALTER TABLE `options`
+		  ADD PRIMARY KEY (`id`),
+		  ADD UNIQUE KEY `cat+key+value` (`option_cat`,`option_key`,`option_value`) USING BTREE,
+		  ADD KEY `options_users_id` (`users_id`),
+		  ADD KEY `options_posts_id` (`post_id`);",
+
+
+	"ALTER TABLE `options`
+  		MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;",
+
+  "CREATE TRIGGER `options_insert` AFTER INSERT ON `options`
+			FOR EACH ROW BEGIN
+			call setHistory('options', 'insert', NEW.id);
+			END",
+			//-----------------------------------------------------------------------------
+			"CREATE TRIGGER `options_update` AFTER UPDATE ON `options`
+			FOR EACH ROW BEGIN
+			call setHistory('options', 'update', OLD.id);
+			END",
+
+			// -----------------------------------------------------------------------------
+			"CREATE TRIGGER `options_delete` AFTER DELETE ON `options`
+			FOR EACH ROW BEGIN
+			call setHistory('options', 'delete', OLD.id);
+			END",
+
+ //  ADD CONSTRAINT `options_posts_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);"
+
 		);
 
 
