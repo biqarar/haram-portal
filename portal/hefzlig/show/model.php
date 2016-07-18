@@ -42,10 +42,12 @@ class model extends main_model {
 	
 		
 			$race_count = $this->sql()->tableHefz_race()
-									 ->whereHefz_team_id_1($value['id'])
-									 ->orHefz_team_id_2($value['id'])
-							 		 ->andType("دوره ای")
-									 ->select()->num();
+									->whereType("دوره ای")
+									->groupOpen()
+									->andHefz_team_id_1($value['id'])
+									->orHefz_team_id_2($value['id'])
+									->groupClose()
+									->select()->num();
 
 
 			$result[$j]['name'] = $value['name'];

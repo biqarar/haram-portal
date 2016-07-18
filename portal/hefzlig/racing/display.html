@@ -44,7 +44,41 @@
 		background: rgb(226,226,226) !important;
 	}
 
+
+	.settings {
+		background-color: #7080ba;
+
+	}
+	.settings * {
+		padding-right: 50px;
+		padding-left: 50px;
+		margin-right: 10px;
+		margin-left: 10px;
+		cursor: pointer;
+
+
+	}
+
+	.settings *:hover{
+		background-color: #f16971;
+	}
+
+	.red {
+		
+		background-color: #f16971;
+	}
+
 </style>
+<script type="text/javascript">
+$(function(){
+	$("tbody").sortable();
+	$("tbody").disableSelection();
+
+});
+</script>
+
+	
+</table>
 <center>
 	<div class="racing-right">
 		<div class="tema-race">{{team1.name}}</div>
@@ -117,15 +151,40 @@
 	</div>
 	<dir style="clear:both"></dir>
 
+
+<section class="settings">
+	<span id="telavat1" raceid="{{raceid}}">
+		تلاوت اول 
+	</span>
+	<span id="telavat2"  raceid="{{raceid}}">
+		تلاوت دوم
+	</span>
+	<span id="setdone" raceid="{{raceid}}">
+		ثبت اتمام مسابقه
+	</span>
+
+</section>
+
+
 </center>
 
 <script type="text/javascript">
 	
 	$(document).ready(function(){
 		$('input.tr-disable').each(function(){
-			console.log($(this));
+			// console.log($(this));
 			$(this).parents("tr").addClass("rt-disable");
 		})
+
+		if("{{telavat}}" == "telavat1") {
+				$("#telavat2").removeClass("red");
+				$("#telavat1").addClass("red");
+			}else{
+				$("#telavat1").removeClass("red");
+				$("#telavat2").addClass("red");
+			}
+
+
 	});
 </script>
 

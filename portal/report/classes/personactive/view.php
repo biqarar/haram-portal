@@ -7,7 +7,7 @@ class view extends main_view{
 
 	public function config(){
 
-
+// sdsdfds
 		$list = $this->sql("#classesactive");
 		$this->global->url = config_lib::$url;
 		$list['title'] = "گزارش کلاس های فعال ";
