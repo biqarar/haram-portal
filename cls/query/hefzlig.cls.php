@@ -1,6 +1,11 @@
 <?php
 class query_hefzlig_cls extends query_cls
 {
+
+	public function set_running($race_id = false) {
+		$this->sql()->tableHefz_race()->whereId($race_id)->setStatus("running")->update();
+	}
+	
 	public function race_result($race_id = false) {
 		
 		//-----------------------------------------------

@@ -260,6 +260,16 @@ class menu_cls  {
 				)
 			);
 
+			//------------------------------  hefz_team
+		self::$menu[] = array(
+			"submenu" => "share", 
+			"url" => 'race/online', 
+			"name" =>  _("نتایج زنده"), 
+			"tag" => array(
+				"hefz_ligs" => array("select" => array("public"))
+				)
+			);
+
 		//------------------------------  if the teacher complete the form, menu not show else show the menu
 
 		// //------------------------------  teacher show detail 

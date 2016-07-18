@@ -17,6 +17,15 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "hefz_race_date"
+msgstr "تاریخ"
+
+msgid "hefz_race_time"
+msgstr "ساعت"
+
+msgid "hefz_race_place"
+msgstr "مکان"
+
 msgid "very good"
 msgstr "خیلی خوب"
 
@@ -46,9 +55,6 @@ msgstr "تیم دوم"
 
 msgid "hefz_race_name"
 msgstr "نام مسابقه"
-
-msgid "hefz_race_place"
-msgstr "مکان مسابقه"
 
 msgid "hefz_race_type"
 msgstr "نوع دیدار"

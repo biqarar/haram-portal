@@ -4,6 +4,57 @@
  */
 class model extends main_model {
 
+	public function sql_telavat($race_id = false) {
+		$check = $this->sql()->tableLogs()->whereLog_meta("telavat_hefz_race=$race_id")->limit(1)->select();
+		if($check->num() == 1) {
+			return $check->assoc("log_data");
+		}else{
+			$insert = $this->sql()->tableLogs()
+				->setLog_meta("telavat_hefz_race=$race_id")
+				->setLog_data("telavat1")
+				->insert()->result();
+				// var_dump($race_id, $insert);	exit();
+			return ($insert) ? "telavat1" : "-";
+		}
+	}
+
+	public function post_setsettings(){
+
+		$race_id = $this->xuId("raceid");
+		$type = $this->xuId("type");
+		switch ($type) {
+			case 'telavat1':
+			case 'telavat2':
+				$check = $this->sql()->tableLogs()->whereLog_meta("telavat_hefz_race=$race_id");
+				if($check->select()->num() == 1) {
+					$check->setLog_data($type)->update();
+				}else{
+					$insert = $this->sql()->tableLogs()
+						->setLog_meta("telavat_hefz_race=$race_id")
+						->setLog_data($type)
+						->insert();
+				}
+				
+				break;
+			
+			case 'setdone':
+				$setdone = $this->sql()->tableHefz_race()->whereId($race_id)->setStatus("done")->update();
+				break;
+			
+		}
+
+		$this->commit(function(){
+			debug_lib::true("تغییرت تنظیمات انجام شد");
+		});
+		$this->rollback(function(){
+			debug_lib::fatal("خطا در تغییر تنظیمات");
+		});
+
+	}
+
+	public function set_race_setting($type = false){
+	}
+
 	public function sql_presence_list($race_id = false) {
 		$check = $this->sql()->tableHefz_race()->whereId($race_id)->limit(1)->select()->assoc();
 		return array($check['presence1'], $check['presence2']);
