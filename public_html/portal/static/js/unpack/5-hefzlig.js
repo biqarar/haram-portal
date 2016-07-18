@@ -1,6 +1,5 @@
 route(/portal\/hefzlig/, function(){
 
-
 	var _self = this;
 	$( "#lig_id", this).combobox();
 	$( "#hefz_team_id_1", this).combobox();
@@ -159,6 +158,27 @@ function hefz_result(raceid,_self){
 }
 
 route(/hefzlig\/race\/status\=racing/, function(){
+
+	$(".settings span").each(function(){
+		$(this).click(function(){
+			type = $(this).attr("id");
+			if(type == "telavat1"){
+				$("#telavat2").removeClass("red");
+				$("#telavat1").addClass("red");
+			}else{
+				$("#telavat1").removeClass("red");
+				$("#telavat2").addClass("red");
+			}
+			raceid = $(this).attr("raceid");
+			$.ajax({
+				type: "POST",
+				url : "hefzlig/race/status=setsettings/raceid=" + raceid + "/type=" + type,
+				success : function(data){
+					xhr_result(data);
+				}
+			});	
+		});
+	});
 
 	$(".hefz-race-presence").click(function(){
 		_self = $(this);

@@ -10,11 +10,11 @@ class view extends main_view {
 		$this->global->page_title = 'race';
 		// var_dump("fuck");exit();
 		$f = $this->form("@hefz_race", $this->urlStatus());
-		$this->sql(".edit", "hefz_race", $this->xuId(), $f);
-		
+		// $this->sql(".edit", "hefz_race", $this->xuId(), $f);
+		$f->remove("status");
 		$this->data->dataTable = $this->dtable(
 			"hefzlig/race/status=listapi/", 
-			array('id','ligs', 'تیم اول','تیم دوم','type','description', "نتیجه","edit","delete", "مسابقه"));
+			array('id','ligs', 'تیم اول','تیم دوم','type','status','date','زمان','مکان','description', "نتیجه","delete", "مسابقه"));
 	
 	}
 

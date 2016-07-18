@@ -13,9 +13,12 @@ class model extends main_model {
 			'team1',
 			'hefz_team_id_2 team2',
 			'type',
+			'status',
+			'date',
+			'time',
+			'place',
 			'name',
 			'id result',
-			'id edit',
 			'id delete',
 			'id race')
 		->search_fields(
@@ -40,7 +43,7 @@ class model extends main_model {
 			// echo ($q->select()->string());exit();
 		})
 		->search_result(function($result){
-				$vsearch = $_POST['search']['value'];
+			$vsearch = $_POST['search']['value'];
 			$vsearch = str_replace(" ", "_", $vsearch);
 			$result->groupOpen();
 			$result->condition("and", "hefz_ligs.name", "LIKE", "'%$vsearch%'");
@@ -52,7 +55,7 @@ class model extends main_model {
 			})
 		->result(function($r) {
 			$r->team2 = $this->find_team_name($r->team2);
-			$r->edit = '<a class="icoedit" href="hefzlig/race/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
+			// $r->edit = '<a class="icoedit" href="hefzlig/race/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
 
 			$r->delete = $this->tag("a")->class("icoredclose")->href("hefzlig/race/status=delete/id=". $r->delete)->render();
 
@@ -95,7 +98,9 @@ class model extends main_model {
 			->setHefz_team_id_1(post::hefz_team_id_1())
 			->setHefz_team_id_2(post::hefz_team_id_2())
 			->setName(post::name())
-			// ->setPlace(post::place())
+			->setDate(post::date())
+			->setTime("#'". post::time(). "'")
+			->setPlace(post::place())
 			->setType(post::type());
 
 	}
@@ -111,7 +116,8 @@ class model extends main_model {
 		$set_presence = $this->set_presence($sql);
 		//------------------------------ commit code
 		$this->commit(function($id = false) {
-			debug_lib::true("<a href='hefzlig/race/status=racing/id=$id' target='_blank' style='text-decoration: none; color:white; cursor: pointer;'><div style='width: 70px;background: #0C706F;border-radius: 7px;padding: 25px 50px 25px 50px !important;text-align: center;display: inline-block;'>شروع مسابقه</div></a><br>");
+			debug_lib::true("ثبت مسابقه انجام شد");
+		// 	debug_lib::true("<a href='hefzlig/race/status=racing/id=$id' target='_blank' style='text-decoration: none; color:white; cursor: pointer;'><div style='width: 70px;background: #0C706F;border-radius: 7px;padding: 25px 50px 25px 50px !important;text-align: center;display: inline-block;'>شروع مسابقه</div></a><br>");
 		}, $sql);
 
 		//------------------------------ rollback code
@@ -121,18 +127,18 @@ class model extends main_model {
 	}
 
 	public function post_edit_hefz_race() {
-		//------------------------------ update race
-		$sql = $this->makeQuery()->whereId($this->xuId())->update();
+		// //------------------------------ update race
+		// $sql = $this->makeQuery()->whereId($this->xuId())->update();
 		
-		//------------------------------ commit code
-		$this->commit(function() {
-			debug_lib::true("[[update race successful]]");
-		});
+		// //------------------------------ commit code
+		// $this->commit(function() {
+		// 	debug_lib::true("[[update race successful]]");
+		// });
 
-		//------------------------------ update code
-		$this->rollback(function() {
-			debug_lib::fatal("[[update race failed]]");
-		});
+		// //------------------------------ update code
+		// $this->rollback(function() {
+		// 	debug_lib::fatal("[[update race failed]]");
+		// });
 	}
 
 

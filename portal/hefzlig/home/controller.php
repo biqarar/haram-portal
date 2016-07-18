@@ -3,8 +3,32 @@
  * @author Reza Mohiti <rm.biqarar@gmail.com>
  */
 class controller extends main_controller{
-	
 	function config(){	
+	
+	
+	$this->listen(array(
+			"max" => 7,
+			"url" => array(
+				"race",
+			 	"status" => "setsettings",
+			 	"raceid" => "/^\d+$/",
+			 	"type" => "/^(.*)$/"
+			 	)
+			), 
+			function() {
+				save(array("hefzlig","racing", "mod" => "setsettings"));
+				$this->permission = array("hefz_ligs" => array("insert" => array("public"), "update" => array("public")));
+			}
+		);
+		
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("online")
+			), array("hefzlig","online")
+			
+		);	
+
+		// var_dump("f");exit();
 		$this->listen(array(
 			"max" => 3,
 			"url" => array("groupapi","ligid" => "/^\d+$/")

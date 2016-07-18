@@ -18,6 +18,7 @@ class model extends main_model {
 		}
 	}
 	$classes->groupClose();
+
 	$classes->joinClassification()->whereClasses_id("#classes.id")->fieldId()
 		->groupOpen()
 		->condition("and", "#date_delete" , "is", "#null")
@@ -26,7 +27,7 @@ class model extends main_model {
 
 	$classes->joinBridge()->whereUsers_id("#classification.users_id")->andTitle("mobile")->field("value");
 	$classes= $classes->select();
-	// var_dump($classes->mmu());exit();
+	echo($classes->string());exit();
 
 	return $classes->allAssoc();
 	}

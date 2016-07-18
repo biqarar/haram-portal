@@ -13,6 +13,11 @@ class view extends main_view {
 		$this->race_id = $this->xuId();
 		$this->data->raceid = $this->race_id;
 
+		// set status race is running ...
+		$this->sql(".hefzlig.set_running", $this->race_id);
+
+
+		$this->data->telavat = $this->sql("#telavat", $this->race_id);
 
 		list($this->presence1,$this->presence2) = $this->sql("#presence_list",$this->race_id);
 		
