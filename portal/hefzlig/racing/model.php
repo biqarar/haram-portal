@@ -18,8 +18,58 @@ class model extends main_model {
 		}
 	}
 
-	public function post_setsettings(){
+	public $team_count = false;
+	public $teamid = false;
+	public $j;
+	public function team_count($teamid = false) {
+		if($this->teamid != $teamid){
 
+			$this->teamid = $teamid;
+			
+			$this->team_count = $this->sql()
+									 ->tableHefz_teamuser()
+									 ->whereHefz_team_id($teamid)
+									 ->select()
+									 ->num();
+			$this->j = $this->team_count;
+		}
+		return $this->team_count;
+		
+	}
+
+	public function post_setsettings(){
+		
+		if(post::sort()) {
+			$sort = post::sort();
+
+			foreach ($sort as $key => $value) {
+
+				$ligid = $value[0];
+
+				$teamid = $value[1];
+
+				$teamusersid = $value[2];
+
+				$team_count = $this->team_count($teamid);
+
+				$update = $this->sql()
+								->tableHefz_teamuser()
+								->whereId($teamusersid)
+								->setSort(intval($team_count) - $this->j--)
+								->update();
+
+			}
+
+			$this->commit(function(){
+				debug_lib::true("ترتیب تیم ها ذخیره شد");
+			});
+			$this->rollback(function(){
+				debug_lib::fatal("خطا در ثبت ترتیب تیم");
+			});
+
+			// var_dump("fuck");exit();
+			return ;
+		}
 		$race_id = $this->xuId("raceid");
 		$type = $this->xuId("type");
 		switch ($type) {

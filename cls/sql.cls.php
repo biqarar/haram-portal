@@ -70,6 +70,7 @@ class sql_cls {
 		$sql = new dbconnection_lib;
 		$assoc = $sql->query("select * from `" .$maker->table . "` where " . $condition . " LIMIT 0,1");
 		$trash = $assoc->assoc();
+		// var_dump("select * from `" .$maker->table . "` where " . $condition . " LIMIT 0,1");
 		$meta = "";
 		foreach ($trash as $key => $value) {
 			if($key == "id") $id = $value;

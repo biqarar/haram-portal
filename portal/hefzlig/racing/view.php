@@ -31,15 +31,16 @@ class view extends main_view {
 		$this->global->page_title = 'مسابقه بین ' . $this->team1_data['name'] . ' و ' . $this->team2_data['name'];
 
 		$team1 = $this->sql(".list", "hefz_teamuser", function ($query) {
-			$query->whereHefz_team_id($this->team1_data['id']);
+			$query->whereHefz_team_id($this->team1_data['id'])->orderSort("ASC");
 			$query->joinPerson()->whereUsers_id("#hefz_teamuser.users_id")->fieldName("personname")->fieldFamily("personfamily");
 		});
 
 		// var_dump($team1);exit();
 		
-		$team1->removeCol("id,hefz_team_id,users_id");
+		$team1->removeCol("id,hefz_team_id,users_id,sort");
 
 		$team1->addColFirst("absence","حضور")->select(-1, "absence")->html("{$this->team1_data['id']}|%id%");
+		
 		$team1->addColEnd("race1","تلاوت اول")->select(-1, "race1")->html("race1|%id%");
 		$team1->addColEnd("race2","تلاوت دوم")->select(-1, "race2")->html("race2|%id%");
 		$this->data->team1['id'] = $this->team1_data['id'];
@@ -58,12 +59,13 @@ class view extends main_view {
 
 
 		$team2 = $this->sql(".list", "hefz_teamuser", function ($query) {
-			$query->whereHefz_team_id($this->team2_data['id']);
+			$query->whereHefz_team_id($this->team2_data['id'])->orderSort("ASC");
 			$query->joinPerson()->whereUsers_id("#hefz_teamuser.users_id")->fieldName("personname")->fieldFamily("personfamily");
 		});
 		
-		$team2->removeCol("id,hefz_team_id,users_id");
+		$team2->removeCol("id,hefz_team_id,users_id,sort");
 		$team2->addColFirst("absence","حضور")->select(-1, "absence")->html("{$this->team2_data['id']}|%id%");
+		
 		$team2->addColEnd("race1","تلاوت اول")->select(-1, "race1")->html("race1|%id%");
 		$team2->addColEnd("race2","تلاوت دوم")->select(-1, "race2")->html("race2|%id%");
 		$this->data->team2['id'] =$this->team2_data['id'];

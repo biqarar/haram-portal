@@ -8,7 +8,7 @@ class view extends main_view {
 		//------------------------------ globals
 		$this->global->page_title = 'آقای حفظ';
 		$header = array(
-			
+			"رتبه",
 			"نام",
 			"نام خانوادگی",
 			"نام تیم",

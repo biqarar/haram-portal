@@ -25,9 +25,9 @@ class model extends main_model {
 		}
 
 		return $return;
+		exit();
 		var_dump($return);
 
-		exit();
 		
 	}
 
@@ -43,6 +43,7 @@ class model extends main_model {
 		
 			$race_count = $this->sql()->tableHefz_race()
 									->whereType("دوره ای")
+									->andStatus("done")
 									->groupOpen()
 									->andHefz_team_id_1($value['id'])
 									->orHefz_team_id_2($value['id'])
@@ -65,62 +66,135 @@ class model extends main_model {
 			$result[$j]['average'] = round(floatval($r['average'] / $race_count),3);
 			$result[$j]['race_rate'] = $r['rate'];
 			$result[$j]['more'] = $this->tag("a")->href("hefzlig/raceteam/id=" . $value['id'])->class("icomore")->render();
+			$result[$j]['id'] = $value['id'];
+			$result[$j]['xrate'] = $r['rate'];
 			$j++;
 
 			$ar1[] = $r['rate'];
 		}
 		array_multisort($ar1,SORT_DESC,$result);
 
+		$this->fix($result);
+
+		$ar1 = array();
+		$finaly_result = array();
+		foreach ($result as $key => $value) {
+			$ar1[] = $value['xrate'];
+			$finaly_result[$key]['name'] = $value['name'] ;
+			$finaly_result[$key]['race_count'] = $value['race_count'] ;
+			$finaly_result[$key]['race_win'] = $value['race_win'] ;
+			$finaly_result[$key]['race_ower'] = $value['race_ower'] ;
+			$finaly_result[$key]['race_req'] = $value['race_req'] ;
+			$finaly_result[$key]['average'] = $value['average'] ;
+			$finaly_result[$key]['race_rate'] = $value['race_rate'] ;
+			$finaly_result[$key]['more'] = $value['more'] ;
+		}
+
+		array_multisort($ar1,SORT_DESC,$finaly_result);
 
 		$return = array();
 		$return['group_id'] = $group_id;
 		$return['groupname'] = $groupname;
-		$return['result'] = $result;
+		$return['result'] = $finaly_result;
 		return $return;
 		var_dump($return);
-		// var_dump($ar1);
 		exit();		
 	}
 
-	public function fix($r1 = false , $r2 = false) {
-		$race_id = $this->sql()->tableHefz_race()
-			->groupOpen()
-			->whereHefz_team_id_1($r1['more'])
-			->andHefz_team_id_2($r2['more'])
-			->groupClose()
-			->groupOpen()
-			->orHefz_team_id_1($r2['more'])
-			->andHefz_team_id_2($r1['more'])
-			->groupClose()
-			->select();
-
-		if($race_id->num() > 0) {
-
-			$race_id = $race_id->assoc("id");
-			$r = $this->sql(".hefzlig.race_result", $race_id);
-			if(count($r) < 2) return;
-			if($r[$r1['more']]['rate'] == $r[$r2['more']]['rate']){
-				$this->p++;
-				if($r1['average'] > $r2['average']){
-					$this->mr[$r1['race_rate'] + 1] = $r1;
-					$this->mr[$r2['race_rate']] = $r2;
-				}else{
-					$this->mr[$r2['race_rate'] + 1] = $r2;
-					$this->mr[$r1['race_rate']] = $r1;
-				}
-			}elseif($r[$r1['more']]['rate'] > $r[$r2['more']]['rate']){
-				$this->p++;
-				$this->mr[$r1['race_rate'] + 1] = $r1;
-				$this->mr[$r2['race_rate']] = $r2;
-			}else{
-				$this->p++;
-				$this->mr[$r2['race_rate'] + 1] = $r2;
-				$this->mr[$r1['race_rate']] = $r1;
-
-			}
+	public function fix(&$result) {
+		// return;
 		
-		}else{
+		$index = $result[0]['race_rate'];
+
+		$to_fix = array();
+
+		foreach ($result as $key => $value) {
+			if($value['race_rate'] == 0) continue;
+
+			if($value['race_rate'] == $index){
+				// 2 team ba ham barabaran
+				$to_fix[$index][] = $value['id']; 
+			}else{
+				$index = $value['race_rate'];
+			}
+		}
+
+
+		$xto_fix = array();
+		foreach ($to_fix as $key => $value) {
+			if(is_array($value) AND count($value) < 2) continue; 
+			$xto_fix[] = $value;
+		}
+
+		if(empty($to_fix)) {
 			return;
+		}
+		$to_fix = $xto_fix;
+
+		$ro_dar_ro = $this->sql()->tableHefz_race()->whereType("دوره ای")->andStatus("done");
+		$ro_dar_ro->joinHefz_teams()->whereId("#hefz_race.hefz_team_id_1")->andLig_id($this->lig_id);
+		
+		for ($i=0; $i < count($to_fix) ; $i++) { 
+		
+			$ro_dar_ro->groupOpen();
+			if($i==0){
+				$ro_dar_ro->andHefz_team_id_1($to_fix[$i][0])->andHefz_team_id_2($to_fix[$i][1]);
+			}else{
+				$ro_dar_ro->orHefz_team_id_1($to_fix[$i][0])->andHefz_team_id_2($to_fix[$i][1]);
+			}
+			$ro_dar_ro->groupClose();
+			$ro_dar_ro->groupOpen();
+			$ro_dar_ro->orHefz_team_id_2($to_fix[$i][0])->andHefz_team_id_1($to_fix[$i][1]);
+			$ro_dar_ro->groupClose();
+			
+		}
+
+		$ro_dar_ro = $ro_dar_ro->select();
+
+		if($ro_dar_ro->num() == 0) {
+			// var_dump($to_fix);
+			// var_dump($result);
+			// miyangin darsan
+			// $ar2 = array();
+			foreach ($result as $key => $value) {
+				foreach ($to_fix as $i => $teamid) {
+					if($value['id'] == $teamid){
+						$result[$key]['xrate'] = $value['average'];
+					}else{
+						// $result[$key]['xrate'] = $value['average'];
+					}
+				}
+				// $ar2[] = $value['average'];
+			}
+			// array_multisort($ar2,SORT_DESC,$result);
+
+		}else{
+			// // get race result
+			$res = array();
+
+			foreach ($ro_dar_ro->allAssoc() as $key => $value) {
+				$a = $this->sql(".hefzlig.race_result", $value['id']);
+				foreach ($a as $teamid => $teamresult) {
+					if(isset($res[$teamid])){
+						$res[$teamid] = $res[$teamid]+ $teamresult['rate'];
+					}else{
+						$res[$teamid] =  $teamresult['rate'];
+
+					}
+				}
+			}
+
+			arsort($res);
+			foreach ($result as $key => $value) {
+				$i = count($result);
+				foreach ($res as $f => $xrate) {
+					if($value['id'] == $xrate){
+						$result[$key]['xrate'] = $result[$key]['xrate']  + $i;
+						$i--;
+					}
+					
+				}
+			}
 		}
 	}
 
@@ -132,6 +206,7 @@ class model extends main_model {
 							 ->orHefz_team_id_2($team_id)
 							 ->groupClose()
 							 ->andType("دوره ای")
+							 ->andStatus("done")
 							 ->select()->allAssoc();
 		$return = array();
 		$return['win']  = 0;
@@ -166,9 +241,14 @@ class model extends main_model {
 				if($r1 == 3) { // bord bord
 					$return['win']++;
 				}else{
-					$return['req']++;
+					if($r1 == 0) {
+						// اگر دو تیم زیر 30٪ خوانده باشند فقط باخت نمایش دهد نه هم باخت و هم مساوری
+					}else{
+						$return['req']++;
+					}
 				}
-			} 
+			}
+
 			
 		}
 		return $return;

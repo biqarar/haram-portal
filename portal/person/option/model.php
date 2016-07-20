@@ -264,7 +264,7 @@ class model extends main_model{
 			
 		}
 
-		$msg .= " با شماره پرونده: <b style='color: #0C706F'>" . $username . "</b>";
+		$msg .= " با شماره پرونده: <b><a  style='color: #0C706F' title='نمایش پرونده' href='users/learn/id=$users_id'>" . $username . "</a></b>";
 		$msg .= "\n با مشخصات";
 		$msg .= "\n نام: <b style='color:#0C706F'>"  . $person['name'] . "</b>";
 		$msg .= "\n نام خانوادگی: <b style='color: #0C706F'>" . $person['family'] . "</b>";
@@ -274,7 +274,7 @@ class model extends main_model{
 		$msg .= "\n ----------------------- \n ";
 		// print_r($_SESSION);exit();
 		$permission = (isset($_SESSION['user']['permission']['tables']['users_branch']['update'])) ? true : false;
-		if($permission){
+		if($permission || global_cls::supervisor()){
 
 		$msg .= "<a style='text-decoration: none; color:white; cursor: pointer;'><div style='width: 70px;background: #0C706F;border-radius: 7px;padding: 25px 50px 25px 50px !important;text-align: center;display: inline-block;' onclick='apichangeusersbranch($branch_id,$users_id)'>انتقال پرونده به این شعبه</div></a><br>";
 

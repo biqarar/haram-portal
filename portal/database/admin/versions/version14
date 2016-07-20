@@ -1,0 +1,7 @@
+		"ALTER TABLE `hefz_race` ADD `status` ENUM('ready','running','done') NOT NULL DEFAULT 'ready' AFTER `type`;",
+
+		"ALTER TABLE `hefz_race` ADD `place` varchar(255) NULL  AFTER `type`;",
+
+		"ALTER TABLE `hefz_race` ADD `time` time NULL  AFTER `type`;",
+
+		"ALTER TABLE `hefz_race` ADD `date` int(8) NULL AFTER `type`;",
