@@ -121,13 +121,8 @@ class model extends main_model{
 		$database_change = array(
 			//--------------------
 
-		"ALTER TABLE `hefz_race` ADD `status` ENUM('ready','running','done') NOT NULL DEFAULT 'ready' AFTER `type`;",
-
-		"ALTER TABLE `hefz_race` ADD `place` varchar(255) NULL  AFTER `type`;",
-
-		"ALTER TABLE `hefz_race` ADD `time` time NULL  AFTER `type`;",
-
-		"ALTER TABLE `hefz_race` ADD `date` int(8) NULL AFTER `type`;",
+			"ALTER TABLE `hefz_race` CHANGE `type` `type` ENUM('حذفی','دوره ای','دوستانه') CHARACTER SET utf8 COLLATE utf8_persian_ci NULL DEFAULT 'حذفی';",
+			"ALTER TABLE `hefz_teamuser` ADD `sort` INT(3) NULL DEFAULT '0' AFTER `users_id`;",
 		
 		);
 

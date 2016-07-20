@@ -158,7 +158,38 @@ function hefz_result(raceid,_self){
 
 route(/hefzlig\/race\/status\=racing/, function(){
 
+	// save sort teams
+	xbody = $(this);
+	$("#save-sort").click(function(){
+		sort = new Array;
+		i = 0;
+		$("input[type=checkbox]",xbody).each(function(){
+			raceid =  $(this).attr("raceid");
+			teamid =  $(this).attr("teamid");
+			// sort[teamid] = new Array;
+			teamusersid = $(this).attr("teamusersid");
+			sort[i]=[raceid,teamid,teamusersid];
+			i++;
+		});
+			
+			console.log(sort);
+
+			$.ajax({
+				type: "POST",
+				url : "hefzlig/race/status=setsettings/raceid=" + raceid + "/type=sort",
+				data: {'sort':sort},
+				success : function(data){
+					xhr_result(data);
+				}
+			});	
+		// console.log(xbody);
+	});
+
+
+
+
 	$(".settings span").each(function(){
+		if($(this).attr("id") == "save-sort") return;
 		$(this).click(function(){
 			type = $(this).attr("id");
 			if(type == "telavat1"){

@@ -50,7 +50,7 @@ class model extends main_model {
 		// $ar2 = array();
 		$i = 0;
 		foreach ($result as $key => $value) {
-			// $return[$i]['ligname'] = $lig_name;
+			$return[$i]['id'] = 0;
 			$return[$i]['name'] = $this->sql(".userNameFamily.name", $key);
 			$return[$i]['family'] = $this->sql(".userNameFamily.family", $key);
 			$return[$i]['team'] = $value['team'];
@@ -61,13 +61,27 @@ class model extends main_model {
 		}
 		array_multisort($ar1,SORT_DESC,$return);
 		
+
+		//rate for mr hefz
+		$index = $return[0]['sum'];
+		$j = 1;
+		$count = 0;
+		foreach ($return as $key => $value) {
+			if($value['sum'] == $index) {
+				$return[$key]['id'] = $j;
+			}else{
+				$index = $value['sum'];
+				$j = $j+ $count;
+				$count=0;
+				$return[$key]['id'] = $j;
+			}
+			$count++;
+		}
+
 		return $return;
 		
-		exit();
 		var_dump($ar1,$return);
-		
-		var_dump($return);		
-		
+		exit();		
 	}
 
 }

@@ -93,6 +93,13 @@ class model extends main_model {
 			debug_lib::fatal("تیم اول و دوم نباید هم نام باشند");
 		}
 
+		if(post::type() == "دوره ای") {
+			$check  = $this->sql()->tableHefz_teams()->whereId(post::hefz_team_id_1())->select()->assoc("hefz_group_id");
+			$check2 = $this->sql()->tableHefz_teams()->whereId(post::hefz_team_id_2())->select()->assoc("hefz_group_id");
+			if($check != $check2) {
+				debug_lib::fatal("مسابقه دوره ای بین تیم های هم گروه برگزار می شود");
+			}
+		}
 		
 		return $this->sql()->tableHefz_race()
 			->setHefz_team_id_1(post::hefz_team_id_1())

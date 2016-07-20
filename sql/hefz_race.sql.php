@@ -7,7 +7,7 @@ class hefz_race {
 
 	public $id = array("type" => "int@10", "label" => "hefz_race_id");
 	public $lig_id = array("type" =>"int@10", "label" => "hefz_teams_lig_id");
-	public $type = array("type" => "enum@حذفی,دوره ای!حذفی", "label" => "hefz_race_type");
+	public $type = array("type" => "enum@حذفی,دوره ای,دوستانه!حذفی", "label" => "hefz_race_type");
 	public $hefz_team_id_1 = array("type" => "int@10", "label" => "hefz_race_hefz_team_id_1");
 	public $hefz_team_id_2 = array("type" => "int@10", "label" => "hefz_race_hefz_team_id_2");
 	
