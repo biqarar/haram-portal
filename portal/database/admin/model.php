@@ -121,8 +121,7 @@ class model extends main_model{
 		$database_change = array(
 			//--------------------
 
-			"ALTER TABLE `hefz_race` CHANGE `type` `type` ENUM('حذفی','دوره ای','دوستانه') CHARACTER SET utf8 COLLATE utf8_persian_ci NULL DEFAULT 'حذفی';",
-			"ALTER TABLE `hefz_teamuser` ADD `sort` INT(3) NULL DEFAULT '0' AFTER `users_id`;",
+			"ALTER TABLE `plan` CHANGE `payment_count` `absence_type` ENUM('ترمی','ماهیانه') NULL DEFAULT 'ترمی';",
 		
 		);
 

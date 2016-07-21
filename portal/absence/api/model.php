@@ -13,10 +13,16 @@ class model extends main_model {
 		$date = $this->xuId("date");
 		$type = $this->xuId("type");
 		
-		$check = $this->sql()->tableAbsence()->whereClassification_id($classification)->andDate($date)->limit(1)->select()->num();
+		$check = $this->sql()->tableAbsence()
+							->whereClassification_id($classification)
+							->andDate($date)->limit(1)->select()->num();
 
-		if($check != 0) {
-			debug_lib::fatal("برای این فراگیر در این تاریخ ثیبت ثبت شده است");
+		if($check == 1) {
+			// $check = $this->sql()->tableAbsence()
+			// 				->whereClassification_id($classification)
+			// 				->andDate($date)->select()->allAssoc();
+			// 				var_dump($check);exit();			
+			debug_lib::fatal("برای این فراگیر در این تاریخ غیبت ثبت شده است");
 		}else{
 			//--------------- check if this classification id in the users branch or no.
 			$this->sql(".branch.classification", $classification);
@@ -26,7 +32,7 @@ class model extends main_model {
 						->setType($type)
 						->setDate($date)
 						->insert();
-			$this->sql(".absence.autoremove",$classification);
+			$this->sql(".absence.autoremove",$classification, $date);
 			$this->type = $type;
 			
 		}

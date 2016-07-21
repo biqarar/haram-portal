@@ -55,6 +55,7 @@ class view extends main_view {
 		// var_dump($classes_detail);exit();
 		$this->data->detail = $classes_detail;
 		$this->data->list = $classes_list;
+		// var_dump($classes_list);exit();
 	}
 }
 ?>

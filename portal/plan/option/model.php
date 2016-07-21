@@ -15,6 +15,7 @@ class model extends main_model{
 				->setName(post::name())
 				->setPrice(post::price())
 				->setAbsence(post::absence())
+				->setAbsence_type(post::absence_type())
 				->setCertificate(post::certificate())
 				->setMark(post::mark())
 				->setBranch_id($this->post_branch())
