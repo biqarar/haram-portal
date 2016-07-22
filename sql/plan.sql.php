@@ -6,6 +6,7 @@ class plan {
 	public $name        = array('type'=> 'varchar@32', 'label' => 'plan_name');
 	public $price       = array('type'=> 'int@7', 'label' => 'plan_price');
 	public $absence     = array('type'=> 'int@2', 'label' => 'plan_absence');
+	public $absence_type= array('type'=> 'enum@ترمی,ماهیانه!ترمی', 'label' => 'plan_absence_type');
 	public $certificate = array('type'=> 'enum@yes,no!yes', 'label' => 'plan_certificate');
 	public $mark        = array('type'=> 'float@', 'label' => 'plan_mark');
 	public $rule        = array('type'=> 'int@10', 'label' => 'plan_rule');
@@ -61,6 +62,11 @@ class plan {
 	public function absence() {
 		$this->form("#number")->name("absence")->required();
 		$this->validate()->number(1, 2)->form->number("absences number is not valid");
+	}
+
+	public function absence_type() {
+		$this->form("radio")->name("absence_type");
+		$this->setChild($this->form);
 	}
 	
 	public function certificate() {

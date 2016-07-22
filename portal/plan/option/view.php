@@ -29,6 +29,7 @@ class view extends main_view{
 				"name",
 				"price",
 				"absence",
+				"روش محاسبه",
 				"certificate",
 				"mark",
 				"min_person",

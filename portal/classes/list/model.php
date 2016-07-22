@@ -213,7 +213,13 @@ class model extends main_model {
 			}else{
 				$r->classification = '<a class="'. $ico . '" href="'.$url.'classesid='.$r->classification.'" title="'.gettext('classification').' '.$r->classification.'"></a>';
 			}
-			$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
+			if($ico == "icoattendance"){
+				$r->detail = '<a class="icoletters a-undefault" href="classification/printlist/classesid=' . $r->detail. '/type=absence" title="ثبت غیبت با لیست کلاسی"></a>';
+				
+			}else{
+				$r->detail = '<a class="icomore" href="classes/status=detail/id='.$r->detail.'" title="'.gettext('detail').' '.$r->detail.'"></a>';
+
+			}
 
 
 		}, $ico , $url);

@@ -31,7 +31,7 @@ class model extends main_model {
 		//---------------- check branch
 		// $this->sql(".branch.classes", $classes_id);
 
-		$q =  $this->sql()->tableClassification()->whereClasses_id($classes_id);
+		$q =  $this->sql()->tableClassification()->whereClasses_id($classes_id)->fieldId("classificationid")->fieldUsers_id("users_id");
 
 		$q = $this->classification_finde_active_list($q);
 		$q->joinPerson()->whereUsers_id("#classification.users_id")->fieldName()->fieldFamily()->orderFamily();

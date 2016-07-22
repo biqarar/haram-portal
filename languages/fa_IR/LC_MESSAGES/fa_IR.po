@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "plan_absence_type"
+msgstr "روش محاسبه غیبت مجاز"
+
 msgid "hefz_race_date"
 msgstr "تاریخ"
 

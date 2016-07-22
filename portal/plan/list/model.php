@@ -7,6 +7,7 @@ class model extends main_model {
 				"name",
 				"price",
 				"absence",
+				"absence_type",
 				"certificate",
 				"mark",
 				"min_person",
