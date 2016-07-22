@@ -229,7 +229,7 @@ $(document).ready(function(){
 	});
 
 	function set_attr(_self) {
-		console.log(_self);
+		// console.log(_self);
 		xclass = $(_self).attr("xclass");
 		val = $(_self).val();
 		$("a[xclass="+xclass+"]").each(function(){
@@ -239,37 +239,41 @@ $(document).ready(function(){
 
 	function convert_date(date) {
 		date = date.split("-");
-		if(date[0].length == 4) y = date[0];
-		if(date[1].length != 2) {
-			m = "0" + date[1];
+		var m,d,y;
+		y = date[0];
+		m = date[1];
+		d = date[2];
+		if(y.length == 4) y = y;
+		if(m < 10) {
+			m = "0" + m;
 		}
-		if(date[2].length != 2) {
-			d = "0" + date[2];
+		if(d < 10) {
+			d = "0" + d;
 		}
 		return y + "" + m + "" + d;
 	}
 
 	$("a.insertAbsenceApi", this).click(function(){
-		date = $(this).attr("date");
-		
+		_self = $(this);
+		date = $(_self).attr("date");
+		// console.log(date);
 		if(typeof date == "undefined") {
 			xhr_error("تاریخ انتخاب نشده است");
 			return false;
 		}	
 
-		classification = $(this).attr("classificationid");
-		// date = $(this).attr("date");
+		classification = $(_self).attr("classificationid");
+		
 		date = convert_date(date);
-
-
+		
 		type = "unjustified absence";
 		
-		_self = $(this);
-		
+		xurl = "absence/api/classification=" + classification + "/date=" + date + "/type=" + type;
+
 		if($(_self).hasClass("insertAbsenceApi")){
 			$.ajax({
 				type: "POST",
-				url : "absence/api/classification=" + classification + "/date=" + date + "/type=" + type,
+				url : xurl,
 				success : function(data){
 					
 					xhr_result(data);
