@@ -11,9 +11,9 @@ class main_controller{
 			$this->access = true; // for befor lunch
 		}
 
-		if(preg_match("/favicon\.ico$/", $_SERVER['REQUEST_URI'])){
-			die("favicon.ico");
-		}
+		// if(preg_match("/favicon\.ico$/", $_SERVER['REQUEST_URI'])){
+		// 	die("favicon.ico");
+		// }
 
 		$this->xuStatus();
 		

@@ -38,10 +38,39 @@
 		margin:1.5cm 1cm 1cm 1cm;
 	}
 
+	.description{
 
+	    font-family: "WYekan";
+	    background-color: wheat;
+	    width: 100%;
+	    display: inherit;
+	}
+
+	.pl-action {
+		position: absolute;
+	    margin-top: 24px;
+	    margin-right: 2px;
+	    padding: 0px 10px;
+	    color: #59c5c5;
+	    font-family: "WYekan";
+	    display: none;
+	}
 
 
 </style>
+<script type="text/javascript">
+	function setAll(a){
+		console.log(a);
+		$("input[type=radio]").each(function(){
+			$(this).removeAttr("checked").removeAttr("selected");
+		});
+		$("input[xval="+a+"]").each(function(){
+			console.log($(this));
+			$(this).attr("checked","checked").attr("selected", "selected");
+
+		});
+	}
+</script>
 <div class="class-details colory">
 	{% for key, header in detail.header %}
 	<div class="class-detail normal-font">
@@ -53,7 +82,15 @@
 
 	<div style="clear:both"></div>
 </div>
-
+	<dib class="description">
+		ترتیب دکمه های نوع غیبت عبارت است از:
+		<a onclick="setAll('unjustifiedabsence')" style="cursor:pointer;color:black;background-color:white">غیبت غیر موجه</a>،
+		<a onclick="setAll('justifiedabsence')" style="cursor:pointer;color:black;background-color:#59c5c5">غیبت موجه</a>،
+		<a onclick="setAll('leave')" style="cursor:pointer;color:black;background-color:#baf5ba">مرخصی</a>
+		و
+		<a onclick="setAll('delay')" style="cursor:pointer;color:black;background-color:#ffffc4">تاخیر</a>
+		بازدن بر روی هر گزینه رنگ پس زمینه آن خانه به رنگ های اعلام شده در این متن تغییر می کند
+	</dib>
 <table cellspacing="0" cellpadding="0">
 	<!-- header -->
 	<tr>
@@ -190,17 +227,87 @@
 			<td rowspan="2" class="clse">{{list.price}}</td>
 		</tr>
 		<tr>
-			<td class="small-font system-default">وضعیت</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td class="small-font system-default">نوع غیبت</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
+			<td>
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+				checked="checked" title="غیر موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#59c5c5" value ="justified absence"
+				xval="justifiedabsence" title="موجه">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+			</td>
 			<!-- <td></td>
 			<td></td>
 			<td></td>
@@ -213,6 +320,24 @@
 </table>
 <script type="text/javascript">
 $(document).ready(function(){
+
+	$("input[type=radio]").click(function(){
+		// $(this).cl
+		$(this).parents("td").css("background-color", $(this).attr("xcolor"));
+		_self = $(this);
+		$("a[classificationid="+$(this).attr("classificationid")+"]").each(function(){
+			// console.log($(this));
+			x1= $(_self).attr("xclass");
+			x2 = $(this).attr("xclass");
+			if(x1 == x2){
+				$(this).attr("type", $(_self).val());
+			}
+			
+		});
+
+	});
+
+
 	$("body",this).find("input[date=date]").each(function(){
 		var _self = $(this);
 		$(this).persianDatepicker({
@@ -235,6 +360,7 @@ $(document).ready(function(){
 		$("a[xclass="+xclass+"]").each(function(){
 			$(this).attr("date", val);
 		});
+		// $("input[type=radio,xclass="+xclass+"]").
 	}
 
 	function convert_date(date) {
@@ -265,8 +391,11 @@ $(document).ready(function(){
 		classification = $(_self).attr("classificationid");
 		
 		date = convert_date(date);
-		
-		type = "unjustified absence";
+		type = $(this).attr("type");
+
+		if(typeof type == "undefined"){
+			type = "unjustified absence";
+		}
 		
 		xurl = "absence/api/classification=" + classification + "/date=" + date + "/type=" + type;
 
@@ -301,6 +430,7 @@ $(document).ready(function(){
 		}
 		return false;
 	});	
+
 	
 });
 </script>
