@@ -1,5 +1,4 @@
 route(/absence\/status=classeslist\/classesid=\d+/, function(){
-
 	$(".absence-date-main")[0].callBackDate =  function(){
 		date = convert_date($(this).val());
 	}
