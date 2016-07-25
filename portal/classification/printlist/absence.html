@@ -58,19 +58,7 @@
 
 
 </style>
-<script type="text/javascript">
-	function setAll(a){
-		console.log(a);
-		$("input[type=radio]").each(function(){
-			$(this).removeAttr("checked").removeAttr("selected");
-		});
-		$("input[xval="+a+"]").each(function(){
-			console.log($(this));
-			$(this).attr("checked","checked").attr("selected", "selected");
 
-		});
-	}
-</script>
 <div class="class-details colory">
 	{% for key, header in detail.header %}
 	<div class="class-detail normal-font">
@@ -84,11 +72,11 @@
 </div>
 	<dib class="description">
 		ترتیب دکمه های نوع غیبت عبارت است از:
-		<a onclick="setAll('unjustifiedabsence')" style="cursor:pointer;color:black;background-color:white">غیبت غیر موجه</a>،
-		<a onclick="setAll('justifiedabsence')" style="cursor:pointer;color:black;background-color:#59c5c5">غیبت موجه</a>،
-		<a onclick="setAll('leave')" style="cursor:pointer;color:black;background-color:#baf5ba">مرخصی</a>
+		<a class="unjustifiedabsence" style="cursor:pointer;color:black;background-color:white">غیبت غیر موجه</a>،
+		<a class="justifiedabsence" style="cursor:pointer;color:black;background-color:#59c5c5">غیبت موجه</a>،
+		<a class="leave" style="cursor:pointer;color:black;background-color:#baf5ba">مرخصی</a>
 		و
-		<a onclick="setAll('delay')" style="cursor:pointer;color:black;background-color:#ffffc4">تاخیر</a>
+		<a class="delay" style="cursor:pointer;color:black;background-color:#ffffc4">تاخیر</a>
 		بازدن بر روی هر گزینه رنگ پس زمینه آن خانه به رنگ های اعلام شده در این متن تغییر می کند
 	</dib>
 <table cellspacing="0" cellpadding="0">
@@ -229,84 +217,104 @@
 		<tr>
 			<td class="small-font system-default">نوع غیبت</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx1" xclass="xm1" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx2" xclass="xm2" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx3" xclass="xm3" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx4" xclass="xm4" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx5" xclass="xm5" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx6" xclass="xm6" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx7" xclass="xm7" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx8" xclass="xm8" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx9" xclass="xm9" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<td>
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
-				checked="checked" title="غیر موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#59c5c5" value ="justified absence"
-				xval="justifiedabsence" title="موجه">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
-				<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				<div class="divGroup">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="white" value="unjustified absence" xval="unjustifiedabsence" 
+					 title="غیر موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#59c5c5" value ="justified absence"
+					xval="justifiedabsence" title="موجه">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#baf5ba" value="leave" xval="leave" title="مرخصی">
+					<input type="radio" classificationid="{{list.classificationid}}" name="absencetype{{list.username}}mx10" xclass="xm10" xcolor="#ffffc4" value= "delay" xval="delay" title="تاخیر">		
+				</div>
 			</td>
 			<!-- <td></td>
 			<td></td>
@@ -320,7 +328,34 @@
 </table>
 <script type="text/javascript">
 $(document).ready(function(){
-
+	
+	$("a.unjustifiedabsence").click(function(){
+		$(".divGroup").each(function(){
+			$("input:radio", this).removeAttr("checked");
+			$("input:radio", this).eq(0).attr("checked", "checked");
+		});
+	});
+	
+	$("a.justifiedabsence").click(function(){
+		$(".divGroup").each(function(){
+			$("input:radio", this).removeAttr("checked");
+			$("input:radio", this).eq(1).attr("checked", "checked");
+		});
+	});
+	
+	$("a.leave").click(function(){
+		$(".divGroup").each(function(){
+			$("input:radio", this).removeAttr("checked");
+			$("input:radio", this).eq(2).attr("checked", "checked");
+		});
+	});
+	$("a.delay").click(function(){
+		$(".divGroup").each(function(){
+			$("input:radio", this).removeAttr("checked");
+			$("input:radio", this).eq(3).attr("checked", "checked");
+		});
+	});
+	
 	$("input[type=radio]").click(function(){
 		// $(this).cl
 		$(this).parents("td").css("background-color", $(this).attr("xcolor"));
