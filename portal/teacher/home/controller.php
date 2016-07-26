@@ -6,6 +6,21 @@ class controller extends main_controller{
 	public $access = false;
 
 	function config(){
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("status" => "activelist", "type" => "/^(teacher|operator)$/")
+			), function(){
+			save(array("teacher", "list"));
+			$this->permission = array("teacher" => array("select" => array("public")));
+		});
+
+		$this->listen(array(
+			"max" => 4,
+			"url" => array("status" => "apiactivelist", "type" => "/^(teacher|operator)$/")
+			), function(){
+			save(array("teacher", "list", "mod" => "api"));
+			$this->permission = array("teacher" => array("select" => array("public")));
+		});
 // var_dump($_SESSION);exit();
 		$this->listen(array(
 			"max" => 3,

@@ -57,6 +57,7 @@ class controller extends main_controller {
 
 			//---------------------------- bridge
 	$this->listen(array(
+			"max" => 5,
 			"url" => array("classes", "type" =>"personactive")
 			), function (){
 				save(array("report","classes","personactive"));
