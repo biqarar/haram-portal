@@ -366,12 +366,22 @@ class menu_cls  {
 		//------------------------------   bridge list
 		self::$menu[] = array(
 			"submenu" => "allteacher", 
+			"url" => "teacher/status=activelist/type=teacher", 
+			"name" =>  _("اساتید فعال"), 
+			"tag" => array(
+				"teacher" => array("select" => array("public"))
+				)
+			);
+		//------------------------------   bridge list
+		self::$menu[] = array(
+			"submenu" => "allteacher", 
 			"url" => "teacher/status=list/type=teacher", 
 			"name" =>  _("teacher list"), 
 			"tag" => array(
 				"teacher" => array("select" => array("public"))
 				)
 			);
+
 
 		//------------------------------   bridge list
 		self::$menu[] = array(

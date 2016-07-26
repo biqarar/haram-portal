@@ -9,17 +9,18 @@ class view extends main_view{
 		//------------------------------ global
 		$type = ($this->xuId("type") == "teacher") ? "teachers" : "operator";
 		$this->global->page_title  = " لیست " . _($type);
+		$status = ($this->xuId("status") == "activelist") ? "apiactivelist"  : "apilist";
 		$this->data->dataTable = $this->dtable(
-			'teacher/status=apilist/type=' . $this->xuId("type") . "/",
+			'teacher/status='.$status.'/type=' . $this->xuId("type") . "/",
 			array(
 				'casecode',
 				'name',
 				'family',
 				'father',
 				'birthday',
-				'gender',
 				'nationalcode',
 				'code',
+				'شماره همراه',
 				// 'marriage',
 				// 'education_id',
 				'detail',
