@@ -7,6 +7,7 @@ class view extends main_view {
 	public function config() {
 		//------------------------------ globals
 		$this->global->page_title = 'نتایج مسابقه';
+		
 		$header = array(
 			// "شماره",
 			// "مسابقات تیمی",
@@ -20,7 +21,7 @@ class view extends main_view {
 			"بیشتر"
 			);
 
-		$list = $this->sql("#result", $this->xuId());
+		// $list = $this->sql("#result", $this->xuId());
 		$this->data->result = array();
 
 		foreach ($list as $key => $value) {
