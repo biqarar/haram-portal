@@ -12,7 +12,8 @@ class view extends main_view {
 			"نام",
 			"نام خانوادگی",
 			"نام تیم",
-			"جمع امتیاز"
+			"جمع امتیاز",
+			// "میانگین"
 			);
 
 		$list = $this->sql("#mrhefz", $this->xuId());

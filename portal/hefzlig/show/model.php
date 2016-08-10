@@ -8,7 +8,10 @@ class model extends main_model {
 	public $p = 0;
 
 	public function sql_result($lig_id = false) {
-
+		if (ob_get_level() == 0) ob_start();
+		
+		ini_set('memory_limit', '-1');
+		
 		$this->lig_id = $lig_id;
 
 		$lig_name = $this->sql()->tableHefz_ligs()->whereId($lig_id)->limit(1)->select()->assoc("name");
@@ -22,7 +25,12 @@ class model extends main_model {
 		$return = array();
 		foreach ($teams as $key => $value) {
 			$return[] = $this->team_result($value['hefz_group_id'], $value['groupname']);
+			ob_flush();
+			flush();
 		}
+
+
+		ob_end_flush();
 
 		return $return;
 		exit();
@@ -96,6 +104,9 @@ class model extends main_model {
 		$return['group_id'] = $group_id;
 		$return['groupname'] = $groupname;
 		$return['result'] = $finaly_result;
+		ob_flush();
+		flush();
+
 		return $return;
 		var_dump($return);
 		exit();		
@@ -103,7 +114,8 @@ class model extends main_model {
 
 	public function fix(&$result) {
 		// return;
-		
+		ob_flush();
+		flush();
 		$index = $result[0]['race_rate'];
 
 		$to_fix = array();
@@ -199,7 +211,8 @@ class model extends main_model {
 	}
 
 	public function race_win($team_id = false){
-
+		ob_flush();
+		flush();
 		$race = $this->sql()->tableHefz_race()
 							 ->groupOpen()
 							 ->whereHefz_team_id_1($team_id)

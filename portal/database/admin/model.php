@@ -120,8 +120,10 @@ class model extends main_model{
 
 		$database_change = array(
 			//--------------------
-
-			"ALTER TABLE `plan` CHANGE `payment_count` `absence_type` ENUM('ترمی','ماهیانه') NULL DEFAULT 'ترمی';",
+			"ALTER TABLE `hefz_race` ADD `result1` FLOAT NULL AFTER `presence2`",
+			"ALTER TABLE `hefz_race` ADD `result2` FLOAT NULL AFTER `result1`",
+			"ALTER TABLE `hefz_race` ADD `rate1` int(1) NULL AFTER `result2`",
+			"ALTER TABLE `hefz_race` ADD `rate2` int(1) NULL AFTER `rate1`",
 		
 		);
 

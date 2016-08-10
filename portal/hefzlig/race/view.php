@@ -14,7 +14,7 @@ class view extends main_view {
 		$f->remove("status");
 		$this->data->dataTable = $this->dtable(
 			"hefzlig/race/status=listapi/", 
-			array('id','ligs', 'تیم اول','تیم دوم','type','status','date','زمان','مکان','description', "نتیجه","delete", "مسابقه"));
+			array('id','ligs', 'تیم اول','نتیجه','امتیاز','تیم دوم','نتیجه','امتیاز','type','status','date','زمان','مکان','description',"delete", "مسابقه"));
 	
 	}
 

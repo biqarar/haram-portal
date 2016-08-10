@@ -35,9 +35,14 @@ class model extends main_model {
 				
 				$sum = $this->sql()->tableHefz_race_result()->whereHefz_teamuser_id($v['id'])->select()->allAssoc();
 				$sum_result = 0;
+				$i = 0;
 				foreach ($sum as $index => $s) {
+					$i++;
 					$sum_result = $sum_result + intval($s['value']);
 				}
+				if($i == 0) $i=2;
+				// round(floatval($d), 2);
+				// $result[$usersid]['average'] = round(($sum_result) / ($i/2),2);
 				$result[$usersid]['sum'] = $sum_result;
 				$result[$usersid]['team'] = $value['name'];
 				
@@ -55,6 +60,7 @@ class model extends main_model {
 			$return[$i]['family'] = $this->sql(".userNameFamily.family", $key);
 			$return[$i]['team'] = $value['team'];
 			$return[$i]['sum'] = $value['sum'];
+			// $return[$i]['average'] = $value['average'];
 
 			$ar1[] = $value['sum'];
 			$i++;

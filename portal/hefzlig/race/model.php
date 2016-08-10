@@ -11,14 +11,17 @@ class model extends main_model {
 			'id', 
 			'ligname', 
 			'team1',
+			'result1',
+			'rate1 rate1',
 			'hefz_team_id_2 team2',
+			'result2',
+			'rate2 rate2',
 			'type',
 			'status',
 			'date',
 			'time',
 			'place',
 			'name',
-			'id result',
 			'id delete',
 			'id race')
 		->search_fields(
@@ -54,12 +57,17 @@ class model extends main_model {
 			
 			})
 		->result(function($r) {
+			
+			$r->rate1 = ($r->rate1 == "") ? "0" : $r->rate1;
+			$r->rate2 = ($r->rate2 == "") ? "0" : $r->rate2;
+			
+
+			$r->result1 = ($r->result1 == "") ? "0" : $r->result1;
+			$r->result2 = ($r->result2 == "") ? "0" : $r->result2;
+			
 			$r->team2 = $this->find_team_name($r->team2);
-			// $r->edit = '<a class="icoedit" href="hefzlig/race/status=edit/id='.$r->edit.'" title="'.gettext('edit').' '.$r->edit.'"></a>';
-
+	
 			$r->delete = $this->tag("a")->class("icoredclose")->href("hefzlig/race/status=delete/id=". $r->delete)->render();
-
-			$r->result = $this->result($r->result);
 			$r->race = $this->tag("a")->href("hefzlig/race/status=racing/id=". $r->race)->addClass("icoallusers")->render();
 
 
