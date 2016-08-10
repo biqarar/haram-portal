@@ -88,7 +88,7 @@ class model extends main_model {
 				break;
 			
 			case 'setdone':
-				$setdone = $this->sql()->tableHefz_race()->whereId($race_id)->setStatus("done")->update();
+				$this->set_done($race_id);
 				break;
 			
 		}
@@ -102,7 +102,27 @@ class model extends main_model {
 
 	}
 
-	public function set_race_setting($type = false){
+	public function set_done($race_id = false){
+		//----------------------------- save result
+
+		$result = $this->sql(".hefzlig.race_result", $race_id);
+
+		$query = $this->sql()->tableHefz_race()->whereId($race_id)->limit(1)->select()->assoc();
+
+		//----------------------------- set result
+		$setdone = $this->sql()->tableHefz_race()->whereId($race_id)
+								
+								->setResult1($result[$query['hefz_team_id_1']]['main_result'])
+								->setResult2($result[$query['hefz_team_id_2']]['main_result'])
+
+								->setRate1($result[$query['hefz_team_id_1']]['rate'])
+								->setRate2($result[$query['hefz_team_id_2']]['rate'])
+
+								->setStatus("done")
+
+								->update();
+		
+
 	}
 
 	public function sql_presence_list($race_id = false) {

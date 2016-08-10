@@ -20,6 +20,13 @@ class hefz_race {
 	public $manfi1 = array("type" => "float@", "lable"=> "hefz_race_result_value");
 	public $manfi2 = array("type" => "float@", "lable"=> "hefz_race_result_value");
 	
+	public $result1 = array("type" => "float@", "lable"=> "hefz_race_result_value");
+	public $result2 = array("type" => "float@", "lable"=> "hefz_race_result_value");
+	
+	public $rate1 = array("type" => "int@", "lable"=> "hefz_race_rate_value");
+	public $rate2 = array("type" => "int@", "lable"=> "hefz_race_rate_value");
+	
+
 	public $name = array("type" => "varchar@255", "label" => "hefz_race_name");
 
 	public $foreign = array(
