@@ -83,6 +83,7 @@ class dbconnection_lib{
 
 			if(self::$first){
 				$this->result = self::$connection->query("SET sql_mode = '' ");
+				$this->result = self::$connection->query("SET @n := 0 ");
 				self::$first = false;
 			}
 			
