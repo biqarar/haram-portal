@@ -58,6 +58,10 @@ class model extends main_model {
 				$reprot[$key]['birthday'] = $year['year'];
 			}
 
+			// get string time of meeting no of class
+			$numtostr = new numtostr_lib;
+			$reprot[$key]['string_time'] = @$numtostr->convert($value['meeting_no']);
+			
 			$reprot[$key]['status'] = _($this->sql(".certification",$value['mark']));
 		}
 		// var_dump($reprot);exit();

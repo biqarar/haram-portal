@@ -17,6 +17,9 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "string_time"
+msgstr "ساعات آموزشی به حروف"
+
 msgid "plan_absence_type"
 msgstr "روش محاسبه غیبت مجاز"
 

@@ -5,36 +5,62 @@
 */
 class model extends main_model {
 	public function sql_weekly($startdate = false, $enddate = false) {
-	$price = $this->sql()->tablePrice()
-			->condition("where", "#date" , ">=", $startdate)
-			->condition("and", "#date", "<=", $enddate)
-			->condition("and", "#pay_type", "like", "pos%")
-			->fieldDate()
-			->fieldPay_type()
-			->fieldValue()
-			->fieldCard();
 
-	$price->joinPerson()->whereUsers_id("#price.users_id")->fieldName()->fieldFamily();
-
-	$price->joinUsers_branch()->whereUsers_id("#person.users_id");
-	$price->groupOpen();
-	//---------- get branch id in the list
-	foreach ($this->branch() as $key => $value) {
-		if($key == 0){
-			$price->condition("and", "users_branch.branch_id","=",$value);
-		}else{
-			$price->condition("or","users_branch.branch_id","=",$value);
+		//---------- get branch id in the list
+		$branch = [];
+		foreach ($this->branch() as $key => $value) {
+			$branch[] = "users_branch.branch_id = $value";
 		}
-	}
-	$price->groupClose();
+		$branch = join($branch, " OR ");
 
-	$price = $price->select()->allAssoc();
-	// var_dump($price);exit();
-			return $price;
+		$query = "
+				SELECT 
+				@n := @n + 1 id,
+				`price`.`date`, 
+				`price`.`pay_type`, 
+				`price`.`value`, 
+				`price`.`card`, 
+				`price`.`transactions`, 
+				`person`.`name`, 
+				`person`.`family`
+				 
+				FROM `price`
+				INNER JOIN `person` ON `person`.`users_id` = price.users_id 
+				INNER JOIN `users_branch` ON `users_branch`.`users_id` = person.users_id 
+				WHERE 
+					`price`.`date` >= '$startdate' AND 
+					`price`.`date` <= '$enddate' AND 
+					`price`.`pay_type` LIKE 'pos%' AND
+					($branch) 
+				 GROUP BY `price`.`id`
+				 ORDER BY `price`.`date`
+		";
 
-
-		// var_dump($startdate, $enddate); exit();
+		$db = $this->db($query);
+		$price = $db->allAssoc();
 		
+		$i = 1;
+		foreach ($price as $key => $value) {
+			$price[$key]['id'] = $i++;
+		}
+
+		$numtostr = new numtostr_lib;
+
+		$sum_value = array_sum(array_column($price, 'value'));
+		
+		$sum = [
+				'id' => 'تعداد ' . count($price) . ' مورد ',
+				'date' => 'جمع',
+				'pay_type' => 'به عدد',
+				'value' => $sum_value,
+				'card' => 'به حروف',
+				'transactions' => @$numtostr->convert((string)$sum_value) . ' ریال ' ,
+				'name' => '-',
+				'family' => '-'
+				];
+		array_push($price, $sum);
+
+		return $price;		
 	}
 	public function post_report(){
 	
