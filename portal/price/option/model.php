@@ -33,14 +33,28 @@ class model extends main_model{
 			return $return;
 	}
 
+	public function check_duplicate_transactions($_users_id, $_transactions)
+	{
+		$sql = $this->sql()->tablePrice()->whereUsers_id($_users_id)->andTransactions($_transactions)
+				->limit(1)->select()->num();
+		if($sql > 0)
+		{
+			debug_lib::fatal("این تراکنش قبلا برای این فراگیر ثبت شده است");
+		}
+	}
+
 	public function post_add_price(){
 		
-		$sql = $this->makeQuery();
+		
+
 		//---------------- check branch
 		$this->sql(".branch.users",$this->xuId("usersid"));
-		
-		$sql->setUsers_id($this->xuId("usersid"));
+	
+		$this->check_duplicate_transactions($this->xuId("usersid"), post::transactions());		
 
+		$sql = $this->makeQuery();
+
+		$sql->setUsers_id($this->xuId("usersid"));
 
 		if(post::type() == 'plan' && post::plan_id() == '') {
 			debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
