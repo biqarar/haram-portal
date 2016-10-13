@@ -35,7 +35,9 @@ class view extends main_view{
 				"min_person",
 				"max_person",
 				"meeting_no",
-				// "payment_count",
+				"ثبت نام ایینترنتی",
+				"مجوز ثبت نام",
+				"وضعیت",
 				"edit"));
 	}
 }

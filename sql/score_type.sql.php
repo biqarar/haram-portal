@@ -7,6 +7,7 @@ class score_type {
 
 	public $id          = array('type'=> 'int@10', 'autoI', 'label' => 'score_type_id');
 	public $plan_id     = array('type'=> 'int@10', 'label' => 'plan_id');
+	public $type        = array('type'=> 'enum@endofterm,classroom!endofterm', 'label' => 'type');
 	public $title       = array('type'=> 'varchar@255', 'label' => 'title');
 	public $min         = array('type'=> 'int@3', 'label' => 'min');
 	public $max         = array('type'=> 'int@3', 'label' => 'max');
@@ -57,7 +58,10 @@ class score_type {
 		// $this->form("#text_desc")->name("description")->label("description");
 	}
 
-
+	public function	type(){
+		$this->form("select")->name("type")->label("type");
+		$this->setChild($this->form);
+	}
 }
 
 ?>

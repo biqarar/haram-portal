@@ -244,6 +244,7 @@ class main_view{
 					array("title"=> "نمرات", 'url' =>"score/classes/classesid=" . $classesid),
 					array("title"=> "شهریه", 'url' =>"price/classes/classesid=" . $classesid),
 					array("title"=> "اطلاعات", 'url' =>"classes/status=detail/id=" . $classesid),
+					array("title"=> "نمودار", 'url' =>"classification/progress/id=" . $classesid),
 					array("title"=> "اصلاح", 'url' =>"classes/status=edit/id=" . $classesid),
 					// array("title"=> "چاپ", 'url' =>"classification/printlist/classesid=" . $this->xuId("classesid")),
 					)

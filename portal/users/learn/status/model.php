@@ -20,6 +20,7 @@ class model extends main_model {
 		 ,"date_entry"
 		,"date_delete"
 		,"because"
+		, "id classroom"
 		, "id absence"
 		, "mark mark"
 		, "id certification")
@@ -46,7 +47,7 @@ class model extends main_model {
 			}
 		})
 		->result(function($r) {
-
+			$classesid = $r->class;
 			$absence_count = $this->find_count_absence($r->absence);
 
 			if (!$absence_count || $absence_count == 0 || $absence_count == null) {
@@ -65,6 +66,10 @@ class model extends main_model {
 			}else{
 				$r->class = $this->tag("a")->href("classification/class/classesid=". $r->class)->class("icoclass")->title("کلاس فعال است " . $r->class)->render();
 			}
+			
+			$r->classroom = $this->tag("a")
+						->href("users/learn/progress/id=". $this->xuId(). "/classesid=". $classesid)
+						->class("icoscore")->title("نمایش وضعیت نمرات کلاسی ")->render();
 			
 		});
 		$this->sql(".dataTable", $dtable);

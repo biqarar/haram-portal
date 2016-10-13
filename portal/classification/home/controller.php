@@ -2,6 +2,15 @@
 class controller extends main_controller{
 	
 	function config(){
+		$this->listen(array(
+			"max" => 3,
+			"url" => array("progress","id"=> "/^\d+$/")
+			), 
+			function () {
+				save(array("classification", "progress"));
+				$this->permission = array("classification" => array("select" => array("public")));
+			}
+		);
 		//------------------------------ load form to search in person // apipriceback apiclassification
 		$this->listen(array(
 			"max" => 3,
