@@ -56,6 +56,7 @@ class model extends main_model{
 
 		$sql->setUsers_id($this->xuId("usersid"));
 
+
 		if(post::type() == 'plan' && post::plan_id() == '') {
 			debug_lib::fatal("در حالت رزرو شهریه برای طرح حتما باید نام طرح ثبت شود.");
 		}elseif(post::type() == "common" && post::plan_id() != ""){

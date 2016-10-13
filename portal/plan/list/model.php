@@ -13,12 +13,14 @@ class model extends main_model {
 				"min_person",
 				"max_person",
 				"meeting_no",
-				// "payment_count",
+				"status",
+				"type",
+				"id chart",
 				"id edit")
 		->search_fields("name", "price")
 		->result(function($r){
 			$r->edit = '<a class= "icoedit" href="plan/status=edit/id='. $r->edit . '"></a>';
-			
+			$r->chart = $this->tag("a")->href("report/plan/progress/id=". $r->chart)->class("icoscore")->render();
 		})
 		->search_result(function($result){
 			

@@ -144,6 +144,7 @@ class view extends main_view  {
 			,"date_entry"
 			,"date_delete"
 			,"because"
+			,"وضعیت نمرات"
 			, "تعداد غیبت"
 			, "امتیاز نهایی"
 			, "certification"));

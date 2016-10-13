@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @author reza mohitit rm.biqarar@gmail.com
  */
@@ -15,7 +15,7 @@ class model extends main_model{
 	public $version;
 
 	public function xecho($str = false) {echo "<pre><br>" . $str . "</pre>";}
-	
+
 	public function ready($version = "new version") {
 
 		$this->xecho("In The Name Of Allah");
@@ -26,17 +26,17 @@ class model extends main_model{
 		}else{
 
 			$this->xecho("Password OK , U R supervisor :)");
-		
+
 			set_time_limit(30000);
 			ini_set('memory_limit', '-1');
 			ini_set("max_execution_time", "-1");
-		
+
 			if (ob_get_level() == 0) ob_start();
 
 			$this->xecho( "Set time start as : " . time());
 
 			$this->xecho( "Set version $version in mysql ");
-			
+
 			$this->xecho( "Starting ... ");
 
 			$this->start_time = time();
@@ -59,9 +59,9 @@ class model extends main_model{
 	public function set_version_history($version = 0 , $query = false) {
 		$sql = new dbconnection_lib;
 		$sql::$resum_on_error = true;
-		$s = $sql->query("INSERT INTO 
-			`quran_hadith_log`.`database_version` 
-			(`id`, `version`, `query`, `time`) 
+		$s = $sql->query("INSERT INTO
+			`quran_hadith_log`.`database_version`
+			(`id`, `version`, `query`, `time`)
 			VALUES (NULL, '$version', '$query', CURRENT_TIMESTAMP)");
 		$this->xecho( "Saved in History (table database_version)");
 	}
@@ -81,7 +81,7 @@ class model extends main_model{
 		$this->xecho(" End time : " . $this->end_time);
 		$this->all_tiem = intval($this->end_time) - intval($this->start_time);
 
-        $this->xecho( "<div style='background :green'><br><br> all perosses ended 
+        $this->xecho( "<div style='background :green'><br><br> all perosses ended
         	in :" . $this->all_tiem   .  "   sec <br><br><br></div></pre>");
 		ob_end_flush();
 		exit(); die();
@@ -91,12 +91,12 @@ class model extends main_model{
 		//---------------------------------------------------------------------------------------------------
 		$this->ready(13);
 
-		//----------------------------- new version function (database change)	
-		$this->database_change();		
-		
+		//----------------------------- new version function (database change)
+		$this->database_change();
+
 		//----------------------------- new version function (query on record)
 		$this->query_on_record();
-		
+
 		//---------------------------------------------------------------------------------------------------
 		$this->end();
 
@@ -114,7 +114,7 @@ class model extends main_model{
 		* CREATE DATABASE `quran_hadith` DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 		* ALTER TABLE `quran_hadith`.`oldprice` RENAME `quran_hadith_old`.`oldprice`
 		*/
-				
+
 		$sql = new dbconnection_lib;
 
 
@@ -124,7 +124,7 @@ class model extends main_model{
 			"ALTER TABLE `hefz_race` ADD `result2` FLOAT NULL AFTER `result1`",
 			"ALTER TABLE `hefz_race` ADD `rate1` int(1) NULL AFTER `result2`",
 			"ALTER TABLE `hefz_race` ADD `rate2` int(1) NULL AFTER `rate1`",
-		
+
 		);
 
 
@@ -132,7 +132,7 @@ class model extends main_model{
 	}
 
 	public function run($array =false) {
-		
+
 		$sql = new dbconnection_lib;
 
 		$error = 0;

@@ -23,15 +23,23 @@ class query_scoreTypeList_cls extends query_cls {
 		return $list;
 	}
 
-	public function score_type($classesid = false) {
+	public function score_type($classesid = false, $type = "endofterm") {
 		//-------------------- check branch
 		$this->sql(".branch.classes", $classesid);
 		
-		$plan_id = $this->sql()->tableClasses()->whereId($classesid)->limit(1)->fieldPlan_id()->select()->assoc("plan_id");
-		$score_type = $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
-		// var_dump($score_type,$classesid);exit();	
+		$plan_id = $this->sql()->tableClasses()
+						->whereId($classesid)
+						->limit(1)
+						->fieldPlan_id()
+						->select()
+						->assoc("plan_id");
+						
+		$score_type = $this->sql()->tableScore_type()
+							->wherePlan_id($plan_id)
+							->andType($type)
+							->select()
+							->allAssoc();
 		return $score_type;
 	}
 }
-
 ?>

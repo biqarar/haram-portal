@@ -5,6 +5,13 @@
 class controller extends main_controller{
 	
 	function config(){
+		$this->listen(array(
+			"max" => 5,
+			"url" => array("progress", "id" => "/^\d+$/", "classesid" => "/^\d+$/")
+			), function() {
+			save(array("users", "learn", "progress" ));
+			$this->permission = array("person" => array("select" => array("public")));
+		});
 
 		$this->listen(array(
 			"max" => 3,

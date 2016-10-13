@@ -1,0 +1,45 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+
+<script type="text/javascript" src="/portal/static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="/portal/static/js/highchart/exporting.js"></script>
+<script src="/portal/static/js/bootstrap-checkbox.js" defer></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#chart').highcharts({
+	    title: {text: "وضعیت تحصیلی فراگیر"}, subtitle : {text : "به تفکیک روز"},xAxis:{
+	    	categories : {{chart.categories|raw}}
+	    },
+	    yAxis:{title: {text : "نمره"},
+	    	potLine :[{value:0,width: 1}]},
+	    series: {{chart.series|raw}}
+	});	
+
+	$('#month-chart').highcharts({
+	    title: {text: "وضعیت تحصیلی فراگیر"}, subtitle : {text : "به تفکیک ماه"},xAxis:{
+	    	categories : {{chart_month.categories|raw}}
+	    },
+	    yAxis:{title: {text : "نمره"},
+	    	potLine :[{value:0,width: 1}]},
+	    series: {{chart_month.series|raw}}
+	});	
+});
+
+
+	
+</script>
+<!-- classes detail -->
+<div class="class-detail">
+	{{ tagMaker.list(list) }}
+</div>
+
+<!-- <dir style="font-family:'WYekan'">نمایش بر خط نتایج مسابقه</dir> -->
+<dir id="title">
+
+	<div id="chart" class="x-chart"></div>
+<hr>
+	<div id="month-chart" class="x-chart"></div>
+</dir>
+
+{%endblock%}

@@ -5,6 +5,12 @@ class controller extends main_controller {
 	public function config(){
 
 	$this->listen(array(
+			"url" => array("plan", "progress", "id" => "/^\d+$/")
+			), function (){
+				save(array("report","plan", "progress" ));
+				$this->permission = array("report" => array("select" => array("public")));
+	});
+	$this->listen(array(
 			"url" => array("price", "status" => "reportpricelist", "session" => "/^\d+$/")
 			), function (){
 				save(array("report","price", "mod" => "reportpricelist"));

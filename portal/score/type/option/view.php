@@ -19,7 +19,7 @@ class view extends main_view {
 		$this->sql(".edit", "score_type", $this->xuId(), $f);
 
 		//------------------------------ list of score_type
-		$this->data->dataTable = $this->dtable("score/type/status=apilist/", array("id","plan","title", "min","max","description", "edit"));
+		$this->data->dataTable = $this->dtable("score/type/status=apilist/", array("id","plan","title", "min","max","type", "edit"));
 	}
 }
 ?>

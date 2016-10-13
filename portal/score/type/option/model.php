@@ -12,6 +12,7 @@ class model extends main_model{
 		$x = $this->sql()->tableScore_type()
 						   ->setPlan_id(post::plan_id())
 						   ->setTitle(post::title())
+						   ->setType(post::type())
 						   ->setMin(post::min())
 						   ->setMax(post::max())
 						   ->setDescription(post::description());

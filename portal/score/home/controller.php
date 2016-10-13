@@ -38,6 +38,15 @@ class controller extends main_controller {
 					save(array("score", "api", "mod" => "api"));
 					$this->permission = array("score" => array("insert" => array("public")));
 				});
+
+		$this->listen(array(
+				"max" => 5,
+				"url" => array("api", "classificationid" => "/^\d+$/" ,"scoretypeid" => "/^\d+$/", "value" => "/(.*)/", "date" => "/\d{8}/")
+				),
+				function(){
+					save(array("score", "api", "mod" => "api"));
+					$this->permission = array("score" => array("insert" => array("public")));
+				});
 		
 		$this->listen(array(
 				"max" => 5,
