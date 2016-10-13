@@ -21,6 +21,10 @@ class view extends main_view  {
 		// $this->classesDetail();
 		$chart = $this->sql("#progress", $group);
 		$this->data->chart = $chart;
+
+		// $this->classesDetail();
+		$count_class = $this->sql("#classification", $group);
+		$this->data->count_class = $count_class;
 	}
 } 
 ?>

@@ -3,6 +3,30 @@
 * 
 */
 class model extends main_model {
+	public function sql_classification($group_id = false)
+	{
+		$query = "
+			SELECT
+				COUNT(classification.id) AS 'average' ,
+				CONCAT(person.name, ' ', person.family) AS 'name'
+			FROM
+				classification
+			
+			INNER JOIN classes ON classes.id = classification.classes_id
+			INNER JOIN person ON person.users_id = classes.teacher
+			INNER JOIN plan ON plan.id = classes.plan_id 
+			INNER JOIN `group` ON `group`.`id` = plan.group_id AND `group`.`id` = $group_id
+			
+			GROUP BY 
+				name
+		";
+		// var_dump($query);exit();
+		$score_list = $this->db($query)->allAssoc();
+		// var_dump($this->high_chart_mod($score_list));exit();
+		return $this->high_chart_mod($score_list);
+		
+	}
+
 	public function sql_progress($group_id = false) {
 			
 		$query = 

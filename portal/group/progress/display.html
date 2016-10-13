@@ -23,7 +23,19 @@ function show_chart(type = '')
 	    yAxis:{title: {text : "نمره"},
 	    	potLine :[{value:0,width: 1}]},
 	    series: {{chart.series|raw}}
-	});	
+	});
+
+	$('#count').highcharts({
+		chart:{
+			type : type
+		},
+	    title: {text: "نمودار تعداد فراگیران گروه علمی {{plan_detail}}"}, subtitle : {text : "به تفکیک استاد"},xAxis:{
+	    	categories : ''
+	    },
+	    yAxis:{title: {text : "تعداد"},
+	    	potLine :[{value:0,width: 1}]},
+	    series: {{count_class.series|raw}}
+	});		
 }
 
 	
@@ -37,6 +49,8 @@ function show_chart(type = '')
 <dir id="title">
 
 	<div id="chart" class="x-chart"></div>
+	<hr>
+	<div id="count" class="x-chart"></div>
 	
 </dir>
 <style type="text/css">
