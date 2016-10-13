@@ -17,7 +17,7 @@ function show_chart(type = '')
 		chart:{
 			type : type
 		},
-	    title: {text: "نمودار معدل نمرات کلاس های طرح"}, subtitle : {text : "به تفکیک استاد"},xAxis:{
+	    title: {text: "نمودار معدل نمرات کلاس های طرح {{plan_detail}}"}, subtitle : {text : "به تفکیک استاد"},xAxis:{
 	    	categories : {{chart.categories|raw}}
 	    },
 	    yAxis:{title: {text : "نمره"},
@@ -49,6 +49,12 @@ function show_chart(type = '')
 		padding: 5px;
 		border: 1px solid #eee;
 		background-color: #eee;
+	}
+	* {
+		font-family: "WYekan";
+	}
+	g{
+		direction: ltr;
 	}
 </style>
 {%endblock%}
