@@ -10,9 +10,7 @@ class model extends main_model {
 	public function sql_result($lig_id = false) {
 		if (ob_get_level() == 0) ob_start();
 		
-		set_time_limit(30000);
 		ini_set('memory_limit', '-1');
-		ini_set("max_execution_time", "-1");
 		
 		$this->lig_id = $lig_id;
 

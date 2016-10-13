@@ -17,8 +17,38 @@ msgstr "ماشین نیستم!"
 #
 #  START TRANSLATION MENU
 #
+msgid "endofterm"
+msgstr "پایان ترم"
+
 msgid "string_time"
 msgstr "ساعات آموزشی به حروف"
+
+msgid "classroom"
+msgstr "کلاسی"
+
+msgid "plan_status"
+msgstr "ثبت نام اینترنتی"
+
+msgid "open"
+msgstr "باز"
+
+msgid "close"
+msgstr "بسته"
+
+msgid "full"
+msgstr "ظرفیت تکمیل"
+
+msgid "plan_type"
+msgstr "مجوز ثبت نام"
+
+msgid "free"
+msgstr "آزاد"
+
+msgid "test"
+msgstr "تست"
+
+msgid "exam"
+msgstr "آزمون"
 
 msgid "plan_absence_type"
 msgstr "روش محاسبه غیبت مجاز"
