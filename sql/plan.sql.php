@@ -14,6 +14,8 @@ class plan {
 	public $max_person  = array('type'=> 'int@4', 'label' => 'plan_max_person');
 	public $meeting_no 	= array("type" => "int@3", 'label' => "plan_meeting_no");
 	public $payment_count = array('type' => 'int@2' , "label" => "payment_count");
+	public $status		= array('type'=> 'enum@open,close,full!close', 'label' => 'plan_status');
+	public $type = array('type'=> 'enum@free,test,exam!test', 'label' => 'plan_type');
 
 	public $unique = array("group");
 	public $index = array("group_id");
@@ -96,6 +98,16 @@ class plan {
 	public function meeting_no() {
 		$this->form("#number")->name("meeting_no")->pl("تعداد جلسات");
 		$this->validate()->number()->form->number("meeting_no is not valid");
+	}
+
+	public function type() {
+		$this->form("radio")->name("type");
+		$this->setChild($this->form);
+	}
+
+	public function status() {
+		$this->form("radio")->name("status");
+		$this->setChild($this->form);
 	}
 
 	// public function payment_count() {

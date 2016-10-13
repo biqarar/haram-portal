@@ -7,7 +7,7 @@ class classes {
 	public $id         = array('type'=> 'int@10', 'autoI', 'label' => 'classes_id');
 	// public $course_id  = array('type'=> 'int@10', 'label' => 'course_id');
 	public $plan_id    = array('type'=> 'int@10', 'label' => 'plan_id');
-	public $meeting_no = array('type'=> 'int@3', 'label' => 'classes_meeting_no');
+	public $meeting_no = array('type'=> 'int@5', 'label' => 'classes_meeting_no');
 	public $teacher    = array('type'=> 'int@10', 'label' => 'classes_teacher');
 	public $age_range  = array('type'=> 'enum@child,teen,young,adult!young', 'label' => 'classes_age_range');
 	public $quality    = array('type'=> 'enum@level one,level two,level three,begginer level,medium,advanced!level one', 'label' => 'classes_quality');
@@ -65,7 +65,7 @@ class classes {
 
 	public function meeting_no() {
 		$this->form("#number")->name("meeting_no")->title("تعداد ساعات آموزشی این کلاس \n جهت ثبت در گواهی نامه فراگیران")->required();
-		$this->validate()->number(1, 3)->form->number("meetings number should be between 1 and 999");
+		$this->validate()->number(1, 5)->form->number("meetings number should be between 1 and 999");
 	}
 
 	public function teacher() {

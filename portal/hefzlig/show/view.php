@@ -21,7 +21,7 @@ class view extends main_view {
 			"بیشتر"
 			);
 
-		$list = $this->sql("#result", $this->xuId());
+		// $list = $this->sql("#result", $this->xuId());
 		$this->data->result = array();
 
 		foreach ($list as $key => $value) {

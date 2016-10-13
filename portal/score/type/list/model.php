@@ -2,7 +2,7 @@
 class model extends main_model {
 	public function post_api() {
 		$dtable = $this->dtable->table("score_type")
-			->fields("id","name","title", "min","max","description", "id edit")
+			->fields("id","name","title", "min","max","type", "id edit")
 			->search_fields("name plan.name")
 			->order(function($q, $n, $b){
 			if($n === 'orderName'){
