@@ -9,21 +9,17 @@ class model extends main_model {
 		"
 			SELECT
 				AVG(score.value) AS 'average' ,
-				CONCAT(person.name, ' ', person.family) AS 'name',
-				score_type.title as 'title'
+				CONCAT(person.name, ' ', person.family) AS 'name'
 			FROM
 				score
 			INNER JOIN classification ON classification.id = score.classification_id
 			INNER JOIN classes ON classes.id = classification.classes_id
-			INNER JOIN score_type ON score_type.id = score.score_type_id
 			INNER JOIN person ON person.users_id = classes.teacher
 			INNER JOIN plan ON plan.id = classes.plan_id 
 			INNER JOIN `group` ON `group`.`id` = plan.group_id AND `group`.`id` = $group_id
 			
 			GROUP BY 
-				name,
-				title,
-				score_type.type
+				name
 		";
 	
 		$score_list = $this->db($query)->allAssoc();
@@ -34,7 +30,8 @@ class model extends main_model {
 
 	public function high_chart_mod($result)
 	{
-
+		// var_dump($result)
+		// ;exit();/
 		$categories = [];
 		$series = [];
 		foreach ($result as $key => $value) {
@@ -43,11 +40,11 @@ class model extends main_model {
 				array_push($categories, $value['name']);
 			}
 
-			if(!isset($series[$value['title']]))
+			if(!isset($series[$value['name']]))
 			{
-				$series[$value['title']] = [];
+				$series[$value['name']] = [];
 			}
-			array_push($series[$value['title']], intval($value['average']));
+			array_push($series[$value['name']], intval($value['average']));
 
 		}
 		$json = [];
