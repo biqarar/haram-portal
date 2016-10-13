@@ -14,6 +14,10 @@ class view extends main_view  {
 
 		$classesid = $this->xuId("id");
 		$this->sql(".branch.classes",$classesid);
+
+		$classes_detail = $this->sql(".classesDetail", $classesid);
+		$this->data->classes_detail = $classes_detail['page_title'];
+		
 		//------------------------------ get detail classes
 		// $this->classesDetail();
 		$chart = $this->sql("#progress", $classesid);

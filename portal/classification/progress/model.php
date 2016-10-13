@@ -5,8 +5,6 @@
 class model extends main_model {
 	public function sql_progress($classes_id = false) {
 		
-		// var_dump($classes_id);exit();
-		
 		$query = 
 		"
 			SELECT
@@ -23,8 +21,7 @@ class model extends main_model {
 			INNER JOIN score_type 
 			      ON score_type.id = score.score_type_id
 			INNER JOIN person ON person.users_id = classification.users_id
-			WHERE 
-				score_type.type = 'classroom'
+		
 			GROUP BY 
 				name,
 				title

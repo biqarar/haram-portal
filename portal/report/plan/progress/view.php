@@ -14,6 +14,9 @@ class view extends main_view  {
 
 		$plan_id = $this->xuId("id");
 		$this->sql(".branch.plan",$plan_id);
+
+		$this->data->plan_detail = $this->sql(".assoc.foreign" , "plan", $plan_id , "name" , "id");
+			
 		//------------------------------ get detail classes
 		// $this->classesDetail();
 		$chart = $this->sql("#progress", $plan_id);
