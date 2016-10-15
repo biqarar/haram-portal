@@ -11,7 +11,8 @@ class model extends main_model {
 		$retest = $this->xuId("retest");
 
 		$date = $this->xuId("date");
-		if($date == "00000000")
+		
+		if($date === "00000000")
 		{
 			debug_lib::fatal("تاریخ نامعتبر است");
 		}
