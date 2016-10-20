@@ -1,0 +1,119 @@
+{# reza mohiti #}
+{% extends layout %}
+{% block content %}
+
+<script type="text/javascript" src="/portal/static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="/portal/static/js/highchart/exporting.js"></script>
+<script src="/portal/static/js/bootstrap-checkbox.js" defer></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	show_chart('column');
+	
+});
+function show_chart(type = '')
+{
+	$('#chart').highcharts({
+		chart:{
+			type : type
+		},
+	    title: {text: "نمودار وضعیت تحصیلی فراگیران"}, subtitle : {text : "به تفکیک افراد"},xAxis:{
+	    	categories : {{chart.categories|raw}}
+	    },
+	    yAxis:{title: {text : "نمره"},
+	    	potLine :[{value:0,width: 1}]},
+	    series: {{chart.series|raw}}
+	});	
+}
+
+	
+</script>
+<h3>گزارش از وضعیت کلاس</h3>
+<div class="header-table">
+	<h4>مشخصات کلاس</h4>
+	<table>
+		<tr>
+			<th>dfsd</th>
+			<th>dfsd</th>
+			<th>dfsd</th>
+			<th>dfsd</th>
+		</tr>
+		<tr>
+			<td>سلام</td>
+			<td>سلام</td>
+			<td>سلام</td>
+			<td>سلام</td>
+		</tr>
+		<tr>
+			<td>سلام</td>
+			<td>سلام</td>
+			<td>سلام</td>
+			<td>سلام</td>
+		</tr>
+		<tr>
+			<td>سلام</td>
+			<td>سلام</td>
+			<td>سلام</td>
+			<td>سلام</td>
+		</tr>
+	</table>
+</div>
+
+<hr>
+<h4>مشخصات استاد</h4>
+<hr>
+<h4>وضعیت ورودی و خروجی کلاس</h4>
+<h6>تعداد ورودی</h6>
+<h6>تعداد انصرافی</h6>
+<h6>تعداد قبولی</h6>
+<h6>تعداد مردودی</h6>
+<hr>
+<h6>تعداد جلسات آیین نامه</h6>
+<h6>تعداد جلسات برگزار شده طبق حضور و غیاب</h6>
+<hr>
+<h4>معدل کل آزمون پایانی</h4>
+<hr>
+<h4>تعداد فراگیران</h4>
+<h6>به تفکیک مقطع سنی</h6>
+<h6>به تفکیک مقطع تحصیلی</h6>
+
+<style type="text/css">
+	*
+	{
+		font-family: "WYekan";
+	}
+	h4{
+		padding: 0px;
+		margin: 0px;
+	}
+	/*div.header-table{
+	    margin: 0;
+	    padding: 5px;
+	    color: #fff;
+	    text-shadow: #2665a7 1px 1px 1px;
+	    border: 1px solid #4a8fd6;
+	    background-color: #5c9ada;
+	}*/
+	tbody{
+		page-break-inside:avoid;
+		page-break-after:auto;
+		border-collapse: collapse;
+		/*display:table;*/
+		}
+
+		table {
+			width: 100%;
+			direction: rtl;
+		}
+
+		tr:nth-child(2n) {
+			background: #eee;
+		}
+
+		td, th {
+			padding: 5px;
+			border: 1px solid #eee;
+			font-size: 10px;
+		}
+</style>
+{%endblock%}
