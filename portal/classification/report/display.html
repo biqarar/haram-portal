@@ -1,7 +1,36 @@
 {# reza mohiti #}
 {% extends layout %}
 {% block content %}
+<style type="text/css">
+	@media print{
+		@page {
+			/*size: landscape*/
+		}
+	}
 
+	table td, table th {
+		border: 1px solid #f0f9f0 ;
+		padding: 1px !important;
+		text-align: center;
+	}
+
+	
+	.class-details {
+		padding: 5px 10px;
+	}
+
+	.class-detail {
+		float: right;
+		margin-left: 35px;
+	}
+
+	.class-detail-title, .class-detail-value {
+		display: inline-block;
+		padding: 5px;
+		font-family: 'WYekan';
+	}
+	
+</style>
 <script type="text/javascript" src="/portal/static/js/highchart/highcharts.js"></script>
 <script type="text/javascript" src="/portal/static/js/highchart/exporting.js"></script>
 <script src="/portal/static/js/bootstrap-checkbox.js" defer></script>
@@ -28,63 +57,68 @@ function show_chart(type = '')
 
 	
 </script>
+
 <h3>گزارش از وضعیت کلاس</h3>
+<hr>
 <div class="header-table">
 	<h4>مشخصات کلاس</h4>
-	<table>
-		<tr>
-			<th>dfsd</th>
-			<th>dfsd</th>
-			<th>dfsd</th>
-			<th>dfsd</th>
-		</tr>
-		<tr>
-			<td>سلام</td>
-			<td>سلام</td>
-			<td>سلام</td>
-			<td>سلام</td>
-		</tr>
-		<tr>
-			<td>سلام</td>
-			<td>سلام</td>
-			<td>سلام</td>
-			<td>سلام</td>
-		</tr>
-		<tr>
-			<td>سلام</td>
-			<td>سلام</td>
-			<td>سلام</td>
-			<td>سلام</td>
-		</tr>
-	</table>
+	<div class="class-details colory">
+	{% for key, header in classes_detail.header %}
+	<div class="class-detail normal-font">
+		<div class="class-detail-title">{{header|lang}}:</div>
+		<div class="class-detail-value"><b>{{classes_detail.list[0][key]|lang}}</b></div>
+	</div>
+	{%endfor%}
+		<div style="clear:both"></div>
+	</div>
 </div>
-
 <hr>
 <h4>مشخصات استاد</h4>
+<div class="class-details colory">
+	{% for key, header in teacher_detail.header %}
+	<div class="class-detail normal-font">
+		<div class="class-detail-title">{{header|lang}}:</div>
+		<div class="class-detail-value"><b>{{teacher_detail.list[0][key]|lang}}</b></div>
+	</div>
+	{%endfor%}
+	<div style="clear:both"></div>
+</div>
 <hr>
-<h4>وضعیت ورودی و خروجی کلاس</h4>
-<h6>تعداد ورودی</h6>
-<h6>تعداد انصرافی</h6>
-<h6>تعداد قبولی</h6>
-<h6>تعداد مردودی</h6>
-<hr>
-<h6>تعداد جلسات آیین نامه</h6>
-<h6>تعداد جلسات برگزار شده طبق حضور و غیاب</h6>
-<hr>
-<h4>معدل کل آزمون پایانی</h4>
-<hr>
-<h4>تعداد فراگیران</h4>
-<h6>به تفکیک مقطع سنی</h6>
-<h6>به تفکیک مقطع تحصیلی</h6>
+<table>
+	<tr><td class="first-td" colspan="2"><h4>وضعیت ورودی و خروجی کلاس</h4></td></tr>
+	<tr><td class="first-td">تعداد ورودی</td><td>{{intro}}</td></tr>
+	<tr><td class="first-td">تعداد انصرافی</td><td>{{exit_class}}</td></tr>
+	<tr><td class="first-td">تعداد افراد باقیمانده در پایان کلاس</td><td>{{end_class}}</td></tr>
+	<tr><td class="first-td">درصد باقیمانده در کلاس</td><td>
+	<div style="width: {{end_class_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{end_class_100}} ٪</div></td></tr>
+	<tr><td class="first-td" colspan="2"><h4>وضعیت نمرات و قبولی کلاس</h4></td></tr>
+	<tr><td class="first-td">معدل کل آزمون پایانی</td><td>{{moadele_kol}}</td></tr>
+	<tr><td class="first-td">معدل کل نمرات کلاسی</td><td>{{moadele_class}}</td></tr>
+	<tr><td class="first-td">تعداد قبولی</td><td>{{qaboli}}</td></tr>
+	<tr><td class="first-td">تعداد مردودی</td><td>{{mardodi}}</td></tr>
+	<tr><td class="first-td">درصد قبولی کلاس</td><td>
+	
+	<div style="width: {{qaboli_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{qaboli_100}} ٪</div>
+	</td></tr>
+	<tr><td class="first-td" colspan="2"><h4>تعداد جلسات </h4></td></tr>
+	<tr><td class="first-td">تعداد جلسات آیین نامه</td><td>{{aeenname}}</td></tr>
+	<tr><td class="first-td">تعداد جلسات برگزار شده</td><td></td></tr>
+	<!-- <tr><td>درصد جلسات برگزار شده</td><td>{{bargozarshode_100}}</td></tr> -->
+</table>
 
 <style type="text/css">
 	*
 	{
 		font-family: "WYekan";
+
 	}
-	h4{
-		padding: 0px;
-		margin: 0px;
+	.first-td
+	{
+		width: 650px !important;
+	}
+	
+	table td{
+		font-size: 14px;
 	}
 	/*div.header-table{
 	    margin: 0;
