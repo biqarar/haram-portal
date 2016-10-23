@@ -4,6 +4,16 @@ class controller extends main_controller{
 	function config(){
 		$this->listen(array(
 			"max" => 3,
+			"url" => array("report","id"=> "/^\d+$/")
+			), 
+			function () {
+				save(array("classification", "report"));
+				$this->permission = array("classification" => array("select" => array("public")));
+			}
+		);
+
+		$this->listen(array(
+			"max" => 3,
 			"url" => array("progress","id"=> "/^\d+$/")
 			), 
 			function () {

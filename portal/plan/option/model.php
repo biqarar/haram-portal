@@ -21,6 +21,8 @@ class model extends main_model{
 				->setBranch_id($this->post_branch())
 				->setMin_person(post::min_person())
 				->setMax_person(post::max_person())
+				->setStatus(post::status())
+				->setType(post::type())
 				->setMeeting_no(post::meeting_no());
 				// ->setExpired_price(post::expired_price());
 	}

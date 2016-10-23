@@ -1,11 +1,38 @@
-<?php 
+<?php
 /**
-* 
+*
 */
 class model extends main_model {
+	public function sql_absence($plan_id = false) {
+
+		$query =
+		"
+			SELECT
+				COUNT(absence.id) AS 'average' ,
+				CONCAT(person.name, ' ', person.family, ' ', users.username) AS 'name',
+				absence.type as 'title'
+			FROM
+				absence
+			INNER JOIN classification ON classification.id = absence.classification_id
+			INNER JOIN classes ON classes.id = classification.classes_id AND classes.status = 'running'
+			INNER JOIN plan ON plan.id = classes.plan_id  AND plan.id = $plan_id
+			INNER JOIN person ON person.users_id = classification.users_id
+			INNER JOIN users ON person.users_id = users.id
+			GROUP BY
+				name,
+				title
+			ORDER BY average DESC
+		";
+		$score_list = $this->db($query)->allAssoc();
+		// var_dump($score_list, $query);
+		// var_dump($this->high_chart_mod($score_list));exit();
+		return $this->high_chart_mod($score_list);
+	}
+
+
 	public function sql_progress($plan_id = false) {
-			
-		$query = 
+
+		$query =
 		"
 			SELECT
 				AVG(score.value) AS 'average' ,
@@ -18,13 +45,13 @@ class model extends main_model {
 			INNER JOIN score_type ON score_type.id = score.score_type_id
 			INNER JOIN person ON person.users_id = classes.teacher
 			INNER JOIN plan ON plan.id = classes.plan_id  AND plan.id = $plan_id
-			
-			GROUP BY 
+
+			GROUP BY
 				name,
 				title,
 				score_type.type
 		";
-	
+
 		$score_list = $this->db($query)->allAssoc();
 		// var_dump($this->high_chart_mod($score_list));exit();
 		return $this->high_chart_mod($score_list);
@@ -51,8 +78,8 @@ class model extends main_model {
 		}
 		$json = [];
 		foreach ($series as $key => $value) {
-			
-			$json[] = 
+
+			$json[] =
 			[
 				'name' => $key,
 				'data' => $value
