@@ -26,11 +26,11 @@
 		}
 		input
 		{
-			width: 80px;
+			width: 70px;
 			text-align: center;
 		}
 		.classes-page{
-			width: 80px;
+			width: 70px;
 		}
 
 	</style>
@@ -62,6 +62,7 @@
 			<td class="small-font system-default colory">...شنبه</td>
 			<td class="small-font system-default">...شنبه</td>
 			<td class="small-font system-default colory">...شنبه</td>
+			<td class="small-font system-default">...شنبه</td>
 		</tr>
 		<tr>
 			<td class="small-font system-default">تاریخ</td>
@@ -100,6 +101,9 @@
 			</td>
 			<td class="small-font system-default colory" >
 				<input type="text" date="date" xclass="mx12">
+			</td>
+			<td class="small-font system-default " >
+				<input type="text" date="date" xclass="mx13">
 			</td>
 
 		</tr>
@@ -141,9 +145,11 @@
 			<td class="small-font system-default colory">درس/صفحه:
 				<input type="text" class="classes-page" disabled="disabled" xclass="mx12">
 			</td>
+			<td class="small-font system-default ">درس/صفحه:
+				<input type="text" class="classes-page" disabled="disabled" xclass="mx13">
+			</td>
 		</tr>
 	</table>
-
 	{% for key, list in list %}
 	<table  cellspacing="0" border="0">
 
@@ -225,6 +231,11 @@
 				<td>
 					<a xclass="mx12">
 						<input type="text" xclass="mx12" scoretypeid="{{scoretype.id}}" classificationid="{{list.classificationid}}">
+					</a>
+				</td>
+				<td class="colory">
+					<a xclass="mx13">
+						<input type="text" xclass="mx13" scoretypeid="{{scoretype.id}}" classificationid="{{list.classificationid}}">
 					</a>
 				</td>
 			</tr>

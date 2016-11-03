@@ -3,7 +3,6 @@ class model extends main_model {
 
 	public function post_api(){
 
-	
 
 
 		$classificationid = $this->xuId("classificationid");
@@ -16,6 +15,7 @@ class model extends main_model {
 		{
 			debug_lib::fatal("تاریخ نامعتبر است");
 		}
+
 		//----------------- check branch
 		$branch_score_type = $this->sql(".branch.score_type", $scoretypeid);
 		$branch_classification_id = $this->sql(".branch.classification", $classificationid);
@@ -29,6 +29,14 @@ class model extends main_model {
 		}
 
 		$value = $this->xuId("value");
+		switch ($value) {
+			case '--':
+				$this->sql(".absence.insert", $classificationid, "unjustified absence", $date);
+				return ;
+				break;				
+		}
+
+
 		$scoretype = $this->sql()->tableScore_type()->whereId($scoretypeid)->limit(1)->select()->assoc();
 		
 		if(intval($value) < intval($scoretype['min'])) {

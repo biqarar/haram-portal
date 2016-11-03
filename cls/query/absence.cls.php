@@ -3,6 +3,38 @@ class query_absence_cls extends query_cls
 {
 	public $users_id,$classes_id,$classification_id;
 
+	public function insert($classification = false, $type = false, $date = false)
+	{
+		
+		$check = $this->sql()->tableAbsence()
+							->whereClassification_id($classification)
+							->andDate($date)->limit(1)->select()->num();
+
+		if($check == 1) {
+			// $check = $this->sql()->tableAbsence()
+			// 				->whereClassification_id($classification)
+			// 				->andDate($date)->select()->allAssoc();
+			// 				var_dump($check);exit();			
+			debug_lib::fatal("برای این فراگیر در این تاریخ غیبت ثبت شده است");
+		}else{
+			//--------------- check if this classification id in the users branch or no.
+			$this->sql(".branch.classification", $classification);
+
+			$x = $this->sql()->tableAbsence()
+						->setClassification_id($classification)
+						->setType($type)
+						->setDate($date)
+						->insert();
+			$this->autoremove($classification, $date);
+			
+		debug_lib::true(_($type) .  " ثبت شد");
+		}
+
+		
+		
+
+	}
+
 	public function absence_count($array = false) {
 		$c = 0;
 		foreach ($array as $key => $value) {
