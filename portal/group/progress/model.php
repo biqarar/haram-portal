@@ -1,57 +1,51 @@
-<?php
+<?php 
 /**
-*
+* 
 */
 class model extends main_model {
-	public function sql_absence($plan_id = false) {
-
-		$query =
-		"
+	public function sql_classification($group_id = false)
+	{
+		$query = "
 			SELECT
-				COUNT(absence.id) AS 'average' ,
-				CONCAT(person.name, ' ', person.family, ' ', users.username) AS 'name',
-				absence.type as 'title'
+				COUNT(classification.id) AS 'average' ,
+				CONCAT(person.name, ' ', person.family) AS 'name'
 			FROM
-				absence
-			INNER JOIN classification ON classification.id = absence.classification_id
-			INNER JOIN classes ON classes.id = classification.classes_id AND classes.status = 'running'
-			INNER JOIN plan ON plan.id = classes.plan_id  AND plan.id = $plan_id
-			INNER JOIN person ON person.users_id = classification.users_id
-			INNER JOIN users ON person.users_id = users.id
-			GROUP BY
-				name,
-				title
-			ORDER BY average DESC
+				classification
+			
+			INNER JOIN classes ON classes.id = classification.classes_id
+			INNER JOIN person ON person.users_id = classes.teacher
+			INNER JOIN plan ON plan.id = classes.plan_id 
+			INNER JOIN `group` ON `group`.`id` = plan.group_id AND `group`.`id` = $group_id
+			
+			GROUP BY 
+				name
 		";
+		// var_dump($query);exit();
 		$score_list = $this->db($query)->allAssoc();
-		// var_dump($score_list, $query);
 		// var_dump($this->high_chart_mod($score_list));exit();
 		return $this->high_chart_mod($score_list);
+		
 	}
 
-
-	public function sql_progress($plan_id = false) {
-
-		$query =
+	public function sql_progress($group_id = false) {
+			
+		$query = 
 		"
 			SELECT
 				AVG(score.value) AS 'average' ,
-				CONCAT(person.name, ' ', person.family) AS 'name',
-				score_type.title as 'title'
+				CONCAT(person.name, ' ', person.family) AS 'name'
 			FROM
 				score
 			INNER JOIN classification ON classification.id = score.classification_id
 			INNER JOIN classes ON classes.id = classification.classes_id
-			INNER JOIN score_type ON score_type.id = score.score_type_id
 			INNER JOIN person ON person.users_id = classes.teacher
-			INNER JOIN plan ON plan.id = classes.plan_id  AND plan.id = $plan_id
-
-			GROUP BY
-				name,
-				title,
-				score_type.type
+			INNER JOIN plan ON plan.id = classes.plan_id 
+			INNER JOIN `group` ON `group`.`id` = plan.group_id AND `group`.`id` = $group_id
+			
+			GROUP BY 
+				name
 		";
-
+	
 		$score_list = $this->db($query)->allAssoc();
 		// var_dump($this->high_chart_mod($score_list));exit();
 		return $this->high_chart_mod($score_list);
@@ -60,7 +54,8 @@ class model extends main_model {
 
 	public function high_chart_mod($result)
 	{
-
+		// var_dump($result)
+		// ;exit();/
 		$categories = [];
 		$series = [];
 		foreach ($result as $key => $value) {
@@ -69,17 +64,17 @@ class model extends main_model {
 				array_push($categories, $value['name']);
 			}
 
-			if(!isset($series[$value['title']]))
+			if(!isset($series[$value['name']]))
 			{
-				$series[$value['title']] = [];
+				$series[$value['name']] = [];
 			}
-			array_push($series[$value['title']], intval($value['average']));
+			array_push($series[$value['name']], intval($value['average']));
 
 		}
 		$json = [];
 		foreach ($series as $key => $value) {
-
-			$json[] =
+			
+			$json[] = 
 			[
 				'name' => $key,
 				'data' => $value

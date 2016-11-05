@@ -51,9 +51,9 @@ class model extends main_model {
 			$absence_count = $this->find_count_absence($r->absence);
 
 			if (!$absence_count || $absence_count == 0 || $absence_count == null) {
-				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->class("icoattendance")->title("نمایش غیبت های فراگیر")->render();
+				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId(). "/classesid=". $classesid)->class("icoattendance")->title("نمایش غیبت های فراگیر")->render();
 			}else{
-				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId())->vtext($this->find_count_absence($r->absence))->title("نمایش غیبت های فراگیر")->render();
+				$r->absence = $this->tag("a")->href("users/learn/absence/id=" . $this->xuId(). "/classesid=". $classesid)->vtext($this->find_count_absence($r->absence))->title("نمایش غیبت های فراگیر")->render();
 			}
 
 			$r->mark = $this->tag("a")->href("users/learn/score/id=". $this->xuId())->vtext($r->mark)->render();

@@ -22,7 +22,12 @@ class view extends main_view  {
 		$chart = $this->sql("#progress", $users_id, $classesid, "month");
 		// exit();
 		$this->data->chart_month = $chart;
-		// var_dump($chart);exit();`
+		
+		$this->data->users_datail = " اطلاعات تحصیلی فراگیر " . 
+					$this->sql(".assoc.foreign" , "person", $users_id , "name" , "users_id")
+					. '  ' . 
+					$this->sql(".assoc.foreign" , "person", $users_id , "family" , "users_id");
+			
 	}
 } 
 ?>
