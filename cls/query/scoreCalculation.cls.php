@@ -1,9 +1,9 @@
-<?php 
-class query_scoreCalculation_cls extends query_cls 
+<?php
+class query_scoreCalculation_cls extends query_cls
 {
 
 	/**
-	*	list of score saved 
+	*	list of score saved
 	* 	score type title
 	*	username, name, family
 	*/
@@ -12,13 +12,13 @@ class query_scoreCalculation_cls extends query_cls
 
 	//-------------------- check branch
 		$this->sql(".branch.classes", $classesid);
-		
+
 		$calculation = $this->sql()->tableClasses()->whereId($classesid)->fieldId();
 		$calculation->joinPlan()->whereId("#classes.plan_id")->fieldId();
 		$calculation->joinScore_calculation()->wherePlan_id("#classes.plan_id")->andStatus("active");
 
 		$x = $calculation->joinClassification()->whereClasses_id("#classes.id")->fieldId();
-		
+
 		$this->classification_finde_active_list($x);
 
 		$calculation->joinScore()->whereClassification_id("#classification.id")->fieldValue();
@@ -44,7 +44,7 @@ class query_scoreCalculation_cls extends query_cls
 				$run = true;
 				foreach ($value as $k => $v)
 				{
-					if($k == 'value' 
+					if($k == 'value'
 					|| $k == 'title'
 					|| $k == 'name'
 					|| $k == 'family'
@@ -61,10 +61,10 @@ class query_scoreCalculation_cls extends query_cls
 			foreach ($list as $key => $value)
 			{
 				$x = $calculation;
-				
+
 				foreach ($value['title'] as $k => $v) {
 					$x = preg_replace("/\=". $v ."\=/", $value['value'][$k], $x);
-				}	
+				}
 
 				if(preg_match("/\=/", $x))
 				{
@@ -73,12 +73,12 @@ class query_scoreCalculation_cls extends query_cls
 				else
 				{
 					$list[$key]['result'] = (@eval('return '.$x.';') ? @eval('return '.$x.';') : "0");
-				}		
+				}
 			}
 			return $list;
 		}
 	}
-		 
+
 	public function score_classes($classesid = false , $type = "classes")
 	{
 		return $this->_eval($this->list_score($classesid), $type);

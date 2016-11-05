@@ -150,8 +150,8 @@
 			</td>
 		</tr>
 	</table>
-	{% for key, list in list %}
 	<table  cellspacing="0" border="0">
+	{% for key, list in list %}
 
 		{%for index, scoretype in scoreclasses_list %}
 			<tr class="xtr" index="{{key}}">
@@ -240,43 +240,57 @@
 				</td>
 			</tr>
 		{%endfor%}
-		</table>
 	{%endfor%}
+		</table>
 
 <script type="text/javascript">
 
-$(document).keydown(function (e) {
-// console.log(e.keyCode);
-// console.log($(this).attr("xclass"));
-// index = $(this).parents('tr').attr('index');
+$('input').keydown(function (e)
+{
+	var col     = $(this).closest('td').index();
+	var col_max = $(this).closest('tr').find('td').size();
+	var row     = $(this).closest('tr').index();
+	switch(e.keyCode)
+	{
+		//arrow left
+		case 37:
+			col += 1;
+			if(col >= col_max)
+			{
+				col = 3;
+				row += 1;
+			}
+			break;
 
-// console.log(index);
-    switch(e.keyCode)
-    {
-            //arrow down
-        case 40:
-        $(this).parents('tr').next('.xtr').css("background-color", 'red');
-        console.log($(this).parent('tr').next().find('input[xclass=' + $(this).attr('xclass') + ']'));
-			// $(this).closest('tr').next().find('input[xclass=' + $(this).attr('xclass') + ']').focus();
-			$(this).parent('tr').next().find('input[xclass=' + $(this).attr('xclass') + ']').focus();
-            // $(currentRow).next().addClass("rowActive");
-            // $(currentRow).removeClass("rowActive");
-            break;
-            //arrow up
-        case 38:
-        console.log(1)
-			// $(this).closest('tr').prev().find('input[xclass=' + $(this).attr('xclass') + ']').focus();
-			$(this).parents('tr').prev().children('td').find('input[xclass=' + $(this).attr('xclass') + ']').focus()
-            // $(currentRow).prev().addClass("rowActive");
-            // $(currentRow).removeClass("rowActive");
-            break;
-            //esc
-        case 27:
-            // if ($(".pane").hasClass('pane-open') && !$(".pane").hasClass('pane-pinned')){
-                // $(".pane").slideToggle(250).removeClass('pane-open');
-            // };
-            break;    
-    } 
+		//arrow up
+		case 38:
+			row -= 1;
+			break;
+
+		// right
+		case 39:
+			col -= 1;
+			if(col <= 2)
+			{
+				col = col_max-1;
+				row -= 1;
+			}
+			break;
+
+		// enter
+		case 13:
+		//arrow down
+		case 40:
+			row += 1;
+			break;
+
+			//esc
+		case 27:
+
+			break;
+	}
+
+	$(this).closest('table').find('tr:eq('+ row +') td:eq('+ col +') input').focus();
 
 });
 
