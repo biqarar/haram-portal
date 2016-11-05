@@ -154,7 +154,7 @@
 	<table  cellspacing="0" border="0">
 
 		{%for index, scoretype in scoreclasses_list %}
-			<tr>
+			<tr class="xtr" index="{{key}}">
 				<td  class="cls1 normal-font">{{key + 1}}</td>
 				<td  class="cls2 normal-font">
 
@@ -244,6 +244,42 @@
 	{%endfor%}
 
 <script type="text/javascript">
+
+$(document).keydown(function (e) {
+// console.log(e.keyCode);
+// console.log($(this).attr("xclass"));
+// index = $(this).parents('tr').attr('index');
+
+// console.log(index);
+    switch(e.keyCode)
+    {
+            //arrow down
+        case 40:
+        $(this).parents('tr').next('.xtr').css("background-color", 'red');
+        console.log($(this).parent('tr').next().find('input[xclass=' + $(this).attr('xclass') + ']'));
+			// $(this).closest('tr').next().find('input[xclass=' + $(this).attr('xclass') + ']').focus();
+			$(this).parent('tr').next().find('input[xclass=' + $(this).attr('xclass') + ']').focus();
+            // $(currentRow).next().addClass("rowActive");
+            // $(currentRow).removeClass("rowActive");
+            break;
+            //arrow up
+        case 38:
+        console.log(1)
+			// $(this).closest('tr').prev().find('input[xclass=' + $(this).attr('xclass') + ']').focus();
+			$(this).parents('tr').prev().children('td').find('input[xclass=' + $(this).attr('xclass') + ']').focus()
+            // $(currentRow).prev().addClass("rowActive");
+            // $(currentRow).removeClass("rowActive");
+            break;
+            //esc
+        case 27:
+            // if ($(".pane").hasClass('pane-open') && !$(".pane").hasClass('pane-pinned')){
+                // $(".pane").slideToggle(250).removeClass('pane-open');
+            // };
+            break;    
+    } 
+
+});
+
 $(document).ready(function() {
 	$("a input").change(function(){
 		scoretypeid = $(this).attr("scoretypeid");
