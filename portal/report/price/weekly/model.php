@@ -7,35 +7,43 @@ class model extends main_model {
 	public function sql_weekly($startdate = false, $enddate = false) {
 
 		//---------- get branch id in the list
-		$branch = [];
-		foreach ($this->branch() as $key => $value) {
-			$branch[] = "users_branch.branch_id = $value";
+		if(global_cls::supervisor())
+		{
+			$branch = '';
+			$join = '';
 		}
-		$branch = join($branch, " OR ");
-
+		else
+		{
+			$join = " INNER JOIN `users_branch` ON `users_branch`.`users_id` = person.users_id ";
+			$branch = [];
+			foreach ($this->branch() as $key => $value) {
+				$branch[] = "users_branch.branch_id = $value";
+			}
+			$branch = ' AND ('. join($branch, " OR ") . ')';
+		}
 		$query = "
 				SELECT 
 				@n := @n + 1 id,
-				`price`.`date`, 
-				`price`.`pay_type`, 
-				`price`.`value`, 
-				`price`.`card`, 
-				`price`.`transactions`, 
-				`person`.`name`, 
-				`person`.`family`
+				price.date, 
+				price.pay_type, 
+				price.value, 
+				price.card, 
+				price.transactions, 
+				person.name, 
+				person.family
 				 
-				FROM `price`
-				INNER JOIN `person` ON `person`.`users_id` = price.users_id 
-				INNER JOIN `users_branch` ON `users_branch`.`users_id` = person.users_id 
+				FROM price
+				INNER JOIN person ON person.users_id = price.users_id 
+				$join
 				WHERE 
-					`price`.`date` >= '$startdate' AND 
-					`price`.`date` <= '$enddate' AND 
-					`price`.`pay_type` LIKE 'pos%' AND
-					($branch) 
-				 GROUP BY `price`.`id`
-				 ORDER BY `price`.`date`
+					price.date >= '$startdate' AND 
+					price.date <= '$enddate' AND 
+					price.pay_type LIKE 'pos%'
+					$branch 
+				 GROUP BY price.id
+				 ORDER BY price.date
 		";
-
+		
 		$db = $this->db($query);
 		$price = $db->allAssoc();
 		
