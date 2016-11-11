@@ -309,6 +309,8 @@ $(document).ready(function() {
 			isRTL:false,
 			onSelect: function() {
 				set_attr(_self);
+				set_saved_score($(_self).val(), $(_self).attr("xclass"));
+				// set_saved_score(_self)
 			},
 			onChange: function(){
 			}
@@ -317,10 +319,61 @@ $(document).ready(function() {
 
 	});
 
+	function set_saved_score(date, xclass)
+	{
+		date = convert_date(date);
+		$.ajax({
+			type: "POST",
+			url : 'score/api/get/classroom/classesid={{classesid}}/date='+ date,
+			success : function(data){
+				list = data.msg.list;
+				// console.log(list);
+				for (a in list)
+				{
+
+					if(list[a]['date'] != undefined)
+					{
+
+						if(list[a]['absence'] != 'present')
+						{
+							$(document).find(
+								"input[xclass=\"" + xclass + 
+								"\"][date=\""+date+
+								"\"][classificationid=\""+list[a]['classificationid']+
+								"\"]").css('background-color','#fad2d5');
+						}
+
+						date = list[a]['date'];
+						// console.log(date);
+						date = date.substr(0,4) + '-' + date.substr(6,1) + '-' + date.substr(9,1);
+						date = convert_date(date);
+						$(document).find(
+								"input[xclass=\"" + xclass + 
+								"\"][scoretypeid=\""+list[a]['scoretypeid']+
+								"\"][date=\""+date+
+								"\"][classificationid=\""+list[a]['classificationid']+
+								"\"]").val(list[a]['scorevalue']);
+						$(document).find(
+								"input[xclass=\"" + xclass + 
+								"\"][scoretypeid=\""+list[a]['scoretypeid']+
+								"\"][date=\""+date+
+								"\"][classificationid=\""+list[a]['classificationid']+
+								"\"]").attr('value', list[a]['scorevalue']);
+
+					}
+				}
+			}
+		});
+	}
+
 	function set_attr(_self) {
 		xclass = $(_self).attr("xclass");
 		val = $(_self).val();
 		$("a[xclass="+xclass+"]", $(document)).each(function(){
+			$(this).attr("date", val);
+		});
+		val = convert_date(val)
+		$("input[xclass="+xclass+"]", $(document)).each(function(){
 			$(this).attr("date", val);
 		});
 		// $("input[type=radio,xclass="+xclass+"]").
@@ -367,57 +420,7 @@ $(document).ready(function() {
 
 
 
-	$("a.insertAbsenceApi", this).click(function(){
-		_self = $(this);
-		date = $(_self).attr("date");
-		// console.log(date);
-		if(typeof date == "undefined") {
-			xhr_error("تاریخ انتخاب نشده است");
-			return false;
-		}
-
-		classification = $(_self).attr("classificationid");
-
-		date = convert_date(date);
-		type = $(this).attr("type");
-
-		if(typeof type == "undefined"){
-			type = "unjustified absence";
-		}
-
-		xurl = "absence/api/classification=" + classification + "/date=" + date + "/type=" + type;
-
-		if($(_self).hasClass("insertAbsenceApi")){
-			$.ajax({
-				type: "POST",
-				url : xurl,
-				success : function(data){
-
-					xhr_result(data);
-					if(data.fatal){
-						$(_self).removeClass("icodadd insertAbsenceApi").addClass("icoredclose deleteAbsenceApi");
-					}else{
-						$(_self).removeClass("icodadd insertAbsenceApi").addClass("icoredclose deleteAbsenceApi");
-					}
-				}
-			});
-
-		}else if($(_self).hasClass("deleteAbsenceApi")){
-			$.ajax({
-				type: "POST",
-				url : "absence/apidelete/classification=" + classification + "/date=" + date,
-				success : function(data){
-					xhr_result(data);
-					if(data.fatal){
-						$(_self).removeClass("icoredclose deleteAbsenceApi").addClass("icodadd insertAbsenceApi");
-					}else{
-						$(_self).removeClass("icoredclose deleteAbsenceApi").addClass("icodadd insertAbsenceApi");
-					}
-				}
-			});
-		}
-		return false;
-	});
+	
 });
 
 </script>
