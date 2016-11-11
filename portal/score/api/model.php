@@ -124,5 +124,37 @@ class model extends main_model {
 		}
 
 	}
+
+
+	public function post_get()
+	{
+		$classesid = ($this->xuId("classesid"));
+		$date = ($this->xuId("date"));
+		
+		$query = 
+		"
+			SELECT 
+				classification.id AS 'classificationid',
+				score_type.id AS 'scoretypeid',
+				score.value AS 'scorevalue',
+				IFNULL(absence.type,'present') AS 'absence',
+				score.date AS 'date'
+			FROM
+				classification
+			INNER JOIN score ON classification.id = score.classification_id
+			INNER JOIN score_type ON score_type.id = score.score_type_id
+			LEFT JOIN absence ON 
+					absence.classification_id = classification.id AND 
+					DATE(absence.date) = '$date'
+				
+			WHERE 
+				score.date = '$date' AND
+				classification.classes_id = $classesid AND
+				score_type.type = 'classroom'
+		";
+		$list = $this->db($query)->allAssoc();
+		debug_lib::msg("list", $list);
+
+	}
 }
 ?>

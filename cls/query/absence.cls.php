@@ -61,7 +61,10 @@ class query_absence_cls extends query_cls
 	}
 	public function autoremove($classification_id = false, $date = false) {
 		// return;
-
+		if(preg_match("/^\d{8}$/", $date))
+		{
+			$date = substr($date,0,4). '-'. substr($date,5,2). '-'. substr($date, 7,2);
+		}
 		$this->classification_id = $classification_id;
 
 		$max_absence = $this->sql()->tableClassification()->whereId($this->classification_id);

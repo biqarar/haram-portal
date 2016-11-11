@@ -30,6 +30,17 @@ class controller extends main_controller {
 					$this->permission = array("score" => array("insert" => array("public")));
 				});
 		
+		
+		$this->listen(array(
+				"max" => 5,
+				"url" => array("api","get","classroom", "classesid" => "/^\d+$/" ,"date" => "/^\d{8}$/")
+				),
+				function(){
+					save(array("score", "api", "mod" => "get"));
+					$this->permission = array("score" => array("select" => array("public")));
+				});
+
+
 		$this->listen(array(
 				"max" => 5,
 				"url" => array("api", "classificationid" => "/^\d+$/" ,"scoretypeid" => "/^\d+$/", "value" => "/(.*)/", "retest" => "/(true|false)/")
