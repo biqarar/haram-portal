@@ -29,13 +29,10 @@ class query_absence_cls extends query_cls
 			
 		debug_lib::true(_($type) .  " ثبت شد");
 		}
-
-		
-		
-
 	}
 
 	public function absence_count($array = false) {
+		
 		$c = 0;
 		foreach ($array as $key => $value) {
 			// var_dump($value);
@@ -61,10 +58,12 @@ class query_absence_cls extends query_cls
 	}
 	public function autoremove($classification_id = false, $date = false) {
 		// return;
+		$default_date = $date;
 		if(preg_match("/^\d{8}$/", $date))
 		{
-			$date = substr($date,0,4). '-'. substr($date,5,2). '-'. substr($date, 7,2);
+			$date = substr($date,0,4). '-'. substr($date,4,2). '-'. substr($date, 6,2);
 		}
+		// var_dump($date);exit();
 		$this->classification_id = $classification_id;
 
 		$max_absence = $this->sql()->tableClassification()->whereId($this->classification_id);
@@ -87,7 +86,7 @@ class query_absence_cls extends query_cls
 			$m = (intval($x[1]) < 10) ? "0" . $x[1] : $x[1];
 			$d = (intval($x[2]) < 10) ? "0" . $x[2] : $x[2];
 
-			$start_day = "{$y}{$m}01";
+			$start_day = "{$y}{$x[1]}01";
 
 			if($m == "12"){
 				$new_m = ($m == '12') ? $new_m = '01' :  intval($m) + 1;
@@ -107,6 +106,7 @@ class query_absence_cls extends query_cls
 										->condition("and", "absence.date", ">=", "$start_day")
 										->condition("and", "absence.date", "<", "$end_day")
 										->select();
+										
 			$c = $this->absence_count($absenc_list->allAssoc());
 
 			$this->remove($c, $max_absence['max_absence']);
@@ -123,7 +123,7 @@ class query_absence_cls extends query_cls
 	}
 
 	public function remove($c =false, $max = false) {
-		
+	
 		if(intval($c) > intval($max)){
 				$this->sql(".classification.remove",
 							$this->users_id, 
