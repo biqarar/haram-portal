@@ -1,9 +1,15 @@
-<?php 
+<?php
 /**
- * 
+ *
  */
-class view extends main_view  {
-	public function config() {
+class view extends main_view
+{
+
+	/**
+	 * config page
+	 */
+	public function config()
+	{
 		//------------------------------  global
 		$this->global->page_title = _("خلاصه ی وضعیت کلاس");
 
@@ -12,7 +18,8 @@ class view extends main_view  {
 		//------------------------------  set classes_id
 		$classes_id  = $this->xuId("id");
 		//------------------------------ list of classes
-		$classes_detail = $this->sql(".list", "classes", function ($query) {
+		$classes_detail = $this->sql(".list", "classes", function ($query)
+		{
 			$query->whereId($this->xuId("id"));
 		})->compile();
 		if(isset($classes_detail['list'][0]['teacher']))
@@ -20,7 +27,8 @@ class view extends main_view  {
 			$teacher_id = $classes_detail['list'][0]['teacher'];
 		}
 		if(isset($classes_detail['list'])){
-			foreach ($classes_detail ['list'] as $key => $value) {
+			foreach ($classes_detail ['list'] as $key => $value)
+			{
 				$classes_detail ['list'][$key]['plan_id']   = $this->sql(".assoc.foreign", "plan", $value["plan_id"], "name");
 				$classes_detail ['list'][$key]['teacher']   =
 				$this->sql(".assoc.foreign", "person", $value["teacher"], "name", "users_id") . ' ' .
@@ -32,42 +40,43 @@ class view extends main_view  {
 
 		if($teacher_id)
 		{
-			$teacher_detail = $this->sql(".list", "person", function ($query, $teacher_id) {
+			$teacher_detail = $this->sql(".list", "person", function ($query, $teacher_id)
+			{
 				$query->whereUsers_id($teacher_id);
 				$query->joinPerson_extera("LEFT")->whereUsers_id("#person.users_id");
-				
+
 			}, $teacher_id)->compile();
 			$this->data->teacher_detail = $teacher_detail;
 		}
-		
+
 		$query = "SELECT COUNT(id) AS 'id' FROM classification WHERE classes_id = $classes_id";
 		$this->data->intro = intval($this->db($query)->assoc("id"));
-		
+
 		$query = "
-			SELECT 
-				COUNT(id) AS 'id' 
-			FROM 
-				classification 
-			WHERE 
+			SELECT
+				COUNT(id) AS 'id'
+			FROM
+				classification
+			WHERE
 				classes_id = $classes_id AND
 				because IS NULL
 			";
 		$this->data->end_class = intval($this->db($query)->assoc("id"));
-		
+
 
 		$query = "
-			SELECT 
-				COUNT(id) AS 'id' 
-			FROM 
-				classification 
-			WHERE 
+			SELECT
+				COUNT(id) AS 'id'
+			FROM
+				classification
+			WHERE
 				classes_id = $classes_id AND
 				because IS NOT NULL
 			";
 		$this->data->exit_class = intval($this->db($query)->assoc("id"));
 		if($this->data->intro > 0)
 		{
-			$this->data->end_class_100 = 
+			$this->data->end_class_100 =
 				round(floatval((($this->data->intro - $this->data->exit_class) * 100 / $this->data->intro)), 2);
 		}
 		else
@@ -76,11 +85,11 @@ class view extends main_view  {
 		}
 
 		$query = "
-			SELECT 
-				COUNT(classification.id) AS 'id' 
-			FROM 
-				classification 
-			INNER JOIN score 
+			SELECT
+				COUNT(classification.id) AS 'id'
+			FROM
+				classification
+			INNER JOIN score
 				ON score.classification_id = classification.id
 			INNER JOIN score_type
 				ON score_type.id = score.score_type_id AND
@@ -89,7 +98,7 @@ class view extends main_view  {
 				ON classification.classes_id = classes.id
 			INNER JOIN plan
 				ON classes.plan_id = plan.id
-			WHERE 
+			WHERE
 				classification.mark >= plan.mark AND
 				classification.classes_id = $classes_id AND
 				classification.because IS NULL
@@ -97,11 +106,11 @@ class view extends main_view  {
 		$this->data->qaboli = intval($this->db($query)->assoc("id"));
 
 		$query = "
-			SELECT 
-				COUNT(classification.id) AS 'id' 
-			FROM 
-				classification 
-			INNER JOIN score 
+			SELECT
+				COUNT(classification.id) AS 'id'
+			FROM
+				classification
+			INNER JOIN score
 				ON score.classification_id = classification.id
 			INNER JOIN score_type
 				ON score_type.id = score.score_type_id AND
@@ -110,56 +119,81 @@ class view extends main_view  {
 				ON classification.classes_id = classes.id
 			INNER JOIN plan
 				ON classes.plan_id = plan.id
-			WHERE 
+			WHERE
 				classification.mark < plan.mark AND
-				classification.classes_id = $classes_id 
+				classification.classes_id = $classes_id
 			";
 		$this->data->mardodi = intval($this->db($query)->assoc("id"));
-		
+
 		$query = "
-			SELECT 
+			SELECT
 				meeting_no AS 'id'
-			FROM 
+			FROM
 				classes
-			WHERE 
-				classes.id = $classes_id 
+			WHERE
+				classes.id = $classes_id
 			";
 		$this->data->aeenname = intval($this->db($query)->assoc("id"));
-		
-		
+
+
 		$query = "
-			SELECT 
+			SELECT
 				AVG(score.value) AS 'id'
-			FROM 
+			FROM
 				score
 			INNER JOIN classification
 			  	ON classification.id = score.classification_id
 			INNER JOIN score_type
 				ON score_type.id = score.score_type_id AND
 					score_type.type = 'endofterm'
-			WHERE 
-				classification.classes_id = $classes_id 
+			WHERE
+				classification.classes_id = $classes_id
 			";
 		$this->data->moadele_kol = intval($this->db($query)->assoc("id"));
+		$this->data->qaboli_100 = 0;
 		if($this->data->end_class != 0)
 		{
 			$this->data->qaboli_100 = round(floatval((100 * $this->data->qaboli) / $this->data->end_class));
 		}
 		$query = "
-			SELECT 
+			SELECT
 				AVG(score.value) AS 'id'
-			FROM 
+			FROM
 				score
 			INNER JOIN classification
 			  	ON classification.id = score.classification_id
 			INNER JOIN score_type
 				ON score_type.id = score.score_type_id AND
 					score_type.type != 'endofterm'
-			WHERE 
-				classification.classes_id = $classes_id 
+			WHERE
+				classification.classes_id = $classes_id
 			";
 		$this->data->moadele_class = intval($this->db($query)->assoc("id"));
 
+
+		$query = "
+			SELECT
+				COUNT(score.id) AS 'id'
+			FROM
+				score
+			INNER JOIN classification
+			  	ON classification.id = score.classification_id
+			WHERE
+				classification.classes_id = $classes_id
+			GROUP BY score.date
+			";
+
+		$this->data->bargozarshode = count($this->db($query)->allAssoc("id"));
+
+		$this->data->bargozarshode_100 = 0;
+		if($this->data->bargozarshode != 0)
+		{
+			$this->data->bargozarshode_100 = round(floatval((100 * $this->data->bargozarshode) / $this->data->aeenname));
+			if($this->data->bargozarshode_100 > 100)
+			{
+				$this->data->bargozarshode_100  = 100;
+			}
+		}
 	}
-} 
+}
 ?>
