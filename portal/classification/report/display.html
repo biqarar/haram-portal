@@ -1,4 +1,5 @@
 {# reza mohiti #}
+
 {% extends layout %}
 {% block content %}
 <style type="text/css">
@@ -14,7 +15,7 @@
 		text-align: center;
 	}
 
-	
+
 	.class-details {
 		padding: 5px 10px;
 	}
@@ -29,84 +30,15 @@
 		padding: 5px;
 		font-family: 'WYekan';
 	}
-	
-</style>
-<script type="text/javascript" src="/portal/static/js/highchart/highcharts.js"></script>
-<script type="text/javascript" src="/portal/static/js/highchart/exporting.js"></script>
-<script src="/portal/static/js/bootstrap-checkbox.js" defer></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	show_chart('column');
-	
-});
-function show_chart(type = '')
-{
-	$('#chart').highcharts({
-		chart:{
-			type : type
-		},
-	    title: {text: "نمودار وضعیت تحصیلی فراگیران"}, subtitle : {text : "به تفکیک افراد"},xAxis:{
-	    	categories : {{chart.categories|raw}}
-	    },
-	    yAxis:{title: {text : "نمره"},
-	    	potLine :[{value:0,width: 1}]},
-	    series: {{chart.series|raw}}
-	});	
-}
 
-	
-</script>
-
-<h3>گزارش از وضعیت کلاس</h3>
-<hr>
-<div class="header-table">
-	<h4>مشخصات کلاس</h4>
-	<div class="class-details colory">
-	{% for key, header in classes_detail.header %}
-	<div class="class-detail normal-font">
-		<div class="class-detail-title">{{header|lang}}:</div>
-		<div class="class-detail-value"><b>{{classes_detail.list[0][key]|lang}}</b></div>
-	</div>
-	{%endfor%}
-		<div style="clear:both"></div>
-	</div>
-</div>
-<hr>
-<h4>مشخصات استاد</h4>
-<div class="class-details colory">
-	{% for key, header in teacher_detail.header %}
-	<div class="class-detail normal-font">
-		<div class="class-detail-title">{{header|lang}}:</div>
-		<div class="class-detail-value"><b>{{teacher_detail.list[0][key]|lang}}</b></div>
-	</div>
-	{%endfor%}
-	<div style="clear:both"></div>
-</div>
-<hr>
-<table>
-	<tr><td class="first-td" colspan="2"><h4>وضعیت ورودی و خروجی کلاس</h4></td></tr>
-	<tr><td class="first-td">تعداد ورودی</td><td>{{intro}}</td></tr>
-	<tr><td class="first-td">تعداد انصرافی</td><td>{{exit_class}}</td></tr>
-	<tr><td class="first-td">تعداد افراد باقیمانده در پایان کلاس</td><td>{{end_class}}</td></tr>
-	<tr><td class="first-td">درصد باقیمانده در کلاس</td><td>
-	<div style="width: {{end_class_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{end_class_100}} ٪</div></td></tr>
-	<tr><td class="first-td" colspan="2"><h4>وضعیت نمرات و قبولی کلاس</h4></td></tr>
-	<tr><td class="first-td">معدل کل آزمون پایانی</td><td>{{moadele_kol}}</td></tr>
-	<tr><td class="first-td">معدل کل نمرات کلاسی</td><td>{{moadele_class}}</td></tr>
-	<tr><td class="first-td">تعداد قبولی</td><td>{{qaboli}}</td></tr>
-	<tr><td class="first-td">تعداد مردودی</td><td>{{mardodi}}</td></tr>
-	<tr><td class="first-td">درصد قبولی کلاس</td><td>
-	
-	<div style="width: {{qaboli_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{qaboli_100}} ٪</div>
-	</td></tr>
-	<tr><td class="first-td" colspan="2"><h4>تعداد جلسات </h4></td></tr>
-	<tr><td class="first-td">تعداد جلسات آیین نامه</td><td>{{aeenname}}</td></tr>
-	<tr><td class="first-td">تعداد جلسات برگزار شده</td><td></td></tr>
-	<!-- <tr><td>درصد جلسات برگزار شده</td><td>{{bargozarshode_100}}</td></tr> -->
-</table>
-
-<style type="text/css">
+	.hide
+	{
+		display: none;
+	}
+	.show
+	{
+		display: block;
+	}
 	*
 	{
 		font-family: "WYekan";
@@ -116,7 +48,7 @@ function show_chart(type = '')
 	{
 		width: 650px !important;
 	}
-	
+
 	table td{
 		font-size: 14px;
 	}
@@ -149,5 +81,91 @@ function show_chart(type = '')
 			border: 1px solid #eee;
 			font-size: 10px;
 		}
+
+
 </style>
+<script type="text/javascript" src="/portal/static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="/portal/static/js/highchart/exporting.js"></script>
+<script src="/portal/static/js/bootstrap-checkbox.js" defer></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	show_chart('column');
+
+});
+function show_chart(type = '')
+{
+	$('#chart').highcharts({
+		chart:{
+			type : type
+		},
+	    title: {text: "نمودار وضعیت تحصیلی فراگیران"}, subtitle : {text : "به تفکیک افراد"},xAxis:{
+	    	categories : {{chart.categories|raw}}
+	    },
+	    yAxis:{title: {text : "نمره"},
+	    	potLine :[{value:0,width: 1}]},
+	    series: {{chart.series|raw}}
+	});
+}
+
+
+</script>
+
+<h3>گزارش از وضعیت کلاس</h3>
+<hr>
+<div class="header-table">
+	<h4>مشخصات کلاس</h4>
+	<div class="class-details colory">
+	{% for key, header in classes_detail.header %}
+	<div class="class-detail normal-font">
+		<div class="class-detail-title">{{header|lang}}:</div>
+		<div class="class-detail-value"><b>{{classes_detail.list[0][key]|lang}}</b></div>
+	</div>
+	{%endfor%}
+		<div style="clear:both"></div>
+	</div>
+</div>
+<span id="plus" style="cursor: pointer; color: blue;" title="مشاهده اطلاعات استاد">+</span>
+
+<div class="class-details colory hide" id="teacher-detail">
+<hr>
+<h4>مشخصات استاد</h4>
+	{% for key, header in teacher_detail.header %}
+	<div class="class-detail normal-font">
+		<div class="class-detail-title">{{header|lang}}:</div>
+		<div class="class-detail-value"><b>{{teacher_detail.list[0][key]|lang}}</b></div>
+	</div>
+	{%endfor%}
+	<div style="clear:both"></div>
+</div>
+<hr>
+<table>
+	<tr><td class="first-td" colspan="2"><h4>وضعیت ورودی و خروجی کلاس</h4></td></tr>
+	<tr><td class="first-td">تعداد ورودی</td><td>{{intro}}</td></tr>
+	<tr><td class="first-td">تعداد انصرافی</td><td>{{exit_class}}</td></tr>
+	<tr><td class="first-td">تعداد افراد باقیمانده در پایان کلاس</td><td>{{end_class}}</td></tr>
+	<tr><td class="first-td">درصد باقیمانده در کلاس</td><td>
+	<div style="width: {{end_class_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{end_class_100}} ٪</div></td></tr>
+	<tr><td class="first-td" colspan="2"><h4>وضعیت نمرات و قبولی کلاس</h4></td></tr>
+	<tr><td class="first-td">معدل کل آزمون پایانی</td><td>{{moadele_kol}}</td></tr>
+	<tr><td class="first-td">معدل کل نمرات کلاسی</td><td>{{moadele_class}}</td></tr>
+	<tr><td class="first-td">تعداد قبولی</td><td>{{qaboli}}</td></tr>
+	<tr><td class="first-td">تعداد مردودی</td><td>{{mardodi}}</td></tr>
+	<tr><td class="first-td">درصد قبولی کلاس</td><td>
+
+	<div style="width: {{qaboli_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{qaboli_100}} ٪</div>
+	</td></tr>
+	<tr><td class="first-td" colspan="2"><h4>تعداد جلسات </h4></td></tr>
+	<tr><td class="first-td">تعداد جلسات آیین نامه</td><td>{{aeenname}}</td></tr>
+	<tr><td class="first-td">تعداد جلسات برگزار شده
+	<a class="small">-محاسبه شده با تعداد روز های ثبت نمرات کلاسی</a></td><td>{{bargozarshode}}</td></tr>
+	<tr><td>درصد جلسات برگزار شده</td><td>
+	<div style="width: {{bargozarshode_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{bargozarshode_100}} ٪</div></td></tr>
+</table>
+
+<script type="text/javascript">
+	$( "#plus" ).click(function() {
+  $( "#teacher-detail" ).toggleClass( "hide" );
+});
+</script>
 {%endblock%}
