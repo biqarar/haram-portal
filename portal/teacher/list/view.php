@@ -2,10 +2,13 @@
 /**
  * @author reza mohiti rm.biqarar@gmail.com
  */
-class view extends main_view{
-
-
-	public function config(){
+class view extends main_view
+{
+	/**
+	 * { function_description }
+	 */
+	public function config()
+	{
 		//------------------------------ global
 		$type = ($this->xuId("type") == "teacher") ? "teachers" : "operator";
 		$this->global->page_title  = " لیست " . _($type);
@@ -26,7 +29,7 @@ class view extends main_view{
 				'detail',
 				'person_extera')
 			);
-	
+
 	}
 }
 ?>
