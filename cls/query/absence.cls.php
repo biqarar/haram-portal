@@ -43,24 +43,26 @@ class query_absence_cls extends query_cls
 		$c = 0;
 		foreach ($array as $key => $value)
 		{
-			// var_dump($value);
-			switch ($value['type'])
+			if(isset($value['status']) && isset($value['type']) && $value['status'] == 'enable')
 			{
-				case 'delay':
-					$c = $c + 0;
-					break;
+				switch ($value['type'])
+				{
+					case 'delay':
+						$c = $c + 0;
+						break;
 
-				case 'leave':
-					$c = $c + 0.5;
-					break;
+					case 'leave':
+						$c = $c + 0.5;
+						break;
 
-				case 'justified absence':
-					$c = $c + 0.5;
-					break;
+					case 'justified absence':
+						$c = $c + 0.5;
+						break;
 
-				case 'unjustified absence':
-					$c = $c + 1;
-					break;
+					case 'unjustified absence':
+						$c = $c + 1;
+						break;
+				}
 			}
 		}
 		return $c;
@@ -160,6 +162,17 @@ class query_absence_cls extends query_cls
 							$this->classification_id ,
 							"absence" ,
 							$this->dateNow());
+				$query =
+				"
+					UPDATE absence
+					INNER JOIN classification ON classification.id = absence.classification_id AND
+					classification.classes_id = '$this->classes_id' AND
+					classification.users_id   = '$this->users_id'
+					SET absence.status = 'disable'
+				";
+				$this->db($query)->result();
+
+
 			debug_lib::true("<a style='color:red'>فراگیر به دلیل غیبت بیش از حد مجاز از کلاس حذف شد</a>");
 
 		}

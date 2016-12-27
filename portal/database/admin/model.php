@@ -120,9 +120,7 @@ class model extends main_model{
 
 		$database_change = array(
 			//--------------------
-			"ALTER TABLE `classification` CHANGE `because` `because` ENUM('absence','cansel','done','error_in_insert','move') NULL DEFAULT NULL",
-
-
+			"ALTER TABLE `absence` ADD `status` ENUM('enable','disable','deleted') NOT NULL DEFAULT 'enable' AFTER `because`",
 
 		);
 
