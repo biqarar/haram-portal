@@ -9,6 +9,7 @@
 <div class="class-detail">
 	{{dtable.make(dataTable)}}
 </div>
+{%if price_permission%}
 <hr>
 <h3><a style="color: red">هشدار!</a>
 <br>
@@ -18,4 +19,5 @@
 <form class="ajx" method="post" >
 	{{forms.make(form.price)}}
 </form>
+{%endif%}
 {%endblock%}

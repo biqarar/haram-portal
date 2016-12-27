@@ -22,6 +22,8 @@ class view extends main_view
 
 		if(global_cls::superprice("rule"))
 		{
+			$this->data->price_permission = true;
+
 			$f = $this->form('@price', $this->urlStatus());
 			$f->type->child(1)->checked("checked");
 			$f->remove("status");
