@@ -71,8 +71,7 @@ class model extends main_model {
 				debug_lib::true("خطا در نوع شهریه");
 				return false;
 			}
-			var_dump($date);
-			exit();
+
 			$query =
 			"
 				INSERT INTO price
