@@ -5,10 +5,7 @@ class query_absence_cls extends query_cls
 
 	public function insert($classification = false, $type = false, $date = false)
 	{
-
-		$check = $this->sql()->tableAbsence()
-							->whereClassification_id($classification)
-							->andDate($date)->limit(1)->select()->num();
+		$check = $this->sql()->tableAbsence()->whereClassification_id($classification)->andDate($date)->limit(1)->select()->num();
 
 		if($check == 1)
 		{
@@ -24,6 +21,7 @@ class query_absence_cls extends query_cls
 						->setType($type)
 						->setDate($date)
 						->insert();
+
 			$this->autoremove($classification, $date);
 
 			debug_lib::true(_($type) .  " ثبت شد");
@@ -39,7 +37,6 @@ class query_absence_cls extends query_cls
 	 */
 	public function absence_count($array = false)
 	{
-
 		$c = 0;
 		foreach ($array as $key => $value)
 		{
@@ -94,39 +91,30 @@ class query_absence_cls extends query_cls
 
 		$max_absence = $max_absence->select()->assoc();
 
-		$this->users_id 		= $max_absence['users_id'];
-		$this->classes_id 	= $max_absence['classes_id'];
-		$absence_type 	= $max_absence['absence_type'];
+		$this->users_id   = $max_absence['users_id'];
+		$this->classes_id = $max_absence['classes_id'];
+		$absence_type     = $max_absence['absence_type'];
 
 		if($absence_type == "ماهیانه")
 		{
-
 			$x = preg_split("/\-/", $date);
-
-			$y = (intval($x[0]) < 10) ? "0" . $x[0] : $x[0];
-			$m = (intval($x[1]) < 10) ? "0" . $x[1] : $x[1];
-			$d = (intval($x[2]) < 10) ? "0" . $x[2] : $x[2];
-
-			$start_day = "{$y}{$x[1]}01";
-
-			if($m == "12")
+			if(!isset($x[0]) || !isset($x[1]))
 			{
-				$new_m = ($m == '12') ? $new_m = '01' :  intval($m) + 1;
-				$y = intval($y)+1;
-			}
-			else
-			{
-				$new_m = ($m == '12') ? $new_m = '01' :  intval($m) + 1;
+				return false;
 			}
 
-			$new_m = (intval($new_m) < 10) ? "0" . $new_m: $new_m;
+			$y = $x[0];
+			$m = (int) $x[1];
 
-			$end_day = "{$y}{$new_m}01";
+			$m = $m < 10 ? '0'. $m : $m;
+
+			$start_day = "{$y}{$m}01";
+			$end_day   = "{$y}{$m}31";
 
 			$absenc_list = $this->sql()->tableAbsence()
 										->whereClassification_id($this->classification_id)
 										->condition("and", "absence.date", ">=", "$start_day")
-										->condition("and", "absence.date", "<", "$end_day")
+										->condition("and", "absence.date", "<=", "$end_day")
 										->select();
 
 			$c = $this->absence_count($absenc_list->allAssoc());
@@ -153,7 +141,6 @@ class query_absence_cls extends query_cls
 	 */
 	public function remove($c =false, $max = false)
 	{
-
 		if(intval($c) > intval($max))
 		{
 				$this->sql(".classification.remove",
