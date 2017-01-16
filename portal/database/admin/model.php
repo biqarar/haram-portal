@@ -14,13 +14,16 @@ class model extends main_model{
 	public $title = "";
 	public $version;
 
-	public function xecho($str = false) {echo "<pre><br>" . $str . "</pre>";}
+	public function xecho($str = false)
+	{echo "<pre><br>" . $str . "</pre>";}
 
-	public function ready($version = "new version") {
+	public function ready($version = "new version")
+	{
 
 		$this->xecho("In The Name Of Allah");
 // var_dump($_SESSION);
-		if(!isset($_GET['password']) || $_GET['password'] != 'ali110ali110' || !isset($_SESSION['supervisor'])) {
+		if(!isset($_GET['password']) || $_GET['password'] != 'ali110ali110' || !isset($_SESSION['supervisor']))
+		{
 			$this->xecho("password incorect.");
 			exit(); die();
 		}else{
@@ -44,19 +47,22 @@ class model extends main_model{
 		}
 	}
 
-	public function count() {
+	public function count()
+	{
 		$sql = new dbconnection_lib;
 		$sql::$resum_on_error = true;
 		$sql->query("COMMIT");
 		$this->i++;
 	}
 
-	public function title($title) {
+	public function title($title)
+	{
 		$this->xecho(" -------------------------------------------- $title ... ");
 		$this->title = $title;
 	}
 
-	public function set_version_history($version = 0 , $query = false) {
+	public function set_version_history($version = 0 , $query = false)
+	{
 		$sql = new dbconnection_lib;
 		$sql::$resum_on_error = true;
 		$s = $sql->query("INSERT INTO
@@ -66,7 +72,8 @@ class model extends main_model{
 		$this->xecho( "Saved in History (table database_version)");
 	}
 
-	public function flush() {
+	public function flush()
+	{
 		$this->set_version_history($this->version, $this->title . " ( " . $this->i . " record)");
 		$this->xecho( "num = " . $this->i );
 		$this->xecho(" -------------------------------------------- ");
@@ -75,7 +82,8 @@ class model extends main_model{
 		flush();
 	}
 
-	public function end() {
+	public function end()
+	{
 		$this->xecho( " --------------------------------------------  End :)   ");
 		$this->end_time = time();
 		$this->xecho(" End time : " . $this->end_time);
@@ -87,9 +95,10 @@ class model extends main_model{
 		exit(); die();
 	}
 
-	public function sql_admin() {
+	public function sql_admin()
+	{
 		//---------------------------------------------------------------------------------------------------
-		$this->ready(13);
+		$this->ready(17);
 
 		//----------------------------- new version function (database change)
 		$this->database_change();
@@ -102,13 +111,15 @@ class model extends main_model{
 
 	}
 
-	public function query_on_record() {
+	public function query_on_record()
+	{
 		// ---------------------------------------------------------------------------------------------------
 
 
 	}
 
-	public function database_change() {
+	public function database_change()
+	{
 		/**
 		* database change
 		* CREATE DATABASE `quran_hadith` DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
@@ -120,17 +131,7 @@ class model extends main_model{
 
 		$database_change = array(
 			//--------------------
-			"ALTER TABLE `hefz_race` ADD `result1` FLOAT NULL AFTER `presence2`",
-			"ALTER TABLE `hefz_race` ADD `result2` FLOAT NULL AFTER `result1`",
-			"ALTER TABLE `hefz_race` ADD `rate1` int(1) NULL AFTER `result2`",
-			"ALTER TABLE `hefz_race` ADD `rate2` int(1) NULL AFTER `rate1`",
-						"ALTER TABLE `plan` ADD `status` ENUM('open','close','full') NULL DEFAULT 'close' AFTER `absence_type`",
-			"ALTER TABLE `plan` ADD `type` ENUM('free','test','exam') NULL DEFAULT 'test' AFTER `status`",
-			"ALTER TABLE `classes` CHANGE `meeting_no` `meeting_no` SMALLINT(5) NULL DEFAULT NULL COMMENT 'تعداد جلسه';",
-			"ALTER TABLE `score_type` ADD `type` ENUM('endofterm','classroom') NULL DEFAULT 'endofterm' AFTER `plan_id`",
-			"ALTER TABLE `score` ADD `date` DATE NULL AFTER `score_type_id`",
-			"ALTER TABLE `quran_hadith`.`score` DROP INDEX `unique_index`, ADD UNIQUE `unique_index` (`classification_id`, `score_type_id`, `date`) USING BTREE;",
-
+			"ALTER TABLE `absence` ADD `status` ENUM('enable','disable','deleted') NOT NULL DEFAULT 'enable' AFTER `because`",
 
 		);
 
@@ -138,18 +139,21 @@ class model extends main_model{
 		$this->run($database_change);
 	}
 
-	public function run($array =false) {
+	public function run($array =false)
+	{
 
 		$sql = new dbconnection_lib;
 
 		$error = 0;
 		$all = 0;
 
-		foreach ($array as $key => $value) {
+		foreach ($array as $key => $value)
+		{
 			$this->title($value);
 			$s = $sql->query($value);
 			$this->xecho( "<b>Result:</b>". $sql->result . "\n");
-			if(!$sql->result){
+			if(!$sql->result)
+			{
 				$this->xecho( "<div style='background :red'> -- Error-- ");
 				$this->xecho( "<b>Error number:</b>". $sql::$connection->errno  . "\n");
 				$this->xecho( "<b>String error:</b>".  $sql::$connection->error . "\n");
