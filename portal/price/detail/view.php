@@ -34,7 +34,6 @@ class view extends main_view {
 		->addColFirst("name", "name")
 		->addColFirst("id", "id")
 		->addColEnd("edit", "edit")
-
 		->compile();
 
 		foreach ($price['list'] as $key => $value) {
