@@ -77,7 +77,8 @@ class model extends main_model {
 				{
 					$father = trim($vsearch_split[2]);
 				}
-
+				$result->groupOpen();
+				
 				if($public && !$family && !$father)
 				{
 					
@@ -101,6 +102,8 @@ class model extends main_model {
 				{
 					$result->condition("and", "person.father", "LIKE", "'%$father%'");
 				}
+				
+				$result->groupClose();
 
 				// echo ($result->select()->string());
 				// exit();
@@ -111,7 +114,6 @@ class model extends main_model {
 				// foreach ($search as $key => $value) {
 				// 	$search[$key] = "IFNULL($value, '')";
 				// }
-				// $result->groupOpen();
 				// $result->condition("and", "##concat($search)", "LIKE", "%$vsearch%");
 				// foreach ($csearch as $key => $value) {
 				// 	if(isset($ssearch[$key])){
@@ -123,7 +125,6 @@ class model extends main_model {
 				// 		}
 				// 	}
 				// }
-				// $result->groupClose();
 				// 
 				// ////////////////////////////////////
 				// 
