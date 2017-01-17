@@ -77,7 +77,6 @@ class model extends main_model {
 				{
 					$father = trim($vsearch_split[2]);
 				}
-
 				$result->groupOpen();
 				
 				if($public && !$family && !$father)
