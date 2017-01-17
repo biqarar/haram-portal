@@ -87,10 +87,10 @@ class query_hefzlig_cls extends query_cls
 				case ($d < 15) :
 					$result[$key]['rate'] = 0;
 					break;
-				case ($d >= 60 and $d < 75) :
+				case ($d >= 50 and $d < 65) :
 					$result[$key]['rate'] = 1;
 					break;
-				case ($d >= 75 and $d < 100) :
+				case ($d >= 65 and $d < 100) :
 					$result[$key]['rate'] = 2;
 					break;
 				case ($d == 100) :
@@ -160,13 +160,13 @@ class query_hefzlig_cls extends query_cls
 		if($r1 == $r2)
 		{
 
-			if($r1 >= 15 and $r1 < 75)
+			if($r1 >= 15 and $r1 < 65)
 			{
 				$s1 = 1;
 				$s2 = 1;
 			}
 
-			if($r1 >= 75 and $r1 < 100)
+			if($r1 >= 65 and $r1 < 100)
 			{
 				$s1 = 2;
 				$s2 = 2;
@@ -186,17 +186,17 @@ class query_hefzlig_cls extends query_cls
 				$s1 = 0;
 				$s2 = 3;
 			}
-			if($r1 >= 15 and $r1 < 60 )
+			if($r1 >= 15 and $r1 < 50 )
 			{
 				$s1 = 0;
 				$s2 = 3;
 			}
-			if($r1 >= 60 and $r1 < 75 )
+			if($r1 >= 50 and $r1 < 65 )
 			{
 				$s1 = 1;
 				$s2 = 3;
 			}
-			if($r1 >= 75 and $r1 < 100 )
+			if($r1 >= 65 and $r1 < 100 )
 			{
 				$s1 = 2;
 				$s2 = 3;
@@ -211,17 +211,17 @@ class query_hefzlig_cls extends query_cls
 				$s2 = 0;
 				$s1 = 3;
 			}
-			if($r2 >= 15 and $r2 < 60 )
+			if($r2 >= 15 and $r2 < 50 )
 			{
 				$s2 = 0;
 				$s1 = 3;
 			}
-			if($r2 >= 60 and $r2 < 75 )
+			if($r2 >= 50 and $r2 < 65 )
 			{
 				$s2 = 1;
 				$s1 = 3;
 			}
-			if($r2 >= 75 and $r2 < 100 )
+			if($r2 >= 65 and $r2 < 100 )
 			{
 				$s2 = 2;
 				$s1 = 3;
