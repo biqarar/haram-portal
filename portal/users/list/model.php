@@ -1,11 +1,11 @@
-<?php 
+<?php
 /**
-* 
+*
 */
 class model extends main_model {
 	public function post_api(){
 		$type = $this->xuId("type");
-		
+
 		// $this->branch();
 		// $type = isset($type) && $type != "" ? $type : "learn";
 			// var_dump($type);exit();
@@ -50,7 +50,7 @@ class model extends main_model {
 			})
 			->search_result(function($result){
 				$search = array('name', "username users.username" , "nationalcode person.nationalcode");
-				
+
 				foreach ($search as $key => $value) {
 					if(preg_match("/^[^\s]*\s(.*)$/", $value, $nvalue)){
 						$search[$key] = $nvalue[1];
@@ -77,12 +77,11 @@ class model extends main_model {
 				{
 					$father = trim($vsearch_split[2]);
 				}
-
 				$result->groupOpen();
-				
+
 				if($public && !$family && !$father)
 				{
-					
+
 					$result->condition("and", "users.username", "LIKE", "'%$public%'");
 					$result->condition("or", "person.nationalcode", "LIKE", "'%$public%'");
 					$result->condition("or", "person.name", "LIKE", "'%$public%'");
@@ -98,12 +97,12 @@ class model extends main_model {
 				{
 					$result->condition("and", "person.family", "LIKE", "'%$family%'");
 				}
-				
+
 				if($father)
 				{
 					$result->condition("and", "person.father", "LIKE", "'%$father%'");
 				}
-				
+
 				$result->groupClose();
 
 				// echo ($result->select()->string());
@@ -126,9 +125,9 @@ class model extends main_model {
 				// 		}
 				// 	}
 				// }
-				// 
+				//
 				// ////////////////////////////////////
-				// 
+				//
 				// $vsearch = $_POST['search']['value'];
 				// // var_dump($_POST['search']['value']);exit();
 				// $vsearch = str_replace(" ", "", $vsearch);
@@ -145,7 +144,7 @@ class model extends main_model {
 				$r->detail = $this->tag("a")->addClass("icomore")->href("users/status=detail/id=". $r->detail)->render();
 			}, $type);
 		$this->sql(".dataTable", $dtable);
-	}	
+	}
 
 	public function type($type = false, $id = false) {
 		// var_dump($type, $id);exit();
@@ -164,7 +163,7 @@ class model extends main_model {
 			->addClass("icodadd")->style("cursor: pointer;")->addClass("add-hefz-teams-users")
 				->hefzteamsid($this->xuId("teamid"))->usersid($id)->render();
 			break;
-			
+
 			default:
 				return $this->tag("a")->addClass("icoshare")->href('users/learn/id='. $id)->render();
 				break;

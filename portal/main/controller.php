@@ -4,9 +4,9 @@ class main_controller{
 	public $__autocallMethod = array("sql", "redirect", "checkRedirect", "addMethod", "addPeroperty");
 	public $__autogetProperty = array( "redirect");
 	public $access = false; // for after lunch
-	
+
 	public final function __construct(){
-		
+
 		if(global_cls::supervisor()){
 			$this->access = true; // for befor lunch
 		}
@@ -16,7 +16,7 @@ class main_controller{
 		// }
 
 		$this->xuStatus();
-		
+
 		$permission = new checkPermission_cls;
 		$permission->check();
 		$this->querys = (object) "query";
@@ -144,7 +144,7 @@ class main_controller{
 		$x =  new changeDate_cls;
 		return $x->change($date, $days, $operator);
 	}
-	
+
 	public function tag($tag = false) {
 		return new tagMaker_lib($tag);
 	}
@@ -154,12 +154,13 @@ class main_controller{
 	}
 
 	/**
-	* @return date whit 8 number 
-	* @example 13930801 
+	* @return date whit 8 number
+	* @example 13930801
 	*/
 
-	public function dateNow() {
-		return $this->jTime()->date("Ymd", false, false);
+	public function dateNow($_format = "Ymd")
+	{
+		return $this->jTime()->date($_format, false, false);
 	}
 
 	public function db($string) {
@@ -313,7 +314,7 @@ class main_controller{
 		if(global_cls::supervisor()){
 			return [true, true];
 		}
-		
+
 		$msg = "";
 		$access = false;
 		if($this->access) {
@@ -363,8 +364,8 @@ class main_controller{
 			}elseif($arg && ($arg == "all" || $arg == "*")){
 				return $_SESSION['user'];
 			}elseif($arg && $arg == "select_branch"){
-				
-				return 
+
+				return
 				(isset($_SESSION['user']['branch']['selected']) &&
 				 !empty($_SESSION['user']['branch']['selected'])) ? true :false;
 			}else{
