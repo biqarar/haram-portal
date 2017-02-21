@@ -131,7 +131,7 @@ class model extends main_model{
 
 		$database_change = array(
 			//--------------------
-			"ALTER TABLE `absence` ADD `status` ENUM('enable','disable','deleted') NOT NULL DEFAULT 'enable' AFTER `because`",
+			"ALTER TABLE `score_type` ADD `status` ENUM('enable','disable') NOT NULL DEFAULT 'enable' AFTER `description`;",
 
 		);
 

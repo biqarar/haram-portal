@@ -25,6 +25,7 @@ class query_scoreCalculation_cls extends query_cls
 		$calculation->joinScore_type()
 					->whereId("#score.score_type_id")
 					->andType("endofterm")
+					->andStatus('enable')
 					->fieldTitle();
 		$calculation->joinPerson()->whereUsers_id("classification.users_id")->fieldName()->fieldFamily();
 		$calculation->joinUsers()->whereId("#classification.users_id")->fieldUsername("username")->fieldId("users_id");
