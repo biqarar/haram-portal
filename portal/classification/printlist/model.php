@@ -1,6 +1,6 @@
 <?php
 /**
-* @author reza mohiti rm.biqarar@gmail.com 
+* @author reza mohiti rm.biqarar@gmail.com
 */
 class model extends main_model {
 
@@ -59,8 +59,8 @@ class model extends main_model {
 	public function sql_score_type($plan_id = false) {
 		//---------------- check branch
 		// $this->sql(".branch.plan", $plan_id);
-		
-		return $this->sql()->tableScore_type()->wherePlan_id($plan_id)->select()->allAssoc();
+
+		return $this->sql()->tableScore_type()->wherePlan_id($plan_id)->andStatus('enable')->select()->allAssoc();
 	}
 
 
