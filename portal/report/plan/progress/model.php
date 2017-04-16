@@ -24,13 +24,21 @@ class model extends main_model {
 			ORDER BY average DESC
 		";
 		$score_list = $this->db($query)->allAssoc();
-		// var_dump($score_list, $query);
-		// var_dump($this->high_chart_mod($score_list));exit();
+		/*var_dump($score_list, $query);
+		var_dump($this->high_chart_mod($score_list));exit();*/
 		return $this->high_chart_mod($score_list);
 	}
 
 
 	public function sql_progress($plan_id = false) {
+		if($this->xuId('type') === 'all')
+		{
+			$condition_classes = "";
+		}
+		else
+		{
+			$condition_classes = " AND classes.status IN ('running', 'ready') ";
+		}
 
 		$query =
 		"
@@ -41,11 +49,10 @@ class model extends main_model {
 			FROM
 				score
 			INNER JOIN classification ON classification.id = score.classification_id
-			INNER JOIN classes ON classes.id = classification.classes_id
+			INNER JOIN classes ON classes.id = classification.classes_id $condition_classes
 			INNER JOIN score_type ON score_type.id = score.score_type_id
 			INNER JOIN person ON person.users_id = classes.teacher
 			INNER JOIN plan ON plan.id = classes.plan_id  AND plan.id = $plan_id
-
 			GROUP BY
 				name,
 				title,
@@ -81,7 +88,7 @@ class model extends main_model {
 
 			$json[] =
 			[
-				'name' => $key,
+				'name' => _($key),
 				'data' => $value
 			];
 		}
@@ -90,6 +97,7 @@ class model extends main_model {
 		$categories = json_encode($categories, JSON_UNESCAPED_UNICODE);
 		$return['categories'] = $categories;
 		$return['series'] = json_encode($json, JSON_UNESCAPED_UNICODE);
+
 		return $return;
 	}
 }

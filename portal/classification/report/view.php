@@ -112,13 +112,23 @@ class view extends main_view
 				classification
 			WHERE
 				classes_id = $classes_id AND
+				because = 'move'
+			";
+		$this->data->move_classification = intval($this->db($query)->assoc("id"));
+		$query = "
+			SELECT
+				COUNT(id) AS 'id'
+			FROM
+				classification
+			WHERE
+				classes_id = $classes_id AND
 				because IS NOT NULL
 			";
 		$this->data->exit_class = intval($this->db($query)->assoc("id"));
 		if($this->data->intro > 0)
 		{
 			$this->data->end_class_100 =
-				round(floatval((($this->data->intro - $this->data->exit_class) * 100 / $this->data->intro)), 2);
+				round(floatval((($this->data->intro - $this->data->exit_class) * 100 / $this->data->intro - $this->data->move_classification)), 2);
 		}
 		else
 		{
