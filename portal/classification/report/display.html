@@ -45,7 +45,7 @@
 	}
 
 	table td{
-		font-size: 14px;
+		font-size: 12px;
 	}
 	/*div.header-table{
 	    margin: 0;
@@ -78,7 +78,10 @@
 		}
 
 	@media print{
-		.header-portal,.thin-line,.menu
+		@page {
+			size : a4 landscape !important;
+		}
+		.header-portal,.thin-line,.menu, .hr-portal, li.ui-tabs-active, li.ui-state-default, ul.ui-tabs-nav, .logo, .avatar, .title, .top-tape
 		{
 			display: none;
 		}
@@ -87,9 +90,24 @@
 		}
 		.wrapper
 		{
+			display: block;
 			height: 100%;
 			width: 100%;
+			padding: 0px;
+			margin: 0px;
 		}
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		div.classes{
+			display: block;
+		}
+		.class-detail
+		{
+			font-size: 12px;
+		}
+
 	}
 
 </style>
@@ -100,10 +118,10 @@
 <div class="classes">
 
 </div>
-<h3>گزارش از وضعیت کلاس</h3>
+<h4>گزارش از وضعیت کلاس</h4>
 
 <div class="header-table">
-	<h4>مشخصات کلاس</h4>
+	<h5>مشخصات کلاس</h5>
 	<div class="class-details colory">
 	{% for key, header in classes_detail.header %}
 	<div class="class-detail normal-font">
@@ -114,11 +132,11 @@
 		<div style="clear:both"></div>
 	</div>
 </div>
-<span id="plus" style="cursor: pointer; color: blue;" title="مشاهده اطلاعات استاد">+</span>
+<span id="plus" class="hr-portal" style="cursor: pointer; color: blue;" title="مشاهده اطلاعات استاد">+</span>
 
 <div class="class-details colory hide" id="teacher-detail">
-<hr>
-<h4>مشخصات استاد</h4>
+<hr class="hr-portal">
+<h5>مشخصات استاد</h5>
 	{% for key, header in teacher_detail.header %}
 	<div class="class-detail normal-font">
 		<div class="class-detail-title">{{header|lang}}:</div>
@@ -127,15 +145,15 @@
 	{%endfor%}
 	<div style="clear:both"></div>
 </div>
-<hr>
+<hr class="hr-portal">
 <table>
-	<tr><td class="first-td" colspan="2"><h4>وضعیت ورودی و خروجی کلاس</h4></td></tr>
-	<tr><td class="first-td">تعداد ورودی</td><td>{{intro}}</td></tr>
-	<tr><td class="first-td">تعداد انصرافی</td><td>{{exit_class}}</td></tr>
-	<tr><td class="first-td">تعداد افراد باقیمانده در پایان کلاس</td><td>{{end_class}}</td></tr>
+	<tr><td class="first-td" colspan="2"><h5>وضعیت ورودی و خروجی کلاس</h5></td></tr>
+	<tr><td class="first-td">تعداد ورودی</td><td>{{intro}} نفر</td></tr>
+	<tr><td class="first-td">تعداد انصرافی</td><td>{{exit_class}} نفر</td></tr>
+	<tr><td class="first-td">تعداد افراد باقیمانده در پایان کلاس</td><td>{{end_class}} نفر</td></tr>
 	<tr><td class="first-td">درصد باقیمانده در کلاس</td><td>
 	<div style="width: {{end_class_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{end_class_100}} ٪</div></td></tr>
-	<tr><td class="first-td" colspan="2"><h4>وضعیت نمرات و قبولی کلاس</h4></td></tr>
+	<tr><td class="first-td" colspan="2"><h5>وضعیت نمرات و قبولی کلاس</h5></td></tr>
 	<tr><td class="first-td">معدل کل آزمون پایانی</td><td>{{moadele_kol}}</td></tr>
 	<tr><td class="first-td">معدل کل نمرات کلاسی</td><td>{{moadele_class}}</td></tr>
 	<tr><td class="first-td">تعداد قبولی</td><td>{{qaboli}}</td></tr>
@@ -144,7 +162,7 @@
 
 	<div style="width: {{qaboli_100}}%;	border-radius: 5px;	background-color: #59C5C5;">{{qaboli_100}} ٪</div>
 	</td></tr>
-	<tr><td class="first-td" colspan="2"><h4>تعداد جلسات </h4></td></tr>
+	<tr><td class="first-td" colspan="2"><h5>تعداد جلسات </h5></td></tr>
 	<tr><td class="first-td">تعداد جلسات آیین نامه</td><td>{{aeenname}}</td></tr>
 	<tr><td class="first-td">تعداد جلسات برگزار شده
 	<a class="small">-محاسبه شده با تعداد روز های ثبت نمرات کلاسی</a></td><td>{{bargozarshode}}</td></tr>

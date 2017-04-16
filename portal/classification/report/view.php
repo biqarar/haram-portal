@@ -45,7 +45,48 @@ class view extends main_view
 				$query->whereUsers_id($teacher_id);
 				$query->joinPerson_extera("LEFT")->whereUsers_id("#person.users_id");
 
-			}, $teacher_id)->compile();
+			}, $teacher_id);
+
+			$teacher_detail->removeCol("
+			id,
+			code,
+			from,
+			nationality,
+			type,
+			casecode,
+			casecode_old,
+			education_id,
+			education_howzah_id,
+			en_name,
+			en_family,
+			en_father,
+			third_name,
+			third_family,
+			third_father,
+			pasport_date,
+			users_id,
+			place_birth,
+			child_daughter,
+			child_son,
+			dependents,
+			soldiering,
+			exemption_type,
+			job,
+			residence,
+			health,
+			treated,
+			stature,
+			weight,
+			blood_group,
+			disease,
+			insurance_type,
+			insurance_code,
+			good_remember,
+			bad_remember,
+			tahqiq,
+			tartil,
+			tajvid");
+			$teacher_detail = $teacher_detail->compile();
 			$this->data->teacher_detail = $teacher_detail;
 		}
 
