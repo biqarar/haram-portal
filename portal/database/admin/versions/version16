@@ -10,3 +10,4 @@
 			"ALTER TABLE `score` ADD `date` DATE NULL AFTER `score_type_id`",
 			"ALTER TABLE `quran_hadith`.`score` DROP INDEX `unique_index`, ADD UNIQUE `unique_index` (`classification_id`, `score_type_id`, `date`) USING BTREE;",
 			"ALTER TABLE `absence` ADD `status` ENUM('enable','disable','deleted') NOT NULL DEFAULT 'enable' AFTER `because`",
+			"ALTER TABLE `score_type` ADD `status` ENUM('enable','disable') NOT NULL DEFAULT 'enable' AFTER `description`;",
