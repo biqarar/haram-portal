@@ -134,9 +134,11 @@ class model extends main_model {
 								case 'type':
 									$result[$key][_(trim($temp[0]))] = _($temp[1]);
 									break;
+
 								case 'date':
 									$result[$key][_(trim($temp[0]))] = date("Y-m-d", strtotime($temp[1]));
 									break;
+
 								case 'because':
 									$result[$key][_(trim($temp[0]))] = $temp[1];
 									break;
