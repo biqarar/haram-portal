@@ -27,8 +27,8 @@ class score_type
 		$this->form("select")->name("plan_id")->addClass("select-plan-section")->addClass("notselect");
 		$this->setChild(function($q)
 		{
-			$list = isset($_SESSION['user']['branch']['selected']) ?
-						  $_SESSION['user']['branch']['selected'] : array();
+			$list = isset($_SESSION['my_user']['branch']['selected']) ?
+						  $_SESSION['my_user']['branch']['selected'] : array();
 			$q->groupOpen();
 			foreach ($list as $key => $value)
 			{

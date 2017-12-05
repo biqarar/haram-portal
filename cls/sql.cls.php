@@ -18,7 +18,7 @@ class sql_cls {
 		$sql = new dbconnection_lib;
 
 		//------------------------------ users id
-		$users_id = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : false;
+		$users_id = isset($_SESSION['my_user']['id']) ? $_SESSION['my_user']['id'] : false;
 
 		//------------------------------ ip
 		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 0;
@@ -51,11 +51,11 @@ class sql_cls {
 		$sql = new dbconnection_lib;
 		$new_value = preg_replace("/'|\#/", "", $new_value);
 
-		if(isset($_SESSION['user']['id'])){
+		if(isset($_SESSION['my_user']['id'])){
 
 		$assoc = $sql->query("INSERT INTO `quran_hadith_log`.`update_log`
 			SET
-			`users_id` = '". $_SESSION['user']['id'] ."' ,
+			`users_id` = '". $_SESSION['my_user']['id'] ."' ,
 			`table` = '$table',
 			`field` = '$field',
 			`record_id` = '$record_id' ,
@@ -81,12 +81,12 @@ class sql_cls {
 			if($key == "id") $id = $value;
 			$meta .= $key . ":" . $value  .", ";
 		}
-		if(isset($_SESSION['user']['id'])){
+		if(isset($_SESSION['my_user']['id'])){
 
 			$assoc = $sql->query("INSERT INTO `quran_hadith_log`.`trash`
 				SET
 				`tables` = '".$maker->table."',
-				`users_id` = '". $_SESSION['user']['id'] ."' ,
+				`users_id` = '". $_SESSION['my_user']['id'] ."' ,
 				`record_id` = '$id',
 				`meta`  = '$meta'");
 			// $sql->query("COMMIT");

@@ -60,9 +60,9 @@ class menu_cls
 					{
 						foreach ($publicPrivate as $i => $p)
 						{
-							if(isset($_SESSION['user']['permission']['tables'][$table]) && isset($_SESSION['user']['permission']['tables'][$table][$oprator]))
+							if(isset($_SESSION['my_user']['permission']['tables'][$table]) && isset($_SESSION['my_user']['permission']['tables'][$table][$oprator]))
 							{
-								if($_SESSION['user']['permission']['tables'][$table][$oprator] == $p)
+								if($_SESSION['my_user']['permission']['tables'][$table][$oprator] == $p)
 								{
 									$make = true;
 									break;
@@ -650,7 +650,7 @@ class menu_cls
 
 	public function selectbranch()
 	{
-		if(isset($_SESSION['user']['branch']['active']) &&  count($_SESSION['user']['branch']['active']) > 1)
+		if(isset($_SESSION['my_user']['branch']['active']) &&  count($_SESSION['my_user']['branch']['active']) > 1)
 		{
 			return "public";
 		}
@@ -663,9 +663,9 @@ class menu_cls
 
 	public function usersid()
 	{
-		if(isset($_SESSION['user']['id']))
+		if(isset($_SESSION['my_user']['id']))
 		{
-			return $_SESSION['user']['id'];
+			return $_SESSION['my_user']['id'];
 		}
 		else
 		{
@@ -675,7 +675,7 @@ class menu_cls
 
 	public function teacher_form()
 	{
-		if(isset($_SESSION['user']['type']) && $_SESSION['user']['type'] == "teacher")
+		if(isset($_SESSION['my_user']['type']) && $_SESSION['my_user']['type'] == "teacher")
 		{
 			return "public";
 		}

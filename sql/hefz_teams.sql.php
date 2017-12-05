@@ -21,9 +21,9 @@ class hefz_teams {
 	public function lig_id(){
 		$this->form("select")->name("lig_id")->addClass("notselect")->required();
 		$this->setChild(function($q){
-			
-				$list = isset($_SESSION['user']['branch']['selected']) ? 
-							  $_SESSION['user']['branch']['selected'] : array();
+
+				$list = isset($_SESSION['my_user']['branch']['selected']) ?
+							  $_SESSION['my_user']['branch']['selected'] : array();
 
 				$q->groupOpen();
 				foreach ($list as $key => $value) {
@@ -32,7 +32,7 @@ class hefz_teams {
 					}else{
 						$q->condition("or","hefz_ligs.branch_id","=",$value);
 					}
-				}	
+				}
 				$q->groupClose();
 
 		});
@@ -44,7 +44,7 @@ class hefz_teams {
 	}
 
 	public function hefz_group_id() {
-		
+
 		$this->form("select")->name("hefz_group_id")->addClass("notselect")->required();
 
 		$this->setChild();

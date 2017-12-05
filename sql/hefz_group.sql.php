@@ -15,13 +15,13 @@ class hefz_group {
 	public function id() {
 		$this->validate("id");
 	}
-	
+
 	public function lig_id(){
 		$this->form("select")->name("lig_id")->addClass("notselect")->required();
 		$this->setChild(function($q){
-				$list = isset($_SESSION['user']['branch']['selected']) ? 
-							  $_SESSION['user']['branch']['selected'] : array();
-			
+				$list = isset($_SESSION['my_user']['branch']['selected']) ?
+							  $_SESSION['my_user']['branch']['selected'] : array();
+
 				$q->groupOpen();
 				foreach ($list as $key => $value) {
 					if($key == 0){
@@ -29,17 +29,17 @@ class hefz_group {
 					}else{
 						$q->condition("or","hefz_ligs.branch_id","=",$value);
 					}
-				}	
+				}
 				$q->groupClose();
 
 		});
 	}
-	
+
 
 	public function name() {
 		$this->form("#fatext")->name("name")->required();
 		$this->validate()->farsi()->form->farsi("name is not valid");
-	
+
 	}
 
 

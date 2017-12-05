@@ -21,7 +21,7 @@ class classes {
 	public $status     = array('type'=> 'enum@ready,running,done!ready', 'label' => 'classes_status');
 	public $type	    = array('type'=> 'enum@physical,virtual!physical', 'label' => 'classes_type');
 	public $count	    = array('type'=> 'int@7', 'label' => 'classes_count');
-	
+
 	public $index      = array("course_id", "plan_id", "teacher", "place_id");
 	public $unique     = array("id");
 	public $foreign    = array(
@@ -30,7 +30,7 @@ class classes {
 		"teacher"     => "users@id!id",
 		"place_id"    => "place@id!name"
 		);
-	
+
 	public function id() {
 		$this->validate("id");
 	}
@@ -40,13 +40,13 @@ class classes {
 	// 	$this->setChild();
 	// 	$this->validate("id");
 	// }
-	
+
 
 	public function plan_id() {
 		$this->form("select")->name("plan_id")->addClass("select-plan notselect")->required();
 		$this->setChild(function($q){
-			$list = isset($_SESSION['user']['branch']['selected']) ? 
-						  $_SESSION['user']['branch']['selected'] : array();
+			$list = isset($_SESSION['my_user']['branch']['selected']) ?
+						  $_SESSION['my_user']['branch']['selected'] : array();
 			$q->groupOpen();
 			foreach ($list as $key => $value) {
 				if($key == 0){
@@ -54,13 +54,13 @@ class classes {
 				}else{
 					$q->condition("or","plan.branch_id","=",$value);
 				}
-			}	
+			}
 			$q->groupClose();
 
 		}, function($child, $value){
-			$child->label(gettext($value['name']))->value($value['id']); 
+			$child->label(gettext($value['name']))->value($value['id']);
 		});
-		$this->validate("id");	
+		$this->validate("id");
 	}
 
 	public function meeting_no() {
@@ -76,7 +76,7 @@ class classes {
 		// 	$q->joinPerson()->whereUsers_id("#users.id")->fieldName()->fieldFamily();
 		// 	$q->groupbyId();
 		// }, function($child, $value){
-		// 	$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']); 
+		// 	$child->label($value['name'] .  '  ' . $value['family'])->value($value['id']);
 		// });
 	}
 
@@ -91,13 +91,13 @@ class classes {
 		$this->setChild($this->form);
 		// $this->validate();
 	}
-	
+
 	public function place_id() {
 		$this->form("select")->name("place_id")->addClass("select-place notselect")->required();
 		$this->setChild(function($q){
 			$q->whereStatus("enable");
-			$list = isset($_SESSION['user']['branch']['selected']) ? 
-						  $_SESSION['user']['branch']['selected'] : array();
+			$list = isset($_SESSION['my_user']['branch']['selected']) ?
+						  $_SESSION['my_user']['branch']['selected'] : array();
 			$q->groupOpen();
 			foreach ($list as $key => $value) {
 				if($key == 0){
@@ -105,44 +105,44 @@ class classes {
 				}else{
 					$q->condition("or","place.branch_id","=",$value);
 				}
-			}	
+			}
 			$q->groupClose();
 		}, function($child, $value){
-			$child->label($value['name'])->value($value['id']); 
+			$child->label($value['name'])->value($value['id']);
 		});
 		$this->validate("id");
 	}
-	
+
 	public function start_time() {
 		$this->form("#number")->name("start_time")->time('time');
 		$this->validate()->time()->form->time("start time is not valid");
 	}
-	
+
 	public function end_time() {
 		$this->form("#number")->name("end_time")->time('time');
 		$this->validate()->time()->form->time("end time is not valid");
 	}
-	
+
 	public function start_date() {
 		$this->form("#date")->name("start_date")->required();
 		$this->validate()->date()->form->date("start date is not valid");
 	}
-	
+
 	public function end_date() {
 		$this->form("#date")->name("end_date")->required();
 		$this->validate()->date()->form->date("end date is not valid");
 	}
-	
+
 	public function week_days() {
 		$this->form("checkbox")->name("week_days")->required();
 		$this->setChild();
 	}
-	
+
 	public function name() {
 		$this->form("#fatext")->name("name");
 		$this->validate()->farsi()->form->farsi("name should be persian");
 	}
-	
+
 	public function status() {
 		$this->form("select")->name("status");
 		$this->setChild($this->form);

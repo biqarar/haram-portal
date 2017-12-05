@@ -54,8 +54,8 @@ class controller extends main_controller{
 		}
 
 		if(
-			isset($_SESSION['user']['type']) && 
-			$_SESSION['user']['type'] == 'teacher' &&
+			isset($_SESSION['my_user']['type']) &&
+			$_SESSION['my_user']['type'] == 'teacher' &&
 			($url_id == $users_id)) {
 
 			$this->access = true;

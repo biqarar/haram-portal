@@ -25,16 +25,16 @@ class plan {
 	public function id() {
 		$this->validate("id");
 	}
-	
+
 	public function group_id() {
 		$this->form("select")->name("group_id")->required();
 		$this->setChild(function($q){
-			
+
 			if(!isset($_SESSION['supervisor'])){
 
-				$list = isset($_SESSION['user']['branch']['selected']) ? 
-							  $_SESSION['user']['branch']['selected'] : array();
-				
+				$list = isset($_SESSION['my_user']['branch']['selected']) ?
+							  $_SESSION['my_user']['branch']['selected'] : array();
+
 				// if(global_cls::supervisor()) exit();
 							  // var_dump($_SESSION);exit();
 				$q->groupOpen();
@@ -44,23 +44,23 @@ class plan {
 					}else{
 						$q->condition("or","group.branch_id","=",$value);
 					}
-				}	
+				}
 				$q->groupClose();
 
 			}
 		});
 	}
-	
+
 	public function name() {
 		$this->form("#fatext")->name("name")->required();
 		$this->validate()->farsi()->form->farsi("plan name should be persian");
 	}
-	
+
 	public function price() {
 		$this->form("#price")->name("price")->id("no-icon-price");
 		$this->validate()->number(3, 7)->form->number("entered price is not valid");
 	}
-	
+
 	public function absence() {
 		$this->form("#number")->name("absence")->required();
 		$this->validate()->number(1, 2)->form->number("absences number is not valid");
@@ -70,26 +70,26 @@ class plan {
 		$this->form("radio")->name("absence_type");
 		$this->setChild($this->form);
 	}
-	
+
 	public function certificate() {
 		$this->form("radio")->name("certificate");
 		$this->setChild($this->form);
 	}
-	
+
 	public function mark() {
 		$this->form("#number")->required()->name("mark")->addClass('slider-number')->min(0)->max(100);
 		$this->validate()->number(1, 3)->form->number("plan score is not valid");
 	}
-	
+
 	public function rule() {
 		$this->validate("id");
 	}
-	
+
 	public function min_person() {
 		$this->form("#number")->name("min_person")->required();
 		$this->validate()->number(1, 3)->form->number("minimum persons number is not valid");
 	}
-	
+
 	public function max_person() {
 		$this->form("#number")->name("max_person")->required();
 		$this->validate()->number(1, 4)->form->number("maximum persons number is not valid");
