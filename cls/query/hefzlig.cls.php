@@ -101,6 +101,7 @@ class query_hefzlig_cls extends query_cls
 					break;
 
 			}
+
 			$result[$key]['main_result'] = round(floatval($d), 2);
 			$result[$key]['result'] =" ٪ " . round(floatval($d), 2);
 		}
