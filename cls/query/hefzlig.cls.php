@@ -2,6 +2,7 @@
 class query_hefzlig_cls extends query_cls
 {
 
+
 	/**
 	 * Sets the running.
 	 *
