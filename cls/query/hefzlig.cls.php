@@ -108,7 +108,7 @@ class query_hefzlig_cls extends query_cls
 		foreach ($result as $key => $value)
 		{
 
-			$result[$key]['main_result'] = $result[$key]['main_result'] - (intval($manfi[$key]) * 2);
+			$result[$key]['main_result'] = $result[$key]['main_result'] - (intval($manfi[$key]) * 1);
 			$result[$key]['result'] = " ٪ " .  $result[$key]['main_result'];
 			// $result[$key]['value'] = $result[$key]['value'] - $manfi[$key];
 			$result[$key]['manfi'] = $manfi[$key];
